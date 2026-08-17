@@ -138,7 +138,7 @@ When `hasPage: true`, `app.js` renders the clean live 16:9 preview component:
 </div>
 ```
 
-- **Dynamic Iframe Scaling**: `resizeCardIframes()` calculates `containerWidth / 1280` and applies `transform: scale(...)` to the 1280x720 iframe so that the live page renders crisply in 16:9 ratio across 3-column Grid, Compact Preview, 2-column Editorial Spread, and 1-column Ledger views.
+- **Dynamic Iframe Scaling**: `resizeCardIframes()` calculates `containerWidth / 1280` and applies `transform: scale(...)` to the 1280x720 iframe so that the live page renders crisply in 16:9 ratio across 3-column Grid, Compact Preview, and 2-column Editorial Spread views.
 - **Click Overlay**: The transparent `.preview-overlay` captures pointer clicks to smoothly navigate to `Designs/<slug>.html` while revealing the `Open Design Page ↗` tactile badge on hover.
 
 ---
@@ -281,5 +281,5 @@ When adding a new design:
   - [ ] Set `vibeBadge: "[Filter Option Name]"` (matching one of the search filter options, e.g. `"Editorial & Archival"`, `"Neo-Brutalism"`, `"Cyber & Blueprint"`, `"Minimalist & Monastic"`, `"Playful & Pop"`, `"Retro & Y2K"`, `"Quiet Luxury"`).
   - [ ] Set `hasPage: true` to activate the live 16:9 scaled design preview iframe.
   - [ ] Include the complete Markdown Style Tile in `markdownSpec`.
-- [ ] Verify that the live 16:9 Design Page Preview displays and scales cleanly on the catalog card in `index.html` (testing Grid, Compact, Editorial Spread, and Ledger views).
+- [ ] Verify that the live 16:9 Design Page Preview displays and scales cleanly on the catalog card in `index.html` (testing Grid, Compact, and Editorial Spread views).
 - [ ] Test color contrast, responsiveness (mobile/tablet/desktop), and keyboard accessibility.

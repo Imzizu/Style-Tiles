@@ -1419,7 +1419,7 @@ A hyper-disciplined collision of high-fashion editorial brutalism, cybernetic ae
 // App State
 let currentCategory = "all";
 let currentSearchQuery = "";
-let currentViewMode = "grid"; // 'grid', 'compact', 'editorial', 'ledger'
+let currentViewMode = "grid"; // 'grid', 'compact', 'editorial'
 
 // -----------------------------------------------------------------------------
 // TOAST SYSTEM
@@ -1645,9 +1645,8 @@ function setViewMode(mode) {
   const grid = document.getElementById("catalog-grid");
   if (!grid) return;
 
-  grid.classList.remove("view-editorial", "view-ledger", "view-compact");
+  grid.classList.remove("view-editorial", "view-compact");
   if (mode === "editorial") grid.classList.add("view-editorial");
-  if (mode === "ledger") grid.classList.add("view-ledger");
   if (mode === "compact") grid.classList.add("view-compact");
 
   document.querySelectorAll(".view-btn").forEach(btn => {
