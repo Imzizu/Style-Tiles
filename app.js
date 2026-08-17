@@ -390,7 +390,7 @@ const STYLE_TILES_DATA = [
   ================================================================================`
   },
   {
-    id: "TILE-009",
+    id: "TILE-004",
     slug: "greenwrap",
     name: "Greenwrap Design System",
     vibe: "Modern Eco-Brutalist • Neo-Editorial • Organic Dark Mode",
@@ -807,7 +807,7 @@ const STYLE_TILES_DATA = [
   - NO rigid boring static interactions (use bouncy elastic press-down physics and tactile feedback).`
   },
   {
-    id: "TILE-010",
+    id: "TILE-006",
     slug: "healthy-pets",
     name: "Healthy Pets, Happy Hearts",
     vibe: "Playful Neo-Retro • Organic Warmth • High-Contrast Editorial",
@@ -831,7 +831,7 @@ const STYLE_TILES_DATA = [
     markdownSpec: `================================================================================
   STYLE TILE: HEALTHY PETS, HAPPY HEARTS DESIGN SYSTEM
   Theme: Playful Neo-Retro / Organic Warmth / High-Contrast Editorial
-  Code: TILE-010
+  Code: TILE-006
   ================================================================================
   
   /* -----------------------------------------------------------------------------
@@ -1256,7 +1256,7 @@ const STYLE_TILES_DATA = [
   ================================================================================`
   },
   {
-    id: "TILE-004",
+    id: "TILE-009",
     slug: "warm-wabisabi",
     name: "Warm Wabi-Sabi Ledger",
     vibe: "Organic Minimalism • Tactile Craft • Serene Editorial",
@@ -1280,7 +1280,7 @@ const STYLE_TILES_DATA = [
     ],
     description: "Raw unbleached linen textures, wood-fired sumi charcoal inks, terracotta pottery seals, and serene editorial typography with diffused resting shadows and subtle 2px craft radii.",
     markdownSpec: `================================================================================
-  STYLE TILE: WARM WABI-SABI LEDGER (TILE-004)
+  STYLE TILE: WARM WABI-SABI LEDGER (TILE-009)
   Aesthetic: Organic Minimalism • Tactile Craft • Serene Editorial • Quiet Luxury
   ================================================================================
   
@@ -1443,7 +1443,7 @@ const STYLE_TILES_DATA = [
   - NO cluttered icon-stuffed dashboards; preserve open spatial serenity and organic quietude.`
   },
   {
-    id: "TILE-006",
+    id: "TILE-010",
     slug: "blueprint-hud",
     name: "Industrial Blueprint HUD",
     vibe: "Architectural Cyanotype • CAD Precision • Aerospace Telemetry",
@@ -1720,6 +1720,144 @@ const STYLE_TILES_DATA = [
   - NO large round pill buttons (>2px radius) or bloated padding.
   - NO floating cards without hairline grid borders or structural frames.
   - NO untracked typefaces without precise monospace readouts or technical metadata.`
+  },
+  {
+    id: "TILE-011",
+    slug: "fluid-bento-saas",
+    name: "Fluid Bento // Soft SaaS",
+    vibe: "Soft SaaS • Fluid Bento Architecture • Berry Accent",
+    vibeBadge: "Minimalist & Monastic",
+    categories: ["minimalist"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Surface-0", hex: "#ECEFF2" },
+      { name: "Surface-1", hex: "#FFFFFF" },
+      { name: "Surface-2", hex: "#F6F8FA" },
+      { name: "Surface-Dark", hex: "#111315" },
+      { name: "Berry Pink", hex: "#DE2454" },
+      { name: "Metric Alert", hex: "#E42A58" },
+      { name: "Chart Accent", hex: "#E83D6D" }
+    ],
+    description: "High-precision soft SaaS interface with warm slate canvas, pure white bento surfaces, 24px outer radii, 9999px pills, tabular figures, and tactical berry pink momentum accents.",
+    markdownSpec: `================================================================================
+  DESIGN SYSTEM STYLE TILE: "FLUID BENTO / SOFT SAAS"
+================================================================================
+
+1. COLOR ROLES & PALETTE
+--------------------------------------------------------------------------------
+• Canvas / Neutral Backgrounds:
+  - Surface-0 (App Background)  : #ECEFF2  /* Soft warm slate canvas */
+  - Surface-1 (Card / Bento Tile): #FFFFFF  /* Pure white base cards */
+  - Surface-2 (Nested Container): #F6F8FA  /* Sub-card & input fill */
+  - Surface-Dark (Card Accent)  : #111315  /* High-contrast feature card */
+
+• Brand & Semantic Accents:
+  - Primary Accent (Berry Pink) : #DE2454  /* Active nav, pills, high-priority CTA */
+  - Primary Accent Soft         : #FCE8EE  /* Light berry badge background */
+  - Metric Alert / Secondary    : #E42A58  /* Delta / negative / spotlight tags */
+  - Chart Accent Line           : #E83D6D  /* Dynamic trendline stroke */
+
+• Typography Colors:
+  - Text-Primary (Headers/Data) : #111315  /* Near black, high contrast */
+  - Text-Secondary (Subheaders) : #6B7280  /* Neutral slate */
+  - Text-Muted (Decimals/Units) : #9CA3AF  /* Light gray auxiliary text */
+  - Text-On-Dark (Inverted)     : #FFFFFF  /* Pure white */
+  - Text-Accent (Active Item)   : #DE2454  /* Highlighted link / active menu */
+
+• Data / Integration Palette:
+  - Dribbble : #EA4C89 | Behance : #0057FF | Google : #4285F4 | IG : #E1306C
+
+
+2. TYPOGRAPHY SYSTEM
+--------------------------------------------------------------------------------
+• Primary Font Family: "Plus Jakarta Sans", "Inter", or "SF Pro Display", sans-serif
+• Tabular Data: Lining Figures enabled (\`font-variant-numeric: tabular-nums\`)
+
+• Type Hierarchy:
+  - Display Title  : 28px / Line Height: 34px | SemiBold (600) | Tracking: -0.02em
+  - Metric Large   : 24px / Line Height: 30px | Bold (700)     | Tracking: -0.03em
+    ↳ Sub-decimals : 18px / Line Height: 30px | SemiBold (600) | Color: Text-Muted
+  - Section Header : 16px / Line Height: 22px | SemiBold (600) | Tracking: -0.01em
+  - Body Regular   : 13px / Line Height: 18px | Medium (500)   | Tracking: 0em
+  - Label / Badge  : 11px / Line Height: 14px | SemiBold (600) | Tracking: +0.01em
+  - Micro / Meta   : 10px / Line Height: 12px | Regular (400)  | Tracking: +0.02em
+
+
+3. CORNER GEOMETRY (BORDER RADII)
+--------------------------------------------------------------------------------
+• Radius-Pill (Full) : 9999px  /* Search bar, segmented pills, badge chips, avatars */
+• Radius-Outer (XL)  : 24px    /* Primary Bento grid card containers */
+• Radius-Medium (MD) : 16px    /* Nested metric tiles, drop-downs, secondary cards */
+• Radius-Inner (SM)  : 10px    /* Interactive buttons, filter pills, small badges */
+
+
+4. ELEVATION & DEPTH (SHADOWS & LAYERING)
+--------------------------------------------------------------------------------
+• Elevation-0 (Flat Base):
+  - Canvas background separation via background color contrast (#ECEFF2 vs #FFFFFF).
+
+• Elevation-1 (Bento Tile):
+  - \`box-shadow: 0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);\`
+
+• Elevation-2 (Floating Chips & Popovers):
+  - \`box-shadow: 0 10px 30px -4px rgba(17, 19, 21, 0.08), 0 4px 12px -2px rgba(17, 19, 21, 0.03);\`
+
+• Depth Structure:
+  - Outer Canvas (Layer 0) ➔ Bento Surface (Layer 1) ➔ Inset Wells / Nested Pods (Layer 0.5 Inset)
+
+
+5. SPACING & SPATIAL SCALE
+--------------------------------------------------------------------------------
+• Base Grid: 4px / 8px spatial step
+
+• Spacing Scale:
+  - Gap-XS (Micro/Tags)     : 4px - 6px
+  - Gap-SM (Pill padding)   : 8px - 10px
+  - Gap-MD (Card gutter)    : 12px - 16px
+  - Gap-LG (Bento layout)   : 20px - 24px
+  - Card Internal Padding   : 20px (Comfortable), 16px (Compact nested)
+
+
+6. BORDERS & DIVIDERS
+--------------------------------------------------------------------------------
+• Micro Borders:
+  - Standard Surface Stroke : \`1px solid rgba(17, 19, 21, 0.04)\`
+  - Active / Focus Stroke   : \`1.5px solid #111315\`
+  - Input / Chip Stroke     : \`1px solid #E5E7EB\`
+
+• Tree-View & Hierarchy Connectors:
+  - Sidebar Tree Lines      : \`1px solid #D1D5DB\` (90° elbow turns at sub-levels)
+
+
+7. ICONOGRAPHY LANGUAGE
+--------------------------------------------------------------------------------
+• Visual Grammar: Minimalist, geometric, rounded line style (Lucide / Phosphor Icons).
+• Stroke Width  : 1.75px fixed; Rounded caps & joins (\`stroke-linecap="round"\`).
+• Icon Sizing   : 14px (Micro inline), 18px (Standard action), 22px (Nav Rail).
+• Icon Treatment:
+  - Monochromatic slate icons for neutral actions (\`#6B7280\`).
+  - Circular badge-contained icons for integration hubs (\`#FFFFFF\` background).
+  - Native emoji integration within filter chips (e.g., "Top sales 💡", "Streak ⚡").
+
+
+8. INTERACTION & FEEDBACK RULES
+--------------------------------------------------------------------------------
+• States:
+  - Default Nav/Pill : Background transparent or \`#F3F4F6\`, Text \`#6B7280\`.
+  - Active Nav Item  : Berry pink text (\`#DE2454\`) + subtle pink node marker.
+  - Active Segment   : Solid \`#111315\` pill fill, \`#FFFFFF\` text, instant visual anchor.
+  - Interactive Hover: \`transform: translateY(-1px)\`, background \`rgba(0, 0, 0, 0.03)\`.
+
+• Motion & Transitions:
+  - Curve            : \`cubic-bezier(0.16, 1, 0.3, 1)\` (Fluid spring / ease-out).
+  - Duration         : Fast micro-interactions at \`150ms - 200ms\`.
+================================================================================`
   }
 ];
 
