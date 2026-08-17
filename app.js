@@ -1858,6 +1858,226 @@ const STYLE_TILES_DATA = [
   - Curve            : \`cubic-bezier(0.16, 1, 0.3, 1)\` (Fluid spring / ease-out).
   - Duration         : Fast micro-interactions at \`150ms - 200ms\`.
 ================================================================================`
+  },
+  {
+    id: "TILE-012",
+    slug: "transform9-healthtech",
+    name: "Transform9+ // Neo-Brutalist HealthTech",
+    vibe: "High-Contrast Dark Mode • Precision HealthTech • Electric Lime & Cobalt",
+    vibeBadge: "Neo-Brutalism",
+    categories: ["brutalist"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas Dark", hex: "#090A0C" },
+      { name: "Canvas Light", hex: "#FFFFFF" },
+      { name: "Surface Dark", hex: "#12141A" },
+      { name: "Electric Lime", hex: "#A8F33A" },
+      { name: "Cobalt Primary", hex: "#1A52EE" },
+      { name: "Sequential Blue", hex: "#06164A" }
+    ],
+    description: "High-contrast precision dark mode with deep onyx canvas, stark white spotlight cards, electric lime actuators, sequential blue telemetry stack, and 0px brutalist sharp geometry.",
+    markdownSpec: `# ==============================================================================
+# STYLE TILE: TRANSFORM9+ DESIGN SYSTEM
+# Archetype: Neo-Brutalist HealthTech / High-Contrast Precision Dark Mode
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. COLOR ROLES & PALETTE
+# ------------------------------------------------------------------------------
+color_palette:
+  canvas_and_surfaces:
+    canvas_dark_base:       "#090A0C"   # Deep onyx background for high-contrast presentation
+    canvas_light_base:      "#FFFFFF"   # Stark pure white for modular spotlight cards
+    surface_dark_elevated:  "#12141A"   # Secondary panel dark surface
+    surface_dark_subtle:    "#181B22"   # Inset cards and hover states
+    surface_inverse:        "#FFFFFF"   # Selected item fill / high-contrast card background
+
+  accents_and_brand:
+    electric_lime:          "#A8F33A"   # High-energy conversion/action color (CTAs, highlight spans)
+    electric_lime_hover:    "#B9FA55"   # Brighter active state
+    cobalt_primary:         "#1A52EE"   # Core brand & trust accent (hero spans, active badges)
+    cobalt_vivid:           "#0D3ED4"   # Secondary interactive blue
+
+  sequential_blues_data_scale:
+    # Used for vertical accordion/stack hierarchy
+    level_01:               "#1A52EE"   # Top/Active layer (100% saturation)
+    level_02:               "#123EBE"   # 80% intensity
+    level_03:               "#0C2E94"   # 60% intensity
+    level_04:               "#09216B"   # 40% intensity
+    level_05:               "#06164A"   # 20% deepest navy base
+
+  typography_and_ink:
+    text_primary_dark:      "#FFFFFF"   # 100% white on dark surfaces
+    text_secondary_dark:    "#8E95A5"   # Muted descriptions & metadata
+    text_tertiary_dark:     "#4E5463"   # Subdued indices and disabled labels
+    text_primary_light:     "#090A0C"   # Heavy black on white cards
+    text_secondary_light:   "#5A6170"   # Gray subtext on white cards
+
+  atmospheric_gradients:
+    ambient_glow_blue:      "radial-gradient(circle, rgba(26,82,238,0.28) 0%, rgba(9,10,12,0) 70%)"
+    pixel_mosaic_overlay:   "linear-gradient(135deg, #A8F33A 0%, #1A52EE 50%, #06164A 100%)"
+
+# ------------------------------------------------------------------------------
+# 2. TYPOGRAPHY SYSTEM
+# ------------------------------------------------------------------------------
+typography:
+  font_families:
+    primary_sans:           "'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif"
+    technical_mono:         "'JetBrains Mono', 'Space Mono', monospace"
+
+  hierarchy:
+    display_xl:
+      font_size:            "48px"
+      line_height:          "1.05"
+      font_weight:          "800"
+      letter_spacing:       "-0.035em"
+      use_case:             "Primary landing titles (e.g., 'Skip the Hold Music.')"
+
+    heading_lg:
+      font_size:            "32px"
+      line_height:          "1.15"
+      font_weight:          "700"
+      letter_spacing:       "-0.025em"
+      use_case:             "Section headlines & modular card titles"
+
+    heading_md:
+      font_size:            "24px"
+      line_height:          "1.25"
+      font_weight:          "700"
+      letter_spacing:       "-0.015em"
+      use_case:             "Feature block titles (e.g., 'Outreach Agent')"
+
+    metric_value:
+      font_size:            "40px"
+      line_height:          "1.0"
+      font_weight:          "800"
+      letter_spacing:       "-0.03em"
+      use_case:             "Stat numbers (e.g., '2,000+ providers')"
+
+    body_base:
+      font_size:            "15px"
+      line_height:          "1.50"
+      font_weight:          "400"
+      letter_spacing:       "-0.005em"
+      use_case:             "Main descriptive copy and body text"
+
+    interactive_label:
+      font_size:            "14px"
+      line_height:          "1.20"
+      font_weight:          "600"
+      letter_spacing:       "0.00em"
+      use_case:             "Menu lists, tab triggers, specialty options"
+
+    technical_index:
+      font_family:          "technical_mono"
+      font_size:            "12px"
+      line_height:          "1.0"
+      font_weight:          "500"
+      letter_spacing:       "0.05em"
+      use_case:             "Numerical tags (e.g., '#4', '01', '02', '03')"
+
+# ------------------------------------------------------------------------------
+# 3. CORNER GEOMETRY (BORDER RADII)
+# ------------------------------------------------------------------------------
+border_radius:
+  sharp_block:              "0px"     # High-impact brutalist buttons, stacked full-width rows
+  subtle_card:              "4px"     # Floating light cards, modal cards, nested containers
+  interactive_control:      "2px"     # Text input fields, toggle indicators
+  pill_badge:               "9999px"  # Specialty status pills, category chips
+
+# ------------------------------------------------------------------------------
+# 4. ELEVATION & DEPTH (SHADOWS & ATMOSPHERE)
+# ------------------------------------------------------------------------------
+elevation:
+  flat_contrast:
+    box_shadow:             "none"
+    border_treatment:       "Strict high-contrast color bounding"
+
+  ambient_back_glow:
+    box_shadow:             "0 0 80px -20px rgba(26, 82, 238, 0.45)"
+    use_case:               "Behind security shield & hero tech visuals"
+
+  elevated_card_floating:
+    box_shadow:             "0 20px 40px -10px rgba(0, 0, 0, 0.5)"
+    backdrop_filter:        "blur(12px)"
+
+  glass_header:
+    background:             "rgba(9, 10, 12, 0.85)"
+    backdrop_filter:        "blur(16px)"
+    border_bottom:          "1px solid rgba(255, 255, 255, 0.08)"
+
+# ------------------------------------------------------------------------------
+# 5. SPACING & SPATIAL SCALE (8pt Baseline Grid)
+# ------------------------------------------------------------------------------
+spacing_system:
+  base_unit:                "4px"
+  space_1:                  "4px"     # Micro badge gaps, tight icon offsets
+  space_2:                  "8px"     # Element inner padding, inline tags
+  space_3:                  "12px"    # Compact list padding
+  space_4:                  "16px"    # Standard container padding, form field inset
+  space_6:                  "24px"    # Card interior gutters, stack row separation
+  space_8:                  "32px"    # Section separation
+  space_12:                 "48px"    # Hero block vertical gutters
+  space_16:                 "64px"    # Major module break
+
+# ------------------------------------------------------------------------------
+# 6. BORDERS & DIVIDERS
+# ------------------------------------------------------------------------------
+borders:
+  divider_hairline:         "1px solid rgba(255, 255, 255, 0.12)" # List row separators
+  divider_hairline_light:   "1px solid rgba(0, 0, 0, 0.08)"       # White card sub-dividers
+  card_outline:             "1px solid rgba(255, 255, 255, 0.18)" # Standalone dark module borders
+  active_input_outline:     "1.5px solid #FFFFFF"                  # Phone/text field focus state
+
+# ------------------------------------------------------------------------------
+# 7. ICONOGRAPHY & GRAPHIC MOTIFS
+# ------------------------------------------------------------------------------
+iconography:
+  style:                    "Geometric Line + Modular Pixel Matrix"
+  stroke_width:             "1.75px"
+  corner_cap:               "Square / Flat"
+  key_motifs:
+    - pixel_grid:           "4x4 and 8x8 pixel cluster mosaics (accenting cards & icons)"
+    - tech_shield:          "Geometric badge with digital pixel checkmark core"
+    - minimalist_nav:       "2-line hamburger bar (24px width, 1.5px stroke)"
+    - calendar_pixel:       "Grid-accented digital scheduler badge"
+
+# ------------------------------------------------------------------------------
+# 8. INTERACTION & FEEDBACK RULES
+# ------------------------------------------------------------------------------
+interaction_states:
+  buttons:
+    primary_cta (Lime):
+      default:              "bg: #A8F33A | text: #090A0C | border: none | radius: 0px"
+      hover:                "bg: #B9FA55 | transform: translateY(-1px)"
+      active:               "bg: #98E02E | transform: translateY(0)"
+
+    inline_link_cta:
+      default:              "text: #1A52EE | text-decoration: underline (1.5px offset)"
+      hover:                "text: #FFFFFF | text-decoration: underline"
+
+  specialty_list_rows:
+    default:
+      bg:                   "transparent"
+      text:                 "#FFFFFF"
+      border_bottom:        "1px solid rgba(255, 255, 255, 0.12)"
+    active_selected:
+      bg:                   "#FFFFFF"
+      text:                 "#090A0C"
+      font_weight:          "700"
+      border_radius:        "0px"
+      transition:           "all 180ms ease-out"
+
+  accordion_stack_panels:
+    default_state:          "Progressive step background colors (#1A52EE -> #06164A)"
+    hover_state:            "brightness(1.15) | padding-left: +4px transition"
+    timing_function:        "cubic-bezier(0.16, 1, 0.3, 1)"`
   }
 ];
 
