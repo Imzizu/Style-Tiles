@@ -649,6 +649,7 @@ a {
  * -------------------------------------------------------------------------- */
 .catalog-section {
   padding-bottom: var(--space-16);
+  scroll-margin-top: 86px;
 }
 
 .controls-panel {
@@ -660,6 +661,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  scroll-margin-top: 86px;
 }
 
 .controls-top-row {
@@ -680,6 +682,12 @@ a {
   flex: 1;
   min-width: 260px;
   max-width: 480px;
+  transition: var(--transition-snap);
+}
+
+.search-box:focus-within {
+  border-color: var(--accent-burnt-orange);
+  box-shadow: 0 0 0 2px var(--accent-burnt-orange), var(--shadow-base);
 }
 
 .search-icon {

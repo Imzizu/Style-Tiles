@@ -1465,12 +1465,30 @@ function focusSearch(event) {
   if (event) event.preventDefault();
   const controlsPanel = document.getElementById("catalog-controls");
   const searchInput = document.getElementById("search-input");
+  
   if (controlsPanel) {
-    controlsPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    const header = document.querySelector(".site-header");
+    const headerHeight = header ? header.getBoundingClientRect().height : 78;
+    const rect = controlsPanel.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const targetY = Math.max(0, rect.top + scrollTop - headerHeight - 16);
+
+    window.scrollTo({
+      top: targetY,
+      behavior: "smooth"
+    });
   }
+
   setTimeout(() => {
-    if (searchInput) searchInput.focus();
-  }, 250);
+    if (searchInput) {
+      try {
+        searchInput.focus({ preventScroll: true });
+      } catch (err) {
+        searchInput.focus();
+      }
+      searchInput.select();
+    }
+  }, 200);
 }
 
 // -----------------------------------------------------------------------------
@@ -1580,8 +1598,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") {
       closeSpecModal();
     } else if (e.key === "/" && document.activeElement !== searchInput) {
+      if (document.activeElement && (document.activeElement.tagName === "INPUT" || document.activeElement.tagName === "TEXTAREA")) return;
       e.preventDefault();
-      if (searchInput) searchInput.focus();
+      focusSearch();
     }
   });
 
