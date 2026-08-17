@@ -2047,10 +2047,6 @@ iconography:
     - tech_shield:          "Geometric badge with digital pixel checkmark core"
     - minimalist_nav:       "2-line hamburger bar (24px width, 1.5px stroke)"
     - calendar_pixel:       "Grid-accented digital scheduler badge"
-
-# ------------------------------------------------------------------------------
-# 8. INTERACTION & FEEDBACK RULES
-# ------------------------------------------------------------------------------
 interaction_states:
   buttons:
     primary_cta (Lime):
@@ -2078,6 +2074,153 @@ interaction_states:
     default_state:          "Progressive step background colors (#1A52EE -> #06164A)"
     hover_state:            "brightness(1.15) | padding-left: +4px transition"
     timing_function:        "cubic-bezier(0.16, 1, 0.3, 1)"`
+  },
+  {
+    id: "TILE-013",
+    slug: "neo-brutalist-tech",
+    name: "Neo-Brutalist Tech // Developer Tooling & Web3 Infrastructure",
+    vibe: "Developer Tooling • Web3 Infrastructure • High-Voltage Accents",
+    vibeBadge: "Neo-Brutalism",
+    categories: ["brutalist"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Space Grotesk",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas Ground", hex: "#FAFAFA" },
+      { name: "Surface Card", hex: "#F4F4F5" },
+      { name: "Surface Inset", hex: "#E4E4E7" },
+      { name: "Core Ink", hex: "#09090B" },
+      { name: "Hyper-Volt Lime", hex: "#CCFF00" },
+      { name: "Ultramarine Blue", hex: "#1D4ED8" }
+    ],
+    description: "High-density monochrome canvas with hyper-volt lime actuators, ultramarine blue cryptographic links, rigid 0px brutalist geometry, and tactile 3px hardball ink offset shadows.",
+    markdownSpec: `================================================================================
+  Aesthetic: Neo-Brutalist Tech • Developer Tooling • Web3 Infrastructure
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Neo-Brutalist Tech is a high-density, hyper-tactile design system engineered for developer platforms, Web3 infrastructure, and modern fintech architecture. It fuses architectural monochrome surfaces (Starch White #FAFAFA, Clean Slate #F4F4F5, Concrete 200 #E4E4E7) with high-voltage kinetic accents (Hyper-Volt Lime #CCFF00, Ultramarine Blue #1D4ED8) and rigid 0px brutalist geometry. Hardball zero-blur ink drop shadows create physical mechanical elevation, while monoline technical glyphs and strict typographical hierarchy provide unmatched clarity for complex telemetry and cryptographic workflows.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & TOKEN PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surface & Canvas Tokens */
+  --bg-canvas:              #FAFAFA; /* Starch White - Global viewport root & base canvas */
+  --bg-card:                #F4F4F5; /* Clean Slate - Modular panels, tables, card bodies */
+  --bg-inset:               #E4E4E7; /* Concrete 200 - Code wells, search bars, nested trays */
+  --bg-dark:                #09090B; /* Carbon Heavy - Inverted terminal and command surfaces */
+
+  /* Inks & Monochromes */
+  --ink-primary:            #09090B; /* Carbon Heavy - 100% text, 2px structural borders, shadows */
+  --ink-muted:              #52525B; /* Zinc 600 - Secondary labels, timestamps, metadata */
+  --ink-inverse:            #FAFAFA; /* Starch White - High-contrast text on dark badges/buttons */
+
+  /* Kinetic Accents */
+  --accent-volt:            #CCFF00; /* Hyper-Volt Lime - Primary CTA, active build, main trigger */
+  --accent-volt-hover:      #B8E600; /* Deep Lime - Focus-visible states, subtle hover wash */
+  --accent-ultramarine:     #1D4ED8; /* Ultramarine Blue - RPC nodes, cryptographic data, links */
+
+  /* Semantic Signal Matrix */
+  --signal-ok:              #CCFF00; /* Hyper-Volt Lime - Mainnet Live, Validated Block, Tests 100% */
+  --signal-warn:            #FACC15; /* Hazard Ochre - Gas Spike, Rate-Limit Warning, Mempool Lag */
+  --signal-crit:            #FF334B; /* Radical Vermilion - Reverted Tx, Compile Failure, Auth Error */
+  --signal-exec:            #1D4ED8; /* Ultramarine Blue - Mining, Query Executing, Syncing Shard */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+--font-body:    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+--font-mono:    "JetBrains Mono", SFMono-Regular, Menlo, monospace;
+
+/* Type Scale Hierarchy */
+--text-display: 32px     / 1.15  var(--font-display); /* Weight: 700 | Tracking: -0.04em | Hero metrics, product heads */
+--text-h1:      32px     / 1.15  var(--font-display); /* Weight: 700 | Tracking: -0.04em | Hero metrics, main titles */
+--text-h2:      22px     / 1.25  var(--font-display); /* Weight: 700 | Tracking: -0.03em | Card headers, modal titles */
+--text-h3:      16px     / 1.35  var(--font-display); /* Weight: 700 | Tracking: -0.02em | Sub-panels, drawer titles */
+--text-body-lg: 15px     / 1.50  var(--font-body);    /* Weight: 500 | Tracking: -0.01em | Primary narrative & prompts */
+--text-body:    14px     / 1.50  var(--font-body);    /* Weight: 500 | Tracking:  0.00em | Form inputs, table cells */
+--text-code:    12px     / 1.60  var(--font-mono);    /* Weight: 400 | Tracking: +0.04em | Logs, payloads, byte code */
+--text-meta:    11px     / 1.20  var(--font-mono);    /* Weight: 600 | Tracking: +0.08em | UPPERCASE status chips, KPIs */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-sharp:   0px;    /* Universal default for tables, structural frames, code blocks, cards */
+--radius-subtle:  2px;    /* Permitted exclusively on interactive elements (buttons, inputs, status tags) */
+--radius-pill:    0px;    /* STRICTLY PROHIBITED (No pill badges, no rounded modals) */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION, HARDBALL SHADOWS & PROJECTION LAYERS
+ * -------------------------------------------------------------------------- */
+/* Principle: Pure offset, 0% blur, 100% opacity ink shadows */
+--shadow-none:        none;
+--shadow-interactive: 3px 3px 0px #09090B; /* Standard buttons, actionable cards, input fields */
+--shadow-card:        5px 5px 0px #09090B; /* KPI stat cards, hovering inspector panels */
+--shadow-modal:       8px 8px 0px #09090B; /* Dialogue modals, command palettes (Cmd+K) */
+--shadow-accent-blue: 3px 3px 0px #1D4ED8; /* Ultramarine blue focus/active secondary elements */
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING SCALE (4PX / 8PX RIGID BASE)
+ * -------------------------------------------------------------------------- */
+--space-1:  4px;  /* Micro-offsets, tight tag paddings, icon-text gap */
+--space-2:  8px;  /* Badge paddings, input internal Y-padding, sub-grid gaps */
+--space-3: 12px;  /* Compact button Y-padding, table cell padding */
+--space-4: 16px;  /* Button X-padding, standard panel padding, container gap */
+--space-6: 24px;  /* Card internal padding, desktop dashboard grid gap */
+--space-8: 32px;  /* Section vertical rhythm, header margins */
+--space-12:48px;  /* Page container separation */
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS, DIVIDERS & TECHNICAL GRIDLINES
+ * -------------------------------------------------------------------------- */
+--border-core:          2px solid #09090B; /* Primary structural boundary for buttons, cards, modals */
+--border-hairline:      1px solid #09090B; /* Internal table cell dividers, secondary nested grids */
+--border-blueprint-sub: 1px dashed #D4D4D8; /* Background monoline coordinate grids */
+--decorative-crosshair: "+" markers positioned at intersecting card corners [ top-left / bottom-right ]
+--grid-background:      High-contrast monochrome background grid (16px x 16px dots or 32px square vector grid)
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE & TECHNICAL GLYPHS
+ * -------------------------------------------------------------------------- */
+--icon-stroke-width: 2.0px;
+--icon-line-cap:     square;
+--icon-line-join:    miter;
+
+/* Direct ASCII/Unicode technical glyphs for UI metadata:
+   [+] NEW NODE    [>] EXEC    [#] HASH    [*] SYNC    [!] WARN    [//] COMMENT    [x] TERMINATE */
+
+/* -----------------------------------------------------------------------------
+ * 9. COMPONENT ARCHETYPES & INTERACTION PHYSICS
+ * -------------------------------------------------------------------------- */
+- **Tactile Click-Down Physics**: Buttons and actionable cards exist on a physical 45° plane.
+  - Resting: translate(0px, 0px) with 3px 3px 0px #09090B shadow
+  - Hover: translate(-1px, -1px) with 4px 4px 0px #09090B shadow + subtle luminance boost
+  - Active (Pressed): translate(3px, 3px) with 0px 0px 0px #09090B (None)
+  - Focus-Visible: outline: 2px solid #1D4ED8
+  - Transition: 80ms cubic-bezier(0, 0, 0.2, 1)
+- **Primary Volt Button**: bg: #CCFF00 | color: #09090B | border: 2px solid #09090B | font: Space Grotesk 700 14px | shadow: 3px 3px 0px #09090B
+- **Ghost-Invert Button**: bg: #FAFAFA | color: #09090B | border: 2px solid #09090B | font: JetBrains Mono 600 12px | shadow: 3px 3px 0px #09090B
+- **KPI Telemetry Cards**: bg: #F4F4F5 | border: 2px solid #09090B | shadow: 5px 5px 0px #09090B | Header: Space Grotesk 700 | Stat: Space Grotesk 700 28px | Meta: JetBrains Mono 11px
+- **Terminal Prompt**: bg: #09090B | color: #CCFF00 | border: 2px solid #09090B | font: JetBrains Mono 12px | Header: [CLI // zsh] ... [SH]
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- STRICTLY PROHIBITED: Soft, diffuse, or blurred drop shadows (only 0% blur, 100% opacity hardball ink shadows).
+- STRICTLY PROHIBITED: Pill radii or rounded modals/cards (>2px radius is prohibited; default is 0px).
+- STRICTLY PROHIBITED: Pastel or low-contrast borders (all primary borders are 2px solid #09090B).
+- STRICTLY PROHIBITED: Gradient text fills or purple/violet dark-mode tropes.
+- STRICTLY PROHIBITED: Textureless surfaces or generic dashboard placeholder fluff.`
   }
 ];
 
