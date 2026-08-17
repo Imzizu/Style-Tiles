@@ -1413,13 +1413,172 @@ A hyper-disciplined collision of high-fashion editorial brutalism, cybernetic ae
   - Arrow Controls  : Active click triggers scale(0.94); accent yellow indicates
                       directional pagination readiness.
 ================================================================================`
+  },
+  {
+    id: "TILE-009",
+    slug: "greenwrap",
+    name: "Greenwrap Design System",
+    vibe: "Modern Eco-Brutalist • Neo-Editorial • Organic Dark Mode",
+    vibeBadge: "Neo-Brutalism",
+    categories: ["brutalist", "editorial", "luxury"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Deep Charcoal", hex: "#121414" },
+      { name: "Deep Pine", hex: "#063826" },
+      { name: "Fresh Sage", hex: "#9BC89E" },
+      { name: "Subdued Dark", hex: "#1E2121" },
+      { name: "Leaf Mint", hex: "#A8E0AF" }
+    ],
+    description: "Modern eco-brutalist and neo-editorial design system for closed-loop supply chains, organic sustainable logistics, and high-contrast dark mode interfaces. Combines deep pine containers, fresh sage typographic tokens, inline serif italic pills, and linear guilloche wireframes.",
+    markdownSpec: `================================================================================
+  STYLE TILE: GREENWRAP DESIGN SYSTEM
+  Vibe: Modern Eco-Brutalist • Neo-Editorial • Organic Dark Mode
+================================================================================
+
+1. COLOR ROLES & PALETTE
+--------------------------------------------------------------------------------
+  Core Canvas:
+    --surface-canvas:        #121414 (Deep Charcoal / Black Canvas)
+    --surface-card-dark:     #063826 (Deep Pine / Forest Green)
+    --surface-card-light:    #9BC89E (Fresh Sage / Muted Mint)
+    --surface-card-neutral:  #1E2121 (Subdued Container Dark)
+    --surface-pill-gray:     #C4C8C5 (Light Muted Fog)
+
+  Text & Content:
+    --text-primary:          #FFFFFF (Pure White / Maximum Contrast)
+    --text-on-light:         #0B2E1E (Deep Botanical Green)
+    --text-muted:            #8B938E (Medium Mineral Grey)
+    --text-accent:           #A8E0AF (Vibrant Leaf Mint)
+
+  Accents & Functional:
+    --accent-primary:        #A3D9A5 (Sage Tint - Highlights & Pill Accents)
+    --accent-emerald:        #0A5C3C (Mid-tone Botanical)
+    --accent-overlay:        rgba(255, 255, 255, 0.08) (Glass / Sheen)
+    --border-subtle:         rgba(255, 255, 255, 0.12) (Translucent White Stroke)
+    --border-accent:         #1A5038 (Deep Green Outline)
+
+--------------------------------------------------------------------------------
+2. TYPOGRAPHY SYSTEM
+--------------------------------------------------------------------------------
+  Font Families:
+    Primary Sans:   "Plus Jakarta Sans", "Satoshi", sans-serif
+    Display Serif:  "Instrument Serif", "Playfair Display", serif (Editorial Accents)
+    Utility / Mono: "JetBrains Mono", monospace (Labels & Metrics)
+
+  Type Hierarchy:
+    Display H1 (Hero):
+      Font: Primary Sans | Size: 48px – 64px | Weight: 400 (Regular) | Line-height: 1.15
+      Feature: Inline highlighted keywords switch to Display Serif (Italic/Regular) 
+               housed in custom pill badges.
+
+    H2 (Card Headers & Highlights):
+      Font: Primary Sans | Size: 22px – 26px | Weight: 500 (Medium) | Line-height: 1.3
+
+    Body Large (Mission Statements / Summaries):
+      Font: Primary Sans | Size: 18px – 20px | Weight: 400 | Line-height: 1.4
+
+    UI & Microcopy (Nav, Badges, Metrics):
+      Font: Primary Sans / Utility | Size: 11px – 13px | Weight: 600 | Tracking: +0.06em
+      Transform: Uppercase for status tags; Title Case for actions.
+
+--------------------------------------------------------------------------------
+3. CORNER GEOMETRY (BORDER RADII)
+--------------------------------------------------------------------------------
+  --radius-pill:     9999px   (Buttons, Badges, Avatars, Nav Pods, Delivery Tags)
+  --radius-card-lg:  32px     (Bento Grid Containers, Media Cards)
+  --radius-card-sm:  20px     (Nested Cards, Metric Pods)
+  --radius-control:  12px     (Input Fields, Utility Tooltips)
+
+--------------------------------------------------------------------------------
+4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+--------------------------------------------------------------------------------
+  Layering Strategy:
+    • Multi-plane dark layering: Near-black canvas base with layered sage/forest surfaces.
+    • Translucent Frosted Glass:
+        backdrop-filter: blur(16px);
+        background: rgba(30, 33, 33, 0.75);
+    • Linear Guilloche Wireframes:
+        Vector geometric overlapping circles/curves rendered with 0.15–0.3 opacity.
+
+  Shadows:
+    --shadow-floating:  0 12px 32px -8px rgba(0, 0, 0, 0.45)
+    --shadow-subtle:    0 4px 16px -2px rgba(0, 0, 0, 0.25)
+    --glow-sage:        0 0 24px -4px rgba(163, 217, 165, 0.2)
+
+--------------------------------------------------------------------------------
+5. SPACING & SPATIAL SCALE
+--------------------------------------------------------------------------------
+  Base Unit: 4px Grid System
+  
+  Tokens:
+    --space-xxs:  4px
+    --space-xs:   8px
+    --space-sm:   12px
+    --space-md:   16px
+    --space-lg:   24px
+    --space-xl:   32px
+    --space-2xl:  48px
+
+  Layout Dimensions:
+    • Bento Grid Gap: 16px – 20px
+    • Hero Card Padding: 28px – 36px
+    • Pill Badge Internal Padding: 8px 18px (H), 6px 12px (V)
+    • Nav Bar Inset: 16px Top/Sides
+
+--------------------------------------------------------------------------------
+6. BORDERS & DIVIDERS
+--------------------------------------------------------------------------------
+  • Card Outlines: 1px solid rgba(255, 255, 255, 0.08) (Subtle contrast isolation)
+  • Highlight Rings: 1.5px solid #1E533B (Botanical pill ring)
+  • Dark Inset Divider: 1px solid rgba(0, 0, 0, 0.15) (For light-card sub-elements)
+  • Metric Level Indicators: Vertical rounded capsule bars with dynamic fill heights.
+
+--------------------------------------------------------------------------------
+7. ICONOGRAPHY LANGUAGE
+--------------------------------------------------------------------------------
+  Style & Weight:
+    • Fine stroke outline (1.5px – 1.75px uniform weight)
+    • Rounded caps and joins (\`stroke-linecap: round; stroke-linejoin: round\`)
+    • Size bounding box: 18x18px (Micro UI) | 24x24px (Standard Actions) | 48x48px (Hero Highlights)
+
+  Motifs & Symbolism:
+    • Circular-bound symbols: Sun, Globe/Latitude grid, Infinite Recycling arrows.
+    • Geometric stamps: Rotated flower/quad-leaf logo icon, tilted paper airplane.
+    • Circular avatar groups overlapping with a +2px dark canvas border mask.
+
+--------------------------------------------------------------------------------
+8. INTERACTION & FEEDBACK RULES
+--------------------------------------------------------------------------------
+  Hover States:
+    • Nav Pills & Action Tags:
+        Background shifts from neutral dark (#222626) to pure white (#FFFFFF); 
+        text transitions from white to canvas black (#121414).
+    • Bento Media Cards:
+        Image scale: transform: scale(1.03); filter: brightness(1.05);
+        Duration: 400ms cubic-bezier(0.2, 0.8, 0.2, 1).
+
+  Active & Press Feedback:
+    • Scale down on press: transform: scale(0.97).
+    • Tactile pill badges pop with subtle \`--glow-sage\` bloom.
+
+  Transitions:
+    • Standard: 250ms cubic-bezier(0.4, 0, 0.2, 1)
+    • Spatial/Movement: 450ms cubic-bezier(0.16, 1, 0.3, 1)
+================================================================================`
   }
 ];
 
 // App State
 let currentCategory = "all";
 let currentSearchQuery = "";
-let currentViewMode = "grid"; // 'grid', 'compact', 'editorial'
+let currentLayoutMode = "grid"; // 'grid' or 'split'
+let isCompactMode = true; // default ON
 
 // -----------------------------------------------------------------------------
 // TOAST SYSTEM
@@ -1640,21 +1799,180 @@ function handleSearchInput(e) {
   renderCatalog();
 }
 
-function setViewMode(mode) {
-  currentViewMode = mode;
-  const grid = document.getElementById("catalog-grid");
-  if (!grid) return;
+// -----------------------------------------------------------------------------
+// VIEWPORT ANCHOR TRACKING (SMOOTH & CLEAN VIEW MODE TRANSITIONS)
+// -----------------------------------------------------------------------------
+function getFocalCardAnchor() {
+  const header = document.querySelector(".site-header");
+  const headerHeight = header ? header.getBoundingClientRect().height : 70;
+  const viewportTop = headerHeight + 16;
+  const viewportBottom = window.innerHeight;
+  const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
 
-  grid.classList.remove("view-editorial", "view-compact");
-  if (mode === "editorial") grid.classList.add("view-editorial");
-  if (mode === "compact") grid.classList.add("view-compact");
+  // If user is near top of page in hero section, maintain natural top scroll
+  const hero = document.querySelector(".hero-section");
+  if (hero) {
+    const heroRect = hero.getBoundingClientRect();
+    if (heroRect.bottom > window.innerHeight * 0.5 && currentScrollY < 200) {
+      return null;
+    }
+  }
 
-  document.querySelectorAll(".view-btn").forEach(btn => {
-    btn.classList.toggle("active", btn.getAttribute("data-view") === mode);
+  // If controls panel is currently active in view, anchor to it
+  const controls = document.getElementById("catalog-controls");
+  if (controls) {
+    const ctrlRect = controls.getBoundingClientRect();
+    if (ctrlRect.top >= viewportTop - 50 && ctrlRect.bottom <= viewportBottom && currentScrollY < 650) {
+      return {
+        type: "controls",
+        offsetFromViewportTop: ctrlRect.top - viewportTop
+      };
+    }
+  }
+
+  // Find the card that is currently focal in the viewport
+  const cards = Array.from(document.querySelectorAll(".design-card"));
+  if (!cards.length) return null;
+
+  let bestCard = null;
+  let minDistance = Infinity;
+
+  for (const card of cards) {
+    const rect = card.getBoundingClientRect();
+    // Prefer cards intersecting the readable viewport
+    if (rect.bottom > viewportTop && rect.top < viewportBottom) {
+      const dist = Math.abs(rect.top - viewportTop);
+      if (dist < minDistance) {
+        minDistance = dist;
+        bestCard = card;
+      }
+    }
+  }
+
+  // Fallback: find card closest to viewport top
+  if (!bestCard) {
+    for (const card of cards) {
+      const rect = card.getBoundingClientRect();
+      const dist = Math.abs(rect.top - viewportTop);
+      if (dist < minDistance) {
+        minDistance = dist;
+        bestCard = card;
+      }
+    }
+  }
+
+  if (bestCard) {
+    const rect = bestCard.getBoundingClientRect();
+    return {
+      type: "card",
+      id: bestCard.getAttribute("data-id"),
+      offsetFromViewportTop: rect.top - viewportTop
+    };
+  }
+
+  return null;
+}
+
+function restoreFocalAnchor(anchor) {
+  if (!anchor) return;
+
+  const header = document.querySelector(".site-header");
+  const headerHeight = header ? header.getBoundingClientRect().height : 70;
+  const viewportTop = headerHeight + 16;
+  const root = document.documentElement;
+
+  // Temporarily disable CSS smooth scrolling to prevent conflict with layout reflow
+  const prevBehavior = root.style.scrollBehavior;
+  root.style.scrollBehavior = "auto";
+
+  const alignPosition = () => {
+    let targetDocTop = null;
+
+    if (anchor.type === "controls") {
+      const controls = document.getElementById("catalog-controls");
+      if (controls) {
+        const rect = controls.getBoundingClientRect();
+        targetDocTop = rect.top + (window.pageYOffset || root.scrollTop);
+      }
+    } else if (anchor.type === "card" && anchor.id) {
+      const card = document.querySelector(`.design-card[data-id="${anchor.id}"]`);
+      if (card) {
+        const rect = card.getBoundingClientRect();
+        targetDocTop = rect.top + (window.pageYOffset || root.scrollTop);
+      }
+    }
+
+    if (targetDocTop !== null) {
+      const targetScrollY = Math.max(0, targetDocTop - viewportTop - anchor.offsetFromViewportTop);
+      window.scrollTo(0, targetScrollY);
+    }
+  };
+
+  // 1. Immediate alignment
+  alignPosition();
+
+  // 2. Alignment pass after layout reflow and iframe resize
+  requestAnimationFrame(() => {
+    resizeCardIframes();
+    alignPosition();
+    requestAnimationFrame(() => {
+      alignPosition();
+      root.style.scrollBehavior = prevBehavior;
+    });
   });
+
+  // 3. Final safety check after short delay
+  setTimeout(alignPosition, 60);
+}
+
+function applyViewSettings() {
+  const grid = document.getElementById("catalog-grid");
+  if (grid) {
+    grid.classList.toggle("view-split", currentLayoutMode === "split");
+    grid.classList.toggle("view-editorial", currentLayoutMode === "split");
+    grid.classList.toggle("is-compact", isCompactMode);
+    grid.classList.toggle("view-compact", isCompactMode);
+  }
+
+  // Update layout mode buttons in catalog controls (Grid / Split)
+  document.querySelectorAll(".view-options .view-btn").forEach(btn => {
+    const view = btn.getAttribute("data-view");
+    const isActive = (view === currentLayoutMode) || (currentLayoutMode === "split" && view === "editorial");
+    btn.classList.toggle("active", isActive);
+    btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+
+  // Update header compact toggle button
+  const compactBtn = document.getElementById("header-compact-toggle");
+  if (compactBtn) {
+    compactBtn.classList.toggle("active", isCompactMode);
+    compactBtn.setAttribute("aria-pressed", isCompactMode ? "true" : "false");
+  }
 
   requestAnimationFrame(resizeCardIframes);
   setTimeout(resizeCardIframes, 100);
+}
+
+function setViewMode(mode) {
+  const anchor = getFocalCardAnchor();
+  currentLayoutMode = (mode === "split" || mode === "editorial") ? "split" : "grid";
+  applyViewSettings();
+  if (anchor) {
+    restoreFocalAnchor(anchor);
+  }
+}
+
+function toggleCompactMode() {
+  const anchor = getFocalCardAnchor();
+  isCompactMode = !isCompactMode;
+  applyViewSettings();
+  if (anchor) {
+    restoreFocalAnchor(anchor);
+  }
+  showToast(
+    isCompactMode ? "Compact Mode: ON (16:9 Previews Only)" : "Compact Mode: OFF (Full Specifications)",
+    isCompactMode ? "⊞" : "⊟"
+  );
 }
 
 function resetFilters() {
@@ -1801,6 +2119,7 @@ function updateFilterChipCounts() {
 // INITIALIZATION
 // -----------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
+  applyViewSettings();
   renderCatalog();
   updateFilterChipCounts();
   updateDraftingClock();

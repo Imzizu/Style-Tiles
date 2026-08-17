@@ -45,6 +45,10 @@
       <nav class="header-nav" aria-label="Main Navigation">
         <a href="#catalog" class="header-link">Catalog</a>
         <a href="#catalog-controls" class="header-link" onclick="focusSearch(event)">Search</a>
+        <button id="header-compact-toggle" class="view-btn active" onclick="toggleCompactMode()" title="Toggle Compact Mode (Hide details, show 16:9 previews only)" aria-pressed="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18"/><line x1="3" y1="8" x2="21" y2="8"/></svg>
+          Compact
+        </button>
         <button class="btn btn-primary btn-sm" onclick="copyMasterPrompt()" title="Copy the universal vibe-coding agent prompt">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           Copy Master Prompt
@@ -158,19 +162,15 @@
 
             <!-- View mode toggles & Stats -->
             <div style="display: flex; align-items: center; gap: 16px;">
-              <span class="text-meta" id="displayed-count" style="color: var(--ink-secondary);">8 SPECS</span>
-              <div class="view-options" aria-label="Catalog View Mode">
-                <button class="view-btn active" data-view="grid" onclick="setViewMode('grid')" title="Drafting Grid (3-Column)">
+              <span class="text-meta" id="displayed-count" style="color: var(--ink-secondary);">9 SPECS</span>
+              <div class="view-options" aria-label="Catalog Layout Mode">
+                <button class="view-btn active" data-view="grid" onclick="setViewMode('grid')" title="Drafting Grid Layout (Multi-Column)">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
                   Grid
                 </button>
-                <button class="view-btn" data-view="compact" onclick="setViewMode('compact')" title="Compact View (Webpages Only)">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18"/><line x1="3" y1="8" x2="21" y2="8"/></svg>
-                  Compact
-                </button>
-                <button class="view-btn" data-view="editorial" onclick="setViewMode('editorial')" title="Editorial Spread (2-Column Large)">
+                <button class="view-btn" data-view="split" onclick="setViewMode('split')" title="Split View (2-Column Large Spread)">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="18"/><rect x="13" y="3" width="8" height="18"/></svg>
-                  Spread
+                  Split
                 </button>
               </div>
             </div>
@@ -180,19 +180,19 @@
           <div class="filter-chips-bar">
             <span class="filter-label">FILTER BY VIBE:</span>
             <button class="filter-chip active" data-cat="all" onclick="setCategory('all')">
-              All Specs <span class="chip-count">8</span>
+              All Specs <span class="chip-count">9</span>
             </button>
             <button class="filter-chip" data-cat="editorial" onclick="setCategory('editorial')">
-              Editorial & Archival <span class="chip-count">4</span>
+              Editorial & Archival <span class="chip-count">6</span>
             </button>
             <button class="filter-chip" data-cat="brutalist" onclick="setCategory('brutalist')">
-              Neo-Brutalism <span class="chip-count">3</span>
+              Neo-Brutalism <span class="chip-count">5</span>
             </button>
             <button class="filter-chip" data-cat="cyber" onclick="setCategory('cyber')">
-              Cyber & Blueprint <span class="chip-count">3</span>
+              Cyber & Blueprint <span class="chip-count">2</span>
             </button>
             <button class="filter-chip" data-cat="minimalist" onclick="setCategory('minimalist')">
-              Minimalist & Monastic <span class="chip-count">2</span>
+              Minimalist & Monastic <span class="chip-count">3</span>
             </button>
             <button class="filter-chip" data-cat="playful" onclick="setCategory('playful')">
               Playful & Pop <span class="chip-count">2</span>
@@ -201,13 +201,13 @@
               Retro & Y2K <span class="chip-count">1</span>
             </button>
             <button class="filter-chip" data-cat="luxury" onclick="setCategory('luxury')">
-              Quiet Luxury <span class="chip-count">4</span>
+              Quiet Luxury <span class="chip-count">3</span>
             </button>
           </div>
         </div>
 
         <!-- 16:9 Skeleton Cards Grid (Dynamically rendered by app.js) -->
-        <div class="catalog-grid" id="catalog-grid">
+        <div class="catalog-grid is-compact" id="catalog-grid">
           <!-- Dynamically populated by app.js -->
         </div>
 

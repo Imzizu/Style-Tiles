@@ -1,0 +1,2510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GREENWRAP DESIGN SYSTEM // STYLE TILE (TILE-009)</title>
+  <meta name="description" content="Production-ready design system specification for Greenwrap: Modern Eco-Brutalist, Neo-Editorial, Organic Dark Mode, Deep Pine Bento surfaces, and Fresh Sage typography tokens.">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Instrument Serif, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       GREENWRAP DESIGN SYSTEM // SPECIFICATION TOKENS (TILE-009)
+       ============================================================================= */
+
+    :root {
+      /* ---------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * --------------------------------------------------------------------------- */
+      /* Core Canvas & Surfaces */
+      --surface-canvas:        #121414; /* Deep Charcoal / Black Canvas */
+      --surface-card-dark:     #063826; /* Deep Pine / Forest Green */
+      --surface-card-light:    #9BC89E; /* Fresh Sage / Muted Mint */
+      --surface-card-neutral:  #1E2121; /* Subdued Container Dark */
+      --surface-pill-gray:     #C4C8C5; /* Light Muted Fog */
+
+      /* Text & Content */
+      --text-primary:          #FFFFFF; /* Pure White / Maximum Contrast */
+      --text-on-light:         #0B2E1E; /* Deep Botanical Green */
+      --text-muted:            #8B938E; /* Medium Mineral Grey */
+      --text-accent:           #A8E0AF; /* Vibrant Leaf Mint */
+
+      /* Accents & Functional */
+      --accent-primary:        #A3D9A5; /* Sage Tint - Highlights & Pill Accents */
+      --accent-emerald:        #0A5C3C; /* Mid-tone Botanical */
+      --accent-overlay:        rgba(255, 255, 255, 0.08); /* Glass / Sheen */
+      --border-subtle:         rgba(255, 255, 255, 0.12); /* Translucent White Stroke */
+      --border-accent:         #1A5038; /* Deep Green Outline */
+      --border-ring:           #1E533B; /* Botanical Pill Ring */
+
+      /* Aliases */
+      --bg-canvas:             var(--surface-canvas);
+      --ink-primary:           var(--text-primary);
+      --ink-muted:             var(--text-muted);
+
+      /* ---------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * --------------------------------------------------------------------------- */
+      --font-sans:             "Plus Jakarta Sans", "Satoshi", system-ui, -apple-system, sans-serif;
+      --font-serif:            "Instrument Serif", "Playfair Display", Georgia, serif;
+      --font-mono:             "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+      /* Type Scale Hierarchy */
+      --type-display-h1:       400 clamp(42px, 5.5vw, 64px) / 1.15 var(--font-sans);
+      --type-h2:               500 24px / 1.3 var(--font-sans);
+      --type-h3:               500 18px / 1.35 var(--font-sans);
+      --type-body-lg:          400 18px / 1.4 var(--font-sans);
+      --type-body:             400 15px / 1.55 var(--font-sans);
+      --type-body-sm:          400 13px / 1.5 var(--font-sans);
+      --type-ui-label:         600 12px / 1.2 var(--font-sans);
+      --type-mono-metric:      500 12px / 1.3 var(--font-mono);
+
+      /* ---------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * --------------------------------------------------------------------------- */
+      --radius-pill:           9999px; /* Buttons, Badges, Avatars, Nav Pods */
+      --radius-card-lg:        32px;   /* Bento Grid Containers, Media Cards */
+      --radius-card-sm:        20px;   /* Nested Cards, Metric Pods */
+      --radius-control:        12px;   /* Input Fields, Utility Tooltips */
+
+      /* ---------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+       * --------------------------------------------------------------------------- */
+      --shadow-floating:       0 12px 32px -8px rgba(0, 0, 0, 0.45);
+      --shadow-subtle:         0 4px 16px -2px rgba(0, 0, 0, 0.25);
+      --glow-sage:             0 0 24px -4px rgba(163, 217, 165, 0.2);
+      --glow-emerald:          0 0 28px -6px rgba(10, 92, 60, 0.5);
+
+      /* Translucent Frosted Glass */
+      --glass-bg:              rgba(30, 33, 33, 0.75);
+      --glass-blur:            blur(16px);
+
+      /* ---------------------------------------------------------------------------
+       * 5. SPACING & SPATIAL SCALE (4px Grid)
+       * --------------------------------------------------------------------------- */
+      --space-xxs:             4px;
+      --space-xs:              8px;
+      --space-sm:              12px;
+      --space-md:              16px;
+      --space-lg:              24px;
+      --space-xl:              32px;
+      --space-2xl:             48px;
+      --space-3xl:             64px;
+
+      /* ---------------------------------------------------------------------------
+       * 8. TRANSITIONS & TIMINGS
+       * --------------------------------------------------------------------------- */
+      --ease-standard:         cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-spatial:          cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-media:            cubic-bezier(0.2, 0.8, 0.2, 1);
+      --transition-fast:       all 250ms var(--ease-standard);
+      --transition-smooth:     all 450ms var(--ease-spatial);
+    }
+
+    /* =============================================================================
+       BASE RESET & FOUNDATION
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--surface-canvas);
+      color: var(--text-primary);
+    }
+
+    body {
+      background-color: var(--surface-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.55;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: var(--surface-card-light);
+      color: var(--text-on-light);
+    }
+
+    /* Linear Guilloche Vector Ambient Backdrop */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.22;
+      background-image: 
+        radial-gradient(circle at 18% 22%, rgba(6, 56, 38, 0.45) 0%, transparent 55%),
+        radial-gradient(circle at 82% 78%, rgba(163, 217, 165, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(10, 92, 60, 0.15) 0%, transparent 70%);
+    }
+
+    /* Subtle geometric mesh pattern */
+    .guilloche-bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+      background-size: 80px 80px;
+      background-image: 
+        radial-gradient(circle, rgba(163, 217, 165, 0.12) 1px, transparent 1px);
+    }
+
+    .layout-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+
+    @media (max-width: 900px) {
+      .layout-wrapper {
+        padding: 0 var(--space-md);
+      }
+    }
+
+    /* =============================================================================
+       MANDATORY HEADER BAR COMPONENT
+       ============================================================================= */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-sm) var(--space-xl);
+      gap: var(--space-md);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 18px;
+      background: var(--surface-card-neutral);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-subtle);
+      transition: var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .nav-back-link:hover {
+      background: #FFFFFF;
+      color: var(--surface-canvas);
+      border-color: #FFFFFF;
+      transform: scale(0.98);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      display: inline-flex;
+      align-items: center;
+      background: var(--surface-card-dark);
+      color: var(--text-accent);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-pill);
+      padding: 4px 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .design-title {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--accent-overlay);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      border: 1px solid var(--border-subtle);
+      transition: var(--transition-fast);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-tile svg {
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.75px;
+    }
+
+    .btn-tile.btn-preview {
+      background: var(--surface-card-neutral);
+      color: var(--text-primary);
+    }
+
+    .btn-tile.btn-preview:hover {
+      background: #FFFFFF;
+      color: var(--surface-canvas);
+      border-color: #FFFFFF;
+      transform: scale(0.97);
+    }
+
+    .btn-tile.btn-copy {
+      background: var(--surface-card-light);
+      color: var(--text-on-light);
+      border-color: var(--surface-card-light);
+      box-shadow: var(--glow-sage);
+      font-weight: 700;
+    }
+
+    .btn-tile.btn-copy:hover {
+      background: #FFFFFF;
+      color: var(--surface-canvas);
+      border-color: #FFFFFF;
+      transform: scale(0.97);
+      box-shadow: var(--shadow-floating);
+    }
+
+    .btn-tile.btn-download {
+      background: var(--surface-card-dark);
+      color: var(--text-accent);
+      border-color: var(--border-accent);
+    }
+
+    .btn-tile.btn-download:hover {
+      background: #FFFFFF;
+      color: var(--surface-canvas);
+      border-color: #FFFFFF;
+      transform: scale(0.97);
+    }
+
+    @media (max-width: 992px) {
+      .header-title-block .design-vibe-tag {
+        display: none;
+      }
+      .style-tile-header {
+        padding: var(--space-sm) var(--space-md);
+      }
+      .btn-tile span.btn-label-long {
+        display: none;
+      }
+    }
+
+    /* =============================================================================
+       HERO EDITORIAL SECTION
+       ============================================================================= */
+    .hero-section {
+      padding: var(--space-2xl) 0 var(--space-xl);
+    }
+
+    .hero-card {
+      background: var(--surface-card-neutral);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card-lg);
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-floating);
+    }
+
+    /* Guilloche overlapping vector background wireframe */
+    .hero-guilloche-art {
+      position: absolute;
+      right: -60px;
+      top: -60px;
+      width: 480px;
+      height: 480px;
+      pointer-events: none;
+      opacity: 0.25;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+    }
+
+    .hero-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .pill-badge-pine {
+      background: var(--surface-card-dark);
+      color: var(--text-accent);
+      border: 1px solid var(--border-accent);
+    }
+
+    .pill-badge-sage {
+      background: var(--surface-card-light);
+      color: var(--text-on-light);
+      border: 1px solid var(--surface-card-light);
+    }
+
+    .pill-badge-fog {
+      background: var(--surface-pill-gray);
+      color: var(--text-on-light);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .pill-badge-outline {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .hero-title {
+      font-family: var(--font-sans);
+      font-size: clamp(38px, 5.2vw, 62px);
+      font-weight: 400;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: var(--space-md);
+    }
+
+    /* Signature Serif Inline Highlight Pill */
+    .serif-pill {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.06em;
+      font-weight: 400;
+      line-height: 1;
+      padding: 4px 18px 6px 18px;
+      background: var(--surface-card-light);
+      color: var(--text-on-light);
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      margin: 0 4px;
+      vertical-align: middle;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transition: var(--transition-fast);
+      transform: translateY(-2px);
+    }
+
+    .serif-pill:hover {
+      background: #FFFFFF;
+      color: var(--surface-card-dark);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: var(--glow-sage);
+    }
+
+    .serif-pill-pine {
+      background: var(--surface-card-dark);
+      color: var(--text-accent);
+      border: 1.5px solid var(--border-ring);
+    }
+
+    .serif-pill-pine:hover {
+      background: var(--accent-emerald);
+      color: #FFFFFF;
+    }
+
+    .hero-lead {
+      font-size: 19px;
+      line-height: 1.5;
+      font-weight: 400;
+      color: var(--text-muted);
+      max-width: 820px;
+      margin-bottom: var(--space-xl);
+    }
+
+    .hero-lead strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .btn-action-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 26px;
+      background: var(--surface-card-light);
+      color: var(--text-on-light);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--glow-sage);
+      transition: var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .btn-action-primary:hover {
+      background: #FFFFFF;
+      color: var(--surface-canvas);
+      transform: scale(0.97);
+      box-shadow: var(--shadow-floating);
+    }
+
+    .btn-action-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--surface-card-neutral);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .btn-action-secondary:hover {
+      background: #FFFFFF;
+      color: var(--surface-canvas);
+      border-color: #FFFFFF;
+      transform: scale(0.97);
+    }
+
+    /* Avatars Stack */
+    .avatar-stack-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+      padding-left: var(--space-md);
+    }
+
+    .avatar-stack {
+      display: flex;
+      align-items: center;
+    }
+
+    .avatar-item {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid var(--surface-canvas);
+      margin-left: -10px;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #FFFFFF;
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .avatar-item:first-child {
+      margin-left: 0;
+    }
+
+    .avatar-item-1 { background: #0A5C3C; }
+    .avatar-item-2 { background: #1E533B; }
+    .avatar-item-3 { background: #9BC89E; color: #0B2E1E; }
+
+    /* =============================================================================
+       SECTION HEADERS
+       ============================================================================= */
+    .section-block {
+      padding: var(--space-2xl) 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: var(--space-xl);
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .section-label-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: var(--font-sans);
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 540px;
+    }
+
+    /* =============================================================================
+       1. COLOR ROLES & PALETTE MATRIX
+       ============================================================================= */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch-card {
+      background: var(--surface-card-neutral);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card-sm);
+      overflow: hidden;
+      transition: var(--transition-fast);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .swatch-card:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .swatch-preview {
+      height: 96px;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 12px;
+    }
+
+    .swatch-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(0, 0, 0, 0.4);
+      color: #FFFFFF;
+      backdrop-filter: blur(8px);
+    }
+
+    .swatch-info {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .swatch-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-accent);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .swatch-hex .copy-hint {
+      font-size: 10px;
+      color: var(--text-muted);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .swatch-card:hover .swatch-hex .copy-hint {
+      opacity: 1;
+      color: var(--accent-primary);
+    }
+
+    /* Contrast Pairs Test Strip */
+    .contrast-pairings-strip {
+      margin-top: var(--space-xl);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .contrast-card {
+      padding: 22px;
+      border-radius: var(--radius-card-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* =============================================================================
+       2. TYPOGRAPHY SYSTEM SPECIMEN
+       ============================================================================= */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .type-card {
+      background: var(--surface-card-neutral);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card-lg);
+      padding: 28px;
+    }
+
+    .type-font-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .type-font-family {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .type-ladder-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .type-ladder-row:last-child {
+      border-bottom: none;
+    }
+
+    .type-token-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Pangram Tester */
+    .pangram-box {
+      margin-top: 20px;
+      background: var(--surface-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card-sm);
+      padding: 20px;
+    }
+
+    .pangram-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .pangram-slider {
+      flex: 1;
+      accent-color: var(--surface-card-light);
+      cursor: pointer;
+    }
+
+    .pangram-editable {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 28px;
+      line-height: 1.3;
+      resize: none;
+    }
+
+    /* =============================================================================
+       3. COMPONENT ARCHETYPES GALLERY
+       ============================================================================= */
+    .component-archetypes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .archetype-card {
+      background: var(--surface-card-neutral);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .archetype-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .button-group-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    /* Button Tokens */
+    .btn-sage-pill {
+      background: var(--surface-card-light);
+      color: var(--text-on-light);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--glow-sage);
+      transition: var(--transition-fast);
+    }
+
+    .btn-sage-pill:hover {
+      background: #FFFFFF;
+      color: var(--surface-canvas);
+      transform: scale(0.97);
+    }
+
+    .btn-pine-dark {
+      background: var(--surface-card-dark);
+      color: var(--text-accent);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--border-accent);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .btn-pine-dark:hover {
+      background: #FFFFFF;
+      color: var(--surface-canvas);
+      border-color: #FFFFFF;
+      transform: scale(0.97);
+    }
+
+    .btn-neutral-pill {
+      background: #222626;
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .btn-neutral-pill:hover {
+      background: #FFFFFF;
+      color: var(--surface-canvas);
+      border-color: #FFFFFF;
+      transform: scale(0.97);
+    }
+
+    .btn-frosted-sheen {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .btn-frosted-sheen:hover {
+      background: #FFFFFF;
+      color: var(--surface-canvas);
+      transform: scale(0.97);
+    }
+
+    /* Form Inputs */
+    .input-control-field {
+      width: 100%;
+      background: var(--surface-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-control);
+      padding: 12px 16px;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .input-control-field:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(163, 217, 165, 0.15);
+    }
+
+    /* Metric Level Indicators */
+    .metric-capsule-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .metric-capsule-bar {
+      flex: 1;
+      height: 12px;
+      background: var(--surface-canvas);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .metric-capsule-fill {
+      height: 100%;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(90deg, #0A5C3C, #A3D9A5);
+      transition: width 0.6s var(--ease-spatial);
+    }
+
+    /* =============================================================================
+       4. LIVING SHOWCASE // BENTO PACKAGING DISPATCH & LIFE-CYCLE TELEMETRY
+       ============================================================================= */
+    .bento-showcase-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      grid-gap: 20px;
+    }
+
+    @media (max-width: 960px) {
+      .bento-showcase-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Card A: Deep Pine Dispatch Master */
+    .bento-card-pine {
+      background: var(--surface-card-dark);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-card-lg);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      box-shadow: var(--shadow-floating);
+    }
+
+    /* Guilloche overlapping circles SVG */
+    .guilloche-vector-svg {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 260px;
+      height: 260px;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+
+    .bento-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-stamp-quad {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .flower-logo-icon {
+      width: 32px;
+      height: 32px;
+      color: var(--text-accent);
+      animation: rotateLogo 24s linear infinite;
+    }
+
+    @keyframes rotateLogo {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Material Selector */
+    .material-selector-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .material-option-card {
+      background: rgba(18, 20, 20, 0.65);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-card-sm);
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .material-option-card:hover {
+      border-color: var(--accent-primary);
+      background: rgba(18, 20, 20, 0.9);
+      transform: translateY(-2px);
+    }
+
+    .material-option-card.active {
+      background: rgba(163, 217, 165, 0.15);
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 16px rgba(163, 217, 165, 0.15);
+    }
+
+    .material-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .material-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Telemetry Metrics Row */
+    .telemetry-metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-card-sm);
+      padding: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .telemetry-metrics-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .material-selector-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .telemetry-pod {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .telemetry-val {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-accent);
+    }
+
+    .telemetry-lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Slider Container */
+    .volume-slider-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .volume-slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .volume-slider-val {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Card B: Fresh Sage Quote & Dispatch Manifest */
+    .bento-card-sage {
+      background: var(--surface-card-light);
+      color: var(--text-on-light);
+      border-radius: var(--radius-card-lg);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-floating);
+      position: relative;
+    }
+
+    .sage-quote {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 26px;
+      line-height: 1.28;
+      color: var(--text-on-light);
+    }
+
+    .sage-manifest-box {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(0, 0, 0, 0.15); /* Dark Inset Divider */
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sage-manifest-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .sage-manifest-val {
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+
+    /* Media Bento Card with 400ms zoom */
+    .bento-media-card {
+      background: var(--surface-card-neutral);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card-lg);
+      overflow: hidden;
+      position: relative;
+      min-height: 240px;
+      cursor: pointer;
+    }
+
+    .bento-media-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 400ms var(--ease-media), filter 400ms var(--ease-media);
+    }
+
+    .bento-media-card:hover .bento-media-img {
+      transform: scale(1.03);
+      filter: brightness(1.05);
+    }
+
+    .bento-media-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(18, 20, 20, 0.85);
+      backdrop-filter: blur(8px);
+      color: var(--text-primary);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* =============================================================================
+       5. CODE PROMPT DRAWER & MODAL
+       ============================================================================= */
+    .code-prompt-card {
+      background: var(--surface-card-neutral);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card-lg);
+      padding: 28px;
+    }
+
+    .code-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .code-snippet-box {
+      background: var(--surface-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card-sm);
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-height: 380px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+
+    /* Modal Backdrop & Sheet */
+    .modal-spec-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(12px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-spec-backdrop.open {
+      display: flex;
+    }
+
+    .modal-spec-sheet {
+      background: var(--surface-card-neutral);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-card-lg);
+      width: 100%;
+      max-width: 920px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      animation: modalSlide 300ms var(--ease-spatial);
+    }
+
+    @keyframes modalSlide {
+      from { transform: translateY(20px) scale(0.98); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .modal-spec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .modal-spec-body {
+      padding: 24px 28px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-spec-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 16px 28px;
+      border-top: 1px solid var(--border-subtle);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    /* Toast notification */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast-msg {
+      background: var(--surface-card-light);
+      color: var(--text-on-light);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 250ms var(--ease-spatial);
+    }
+
+    .toast-msg.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Decorative Mesh & Guilloche Background Overlay -->
+  <div class="guilloche-bg-overlay"></div>
+
+  <!-- =============================================================================
+       MANDATORY HEADER BAR COMPONENT
+       ============================================================================= -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span>←</span> <span>Catalog</span>
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-009</span>
+      <span class="design-title">Greenwrap Design System</span>
+      <span class="design-vibe-tag">Eco-Brutalist • Neo-Editorial</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span class="btn-label-long">Preview Style Tile</span>
+      </button>
+
+      <!-- Copy Raw Markdown Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy Style Tile</span>
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-greenwrap.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span class="btn-label-long">Download .md</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- =============================================================================
+         HERO DISPLAY BANNER
+         ============================================================================= -->
+    <section class="hero-section">
+      <div class="hero-card">
+        
+        <!-- Guilloche Wireframe Decorative Graphic -->
+        <svg class="hero-guilloche-art" viewBox="0 0 400 400" fill="none" stroke="#A3D9A5">
+          <circle cx="200" cy="200" r="190" stroke-width="1" stroke-dasharray="4 4" />
+          <circle cx="200" cy="200" r="160" stroke-width="1.2" />
+          <circle cx="200" cy="200" r="130" stroke-width="0.8" />
+          <circle cx="200" cy="200" r="100" stroke-width="1" />
+          <ellipse cx="200" cy="200" rx="190" ry="80" stroke-width="1" transform="rotate(0 200 200)" />
+          <ellipse cx="200" cy="200" rx="190" ry="80" stroke-width="1" transform="rotate(45 200 200)" />
+          <ellipse cx="200" cy="200" rx="190" ry="80" stroke-width="1" transform="rotate(90 200 200)" />
+          <ellipse cx="200" cy="200" rx="190" ry="80" stroke-width="1" transform="rotate(135 200 200)" />
+        </svg>
+
+        <div class="hero-content">
+          <div class="hero-meta-row">
+            <span class="pill-badge pill-badge-pine">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              ARCHIVE REF: TILE-009
+            </span>
+            <span class="pill-badge pill-badge-sage">CIRCULAR TELEMETRY</span>
+            <span class="pill-badge pill-badge-outline">ORGANIC DARK MODE</span>
+          </div>
+
+          <h1 class="hero-title">
+            Greenwrap <span class="serif-pill">Eco-Brutalist</span> Architecture for <span class="serif-pill">Circular</span> Supply Chains
+          </h1>
+
+          <p class="hero-lead">
+            An organic, high-contrast dark system engineered for <strong>sustainable logistics</strong>, <strong>closed-loop lifecycle audits</strong>, and <strong>modern eco-packaging</strong>. Combines deep pine containers, fresh sage typographic tokens, tactile pill triggers, and linear guilloche wireframes.
+          </p>
+
+          <div class="hero-cta-group">
+            <button class="btn-action-primary" onclick="copyMasterTilePrompt()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copy Agent Style Prompt</span>
+            </button>
+            <a href="#demo-studio" class="btn-action-secondary">
+              <span>Inspect Dispatch Studio ↓</span>
+            </a>
+
+            <!-- Overlapping Circular Avatar Stack -->
+            <div class="avatar-stack-group">
+              <div class="avatar-stack">
+                <div class="avatar-item avatar-item-1" title="Lead Auditor: Botanics">GW</div>
+                <div class="avatar-item avatar-item-2" title="Circular Systems">09</div>
+                <div class="avatar-item avatar-item-3" title="Biopolymer Matrix">✦</div>
+              </div>
+              <span style="font-size: 11px; font-family: var(--font-mono); color: var(--text-muted);">
+                LIFECYCLE AUDITED
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================================
+         SECTION 1: COLOR MATRIX & PALETTE TOKENS
+         ============================================================================= -->
+    <section class="section-block" id="colors">
+      <div class="section-header">
+        <div class="section-label-group">
+          <span class="section-num">01 // COLOR ROLES</span>
+          <h2 class="section-title">Color Roles & Palette Architecture</h2>
+        </div>
+        <p class="section-desc">
+          Multi-plane dark layering featuring deep charcoal canvas, dark forest pine, and fresh sage mint accents with high-contrast text.
+        </p>
+      </div>
+
+      <div class="palette-grid">
+        <!-- Swatch 1: Canvas -->
+        <div class="swatch-card" onclick="copyHexColor('--surface-canvas', '#121414')">
+          <div class="swatch-preview" style="background: #121414; border-bottom: 1px solid rgba(255,255,255,0.08);">
+            <span class="swatch-badge">BASE CANVAS</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Deep Charcoal</span>
+            <span class="swatch-var">--surface-canvas</span>
+            <div class="swatch-hex">
+              <span>#121414</span>
+              <span class="copy-hint">Click to copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 2: Card Dark -->
+        <div class="swatch-card" onclick="copyHexColor('--surface-card-dark', '#063826')">
+          <div class="swatch-preview" style="background: #063826;">
+            <span class="swatch-badge">CONTAINER DARK</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Deep Pine</span>
+            <span class="swatch-var">--surface-card-dark</span>
+            <div class="swatch-hex">
+              <span>#063826</span>
+              <span class="copy-hint">Click to copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 3: Card Light -->
+        <div class="swatch-card" onclick="copyHexColor('--surface-card-light', '#9BC89E')">
+          <div class="swatch-preview" style="background: #9BC89E;">
+            <span class="swatch-badge" style="background: rgba(11,46,30,0.7);">ACCENT LIGHT</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Fresh Sage</span>
+            <span class="swatch-var">--surface-card-light</span>
+            <div class="swatch-hex">
+              <span>#9BC89E</span>
+              <span class="copy-hint">Click to copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 4: Card Neutral -->
+        <div class="swatch-card" onclick="copyHexColor('--surface-card-neutral', '#1E2121')">
+          <div class="swatch-preview" style="background: #1E2121;">
+            <span class="swatch-badge">CONTAINER NEUTRAL</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Subdued Dark</span>
+            <span class="swatch-var">--surface-card-neutral</span>
+            <div class="swatch-hex">
+              <span>#1E2121</span>
+              <span class="copy-hint">Click to copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 5: Pill Gray -->
+        <div class="swatch-card" onclick="copyHexColor('--surface-pill-gray', '#C4C8C5')">
+          <div class="swatch-preview" style="background: #C4C8C5;">
+            <span class="swatch-badge" style="background: rgba(11,46,30,0.7);">MUTED FOG</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Light Muted Fog</span>
+            <span class="swatch-var">--surface-pill-gray</span>
+            <div class="swatch-hex">
+              <span>#C4C8C5</span>
+              <span class="copy-hint">Click to copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 6: Leaf Mint -->
+        <div class="swatch-card" onclick="copyHexColor('--text-accent', '#A8E0AF')">
+          <div class="swatch-preview" style="background: #A8E0AF;">
+            <span class="swatch-badge" style="background: rgba(11,46,30,0.7);">VIBRANT TEXT</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Leaf Mint Accent</span>
+            <span class="swatch-var">--text-accent</span>
+            <div class="swatch-hex">
+              <span>#A8E0AF</span>
+              <span class="copy-hint">Click to copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 7: Botanical Ink -->
+        <div class="swatch-card" onclick="copyHexColor('--text-on-light', '#0B2E1E')">
+          <div class="swatch-preview" style="background: #0B2E1E;">
+            <span class="swatch-badge">INK ON LIGHT</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Deep Botanical Green</span>
+            <span class="swatch-var">--text-on-light</span>
+            <div class="swatch-hex">
+              <span>#0B2E1E</span>
+              <span class="copy-hint">Click to copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 8: Emerald Accent -->
+        <div class="swatch-card" onclick="copyHexColor('--accent-emerald', '#0A5C3C')">
+          <div class="swatch-preview" style="background: #0A5C3C;">
+            <span class="swatch-badge">BOTANICAL MID</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Mid Botanical Emerald</span>
+            <span class="swatch-var">--accent-emerald</span>
+            <div class="swatch-hex">
+              <span>#0A5C3C</span>
+              <span class="copy-hint">Click to copy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contrast Verification Row -->
+      <div class="contrast-pairings-strip">
+        <div class="contrast-card" style="background: #063826; border: 1.5px solid #1A5038;">
+          <span style="font-family: var(--font-mono); font-size: 11px; color: #A8E0AF;">SURFACE PAIRING 01</span>
+          <h3 style="color: #FFFFFF; font-size: 18px; font-weight: 500;">Deep Pine + Pure White Text</h3>
+          <p style="color: #8B938E; font-size: 13px;">High contrast ratio: 11.8:1 (WCAG AAA Approved)</p>
+        </div>
+
+        <div class="contrast-card" style="background: #9BC89E; color: #0B2E1E; border: 1px solid rgba(0,0,0,0.1);">
+          <span style="font-family: var(--font-mono); font-size: 11px; color: #0B2E1E; font-weight: 700;">SURFACE PAIRING 02</span>
+          <h3 style="color: #0B2E1E; font-size: 18px; font-weight: 600;">Fresh Sage + Botanical Green</h3>
+          <p style="color: #1A5038; font-size: 13px;">Rich editorial print ink contrast: 8.4:1 (WCAG AAA Approved)</p>
+        </div>
+
+        <div class="contrast-card" style="background: #1E2121; border: 1px solid rgba(255,255,255,0.12);">
+          <span style="font-family: var(--font-mono); font-size: 11px; color: #A3D9A5;">SURFACE PAIRING 03</span>
+          <h3 style="color: #FFFFFF; font-size: 18px; font-weight: 500;">Subdued Dark + Sage Accents</h3>
+          <p style="color: #8B938E; font-size: 13px;">Tactile telemetry & card baseline</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================================
+         SECTION 2: TYPOGRAPHY & TYPEFACE SPECIMEN
+         ============================================================================= -->
+    <section class="section-block" id="typography">
+      <div class="section-header">
+        <div class="section-label-group">
+          <span class="section-num">02 // TYPOGRAPHY</span>
+          <h2 class="section-title">Typography System & Editorial Accents</h2>
+        </div>
+        <p class="section-desc">
+          Tri-tier type hierarchy pairing structural sans-serif headers with editorial serif italic pills and monospace telemetry.
+        </p>
+      </div>
+
+      <div class="type-specimen-grid">
+        <!-- Sans & Scale Card -->
+        <div class="type-card">
+          <div class="type-font-header">
+            <div>
+              <div class="type-font-family">Plus Jakarta Sans</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Primary Structural Typeface</div>
+            </div>
+            <span class="pill-badge pill-badge-outline">400 / 500 / 600 / 700</span>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-token-meta">
+              <span>Display H1 (Hero)</span>
+              <span>48px–64px / 400 Regular / 1.15</span>
+            </div>
+            <div style="font-size: 32px; font-weight: 400; line-height: 1.2;">
+              Organic Circularity
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-token-meta">
+              <span>H2 (Card Headers)</span>
+              <span>22px–26px / 500 Medium / 1.3</span>
+            </div>
+            <div style="font-size: 22px; font-weight: 500;">
+              Biopolymer Packaging Telemetry
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-token-meta">
+              <span>Body Large (Mission Statement)</span>
+              <span>18px–20px / 400 / 1.4</span>
+            </div>
+            <div style="font-size: 17px; font-weight: 400; color: var(--text-muted);">
+              Engineered to dissolve into soil nutrients within 45 days of transit completion.
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-token-meta">
+              <span>UI Microcopy & Tags</span>
+              <span>11px–13px / 600 / Tracking +0.06em</span>
+            </div>
+            <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-accent);">
+              DISPATCH STATUS: ACTIVE SOIL CYCLE
+            </div>
+          </div>
+        </div>
+
+        <!-- Serif & Mono Pairings Card -->
+        <div class="type-card">
+          <div class="type-font-header">
+            <div>
+              <div class="type-font-family" style="font-family: var(--font-serif); font-style: italic;">
+                Instrument Serif
+              </div>
+              <div style="font-size: 12px; color: var(--text-muted);">Editorial Pill Accents & Italic Pull-quotes</div>
+            </div>
+            <span class="pill-badge pill-badge-sage">Display Serif</span>
+          </div>
+
+          <div style="margin-bottom: 20px; font-family: var(--font-serif); font-style: italic; font-size: 24px; line-height: 1.3; color: var(--text-primary);">
+            "We do not design packaging for disposal; we design biological nutrients in transit."
+          </div>
+
+          <div style="padding-top: 16px; border-top: 1px solid var(--border-subtle);">
+            <div class="type-font-header" style="margin-bottom: 12px; padding-bottom: 8px;">
+              <div>
+                <div class="type-font-family" style="font-family: var(--font-mono); font-size: 17px;">JetBrains Mono</div>
+                <div style="font-size: 12px; color: var(--text-muted);">Telemetry, Metrics & Status Tags</div>
+              </div>
+              <span class="pill-badge pill-badge-pine">Utility Mono</span>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--text-accent); background: var(--surface-canvas); padding: 14px; border-radius: var(--radius-control); border: 1px solid var(--border-subtle);">
+              BATCH_ID: #GW-2026-BIO88<br>
+              OFFSET_CO2: -4.82kg/unit<br>
+              DEGRADATION_RATE: 99.4% [45D]
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Interactive Pangram Tester -->
+      <div class="pangram-box">
+        <div class="pangram-controls">
+          <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted);">PANGRAM TESTER:</span>
+          <input type="range" min="16" max="52" value="28" class="pangram-slider" id="pangram-slider" oninput="updatePangramSize(this.value)">
+          <span id="pangram-size-label" style="font-family: var(--font-mono); font-size: 12px; color: var(--text-accent); min-width: 45px;">28px</span>
+        </div>
+        <textarea id="pangram-input" class="pangram-editable" rows="2">Sustainable mycelium packaging restores soil health while protecting delicate goods.</textarea>
+      </div>
+    </section>
+
+    <!-- =============================================================================
+         SECTION 3: COMPONENT ARCHETYPES GALLERY
+         ============================================================================= -->
+    <section class="section-block" id="components">
+      <div class="section-header">
+        <div class="section-label-group">
+          <span class="section-num">03 // ARCHETYPES</span>
+          <h2 class="section-title">Component Archetypes & Micro-Interactions</h2>
+        </div>
+        <p class="section-desc">
+          Interactive pill triggers, tactile form inputs, dynamic capsule level indicators, and frosted glass panels.
+        </p>
+      </div>
+
+      <div class="component-archetypes-grid">
+        <!-- Archetype 1: Buttons Suite -->
+        <div class="archetype-card">
+          <div class="archetype-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 12h6"/></svg>
+            Interactive Button Suite
+          </div>
+          <div class="button-group-wrap">
+            <button class="btn-sage-pill" onclick="triggerMicroAction('Sage Action Pill')">
+              Sage Action
+            </button>
+            <button class="btn-pine-dark" onclick="triggerMicroAction('Pine Emerald CTA')">
+              Pine Emerald
+            </button>
+            <button class="btn-neutral-pill" onclick="triggerMicroAction('Neutral Dark Pill')">
+              Hover Shift White
+            </button>
+            <button class="btn-frosted-sheen" onclick="triggerMicroAction('Frosted Glass Pill')">
+              Frosted Sheen
+            </button>
+          </div>
+          <p style="font-size: 12px; color: var(--text-muted);">
+            Hover: Neutral shifts to pure white with canvas black text. Active: Scale(0.97) tactile press.
+          </p>
+        </div>
+
+        <!-- Archetype 2: Form Controls & Inputs -->
+        <div class="archetype-card">
+          <div class="archetype-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="3"/><line x1="6" y1="8" x2="18" y2="8"/><line x1="6" y1="12" x2="14" y2="12"/></svg>
+            Form Controls & Inset Fields
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <input type="text" class="input-control-field" placeholder="Enter batch consignment ref..." value="CONSIGNMENT-GW-8092">
+            <div style="display: flex; gap: 10px;">
+              <input type="text" class="input-control-field" placeholder="Target soil type" value="Temperate Loam Soil">
+              <button class="btn-sage-pill" style="padding: 10px 16px; white-space: nowrap;" onclick="triggerMicroAction('Consignment Verified')">Verify</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Archetype 3: Metric Level Indicators -->
+        <div class="archetype-card">
+          <div class="archetype-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Dynamic Capsule Level Indicators
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div class="metric-capsule-row">
+              <span style="font-family: var(--font-mono); font-size: 11px; width: 90px; color: var(--text-muted);">BIOMASS %</span>
+              <div class="metric-capsule-bar">
+                <div class="metric-capsule-fill" style="width: 88%;"></div>
+              </div>
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--text-accent);">88%</span>
+            </div>
+
+            <div class="metric-capsule-row">
+              <span style="font-family: var(--font-mono); font-size: 11px; width: 90px; color: var(--text-muted);">SOIL RETURN</span>
+              <div class="metric-capsule-bar">
+                <div class="metric-capsule-fill" style="width: 96%;"></div>
+              </div>
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--text-accent);">96%</span>
+            </div>
+
+            <div class="metric-capsule-row">
+              <span style="font-family: var(--font-mono); font-size: 11px; width: 90px; color: var(--text-muted);">PLASTIC FREE</span>
+              <div class="metric-capsule-bar">
+                <div class="metric-capsule-fill" style="width: 100%;"></div>
+              </div>
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--text-accent);">100%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================================
+         SECTION 4: LIVING SHOWCASE // BENTO DISPATCH & TELEMETRY STUDIO
+         ============================================================================= -->
+    <section class="section-block" id="demo-studio">
+      <div class="section-header">
+        <div class="section-label-group">
+          <span class="section-num">04 // LIVING DEMO</span>
+          <h2 class="section-title">Eco-Packaging Dispatch & Lifecycle Studio</h2>
+        </div>
+        <p class="section-desc">
+          High-utility bento interface demonstrating token harmony, real-time recalculations, material selection, and dispatch telemetry.
+        </p>
+      </div>
+
+      <div class="bento-showcase-grid">
+        <!-- Card A: Deep Pine Dispatch Master -->
+        <div class="bento-card-pine">
+          
+          <!-- Guilloche Vector Wireframe Overlay -->
+          <svg class="guilloche-vector-svg" viewBox="0 0 200 200" fill="none" stroke="#9BC89E">
+            <circle cx="100" cy="100" r="90" stroke-width="0.8" stroke-dasharray="3 3" />
+            <circle cx="100" cy="100" r="70" stroke-width="1" />
+            <circle cx="100" cy="100" r="50" stroke-width="1.2" />
+            <ellipse cx="100" cy="100" rx="90" ry="40" stroke-width="0.8" transform="rotate(30 100 100)" />
+            <ellipse cx="100" cy="100" rx="90" ry="40" stroke-width="0.8" transform="rotate(120 100 100)" />
+          </svg>
+
+          <div class="bento-top-row">
+            <div class="brand-stamp-quad">
+              <!-- Rotated Quad-Leaf Flower Icon -->
+              <svg class="flower-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M12 2C9.5 7 9.5 9 12 12C14.5 9 14.5 7 12 2Z"/>
+                <path d="M12 22C9.5 17 9.5 15 12 12C14.5 15 14.5 17 12 22Z"/>
+                <path d="M2 12C7 9.5 9 9.5 12 12C9 14.5 7 14.5 2 12Z"/>
+                <path d="M22 12C17 9.5 15 9.5 12 12C15 14.5 17 14.5 22 12Z"/>
+                <circle cx="12" cy="12" r="2.5" fill="currentColor"/>
+              </svg>
+              <div>
+                <h3 style="font-size: 20px; font-weight: 600; color: #FFFFFF;">Material Lifecycle Dispatch</h3>
+                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-accent);">SELECT MATERIAL FORMULATION</span>
+              </div>
+            </div>
+            <span class="pill-badge pill-badge-sage">LIVE TELEMETRY</span>
+          </div>
+
+          <!-- Material Choice Pods -->
+          <div class="material-selector-grid">
+            <div class="material-option-card active" onclick="selectMaterial(this, 'Mushroom Mycelium', -4.82, 45, 99.4, 380)">
+              <div class="material-name">
+                <span>Mushroom Mycelium</span>
+                <span style="color: var(--accent-primary);">✓</span>
+              </div>
+              <div class="material-sub">Natural fungal root structure • Shock absorbing</div>
+            </div>
+
+            <div class="material-option-card" onclick="selectMaterial(this, 'Algae Biopolymer', -3.95, 60, 97.2, 290)">
+              <div class="material-name">
+                <span>Algae Biopolymer</span>
+                <span style="color: var(--accent-primary); display: none;">✓</span>
+              </div>
+              <div class="material-sub">Marine harvested film • Zero petrochemicals</div>
+            </div>
+
+            <div class="material-option-card" onclick="selectMaterial(this, 'FSC Unbleached Kraft', -2.40, 90, 94.0, 150)">
+              <div class="material-name">
+                <span>FSC Unbleached Kraft</span>
+                <span style="color: var(--accent-primary); display: none;">✓</span>
+              </div>
+              <div class="material-sub">100% Post-consumer fiber • Heavy load barrier</div>
+            </div>
+
+            <div class="material-option-card" onclick="selectMaterial(this, 'Seaweed Foam Cushion', -5.10, 30, 99.8, 420)">
+              <div class="material-name">
+                <span>Seaweed Foam Cushion</span>
+                <span style="color: var(--accent-primary); display: none;">✓</span>
+              </div>
+              <div class="material-sub">Ocean-positive expander • Water soluble</div>
+            </div>
+          </div>
+
+          <!-- Volume Slider -->
+          <div class="volume-slider-box">
+            <div class="volume-slider-header">
+              <span>BATCH DISPATCH VOLUME (UNITS)</span>
+              <span class="volume-slider-val" id="volume-val-display">5,000 units</span>
+            </div>
+            <input type="range" min="500" max="50000" step="500" value="5000" class="pangram-slider" id="volume-slider" oninput="updateBatchVolume(this.value)">
+          </div>
+
+          <!-- Calculated Telemetry Bar -->
+          <div class="telemetry-metrics-bar">
+            <div class="telemetry-pod">
+              <span class="telemetry-val" id="metric-carbon">-24.1t</span>
+              <span class="telemetry-lbl">CO₂e Avoided</span>
+            </div>
+            <div class="telemetry-pod">
+              <span class="telemetry-val" id="metric-days">45 Days</span>
+              <span class="telemetry-lbl">Soil Return</span>
+            </div>
+            <div class="telemetry-pod">
+              <span class="telemetry-val" id="metric-score">99.4%</span>
+              <span class="telemetry-lbl">Circularity</span>
+            </div>
+            <div class="telemetry-pod">
+              <span class="telemetry-val" id="metric-water">1,900k L</span>
+              <span class="telemetry-lbl">Water Saved</span>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; color: var(--text-accent);">
+              <!-- Circular-bound Infinite Recycling Arrows -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/><path d="M11 19h8.2a1.8 1.8 0 0 0 1.55-.89 1.8 1.8 0 0 0 0-1.78L16.8 9.5"/><path d="M12 2v7.5"/></svg>
+              <span>CIRCULAR PROTOCOL ISO-14040 VERIFIED</span>
+            </div>
+            <button class="btn-sage-pill" onclick="triggerMicroAction('Generated Production Manifest')">
+              Deploy Production Manifest ↗
+            </button>
+          </div>
+        </div>
+
+        <!-- Card B: Fresh Sage Editorial & Manifest Details -->
+        <div class="bento-card-sage">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <span class="pill-badge pill-badge-fog" style="background: rgba(11,46,30,0.15); color: #0B2E1E; border: none;">
+                <!-- Tilted Paper Airplane Symbol -->
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" transform="rotate(-15)"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                PRIORITY DISPATCH TAG
+              </span>
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #0B2E1E;">#GW-MANIFEST</span>
+            </div>
+
+            <div class="sage-quote">
+              "Packaging must function not as discarded debris, but as living biological nutrient in transit."
+            </div>
+          </div>
+
+          <div class="sage-manifest-box">
+            <div class="sage-manifest-row">
+              <span>Active Material:</span>
+              <span class="sage-manifest-val" id="manifest-material">Mushroom Mycelium</span>
+            </div>
+            <div class="sage-manifest-row">
+              <span>Consignment Origin:</span>
+              <span class="sage-manifest-val">Cascadia Biorefinery</span>
+            </div>
+            <div class="sage-manifest-row">
+              <span>Dispatch Destination:</span>
+              <span class="sage-manifest-val">Global Air & Sea Hub</span>
+            </div>
+            <div class="sage-manifest-row">
+              <span>Decomposition Target:</span>
+              <span class="sage-manifest-val" id="manifest-decom">45 Days in Loam</span>
+            </div>
+            <div class="sage-manifest-row" style="padding-top: 8px; font-weight: 700;">
+              <span>Net Ecosystem Value:</span>
+              <span class="sage-manifest-val" id="manifest-eco">+100% Soil Net Positive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================================
+         SECTION 5: STYLE TILE PROMPT CODE DRAWER
+         ============================================================================= -->
+    <section class="section-block" id="prompt-spec">
+      <div class="code-prompt-card">
+        <div class="code-header-row">
+          <div>
+            <span class="section-num">05 // AGENT PROMPT</span>
+            <h3 style="font-size: 20px; font-weight: 600; color: var(--text-primary);">Machine-Readable Style Tile Token Vault</h3>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-tile btn-copy" onclick="copyMasterTilePrompt()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copy Full Markdown Tile</span>
+            </button>
+            <button class="btn-tile btn-download" onclick="downloadStyleTileFile()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download .md</span>
+            </button>
+          </div>
+        </div>
+
+        <pre class="code-snippet-box" id="onscreen-code-snippet"><code>================================================================================
+  STYLE TILE: GREENWRAP DESIGN SYSTEM
+  Vibe: Modern Eco-Brutalist • Neo-Editorial • Organic Dark Mode
+================================================================================
+
+1. COLOR ROLES & PALETTE
+--------------------------------------------------------------------------------
+  Core Canvas:
+    --surface-canvas:        #121414 (Deep Charcoal / Black Canvas)
+    --surface-card-dark:     #063826 (Deep Pine / Forest Green)
+    --surface-card-light:    #9BC89E (Fresh Sage / Muted Mint)
+    --surface-card-neutral:  #1E2121 (Subdued Container Dark)
+    --surface-pill-gray:     #C4C8C5 (Light Muted Fog)
+
+  Text & Content:
+    --text-primary:          #FFFFFF (Pure White / Maximum Contrast)
+    --text-on-light:         #0B2E1E (Deep Botanical Green)
+    --text-muted:            #8B938E (Medium Mineral Grey)
+    --text-accent:           #A8E0AF (Vibrant Leaf Mint)
+
+  Accents & Functional:
+    --accent-primary:        #A3D9A5 (Sage Tint - Highlights & Pill Accents)
+    --accent-emerald:        #0A5C3C (Mid-tone Botanical)
+    --accent-overlay:        rgba(255, 255, 255, 0.08) (Glass / Sheen)
+    --border-subtle:         rgba(255, 255, 255, 0.12) (Translucent White Stroke)
+    --border-accent:         #1A5038 (Deep Green Outline)
+
+--------------------------------------------------------------------------------
+2. TYPOGRAPHY SYSTEM
+--------------------------------------------------------------------------------
+  Font Families:
+    Primary Sans:   "Plus Jakarta Sans", "Satoshi", sans-serif
+    Display Serif:  "Instrument Serif", "Playfair Display", serif (Editorial Accents)
+    Utility / Mono: "JetBrains Mono", monospace (Labels & Metrics)
+
+  Type Hierarchy:
+    Display H1 (Hero):
+      Font: Primary Sans | Size: 48px – 64px | Weight: 400 (Regular) | Line-height: 1.15
+      Feature: Inline highlighted keywords switch to Display Serif (Italic/Regular) 
+               housed in custom pill badges.
+
+    H2 (Card Headers & Highlights):
+      Font: Primary Sans | Size: 22px – 26px | Weight: 500 (Medium) | Line-height: 1.3
+
+    Body Large (Mission Statements / Summaries):
+      Font: Primary Sans | Size: 18px – 20px | Weight: 400 | Line-height: 1.4
+
+    UI & Microcopy (Nav, Badges, Metrics):
+      Font: Primary Sans / Utility | Size: 11px – 13px | Weight: 600 | Tracking: +0.06em
+      Transform: Uppercase for status tags; Title Case for actions.
+
+--------------------------------------------------------------------------------
+3. CORNER GEOMETRY (BORDER RADII)
+--------------------------------------------------------------------------------
+  --radius-pill:     9999px   (Buttons, Badges, Avatars, Nav Pods, Delivery Tags)
+  --radius-card-lg:  32px     (Bento Grid Containers, Media Cards)
+  --radius-card-sm:  20px     (Nested Cards, Metric Pods)
+  --radius-control:  12px     (Input Fields, Utility Tooltips)
+
+--------------------------------------------------------------------------------
+4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+--------------------------------------------------------------------------------
+  Layering Strategy:
+    • Multi-plane dark layering: Near-black canvas base with layered sage/forest surfaces.
+    • Translucent Frosted Glass:
+        backdrop-filter: blur(16px);
+        background: rgba(30, 33, 33, 0.75);
+    • Linear Guilloche Wireframes:
+        Vector geometric overlapping circles/curves rendered with 0.15–0.3 opacity.
+
+  Shadows:
+    --shadow-floating:  0 12px 32px -8px rgba(0, 0, 0, 0.45)
+    --shadow-subtle:    0 4px 16px -2px rgba(0, 0, 0, 0.25)
+    --glow-sage:        0 0 24px -4px rgba(163, 217, 165, 0.2)
+
+--------------------------------------------------------------------------------
+5. SPACING & SPATIAL SCALE
+--------------------------------------------------------------------------------
+  Base Unit: 4px Grid System
+  
+  Tokens:
+    --space-xxs:  4px
+    --space-xs:   8px
+    --space-sm:   12px
+    --space-md:   16px
+    --space-lg:   24px
+    --space-xl:   32px
+    --space-2xl:  48px
+
+  Layout Dimensions:
+    • Bento Grid Gap: 16px – 20px
+    • Hero Card Padding: 28px – 36px
+    • Pill Badge Internal Padding: 8px 18px (H), 6px 12px (V)
+    • Nav Bar Inset: 16px Top/Sides
+
+--------------------------------------------------------------------------------
+6. BORDERS & DIVIDERS
+--------------------------------------------------------------------------------
+  • Card Outlines: 1px solid rgba(255, 255, 255, 0.08) (Subtle contrast isolation)
+  • Highlight Rings: 1.5px solid #1E533B (Botanical pill ring)
+  • Dark Inset Divider: 1px solid rgba(0, 0, 0, 0.15) (For light-card sub-elements)
+  • Metric Level Indicators: Vertical rounded capsule bars with dynamic fill heights.
+
+--------------------------------------------------------------------------------
+7. ICONOGRAPHY LANGUAGE
+--------------------------------------------------------------------------------
+  Style & Weight:
+    • Fine stroke outline (1.5px – 1.75px uniform weight)
+    • Rounded caps and joins (`stroke-linecap: round; stroke-linejoin: round`)
+    • Size bounding box: 18x18px (Micro UI) | 24x24px (Standard Actions) | 48x48px (Hero Highlights)
+
+  Motifs & Symbolism:
+    • Circular-bound symbols: Sun, Globe/Latitude grid, Infinite Recycling arrows.
+    • Geometric stamps: Rotated flower/quad-leaf logo icon, tilted paper airplane.
+    • Circular avatar groups overlapping with a +2px dark canvas border mask.
+
+--------------------------------------------------------------------------------
+8. INTERACTION & FEEDBACK RULES
+--------------------------------------------------------------------------------
+  Hover States:
+    • Nav Pills & Action Tags:
+        Background shifts from neutral dark (#222626) to pure white (#FFFFFF); 
+        text transitions from white to canvas black (#121414).
+    • Bento Media Cards:
+        Image scale: transform: scale(1.03); filter: brightness(1.05);
+        Duration: 400ms cubic-bezier(0.2, 0.8, 0.2, 1).
+
+  Active & Press Feedback:
+    • Scale down on press: transform: scale(0.97).
+    • Tactile pill badges pop with subtle `--glow-sage` bloom.
+
+  Transitions:
+    • Standard: 250ms cubic-bezier(0.4, 0, 0.2, 1)
+    • Spatial/Movement: 450ms cubic-bezier(0.16, 1, 0.3, 1)
+================================================================================</code></pre>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================================================
+       INSPECTION MODAL SHEET
+       ============================================================================= -->
+  <div class="modal-spec-backdrop" id="modal-spec-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-spec-title">
+    <div class="modal-spec-sheet">
+      <div class="modal-spec-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="design-code">TILE-009</span>
+          <h3 id="modal-spec-title" style="font-size: 18px; font-weight: 600; color: #FFFFFF;">
+            Greenwrap Design System Specification
+          </h3>
+        </div>
+        <button onclick="closeSpecModal()" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 20px; padding: 4px 8px;">✕</button>
+      </div>
+
+      <div class="modal-spec-body">
+        <pre class="code-snippet-box" id="modal-spec-code-text" style="max-height: 55vh;"></pre>
+      </div>
+
+      <div class="modal-spec-footer">
+        <button class="btn-tile btn-preview" onclick="closeSpecModal()">Close</button>
+        <button class="btn-tile btn-download" onclick="downloadStyleTileFile()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download .md
+        </button>
+        <button class="btn-tile btn-copy" onclick="copyMasterTilePrompt()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Style Tile
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- =============================================================================
+       MANDATORY EMBEDDED MARKDOWN STYLE TILE SCRIPT BLOCK
+       ============================================================================= -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  STYLE TILE: GREENWRAP DESIGN SYSTEM
+  Vibe: Modern Eco-Brutalist • Neo-Editorial • Organic Dark Mode
+================================================================================
+
+1. COLOR ROLES & PALETTE
+--------------------------------------------------------------------------------
+  Core Canvas:
+    --surface-canvas:        #121414 (Deep Charcoal / Black Canvas)
+    --surface-card-dark:     #063826 (Deep Pine / Forest Green)
+    --surface-card-light:    #9BC89E (Fresh Sage / Muted Mint)
+    --surface-card-neutral:  #1E2121 (Subdued Container Dark)
+    --surface-pill-gray:     #C4C8C5 (Light Muted Fog)
+
+  Text & Content:
+    --text-primary:          #FFFFFF (Pure White / Maximum Contrast)
+    --text-on-light:         #0B2E1E (Deep Botanical Green)
+    --text-muted:            #8B938E (Medium Mineral Grey)
+    --text-accent:           #A8E0AF (Vibrant Leaf Mint)
+
+  Accents & Functional:
+    --accent-primary:        #A3D9A5 (Sage Tint - Highlights & Pill Accents)
+    --accent-emerald:        #0A5C3C (Mid-tone Botanical)
+    --accent-overlay:        rgba(255, 255, 255, 0.08) (Glass / Sheen)
+    --border-subtle:         rgba(255, 255, 255, 0.12) (Translucent White Stroke)
+    --border-accent:         #1A5038 (Deep Green Outline)
+
+--------------------------------------------------------------------------------
+2. TYPOGRAPHY SYSTEM
+--------------------------------------------------------------------------------
+  Font Families:
+    Primary Sans:   "Plus Jakarta Sans", "Satoshi", sans-serif
+    Display Serif:  "Instrument Serif", "Playfair Display", serif (Editorial Accents)
+    Utility / Mono: "JetBrains Mono", monospace (Labels & Metrics)
+
+  Type Hierarchy:
+    Display H1 (Hero):
+      Font: Primary Sans | Size: 48px – 64px | Weight: 400 (Regular) | Line-height: 1.15
+      Feature: Inline highlighted keywords switch to Display Serif (Italic/Regular) 
+               housed in custom pill badges.
+
+    H2 (Card Headers & Highlights):
+      Font: Primary Sans | Size: 22px – 26px | Weight: 500 (Medium) | Line-height: 1.3
+
+    Body Large (Mission Statements / Summaries):
+      Font: Primary Sans | Size: 18px – 20px | Weight: 400 | Line-height: 1.4
+
+    UI & Microcopy (Nav, Badges, Metrics):
+      Font: Primary Sans / Utility | Size: 11px – 13px | Weight: 600 | Tracking: +0.06em
+      Transform: Uppercase for status tags; Title Case for actions.
+
+--------------------------------------------------------------------------------
+3. CORNER GEOMETRY (BORDER RADII)
+--------------------------------------------------------------------------------
+  --radius-pill:     9999px   (Buttons, Badges, Avatars, Nav Pods, Delivery Tags)
+  --radius-card-lg:  32px     (Bento Grid Containers, Media Cards)
+  --radius-card-sm:  20px     (Nested Cards, Metric Pods)
+  --radius-control:  12px     (Input Fields, Utility Tooltips)
+
+--------------------------------------------------------------------------------
+4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+--------------------------------------------------------------------------------
+  Layering Strategy:
+    • Multi-plane dark layering: Near-black canvas base with layered sage/forest surfaces.
+    • Translucent Frosted Glass:
+        backdrop-filter: blur(16px);
+        background: rgba(30, 33, 33, 0.75);
+    • Linear Guilloche Wireframes:
+        Vector geometric overlapping circles/curves rendered with 0.15–0.3 opacity.
+
+  Shadows:
+    --shadow-floating:  0 12px 32px -8px rgba(0, 0, 0, 0.45)
+    --shadow-subtle:    0 4px 16px -2px rgba(0, 0, 0, 0.25)
+    --glow-sage:        0 0 24px -4px rgba(163, 217, 165, 0.2)
+
+--------------------------------------------------------------------------------
+5. SPACING & SPATIAL SCALE
+--------------------------------------------------------------------------------
+  Base Unit: 4px Grid System
+  
+  Tokens:
+    --space-xxs:  4px
+    --space-xs:   8px
+    --space-sm:   12px
+    --space-md:   16px
+    --space-lg:   24px
+    --space-xl:   32px
+    --space-2xl:  48px
+
+  Layout Dimensions:
+    • Bento Grid Gap: 16px – 20px
+    • Hero Card Padding: 28px – 36px
+    • Pill Badge Internal Padding: 8px 18px (H), 6px 12px (V)
+    • Nav Bar Inset: 16px Top/Sides
+
+--------------------------------------------------------------------------------
+6. BORDERS & DIVIDERS
+--------------------------------------------------------------------------------
+  • Card Outlines: 1px solid rgba(255, 255, 255, 0.08) (Subtle contrast isolation)
+  • Highlight Rings: 1.5px solid #1E533B (Botanical pill ring)
+  • Dark Inset Divider: 1px solid rgba(0, 0, 0, 0.15) (For light-card sub-elements)
+  • Metric Level Indicators: Vertical rounded capsule bars with dynamic fill heights.
+
+--------------------------------------------------------------------------------
+7. ICONOGRAPHY LANGUAGE
+--------------------------------------------------------------------------------
+  Style & Weight:
+    • Fine stroke outline (1.5px – 1.75px uniform weight)
+    • Rounded caps and joins (`stroke-linecap: round; stroke-linejoin: round`)
+    • Size bounding box: 18x18px (Micro UI) | 24x24px (Standard Actions) | 48x48px (Hero Highlights)
+
+  Motifs & Symbolism:
+    • Circular-bound symbols: Sun, Globe/Latitude grid, Infinite Recycling arrows.
+    • Geometric stamps: Rotated flower/quad-leaf logo icon, tilted paper airplane.
+    • Circular avatar groups overlapping with a +2px dark canvas border mask.
+
+--------------------------------------------------------------------------------
+8. INTERACTION & FEEDBACK RULES
+--------------------------------------------------------------------------------
+  Hover States:
+    • Nav Pills & Action Tags:
+        Background shifts from neutral dark (#222626) to pure white (#FFFFFF); 
+        text transitions from white to canvas black (#121414).
+    • Bento Media Cards:
+        Image scale: transform: scale(1.03); filter: brightness(1.05);
+        Duration: 400ms cubic-bezier(0.2, 0.8, 0.2, 1).
+
+  Active & Press Feedback:
+    • Scale down on press: transform: scale(0.97).
+    • Tactile pill badges pop with subtle `--glow-sage` bloom.
+
+  Transitions:
+    • Standard: 250ms cubic-bezier(0.4, 0, 0.2, 1)
+    • Spatial/Movement: 450ms cubic-bezier(0.16, 1, 0.3, 1)
+================================================================================
+  </script>
+
+  <!-- =============================================================================
+       JAVASCRIPT LOGIC & INTERACTIVITY
+       ============================================================================= -->
+  <script>
+    // --- 1. TOAST SYSTEM ---
+    function showToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast-msg";
+      toast.innerHTML = `<span>${icon}</span> <span>${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 300);
+      }, 2500);
+    }
+
+    // --- 2. CLIPBOARD & DOWNLOAD HANDLERS ---
+    function getRawMarkdown() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    function copyMasterTilePrompt() {
+      const text = getRawMarkdown();
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const original = btn.innerHTML;
+          btn.innerHTML = `<span>✓ Copied!</span>`;
+          setTimeout(() => { btn.innerHTML = original; }, 2000);
+        }
+        showToast("Greenwrap Style Tile copied to clipboard!", "✦");
+      }).catch(err => {
+        console.error("Clipboard copy error:", err);
+      });
+    }
+
+    function downloadStyleTileFile() {
+      const text = getRawMarkdown();
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-greenwrap.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-greenwrap.md", "↓");
+    }
+
+    function copyHexColor(varName, hex) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${varName} (${hex})`, "⌖");
+      });
+    }
+
+    // --- 3. MODAL CONTROLS ---
+    function openSpecModal() {
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      const codeEl = document.getElementById("modal-spec-code-text");
+      if (codeEl) codeEl.textContent = getRawMarkdown();
+      if (backdrop) backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    // --- 4. MICRO-INTERACTION HELPERS ---
+    function triggerMicroAction(name) {
+      showToast(`Triggered: ${name}`, "✦");
+    }
+
+    function updatePangramSize(val) {
+      const input = document.getElementById("pangram-input");
+      const label = document.getElementById("pangram-size-label");
+      if (input) input.style.fontSize = `${val}px`;
+      if (label) label.textContent = `${val}px`;
+    }
+
+    // --- 5. BENTO LIVING DISPATCH STUDIO SIMULATOR ---
+    let activeCarbonRate = -4.82;
+    let activeDecomDays = 45;
+    let activeCircularity = 99.4;
+    let activeWaterRate = 380;
+    let activeVolume = 5000;
+    let activeMatName = "Mushroom Mycelium";
+
+    function selectMaterial(card, name, carbon, days, score, water) {
+      document.querySelectorAll(".material-option-card").forEach(c => {
+        c.classList.remove("active");
+        const check = c.querySelector(".material-name span:last-child");
+        if (check) check.style.display = "none";
+      });
+
+      card.classList.add("active");
+      const activeCheck = card.querySelector(".material-name span:last-child");
+      if (activeCheck) activeCheck.style.display = "inline";
+
+      activeMatName = name;
+      activeCarbonRate = carbon;
+      activeDecomDays = days;
+      activeCircularity = score;
+      activeWaterRate = water;
+
+      const manifestMat = document.getElementById("manifest-material");
+      const manifestDecom = document.getElementById("manifest-decom");
+      if (manifestMat) manifestMat.textContent = name;
+      if (manifestDecom) manifestDecom.textContent = `${days} Days in Soil`;
+
+      recalculateMetrics();
+      showToast(`Selected formulation: ${name}`, "🌱");
+    }
+
+    function updateBatchVolume(val) {
+      activeVolume = parseInt(val, 10);
+      const display = document.getElementById("volume-val-display");
+      if (display) display.textContent = `${activeVolume.toLocaleString()} units`;
+      recalculateMetrics();
+    }
+
+    function recalculateMetrics() {
+      const totalCarbonTons = ((activeVolume * Math.abs(activeCarbonRate)) / 1000).toFixed(1);
+      const totalWaterKiloLiters = Math.round((activeVolume * activeWaterRate) / 1000);
+
+      const carbonEl = document.getElementById("metric-carbon");
+      const daysEl = document.getElementById("metric-days");
+      const scoreEl = document.getElementById("metric-score");
+      const waterEl = document.getElementById("metric-water");
+
+      if (carbonEl) carbonEl.textContent = `-${totalCarbonTons}t`;
+      if (daysEl) daysEl.textContent = `${activeDecomDays} Days`;
+      if (scoreEl) scoreEl.textContent = `${activeCircularity}%`;
+      if (waterEl) waterEl.textContent = `${totalWaterKiloLiters.toLocaleString()}k L`;
+    }
+
+    // --- 6. EVENT LISTENERS ---
+    document.addEventListener("DOMContentLoaded", () => {
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyMasterTilePrompt);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadStyleTileFile);
+
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+    });
+  </script>
+</body>
+</html>
