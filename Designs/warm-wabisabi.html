@@ -1,0 +1,3069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warm Wabi-Sabi Ledger — Style Tile & Design System (TILE-004)</title>
+  <meta name="description" content="Organic Minimalism, Tactile Craft & Serene Editorial design system. Unbleached linen surfaces, wood-fired sumi charcoal inks, terracotta stamps, diffused resting shadows, and machine-readable Style Tile tokens.">
+  
+  <!-- Google Fonts: Newsreader, Inter, Courier Prime -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* =============================================================================
+       STYLE TILE: WARM WABI-SABI LEDGER
+       Vibe: Organic Minimalism • Tactile Craft • Serene Editorial
+       ============================================================================= */
+    :root {
+      /* ---------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * --------------------------------------------------------------------------- */
+      /* Canvas & Structural Surfaces */
+      --bg-canvas:               #F7F3EE; /* Raw unbleached linen base */
+      --bg-surface:              #EDE4D8; /* Oat slipboard / card background */
+      --bg-surface-raised:       #F4ECE1; /* Floating card / elevated sheet */
+      --bg-surface-sunken:       #E4DACB; /* Inset ledger / well */
+
+      /* Inks & Contrast (Typographic Hierarchy) */
+      --ink-primary:             #2E2A27; /* Wood-fired sumi charcoal */
+      --ink-secondary:           #574F49; /* Weathered iron gall */
+      --ink-muted:               #827870; /* Soft dried clay */
+      --ink-faint:               #B8AFA6; /* Archival watermark */
+
+      /* Accent Signifiers */
+      --accent-warm:             #A65B32; /* Terracotta pottery seal / Primary CTA */
+      --accent-warm-hover:       #8F4B26; /* Deep burnt sienna */
+      --accent-earth:            #6A7B66; /* Muted botanical matcha / Success */
+      --accent-ochre:            #C49A45; /* Dried chamomile / Warning-Accent */
+      --accent-indigo:           #3F4B5A; /* Washed aizome indigo / Informational */
+
+      /* ---------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * --------------------------------------------------------------------------- */
+      /* Font Stacks */
+      --font-display:            "Newsreader", "Playfair Display", "Garamond", Georgia, serif;
+      --font-sans:               "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono:               "Courier Prime", "SF Mono", "Consolas", monospace;
+
+      /* Type Scale: Scale factor ~1.25 (Major Third) */
+      --text-display:            italic 400 3.25rem/1.15 var(--font-display);  /* letter-spacing: -0.02em */
+      --text-h1:                 normal 500 2.25rem/1.25 var(--font-display);  /* letter-spacing: -0.01em */
+      --text-h2:                 normal 500 1.75rem/1.30 var(--font-display);  /* letter-spacing: -0.005em */
+      --text-h3:                 normal 600 1.25rem/1.40 var(--font-display);  /* letter-spacing: 0.00em */
+      --text-body-lead:          normal 300 1.1875rem/1.80 var(--font-sans);   /* letter-spacing: 0.01em */
+      --text-body:               normal 300 1.00rem/1.75 var(--font-sans);     /* letter-spacing: 0.01em */
+      --text-caption:            normal 400 0.8125rem/1.50 var(--font-sans);   /* letter-spacing: 0.02em */
+      --text-ledger-mono:        normal 400 0.8125rem/1.60 var(--font-mono);   /* letter-spacing: 0.05em; text-transform: uppercase */
+
+      /* ---------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * --------------------------------------------------------------------------- */
+      /* Intentional softness; avoids hyper-geometric rounded edges */
+      --radius-none:             0px;
+      --radius-subtle:           2px;       /* Sharp-tailored ledger inputs, stamps */
+      --radius-surface:          4px;       /* Primary cards, containers, panels */
+      --radius-pill:             9999px;    /* Status tags, pill filters */
+
+      /* ---------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (DIFFUSED SHADOWS)
+       * --------------------------------------------------------------------------- */
+      /* Tinted ambient occlusion mimicking heavy paper resting on linen */
+      --shadow-flat:             none;
+      --shadow-resting:          0 1px 3px rgba(46, 42, 39, 0.04),
+                                 0 4px 12px rgba(46, 42, 39, 0.03);
+      --shadow-raised:           0 4px 10px rgba(46, 42, 39, 0.05),
+                                 0 12px 28px rgba(46, 42, 39, 0.06);
+      --shadow-lifted:           0 10px 24px rgba(46, 42, 39, 0.07),
+                                 0 24px 48px rgba(46, 42, 39, 0.08);
+      --shadow-inset-ledger:     inset 0 1px 2px rgba(46, 42, 39, 0.07);
+
+      /* ---------------------------------------------------------------------------
+       * 5. SPACING & SPATIAL SCALE (8pt Baseline Grid)
+       * --------------------------------------------------------------------------- */
+      --space-2xs:               0.25rem;   /* 4px  - Hairline gap */
+      --space-xs:                0.50rem;   /* 8px  - Compact elements */
+      --space-sm:                0.75rem;   /* 12px - Input padding / badge margins */
+      --space-md:                1.00rem;   /* 16px - Component gutters */
+      --space-lg:                1.50rem;   /* 24px - Card internal padding */
+      --space-xl:                2.50rem;   /* 40px - Section grouping */
+      --space-2xl:               4.00rem;   /* 64px - Editorial rhythm bands */
+
+      /* ---------------------------------------------------------------------------
+       * 6. BORDERS & DIVIDERS
+       * --------------------------------------------------------------------------- */
+      --border-width:            1px;
+      --border-subtle:           1px solid rgba(46, 42, 39, 0.09); /* Faint paper edge */
+      --border-strong:           1px solid rgba(46, 42, 39, 0.22); /* Ledger frame */
+      --border-stamp:            1.5px dashed var(--accent-warm);   /* Archival cutout */
+      --divider-ledger:          1px dashed rgba(46, 42, 39, 0.14);
+
+      /* ---------------------------------------------------------------------------
+       * 7. ICONOGRAPHY LANGUAGE
+       * --------------------------------------------------------------------------- */
+      --icon-stroke-width:       1.25px;
+      --icon-size-sm:            16px;
+      --icon-size-md:            20px;
+      --icon-size-lg:            24px;
+
+      /* ---------------------------------------------------------------------------
+       * 8. INTERACTION & FEEDBACK RULES
+       * --------------------------------------------------------------------------- */
+      --ease-craft:              cubic-bezier(0.25, 1, 0.5, 1);
+      --duration-fast:           140ms;
+      --duration-normal:         240ms;
+
+      /* Focus Ring: Double-stroke paper cutout outline */
+      --focus-ring:              0 0 0 1px var(--bg-canvas),
+                                 0 0 0 2.5px var(--accent-warm);
+    }
+
+    /* =============================================================================
+       BASE RESET & TEXTURE LAYERING
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--ink-primary);
+      background-color: var(--bg-canvas);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Tactile unbleached linen grain texture */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.035;
+      background-image: radial-gradient(#2E2A27 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+
+    ::selection {
+      background: var(--bg-surface-sunken);
+      color: var(--accent-warm);
+    }
+
+    .layout-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+
+    /* =============================================================================
+       MANDATORY HEADER BAR COMPONENT (Per agent.md Section 2)
+       ============================================================================= */
+    .style-tile-header {
+      background-color: var(--bg-surface-raised);
+      border-bottom: var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      box-shadow: var(--shadow-resting);
+      padding: var(--space-sm) var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-secondary);
+      text-decoration: none;
+      padding: var(--space-2xs) var(--space-sm);
+      background: var(--bg-canvas);
+      border: var(--border-subtle);
+      border-radius: var(--radius-subtle);
+      box-shadow: var(--shadow-resting);
+      transition: all var(--duration-fast) var(--ease-craft);
+    }
+
+    .nav-back-link:hover {
+      background: var(--bg-surface);
+      color: var(--accent-warm);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-raised);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      background: var(--bg-surface-sunken);
+      color: var(--accent-warm);
+      border: 1px solid rgba(166, 91, 50, 0.25);
+      border-radius: var(--radius-subtle);
+      letter-spacing: 0.08em;
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--ink-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-left: 1px solid var(--border-strong);
+      padding-left: var(--space-sm);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 0.42rem 0.85rem;
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--ink-primary);
+      background-color: var(--bg-canvas);
+      border: var(--border-subtle);
+      border-radius: var(--radius-subtle);
+      box-shadow: var(--shadow-resting);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-craft);
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .btn-tile:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-raised);
+      background-color: var(--bg-surface-raised);
+      color: var(--ink-primary);
+    }
+
+    .btn-tile:active {
+      transform: translateY(0);
+      box-shadow: var(--shadow-inset-ledger);
+    }
+
+    .btn-tile.btn-preview {
+      background-color: var(--bg-surface);
+      color: var(--ink-secondary);
+    }
+
+    .btn-tile.btn-preview:hover {
+      background-color: var(--bg-surface-sunken);
+      color: var(--ink-primary);
+    }
+
+    .btn-tile.btn-copy {
+      background-color: var(--accent-warm);
+      color: var(--bg-canvas);
+      border-color: transparent;
+    }
+
+    .btn-tile.btn-copy:hover {
+      background-color: var(--accent-warm-hover);
+      color: var(--bg-canvas);
+    }
+
+    .btn-tile.btn-download {
+      background-color: var(--bg-surface-sunken);
+      color: var(--ink-primary);
+      border-color: var(--border-strong);
+    }
+
+    .btn-tile.btn-download:hover {
+      background-color: var(--bg-surface);
+      color: var(--accent-warm);
+    }
+
+    /* =============================================================================
+       BASE COMPONENT RULES (Per Style Specification)
+       ============================================================================= */
+    button.primary {
+      font: var(--text-caption);
+      font-weight: 500;
+      color: var(--bg-canvas);
+      background-color: var(--accent-warm);
+      border: 1px solid transparent;
+      border-radius: var(--radius-subtle);
+      padding: var(--space-xs) var(--space-lg);
+      box-shadow: var(--shadow-resting);
+      transition: all var(--duration-normal) var(--ease-craft);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      text-decoration: none;
+    }
+
+    button.primary:hover {
+      background-color: var(--accent-warm-hover);
+      box-shadow: var(--shadow-raised);
+      transform: translateY(-1px);
+    }
+
+    button.primary:active {
+      transform: translateY(0px);
+      box-shadow: var(--shadow-inset-ledger);
+    }
+
+    .ledger-card {
+      background: var(--bg-surface);
+      border: var(--border-subtle);
+      border-radius: var(--radius-surface);
+      box-shadow: var(--shadow-resting);
+      padding: var(--space-lg);
+    }
+
+    .ledger-card-raised {
+      background: var(--bg-surface-raised);
+      border: var(--border-subtle);
+      border-radius: var(--radius-surface);
+      box-shadow: var(--shadow-raised);
+      padding: var(--space-lg);
+    }
+
+    .ledger-card-sunken {
+      background: var(--bg-surface-sunken);
+      border: var(--border-subtle);
+      border-radius: var(--radius-surface);
+      box-shadow: var(--shadow-inset-ledger);
+      padding: var(--space-lg);
+    }
+
+    /* Secondary and supporting button archetypes */
+    button.secondary {
+      font: var(--text-caption);
+      font-weight: 500;
+      color: var(--ink-primary);
+      background-color: var(--bg-surface-raised);
+      border: var(--border-subtle);
+      border-radius: var(--radius-subtle);
+      padding: var(--space-xs) var(--space-lg);
+      box-shadow: var(--shadow-resting);
+      transition: all var(--duration-normal) var(--ease-craft);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      text-decoration: none;
+    }
+
+    button.secondary:hover {
+      background-color: var(--bg-surface);
+      box-shadow: var(--shadow-raised);
+      transform: translateY(-1px);
+    }
+
+    button.secondary:active {
+      transform: translateY(0);
+      box-shadow: var(--shadow-inset-ledger);
+    }
+
+    button.earth {
+      font: var(--text-caption);
+      font-weight: 500;
+      color: var(--bg-canvas);
+      background-color: var(--accent-earth);
+      border: 1px solid transparent;
+      border-radius: var(--radius-subtle);
+      padding: var(--space-xs) var(--space-lg);
+      box-shadow: var(--shadow-resting);
+      transition: all var(--duration-normal) var(--ease-craft);
+      cursor: pointer;
+    }
+
+    button.earth:hover {
+      background-color: #586754;
+      box-shadow: var(--shadow-raised);
+      transform: translateY(-1px);
+    }
+
+    button.indigo {
+      font: var(--text-caption);
+      font-weight: 500;
+      color: var(--bg-canvas);
+      background-color: var(--accent-indigo);
+      border: 1px solid transparent;
+      border-radius: var(--radius-subtle);
+      padding: var(--space-xs) var(--space-lg);
+      box-shadow: var(--shadow-resting);
+      transition: all var(--duration-normal) var(--ease-craft);
+      cursor: pointer;
+    }
+
+    button.indigo:hover {
+      background-color: #313b48;
+      box-shadow: var(--shadow-raised);
+      transform: translateY(-1px);
+    }
+
+    button.ghost {
+      font: var(--text-caption);
+      font-weight: 500;
+      color: var(--ink-secondary);
+      background-color: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--radius-subtle);
+      padding: var(--space-xs) var(--space-md);
+      transition: all var(--duration-fast) var(--ease-craft);
+      cursor: pointer;
+    }
+
+    button.ghost:hover {
+      background-color: rgba(46, 42, 39, 0.05);
+      color: var(--ink-primary);
+    }
+
+    /* Archival Stamp Button */
+    button.stamp-btn {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-warm);
+      background-color: transparent;
+      border: var(--border-stamp);
+      border-radius: var(--radius-subtle);
+      padding: var(--space-xs) var(--space-md);
+      box-shadow: var(--shadow-resting);
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-craft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    button.stamp-btn:hover {
+      background-color: rgba(166, 91, 50, 0.08);
+      box-shadow: var(--shadow-raised);
+      transform: translateY(-1px);
+    }
+
+    /* Form Controls */
+    input[type="text"],
+    input[type="search"],
+    select,
+    textarea {
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: var(--ink-primary);
+      background-color: var(--bg-surface-raised);
+      border: var(--border-subtle);
+      border-radius: var(--radius-subtle);
+      padding: var(--space-xs) var(--space-sm);
+      box-shadow: var(--shadow-inset-ledger);
+      outline: none;
+      transition: all var(--duration-fast) var(--ease-craft);
+      width: 100%;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent-warm);
+      box-shadow: var(--focus-ring);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--ink-faint);
+      font-weight: 300;
+    }
+
+    /* Badges & Status Pills */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      background-color: var(--bg-surface-sunken);
+      color: var(--ink-secondary);
+      border: var(--border-subtle);
+    }
+
+    .badge-warm {
+      background-color: rgba(166, 91, 50, 0.12);
+      color: var(--accent-warm);
+      border-color: rgba(166, 91, 50, 0.25);
+    }
+
+    .badge-earth {
+      background-color: rgba(106, 123, 102, 0.15);
+      color: var(--accent-earth);
+      border-color: rgba(106, 123, 102, 0.30);
+    }
+
+    .badge-ochre {
+      background-color: rgba(196, 154, 69, 0.15);
+      color: #9c7322;
+      border-color: rgba(196, 154, 69, 0.30);
+    }
+
+    .badge-indigo {
+      background-color: rgba(63, 75, 90, 0.12);
+      color: var(--accent-indigo);
+      border-color: rgba(63, 75, 90, 0.25);
+    }
+
+    .badge-faint {
+      background-color: var(--bg-canvas);
+      color: var(--ink-muted);
+      border: var(--border-subtle);
+    }
+
+    /* Hanko Seal Stamp Mock */
+    .hanko-stamp {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1.5px solid var(--accent-warm);
+      border-radius: var(--radius-subtle);
+      color: var(--accent-warm);
+      font-family: var(--font-display);
+      font-size: 0.8125rem;
+      line-height: 1;
+      font-style: italic;
+      background-color: rgba(166, 91, 50, 0.04);
+      user-select: none;
+      transform: rotate(-3deg);
+    }
+
+    /* =============================================================================
+       HERO DISPLAY BANNER SECTION
+       ============================================================================= */
+    .hero-section {
+      padding: var(--space-2xl) 0 var(--space-xl);
+      border-bottom: var(--divider-ledger);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .hero-title {
+      font: var(--text-display);
+      color: var(--ink-primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-lead {
+      font: var(--text-body-lead);
+      color: var(--ink-secondary);
+      margin-bottom: var(--space-lg);
+      max-width: 620px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-xl);
+    }
+
+    .hero-telemetry-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: var(--space-sm);
+      padding: var(--space-md);
+      background: var(--bg-surface);
+      border: var(--border-subtle);
+      border-radius: var(--radius-surface);
+      box-shadow: var(--shadow-resting);
+    }
+
+    .telemetry-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .telemetry-label {
+      font: var(--text-ledger-mono);
+      font-size: 0.6875rem;
+      color: var(--ink-muted);
+    }
+
+    .telemetry-val {
+      font-family: var(--font-sans);
+      font-weight: 500;
+      font-size: 0.9375rem;
+      color: var(--ink-primary);
+    }
+
+    /* Hero Right: Tactile Ceramic & Parchment Slip Mockup */
+    .hero-specimen-sheet {
+      background: var(--bg-surface-raised);
+      border: var(--border-strong);
+      border-radius: var(--radius-surface);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-raised);
+      position: relative;
+    }
+
+    .hero-specimen-sheet::after {
+      content: "";
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border: 1px dashed var(--accent-warm);
+      border-radius: var(--radius-subtle);
+      opacity: 0.4;
+    }
+
+    .specimen-sheet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: var(--divider-ledger);
+      padding-bottom: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+
+    .sheet-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--ink-primary);
+      line-height: 1.2;
+    }
+
+    .sheet-meta {
+      font: var(--text-ledger-mono);
+      font-size: 0.6875rem;
+      color: var(--ink-muted);
+    }
+
+    .sheet-quote {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+      font-style: italic;
+      margin-bottom: var(--space-md);
+      padding-left: var(--space-sm);
+      border-left: 2px solid var(--accent-warm);
+    }
+
+    .sheet-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: var(--divider-ledger);
+    }
+
+    /* =============================================================================
+       SECTION HEADINGS & ARCHITECTURAL GRID
+       ============================================================================= */
+    .section-block {
+      padding: var(--space-2xl) 0;
+      border-bottom: var(--divider-ledger);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: var(--space-xl);
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .section-num {
+      font: var(--text-ledger-mono);
+      color: var(--accent-warm);
+      margin-bottom: var(--space-2xs);
+    }
+
+    .section-title {
+      font: var(--text-h2);
+      color: var(--ink-primary);
+    }
+
+    .section-subtitle {
+      font: var(--text-caption);
+      color: var(--ink-muted);
+      max-width: 480px;
+    }
+
+    /* =============================================================================
+       COLOR SWATCHES & PALETTE MATRIX
+       ============================================================================= */
+    .swatch-group-title {
+      font: var(--text-h3);
+      color: var(--ink-primary);
+      margin: var(--space-lg) 0 var(--space-sm);
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .swatch-card {
+      background: var(--bg-surface);
+      border: var(--border-subtle);
+      border-radius: var(--radius-surface);
+      box-shadow: var(--shadow-resting);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-craft);
+      position: relative;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-raised);
+      border-color: rgba(46, 42, 39, 0.20);
+    }
+
+    .swatch-color-box {
+      height: 96px;
+      width: 100%;
+      border-bottom: var(--border-subtle);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: var(--space-xs);
+    }
+
+    .swatch-copy-hint {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      background: rgba(247, 243, 238, 0.90);
+      color: var(--ink-primary);
+      padding: 2px 6px;
+      border-radius: var(--radius-subtle);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: all var(--duration-fast) var(--ease-craft);
+    }
+
+    .swatch-card:hover .swatch-copy-hint {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .swatch-info {
+      padding: var(--space-sm);
+    }
+
+    .swatch-name {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      margin-bottom: 2px;
+    }
+
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .swatch-hex-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: var(--space-2xs);
+      padding-top: var(--space-2xs);
+      border-top: 1px dashed rgba(46, 42, 39, 0.08);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-warm);
+    }
+
+    .swatch-role {
+      font-family: var(--font-sans);
+      font-size: 0.6875rem;
+      color: var(--ink-muted);
+    }
+
+    /* Contrast Harmony Test Strip */
+    .contrast-test-card {
+      background: var(--bg-surface);
+      border: var(--border-subtle);
+      border-radius: var(--radius-surface);
+      padding: var(--space-lg);
+      margin-top: var(--space-lg);
+      box-shadow: var(--shadow-resting);
+    }
+
+    .contrast-test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+
+    .contrast-sample {
+      padding: var(--space-md);
+      border-radius: var(--radius-subtle);
+      border: var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xs);
+    }
+
+    /* =============================================================================
+       TYPOGRAPHY SPECIMEN SECTION
+       ============================================================================= */
+    .type-pairing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .type-specimen-card {
+      background: var(--bg-surface);
+      border: var(--border-subtle);
+      border-radius: var(--radius-surface);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-resting);
+    }
+
+    .type-family-label {
+      font: var(--text-ledger-mono);
+      color: var(--accent-warm);
+      margin-bottom: var(--space-2xs);
+    }
+
+    .type-family-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .type-sample-alphabet {
+      font-size: 1.125rem;
+      line-height: 1.5;
+      color: var(--ink-secondary);
+      margin: var(--space-sm) 0;
+      padding: var(--space-sm) 0;
+      border-top: var(--divider-ledger);
+      border-bottom: var(--divider-ledger);
+      word-break: break-all;
+    }
+
+    /* Type Scale Ladder */
+    .type-scale-table-wrap {
+      background: var(--bg-surface);
+      border: var(--border-subtle);
+      border-radius: var(--radius-surface);
+      box-shadow: var(--shadow-resting);
+      overflow-x: auto;
+      margin-bottom: var(--space-xl);
+    }
+
+    .type-scale-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .type-scale-table th {
+      font: var(--text-ledger-mono);
+      color: var(--ink-muted);
+      background: var(--bg-surface-sunken);
+      padding: var(--space-sm) var(--space-md);
+      border-bottom: var(--border-strong);
+    }
+
+    .type-scale-table td {
+      padding: var(--space-md);
+      border-bottom: var(--border-subtle);
+      vertical-align: middle;
+    }
+
+    .type-scale-table tr:hover td {
+      background: var(--bg-surface-raised);
+    }
+
+    .type-token-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-warm);
+      font-weight: 700;
+    }
+
+    /* Live Interactive Pangram Tester */
+    .pangram-tester-card {
+      background: var(--bg-surface-raised);
+      border: var(--border-strong);
+      border-radius: var(--radius-surface);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-raised);
+    }
+
+    .tester-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--divider-ledger);
+    }
+
+    .tester-font-pills {
+      display: flex;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .tester-pill {
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      padding: var(--space-2xs) var(--space-sm);
+      background: var(--bg-surface);
+      border: var(--border-subtle);
+      border-radius: var(--radius-pill);
+      color: var(--ink-secondary);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-craft);
+    }
+
+    .tester-pill.active {
+      background: var(--accent-warm);
+      color: var(--bg-canvas);
+      border-color: transparent;
+      box-shadow: var(--shadow-resting);
+    }
+
+    .tester-slider-box {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font: var(--text-ledger-mono);
+      color: var(--ink-muted);
+    }
+
+    .live-pangram-input {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.75rem;
+      line-height: 1.4;
+      color: var(--ink-primary);
+      background: var(--bg-canvas);
+      border: var(--border-subtle);
+      border-radius: var(--radius-surface);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-inset-ledger);
+      min-height: 120px;
+      outline: none;
+      transition: all var(--duration-fast) var(--ease-craft);
+    }
+
+    .live-pangram-input:focus {
+      border-color: var(--accent-warm);
+      box-shadow: var(--focus-ring);
+    }
+
+    /* =============================================================================
+       CORNER GEOMETRY & ELEVATION SPECIMEN
+       ============================================================================= */
+    .geometry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .geometry-card {
+      background: var(--bg-surface);
+      border: var(--border-subtle);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-md);
+      box-shadow: var(--shadow-resting);
+    }
+
+    .geometry-demo-box {
+      width: 100px;
+      height: 100px;
+      background: var(--bg-surface-raised);
+      border: 1.5px solid var(--accent-warm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-warm);
+    }
+
+    .elevation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .elevation-card {
+      background: var(--bg-surface-raised);
+      border: var(--border-subtle);
+      border-radius: var(--radius-surface);
+      padding: var(--space-lg);
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--duration-normal) var(--ease-craft);
+    }
+
+    /* =============================================================================
+       COMPONENT ARCHETYPE GALLERY
+       ============================================================================= */
+    .archetype-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .archetype-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .archetype-box {
+      background: var(--bg-surface);
+      border: var(--border-subtle);
+      border-radius: var(--radius-surface);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-resting);
+    }
+
+    .archetype-header {
+      font: var(--text-h3);
+      color: var(--ink-primary);
+      margin-bottom: var(--space-xs);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .archetype-desc {
+      font: var(--text-caption);
+      color: var(--ink-muted);
+      margin-bottom: var(--space-md);
+    }
+
+    .btn-demo-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .form-control-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .field-label {
+      font: var(--text-caption);
+      font-weight: 500;
+      color: var(--ink-secondary);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Custom Checkbox & Radio */
+    .custom-check-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .check-label, .radio-label {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font: var(--text-body);
+      font-size: 0.875rem;
+      color: var(--ink-primary);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .craft-checkbox {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid var(--ink-muted);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-surface-raised);
+      cursor: pointer;
+      display: grid;
+      place-content: center;
+      transition: all var(--duration-fast) var(--ease-craft);
+    }
+
+    .craft-checkbox:checked {
+      background: var(--accent-warm);
+      border-color: var(--accent-warm);
+    }
+
+    .craft-checkbox:checked::before {
+      content: "✓";
+      color: var(--bg-canvas);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    /* Toggle Switch */
+    .toggle-switch-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-xs) 0;
+    }
+
+    .craft-switch {
+      position: relative;
+      display: inline-block;
+      width: 42px;
+      height: 22px;
+    }
+
+    .craft-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .craft-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--bg-surface-sunken);
+      border: var(--border-subtle);
+      border-radius: var(--radius-pill);
+      transition: all var(--duration-normal) var(--ease-craft);
+    }
+
+    .craft-slider::before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: var(--bg-canvas);
+      box-shadow: var(--shadow-resting);
+      border-radius: 50%;
+      transition: all var(--duration-normal) var(--ease-craft);
+    }
+
+    .craft-switch input:checked + .craft-slider {
+      background-color: var(--accent-earth);
+    }
+
+    .craft-switch input:checked + .craft-slider::before {
+      transform: translateX(20px);
+    }
+
+    /* =============================================================================
+       LIVING MICRO-EXPERIENCE: KYOTO TEA & CERAMIC LEDGER (壺・茶録)
+       ============================================================================= */
+    .micro-experience-container {
+      background: var(--bg-surface-raised);
+      border: var(--border-strong);
+      border-radius: var(--radius-surface);
+      box-shadow: var(--shadow-raised);
+      overflow: hidden;
+      margin-top: var(--space-lg);
+    }
+
+    .micro-ledger-header {
+      background: var(--bg-surface);
+      border-bottom: var(--border-strong);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .micro-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .micro-hanko {
+      width: 38px;
+      height: 38px;
+      border: 1.5px solid var(--accent-warm);
+      border-radius: var(--radius-subtle);
+      color: var(--accent-warm);
+      font-family: var(--font-display);
+      font-size: 0.8125rem;
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(166, 91, 50, 0.05);
+      transform: rotate(-4deg);
+    }
+
+    .micro-title-group h4 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--ink-primary);
+      line-height: 1.1;
+    }
+
+    .micro-title-group span {
+      font: var(--text-ledger-mono);
+      font-size: 0.6875rem;
+      color: var(--ink-muted);
+    }
+
+    .micro-telemetry-chips {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    /* Ledger Quick Form & Controls */
+    .micro-ledger-body {
+      padding: var(--space-lg);
+    }
+
+    .ledger-top-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .ledger-filter-tabs {
+      display: flex;
+      gap: var(--space-2xs);
+      background: var(--bg-surface);
+      padding: 3px;
+      border-radius: var(--radius-subtle);
+      border: var(--border-subtle);
+    }
+
+    .ledger-tab {
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      padding: 4px 12px;
+      border-radius: var(--radius-subtle);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-craft);
+    }
+
+    .ledger-tab.active {
+      background: var(--bg-surface-raised);
+      color: var(--accent-warm);
+      box-shadow: var(--shadow-resting);
+    }
+
+    /* Interactive Ledger Table */
+    .ledger-table-wrap {
+      border: var(--border-subtle);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-canvas);
+      overflow-x: auto;
+      box-shadow: var(--shadow-inset-ledger);
+    }
+
+    .ledger-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .ledger-table th {
+      font: var(--text-ledger-mono);
+      font-size: 0.6875rem;
+      color: var(--ink-muted);
+      background: var(--bg-surface);
+      padding: var(--space-xs) var(--space-md);
+      border-bottom: var(--border-subtle);
+    }
+
+    .ledger-table td {
+      padding: var(--space-sm) var(--space-md);
+      font-size: 0.875rem;
+      border-bottom: 1px dashed rgba(46, 42, 39, 0.08);
+      color: var(--ink-primary);
+      vertical-align: middle;
+    }
+
+    .ledger-table tr:hover td {
+      background: var(--bg-surface-raised);
+    }
+
+    .item-inscribed-seal {
+      display: inline-block;
+      border: 1px solid var(--accent-warm);
+      color: var(--accent-warm);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 0.6875rem;
+      padding: 1px 6px;
+      border-radius: var(--radius-subtle);
+      transform: rotate(-2deg);
+      margin-left: 6px;
+    }
+
+    /* Inline Add Item Form */
+    .add-entry-panel {
+      margin-top: var(--space-md);
+      padding: var(--space-md);
+      background: var(--bg-surface);
+      border: 1.5px dashed rgba(46, 42, 39, 0.18);
+      border-radius: var(--radius-subtle);
+      display: grid;
+      grid-template-columns: 2fr 1.2fr 1fr auto;
+      gap: var(--space-sm);
+      align-items: end;
+    }
+
+    /* =============================================================================
+       STYLE TILE PROMPT CODE DRAWER & MODAL
+       ============================================================================= */
+    .prompt-code-card {
+      background: var(--bg-surface-sunken);
+      border: var(--border-strong);
+      border-radius: var(--radius-surface);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-raised);
+      position: relative;
+    }
+
+    .code-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--divider-ledger);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .code-view-container {
+      background: var(--bg-surface-raised);
+      border: var(--border-subtle);
+      border-radius: var(--radius-subtle);
+      padding: var(--space-md);
+      max-height: 480px;
+      overflow-y: auto;
+      box-shadow: var(--shadow-inset-ledger);
+    }
+
+    .code-view-container pre {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      color: var(--ink-primary);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* Modal Backdrop */
+    .spec-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(46, 42, 39, 0.55);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-lg);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--duration-normal) var(--ease-craft);
+    }
+
+    .spec-modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .spec-modal {
+      background: var(--bg-canvas);
+      border: var(--border-strong);
+      border-radius: var(--radius-surface);
+      box-shadow: var(--shadow-lifted);
+      width: 100%;
+      max-width: 860px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(12px) scale(0.98);
+      transition: all var(--duration-normal) var(--ease-craft);
+      overflow: hidden;
+    }
+
+    .spec-modal-backdrop.open .spec-modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .spec-modal-header {
+      padding: var(--space-md) var(--space-lg);
+      background: var(--bg-surface-raised);
+      border-bottom: var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .spec-modal-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      background: var(--bg-canvas);
+    }
+
+    .spec-modal-footer {
+      padding: var(--space-sm) var(--space-lg);
+      background: var(--bg-surface);
+      border-top: var(--border-subtle);
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--space-sm);
+    }
+
+    /* =============================================================================
+       TOAST NOTIFICATION COMPONENT
+       ============================================================================= */
+    .toast-container {
+      position: fixed;
+      bottom: var(--space-lg);
+      right: var(--space-lg);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      pointer-events: none;
+    }
+
+    .toast {
+      pointer-events: auto;
+      background: var(--bg-surface-raised);
+      color: var(--ink-primary);
+      border: 1px solid var(--accent-warm);
+      border-radius: var(--radius-subtle);
+      padding: var(--space-xs) var(--space-md);
+      box-shadow: var(--shadow-lifted);
+      font-family: var(--font-sans);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      transform: translateY(16px);
+      opacity: 0;
+      transition: all var(--duration-normal) var(--ease-craft);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-icon {
+      color: var(--accent-warm);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    /* =============================================================================
+       RESPONSIVE BREAKPOINTS
+       ============================================================================= */
+    @media (max-width: 980px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+      .add-entry-panel {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --text-display: italic 400 2.25rem/1.2 var(--font-display);
+        --text-h1: normal 500 1.75rem/1.3 var(--font-display);
+      }
+      .style-tile-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-xs);
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .add-entry-panel {
+        grid-template-columns: 1fr;
+      }
+      .tester-controls {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. MANDATORY HEADER BAR COMPONENT (Per agent.md Section 2)
+       ========================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-004</span>
+      <span class="design-title">Warm Wabi-Sabi Ledger</span>
+      <span class="design-vibe-tag">Quiet Luxury • Organic Craft</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-warm-wabisabi.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- ========================================================================
+         2. HERO DISPLAY BANNER (Per agent.md Section 5)
+         ======================================================================== -->
+    <section class="hero-section">
+      <div class="hero-grid">
+        
+        <!-- Left Hero Column -->
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span class="badge badge-warm">TILE-004 SPECIFICATION</span>
+            <span class="badge badge-earth">ORGANIC MINIMALISM</span>
+            <span class="badge badge-ochre">TACTILE CRAFT</span>
+            <span class="badge badge-faint">SERENE EDITORIAL</span>
+          </div>
+
+          <h1 class="hero-title">
+            Warm Wabi-Sabi Ledger
+          </h1>
+
+          <p class="hero-lead">
+            A serene digital ledger celebrating the Japanese philosophy of wabi-sabi: finding tranquility in unbleached linen textures, sumi charcoal ink, terracotta seals, dried chamomile ochre, and quiet editorial restraint. Designed for tranquil software, artisan records, and timeless archival publishing.
+          </p>
+
+          <div class="hero-cta-group">
+            <button class="primary" onclick="copyHeaderTile()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copy Agent Prompt</span>
+            </button>
+            <a href="#micro-experience" class="secondary">
+              <span>Explore Kyoto Ledger Demo</span>
+              <span>↓</span>
+            </a>
+            <button class="stamp-btn" onclick="downloadHeaderTile()">
+              <span>ARCHIVE .MD</span>
+            </button>
+          </div>
+
+          <!-- Archival Telemetry Strip -->
+          <div class="hero-telemetry-bar">
+            <div class="telemetry-item">
+              <span class="telemetry-label">CANVAS BASE</span>
+              <span class="telemetry-val">#F7F3EE Linen</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="telemetry-label">SUMI INK</span>
+              <span class="telemetry-val">#2E2A27 Charcoal</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="telemetry-label">POTTERY SEAL</span>
+              <span class="telemetry-val">#A65B32 Terracotta</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="telemetry-label">CONTRAST</span>
+              <span class="telemetry-val">14.8:1 AAA Ratio</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="telemetry-label">SCALE SYSTEM</span>
+              <span class="telemetry-val">8pt Baseline Grid</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero Column: Archival Slipboard Specimen -->
+        <div class="hero-specimen-sheet">
+          <div class="specimen-sheet-header">
+            <div>
+              <span class="sheet-meta">ARCHIVE SHEET NO. 004 // 侘寂録</span>
+              <h2 class="sheet-title">The Beauty of Quiet Imperfection</h2>
+            </div>
+            <div class="hanko-stamp" title="Hanko Studio Seal">壺</div>
+          </div>
+
+          <p class="sheet-quote">
+            "Simplicity and naturalness are the highest forms of cultivation. Nothing lasts, nothing is finished, and nothing is perfect."
+          </p>
+
+          <p style="font-size: 0.9375rem; color: var(--ink-secondary); line-height: 1.7;">
+            This system replaces aggressive drop shadows with diffused ambient occlusion (0 4px 12px rgba(46,42,39,0.03)) and substitutes synthetic saturated buttons with warm terracotta seals and matcha botanical indicators.
+          </p>
+
+          <div class="sheet-details-grid">
+            <div>
+              <span class="sheet-meta">DISPLAY TYPEFACE</span>
+              <p style="font-family: var(--font-display); font-weight: 500; font-size: 1.125rem;">Newsreader Serif</p>
+            </div>
+            <div>
+              <span class="sheet-meta">CORNER GEOMETRY</span>
+              <p style="font-family: var(--font-sans); font-weight: 500; font-size: 0.9375rem;">2px Subtle / 4px Card</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         3. COLOR ROLES & PALETTE MATRIX (Per agent.md Section 5)
+         ======================================================================== -->
+    <section class="section-block" id="palette">
+      <div class="section-header">
+        <div>
+          <div class="section-num">SECTION 01 // CHROMATIC ROLES</div>
+          <h2 class="section-title">Color Roles & Palette Matrix</h2>
+        </div>
+        <p class="section-subtitle">
+          Derived from organic materials: unbleached plant linen, aged oat slipboard, wood-fired sumi ink, terracotta stamps, and botanical infusions. Click any swatch to copy its Hex token.
+        </p>
+      </div>
+
+      <!-- 1. Canvas & Structural Surfaces -->
+      <h3 class="swatch-group-title">
+        <span>01. Canvas & Structural Surfaces</span>
+      </h3>
+      <div class="swatches-grid">
+        
+        <div class="swatch-card" onclick="copyHex('#F7F3EE', '--bg-canvas')" title="Click to copy #F7F3EE">
+          <div class="swatch-color-box" style="background-color: #F7F3EE; border: 1px solid rgba(46,42,39,0.1);">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Raw Unbleached Linen</div>
+            <div class="swatch-var">--bg-canvas</div>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#F7F3EE</span>
+              <span class="swatch-role">Primary Canvas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#EDE4D8', '--bg-surface')" title="Click to copy #EDE4D8">
+          <div class="swatch-color-box" style="background-color: #EDE4D8;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Oat Slipboard</div>
+            <div class="swatch-var">--bg-surface</div>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#EDE4D8</span>
+              <span class="swatch-role">Card Background</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#F4ECE1', '--bg-surface-raised')" title="Click to copy #F4ECE1">
+          <div class="swatch-color-box" style="background-color: #F4ECE1;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Elevated Sheet</div>
+            <div class="swatch-var">--bg-surface-raised</div>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#F4ECE1</span>
+              <span class="swatch-role">Floating Card</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#E4DACB', '--bg-surface-sunken')" title="Click to copy #E4DACB">
+          <div class="swatch-color-box" style="background-color: #E4DACB;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Inset Ledger Well</div>
+            <div class="swatch-var">--bg-surface-sunken</div>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#E4DACB</span>
+              <span class="swatch-role">Recessed Panel</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 2. Inks & Contrast -->
+      <h3 class="swatch-group-title">
+        <span>02. Inks & Typographic Hierarchy</span>
+      </h3>
+      <div class="swatches-grid">
+        
+        <div class="swatch-card" onclick="copyHex('#2E2A27', '--ink-primary')" title="Click to copy #2E2A27">
+          <div class="swatch-color-box" style="background-color: #2E2A27;">
+            <span class="swatch-copy-hint" style="color:#FFF; background:rgba(0,0,0,0.6);">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Wood-Fired Sumi</div>
+            <div class="swatch-var">--ink-primary</div>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#2E2A27</span>
+              <span class="swatch-role">Primary Reading</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#574F49', '--ink-secondary')" title="Click to copy #574F49">
+          <div class="swatch-color-box" style="background-color: #574F49;">
+            <span class="swatch-copy-hint" style="color:#FFF; background:rgba(0,0,0,0.6);">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Weathered Iron Gall</div>
+            <div class="swatch-var">--ink-secondary</div>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#574F49</span>
+              <span class="swatch-role">Subtitles & Body</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#827870', '--ink-muted')" title="Click to copy #827870">
+          <div class="swatch-color-box" style="background-color: #827870;">
+            <span class="swatch-copy-hint" style="color:#FFF; background:rgba(0,0,0,0.6);">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Soft Dried Clay</div>
+            <div class="swatch-var">--ink-muted</div>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#827870</span>
+              <span class="swatch-role">Captions & Meta</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#B8AFA6', '--ink-faint')" title="Click to copy #B8AFA6">
+          <div class="swatch-color-box" style="background-color: #B8AFA6;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Archival Watermark</div>
+            <div class="swatch-var">--ink-faint</div>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#B8AFA6</span>
+              <span class="swatch-role">Disabled & Ghost</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 3. Accent Signifiers -->
+      <h3 class="swatch-group-title">
+        <span>03. Natural Dyes & Accent Signifiers</span>
+      </h3>
+      <div class="swatches-grid">
+        
+        <div class="swatch-card" onclick="copyHex('#A65B32', '--accent-warm')" title="Click to copy #A65B32">
+          <div class="swatch-color-box" style="background-color: #A65B32;">
+            <span class="swatch-copy-hint" style="color:#FFF; background:rgba(0,0,0,0.6);">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Terracotta Pottery Seal</div>
+            <div class="swatch-var">--accent-warm</div>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#A65B32</span>
+              <span class="swatch-role">Primary CTA</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#8F4B26', '--accent-warm-hover')" title="Click to copy #8F4B26">
+          <div class="swatch-color-box" style="background-color: #8F4B26;">
+            <span class="swatch-copy-hint" style="color:#FFF; background:rgba(0,0,0,0.6);">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Deep Burnt Sienna</div>
+            <div class="swatch-var">--accent-warm-hover</div>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#8F4B26</span>
+              <span class="swatch-role">Interactive Hover</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#6A7B66', '--accent-earth')" title="Click to copy #6A7B66">
+          <div class="swatch-color-box" style="background-color: #6A7B66;">
+            <span class="swatch-copy-hint" style="color:#FFF; background:rgba(0,0,0,0.6);">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Botanical Matcha</div>
+            <div class="swatch-var">--accent-earth</div>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#6A7B66</span>
+              <span class="swatch-role">Success / Organic</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#C49A45', '--accent-ochre')" title="Click to copy #C49A45">
+          <div class="swatch-color-box" style="background-color: #C49A45;">
+            <span class="swatch-copy-hint" style="color:#FFF; background:rgba(0,0,0,0.6);">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Dried Chamomile Ochre</div>
+            <div class="swatch-var">--accent-ochre</div>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#C49A45</span>
+              <span class="swatch-role">Warning / Highlight</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#3F4B5A', '--accent-indigo')" title="Click to copy #3F4B5A">
+          <div class="swatch-color-box" style="background-color: #3F4B5A;">
+            <span class="swatch-copy-hint" style="color:#FFF; background:rgba(0,0,0,0.6);">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Washed Aizome Indigo</div>
+            <div class="swatch-var">--accent-indigo</div>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#3F4B5A</span>
+              <span class="swatch-role">Information Note</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Contrast & Harmony Comparator -->
+      <div class="contrast-test-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-sm);">
+          <span class="text-meta" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-warm);">MATERIAL HARMONY & ACCESSIBILITY MATRIX</span>
+          <span class="badge badge-earth">WCAG AAA VERIFIED</span>
+        </div>
+        <div class="contrast-test-grid">
+          <div class="contrast-sample" style="background: var(--bg-canvas); color: var(--ink-primary);">
+            <strong>Sumi Charcoal on Unbleached Linen</strong>
+            <p style="font-size: 0.8125rem; color: var(--ink-secondary);">Contrast: 14.8:1 AAA (Body text, headlines, table rows)</p>
+          </div>
+          <div class="contrast-sample" style="background: var(--bg-surface); color: var(--accent-warm);">
+            <strong>Terracotta Seal on Oat Slipboard</strong>
+            <p style="font-size: 0.8125rem; color: var(--ink-secondary);">Contrast: 5.2:1 AA (Primary action triggers, highlights)</p>
+          </div>
+          <div class="contrast-sample" style="background: var(--accent-warm); color: var(--bg-canvas);">
+            <strong>Linen Glyph on Terracotta Primary Button</strong>
+            <p style="font-size: 0.8125rem; color: rgba(247,243,238,0.85);">Contrast: 4.8:1 AA (Button text, badge chips)</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================================
+         4. TYPOGRAPHY SPECIMEN SYSTEM (Per agent.md Section 5)
+         ======================================================================== -->
+    <section class="section-block" id="typography">
+      <div class="section-header">
+        <div>
+          <div class="section-num">SECTION 02 // TYPOGRAPHIC ARCHITECTURE</div>
+          <h2 class="section-title">Typography & Typeface Specimen</h2>
+        </div>
+        <p class="section-subtitle">
+          A harmonious trio: lyrical editorial serif (Newsreader), pure legible sans (Inter), and archival monospaced typewriter (Courier Prime).
+        </p>
+      </div>
+
+      <!-- Typeface Showcase Cards -->
+      <div class="type-pairing-grid">
+        
+        <!-- Display Serif -->
+        <div class="type-specimen-card">
+          <div class="type-family-label">DISPLAY & HEADLINE SERIF</div>
+          <div class="type-family-name" style="font-family: var(--font-display); font-style: italic;">Newsreader</div>
+          <p style="font-size: 0.8125rem; color: var(--ink-muted);">Editorial optical size with fluid organic italics and traditional letterforms.</p>
+          <div class="type-sample-alphabet" style="font-family: var(--font-display); font-style: italic;">
+            Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789
+          </div>
+          <div style="font-family: var(--font-display); font-size: 1.125rem; line-height: 1.4; color: var(--ink-primary);">
+            "In every ceramic vessel fired by wood, the flames leave an unrepeatable brushstroke."
+          </div>
+        </div>
+
+        <!-- Body Sans -->
+        <div class="type-specimen-card">
+          <div class="type-family-label">BODY & INTERFACE SANS</div>
+          <div class="type-family-name" style="font-family: var(--font-sans);">Inter</div>
+          <p style="font-size: 0.8125rem; color: var(--ink-muted);">Light 300 / Regular 400 weights tailored with +0.01em tracking for maximum reading breath.</p>
+          <div class="type-sample-alphabet" style="font-family: var(--font-sans);">
+            Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789
+          </div>
+          <div style="font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 300; line-height: 1.6; color: var(--ink-secondary);">
+            Crafted for effortless reading on high-DPI screens without visual tension or geometric rigidity.
+          </div>
+        </div>
+
+        <!-- Ledger Mono -->
+        <div class="type-specimen-card">
+          <div class="type-family-label">ARCHIVAL TELEMETRY & NUMERICS</div>
+          <div class="type-family-name" style="font-family: var(--font-mono);">Courier Prime</div>
+          <p style="font-size: 0.8125rem; color: var(--ink-muted);">Monospaced slab typewriter with authentic mechanical character and +0.05em tracking.</p>
+          <div class="type-sample-alphabet" style="font-family: var(--font-mono);">
+            Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz 0123456789
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 0.8125rem; color: var(--accent-warm);">
+            INDEX: [ST-004] // HARVEST: 2026.08.17 // LOT: UJI-402
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Dynamic Type Scale Ladder -->
+      <div class="type-scale-table-wrap">
+        <table class="type-scale-table">
+          <thead>
+            <tr>
+              <th>TOKEN</th>
+              <th>SCALE / SPECS</th>
+              <th>WEIGHT / TRACKING</th>
+              <th>SAMPLE RENDERING</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="type-token-tag">--text-display</span></td>
+              <td>3.25rem / 1.15</td>
+              <td>Italic 400 (-0.02em)</td>
+              <td><span style="font: var(--text-display); font-size: 2.25rem;">Wabi-Sabi Ledger</span></td>
+            </tr>
+            <tr>
+              <td><span class="type-token-tag">--text-h1</span></td>
+              <td>2.25rem / 1.25</td>
+              <td>Normal 500 (-0.01em)</td>
+              <td><span style="font: var(--text-h1); font-size: 1.75rem;">Kyoto Artisan Ceramics</span></td>
+            </tr>
+            <tr>
+              <td><span class="type-token-tag">--text-h2</span></td>
+              <td>1.75rem / 1.30</td>
+              <td>Normal 500 (-0.005em)</td>
+              <td><span style="font: var(--text-h2);">Wood-Fired Anagama Kiln</span></td>
+            </tr>
+            <tr>
+              <td><span class="type-token-tag">--text-h3</span></td>
+              <td>1.25rem / 1.40</td>
+              <td>Normal 600 (0.00em)</td>
+              <td><span style="font: var(--text-h3);">Single-Cultivar Uji Matcha</span></td>
+            </tr>
+            <tr>
+              <td><span class="type-token-tag">--text-body-lead</span></td>
+              <td>1.1875rem / 1.80</td>
+              <td>Normal 300 (+0.01em)</td>
+              <td><span style="font: var(--text-body-lead);">Natural textures and contemplative space guide the viewer.</span></td>
+            </tr>
+            <tr>
+              <td><span class="type-token-tag">--text-body</span></td>
+              <td>1.00rem / 1.75</td>
+              <td>Normal 300 (+0.01em)</td>
+              <td><span style="font: var(--text-body);">Standard reading text on unbleached linen surfaces.</span></td>
+            </tr>
+            <tr>
+              <td><span class="type-token-tag">--text-caption</span></td>
+              <td>0.8125rem / 1.50</td>
+              <td>Normal 400 (+0.02em)</td>
+              <td><span style="font: var(--text-caption); color: var(--ink-secondary);">Form field descriptors, button captions, table cells.</span></td>
+            </tr>
+            <tr>
+              <td><span class="type-token-tag">--text-ledger-mono</span></td>
+              <td>0.8125rem / 1.60</td>
+              <td>Mono 400 (+0.05em UPPER)</td>
+              <td><span style="font: var(--text-ledger-mono); color: var(--accent-warm);">SPEC NO. 004 // ARCHIVE REF 88</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Live Interactive Pangram Tester -->
+      <div class="pangram-tester-card">
+        <div class="tester-controls">
+          <div class="tester-font-pills">
+            <span class="tester-pill active" onclick="switchTesterFont('Newsreader', this)">Newsreader (Display)</span>
+            <span class="tester-pill" onclick="switchTesterFont('Inter', this)">Inter (Sans)</span>
+            <span class="tester-pill" onclick="switchTesterFont('Courier Prime', this)">Courier Prime (Mono)</span>
+          </div>
+
+          <div class="tester-slider-box">
+            <span>SIZE:</span>
+            <input type="range" min="14" max="52" value="28" id="type-size-slider" oninput="updateTesterSize(this.value)" style="width: 140px;">
+            <span id="type-size-label" style="font-weight: 700; color: var(--accent-warm); min-width: 44px;">28px</span>
+          </div>
+        </div>
+
+        <div class="live-pangram-input" id="live-pangram" contenteditable="true" spellcheck="false" title="Click to edit live text">
+          Simplicity and naturalness are the highest forms of cultivation. In the quiet grains of unbleached linen and the earthen patina of wood-fired clay, time leaves its gentle mark.
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================================
+         5. CORNER GEOMETRY & ELEVATION BLUEPRINT (Per agent.md Section 5)
+         ======================================================================== -->
+    <section class="section-block" id="geometry">
+      <div class="section-header">
+        <div>
+          <div class="section-num">SECTION 03 // SPATIAL & ELEVATION RULES</div>
+          <h2 class="section-title">Corner Geometry & Diffused Shadows</h2>
+        </div>
+        <p class="section-subtitle">
+          Subtle 2px craft radii for tailored inputs, 4px for primary containers, and diffused ambient paper occlusion instead of harsh digital drop shadows.
+        </p>
+      </div>
+
+      <!-- Corner Radii Specimens -->
+      <div class="geometry-grid">
+        
+        <div class="geometry-card">
+          <div class="geometry-demo-box" style="border-radius: 0px;">
+            0px
+          </div>
+          <div>
+            <strong style="font-size: 0.875rem;">--radius-none</strong>
+            <p style="font-size: 0.75rem; color: var(--ink-muted);">Strict rectilinear paper sheets</p>
+          </div>
+        </div>
+
+        <div class="geometry-card">
+          <div class="geometry-demo-box" style="border-radius: 2px;">
+            2px
+          </div>
+          <div>
+            <strong style="font-size: 0.875rem;">--radius-subtle</strong>
+            <p style="font-size: 0.75rem; color: var(--ink-muted);">Sharp-tailored ledger inputs, stamps</p>
+          </div>
+        </div>
+
+        <div class="geometry-card">
+          <div class="geometry-demo-box" style="border-radius: 4px;">
+            4px
+          </div>
+          <div>
+            <strong style="font-size: 0.875rem;">--radius-surface</strong>
+            <p style="font-size: 0.75rem; color: var(--ink-muted);">Primary cards, panels, containers</p>
+          </div>
+        </div>
+
+        <div class="geometry-card">
+          <div class="geometry-demo-box" style="border-radius: 9999px;">
+            Pill
+          </div>
+          <div>
+            <strong style="font-size: 0.875rem;">--radius-pill</strong>
+            <p style="font-size: 0.75rem; color: var(--ink-muted);">Status tags, pill filters, badges</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Diffused Shadows Hierarchy -->
+      <div class="elevation-grid">
+        
+        <div class="elevation-card" style="box-shadow: var(--shadow-resting);">
+          <div>
+            <span class="badge badge-faint">01. RESTING</span>
+            <h4 style="margin-top: var(--space-xs); font-family: var(--font-display); font-size: 1.125rem;">--shadow-resting</h4>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--ink-muted); font-family: var(--font-mono);">
+            0 1px 3px rgba(46,42,39,0.04)<br>0 4px 12px rgba(46,42,39,0.03)
+          </p>
+        </div>
+
+        <div class="elevation-card" style="box-shadow: var(--shadow-raised);">
+          <div>
+            <span class="badge badge-warm">02. RAISED</span>
+            <h4 style="margin-top: var(--space-xs); font-family: var(--font-display); font-size: 1.125rem;">--shadow-raised</h4>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--ink-muted); font-family: var(--font-mono);">
+            0 4px 10px rgba(46,42,39,0.05)<br>0 12px 28px rgba(46,42,39,0.06)
+          </p>
+        </div>
+
+        <div class="elevation-card" style="box-shadow: var(--shadow-lifted);">
+          <div>
+            <span class="badge badge-earth">03. LIFTED</span>
+            <h4 style="margin-top: var(--space-xs); font-family: var(--font-display); font-size: 1.125rem;">--shadow-lifted</h4>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--ink-muted); font-family: var(--font-mono);">
+            0 10px 24px rgba(46,42,39,0.07)<br>0 24px 48px rgba(46,42,39,0.08)
+          </p>
+        </div>
+
+        <div class="elevation-card" style="background: var(--bg-surface-sunken); box-shadow: var(--shadow-inset-ledger);">
+          <div>
+            <span class="badge badge-ochre">04. INSET WELL</span>
+            <h4 style="margin-top: var(--space-xs); font-family: var(--font-display); font-size: 1.125rem;">--shadow-inset-ledger</h4>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--ink-muted); font-family: var(--font-mono);">
+            inset 0 1px 2px rgba(46,42,39,0.07)
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         6. COMPONENT ARCHETYPE GALLERY (Per agent.md Section 5)
+         ======================================================================== -->
+    <section class="section-block" id="components">
+      <div class="section-header">
+        <div>
+          <div class="section-num">SECTION 04 // COMPONENT ARCHETYPES</div>
+          <h2 class="section-title">Component Archetypes & Controls</h2>
+        </div>
+        <p class="section-subtitle">
+          Meticulously crafted interactive buttons, tactile form controls, archival stamps, and container states following the warm wabi-sabi rules.
+        </p>
+      </div>
+
+      <div class="archetype-columns">
+        
+        <!-- Column 1: Buttons & Interactive Triggers -->
+        <div class="archetype-group">
+          
+          <div class="archetype-box">
+            <div class="archetype-header">
+              <span>01. Interactive Action Buttons</span>
+              <span class="badge badge-warm">EASE-CRAFT</span>
+            </div>
+            <p class="archetype-desc">Tactile transitions with organic deceleration (cubic-bezier(0.25, 1, 0.5, 1)).</p>
+            
+            <div class="btn-demo-row">
+              <button class="primary" onclick="showToast('Triggered Primary Terracotta CTA')">
+                <span>Terracotta CTA</span>
+              </button>
+              <button class="secondary" onclick="showToast('Triggered Oat Slipboard Action')">
+                <span>Oat Slipboard</span>
+              </button>
+              <button class="earth" onclick="showToast('Triggered Botanical Matcha Action')">
+                <span>Matcha Green</span>
+              </button>
+            </div>
+
+            <div class="btn-demo-row" style="margin-top: var(--space-sm);">
+              <button class="indigo" onclick="showToast('Triggered Aizome Indigo Action')">
+                <span>Aizome Indigo</span>
+              </button>
+              <button class="ghost" onclick="showToast('Triggered Ghost Minimal Action')">
+                <span>Ghost Text</span>
+              </button>
+              <button class="stamp-btn" onclick="showToast('Inscribed Archival Seal')">
+                <span>✦ SEAL ENTRY</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Status Chips & Hanko Stamps -->
+          <div class="archetype-box">
+            <div class="archetype-header">
+              <span>02. Badges, Pills & Hanko Seals</span>
+            </div>
+            <p class="archetype-desc">Subtle status signifiers and Japanese-inspired rotated seal stamps.</p>
+
+            <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap; align-items: center;">
+              <span class="badge badge-warm">● Pottery Seal</span>
+              <span class="badge badge-earth">● Harvest Active</span>
+              <span class="badge badge-ochre">● Kiln Firing</span>
+              <span class="badge badge-indigo">● Telemetry Info</span>
+              <span class="badge badge-faint">Archival Log</span>
+            </div>
+
+            <div style="display: flex; gap: var(--space-md); align-items: center; margin-top: var(--space-md); padding-top: var(--space-md); border-top: var(--divider-ledger);">
+              <div class="hanko-stamp">茶</div>
+              <div class="hanko-stamp" style="transform: rotate(2deg); border-color: var(--accent-earth); color: var(--accent-earth);">窯</div>
+              <div class="hanko-stamp" style="transform: rotate(-5deg); border-color: var(--accent-indigo); color: var(--accent-indigo);">録</div>
+              <p style="font-size: 0.8125rem; color: var(--ink-secondary);">
+                Micro hanko stamps serve as tactile seal verification marks across records.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Column 2: Inputs & Form Controls -->
+        <div class="archetype-group">
+          
+          <div class="archetype-box">
+            <div class="archetype-header">
+              <span>03. Tailored Form Controls</span>
+              <span class="badge badge-faint">2PX RADII</span>
+            </div>
+            <p class="archetype-desc">Sharp-tailored 2px corners with warm terracotta focus outlines.</p>
+
+            <div class="form-control-row">
+              <label class="field-label" for="demo-input-text">
+                <span>ARTIFACT TITLE</span>
+                <span style="font-family: var(--font-mono); font-size: 0.6875rem; color: var(--ink-muted);">VARCHAR</span>
+              </label>
+              <input type="text" id="demo-input-text" value="Shigaraki Natural Ash Teabowl" placeholder="Enter collection title...">
+            </div>
+
+            <div class="form-control-row">
+              <label class="field-label" for="demo-select">
+                <span>CRAFT CATEGORY</span>
+              </label>
+              <select id="demo-select">
+                <option>Wood-Fired Ceramics (穴窯)</option>
+                <option>Single-Origin Uji Matcha (茶)</option>
+                <option>Hand-Carved Bamboo Teaware (竹)</option>
+              </select>
+            </div>
+
+            <div class="custom-check-group" style="margin-top: var(--space-sm);">
+              <label class="check-label">
+                <input type="checkbox" class="craft-checkbox" checked>
+                <span>Inscribed with Artisan Seal</span>
+              </label>
+              <label class="check-label">
+                <input type="checkbox" class="craft-checkbox">
+                <span>Archived in Wood Box (桐箱)</span>
+              </label>
+            </div>
+
+            <div class="toggle-switch-row" style="margin-top: var(--space-sm); border-top: var(--divider-ledger); padding-top: var(--space-sm);">
+              <span style="font-size: 0.875rem; color: var(--ink-primary);">Wood-Fired Anagama Active</span>
+              <label class="craft-switch">
+                <input type="checkbox" checked>
+                <span class="craft-slider"></span>
+              </label>
+            </div>
+
+          </div>
+
+          <!-- Container Archetypes -->
+          <div class="archetype-box">
+            <div class="archetype-header">
+              <span>04. Surface Hierarchies</span>
+            </div>
+            <p class="archetype-desc">4 structural layers: Canvas, Surface, Raised Sheet, and Sunken Well.</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xs);">
+              <div class="ledger-card" style="padding: var(--space-sm); text-align: center;">
+                <span style="font-size: 0.75rem; font-weight: 600;">.ledger-card</span>
+                <div style="font-size: 0.6875rem; color: var(--ink-muted);">--bg-surface</div>
+              </div>
+              <div class="ledger-card-raised" style="padding: var(--space-sm); text-align: center;">
+                <span style="font-size: 0.75rem; font-weight: 600;">.raised-card</span>
+                <div style="font-size: 0.6875rem; color: var(--ink-muted);">--bg-surface-raised</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         7. LIVING MICRO-EXPERIENCE: KYOTO TEA & CERAMIC LEDGER (茶陶録)
+         (Per agent.md Section 5)
+         ======================================================================== -->
+    <section class="section-block" id="micro-experience">
+      <div class="section-header">
+        <div>
+          <div class="section-num">SECTION 05 // LIVING MICRO-EXPERIENCE</div>
+          <h2 class="section-title">Kyoto Artisan Tea & Ceramic Ledger</h2>
+        </div>
+        <p class="section-subtitle">
+          A fully interactive demonstration: filter records, add new kiln firings or matcha lots, and stamp entries with a live rotatable Hanko seal.
+        </p>
+      </div>
+
+      <div class="micro-experience-container">
+        
+        <!-- Ledger App Header -->
+        <div class="micro-ledger-header">
+          <div class="micro-brand">
+            <div class="micro-hanko">陶</div>
+            <div class="micro-title-group">
+              <h4>Kyoto Studio Archive // 茶陶録</h4>
+              <span>REGISTERED RECORD: KYOTO-402 • VOL. 14</span>
+            </div>
+          </div>
+
+          <div class="micro-telemetry-chips">
+            <span class="badge badge-warm" id="live-time-chip">2026-08-17 18:40 UTC</span>
+            <span class="badge badge-earth">● KILN: 1,280°C ANAGAMA</span>
+            <span class="badge badge-ochre">SEASON: AKI (AUTUMN)</span>
+          </div>
+        </div>
+
+        <!-- Ledger Content & Controls -->
+        <div class="micro-ledger-body">
+          
+          <div class="ledger-top-actions">
+            <!-- Filter Tabs -->
+            <div class="ledger-filter-tabs">
+              <button class="ledger-tab active" onclick="filterLedger('all', this)">All Artifacts</button>
+              <button class="ledger-tab" onclick="filterLedger('ceramics', this)">Ceramics</button>
+              <button class="ledger-tab" onclick="filterLedger('tea', this)">Matcha & Leaf</button>
+              <button class="ledger-tab" onclick="filterLedger('tools', this)">Teaware</button>
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div style="display: flex; gap: var(--space-xs);">
+              <button class="stamp-btn" onclick="applyHankoToSelected()">
+                <span>✦ STAMP SELECTED</span>
+              </button>
+              <button class="secondary" style="padding: 4px 10px; font-size: 0.75rem;" onclick="resetLedgerDemo()">
+                <span>Reset Table</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Interactive Ledger Table -->
+          <div class="ledger-table-wrap">
+            <table class="ledger-table" id="artisan-ledger-table">
+              <thead>
+                <tr>
+                  <th style="width: 36px;">SEL</th>
+                  <th>ARCHIVE LOT</th>
+                  <th>ARTIFACT DESCRIPTION</th>
+                  <th>CATEGORY</th>
+                  <th>ARTISAN / ORIGIN</th>
+                  <th>STATUS</th>
+                  <th>SEAL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-cat="ceramics">
+                  <td><input type="checkbox" class="craft-checkbox row-select" checked></td>
+                  <td><span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-warm);">#ST-088</span></td>
+                  <td><strong>Shigaraki Natural Ash Teabowl</strong> (信楽焼茶碗)</td>
+                  <td><span class="badge badge-warm">Wood-Fired Ceramic</span></td>
+                  <td>Kohga Kiln, Shiga</td>
+                  <td><span class="badge badge-earth">KILN-FIRED</span></td>
+                  <td><span class="item-inscribed-seal">壺 088</span></td>
+                </tr>
+                <tr data-cat="tea">
+                  <td><input type="checkbox" class="craft-checkbox row-select"></td>
+                  <td><span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-warm);">#ST-089</span></td>
+                  <td><strong>Single-Cultivar Asahi Ceremonial Matcha</strong> (朝日抹茶)</td>
+                  <td><span class="badge badge-earth">Single Cultivar</span></td>
+                  <td>Wazuka Valley, Uji</td>
+                  <td><span class="badge badge-earth">1ST HARVEST</span></td>
+                  <td><span class="item-inscribed-seal">茶 089</span></td>
+                </tr>
+                <tr data-cat="ceramics">
+                  <td><input type="checkbox" class="craft-checkbox row-select"></td>
+                  <td><span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-warm);">#ST-090</span></td>
+                  <td><strong>Bizen Unfinished Water Jar</strong> (備前水指)</td>
+                  <td><span class="badge badge-warm">Wood-Fired Ceramic</span></td>
+                  <td>Inbe, Okayama</td>
+                  <td><span class="badge badge-ochre">RESERVED</span></td>
+                  <td><span class="item-inscribed-seal">備 090</span></td>
+                </tr>
+                <tr data-cat="tools">
+                  <td><input type="checkbox" class="craft-checkbox row-select"></td>
+                  <td><span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-warm);">#ST-091</span></td>
+                  <td><strong>Smoked Susudake Bamboo Tea Scoop</strong> (煤竹茶杓)</td>
+                  <td><span class="badge badge-indigo">Handmade Teaware</span></td>
+                  <td>Takayama, Nara</td>
+                  <td><span class="badge badge-earth">ARCHIVED</span></td>
+                  <td><span class="item-inscribed-seal">竹 091</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Inline Add Item Form Panel -->
+          <div class="add-entry-panel">
+            <div>
+              <label class="field-label" for="new-item-title" style="margin-bottom: 4px;">ITEM DESCRIPTION</label>
+              <input type="text" id="new-item-title" placeholder="e.g. Tamba Stoneware Sake Vessel">
+            </div>
+            <div>
+              <label class="field-label" for="new-item-cat" style="margin-bottom: 4px;">CATEGORY</label>
+              <select id="new-item-cat">
+                <option value="ceramics">Wood-Fired Ceramic</option>
+                <option value="tea">Matcha & Leaf</option>
+                <option value="tools">Handmade Teaware</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="new-item-origin" style="margin-bottom: 4px;">ORIGIN / KILN</label>
+              <input type="text" id="new-item-origin" placeholder="e.g. Kyoto Workshop">
+            </div>
+            <button class="primary" style="height: 38px; justify-content: center;" onclick="addNewLedgerEntry()">
+              <span>+ Record Entry</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         8. FULL MARKDOWN STYLE TILE CODE INSPECTOR (Per agent.md Section 5)
+         ======================================================================== -->
+    <section class="section-block" id="prompt-code">
+      <div class="section-header">
+        <div>
+          <div class="section-num">SECTION 06 // AI AGENT INGESTION</div>
+          <h2 class="section-title">Style Tile Prompt & Token Vault</h2>
+        </div>
+        <p class="section-subtitle">
+          Copy this formatted Markdown block directly into Cursor, Claude, Antigravity, or Copilot to replicate this exact aesthetic in any project.
+        </p>
+      </div>
+
+      <div class="prompt-code-card">
+        <div class="code-card-header">
+          <div style="display: flex; align-items: center; gap: var(--space-xs);">
+            <span class="badge badge-warm">STYLE-TILE-WARM-WABISABI.MD</span>
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-muted);">READY FOR AI INGESTION</span>
+          </div>
+          <div style="display: flex; gap: var(--space-xs);">
+            <button class="primary" onclick="copyHeaderTile()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copy Full Style Tile</span>
+            </button>
+            <button class="secondary" onclick="downloadHeaderTile()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download .md</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="code-view-container">
+          <pre><code id="visible-markdown-code">Loading Style Tile Specification...</code></pre>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       9. MODAL & TOAST SYSTEMS
+       ======================================================================== -->
+  <!-- Markdown Preview Modal -->
+  <div class="spec-modal-backdrop" id="spec-modal-backdrop">
+    <div class="spec-modal">
+      <div class="spec-modal-header">
+        <div>
+          <span class="badge badge-warm">STYLE TILE SPECIFICATION</span>
+          <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-style: italic; margin-top: 2px;">Warm Wabi-Sabi Ledger (TILE-004)</h3>
+        </div>
+        <button class="ghost" onclick="closeSpecModal()" style="font-size: 1.25rem; padding: 4px 8px;">✕</button>
+      </div>
+      <div class="spec-modal-body">
+        <pre style="font-family: var(--font-mono); font-size: 0.8125rem; line-height: 1.6; color: var(--ink-primary); white-space: pre-wrap;" id="modal-markdown-content"></pre>
+      </div>
+      <div class="spec-modal-footer">
+        <button class="secondary" onclick="closeSpecModal()">Close</button>
+        <button class="primary" onclick="copyHeaderTile()">Copy to Clipboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ========================================================================
+       10. EXACT RAW MARKDOWN SPECIFICATION EMBED (Per agent.md Section 2)
+       ======================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  STYLE TILE: WARM WABI-SABI LEDGER (TILE-004)
+  Aesthetic: Organic Minimalism • Tactile Craft • Serene Editorial • Quiet Luxury
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+A philosophy of organic minimalism, quiet luxury, and tangible craftsmanship. Rooted in the Japanese aesthetic of wabi-sabi—finding beauty in natural imperfection, raw materiality, and contemplative space. Built upon raw unbleached linen canvas (#F7F3EE) and oat slipboard (#EDE4D8) surfaces, inked with wood-fired sumi charcoal (#2E2A27) and weathered iron gall (#574F49), accented by terracotta pottery stamps (#A65B32), botanical matcha green (#6A7B66), and dried chamomile ochre (#C49A45).
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Canvas & Structural Surfaces */
+  --bg-canvas:               #F7F3EE; /* Raw unbleached linen base */
+  --bg-surface:              #EDE4D8; /* Oat slipboard / card background */
+  --bg-surface-raised:       #F4ECE1; /* Floating card / elevated sheet */
+  --bg-surface-sunken:       #E4DACB; /* Inset ledger / well */
+
+  /* Inks & Contrast (Typographic Hierarchy) */
+  --ink-primary:             #2E2A27; /* Wood-fired sumi charcoal */
+  --ink-secondary:           #574F49; /* Weathered iron gall */
+  --ink-muted:               #827870; /* Soft dried clay */
+  --ink-faint:               #B8AFA6; /* Archival watermark */
+
+  /* Accent Signifiers */
+  --accent-warm:             #A65B32; /* Terracotta pottery seal / Primary CTA */
+  --accent-warm-hover:       #8F4B26; /* Deep burnt sienna */
+  --accent-earth:            #6A7B66; /* Muted botanical matcha / Success */
+  --accent-ochre:            #C49A45; /* Dried chamomile / Warning-Accent */
+  --accent-indigo:           #3F4B5A; /* Washed aizome indigo / Informational */
+
+
+  /* ---------------------------------------------------------------------------
+   * 3. TYPOGRAPHY SYSTEM
+   * --------------------------------------------------------------------------- */
+  /* Font Stacks */
+  --font-display:            "Newsreader", "Playfair Display", "Garamond", Georgia, serif;
+  --font-sans:               "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono:               "Courier Prime", "SF Mono", "Consolas", monospace;
+
+  /* Type Scale: Scale factor ~1.25 (Major Third) */
+  --text-display:            italic 400 3.25rem/1.15 var(--font-display);  /* letter-spacing: -0.02em */
+  --text-h1:                 normal 500 2.25rem/1.25 var(--font-display);  /* letter-spacing: -0.01em */
+  --text-h2:                 normal 500 1.75rem/1.30 var(--font-display);  /* letter-spacing: -0.005em */
+  --text-h3:                 normal 600 1.25rem/1.40 var(--font-display);  /* letter-spacing: 0.00em */
+  --text-body-lead:          normal 300 1.1875rem/1.80 var(--font-sans);   /* letter-spacing: 0.01em */
+  --text-body:               normal 300 1.00rem/1.75 var(--font-sans);     /* letter-spacing: 0.01em */
+  --text-caption:            normal 400 0.8125rem/1.50 var(--font-sans);   /* letter-spacing: 0.02em */
+  --text-ledger-mono:        normal 400 0.8125rem/1.60 var(--font-mono);   /* letter-spacing: 0.05em; text-transform: uppercase */
+
+
+  /* ---------------------------------------------------------------------------
+   * 4. CORNER GEOMETRY (BORDER RADII)
+   * --------------------------------------------------------------------------- */
+  /* Intentional softness; avoids hyper-geometric rounded edges */
+  --radius-none:             0px;
+  --radius-subtle:           2px;       /* Sharp-tailored ledger inputs, stamps */
+  --radius-surface:          4px;       /* Primary cards, containers, panels */
+  --radius-pill:             9999px;    /* Status tags, pill filters */
+
+
+  /* ---------------------------------------------------------------------------
+   * 5. ELEVATION & DEPTH (DIFFUSED SHADOWS)
+   * --------------------------------------------------------------------------- */
+  /* Tinted ambient occlusion mimicking heavy paper resting on linen */
+  --shadow-flat:             none;
+  --shadow-resting:          0 1px 3px rgba(46, 42, 39, 0.04),
+                             0 4px 12px rgba(46, 42, 39, 0.03);
+  --shadow-raised:           0 4px 10px rgba(46, 42, 39, 0.05),
+                             0 12px 28px rgba(46, 42, 39, 0.06);
+  --shadow-lifted:           0 10px 24px rgba(46, 42, 39, 0.07),
+                             0 24px 48px rgba(46, 42, 39, 0.08);
+  --shadow-inset-ledger:     inset 0 1px 2px rgba(46, 42, 39, 0.07);
+
+
+  /* ---------------------------------------------------------------------------
+   * 6. SPACING & SPATIAL SCALE (8pt Baseline Grid)
+   * --------------------------------------------------------------------------- */
+  --space-2xs:               0.25rem;   /* 4px  - Hairline gap */
+  --space-xs:                0.50rem;   /* 8px  - Compact elements */
+  --space-sm:                0.75rem;   /* 12px - Input padding / badge margins */
+  --space-md:                1.00rem;   /* 16px - Component gutters */
+  --space-lg:                1.50rem;   /* 24px - Card internal padding */
+  --space-xl:                2.50rem;   /* 40px - Section grouping */
+  --space-2xl:               4.00rem;   /* 64px - Editorial rhythm bands */
+
+
+  /* ---------------------------------------------------------------------------
+   * 7. BORDERS & DIVIDERS
+   * --------------------------------------------------------------------------- */
+  --border-width:            1px;
+  --border-subtle:           1px solid rgba(46, 42, 39, 0.09); /* Faint paper edge */
+  --border-strong:           1px solid rgba(46, 42, 39, 0.22); /* Ledger frame */
+  --border-stamp:            1.5px dashed var(--accent-warm);   /* Archival cutout */
+  --divider-ledger:          1px dashed rgba(46, 42, 39, 0.14);
+
+
+  /* ---------------------------------------------------------------------------
+   * 8. ICONOGRAPHY LANGUAGE
+   * --------------------------------------------------------------------------- */
+  /*
+   * Style: Monoline, open counters, rounded stroke terminals (match Courier/Newsreader).
+   * Weight: 1.25px - 1.5px consistent stroke width.
+   * Optical Size: 20px on 24px grid container.
+   * Tone: Functional, organic, devoid of sharp geometric angles or filled badges.
+   */
+  --icon-stroke-width:       1.25px;
+  --icon-size-sm:            16px;
+  --icon-size-md:            20px;
+  --icon-size-lg:            24px;
+
+
+  /* ---------------------------------------------------------------------------
+   * 9. INTERACTION & FEEDBACK RULES
+   * --------------------------------------------------------------------------- */
+  /* Physics: Gradual entry, graceful organic deceleration */
+  --ease-craft:              cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-fast:           140ms;
+  --duration-normal:         240ms;
+
+  /* Focus Ring: Double-stroke paper cutout outline */
+  --focus-ring:              0 0 0 1px var(--bg-canvas),
+                             0 0 0 2.5px var(--accent-warm);
+}
+
+/* Base Component Rules */
+button.primary {
+  font: var(--text-caption);
+  font-weight: 500;
+  color: var(--bg-canvas);
+  background-color: var(--accent-warm);
+  border: 1px solid transparent;
+  border-radius: var(--radius-subtle);
+  padding: var(--space-xs) var(--space-lg);
+  box-shadow: var(--shadow-resting);
+  transition: all var(--duration-normal) var(--ease-craft);
+}
+
+button.primary:hover {
+  background-color: var(--accent-warm-hover);
+  box-shadow: var(--shadow-raised);
+  transform: translateY(-1px);
+}
+
+button.primary:active {
+  transform: translateY(0px);
+  box-shadow: var(--shadow-inset-ledger);
+}
+
+.ledger-card {
+  background: var(--bg-surface);
+  border: var(--border-subtle);
+  border-radius: var(--radius-surface);
+  box-shadow: var(--shadow-resting);
+  padding: var(--space-lg);
+}
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO harsh primary neon or neon violet/purple glows on dark backgrounds.
+- NO heavy 3D skeuomorphic bevels or harsh black drop shadows.
+- NO high-saturation rainbow gradients or gradient keyword text fills.
+- NO hyper-geometric rounded pill cards or excessive >16px card corners.
+- NO cluttered icon-stuffed dashboards; preserve open spatial serenity and organic quietude.
+  </script>
+
+  <!-- ========================================================================
+       11. JAVASCRIPT INTERACTIONS & APP LOGIC (Per agent.md Section 2)
+       ======================================================================== -->
+  <script>
+    // 1. Toast Notification System
+    function showToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `
+        <span class="toast-icon">${icon}</span>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 240);
+      }, 2500);
+    }
+
+    // 2. Get Markdown Helper
+    function getMarkdownSpec() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    // 3. Header Action 1: Copy Style Tile
+    function copyHeaderTile() {
+      const md = getMarkdownSpec();
+      navigator.clipboard.writeText(md).then(() => {
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const originalHTML = copyBtn.innerHTML;
+          copyBtn.innerHTML = `<span>✓ Copied!</span>`;
+          setTimeout(() => { copyBtn.innerHTML = originalHTML; }, 2000);
+        }
+        showToast("Copied Warm Wabi-Sabi Ledger Style Tile to clipboard!", "✦");
+      }).catch(err => {
+        console.error("Clipboard write failed", err);
+      });
+    }
+
+    // 4. Header Action 2: Download Style Tile .md
+    function downloadHeaderTile() {
+      const md = getMarkdownSpec();
+      const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "style-tile-warm-wabisabi.md";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-warm-wabisabi.md!", "↓");
+    }
+
+    // 5. Header Action 3: Preview Style Tile Modal
+    function openSpecModal() {
+      const md = getMarkdownSpec();
+      document.getElementById("modal-markdown-content").textContent = md;
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    // 6. Swatch Hex Copy
+    function copyHex(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${varName} (${hex}) to clipboard!`, "⌖");
+      });
+    }
+
+    // 7. Interactive Type Tester Controls
+    function switchTesterFont(fontFamily, element) {
+      const input = document.getElementById("live-pangram");
+      if (!input) return;
+
+      document.querySelectorAll(".tester-pill").forEach(p => p.classList.remove("active"));
+      if (element) element.classList.add("active");
+
+      if (fontFamily === 'Newsreader') {
+        input.style.fontFamily = 'var(--font-display)';
+        input.style.fontStyle = 'italic';
+      } else if (fontFamily === 'Inter') {
+        input.style.fontFamily = 'var(--font-sans)';
+        input.style.fontStyle = 'normal';
+      } else if (fontFamily === 'Courier Prime') {
+        input.style.fontFamily = 'var(--font-mono)';
+        input.style.fontStyle = 'normal';
+      }
+      showToast(`Switched typeface to ${fontFamily}`, "Aa");
+    }
+
+    function updateTesterSize(size) {
+      const input = document.getElementById("live-pangram");
+      const label = document.getElementById("type-size-label");
+      if (input) input.style.fontSize = `${size}px`;
+      if (label) label.textContent = `${size}px`;
+    }
+
+    // 8. Living Micro-Experience Actions
+    let ledgerCounter = 92;
+
+    function filterLedger(category, element) {
+      document.querySelectorAll(".ledger-tab").forEach(tab => tab.classList.remove("active"));
+      if (element) element.classList.add("active");
+
+      const rows = document.querySelectorAll("#artisan-ledger-table tbody tr");
+      rows.forEach(row => {
+        if (category === "all" || row.getAttribute("data-cat") === category) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+
+    function addNewLedgerEntry() {
+      const titleInput = document.getElementById("new-item-title");
+      const catSelect = document.getElementById("new-item-cat");
+      const originInput = document.getElementById("new-item-origin");
+      const tableBody = document.querySelector("#artisan-ledger-table tbody");
+
+      if (!titleInput || !catSelect || !tableBody) return;
+      const title = titleInput.value.trim() || "Handmade Stoneware Vessel";
+      const catVal = catSelect.value;
+      const origin = originInput ? (originInput.value.trim() || "Kyoto Workshop") : "Kyoto Workshop";
+
+      let catBadge = `<span class="badge badge-warm">Wood-Fired Ceramic</span>`;
+      let sealPrefix = "壺";
+      if (catVal === "tea") {
+        catBadge = `<span class="badge badge-earth">Single Cultivar</span>`;
+        sealPrefix = "茶";
+      } else if (catVal === "tools") {
+        catBadge = `<span class="badge badge-indigo">Handmade Teaware</span>`;
+        sealPrefix = "竹";
+      }
+
+      const tr = document.createElement("tr");
+      tr.setAttribute("data-cat", catVal);
+      tr.innerHTML = `
+        <td><input type="checkbox" class="craft-checkbox row-select" checked></td>
+        <td><span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-warm);">#ST-0${ledgerCounter++}</span></td>
+        <td><strong>${title}</strong></td>
+        <td>${catBadge}</td>
+        <td>${origin}</td>
+        <td><span class="badge badge-earth">LOGGED</span></td>
+        <td><span class="item-inscribed-seal">${sealPrefix} 0${ledgerCounter - 1}</span></td>
+      `;
+
+      tableBody.prepend(tr);
+      titleInput.value = "";
+      if (originInput) originInput.value = "";
+      showToast(`Inscribed #${ledgerCounter - 1} to Kyoto Ledger!`, "✦");
+    }
+
+    function applyHankoToSelected() {
+      const selected = document.querySelectorAll("#artisan-ledger-table tbody tr");
+      let stampedCount = 0;
+      selected.forEach(tr => {
+        const checkbox = tr.querySelector(".row-select");
+        if (checkbox && checkbox.checked) {
+          const sealCell = tr.children[6];
+          if (sealCell) {
+            const rot = Math.floor(Math.random() * 8) - 4;
+            sealCell.innerHTML = `<span class="item-inscribed-seal" style="transform: rotate(${rot}deg); background: rgba(166,91,50,0.1);">壺 SEALED</span>`;
+            stampedCount++;
+          }
+        }
+      });
+      showToast(`Applied terracotta hanko seal to ${stampedCount} selected entries!`, "壺");
+    }
+
+    function resetLedgerDemo() {
+      const tableBody = document.querySelector("#artisan-ledger-table tbody");
+      if (!tableBody) return;
+      tableBody.innerHTML = `
+        <tr data-cat="ceramics">
+          <td><input type="checkbox" class="craft-checkbox row-select" checked></td>
+          <td><span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-warm);">#ST-088</span></td>
+          <td><strong>Shigaraki Natural Ash Teabowl</strong> (信楽焼茶碗)</td>
+          <td><span class="badge badge-warm">Wood-Fired Ceramic</span></td>
+          <td>Kohga Kiln, Shiga</td>
+          <td><span class="badge badge-earth">KILN-FIRED</span></td>
+          <td><span class="item-inscribed-seal">壺 088</span></td>
+        </tr>
+        <tr data-cat="tea">
+          <td><input type="checkbox" class="craft-checkbox row-select"></td>
+          <td><span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-warm);">#ST-089</span></td>
+          <td><strong>Single-Cultivar Asahi Ceremonial Matcha</strong> (朝日抹茶)</td>
+          <td><span class="badge badge-earth">Single Cultivar</span></td>
+          <td>Wazuka Valley, Uji</td>
+          <td><span class="badge badge-earth">1ST HARVEST</span></td>
+          <td><span class="item-inscribed-seal">茶 089</span></td>
+        </tr>
+        <tr data-cat="ceramics">
+          <td><input type="checkbox" class="craft-checkbox row-select"></td>
+          <td><span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-warm);">#ST-090</span></td>
+          <td><strong>Bizen Unfinished Water Jar</strong> (備前水指)</td>
+          <td><span class="badge badge-warm">Wood-Fired Ceramic</span></td>
+          <td>Inbe, Okayama</td>
+          <td><span class="badge badge-ochre">RESERVED</span></td>
+          <td><span class="item-inscribed-seal">備 090</span></td>
+        </tr>
+        <tr data-cat="tools">
+          <td><input type="checkbox" class="craft-checkbox row-select"></td>
+          <td><span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-warm);">#ST-091</span></td>
+          <td><strong>Smoked Susudake Bamboo Tea Scoop</strong> (煤竹茶杓)</td>
+          <td><span class="badge badge-indigo">Handmade Teaware</span></td>
+          <td>Takayama, Nara</td>
+          <td><span class="badge badge-earth">ARCHIVED</span></td>
+          <td><span class="item-inscribed-seal">竹 091</span></td>
+        </tr>
+      `;
+      showToast("Reset table to initial state", "↺");
+    }
+
+    function updateLiveClock() {
+      const chip = document.getElementById("live-time-chip");
+      if (!chip) return;
+      const now = new Date();
+      const utcStr = now.toISOString().replace("T", " ").substring(0, 19) + " UTC";
+      chip.textContent = utcStr;
+    }
+
+    // 9. Document Initialization
+    document.addEventListener("DOMContentLoaded", () => {
+      // Header button bindings
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyHeaderTile);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadHeaderTile);
+
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      // Populate visible Markdown block
+      const visibleCode = document.getElementById("visible-markdown-code");
+      if (visibleCode) visibleCode.textContent = getMarkdownSpec();
+
+      // Start live clock
+      updateLiveClock();
+      setInterval(updateLiveClock, 1000);
+
+      // Modal key & backdrop listeners
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

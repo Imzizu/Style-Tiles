@@ -1,0 +1,2658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industrial Blueprint HUD — Style Tile & CAD Design System (TILE-006)</title>
+  <meta name="description" content="Industrial Blueprint HUD & Architectural Cyanotype design system. Technical CAD precision, vector inks, 45° chamfered geometry, dimension callouts, and AI agent prompt.">
+  
+  <!-- Google Fonts: Orbitron (Display), DM Sans (Sans), Chivo Mono (Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,400&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* =============================================================================
+       DESIGN SYSTEM STYLE TILE
+       Aesthetic: Industrial Blueprint HUD • Architectural Cyanotype • CAD Precision
+       ============================================================================= */
+
+    :root {
+      /* ---------------------------------------------------------------------------
+       * 1. COLOR ROLES & SEMANTIC PALETTE
+       * --------------------------------------------------------------------------- */
+      /* Substrate / Canvas Tiers */
+      --bg-deep-void:       #040B16; /* Deepest blueprint background / viewport void */
+      --bg-cyanotype:       #081325; /* Primary architectural drawing sheet */
+      --bg-cell:            #0E2445; /* Elevated drawing frame & structural panels */
+      --bg-cell-hover:      #132F5A; /* Active cell scan / mouse focus */
+      --bg-cell-active:     #183C72; /* Selected element / active drafting zone */
+
+      /* Vector Inks & Technical Pen Lines */
+      --ink-bright:         #00E5FF; /* Electric blueprint pen (vector focal points) */
+      --ink-secondary:      #00B4D8; /* Secondary vector paths & dimension lines */
+      --ink-rule:           rgba(0, 229, 255, 0.25); /* Hairline coordinate guides */
+      --ink-rule-subtle:    rgba(0, 229, 255, 0.08); /* Background drafting grid */
+      --ink-glow:           rgba(0, 229, 255, 0.45); /* Phosphor pen back-luminescence */
+
+      /* Readout & Technical Typography */
+      --ink-white:          #E0F2FE; /* Primary technical data & title blocks */
+      --ink-muted:          #7DD3FC; /* Metadata, units, parameter keys */
+      --ink-ghost:          #38658C; /* Disabled axes, inactive layers */
+
+      /* HUD Overrides & CAD Revision Accents */
+      --accent-amber:       #FF9900; /* Revision stamp / delta flag / cautionary note */
+      --accent-amber-glow:  rgba(255, 153, 0, 0.35);
+      --accent-crimson:     #FF3366; /* Critical structural warning / load violation */
+      --accent-emerald:     #00FFA3; /* Verified dimension / nominal calibration */
+
+      /* ---------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * --------------------------------------------------------------------------- */
+      --font-display: "Orbitron", -apple-system, sans-serif;
+      --font-sans:    "DM Sans", -apple-system, sans-serif;
+      --font-mono:    "Chivo Mono", monospace;
+
+      /* Font Scale & Metric Rhythms */
+      --text-micro:   0.625rem;  /* 10px — Axis labels, coordinate subtexts, stamps */
+      --text-meta:    0.75rem;   /* 12px — Monospace telemetry, revision tags */
+      --text-body:    0.875rem;  /* 14px — Standard CAD annotations & parameters */
+      --text-body-lg: 1.000rem;  /* 16px — High-readability technical summaries */
+      --text-h3:      1.250rem;  /* 20px — Structural component group headings */
+      --text-h2:      1.750rem;  /* 28px — Drawing sheet / viewport titles */
+      --text-h1:      2.500rem;  /* 40px — System HUD callouts & focal numbers */
+
+      /* Tracking & Letterspacing */
+      --tracking-tight: -0.01em;
+      --tracking-normal: 0.00em;
+      --tracking-wide:   0.08em; /* Uppercase section labels */
+      --tracking-cad:    0.15em; /* Monospace coordinate readouts & title blocks */
+
+      /* ---------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII & CHAMFERS)
+       * --------------------------------------------------------------------------- */
+      --radius-none:     0px;     /* Core CAD philosophy: crisp orthogonal joins */
+      --radius-micro:    1px;     /* Subtle precision rounding for tiny badges */
+      --radius-subtle:   2px;     /* Button & panel default */
+      
+      /* Precision Clipped/Chamfered Corners (45° Drafting Notch) */
+      --clip-chamfer-sm: polygon(
+        0 0,
+        calc(100% - 6px) 0, 100% 6px,
+        100% 100%,
+        6px 100%, 0 calc(100% - 6px)
+      );
+      --clip-chamfer-lg: polygon(
+        0 0,
+        calc(100% - 14px) 0, 100% 14px,
+        100% calc(100% - 14px), calc(100% - 14px) 100%,
+        0 100%
+      );
+
+      /* ---------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (OPTICAL STACKING & WIREFRAME GLOWS)
+       * --------------------------------------------------------------------------- */
+      --elevation-flat:    none;
+      --elevation-sheet:   0 0 0 1px var(--ink-rule), inset 0 0 24px rgba(0, 229, 255, 0.03);
+      --elevation-panel:   0 4px 20px rgba(4, 11, 22, 0.85), 0 0 0 1px var(--ink-rule);
+      --elevation-hud:     0 0 16px var(--ink-glow), inset 0 0 12px rgba(0, 229, 255, 0.12);
+      --elevation-modal:   0 12px 48px rgba(4, 11, 22, 0.95), 0 0 0 1.5px var(--ink-bright);
+      --elevation-warning: 0 0 18px var(--accent-amber-glow), inset 0 0 8px rgba(255, 153, 0, 0.15);
+      --elevation-emerald: 0 0 16px rgba(0, 255, 163, 0.3), inset 0 0 8px rgba(0, 255, 163, 0.1);
+
+      /* ---------------------------------------------------------------------------
+       * 5. SPACING & SPATIAL CAD GRID
+       * --------------------------------------------------------------------------- */
+      --space-2xs:  2px;
+      --space-xs:   4px;
+      --space-sm:   8px;
+      --space-md:   16px;
+      --space-lg:   24px;  /* Matches 24px base drafting grid */
+      --space-xl:   32px;
+      --space-2xl:  48px;
+
+      /* Architectural Grid Backgrounds */
+      --grid-cad-major: 24px 24px linear-gradient(to right, var(--ink-rule-subtle) 1px, transparent 1px),
+                        24px 24px linear-gradient(to bottom, var(--ink-rule-subtle) 1px, transparent 1px);
+      --grid-cad-minor: 6px 6px linear-gradient(to right, rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+                        6px 6px linear-gradient(to bottom, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+
+      /* ---------------------------------------------------------------------------
+       * 6. BORDERS & TECHNICAL DIVIDERS
+       * --------------------------------------------------------------------------- */
+      --border-cad-hairline: 1px solid var(--ink-rule);
+      --border-cad-primary:  1.5px solid var(--ink-bright);
+      --border-cad-focus:    2px solid var(--ink-bright);
+      --border-cad-dashed:   1px dashed var(--ink-rule);
+      --border-cad-stamp:    1.5px solid var(--accent-amber);
+      --border-cad-emerald:  1.5px solid var(--accent-emerald);
+      --border-cad-crimson:  1.5px solid var(--accent-crimson);
+
+      /* ---------------------------------------------------------------------------
+       * 7. ICONOGRAPHY RULES
+       * --------------------------------------------------------------------------- */
+      --icon-size-sm:        14px;
+      --icon-size-md:        18px;
+      --icon-size-lg:        24px;
+      --icon-stroke-width:   1.5px;
+      --icon-stroke-linecap: square;
+      --icon-stroke-linejoin: miter;
+
+      /* ---------------------------------------------------------------------------
+       * 8. INTERACTION & FEEDBACK RULES
+       * --------------------------------------------------------------------------- */
+      --transition-instant: 75ms cubic-bezier(0, 0, 0.2, 1);
+      --transition-smooth:  150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* =============================================================================
+       BASE RESET & DRAFTING VIEWPORT
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-deep-void);
+    }
+
+    body {
+      background-color: var(--bg-cyanotype);
+      background-image: var(--grid-cad-major), var(--grid-cad-minor);
+      color: var(--ink-white);
+      font-family: var(--font-sans);
+      font-size: var(--text-body);
+      line-height: 1.5;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      cursor: default;
+    }
+
+    /* Custom Technical Selection */
+    ::selection {
+      background-color: var(--ink-bright);
+      color: var(--bg-deep-void);
+    }
+
+    /* Outer Precision Drafting Frame */
+    .cad-outer-frame {
+      min-height: 100vh;
+      border: 1px solid var(--ink-rule);
+      margin: 0;
+      position: relative;
+    }
+
+    .layout-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-lg);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Coordinate Markers on Borders */
+    .coord-grid-x {
+      position: fixed;
+      top: 48px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 var(--space-md);
+      pointer-events: none;
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      color: var(--ink-ghost);
+      letter-spacing: var(--tracking-cad);
+      z-index: 10;
+    }
+
+    /* =============================================================================
+       MANDATORY HEADER BAR COMPONENT (Per agent.md Section 2)
+       ============================================================================= */
+    .style-tile-header {
+      background-color: rgba(4, 11, 22, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1.5px solid var(--ink-bright);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 24px rgba(0, 229, 255, 0.15);
+      padding: var(--space-sm) var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: var(--text-meta);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+      color: var(--ink-bright);
+      text-decoration: none;
+      padding: 6px 12px;
+      background: rgba(0, 229, 255, 0.06);
+      border: var(--border-cad-hairline);
+      clip-path: var(--clip-chamfer-sm);
+      transition: background-color var(--transition-instant), color var(--transition-instant);
+    }
+
+    .nav-back-link:hover {
+      background: var(--ink-bright);
+      color: var(--bg-deep-void);
+      box-shadow: var(--elevation-hud);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: var(--text-meta);
+      font-weight: 800;
+      padding: 2px 8px;
+      background: var(--bg-cell);
+      color: var(--ink-bright);
+      border: 1px solid var(--ink-bright);
+      letter-spacing: var(--tracking-cad);
+      clip-path: var(--clip-chamfer-sm);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: var(--tracking-wide);
+      color: var(--ink-white);
+      text-transform: uppercase;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-cad);
+      border-left: 1px solid var(--ink-rule);
+      padding-left: var(--space-sm);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 6px 14px;
+      font-family: var(--font-display);
+      font-size: var(--text-meta);
+      font-weight: 600;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      color: var(--ink-bright);
+      background-color: rgba(0, 229, 255, 0.08);
+      border: var(--border-cad-primary);
+      clip-path: var(--clip-chamfer-sm);
+      cursor: crosshair;
+      transition: background-color var(--transition-instant),
+                  box-shadow var(--transition-instant),
+                  transform var(--transition-instant);
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .btn-tile:hover {
+      background-color: var(--ink-bright);
+      color: var(--bg-deep-void);
+      box-shadow: var(--elevation-hud);
+    }
+
+    .btn-tile:active {
+      transform: scale(0.97);
+    }
+
+    .btn-preview {
+      border-color: var(--ink-secondary);
+      color: var(--ink-secondary);
+    }
+    .btn-preview:hover {
+      background-color: var(--ink-secondary);
+      color: var(--bg-deep-void);
+    }
+
+    .btn-download {
+      border-color: var(--accent-amber);
+      color: var(--accent-amber);
+      background-color: rgba(255, 153, 0, 0.08);
+    }
+    .btn-download:hover {
+      background-color: var(--accent-amber);
+      color: var(--bg-deep-void);
+      box-shadow: var(--elevation-warning);
+    }
+
+    /* =============================================================================
+       CAD UTILITIES & STRUCTURAL COMPONENTS
+       ============================================================================= */
+    .cad-panel {
+      position: relative;
+      background-color: var(--bg-cell);
+      border: var(--border-cad-hairline);
+      box-shadow: var(--elevation-panel);
+      padding: var(--space-lg);
+      border-radius: var(--radius-none);
+    }
+
+    .cad-panel-reticle {
+      position: relative;
+    }
+
+    .cad-panel-reticle::before,
+    .cad-panel-reticle::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .cad-panel-reticle::before {
+      top: -1px;
+      left: -1px;
+      border-top: 2px solid var(--ink-bright);
+      border-left: 2px solid var(--ink-bright);
+    }
+    .cad-panel-reticle::after {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 2px solid var(--ink-bright);
+      border-right: 2px solid var(--ink-bright);
+    }
+
+    .cad-telemetry {
+      font-family: var(--font-mono);
+      font-size: var(--text-meta);
+      color: var(--ink-muted);
+      letter-spacing: var(--tracking-cad);
+      text-transform: uppercase;
+    }
+
+    .cad-telemetry-value {
+      color: var(--ink-bright);
+      font-weight: 600;
+    }
+
+    .cad-telemetry-amber {
+      color: var(--accent-amber);
+      font-weight: 600;
+    }
+
+    .cad-telemetry-emerald {
+      color: var(--accent-emerald);
+      font-weight: 600;
+    }
+
+    .cad-telemetry-crimson {
+      color: var(--accent-crimson);
+      font-weight: 600;
+    }
+
+    /* Stamp Badges */
+    .cad-stamp-revision {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: var(--space-xs) var(--space-sm);
+      border: var(--border-cad-stamp);
+      background-color: rgba(255, 153, 0, 0.1);
+      color: var(--accent-amber);
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      font-weight: 700;
+      letter-spacing: var(--tracking-cad);
+      text-transform: uppercase;
+      box-shadow: var(--elevation-warning);
+    }
+
+    .cad-stamp-emerald {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: var(--space-xs) var(--space-sm);
+      border: var(--border-cad-emerald);
+      background-color: rgba(0, 255, 163, 0.1);
+      color: var(--accent-emerald);
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      font-weight: 700;
+      letter-spacing: var(--tracking-cad);
+      text-transform: uppercase;
+      box-shadow: var(--elevation-emerald);
+    }
+
+    .cad-stamp-crimson {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: var(--space-xs) var(--space-sm);
+      border: var(--border-cad-crimson);
+      background-color: rgba(255, 51, 102, 0.1);
+      color: var(--accent-crimson);
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      font-weight: 700;
+      letter-spacing: var(--tracking-cad);
+      text-transform: uppercase;
+      box-shadow: 0 0 16px rgba(255, 51, 102, 0.35);
+    }
+
+    /* CAD Action Buttons */
+    .cad-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: 10px var(--space-lg);
+      background-color: rgba(0, 229, 255, 0.12);
+      border: var(--border-cad-primary);
+      color: var(--ink-bright);
+      font-family: var(--font-display);
+      font-size: var(--text-meta);
+      font-weight: 600;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      clip-path: var(--clip-chamfer-sm);
+      cursor: crosshair;
+      text-decoration: none;
+      transition: background-color var(--transition-instant),
+                  box-shadow var(--transition-instant),
+                  transform var(--transition-instant);
+    }
+
+    .cad-btn-primary:hover {
+      background-color: var(--ink-bright);
+      color: var(--bg-deep-void);
+      box-shadow: var(--elevation-hud);
+    }
+
+    .cad-btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    .cad-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: 10px var(--space-lg);
+      background-color: transparent;
+      border: 1.5px solid var(--ink-secondary);
+      color: var(--ink-secondary);
+      font-family: var(--font-display);
+      font-size: var(--text-meta);
+      font-weight: 600;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      clip-path: var(--clip-chamfer-sm);
+      cursor: crosshair;
+      text-decoration: none;
+      transition: all var(--transition-instant);
+    }
+
+    .cad-btn-secondary:hover {
+      background-color: var(--ink-secondary);
+      color: var(--bg-deep-void);
+      box-shadow: 0 0 14px rgba(0, 180, 216, 0.4);
+    }
+
+    .cad-btn-amber {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: 10px var(--space-lg);
+      background-color: rgba(255, 153, 0, 0.12);
+      border: 1.5px solid var(--accent-amber);
+      color: var(--accent-amber);
+      font-family: var(--font-display);
+      font-size: var(--text-meta);
+      font-weight: 600;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      clip-path: var(--clip-chamfer-sm);
+      cursor: crosshair;
+      text-decoration: none;
+      transition: all var(--transition-instant);
+    }
+
+    .cad-btn-amber:hover {
+      background-color: var(--accent-amber);
+      color: var(--bg-deep-void);
+      box-shadow: var(--elevation-warning);
+    }
+
+    .cad-btn-emerald {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: 10px var(--space-lg);
+      background-color: rgba(0, 255, 163, 0.12);
+      border: 1.5px solid var(--accent-emerald);
+      color: var(--accent-emerald);
+      font-family: var(--font-display);
+      font-size: var(--text-meta);
+      font-weight: 600;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      clip-path: var(--clip-chamfer-sm);
+      cursor: crosshair;
+      text-decoration: none;
+      transition: all var(--transition-instant);
+    }
+
+    .cad-btn-emerald:hover {
+      background-color: var(--accent-emerald);
+      color: var(--bg-deep-void);
+      box-shadow: var(--elevation-emerald);
+    }
+
+    .cad-btn-danger {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: 10px var(--space-lg);
+      background-color: rgba(255, 51, 102, 0.12);
+      border: 1.5px solid var(--accent-crimson);
+      color: var(--accent-crimson);
+      font-family: var(--font-display);
+      font-size: var(--text-meta);
+      font-weight: 600;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      clip-path: var(--clip-chamfer-sm);
+      cursor: crosshair;
+      text-decoration: none;
+      transition: all var(--transition-instant);
+    }
+
+    .cad-btn-danger:hover {
+      background-color: var(--accent-crimson);
+      color: var(--bg-deep-void);
+      box-shadow: 0 0 16px rgba(255, 51, 102, 0.4);
+    }
+
+    /* Section Headers */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: var(--border-cad-hairline);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-lg);
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .section-title-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-md);
+    }
+
+    .section-index {
+      font-family: var(--font-mono);
+      font-size: var(--text-meta);
+      color: var(--ink-bright);
+      font-weight: 700;
+      letter-spacing: var(--tracking-cad);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: var(--text-h2);
+      font-weight: 700;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      color: var(--ink-white);
+    }
+
+    .section-meta {
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      color: var(--ink-muted);
+      letter-spacing: var(--tracking-cad);
+      text-transform: uppercase;
+    }
+
+    /* =============================================================================
+       SECTION 1: HERO DISPLAY BANNER & DRAFTING TITLE BLOCK
+       ============================================================================= */
+    .hero-cad-sheet {
+      position: relative;
+      background-color: var(--bg-cell);
+      border: var(--border-cad-primary);
+      box-shadow: var(--elevation-panel);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+      overflow: hidden;
+    }
+
+    .hero-sheet-titleblock {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-xl);
+      border-bottom: 1px dashed var(--ink-rule);
+      padding-bottom: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    @media (max-width: 900px) {
+      .hero-sheet-titleblock {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-meta-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-white);
+      text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-h1 span {
+      color: var(--ink-bright);
+    }
+
+    .hero-narrative {
+      font-size: var(--text-body-lg);
+      color: var(--ink-white);
+      max-width: 760px;
+      line-height: 1.6;
+      margin-bottom: var(--space-lg);
+    }
+
+    .cad-titleblock-stamp {
+      background: var(--bg-deep-void);
+      border: 1px solid var(--ink-rule);
+      padding: var(--space-md);
+      font-family: var(--font-mono);
+      min-width: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .titleblock-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: var(--text-micro);
+      border-bottom: 1px dotted rgba(0, 229, 255, 0.15);
+      padding-bottom: 3px;
+    }
+
+    .titleblock-row span:first-child {
+      color: var(--ink-muted);
+    }
+    .titleblock-row span:last-child {
+      color: var(--ink-bright);
+      font-weight: 700;
+    }
+
+    .hero-quick-actions {
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* =============================================================================
+       SECTION 2: COLOR SWATCHES & PALETTE MATRIX
+       ============================================================================= */
+    .swatch-group-title {
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      color: var(--ink-bright);
+      letter-spacing: var(--tracking-cad);
+      text-transform: uppercase;
+      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .swatch-group-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--ink-rule);
+    }
+
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .swatch-card {
+      background-color: var(--bg-deep-void);
+      border: var(--border-cad-hairline);
+      padding: var(--space-sm);
+      clip-path: var(--clip-chamfer-sm);
+      cursor: pointer;
+      transition: transform var(--transition-instant), border-color var(--transition-instant), box-shadow var(--transition-instant);
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--ink-bright);
+      box-shadow: var(--elevation-hud);
+    }
+
+    .swatch-color-box {
+      height: 64px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: var(--space-sm);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 4px;
+    }
+
+    .swatch-badge {
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      background: rgba(4, 11, 22, 0.85);
+      color: var(--ink-white);
+      padding: 1px 4px;
+      border: 1px solid var(--ink-rule);
+    }
+
+    .swatch-name {
+      font-family: var(--font-display);
+      font-size: var(--text-meta);
+      font-weight: 700;
+      color: var(--ink-white);
+      margin-bottom: 2px;
+    }
+
+    .swatch-token {
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      color: var(--ink-muted);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      color: var(--ink-bright);
+      font-weight: 600;
+    }
+
+    /* =============================================================================
+       SECTION 3: TYPOGRAPHY & TYPEFACE SPECIMENS
+       ============================================================================= */
+    .type-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .type-card {
+      background: var(--bg-cell);
+      border: var(--border-cad-hairline);
+      padding: var(--space-lg);
+      clip-path: var(--clip-chamfer-sm);
+    }
+
+    .type-font-name {
+      font-size: var(--text-h3);
+      font-weight: 700;
+      color: var(--ink-bright);
+      margin-bottom: var(--space-2xs);
+      text-transform: uppercase;
+    }
+
+    .type-font-role {
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      color: var(--ink-muted);
+      letter-spacing: var(--tracking-cad);
+      margin-bottom: var(--space-md);
+      text-transform: uppercase;
+    }
+
+    .type-sample-alphabet {
+      font-size: 1.35rem;
+      line-height: 1.4;
+      color: var(--ink-white);
+      border-bottom: 1px dashed var(--ink-rule);
+      padding-bottom: var(--space-md);
+      margin-bottom: var(--space-md);
+      word-break: break-all;
+    }
+
+    .type-scale-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: var(--text-meta);
+      margin-top: var(--space-lg);
+    }
+
+    .type-scale-table th, .type-scale-table td {
+      padding: var(--space-sm);
+      border: 1px solid var(--ink-rule);
+      text-align: left;
+    }
+
+    .type-scale-table th {
+      background: var(--bg-deep-void);
+      color: var(--ink-bright);
+      font-size: var(--text-micro);
+      letter-spacing: var(--tracking-cad);
+      text-transform: uppercase;
+    }
+
+    /* Live Pangram Tester */
+    .pangram-tester-panel {
+      background: var(--bg-deep-void);
+      border: var(--border-cad-hairline);
+      padding: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .pangram-controls {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .font-switch-btn {
+      padding: 4px 12px;
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      background: var(--bg-cell);
+      border: var(--border-cad-hairline);
+      color: var(--ink-muted);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-cad);
+    }
+
+    .font-switch-btn.active {
+      background: var(--ink-bright);
+      color: var(--bg-deep-void);
+      border-color: var(--ink-bright);
+      font-weight: 700;
+    }
+
+    .pangram-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--ink-bright);
+      font-size: 1.5rem;
+      border-bottom: 1.5px solid var(--ink-rule);
+      padding-bottom: var(--space-sm);
+    }
+
+    /* =============================================================================
+       SECTION 4: COMPONENT ARCHETYPE GALLERY
+       ============================================================================= */
+    .archetypes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .archetype-box {
+      background: var(--bg-cell);
+      border: var(--border-cad-hairline);
+      padding: var(--space-lg);
+      position: relative;
+    }
+
+    .archetype-box-header {
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      color: var(--ink-bright);
+      letter-spacing: var(--tracking-cad);
+      text-transform: uppercase;
+      border-bottom: 1px dashed var(--ink-rule);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .btn-cluster {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    /* Precision Form Controls */
+    .cad-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: var(--space-md);
+    }
+
+    .cad-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      color: var(--ink-muted);
+      letter-spacing: var(--tracking-cad);
+      text-transform: uppercase;
+    }
+
+    .cad-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .cad-input-prefix {
+      position: absolute;
+      left: 10px;
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      color: var(--ink-ghost);
+      pointer-events: none;
+    }
+
+    .cad-input {
+      width: 100%;
+      background-color: var(--bg-deep-void);
+      border: var(--border-cad-hairline);
+      color: var(--ink-white);
+      font-family: var(--font-mono);
+      font-size: var(--text-meta);
+      padding: 8px 12px 8px 34px;
+      border-radius: var(--radius-none);
+      outline: none;
+      transition: border-color var(--transition-instant), box-shadow var(--transition-instant);
+    }
+
+    .cad-input:focus {
+      border: var(--border-cad-focus);
+      box-shadow: var(--elevation-hud);
+      background-color: var(--bg-cyanotype);
+    }
+
+    /* Orthogonal CAD Checkboxes and Radios */
+    .cad-checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: var(--text-meta);
+      color: var(--ink-white);
+      user-select: none;
+      margin-bottom: var(--space-sm);
+    }
+
+    .cad-checkbox-box {
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid var(--ink-bright);
+      background: var(--bg-deep-void);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cad-checkbox-box.checked::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--ink-bright);
+      box-shadow: 0 0 6px var(--ink-bright);
+    }
+
+    /* Dimension Callout Widget */
+    .dimension-specimen {
+      position: relative;
+      border: 1px dashed var(--ink-rule);
+      background: var(--bg-deep-void);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .dim-line-horizontal {
+      width: 100%;
+      height: 20px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dim-line-horizontal::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--ink-bright);
+    }
+
+    .dim-line-horizontal::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -4px;
+      bottom: -4px;
+      width: 1px;
+      background: var(--ink-bright);
+      box-shadow: calc(100% - 1px) 0 0 0 var(--ink-bright);
+    }
+
+    .dim-text-badge {
+      background: var(--bg-deep-void);
+      border: 1px solid var(--ink-bright);
+      padding: 2px 8px;
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      color: var(--ink-bright);
+      z-index: 2;
+    }
+
+    /* =============================================================================
+       SECTION 5: LIVING MICRO-EXPERIENCE // ARCHITECTURAL DRAFTING CONSOLE
+       ============================================================================= */
+    .drafting-console-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+
+    @media (max-width: 1024px) {
+      .drafting-console-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .viewport-canvas-panel {
+      background-color: var(--bg-deep-void);
+      border: var(--border-cad-primary);
+      box-shadow: var(--elevation-panel);
+      position: relative;
+      min-height: 480px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      cursor: crosshair;
+    }
+
+    .viewport-canvas-header {
+      background: rgba(8, 19, 37, 0.95);
+      border-bottom: 1px solid var(--ink-rule);
+      padding: var(--space-xs) var(--space-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      color: var(--ink-muted);
+      z-index: 10;
+    }
+
+    .canvas-hud-stats {
+      display: flex;
+      gap: var(--space-md);
+    }
+
+    .canvas-hud-stats span strong {
+      color: var(--ink-bright);
+    }
+
+    .viewport-canvas-svg {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+    }
+
+    /* Interactive Crosshair Reticle on Canvas */
+    .crosshair-line-h, .crosshair-line-v {
+      position: absolute;
+      pointer-events: none;
+      background: rgba(0, 229, 255, 0.35);
+      z-index: 8;
+    }
+    .crosshair-line-h {
+      left: 0;
+      right: 0;
+      height: 1px;
+    }
+    .crosshair-line-v {
+      top: 0;
+      bottom: 0;
+      width: 1px;
+    }
+
+    .crosshair-readout {
+      position: absolute;
+      pointer-events: none;
+      background: rgba(4, 11, 22, 0.9);
+      border: 1px solid var(--ink-bright);
+      padding: 2px 6px;
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      color: var(--ink-bright);
+      transform: translate(12px, 12px);
+      z-index: 9;
+      white-space: nowrap;
+    }
+
+    /* Telemetry Sidebar Panel */
+    .telemetry-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .telemetry-card {
+      background: var(--bg-cell);
+      border: var(--border-cad-hairline);
+      padding: var(--space-md);
+    }
+
+    .layer-selector-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: var(--space-sm);
+    }
+
+    .layer-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 10px;
+      background: var(--bg-deep-void);
+      border: 1px solid var(--ink-rule);
+      color: var(--ink-white);
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      cursor: pointer;
+      text-align: left;
+      transition: all var(--transition-instant);
+    }
+
+    .layer-btn.active {
+      border-color: var(--ink-bright);
+      background: rgba(0, 229, 255, 0.12);
+      color: var(--ink-bright);
+      font-weight: 700;
+    }
+
+    .revision-log-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 180px;
+      overflow-y: auto;
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      margin-top: var(--space-sm);
+    }
+
+    .log-item {
+      padding: 4px 8px;
+      background: var(--bg-deep-void);
+      border-left: 2px solid var(--ink-bright);
+      color: var(--ink-muted);
+    }
+
+    .log-item.amber {
+      border-left-color: var(--accent-amber);
+      color: var(--accent-amber);
+    }
+
+    .log-item.emerald {
+      border-left-color: var(--accent-emerald);
+      color: var(--accent-emerald);
+    }
+
+    .log-item.crimson {
+      border-left-color: var(--accent-crimson);
+      color: var(--accent-crimson);
+    }
+
+    /* =============================================================================
+       SECTION 6: STYLE TILE PROMPT CODE DRAWER & MODAL
+       ============================================================================= */
+    .spec-code-panel {
+      background: var(--bg-deep-void);
+      border: var(--border-cad-primary);
+      box-shadow: var(--elevation-panel);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .spec-code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--ink-rule);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .spec-code-pre {
+      background: #02060D;
+      border: 1px solid var(--ink-rule-subtle);
+      padding: var(--space-lg);
+      font-family: var(--font-mono);
+      font-size: var(--text-meta);
+      line-height: 1.5;
+      color: var(--ink-white);
+      overflow-x: auto;
+      max-height: 500px;
+    }
+
+    /* Inspect Modal Backdrop & Drawer */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(4, 11, 22, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-lg);
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-container {
+      background: var(--bg-cyanotype);
+      border: var(--border-cad-primary);
+      box-shadow: var(--elevation-modal);
+      width: 100%;
+      max-width: 900px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      clip-path: var(--clip-chamfer-lg);
+    }
+
+    .modal-header {
+      padding: var(--space-md) var(--space-lg);
+      background: var(--bg-deep-void);
+      border-bottom: 1.5px solid var(--ink-bright);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-footer {
+      padding: var(--space-md) var(--space-lg);
+      background: var(--bg-deep-void);
+      border-top: 1px solid var(--ink-rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Toast Notification System */
+    #toast-container {
+      position: fixed;
+      bottom: var(--space-lg);
+      right: var(--space-lg);
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--bg-deep-void);
+      border: 1.5px solid var(--ink-bright);
+      color: var(--ink-white);
+      font-family: var(--font-mono);
+      font-size: var(--text-meta);
+      letter-spacing: var(--tracking-cad);
+      padding: 10px 16px;
+      box-shadow: var(--elevation-hud);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      clip-path: var(--clip-chamfer-sm);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-icon {
+      color: var(--ink-bright);
+      font-weight: 900;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .layout-wrapper {
+        padding: var(--space-md) var(--space-sm);
+      }
+      .style-tile-header {
+        padding: var(--space-sm);
+      }
+      .hero-sheet-titleblock {
+        gap: var(--space-md);
+      }
+      .archetypes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Outer Drafting Frame -->
+  <div class="cad-outer-frame">
+    
+    <!-- Top & Bottom Coordinate Ruler Strips -->
+    <div class="coord-grid-x">
+      <span>X: 000.00</span>
+      <span>X: 250.00</span>
+      <span>X: 500.00</span>
+      <span>X: 750.00</span>
+      <span>X: 1000.00</span>
+      <span>X: 1250.00</span>
+    </div>
+
+    <!-- =========================================================================
+         MANDATORY HEADER BAR COMPONENT (Per agent.md Section 2)
+         ========================================================================= -->
+    <header class="style-tile-header">
+      <!-- 1. Navigation Back -->
+      <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+        <span class="icon">←</span> Catalog
+      </a>
+
+      <!-- 2. Design Title & Code -->
+      <div class="header-title-block">
+        <span class="design-code">TILE-006</span>
+        <span class="design-title">Industrial Blueprint HUD</span>
+        <span class="design-vibe-tag">Cyber & Blueprint</span>
+      </div>
+
+      <!-- 3. Action Suite -->
+      <div class="header-actions">
+        <!-- Preview / Inspect Markdown Modal Button -->
+        <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Preview Style Tile
+        </button>
+
+        <!-- Copy Raw Markdown to Clipboard Button -->
+        <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Style Tile
+        </button>
+
+        <!-- Download Markdown File Button -->
+        <button id="btn-download-tile" class="btn-tile btn-download" title="Download blueprint-hud.md">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Style Tile
+        </button>
+      </div>
+    </header>
+
+    <div class="layout-wrapper">
+
+      <!-- =======================================================================
+           SECTION 1: HERO DISPLAY BANNER & ARCHITECTURAL TITLE BLOCK
+           ======================================================================= -->
+      <section class="hero-cad-sheet cad-panel-reticle">
+        <div class="hero-sheet-titleblock">
+          <div>
+            <div class="hero-meta-row">
+              <span class="cad-stamp-revision">REV 3.2 // APPROVED</span>
+              <span class="cad-stamp-emerald">CALIBRATION NOMINAL</span>
+              <span class="cad-telemetry">DATUM: <span class="cad-telemetry-value">WGS84_CAD</span></span>
+              <span class="cad-telemetry">SCALE: <span class="cad-telemetry-value">1:1 VECTOR</span></span>
+            </div>
+
+            <h1 class="hero-h1">Industrial Blueprint <span>HUD</span></h1>
+
+            <p class="hero-narrative">
+              A high-precision technical CAD blueprint and architectural cyanotype aesthetic. Built for aerospace telemetry, spatial coordinate tracking, orthographic schematics, and instrument panels. Features electric cyan vector inks (<code style="color:var(--ink-bright)">#00E5FF</code>) on deep structural cyanotype (<code style="color:var(--ink-muted)">#081325</code>) and void substrates (<code style="color:var(--ink-muted)">#040B16</code>), 45° chamfered corner geometry, phosphor back-luminescence, and amber delta stamps.
+            </p>
+
+            <div class="hero-quick-actions">
+              <button class="cad-btn-primary" onclick="copyHeaderTile()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy Prompt for Agent
+              </button>
+              <a href="#demo-section" class="cad-btn-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Launch Drafting Console
+              </a>
+              <button class="cad-btn-amber" onclick="downloadHeaderTile()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download .MD Spec
+              </button>
+            </div>
+          </div>
+
+          <!-- Technical CAD Title Block Stamp -->
+          <div class="cad-titleblock-stamp">
+            <div class="titleblock-row">
+              <span>DOC NUMBER:</span>
+              <span>DWG-HUD-006-A</span>
+            </div>
+            <div class="titleblock-row">
+              <span>AESTHETIC:</span>
+              <span>CYANOTYPE CAD</span>
+            </div>
+            <div class="titleblock-row">
+              <span>AUTHORITY:</span>
+              <span>CHIEF DRAFTSMAN</span>
+            </div>
+            <div class="titleblock-row">
+              <span>TOLERANCE:</span>
+              <span>±0.005 mm</span>
+            </div>
+            <div class="titleblock-row">
+              <span>PROJECTION:</span>
+              <span>ORTHOGRAPHIC 3RD</span>
+            </div>
+            <div class="titleblock-row">
+              <span>VECTOR STATUS:</span>
+              <span style="color: var(--accent-emerald);">LOCKED // NOMINAL</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: var(--text-micro); color: var(--ink-ghost);">
+          <span>GRID FREQUENCY: 24.00 PX / MINOR: 6.00 PX</span>
+          <span>TIMESTAMP: <span id="hero-clock" style="color: var(--ink-muted);">2026-08-17 19:16:45 UTC</span></span>
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           SECTION 2: COLOR SWATCHES & PALETTE MATRIX
+           ======================================================================= -->
+      <section class="cad-panel cad-panel-reticle" style="margin-bottom: var(--space-2xl);">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-index">01 // MATRIX</span>
+            <h2 class="section-title">Color Roles & Semantic Palette</h2>
+          </div>
+          <span class="section-meta">Click swatch to copy token</span>
+        </div>
+
+        <!-- Group 1: Substrates & Canvas Tiers -->
+        <div class="swatch-group-title">Substrate & Canvas Tiers</div>
+        <div class="swatch-grid">
+          <div class="swatch-card" onclick="copyHex('#040B16', '--bg-deep-void')">
+            <div class="swatch-color-box" style="background-color: #040B16;">
+              <span class="swatch-badge">BASE VOID</span>
+            </div>
+            <div class="swatch-name">Deep Void</div>
+            <div class="swatch-token">--bg-deep-void</div>
+            <div class="swatch-hex">#040B16</div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#081325', '--bg-cyanotype')">
+            <div class="swatch-color-box" style="background-color: #081325;">
+              <span class="swatch-badge">CANVAS</span>
+            </div>
+            <div class="swatch-name">Cyanotype Sheet</div>
+            <div class="swatch-token">--bg-cyanotype</div>
+            <div class="swatch-hex">#081325</div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#0E2445', '--bg-cell')">
+            <div class="swatch-color-box" style="background-color: #0E2445;">
+              <span class="swatch-badge">SURFACE</span>
+            </div>
+            <div class="swatch-name">Drawing Cell Frame</div>
+            <div class="swatch-token">--bg-cell</div>
+            <div class="swatch-hex">#0E2445</div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#132F5A', '--bg-cell-hover')">
+            <div class="swatch-color-box" style="background-color: #132F5A;">
+              <span class="swatch-badge">HOVER SCAN</span>
+            </div>
+            <div class="swatch-name">Cell Hover Scan</div>
+            <div class="swatch-token">--bg-cell-hover</div>
+            <div class="swatch-hex">#132F5A</div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#183C72', '--bg-cell-active')">
+            <div class="swatch-color-box" style="background-color: #183C72;">
+              <span class="swatch-badge">ACTIVE ZONE</span>
+            </div>
+            <div class="swatch-name">Cell Active Draft</div>
+            <div class="swatch-token">--bg-cell-active</div>
+            <div class="swatch-hex">#183C72</div>
+          </div>
+        </div>
+
+        <!-- Group 2: Vector Inks & Technical Pen Lines -->
+        <div class="swatch-group-title">Vector Inks & Pen Line Tokens</div>
+        <div class="swatch-grid">
+          <div class="swatch-card" onclick="copyHex('#00E5FF', '--ink-bright')">
+            <div class="swatch-color-box" style="background-color: #00E5FF; box-shadow: inset 0 0 12px rgba(0,229,255,0.8);">
+              <span class="swatch-badge" style="color:#040B16; background:#00E5FF; font-weight:800;">PRIMARY PEN</span>
+            </div>
+            <div class="swatch-name">Electric Bright Pen</div>
+            <div class="swatch-token">--ink-bright</div>
+            <div class="swatch-hex">#00E5FF</div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#00B4D8', '--ink-secondary')">
+            <div class="swatch-color-box" style="background-color: #00B4D8;">
+              <span class="swatch-badge" style="color:#040B16; background:#00B4D8; font-weight:800;">VECTOR SUB</span>
+            </div>
+            <div class="swatch-name">Vector Secondary</div>
+            <div class="swatch-token">--ink-secondary</div>
+            <div class="swatch-hex">#00B4D8</div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('rgba(0, 229, 255, 0.25)', '--ink-rule')">
+            <div class="swatch-color-box" style="background-color: #081325; border: 1.5px solid rgba(0, 229, 255, 0.25);">
+              <span class="swatch-badge">GUIDE 25%</span>
+            </div>
+            <div class="swatch-name">Hairline Guide Rule</div>
+            <div class="swatch-token">--ink-rule</div>
+            <div class="swatch-hex">rgba(0,229,255,0.25)</div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#E0F2FE', '--ink-white')">
+            <div class="swatch-color-box" style="background-color: #E0F2FE;">
+              <span class="swatch-badge" style="color:#040B16;">TYPO DATA</span>
+            </div>
+            <div class="swatch-name">Technical White</div>
+            <div class="swatch-token">--ink-white</div>
+            <div class="swatch-hex">#E0F2FE</div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#7DD3FC', '--ink-muted')">
+            <div class="swatch-color-box" style="background-color: #7DD3FC;">
+              <span class="swatch-badge" style="color:#040B16;">META KEY</span>
+            </div>
+            <div class="swatch-name">Muted Readout</div>
+            <div class="swatch-token">--ink-muted</div>
+            <div class="swatch-hex">#7DD3FC</div>
+          </div>
+        </div>
+
+        <!-- Group 3: HUD Overrides & CAD Revision Accents -->
+        <div class="swatch-group-title">CAD Revision & HUD Overrides</div>
+        <div class="swatch-grid">
+          <div class="swatch-card" onclick="copyHex('#FF9900', '--accent-amber')">
+            <div class="swatch-color-box" style="background-color: #FF9900;">
+              <span class="swatch-badge" style="color:#040B16; font-weight:800;">DELTA / STAMP</span>
+            </div>
+            <div class="swatch-name">Revision Amber</div>
+            <div class="swatch-token">--accent-amber</div>
+            <div class="swatch-hex">#FF9900</div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#00FFA3', '--accent-emerald')">
+            <div class="swatch-color-box" style="background-color: #00FFA3;">
+              <span class="swatch-badge" style="color:#040B16; font-weight:800;">NOMINAL</span>
+            </div>
+            <div class="swatch-name">Nominal Emerald</div>
+            <div class="swatch-token">--accent-emerald</div>
+            <div class="swatch-hex">#00FFA3</div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#FF3366', '--accent-crimson')">
+            <div class="swatch-color-box" style="background-color: #FF3366;">
+              <span class="swatch-badge" style="color:#FFFFFF; font-weight:800;">VIOLATION</span>
+            </div>
+            <div class="swatch-name">Load Crimson</div>
+            <div class="swatch-token">--accent-crimson</div>
+            <div class="swatch-hex">#FF3366</div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#38658C', '--ink-ghost')">
+            <div class="swatch-color-box" style="background-color: #38658C;">
+              <span class="swatch-badge">INACTIVE</span>
+            </div>
+            <div class="swatch-name">Ghost Layer</div>
+            <div class="swatch-token">--ink-ghost</div>
+            <div class="swatch-hex">#38658C</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           SECTION 3: TYPOGRAPHY & TYPEFACE SPECIMENS
+           ======================================================================= -->
+      <section class="cad-panel cad-panel-reticle" style="margin-bottom: var(--space-2xl);">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-index">02 // SPECIMEN</span>
+            <h2 class="section-title">Typography & Precision Metrics</h2>
+          </div>
+          <span class="section-meta">Orbitron • DM Sans • Chivo Mono</span>
+        </div>
+
+        <div class="type-grid">
+          <!-- Display Specimen -->
+          <div class="type-card">
+            <div class="type-font-name" style="font-family: var(--font-display);">Orbitron</div>
+            <div class="type-font-role">Display Archetype // Structural Titles & HUD Headers</div>
+            <div class="type-sample-alphabet" style="font-family: var(--font-display);">
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+              0123456789 (VECTOR CAD)
+            </div>
+            <p class="cad-telemetry">
+              WEIGHT: <span class="cad-telemetry-value">700 / 900</span><br>
+              TRACKING: <span class="cad-telemetry-value">--tracking-wide (0.08em)</span><br>
+              GEOMETRY: <span class="cad-telemetry-value">Geometric Octagonal Terminals</span>
+            </p>
+          </div>
+
+          <!-- Sans Specimen -->
+          <div class="type-card">
+            <div class="type-font-name" style="font-family: var(--font-sans);">DM Sans</div>
+            <div class="type-font-role">Interface Archetype // Technical Summaries & Parameters</div>
+            <div class="type-sample-alphabet" style="font-family: var(--font-sans); font-size: 1.15rem;">
+              The quick brown fox jumps over the lazy dog.<br>
+              Engineered for high-density CAD clarity.
+            </div>
+            <p class="cad-telemetry">
+              WEIGHT: <span class="cad-telemetry-value">400 / 500 / 700</span><br>
+              READABILITY: <span class="cad-telemetry-value">Optimal contrast at 14px</span><br>
+              KERNING: <span class="cad-telemetry-value">Precision Neutral</span>
+            </p>
+          </div>
+
+          <!-- Mono Specimen -->
+          <div class="type-card">
+            <div class="type-font-name" style="font-family: var(--font-mono);">Chivo Mono</div>
+            <div class="type-font-role">Telemetry Archetype // Monospace Coordinate Readouts</div>
+            <div class="type-sample-alphabet" style="font-family: var(--font-mono); font-size: 1.05rem;">
+              LAT: 45°18'22"N LON: 08°33'12"E<br>
+              ΔX = +0.0042mm [NOMINAL_CAL]
+            </div>
+            <p class="cad-telemetry">
+              WEIGHT: <span class="cad-telemetry-value">500 / 700</span><br>
+              TRACKING: <span class="cad-telemetry-value">--tracking-cad (0.15em)</span><br>
+              FEATURE: <span class="cad-telemetry-value">Tabular Numerals</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Typographic Scale Ladder -->
+        <table class="type-scale-table">
+          <thead>
+            <tr>
+              <th>TOKEN</th>
+              <th>SCALE / SIZE</th>
+              <th>FONT ROLE</th>
+              <th>USAGE / SPECIFICATION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color: var(--ink-bright);">--text-h1</td>
+              <td>2.500rem (40px)</td>
+              <td>Orbitron 800</td>
+              <td style="font-family: var(--font-display); font-size: 1.5rem; color: var(--ink-white);">MAIN CAD CALLOUT</td>
+            </tr>
+            <tr>
+              <td style="color: var(--ink-bright);">--text-h2</td>
+              <td>1.750rem (28px)</td>
+              <td>Orbitron 700</td>
+              <td style="font-family: var(--font-display); font-size: 1.25rem; color: var(--ink-white);">DRAWING SHEET TITLE</td>
+            </tr>
+            <tr>
+              <td style="color: var(--ink-bright);">--text-h3</td>
+              <td>1.250rem (20px)</td>
+              <td>Orbitron 600</td>
+              <td style="font-family: var(--font-display); font-size: 1.05rem; color: var(--ink-white);">COMPONENT GROUP HEADING</td>
+            </tr>
+            <tr>
+              <td style="color: var(--ink-bright);">--text-body-lg</td>
+              <td>1.000rem (16px)</td>
+              <td>DM Sans 400</td>
+              <td style="font-family: var(--font-sans); font-size: 1.0rem;">High-readability technical summaries and narrative briefs</td>
+            </tr>
+            <tr>
+              <td style="color: var(--ink-bright);">--text-body</td>
+              <td>0.875rem (14px)</td>
+              <td>DM Sans 400</td>
+              <td style="font-family: var(--font-sans); font-size: 0.875rem;">Standard CAD annotations, parametric inputs, and table cells</td>
+            </tr>
+            <tr>
+              <td style="color: var(--ink-bright);">--text-meta</td>
+              <td>0.750rem (12px)</td>
+              <td>Chivo Mono 500</td>
+              <td style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-muted);">MONOSPACE TELEMETRY & REVISION TAGS</td>
+            </tr>
+            <tr>
+              <td style="color: var(--ink-bright);">--text-micro</td>
+              <td>0.625rem (10px)</td>
+              <td>Chivo Mono 700</td>
+              <td style="font-family: var(--font-mono); font-size: 0.625rem; color: var(--accent-amber);">AXIS LABELS & STAMP SEALS</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Interactive Pangram Tester -->
+        <div class="pangram-tester-panel">
+          <div class="pangram-controls">
+            <span class="cad-telemetry">TESTER FONT:</span>
+            <button class="font-switch-btn active" onclick="switchTesterFont('Orbitron', this)">Orbitron</button>
+            <button class="font-switch-btn" onclick="switchTesterFont('DM Sans', this)">DM Sans</button>
+            <button class="font-switch-btn" onclick="switchTesterFont('Chivo Mono', this)">Chivo Mono</button>
+            
+            <span class="cad-telemetry" style="margin-left: auto;">SIZE: <span id="type-size-val" class="cad-telemetry-value">24px</span></span>
+            <input type="range" min="14" max="48" value="24" oninput="updateTesterSize(this.value)" style="accent-color: var(--ink-bright);">
+          </div>
+          <input type="text" id="pangram-input" class="pangram-input" value="AEROSPACE VECTOR SCHEMATIC // TOLERANCE ±0.005mm" style="font-family: var(--font-display);">
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           SECTION 4: COMPONENT ARCHETYPE GALLERY
+           ======================================================================= -->
+      <section class="cad-panel cad-panel-reticle" style="margin-bottom: var(--space-2xl);">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-index">03 // ARCHETYPES</span>
+            <h2 class="section-title">Component Blueprints & Controls</h2>
+          </div>
+          <span class="section-meta">45° Chamfers • Orthogonal Reticles</span>
+        </div>
+
+        <div class="archetypes-grid">
+          <!-- Button Suite -->
+          <div class="archetype-box">
+            <div class="archetype-box-header">
+              <span>ACTION BUTTON MATRIX</span>
+              <span>45° CHAMFER</span>
+            </div>
+            <div class="btn-cluster">
+              <div class="btn-row">
+                <button class="cad-btn-primary" onclick="triggerTestSound('primary')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Primary CAD
+                </button>
+                <button class="cad-btn-secondary" onclick="triggerTestSound('secondary')">
+                  Secondary Path
+                </button>
+              </div>
+              <div class="btn-row">
+                <button class="cad-btn-amber" onclick="triggerTestSound('amber')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                  Revision Delta
+                </button>
+                <button class="cad-btn-emerald" onclick="triggerTestSound('emerald')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+                  Nominal Cal
+                </button>
+              </div>
+              <div class="btn-row">
+                <button class="cad-btn-danger" onclick="triggerTestSound('danger')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                  Load Violation
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input & Forms -->
+          <div class="archetype-box">
+            <div class="archetype-box-header">
+              <span>PARAMETRIC INPUT CONTROLS</span>
+              <span>MONOSPACE</span>
+            </div>
+            
+            <div class="cad-input-group">
+              <label class="cad-label">Vector Coordinate Input [X_AXIS]</label>
+              <div class="cad-input-wrapper">
+                <span class="cad-input-prefix">X:</span>
+                <input type="text" class="cad-input" value="742.85 mm">
+              </div>
+            </div>
+
+            <div class="cad-input-group">
+              <label class="cad-label">Angular Rotation [THETA_RAD]</label>
+              <div class="cad-input-wrapper">
+                <span class="cad-input-prefix">θ:</span>
+                <input type="text" class="cad-input" value="0.7854 rad (45.0°)">
+              </div>
+            </div>
+
+            <div class="cad-checkbox-row" onclick="toggleCadCheckbox(this)">
+              <div class="cad-checkbox-box checked"></div>
+              <span>Enforce Orthogonal Snap (24px Grid)</span>
+            </div>
+
+            <div class="cad-checkbox-row" onclick="toggleCadCheckbox(this)">
+              <div class="cad-checkbox-box checked"></div>
+              <span>Enable Phosphor Pen Back-Luminescence</span>
+            </div>
+          </div>
+
+          <!-- Dimension Measurement Specimen -->
+          <div class="archetype-box">
+            <div class="archetype-box-header">
+              <span>CAD DIMENSION CALLOUT</span>
+              <span>TOLERANCE ±0.002</span>
+            </div>
+
+            <div class="dimension-specimen">
+              <div class="dim-line-horizontal">
+                <div class="dim-text-badge">1240.00 mm ±0.005</div>
+              </div>
+
+              <div style="display: flex; gap: var(--space-sm); align-items: center;">
+                <span class="cad-stamp-revision">DELTA: +0.02%</span>
+                <span class="cad-stamp-emerald">VERIFIED NOMINAL</span>
+              </div>
+
+              <p class="cad-telemetry" style="text-align: center;">
+                DATUM POINT: <span class="cad-telemetry-value">DP_ALPHA_01</span><br>
+                TENSILE LOAD: <span class="cad-telemetry-emerald">48.2 kN (SAFE)</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           SECTION 5: LIVING MICRO-EXPERIENCE // ARCHITECTURAL DRAFTING CONSOLE
+           ======================================================================= -->
+      <section id="demo-section" class="cad-panel cad-panel-reticle" style="margin-bottom: var(--space-2xl);">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <span class="section-index">04 // INTERACTIVE DEMO</span>
+            <h2 class="section-title">Architectural CAD Drafting Console</h2>
+          </div>
+          <span class="section-meta">Live Vector Telemetry • Interactive Reticle</span>
+        </div>
+
+        <div class="drafting-console-grid">
+          <!-- Interactive Vector Viewport Canvas -->
+          <div id="cad-viewport" class="viewport-canvas-panel">
+            <div class="viewport-canvas-header">
+              <div class="canvas-hud-stats">
+                <span>ACTIVE SHEET: <strong>DWG-2026-X88</strong></span>
+                <span>STATUS: <strong style="color: var(--accent-emerald);">LIVE TRACKING</strong></span>
+              </div>
+              <div>
+                <span>COORDINATES: <strong id="hud-coord-readout">X: 0.00 Y: 0.00</strong></span>
+              </div>
+            </div>
+
+            <!-- SVG Blueprint Schematics Drawing -->
+            <svg id="blueprint-svg" class="viewport-canvas-svg" viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg">
+              <!-- Definitions for arrowheads and patterns -->
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#00E5FF" />
+                </marker>
+                <marker id="arrow-amber" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z" fill="#FF9900" />
+                </marker>
+                <pattern id="cad-grid-pattern" width="24" height="24" patternUnits="userSpaceOnUse">
+                  <path d="M 24 0 L 0 0 0 24" fill="none" stroke="rgba(0,229,255,0.08)" stroke-width="1"/>
+                  <path d="M 6 0 L 0 0 0 6" fill="none" stroke="rgba(0,229,255,0.03)" stroke-width="0.5"/>
+                </pattern>
+              </defs>
+
+              <!-- Background Drafting Grid inside SVG -->
+              <rect width="100%" height="100%" fill="url(#cad-grid-pattern)" />
+
+              <!-- Layer 1: Structural Beams -->
+              <g id="layer-structural" class="cad-svg-layer">
+                <!-- Outer Frame -->
+                <rect x="60" y="40" width="680" height="400" fill="rgba(14, 36, 69, 0.4)" stroke="#00E5FF" stroke-width="1.5" />
+                
+                <!-- Main Truss Diagonals -->
+                <line x1="60" y1="40" x2="400" y2="240" stroke="#00E5FF" stroke-width="1.5" stroke-dasharray="8,4" />
+                <line x1="740" y1="40" x2="400" y2="240" stroke="#00E5FF" stroke-width="1.5" stroke-dasharray="8,4" />
+                <line x1="60" y1="440" x2="400" y2="240" stroke="#00E5FF" stroke-width="1.5" stroke-dasharray="8,4" />
+                <line x1="740" y1="440" x2="400" y2="240" stroke="#00E5FF" stroke-width="1.5" stroke-dasharray="8,4" />
+                
+                <!-- Central Core Assembly -->
+                <circle cx="400" cy="240" r="80" fill="rgba(0, 229, 255, 0.05)" stroke="#00E5FF" stroke-width="2" />
+                <circle cx="400" cy="240" r="40" fill="none" stroke="#00B4D8" stroke-width="1.5" stroke-dasharray="4,4" />
+                <circle cx="400" cy="240" r="6" fill="#00E5FF" />
+                
+                <!-- Crosshair ticks at center -->
+                <line x1="400" y1="140" x2="400" y2="340" stroke="#00E5FF" stroke-width="1" stroke-dasharray="2,2" />
+                <line x1="300" y1="240" x2="500" y2="240" stroke="#00E5FF" stroke-width="1" stroke-dasharray="2,2" />
+              </g>
+
+              <!-- Layer 2: Dimension Guides -->
+              <g id="layer-dimensions" class="cad-svg-layer">
+                <!-- Top dimension line -->
+                <line x1="60" y1="20" x2="740" y2="20" stroke="#00B4D8" stroke-width="1" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <text x="400" y="16" fill="#E0F2FE" font-family="'Chivo Mono', monospace" font-size="11" text-anchor="middle">SPAN_W = 6800.00 mm [NOMINAL]</text>
+                
+                <!-- Left dimension line -->
+                <line x1="30" y1="40" x2="30" y2="440" stroke="#00B4D8" stroke-width="1" marker-start="url(#arrow)" marker-end="url(#arrow)" />
+                <text x="24" y="240" fill="#E0F2FE" font-family="'Chivo Mono', monospace" font-size="11" text-anchor="middle" transform="rotate(-90 24 240)">SPAN_H = 4000.00 mm</text>
+                
+                <!-- Radius callout -->
+                <line x1="400" y1="240" x2="460" y2="180" stroke="#FF9900" stroke-width="1.5" marker-end="url(#arrow-amber)" />
+                <text x="470" y="176" fill="#FF9900" font-family="'Chivo Mono', monospace" font-size="11" font-weight="bold">R = 800.00 mm ±0.05</text>
+              </g>
+
+              <!-- Layer 3: Avionics & Electrical Bus -->
+              <g id="layer-avionics" class="cad-svg-layer">
+                <rect x="120" y="90" width="160" height="90" fill="rgba(4, 11, 22, 0.85)" stroke="#00FFA3" stroke-width="1.5" />
+                <text x="130" y="115" fill="#00FFA3" font-family="'Orbitron', sans-serif" font-size="10" font-weight="bold">AVIONICS BUS #01</text>
+                <text x="130" y="135" fill="#7DD3FC" font-family="'Chivo Mono', monospace" font-size="9">VOLTAGE: 28.4 VDC</text>
+                <text x="130" y="155" fill="#7DD3FC" font-family="'Chivo Mono', monospace" font-size="9">STATUS: SYNCHRONIZED</text>
+                
+                <!-- Connection conduit -->
+                <path d="M 280 135 L 360 135 L 360 200" fill="none" stroke="#00FFA3" stroke-width="1.5" stroke-dasharray="3,3" />
+              </g>
+
+              <!-- Layer 4: Hydraulic Conduits -->
+              <g id="layer-hydraulic" class="cad-svg-layer">
+                <rect x="520" y="300" width="160" height="90" fill="rgba(4, 11, 22, 0.85)" stroke="#FF3366" stroke-width="1.5" />
+                <text x="530" y="325" fill="#FF3366" font-family="'Orbitron', sans-serif" font-size="10" font-weight="bold">HYDRAULIC MANIFOLD</text>
+                <text x="530" y="345" fill="#7DD3FC" font-family="'Chivo Mono', monospace" font-size="9">PRESSURE: 3000 PSI</text>
+                <text x="530" y="365" fill="#FF9900" font-family="'Chivo Mono', monospace" font-size="9">CHECK VALVE: ACTIVE</text>
+                
+                <path d="M 520 345 L 440 345 L 440 280" fill="none" stroke="#FF3366" stroke-width="1.5" stroke-dasharray="4,2" />
+              </g>
+            </svg>
+
+            <!-- Dynamic Interactive Crosshair Element -->
+            <div id="crosshair-h" class="crosshair-line-h"></div>
+            <div id="crosshair-v" class="crosshair-line-v"></div>
+            <div id="crosshair-box" class="crosshair-readout">X: 000.00 Y: 000.00</div>
+          </div>
+
+          <!-- Telemetry & Layer Control Sidebar -->
+          <div class="telemetry-sidebar">
+            <div class="telemetry-card">
+              <span class="cad-label" style="display:block; margin-bottom: 6px;">CAD LAYER INSPECTOR</span>
+              <div class="layer-selector-list">
+                <button class="layer-btn active" onclick="toggleSvgLayer('layer-structural', this)">
+                  <span>01_STRUCTURAL_FRAME</span>
+                  <span>[ON]</span>
+                </button>
+                <button class="layer-btn active" onclick="toggleSvgLayer('layer-dimensions', this)">
+                  <span>02_DIMENSION_GUIDES</span>
+                  <span>[ON]</span>
+                </button>
+                <button class="layer-btn active" onclick="toggleSvgLayer('layer-avionics', this)">
+                  <span>03_AVIONICS_BUS</span>
+                  <span>[ON]</span>
+                </button>
+                <button class="layer-btn active" onclick="toggleSvgLayer('layer-hydraulic', this)">
+                  <span>04_HYDRAULIC_CIRCUIT</span>
+                  <span>[ON]</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Live Actions & Delta Stamper -->
+            <div class="telemetry-card">
+              <span class="cad-label" style="display:block; margin-bottom: 6px;">REVISION LOG & DISPATCH</span>
+              <div style="display: flex; gap: 6px; margin-bottom: 8px;">
+                <input type="text" id="revision-note-input" class="cad-input" placeholder="Delta note..." style="padding-left: 10px; font-size: 11px;">
+                <button class="cad-btn-amber" style="padding: 6px 12px; font-size: 11px;" onclick="addRevisionLog()">
+                  Stamp
+                </button>
+              </div>
+              <div id="revision-stream" class="revision-log-stream">
+                <div class="log-item emerald">[19:16:10] Calibration verified nominal.</div>
+                <div class="log-item">[19:16:22] Datum point DP_ALPHA_01 locked.</div>
+                <div class="log-item amber">[19:16:35] Rev 3.2 drawing approved.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =======================================================================
+           SECTION 6: STYLE TILE PROMPT CODE DRAWER
+           ======================================================================= -->
+      <section class="spec-code-panel cad-panel-reticle">
+        <div class="spec-code-header">
+          <div>
+            <span class="cad-stamp-revision">AI AGENT PROMPT SPECIFICATION</span>
+            <h3 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--ink-white); margin-top: 4px;">Industrial Blueprint HUD • Markdown Token Vault</h3>
+          </div>
+          <button class="cad-btn-primary" onclick="copyHeaderTile()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Style Tile Prompt
+          </button>
+        </div>
+
+        <pre class="spec-code-pre" id="visible-markdown-code"></pre>
+      </section>
+
+    </div><!-- /.layout-wrapper -->
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container"></div>
+
+    <!-- Inspect Spec Modal Drawer -->
+    <div id="spec-modal-backdrop" class="modal-backdrop">
+      <div class="modal-container">
+        <div class="modal-header">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="design-code">TILE-006</span>
+            <span style="font-family: var(--font-display); font-weight: 700; color: var(--ink-white);">INDUSTRIAL BLUEPRINT HUD // STYLE TILE SPEC</span>
+          </div>
+          <button class="cad-btn-danger" style="padding: 4px 10px; font-size: 11px;" onclick="closeSpecModal()">✕ CLOSE</button>
+        </div>
+        <div class="modal-body">
+          <pre class="spec-code-pre" id="modal-markdown-content" style="max-height: none;"></pre>
+        </div>
+        <div class="modal-footer">
+          <span class="cad-telemetry">FORMAT: <span class="cad-telemetry-value">GITHUB FLAVORED MARKDOWN</span></span>
+          <div style="display: flex; gap: var(--space-sm);">
+            <button class="cad-btn-primary" onclick="copyHeaderTile()">Copy to Clipboard</button>
+            <button class="cad-btn-amber" onclick="downloadHeaderTile()">Download .md</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.cad-outer-frame -->
+
+  <!-- =========================================================================
+       EMBEDDED RAW MARKDOWN STYLE TILE (Per agent.md Section 2 & 4)
+       ========================================================================= -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Aesthetic: Industrial Blueprint HUD • Architectural Cyanotype • CAD Precision
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+A high-precision technical CAD blueprint and architectural cyanotype aesthetic.
+Built for aerospace telemetry, spatial coordinate tracking, orthographic schematics,
+and instrument panels. Features electric cyan vector inks (#00E5FF) on deep structural
+cyanotype (#081325) and void substrates (#040B16), 45° chamfered corner geometry,
+phosphor back-luminescence, and amber delta stamps.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & SEMANTIC PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Substrate / Canvas Tiers */
+  --bg-deep-void:       #040B16; /* Deepest blueprint background / viewport void */
+  --bg-cyanotype:       #081325; /* Primary architectural drawing sheet */
+  --bg-cell:            #0E2445; /* Elevated drawing frame & structural panels */
+  --bg-cell-hover:      #132F5A; /* Active cell scan / mouse focus */
+  --bg-cell-active:     #183C72; /* Selected element / active drafting zone */
+
+  /* Vector Inks & Technical Pen Lines */
+  --ink-bright:         #00E5FF; /* Electric blueprint pen (vector focal points) */
+  --ink-secondary:      #00B4D8; /* Secondary vector paths & dimension lines */
+  --ink-rule:           rgba(0, 229, 255, 0.25); /* Hairline coordinate guides */
+  --ink-rule-subtle:    rgba(0, 229, 255, 0.08); /* Background drafting grid */
+  --ink-glow:           rgba(0, 229, 255, 0.45); /* Phosphor pen back-luminescence */
+
+  /* Readout & Technical Typography */
+  --ink-white:          #E0F2FE; /* Primary technical data & title blocks */
+  --ink-muted:          #7DD3FC; /* Metadata, units, parameter keys */
+  --ink-ghost:          #38658C; /* Disabled axes, inactive layers */
+
+  /* HUD Overrides & CAD Revision Accents */
+  --accent-amber:       #FF9900; /* Revision stamp / delta flag / cautionary note */
+  --accent-amber-glow:  rgba(255, 153, 0, 0.35);
+  --accent-crimson:     #FF3366; /* Critical structural warning / load violation */
+  --accent-emerald:     #00FFA3; /* Verified dimension / nominal calibration */
+
+  /* ---------------------------------------------------------------------------
+   * 3. TYPOGRAPHY SYSTEM
+   * ------------------------------------------------------------------------ */
+  --font-display: "Orbitron", -apple-system, sans-serif;
+  --font-sans:    "DM Sans", -apple-system, sans-serif;
+  --font-mono:    "Chivo Mono", monospace;
+
+  /* Font Scale & Metric Rhythms */
+  --text-micro:   0.625rem;  /* 10px — Axis labels, coordinate subtexts, stamps */
+  --text-meta:    0.75rem;   /* 12px — Monospace telemetry, revision tags */
+  --text-body:    0.875rem;  /* 14px — Standard CAD annotations & parameters */
+  --text-body-lg: 1.000rem;  /* 16px — High-readability technical summaries */
+  --text-h3:      1.250rem;  /* 20px — Structural component group headings */
+  --text-h2:      1.750rem;  /* 28px — Drawing sheet / viewport titles */
+  --text-h1:      2.500rem;  /* 40px — System HUD callouts & focal numbers */
+
+  /* Tracking & Letterspacing */
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0.00em;
+  --tracking-wide:   0.08em; /* Uppercase section labels */
+  --tracking-cad:    0.15em; /* Monospace coordinate readouts & title blocks */
+
+  /* ---------------------------------------------------------------------------
+   * 4. CORNER GEOMETRY (BORDER RADII & CHAMFERS)
+   * ------------------------------------------------------------------------ */
+  --radius-none:     0px;     /* Core CAD philosophy: crisp orthogonal joins */
+  --radius-micro:    1px;     /* Subtle precision rounding for tiny badges */
+  --radius-subtle:   2px;     /* Button & panel default */
+  
+  /* Precision Clipped/Chamfered Corners (45° Drafting Notch) */
+  --clip-chamfer-sm: polygon(
+    0 0,
+    calc(100% - 6px) 0, 100% 6px,
+    100% 100%,
+    6px 100%, 0 calc(100% - 6px)
+  );
+  --clip-chamfer-lg: polygon(
+    0 0,
+    calc(100% - 14px) 0, 100% 14px,
+    100% calc(100% - 14px), calc(100% - 14px) 100%,
+    0 100%
+  );
+
+  /* ---------------------------------------------------------------------------
+   * 5. ELEVATION & DEPTH (OPTICAL STACKING & WIREFRAME GLOWS)
+   * ------------------------------------------------------------------------ */
+  --elevation-flat:    none;
+  --elevation-sheet:   0 0 0 1px var(--ink-rule), inset 0 0 24px rgba(0, 229, 255, 0.03);
+  --elevation-panel:   0 4px 20px rgba(4, 11, 22, 0.85), 0 0 0 1px var(--ink-rule);
+  --elevation-hud:     0 0 16px var(--ink-glow), inset 0 0 12px rgba(0, 229, 255, 0.12);
+  --elevation-modal:   0 12px 48px rgba(4, 11, 22, 0.95), 0 0 0 1.5px var(--ink-bright);
+  --elevation-warning: 0 0 18px var(--accent-amber-glow), inset 0 0 8px rgba(255, 153, 0, 0.15);
+
+  /* ---------------------------------------------------------------------------
+   * 6. SPACING & SPATIAL CAD GRID
+   * ------------------------------------------------------------------------ */
+  --space-2xs:  2px;
+  --space-xs:   4px;
+  --space-sm:   8px;
+  --space-md:   16px;
+  --space-lg:   24px;  /* Matches 24px base drafting grid */
+  --space-xl:   32px;
+  --space-2xl:  48px;
+
+  /* Architectural Grid Backgrounds */
+  --grid-cad-major: 24px 24px linear-gradient(to right, var(--ink-rule-subtle) 1px, transparent 1px),
+                    24px 24px linear-gradient(to bottom, var(--ink-rule-subtle) 1px, transparent 1px);
+  --grid-cad-minor: 6px 6px linear-gradient(to right, rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+                    6px 6px linear-gradient(to bottom, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+
+  /* ---------------------------------------------------------------------------
+   * 7. BORDERS & TECHNICAL DIVIDERS
+   * ------------------------------------------------------------------------ */
+  --border-cad-hairline: 1px solid var(--ink-rule);
+  --border-cad-primary:  1.5px solid var(--ink-bright);
+  --border-cad-focus:    2px solid var(--ink-bright);
+  --border-cad-dashed:   1px dashed var(--ink-rule);
+  --border-cad-stamp:    1.5px solid var(--accent-amber);
+
+  /* ---------------------------------------------------------------------------
+   * 8. ICONOGRAPHY RULES
+   * ------------------------------------------------------------------------ */
+  --icon-size-sm:        14px;
+  --icon-size-md:        18px;
+  --icon-size-lg:        24px;
+  --icon-stroke-width:   1.5px;      /* Strictly matches --border-cad-primary */
+  --icon-stroke-linecap: square;     /* Technical drafting pen geometry */
+  --icon-stroke-linejoin: miter;     /* Crisp angular intersections */
+
+  /* ---------------------------------------------------------------------------
+   * 9. INTERACTION & FEEDBACK RULES
+   * ------------------------------------------------------------------------ */
+  --transition-instant: 75ms cubic-bezier(0, 0, 0.2, 1);  /* Instrument snap */
+  --transition-smooth:  150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* -----------------------------------------------------------------------------
+ * 10. COMPONENT BLUEPRINTS & ARCHETYPES
+ * -------------------------------------------------------------------------- */
+/* Base Viewport & Drafting Canvas */
+body, .blueprint-viewport {
+  background-color: var(--bg-cyanotype);
+  background-image: var(--grid-cad-major), var(--grid-cad-minor);
+  color: var(--ink-white);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Structural CAD Frame / Panel */
+.cad-panel {
+  position: relative;
+  background-color: var(--bg-cell);
+  border: var(--border-cad-hairline);
+  box-shadow: var(--elevation-panel);
+  padding: var(--space-lg);
+  border-radius: var(--radius-none);
+}
+
+/* Precision Corner Reticle Overlay on Panels */
+.cad-panel-reticle::before,
+.cad-panel-reticle::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--ink-bright);
+  pointer-events: none;
+}
+.cad-panel-reticle::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--ink-bright);
+  border-left: 2px solid var(--ink-bright);
+}
+.cad-panel-reticle::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--ink-bright);
+  border-right: 2px solid var(--ink-bright);
+}
+
+/* Monospace Coordinate & Data Readout */
+.cad-telemetry {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--ink-muted);
+  letter-spacing: var(--tracking-cad);
+  text-transform: uppercase;
+}
+
+.cad-telemetry-value {
+  color: var(--ink-bright);
+  font-weight: 600;
+}
+
+/* Primary Architectural Action Button */
+.cad-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  background-color: rgba(0, 229, 255, 0.08);
+  border: var(--border-cad-primary);
+  color: var(--ink-bright);
+  font-family: var(--font-display);
+  font-size: var(--text-meta);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  clip-path: var(--clip-chamfer-sm);
+  cursor: crosshair;
+  transition: background-color var(--transition-instant),
+              box-shadow var(--transition-instant),
+              transform var(--transition-instant);
+}
+
+.cad-btn-primary:hover {
+  background-color: var(--ink-bright);
+  color: var(--bg-deep-void);
+  box-shadow: var(--elevation-hud);
+}
+
+.cad-btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* CAD Revision / Warning Stamp */
+.cad-stamp-revision {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-sm);
+  border: var(--border-cad-stamp);
+  background-color: rgba(255, 153, 0, 0.1);
+  color: var(--accent-amber);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 700;
+  letter-spacing: var(--tracking-cad);
+  text-transform: uppercase;
+  box-shadow: var(--elevation-warning);
+}
+
+/* -----------------------------------------------------------------------------
+ * 11. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic purple/violet gradients on dark backgrounds.
+- NO soft gaussian blurred drop shadows (strictly use wireframe reticles and phosphor glows).
+- NO large round pill buttons (>2px radius) or bloated padding.
+- NO floating cards without hairline grid borders or structural frames.
+- NO untracked typefaces without precise monospace readouts or technical metadata.
+  </script>
+
+  <!-- =========================================================================
+       PAGE JAVASCRIPT LOGIC (Per agent.md Section 2)
+       ========================================================================= -->
+  <script>
+    // 1. Toast Notification System
+    function showToast(message, icon = "⌖") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `
+        <span class="toast-icon">${icon}</span>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 200);
+      }, 2400);
+    }
+
+    // 2. Audio Synthesizer for CAD Instruments
+    let audioCtx = null;
+    function triggerTestSound(type = 'primary') {
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        let freq = 880;
+        if (type === 'secondary') freq = 660;
+        if (type === 'amber') freq = 520;
+        if (type === 'emerald') freq = 1040;
+        if (type === 'danger') freq = 330;
+
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
+
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.08);
+      } catch (e) {
+        // Silent catch if audio not allowed
+      }
+      showToast(`Triggered ${type.toUpperCase()} instrument event!`);
+    }
+
+    // 3. Get Markdown Spec
+    function getMarkdownSpec() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    // 4. Header Action 1: Copy Style Tile
+    function copyHeaderTile() {
+      const md = getMarkdownSpec();
+      navigator.clipboard.writeText(md).then(() => {
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const originalHTML = copyBtn.innerHTML;
+          copyBtn.innerHTML = `<span>✓ Copied!</span>`;
+          setTimeout(() => { copyBtn.innerHTML = originalHTML; }, 2000);
+        }
+        showToast("Copied Industrial Blueprint HUD Style Tile to clipboard!");
+      }).catch(err => {
+        console.error("Clipboard write failed", err);
+      });
+    }
+
+    // 5. Header Action 2: Download Style Tile .md
+    function downloadHeaderTile() {
+      const md = getMarkdownSpec();
+      const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "style-tile-blueprint-hud.md";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-blueprint-hud.md!");
+    }
+
+    // 6. Header Action 3: Preview Style Tile Modal
+    function openSpecModal() {
+      const md = getMarkdownSpec();
+      document.getElementById("modal-markdown-content").textContent = md;
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    // 7. Swatch Hex Copy
+    function copyHex(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${varName} (${hex}) to clipboard!`);
+      });
+    }
+
+    // 8. Typography Tester
+    function switchTesterFont(fontName, btn) {
+      const input = document.getElementById("pangram-input");
+      if (!input) return;
+      document.querySelectorAll(".font-switch-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      if (fontName === 'Orbitron') input.style.fontFamily = 'var(--font-display)';
+      if (fontName === 'DM Sans') input.style.fontFamily = 'var(--font-sans)';
+      if (fontName === 'Chivo Mono') input.style.fontFamily = 'var(--font-mono)';
+
+      showToast(`Switched font to ${fontName}`);
+    }
+
+    function updateTesterSize(size) {
+      const input = document.getElementById("pangram-input");
+      const label = document.getElementById("type-size-val");
+      if (input) input.style.fontSize = `${size}px`;
+      if (label) label.textContent = `${size}px`;
+    }
+
+    // 9. Checkbox Toggle
+    function toggleCadCheckbox(row) {
+      const box = row.querySelector(".cad-checkbox-box");
+      if (box) {
+        box.classList.toggle("checked");
+        triggerTestSound('secondary');
+      }
+    }
+
+    // 10. Interactive Canvas Reticle
+    const viewport = document.getElementById("cad-viewport");
+    const crosshairH = document.getElementById("crosshair-h");
+    const crosshairV = document.getElementById("crosshair-v");
+    const crosshairBox = document.getElementById("crosshair-box");
+    const hudCoordReadout = document.getElementById("hud-coord-readout");
+
+    if (viewport) {
+      viewport.addEventListener("mousemove", (e) => {
+        const rect = viewport.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        if (crosshairH && crosshairV && crosshairBox) {
+          crosshairH.style.top = `${y}px`;
+          crosshairV.style.left = `${x}px`;
+          crosshairBox.style.top = `${y}px`;
+          crosshairBox.style.left = `${x}px`;
+          
+          const svgX = ((x / rect.width) * 800).toFixed(2);
+          const svgY = ((y / rect.height) * 480).toFixed(2);
+          const coordText = `X: ${svgX} Y: ${svgY}`;
+          
+          crosshairBox.textContent = coordText;
+          if (hudCoordReadout) hudCoordReadout.textContent = coordText;
+        }
+      });
+    }
+
+    // 11. Toggle SVG Layers
+    function toggleSvgLayer(layerId, btn) {
+      const layer = document.getElementById(layerId);
+      if (!layer) return;
+      const isVisible = layer.style.display !== 'none';
+      if (isVisible) {
+        layer.style.display = 'none';
+        btn.classList.remove('active');
+        btn.querySelector('span:last-child').textContent = '[OFF]';
+      } else {
+        layer.style.display = '';
+        btn.classList.add('active');
+        btn.querySelector('span:last-child').textContent = '[ON]';
+      }
+      triggerTestSound('secondary');
+    }
+
+    // 12. Add Revision Log
+    let revCounter = 104;
+    function addRevisionLog() {
+      const input = document.getElementById("revision-note-input");
+      const stream = document.getElementById("revision-stream");
+      if (!input || !stream) return;
+      const note = input.value.trim() || "Parameter tolerance calibrated.";
+      
+      const now = new Date();
+      const timeStr = now.toTimeString().substring(0, 8);
+      
+      const item = document.createElement("div");
+      item.className = "log-item amber";
+      item.textContent = `[${timeStr}] REV-${revCounter++}: ${note}`;
+      stream.prepend(item);
+      input.value = "";
+      triggerTestSound('amber');
+      showToast(`Applied Delta Stamp REV-${revCounter - 1}!`);
+    }
+
+    // Initialization
+    document.addEventListener("DOMContentLoaded", () => {
+      // Wire Header buttons
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyHeaderTile);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadHeaderTile);
+
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      // Populate visible code block
+      const visibleCode = document.getElementById("visible-markdown-code");
+      if (visibleCode) visibleCode.textContent = getMarkdownSpec();
+
+      // Modal key listener
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      // Update hero clock
+      function updateHeroClock() {
+        const el = document.getElementById("hero-clock");
+        if (el) {
+          const now = new Date();
+          el.textContent = now.toISOString().replace("T", " ").substring(0, 19) + " UTC";
+        }
+      }
+      setInterval(updateHeroClock, 1000);
+      updateHeroClock();
+    });
+  </script>
+</body>
+</html>

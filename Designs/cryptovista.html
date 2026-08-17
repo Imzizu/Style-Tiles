@@ -1,0 +1,2649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRYPTOVISTA — Neo-FinTech Minimalist Style Tile & Design System (TILE-003)</title>
+  <meta name="description" content="CryptoVista Design System Style Tile: Neo-FinTech Minimalist, Monochromatic Structured, Parametric Clay. 8pt grid, 1.5px structural borders, pill geometry, bento modularity, and Neon Mint momentum signals.">
+  
+  <!-- Web Fonts: Cabinet Grotesk (Fontshare) + Plus Jakarta Sans, Inter, Space Grotesk, JetBrains Mono (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,600,700,800,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. CRYPTOVISTA DESIGN TOKENS & SYSTEM VARIABLES
+       ========================================================================== */
+    :root {
+      /* Canvas & Surfaces */
+      --bg-canvas:              #FFFFFF; /* Pure Light Canvas Base */
+      --bg-surface:             #F5F6F8; /* Surface Neutral (Cards / Modules) */
+      --bg-surface-inverted:    #0F1115; /* Surface Inverted (Deep Pitch Black) */
+      --bg-surface-glass:       rgba(255, 255, 255, 0.75); /* Surface Glass */
+      --bg-surface-glass-dark:  rgba(15, 17, 21, 0.85);
+
+      /* Content & Typography */
+      --ink-primary:            #0A0B0D; /* Text Primary (High-Contrast Black) */
+      --ink-secondary:          #6C727F; /* Text Secondary / Muted (Neutral Slate) */
+      --ink-tertiary:           #9DA4B0; /* Text Tertiary / Inactive (Light Gray Trackers) */
+      --ink-inverted:           #FFFFFF; /* Inverted Contrast Text */
+
+      /* Brand Accents & Semantics */
+      --accent-primary:         #00E58F; /* Accent Primary (Neon Mint — Active Trend) */
+      --accent-primary-hover:   #00FF9E; /* Electric Hover Mint */
+      --accent-secondary:       #A7F3D0; /* Accent Secondary (Mint Haze — Pattern Fills) */
+      --status-negative:        #EF4444; /* Trend Negative (Soft Coral Red) */
+      --status-negative-bg:     #FEF2F2;
+      --status-neutral:         #6B7280; /* Trend Neutral (Muted Mid-Gray) */
+      --status-positive-bg:     #ECFDF5;
+
+      /* Typography Font Stacks */
+      --font-display:           "Cabinet Grotesk", "Aeonik", "Plus Jakarta Sans", -apple-system, sans-serif;
+      --font-sans:              "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+      --font-mono:              "Space Grotesk", "JetBrains Mono", monospace;
+
+      /* Corner Geometry (Border Radii) */
+      --radius-pill:            9999px; /* Action buttons, floating tags, ticker chips */
+      --radius-card:            28px;   /* Bento outer grid & major feature panels (28px - 32px) */
+      --radius-inner:           18px;   /* Internal image cutouts, mini modules (16px - 20px) */
+      --radius-sm:              8px;    /* Data tooltips, input focus indicators */
+
+      /* Elevation & Depth */
+      --elevation-base:         0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 8px -2px rgba(0, 0, 0, 0.03);
+      --elevation-card-hover:   0 0 0 1px rgba(10, 11, 13, 0.14), 0 12px 32px -4px rgba(0, 0, 0, 0.05);
+      --elevation-pill:         0 8px 24px -4px rgba(0, 0, 0, 0.06), 0 0 0 1px #0A0B0D;
+      --elevation-focus:        0 16px 32px -6px rgba(0, 0, 0, 0.10);
+      --elevation-glass:        0 8px 32px 0 rgba(0, 0, 0, 0.06);
+
+      /* Borders & Dividers */
+      --border-primary:         1.5px solid #0A0B0D;              /* Structural 1.5px Black */
+      --border-subtle:          1px solid rgba(10, 11, 13, 0.12); /* Grid dividers, light pills */
+      --border-active:          1.5px solid #00E58F;              /* Active indicator / accent */
+      --border-inverted:        1px solid #FFFFFF;                /* Inverted pill border */
+      --border-negative:        1.5px solid #EF4444;
+
+      /* Spacing Scale (8pt Grid / 4px micro-steps) */
+      --space-xs:               4px;
+      --space-sm:               8px;
+      --space-md:               16px;
+      --space-lg:               24px;
+      --space-xl:               36px;
+      --space-2xl:              48px;
+      --space-3xl:              64px;
+      --bento-padding:          20px;
+
+      /* Motion & Physics */
+      --ease-pill:              cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-chart:             cubic-bezier(0.2, 0, 0, 1);
+      --transition-fast:        150ms var(--ease-pill);
+      --transition-smooth:      200ms var(--ease-chart);
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE FOUNDATIONS
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      line-height: 1.50;
+      letter-spacing: -0.01em;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Selection High-Contrast Neon Mint */
+    ::selection {
+      background: var(--accent-primary);
+      color: var(--ink-primary);
+    }
+
+    /* Parametric Topographical Canvas Mesh Background */
+    .parametric-bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(0, 229, 143, 0.04) 0%, transparent 60%),
+        radial-gradient(rgba(10, 11, 13, 0.04) 1px, transparent 1px);
+      background-size: 100% 100%, 32px 32px;
+    }
+
+    .layout-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+
+    /* ==========================================================================
+       3. MANDATORY TOP NAVIGATION HEADER BAR (agent.md Compliant)
+       ========================================================================== */
+    .style-tile-header {
+      background: var(--bg-surface-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      padding: var(--space-sm) var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.03);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      text-decoration: none;
+      padding: 6px 16px;
+      background: #FFFFFF;
+      border: var(--border-subtle);
+      border-radius: var(--radius-pill);
+      transition: var(--transition-fast);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .nav-back-link:hover {
+      border-color: var(--ink-primary);
+      transform: translateX(-2px);
+    }
+
+    .nav-back-link .icon {
+      font-size: 14px;
+      transition: transform 150ms ease;
+    }
+
+    .nav-back-link:hover .icon {
+      transform: translateX(-2px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: +0.08em;
+      color: var(--ink-primary);
+      background: var(--accent-primary);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      background: var(--bg-surface);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      border: var(--border-subtle);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 180ms var(--ease-pill);
+    }
+
+    .btn-preview {
+      background: #FFFFFF;
+      color: var(--ink-primary);
+      border: var(--border-subtle);
+    }
+
+    .btn-preview:hover {
+      border-color: var(--ink-primary);
+      background: var(--bg-surface);
+    }
+
+    .btn-copy {
+      background: var(--ink-primary);
+      color: #FFFFFF;
+      border: 1.5px solid var(--ink-primary);
+    }
+
+    .btn-copy:hover {
+      background: #1F242D;
+      transform: scale(1.02);
+    }
+
+    .btn-download {
+      background: var(--accent-primary);
+      color: var(--ink-primary);
+      border: 1.5px solid var(--ink-primary);
+    }
+
+    .btn-download:hover {
+      background: var(--accent-primary-hover);
+      transform: scale(1.02);
+    }
+
+    /* ==========================================================================
+       4. TYPOGRAPHY HIERARCHY & TEXT HELPERS
+       ========================================================================== */
+    .text-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.75rem, 5.5vw, 4.25rem);
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--ink-primary);
+    }
+
+    .text-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.125rem);
+      line-height: 1.15;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .text-h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      line-height: 1.25;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--ink-primary);
+    }
+
+    .text-metric {
+      font-family: var(--font-mono);
+      font-size: 1.375rem;
+      line-height: 1.20;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .text-meta {
+      font-family: var(--font-sans);
+      font-size: 11.5px;
+      line-height: 1.00;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: +0.08em;
+      color: var(--ink-secondary);
+    }
+
+    .text-body {
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      line-height: 1.50;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--ink-secondary);
+    }
+
+    .text-body strong {
+      color: var(--ink-primary);
+      font-weight: 600;
+    }
+
+    .symbol-glyph {
+      display: inline-block;
+      vertical-align: baseline;
+      font-style: normal;
+    }
+
+    /* ==========================================================================
+       5. PILL ACTION MODULES & INTERACTION PHYSICS
+       ========================================================================== */
+    .pill-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #FFFFFF;
+      color: var(--ink-primary);
+      border: var(--border-primary);
+      padding: 10px 14px 10px 22px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: var(--elevation-pill);
+      transition: all 220ms var(--ease-pill);
+      user-select: none;
+    }
+
+    .pill-action-btn .btn-icon-bubble {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 1px solid rgba(10, 11, 13, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-primary);
+      transition: all 220ms var(--ease-pill);
+    }
+
+    .pill-action-btn .btn-icon-bubble svg {
+      transition: transform 220ms var(--ease-pill);
+    }
+
+    /* Hover rule: Invert target circle, rotate arrow 45°, scale 1.02x */
+    .pill-action-btn:hover {
+      transform: scale(1.02);
+      background: #FFFFFF;
+      box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.10), 0 0 0 1.5px #0A0B0D;
+    }
+
+    .pill-action-btn:hover .btn-icon-bubble {
+      background: var(--ink-primary);
+      color: #FFFFFF;
+      border-color: var(--ink-primary);
+    }
+
+    .pill-action-btn:hover .btn-icon-bubble svg {
+      transform: rotate(45deg);
+    }
+
+    .pill-action-btn:active {
+      transform: scale(0.98);
+      background: #F0F2F5;
+    }
+
+    /* Dark Inverted Pill Variant */
+    .pill-action-dark {
+      background: var(--bg-surface-inverted);
+      color: #FFFFFF;
+      border: var(--border-inverted);
+      box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.25);
+    }
+
+    .pill-action-dark .btn-icon-bubble {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+    }
+
+    .pill-action-dark:hover {
+      background: #1A1D24;
+      border-color: var(--accent-primary);
+      box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.35);
+    }
+
+    .pill-action-dark:hover .btn-icon-bubble {
+      background: var(--accent-primary);
+      color: var(--ink-primary);
+      border-color: var(--accent-primary);
+    }
+
+    /* Mint Primary CTA Pill */
+    .pill-action-mint {
+      background: var(--accent-primary);
+      color: var(--ink-primary);
+      border: var(--border-primary);
+    }
+
+    .pill-action-mint .btn-icon-bubble {
+      background: #FFFFFF;
+      border-color: rgba(10, 11, 13, 0.15);
+      color: var(--ink-primary);
+    }
+
+    .pill-action-mint:hover {
+      background: var(--accent-primary-hover);
+      box-shadow: 0 12px 30px -4px rgba(0, 229, 143, 0.30), 0 0 0 1.5px #0A0B0D;
+    }
+
+    .pill-action-mint:hover .btn-icon-bubble {
+      background: var(--ink-primary);
+      color: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       6. BENTO GRID ARCHITECTURE & PARAMETRIC CONTAINERS
+       ========================================================================== */
+    .bento-outer-frame {
+      background: var(--bg-surface);
+      border: var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: var(--bento-padding);
+      box-shadow: var(--elevation-base);
+      position: relative;
+    }
+
+    .bento-subcard {
+      background: #FFFFFF;
+      border: var(--border-subtle);
+      border-radius: var(--radius-inner);
+      padding: var(--space-lg);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+      transition: all 200ms var(--ease-pill);
+      position: relative;
+    }
+
+    .bento-subcard:hover {
+      border-color: rgba(10, 11, 13, 0.22);
+      box-shadow: var(--elevation-card-hover);
+    }
+
+    .bento-subcard-dark {
+      background: var(--bg-surface-inverted);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .bento-subcard-dark:hover {
+      border-color: rgba(0, 229, 143, 0.4);
+    }
+
+    /* Section Spacing & Headers */
+    .section-block {
+      padding: var(--space-3xl) 0;
+      border-bottom: 1px solid rgba(10, 11, 13, 0.06);
+    }
+
+    .section-header {
+      margin-bottom: var(--space-xl);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .section-eyebrow-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: var(--space-sm);
+    }
+
+    .pill-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: +0.06em;
+      text-transform: uppercase;
+      background: #FFFFFF;
+      border: var(--border-subtle);
+      color: var(--ink-primary);
+    }
+
+    .pill-indicator-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+    }
+
+    /* ==========================================================================
+       7. HERO BANNER SECTION
+       ========================================================================== */
+    .hero-banner {
+      padding: var(--space-2xl) 0 var(--space-3xl);
+    }
+
+    .hero-bento-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    @media (max-width: 992px) {
+      .hero-bento-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-main-card {
+      background: #FFFFFF;
+      border: var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--elevation-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(0, 229, 143, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .chip-tag {
+      font-family: var(--font-sans);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: +0.04em;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      border: var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+    }
+
+    .chip-tag-black {
+      background: var(--bg-surface-inverted);
+      color: #FFFFFF;
+      border: 1px solid var(--bg-surface-inverted);
+    }
+
+    .chip-tag-mint {
+      background: var(--status-positive-bg);
+      color: #065F46;
+      border: 1px solid #A7F3D0;
+    }
+
+    .hero-lead-text {
+      font-size: 16px;
+      line-height: 1.60;
+      color: var(--ink-secondary);
+      margin: var(--space-md) 0 var(--space-xl);
+      max-width: 620px;
+    }
+
+    .hero-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: center;
+    }
+
+    .hero-side-column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    /* Parametric Clay Topographical Preview Card */
+    .parametric-clay-card {
+      background: var(--bg-surface-inverted);
+      border-radius: var(--radius-card);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: var(--space-lg);
+      color: #FFFFFF;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 260px;
+    }
+
+    .parametric-contour-svg {
+      position: absolute;
+      right: -20px;
+      bottom: -20px;
+      width: 280px;
+      height: 240px;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .ticker-bar-stream {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #FFFFFF;
+      border: var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
+      box-shadow: var(--elevation-base);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .ticker-bar-stream::-webkit-scrollbar { display: none; }
+
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .ticker-trend-pos {
+      color: #059669;
+      font-size: 11px;
+    }
+
+    .ticker-trend-neg {
+      color: var(--status-negative);
+      font-size: 11px;
+    }
+
+    /* ==========================================================================
+       8. COLOR PALETTE MATRIX & TOKENS
+       ========================================================================== */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .swatch-card {
+      background: #FFFFFF;
+      border: var(--border-subtle);
+      border-radius: var(--radius-inner);
+      padding: var(--space-md);
+      cursor: pointer;
+      transition: all 180ms var(--ease-pill);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--ink-primary);
+      box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.08);
+    }
+
+    .swatch-pill-preview {
+      height: 72px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 8px 12px;
+      position: relative;
+    }
+
+    .swatch-copy-hint {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: +0.06em;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--ink-primary);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: all 150ms ease;
+    }
+
+    .swatch-card:hover .swatch-copy-hint {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .swatch-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .swatch-name {
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+    }
+
+    .swatch-role {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      color: var(--ink-tertiary);
+      margin-top: 4px;
+    }
+
+    /* ==========================================================================
+       9. TYPOGRAPHY SPECIMENS & HIERARCHY
+       ========================================================================== */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: var(--space-lg);
+    }
+
+    @media (max-width: 992px) {
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .type-hierarchy-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .type-hierarchy-table th {
+      text-align: left;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: +0.08em;
+      color: var(--ink-secondary);
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(10, 11, 13, 0.1);
+    }
+
+    .type-hierarchy-table td {
+      padding: 16px;
+      border-bottom: 1px solid rgba(10, 11, 13, 0.06);
+      vertical-align: middle;
+    }
+
+    .type-row-preview {
+      color: var(--ink-primary);
+    }
+
+    .type-token-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: var(--bg-surface);
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      border: var(--border-subtle);
+      white-space: nowrap;
+    }
+
+    .type-interactive-card {
+      background: #FFFFFF;
+      border: var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      box-shadow: var(--elevation-base);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .type-tester-input {
+      width: 100%;
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+      border: none;
+      border-bottom: 1.5px solid var(--ink-primary);
+      padding: 8px 0;
+      background: transparent;
+      outline: none;
+    }
+
+    /* Typographic Symbols Showcase */
+    .symbols-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: var(--space-md);
+    }
+
+    .symbol-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface);
+      border: var(--border-subtle);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .symbol-chip .glyph {
+      font-size: 16px;
+      color: var(--accent-primary);
+      background: var(--bg-surface-inverted);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ==========================================================================
+       10. CORNER GEOMETRY & ELEVATION VISUALIZER
+       ========================================================================== */
+    .geometry-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+    }
+
+    @media (max-width: 900px) {
+      .geometry-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .geometry-card {
+      background: #FFFFFF;
+      border: var(--border-subtle);
+      border-radius: var(--radius-inner);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-md);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .radius-visual-box {
+      width: 88px;
+      height: 88px;
+      background: var(--bg-surface);
+      border: 1.5px solid var(--ink-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      transition: all 200ms ease;
+    }
+
+    .radius-visual-box:hover {
+      background: var(--accent-primary);
+      transform: scale(1.05);
+    }
+
+    /* ==========================================================================
+       11. COMPONENT ARCHETYPE GALLERY
+       ========================================================================== */
+    .components-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .archetype-box {
+      background: #FFFFFF;
+      border: var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      box-shadow: var(--elevation-base);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .archetype-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid rgba(10, 11, 13, 0.08);
+    }
+
+    /* Interactive Form Inputs */
+    .input-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-label {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+    }
+
+    .text-input-pill {
+      width: 100%;
+      background: var(--bg-surface);
+      border: var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      color: var(--ink-primary);
+      outline: none;
+      transition: all 180ms ease;
+    }
+
+    .text-input-pill:focus {
+      background: #FFFFFF;
+      border-color: var(--ink-primary);
+      box-shadow: var(--elevation-focus);
+    }
+
+    /* Segmented Radio Pill Control */
+    .segmented-pill-bar {
+      display: inline-flex;
+      background: var(--bg-surface);
+      border: var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .segmented-pill-item {
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+
+    .segmented-pill-item.active {
+      background: #FFFFFF;
+      color: var(--ink-primary);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(10, 11, 13, 0.08);
+    }
+
+    /* ==========================================================================
+       12. LIVING MICRO-EXPERIENCE: CRYPTOVISTA PRO TERMINAL & BENTO DASHBOARD
+       ========================================================================== */
+    .terminal-experience-frame {
+      background: var(--bg-surface);
+      border: var(--border-primary);
+      border-radius: var(--radius-card);
+      padding: var(--bento-padding);
+      box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .terminal-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: var(--space-md);
+      margin-bottom: var(--space-md);
+      border-bottom: 1px solid rgba(10, 11, 13, 0.1);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .terminal-badge-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pulse-dot-mint {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      box-shadow: 0 0 0 2px rgba(0, 229, 143, 0.3);
+      animation: pulseMint 2s infinite;
+    }
+
+    @keyframes pulseMint {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
+
+    .terminal-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: var(--space-md);
+    }
+
+    @media (max-width: 1024px) {
+      .terminal-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Interactive Asset Allocation & Momentum Chart */
+    .chart-panel-card {
+      background: #FFFFFF;
+      border: var(--border-subtle);
+      border-radius: var(--radius-inner);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-lg);
+      position: relative;
+    }
+
+    .chart-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .chart-metric-huge {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chart-metric-badge {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: #065F46;
+      background: var(--status-positive-bg);
+      border: 1px solid #A7F3D0;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    /* Bar Chart with Micro-Interactions */
+    .momentum-bars-container {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      height: 180px;
+      padding: 10px 0;
+      position: relative;
+    }
+
+    .chart-bar-column {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      position: relative;
+      transition: opacity 200ms var(--ease-chart);
+    }
+
+    /* Inactive bars: diagonal hatch / mint-outline */
+    .chart-bar-fill {
+      width: 100%;
+      border-radius: 8px 8px 4px 4px;
+      border: 1.5px solid #A7F3D0;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(167, 243, 208, 0.35),
+        rgba(167, 243, 208, 0.35) 4px,
+        transparent 4px,
+        transparent 8px
+      );
+      transition: all 200ms var(--ease-chart);
+      position: relative;
+    }
+
+    /* Active bar: solid #00E58F fill */
+    .chart-bar-column.active .chart-bar-fill,
+    .chart-bar-column:hover .chart-bar-fill {
+      background: var(--accent-primary);
+      border-color: #0A0B0D;
+      box-shadow: 0 4px 12px rgba(0, 229, 143, 0.35);
+    }
+
+    /* Siblings dim to 40% when container is hovered */
+    .momentum-bars-container:hover .chart-bar-column:not(:hover) {
+      opacity: 0.40;
+    }
+
+    .chart-bar-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+    }
+
+    /* Floating Tooltip with Monospaced Value */
+    .chart-floating-tooltip {
+      position: absolute;
+      top: -34px;
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      background: var(--bg-surface-inverted);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: all 180ms ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 10;
+    }
+
+    .chart-floating-tooltip::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 4px 4px 0;
+      border-style: solid;
+      border-color: var(--bg-surface-inverted) transparent transparent;
+    }
+
+    .chart-bar-column:hover .chart-floating-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Tactical Swap / Execution Panel */
+    .swap-panel-card {
+      background: #FFFFFF;
+      border: var(--border-subtle);
+      border-radius: var(--radius-inner);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .swap-token-box {
+      background: var(--bg-surface);
+      border: var(--border-subtle);
+      border-radius: 14px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .swap-token-box input {
+      border: none;
+      background: transparent;
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      outline: none;
+      width: 120px;
+    }
+
+    .token-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFFFFF;
+      border: var(--border-subtle);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    /* Live Telemetry Trades Table */
+    .trades-table-card {
+      grid-column: 1 / -1;
+      background: #FFFFFF;
+      border: var(--border-subtle);
+      border-radius: var(--radius-inner);
+      padding: var(--space-lg);
+    }
+
+    .trades-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .trades-table th {
+      text-align: left;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: +0.06em;
+      color: var(--ink-secondary);
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(10, 11, 13, 0.08);
+    }
+
+    .trades-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(10, 11, 13, 0.04);
+      color: var(--ink-primary);
+      vertical-align: middle;
+    }
+
+    /* ==========================================================================
+       13. STYLE TILE PROMPT CODE DRAWER & MODAL
+       ========================================================================== */
+    .prompt-drawer-card {
+      background: var(--bg-surface-inverted);
+      border-radius: var(--radius-card);
+      border: 1.5px solid #0A0B0D;
+      padding: var(--space-2xl);
+      color: #FFFFFF;
+      box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .code-editor-frame {
+      background: #060709;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-inner);
+      padding: var(--space-lg);
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      line-height: 1.60;
+      color: #D1D5DB;
+      overflow-x: auto;
+      max-height: 480px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+      white-space: pre;
+    }
+
+    /* Modal Backdrop for Preview */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 17, 21, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 220ms ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-window {
+      background: #FFFFFF;
+      border: var(--border-primary);
+      border-radius: var(--radius-card);
+      max-width: 860px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.3);
+      transform: translateY(16px);
+      transition: transform 220ms var(--ease-pill);
+      overflow: hidden;
+    }
+
+    .modal-backdrop.open .modal-window {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-surface);
+    }
+
+    .modal-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-footer {
+      padding: var(--space-md) var(--space-lg);
+      border-top: var(--border-subtle);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      background: var(--bg-surface);
+    }
+
+    /* Toast Notification Element */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast-message {
+      background: var(--bg-surface-inverted);
+      color: #FFFFFF;
+      border: 1px solid var(--accent-primary);
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 24px -4px rgba(0, 0, 0, 0.25);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 220ms var(--ease-pill);
+    }
+
+    .toast-message.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Parametric Background Mesh Overlay -->
+  <div class="parametric-bg-grid"></div>
+
+  <!-- 1. MANDATORY TOP NAVIGATION HEADER BAR (agent.md compliant) -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-003</span>
+      <span class="design-title">CryptoVista</span>
+      <span class="design-vibe-tag">Neo-FinTech Minimalist • Parametric Clay</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-cryptovista.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+    
+    <!-- ========================================================================
+         2. HERO DISPLAY BANNER & VIBE NARRATIVE
+         ======================================================================== -->
+    <section class="hero-banner">
+      <div class="hero-bento-grid">
+        
+        <!-- Left Bento: Main Display Hero -->
+        <div class="hero-main-card">
+          <div>
+            <div class="hero-badge-chips">
+              <span class="chip-tag chip-tag-black">TILE-003 // SPECIFICATION</span>
+              <span class="chip-tag chip-tag-mint">✦ NEON MINT ACCENTS</span>
+              <span class="chip-tag">8PT GRID ARCHITECTURE</span>
+              <span class="chip-tag">PARAMETRIC CLAY</span>
+            </div>
+
+            <h1 class="text-display">
+              CryptoVista
+            </h1>
+            
+            <p class="hero-lead-text">
+              A hyper-structured Neo-FinTech design language combining high-contrast monochrome architecture, tactile parametric clay surfaces, precision 1.5px structural borders, and electric Neon Mint momentum signals.
+            </p>
+          </div>
+
+          <div class="hero-actions-row">
+            <!-- Pill Action Module (Exact specified physics) -->
+            <button class="pill-action-btn pill-action-mint" onclick="copyMasterTilePrompt()" title="Copy Style Tile for AI Coding Agent">
+              <span>Copy Prompt for Agent</span>
+              <div class="btn-icon-bubble">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </div>
+            </button>
+
+            <a href="#interactive-telemetry" class="pill-action-btn" title="Explore Living Telemetry & Bento Simulator">
+              <span>Explore Telemetry</span>
+              <div class="btn-icon-bubble">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Bento: Parametric Clay & Telemetry Stream -->
+        <div class="hero-side-column">
+          <!-- Parametric Clay Topographical Card -->
+          <div class="parametric-clay-card">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <span class="text-meta" style="color: #9DA4B0;">PARAMETRIC CLAY TERRAIN</span>
+                <span class="design-code" style="font-size: 10px; padding: 2px 8px;">RENDER: MATTE</span>
+              </div>
+              <div class="text-h3" style="color: #FFFFFF; font-size: 1.1rem; max-width: 240px;">
+                Layered tactile contours with 1.5px precision containment.
+              </div>
+            </div>
+
+            <!-- Topographical SVG Contour lines -->
+            <svg class="parametric-contour-svg" viewBox="0 0 200 200" fill="none" stroke="currentColor">
+              <path d="M10 180 C 40 140, 80 150, 110 110 C 140 70, 170 90, 195 50" stroke="#00E58F" stroke-width="2" />
+              <path d="M10 150 C 50 120, 90 130, 120 90 C 150 50, 180 70, 195 30" stroke="#FFFFFF" stroke-width="1.5" />
+              <path d="M10 120 C 60 100, 100 110, 130 70 C 160 30, 185 50, 195 10" stroke="#A7F3D0" stroke-width="1.5" stroke-dasharray="3 3" />
+              <path d="M10 90 C 70 80, 110 90, 140 50 C 170 10, 190 30, 195 0" stroke="#FFFFFF" stroke-width="1" />
+            </svg>
+
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; position: relative; z-index: 1;">
+              <div>
+                <span class="text-meta" style="color: #6C727F;">ELEVATION SYSTEM</span>
+                <div class="text-metric" style="color: #00E58F; font-size: 1.1rem;">0 8px 24px -4px</div>
+              </div>
+              <span class="chip-tag chip-tag-black" style="border-color: rgba(255,255,255,0.2);">✦ 3D DEPTH</span>
+            </div>
+          </div>
+
+          <!-- Live Market Ticker Pill Stream -->
+          <div class="ticker-bar-stream">
+            <span class="text-meta" style="color: var(--ink-primary); font-size: 11px; margin-right: 4px;">LIVE STREAM:</span>
+            <div class="ticker-item">
+              <span>BTC</span>
+              <span>$94,820.50</span>
+              <span class="ticker-trend-pos">+4.82% ↗</span>
+            </div>
+            <span style="color: var(--border-subtle);">•</span>
+            <div class="ticker-item">
+              <span>ETH</span>
+              <span>$3,450.12</span>
+              <span class="ticker-trend-pos">+6.14% ↗</span>
+            </div>
+            <span style="color: var(--border-subtle);">•</span>
+            <div class="ticker-item">
+              <span>SOL</span>
+              <span>$212.80</span>
+              <span class="ticker-trend-pos">+12.40% ↗</span>
+            </div>
+            <span style="color: var(--border-subtle);">•</span>
+            <div class="ticker-item">
+              <span>VISTA</span>
+              <span>$48.90</span>
+              <span class="ticker-trend-pos">+18.5% ↗</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         3. COLOR PALETTE MATRIX & ROLES
+         ======================================================================== -->
+    <section class="section-block" id="color-palette">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow-row">
+            <span class="pill-indicator"><span class="pill-indicator-dot"></span> 01 // PALETTE MATRIX</span>
+            <span class="text-meta">HEX CODES & CSS TOKENS</span>
+          </div>
+          <h2 class="text-h2">Color Roles & Surface Dynamics</h2>
+        </div>
+        <p class="text-body" style="max-width: 460px;">
+          High-contrast light surfaces framed with crisp 1.5px structural pitch-black borders and high-energy Neon Mint momentum indicators.
+        </p>
+      </div>
+
+      <div class="palette-grid">
+        
+        <!-- Canvas Base -->
+        <div class="swatch-card" onclick="copySwatchHex('#FFFFFF', 'Canvas Base')">
+          <div class="swatch-pill-preview" style="background-color: #FFFFFF;">
+            <span class="swatch-copy-hint">Copy #FFFFFF</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Canvas Base</span>
+            <span class="swatch-hex">#FFFFFF</span>
+            <span class="swatch-role">--bg-canvas • Pure Light Canvas Base</span>
+          </div>
+        </div>
+
+        <!-- Surface Neutral -->
+        <div class="swatch-card" onclick="copySwatchHex('#F5F6F8', 'Surface Neutral')">
+          <div class="swatch-pill-preview" style="background-color: #F5F6F8;">
+            <span class="swatch-copy-hint">Copy #F5F6F8</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Surface Neutral</span>
+            <span class="swatch-hex">#F5F6F8</span>
+            <span class="swatch-role">--bg-surface • Cards & Bento Modules</span>
+          </div>
+        </div>
+
+        <!-- Surface Inverted -->
+        <div class="swatch-card" onclick="copySwatchHex('#0F1115', 'Surface Inverted')">
+          <div class="swatch-pill-preview" style="background-color: #0F1115;">
+            <span class="swatch-copy-hint" style="background: #00E58F;">Copy #0F1115</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Surface Inverted</span>
+            <span class="swatch-hex">#0F1115</span>
+            <span class="swatch-role">--bg-surface-inverted • Pitch Black Panels</span>
+          </div>
+        </div>
+
+        <!-- Text Primary -->
+        <div class="swatch-card" onclick="copySwatchHex('#0A0B0D', 'Text Primary')">
+          <div class="swatch-pill-preview" style="background-color: #0A0B0D;">
+            <span class="swatch-copy-hint" style="background: #00E58F;">Copy #0A0B0D</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Text Primary</span>
+            <span class="swatch-hex">#0A0B0D</span>
+            <span class="swatch-role">--ink-primary • High-Contrast Black</span>
+          </div>
+        </div>
+
+        <!-- Text Secondary -->
+        <div class="swatch-card" onclick="copySwatchHex('#6C727F', 'Text Secondary')">
+          <div class="swatch-pill-preview" style="background-color: #6C727F;">
+            <span class="swatch-copy-hint">Copy #6C727F</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Text Secondary</span>
+            <span class="swatch-hex">#6C727F</span>
+            <span class="swatch-role">--ink-secondary • Neutral Slate</span>
+          </div>
+        </div>
+
+        <!-- Accent Primary (Neon Mint) -->
+        <div class="swatch-card" onclick="copySwatchHex('#00E58F', 'Neon Mint')">
+          <div class="swatch-pill-preview" style="background-color: #00E58F;">
+            <span class="swatch-copy-hint">Copy #00E58F</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Neon Mint (Primary Accent)</span>
+            <span class="swatch-hex">#00E58F</span>
+            <span class="swatch-role">--accent-primary • Active Trend / Momentum</span>
+          </div>
+        </div>
+
+        <!-- Accent Secondary (Mint Haze) -->
+        <div class="swatch-card" onclick="copySwatchHex('#A7F3D0', 'Mint Haze')">
+          <div class="swatch-pill-preview" style="background-color: #A7F3D0;">
+            <span class="swatch-copy-hint">Copy #A7F3D0</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Mint Haze (Secondary Accent)</span>
+            <span class="swatch-hex">#A7F3D0</span>
+            <span class="swatch-role">--accent-secondary • Pattern Fills / Bars</span>
+          </div>
+        </div>
+
+        <!-- Trend Negative -->
+        <div class="swatch-card" onclick="copySwatchHex('#EF4444', 'Trend Negative')">
+          <div class="swatch-pill-preview" style="background-color: #EF4444;">
+            <span class="swatch-copy-hint">Copy #EF4444</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Trend Negative</span>
+            <span class="swatch-hex">#EF4444</span>
+            <span class="swatch-role">--status-negative • Soft Coral Red</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         4. TYPOGRAPHY SYSTEM & HIERARCHY SPECIMENS
+         ======================================================================== -->
+    <section class="section-block" id="typography-system">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow-row">
+            <span class="pill-indicator"><span class="pill-indicator-dot"></span> 02 // TYPOGRAPHY</span>
+            <span class="text-meta">FONTS, SCALES & LOCKUPS</span>
+          </div>
+          <h2 class="text-h2">Typographic Scale & Pairings</h2>
+        </div>
+        <p class="text-body" style="max-width: 460px;">
+          Cabinet Grotesk display headings paired with Plus Jakarta Sans body and monospaced numeric tickers.
+        </p>
+      </div>
+
+      <div class="type-specimen-grid">
+        
+        <!-- Left: Hierarchy Scale Table -->
+        <div class="bento-outer-frame" style="padding: 0; overflow: hidden;">
+          <table class="type-hierarchy-table">
+            <thead>
+              <tr>
+                <th>Level</th>
+                <th>Sample Preview</th>
+                <th>Token Specs</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="type-token-badge">H1 Display</span></td>
+                <td><div class="type-row-preview" style="font-family: var(--font-display); font-size: 28px; font-weight: 700; letter-spacing: -0.03em;">Asset Intelligence</div></td>
+                <td><span class="text-meta" style="font-size: 10px;">48–64px / 1.05 / 700</span></td>
+              </tr>
+              <tr>
+                <td><span class="type-token-badge">H2 Title</span></td>
+                <td><div class="type-row-preview" style="font-family: var(--font-display); font-size: 20px; font-weight: 600; letter-spacing: -0.02em;">Algorithmic Telemetry</div></td>
+                <td><span class="text-meta" style="font-size: 10px;">28–34px / 1.15 / 600</span></td>
+              </tr>
+              <tr>
+                <td><span class="type-token-badge">Metric</span></td>
+                <td><div class="type-row-preview" style="font-family: var(--font-mono); font-size: 18px; font-weight: 600;">$148,920.40 USD</div></td>
+                <td><span class="text-meta" style="font-size: 10px;">20–24px / 1.20 / Mono</span></td>
+              </tr>
+              <tr>
+                <td><span class="type-token-badge">Micro-Label</span></td>
+                <td><div class="type-row-preview" style="font-family: var(--font-sans); font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: +0.08em; color: var(--ink-secondary);">PORTFOLIO YIELD</div></td>
+                <td><span class="text-meta" style="font-size: 10px;">11–13px / +0.08em</span></td>
+              </tr>
+              <tr>
+                <td><span class="type-token-badge">Body</span></td>
+                <td><div class="type-row-preview" style="font-family: var(--font-sans); font-size: 14px; font-weight: 400; color: var(--ink-secondary);">Deterministic execution over liquid orderbooks.</div></td>
+                <td><span class="text-meta" style="font-size: 10px;">14–15px / 1.50 / -0.01em</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Right: Interactive Type Tester & Custom Symbols -->
+        <div class="type-interactive-card">
+          <div>
+            <span class="text-meta" style="color: var(--ink-secondary);">INTERACTIVE TYPOGRAPHY TESTER</span>
+            <div style="margin-top: 12px;">
+              <input type="text" class="type-tester-input" id="type-live-input" value="✦ Institutional Momentum $94,820 ↗" title="Type to test typographic rendering">
+            </div>
+            <p class="text-body" style="font-size: 13px; margin-top: 8px;">
+              Test custom phrases, tickers, or headings directly in the Cabinet Grotesk + Space Grotesk lockup.
+            </p>
+          </div>
+
+          <div>
+            <span class="text-meta" style="color: var(--ink-secondary);">INTEGRATED TYPOGRAPHIC GLYPHS & SYMBOLS</span>
+            <div class="symbols-row">
+              <div class="symbol-chip">
+                <span class="glyph">✦</span>
+                <span>Node Spark</span>
+              </div>
+              <div class="symbol-chip">
+                <span class="glyph">↗</span>
+                <span>Action Trigger</span>
+              </div>
+              <div class="symbol-chip">
+                <span class="glyph">×</span>
+                <span>Dismiss / Clear</span>
+              </div>
+              <div class="symbol-chip">
+                <span class="glyph">〰</span>
+                <span>Directional Sparkline</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         5. CORNER GEOMETRY & ELEVATION SYSTEM
+         ======================================================================== -->
+    <section class="section-block" id="corner-geometry">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow-row">
+            <span class="pill-indicator"><span class="pill-indicator-dot"></span> 03 // GEOMETRY & DEPTH</span>
+            <span class="text-meta">RADII & SHADOW ARCHITECTURE</span>
+          </div>
+          <h2 class="text-h2">Corner Geometry (Border Radii)</h2>
+        </div>
+        <p class="text-body" style="max-width: 460px;">
+          Strict 4-tier radius hierarchy from 9999px pill action modules down to 28px bento containers and 8px micro tooltips.
+        </p>
+      </div>
+
+      <div class="geometry-grid">
+        
+        <!-- Pill Full Radius -->
+        <div class="geometry-card">
+          <div class="radius-visual-box" style="border-radius: 9999px; width: 110px; height: 50px;">
+            9999px
+          </div>
+          <div>
+            <div class="text-h3" style="font-size: 1rem;">radius-pill</div>
+            <span class="text-meta" style="font-size: 10px;">Buttons, tags & ticker chips</span>
+          </div>
+        </div>
+
+        <!-- Card Container Radius -->
+        <div class="geometry-card">
+          <div class="radius-visual-box" style="border-radius: 28px;">
+            28px–32px
+          </div>
+          <div>
+            <div class="text-h3" style="font-size: 1rem;">radius-card</div>
+            <span class="text-meta" style="font-size: 10px;">Outer bento & feature frames</span>
+          </div>
+        </div>
+
+        <!-- Inner Module Radius -->
+        <div class="geometry-card">
+          <div class="radius-visual-box" style="border-radius: 18px;">
+            16px–20px
+          </div>
+          <div>
+            <div class="text-h3" style="font-size: 1rem;">radius-inner</div>
+            <span class="text-meta" style="font-size: 10px;">Internal nested mini modules</span>
+          </div>
+        </div>
+
+        <!-- Micro Tooltip Radius -->
+        <div class="geometry-card">
+          <div class="radius-visual-box" style="border-radius: 8px; width: 64px; height: 64px;">
+            8px
+          </div>
+          <div>
+            <div class="text-h3" style="font-size: 1rem;">radius-sm</div>
+            <span class="text-meta" style="font-size: 10px;">Data tooltips & input focus</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         6. COMPONENT ARCHETYPE GALLERY
+         ======================================================================== -->
+    <section class="section-block" id="component-gallery">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow-row">
+            <span class="pill-indicator"><span class="pill-indicator-dot"></span> 04 // COMPONENT ARCHETYPES</span>
+            <span class="text-meta">INTERACTIVE UI MODULES</span>
+          </div>
+          <h2 class="text-h2">Pill Actions, Bentos & Controls</h2>
+        </div>
+        <p class="text-body" style="max-width: 460px;">
+          Hover on action modules to observe inverted circular bubble transitions and 45° axial arrow rotation physics.
+        </p>
+      </div>
+
+      <div class="components-gallery-grid">
+        
+        <!-- Box 1: Pill Action Modules -->
+        <div class="archetype-box">
+          <div class="archetype-title-row">
+            <span class="text-h3">Pill Action Modules</span>
+            <span class="chip-tag chip-tag-black" style="font-size: 10px;">1.5PX BORDERS</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <!-- Default White Pill -->
+            <button class="pill-action-btn" onclick="showToast('Primary Module Triggered', '↗')">
+              <span>Standard Action Module</span>
+              <div class="btn-icon-bubble">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </div>
+            </button>
+
+            <!-- Mint Accent Pill -->
+            <button class="pill-action-btn pill-action-mint" onclick="showToast('Momentum Actuator Armed', '✦')">
+              <span>Neon Mint Momentum</span>
+              <div class="btn-icon-bubble">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </div>
+            </button>
+
+            <!-- Dark Inverted Pill -->
+            <button class="pill-action-btn pill-action-dark" onclick="showToast('Dark Inverted Pill Clicked', '●')">
+              <span>Deep Inverted Pill</span>
+              <div class="btn-icon-bubble">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Box 2: Controls & Micro Inputs -->
+        <div class="archetype-box">
+          <div class="archetype-title-row">
+            <span class="text-h3">Inputs & Segmented Controls</span>
+            <span class="chip-tag chip-tag-mint" style="font-size: 10px;">MICRO CHIPS</span>
+          </div>
+
+          <!-- Search Input Pill -->
+          <div class="input-field-group">
+            <label class="input-label">SEARCH ASSETS & CONTRACTS</label>
+            <input type="text" class="text-input-pill" placeholder="Enter ticker (e.g., BTC, ETH, VISTA)...">
+          </div>
+
+          <!-- Timeframe Segmented Control -->
+          <div class="input-field-group">
+            <label class="input-label">TIMEFRAME SELECTOR</label>
+            <div class="segmented-pill-bar">
+              <button class="segmented-pill-item" onclick="setSampleTimeframe(this, '1H')">1H</button>
+              <button class="segmented-pill-item active" onclick="setSampleTimeframe(this, '24H')">24H</button>
+              <button class="segmented-pill-item" onclick="setSampleTimeframe(this, '7D')">7D</button>
+              <button class="segmented-pill-item" onclick="setSampleTimeframe(this, '1M')">1M</button>
+              <button class="segmented-pill-item" onclick="setSampleTimeframe(this, 'ALL')">ALL</button>
+            </div>
+          </div>
+
+          <!-- Status Indicator Chips -->
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="chip-tag chip-tag-mint">✦ MOMENTUM +14.2%</span>
+            <span class="chip-tag" style="color: var(--status-negative); border-color: #FECACA; background: #FEF2F2;">▼ VOLATILITY 3.1%</span>
+            <span class="chip-tag">SLIPPAGE 0.05%</span>
+          </div>
+        </div>
+
+        <!-- Box 3: Nested Bento Module Preview -->
+        <div class="archetype-box">
+          <div class="archetype-title-row">
+            <span class="text-h3">Bento Subcard Geometry</span>
+            <span class="chip-tag" style="font-size: 10px;">20PX FRAME PADDING</span>
+          </div>
+
+          <div class="bento-outer-frame" style="padding: 14px;">
+            <div class="bento-subcard" style="padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span class="text-meta" style="font-size: 10px;">NESTED SUBCARD (18PX)</span>
+                <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #00E58F;">ACTIVE</span>
+              </div>
+              <div class="text-metric" style="font-size: 1.15rem;">$382,410.92</div>
+              <div class="text-body" style="font-size: 12px; margin-top: 4px;">Institutional custody allocation with zero slippage.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         7. LIVING MICRO-EXPERIENCE: CRYPTOVISTA PRO TERMINAL
+         ======================================================================== -->
+    <section class="section-block" id="interactive-telemetry">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow-row">
+            <span class="pill-indicator"><span class="pill-indicator-dot"></span> 05 // LIVING MICRO-EXPERIENCE</span>
+            <span class="text-meta">INTERACTIVE BENTO TERMINAL</span>
+          </div>
+          <h2 class="text-h2">CryptoVista Pro Telemetry Bento</h2>
+        </div>
+        <p class="text-body" style="max-width: 460px;">
+          Hover on bar columns to test floating monospaced value tooltips and 40% sibling opacity dimming.
+        </p>
+      </div>
+
+      <!-- Living Terminal Frame -->
+      <div class="terminal-experience-frame">
+        
+        <!-- Terminal Topbar -->
+        <div class="terminal-topbar">
+          <div class="terminal-badge-group">
+            <span class="pulse-dot-mint"></span>
+            <span style="font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--ink-primary);">VISTA CORE // ALGO-TELEMETRY</span>
+            <span class="chip-tag chip-tag-black" style="font-size: 10px; padding: 2px 8px;">MAINNET 144.2 Hz</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span class="text-meta" style="font-size: 11px;">GAS: <strong style="color: var(--ink-primary);">12 GWEI</strong></span>
+            <span class="text-meta" style="font-size: 11px;">BLOCK: <strong style="color: var(--ink-primary);" id="telemetry-block-num">#19,842,109</strong></span>
+            <button class="btn-tile btn-preview" style="font-size: 11px; padding: 4px 10px;" onclick="randomizeTelemetry()">Simulate Stream</button>
+          </div>
+        </div>
+
+        <div class="terminal-grid">
+          
+          <!-- Left: Momentum Bar Chart with Exact Specification Rules -->
+          <div class="chart-panel-card">
+            <div class="chart-header-row">
+              <div>
+                <span class="text-meta">PORTFOLIO MOMENTUM & VOLUME</span>
+                <div class="chart-metric-huge" id="chart-display-metric">
+                  $148,920.40
+                  <span class="chart-metric-badge" id="chart-display-change">+14.2% ↗</span>
+                </div>
+              </div>
+
+              <div class="segmented-pill-bar">
+                <button class="segmented-pill-item" onclick="setChartRange(this, '1D')">1D</button>
+                <button class="segmented-pill-item active" onclick="setChartRange(this, '7D')">7D</button>
+                <button class="segmented-pill-item" onclick="setChartRange(this, '1M')">1M</button>
+              </div>
+            </div>
+
+            <!-- Interactive Bars with Tooltips & Sibling Dimming -->
+            <div class="momentum-bars-container" id="momentum-bars-box">
+              
+              <div class="chart-bar-column" onmouseenter="focusBar(this, '$18,400.00', '+4.1%')" onmouseleave="unfocusBar()">
+                <div class="chart-floating-tooltip">$18,400.00 • +4.1% ↗</div>
+                <div class="chart-bar-fill" style="height: 45%;"></div>
+                <span class="chart-bar-label">MON</span>
+              </div>
+
+              <div class="chart-bar-column" onmouseenter="focusBar(this, '$24,150.80', '+8.6%')" onmouseleave="unfocusBar()">
+                <div class="chart-floating-tooltip">$24,150.80 • +8.6% ↗</div>
+                <div class="chart-bar-fill" style="height: 60%;"></div>
+                <span class="chart-bar-label">TUE</span>
+              </div>
+
+              <div class="chart-bar-column" onmouseenter="focusBar(this, '$31,800.00', '+11.2%')" onmouseleave="unfocusBar()">
+                <div class="chart-floating-tooltip">$31,800.00 • +11.2% ↗</div>
+                <div class="chart-bar-fill" style="height: 72%;"></div>
+                <span class="chart-bar-label">WED</span>
+              </div>
+
+              <div class="chart-bar-column" onmouseenter="focusBar(this, '$21,900.20', '-2.4%')" onmouseleave="unfocusBar()">
+                <div class="chart-floating-tooltip">$21,900.20 • -2.4% ↘</div>
+                <div class="chart-bar-fill" style="height: 52%;"></div>
+                <span class="chart-bar-label">THU</span>
+              </div>
+
+              <div class="chart-bar-column" onmouseenter="focusBar(this, '$39,400.50', '+16.5%')" onmouseleave="unfocusBar()">
+                <div class="chart-floating-tooltip">$39,400.50 • +16.5% ↗</div>
+                <div class="chart-bar-fill" style="height: 85%;"></div>
+                <span class="chart-bar-label">FRI</span>
+              </div>
+
+              <!-- Active Solid Bar -->
+              <div class="chart-bar-column active" onmouseenter="focusBar(this, '$48,920.40', '+22.4%')" onmouseleave="unfocusBar()">
+                <div class="chart-floating-tooltip">$48,920.40 • +22.4% ✦</div>
+                <div class="chart-bar-fill" style="height: 100%;"></div>
+                <span class="chart-bar-label">TODAY</span>
+              </div>
+
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--ink-secondary);">
+              <span>✦ Active bar rendered in solid #00E58F</span>
+              <span>Inactive bars with diagonal mint hatch</span>
+            </div>
+          </div>
+
+          <!-- Right: Order Swap Simulator -->
+          <div class="swap-panel-card">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <span class="text-meta">INSTANT SWAP PROTOCOL</span>
+                <span class="chip-tag chip-tag-mint" style="font-size: 10px;">ZERO SLIPPAGE</span>
+              </div>
+
+              <!-- Pay Token Box -->
+              <div class="swap-token-box" style="margin-bottom: 8px;">
+                <div>
+                  <span class="text-meta" style="font-size: 10px;">YOU DEPLOY</span>
+                  <div>
+                    <input type="number" id="swap-pay-amount" value="2.5" step="0.1" oninput="calculateSwap()">
+                  </div>
+                </div>
+                <span class="token-pill-badge">✦ ETH</span>
+              </div>
+
+              <!-- Receive Token Box -->
+              <div class="swap-token-box" style="margin-bottom: 16px;">
+                <div>
+                  <span class="text-meta" style="font-size: 10px;">YOU RECEIVE</span>
+                  <div>
+                    <input type="text" id="swap-receive-amount" value="8,625.30" readonly style="color: #00E58F;">
+                  </div>
+                </div>
+                <span class="token-pill-badge">VISTA</span>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: var(--ink-secondary); margin-bottom: 16px;">
+                <span>Exchange Rate:</span>
+                <span style="font-family: var(--font-mono); font-weight: 600; color: var(--ink-primary);">1 ETH = 3,450.12 VISTA</span>
+              </div>
+            </div>
+
+            <!-- Execute Swap Pill Button -->
+            <button class="pill-action-btn pill-action-mint" style="width: 100%; justify-content: space-between;" onclick="executeSwapAction()">
+              <span id="swap-btn-text">Execute Instant Swap</span>
+              <div class="btn-icon-bubble">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </div>
+            </button>
+          </div>
+
+          <!-- Bottom: Live Institutional Telemetry Table -->
+          <div class="trades-table-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span class="text-meta">LIVE INSTITUTIONAL TRANSACTION FEED</span>
+              <span class="chip-tag chip-tag-black" style="font-size: 10px;">REALTIME MEMPOOL</span>
+            </div>
+
+            <table class="trades-table">
+              <thead>
+                <tr>
+                  <th>Time (UTC)</th>
+                  <th>Order Hash</th>
+                  <th>Pair</th>
+                  <th>Volume (USD)</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="telemetry-trades-body">
+                <tr>
+                  <td>18:34:02</td>
+                  <td style="color: var(--ink-secondary);">0x8f9c...31b8</td>
+                  <td><strong>ETH / VISTA</strong></td>
+                  <td>$42,500.00</td>
+                  <td><span class="chip-tag chip-tag-mint" style="font-size: 10px; padding: 2px 6px;">SETTLED ↗</span></td>
+                </tr>
+                <tr>
+                  <td>18:33:48</td>
+                  <td style="color: var(--ink-secondary);">0x3a12...99e4</td>
+                  <td><strong>BTC / USDC</strong></td>
+                  <td>$184,200.00</td>
+                  <td><span class="chip-tag chip-tag-mint" style="font-size: 10px; padding: 2px 6px;">SETTLED ↗</span></td>
+                </tr>
+                <tr>
+                  <td>18:33:15</td>
+                  <td style="color: var(--ink-secondary);">0xd4e7...11a0</td>
+                  <td><strong>SOL / VISTA</strong></td>
+                  <td>$12,850.00</td>
+                  <td><span class="chip-tag chip-tag-mint" style="font-size: 10px; padding: 2px 6px;">SETTLED ↗</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         8. STYLE TILE PROMPT CODE DRAWER
+         ======================================================================== -->
+    <section class="section-block" id="prompt-drawer">
+      <div class="prompt-drawer-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg); flex-wrap: wrap; gap: var(--space-md);">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+              <span class="design-code" style="font-size: 10px;">AI AGENT INGESTION SPEC</span>
+              <span class="text-meta" style="color: var(--accent-primary);">100% PRODUCTION READY</span>
+            </div>
+            <h2 class="text-h2" style="color: #FFFFFF;">CryptoVista Markdown Style Tile</h2>
+          </div>
+
+          <div style="display: flex; gap: 10px;">
+            <button class="pill-action-btn pill-action-mint" onclick="copyMasterTilePrompt()" style="font-size: 12px; padding: 8px 16px;">
+              <span>Copy Full Markdown</span>
+              <div class="btn-icon-bubble">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </div>
+            </button>
+            <button class="pill-action-btn pill-action-dark" onclick="downloadStyleTileFile()" style="font-size: 12px; padding: 8px 16px;">
+              <span>Download .md</span>
+              <div class="btn-icon-bubble">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Syntax code viewer -->
+        <pre class="code-editor-frame" id="display-code-block">================================================================================
+  CRYPTOVISTA — DESIGN SYSTEM STYLE TILE
+  Aesthetic: Neo-FinTech Minimalist • Monochromatic Structured • Parametric Clay
+================================================================================
+
+1. COLOR ROLES & PALETTE
+--------------------------------------------------------------------------------
+• Canvas & Surfaces:
+  - Canvas Base (Background):     #FFFFFF (Pure Light)
+  - Surface Neutral (Cards/Mod):  #F5F6F8 (Cool Off-White)
+  - Surface Inverted (Badges):    #0F1115 (Deep Pitch Black)
+  - Surface Glass:                rgba(255, 255, 255, 0.75) / backdrop-filter: blur(12px)
+
+• Content & Typography:
+  - Text Primary:                 #0A0B0D (High-Contrast Black)
+  - Text Secondary / Muted:       #6C727F (Neutral Slate)
+  - Text Tertiary / Inactive:     #9DA4B0 (Light Gray Trackers)
+
+• Brand Accents & Semantics:
+  - Accent Primary (Neon Mint):   #00E58F (Active Trend / Positive Momentum)
+  - Accent Secondary (Mint Haze): #A7F3D0 (Pattern Fills / Secondary Bars)
+  - Trend Negative:               #EF4444 (Soft Coral Red)
+  - Trend Neutral:                #6B7280 (Muted Mid-Gray)
+
+2. TYPOGRAPHY SYSTEM
+--------------------------------------------------------------------------------
+• Primary Font Families:
+  - Display / Headings:           "Cabinet Grotesk" or "Aeonik", sans-serif
+  - Body & UI / Meta:             "Plus Jakarta Sans" or "Inter", sans-serif
+  - Numeric & Tickers:            "Space Grotesk" or "JetBrains Mono", monospace
+
+• Typographic Scale & Hierarchy:
+  - Hero Headline (H1):           48px – 64px | Line-Height: 1.05 | Weight: 700 | Tracking: -0.03em
+  - Section Title (H2):           28px – 34px | Line-Height: 1.15 | Weight: 600 | Tracking: -0.02em
+  - Card Metric / Values:         20px – 24px | Line-Height: 1.20 | Weight: 600 | Monospace Numeric
+  - Nav & Micro-Labels:           11px – 13px | Line-Height: 1.00 | Weight: 600 | Text-Transform: UPPERCASE | Tracking: +0.08em
+  - Body Copy (Paragraph):        14px – 15px | Line-Height: 1.50 | Weight: 400 | Tracking: -0.01em
+  - Inline Badges / Symbols:      Aligned baseline, custom typographic lockups (e.g., "✦", "↗", "×")
+
+3. CORNER GEOMETRY (BORDER RADII)
+--------------------------------------------------------------------------------
+• Radius Scale:
+  - radius-pill (Full):           9999px (Action buttons, floating tags, ticker chips, social anchors)
+  - radius-card (Container):      28px – 32px (Bento outer grid & major feature panels)
+  - radius-inner (Nested):        16px – 20px (Internal image cutouts, mini modules)
+  - radius-sm (Micro):            8px (Data tooltips, input focus indicators)
+
+4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+--------------------------------------------------------------------------------
+• Architectural Layering:
+  - Flat Bento Construction: Separation achieved via structural 1px borders rather than heavy drop shadows.
+  - 3D Dimensional Depth: High-contrast, tactile matte-white parametric renders (layered topographical clay textures).
+• Shadow Tokens:
+  - Elevation Base (Cards):       0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 8px -2px rgba(0, 0, 0, 0.03)
+  - Floating Elements (Pills):    0 8px 24px -4px rgba(0, 0, 0, 0.06), 0 0 0 1px #0A0B0D
+  - Focus / Popover:              0 16px 32px -6px rgba(0, 0, 0, 0.10)
+
+5. SPACING & SPATIAL SCALE
+--------------------------------------------------------------------------------
+• Base Grid: 8pt Grid System (4px Micro-steps)
+  - space-xs: 4px | space-sm: 8px | space-md: 16px | space-lg: 24px | space-xl: 32px–40px
+  - Bento Container Padding: 20px outer frame padding surrounding rounded sub-cards.
+
+6. BORDERS & DIVIDERS
+--------------------------------------------------------------------------------
+• Border Tokens:
+  - Border Primary (Structural):  1.5px solid #0A0B0D (Primary buttons, hero badges, icon rings)
+  - Border Subtle (Separators):   1px solid rgba(10, 11, 13, 0.12) (Grid dividers, light pills)
+  - Border Active (Accent):       1.5px solid #00E58F (Active chart indicators, selected filters)
+  - Inverted Pill Border:         1px solid #FFFFFF (On dark surfaces/badges)
+
+7. ICONOGRAPHY LANGUAGE
+--------------------------------------------------------------------------------
+• Stroke Style: Uniform 1.5px – 1.75px stroke width, geometric, monoline
+• Enclosure: Housed in circular 32px – 40px pill containers with centered glyphs
+• Integrated Glyphs: Inline arrow triggers (↗), brandmark nodes (✦), directional sparklines (〰)
+
+8. INTERACTION & FEEDBACK RULES
+--------------------------------------------------------------------------------
+• Button States (Pill Action Modules):
+  - Default: White fill, 1.5px #0A0B0D border, black text + circular icon bubble
+  - Hover: Invert target circle; arrow rotates 45° on axis; scale 1.02x (cubic-bezier(0.16, 1, 0.3, 1))
+  - Active / Pressed: Scale 0.98x; slight background tint #F0F2F5
+• Chart & Metric Micro-Interactions:
+  - Chart Bars: Inactive bars = diagonal hatch / mint-outline; Active = solid #00E58F fill
+  - Hover Focus: Reveals floating tooltip with monospaced value; siblings dim to 40% opacity
+  - Transition Curve: transition: all 200ms cubic-bezier(0.2, 0, 0, 1)
+================================================================================</pre>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       9. MODAL SPEC INSPECTOR & TOAST SYSTEM
+       ======================================================================== -->
+  <div class="modal-backdrop" id="modal-spec-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-spec-title">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <span class="design-code" style="font-size: 10px;">TILE-003</span>
+          <span id="modal-spec-title" style="font-family: var(--font-display); font-weight: 700; font-size: 16px; margin-left: 8px;">CryptoVista Design System Style Tile</span>
+        </div>
+        <button class="btn-tile btn-preview" onclick="closeSpecModal()" title="Close Inspector">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="code-editor-frame" id="modal-spec-code-text" style="max-height: 55vh;"></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-tile btn-preview" onclick="closeSpecModal()">Close</button>
+        <button class="btn-tile btn-copy" onclick="copyMasterTilePrompt()">Copy Style Tile</button>
+        <button class="btn-tile btn-download" onclick="downloadStyleTileFile()">Download .md</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ========================================================================
+       10. EMBEDDED MARKDOWN STYLE TILE SCRIPT (agent.md Compliant)
+       ======================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  CRYPTOVISTA — DESIGN SYSTEM STYLE TILE
+  Aesthetic: Neo-FinTech Minimalist • Monochromatic Structured • Parametric Clay
+================================================================================
+
+1. COLOR ROLES & PALETTE
+--------------------------------------------------------------------------------
+• Canvas & Surfaces:
+  - Canvas Base (Background):     #FFFFFF (Pure Light)
+  - Surface Neutral (Cards/Mod):  #F5F6F8 (Cool Off-White)
+  - Surface Inverted (Badges):    #0F1115 (Deep Pitch Black)
+  - Surface Glass:                rgba(255, 255, 255, 0.75) / backdrop-filter: blur(12px)
+
+• Content & Typography:
+  - Text Primary:                 #0A0B0D (High-Contrast Black)
+  - Text Secondary / Muted:       #6C727F (Neutral Slate)
+  - Text Tertiary / Inactive:     #9DA4B0 (Light Gray Trackers)
+
+• Brand Accents & Semantics:
+  - Accent Primary (Neon Mint):   #00E58F (Active Trend / Positive Momentum)
+  - Accent Secondary (Mint Haze): #A7F3D0 (Pattern Fills / Secondary Bars)
+  - Trend Negative:               #EF4444 (Soft Coral Red)
+  - Trend Neutral:                #6B7280 (Muted Mid-Gray)
+
+
+2. TYPOGRAPHY SYSTEM
+--------------------------------------------------------------------------------
+• Primary Font Families:
+  - Display / Headings:           "Cabinet Grotesk" or "Aeonik", sans-serif
+  - Body & UI / Meta:             "Plus Jakarta Sans" or "Inter", sans-serif
+  - Numeric & Tickers:            "Space Grotesk" or "JetBrains Mono", monospace
+
+• Typographic Scale & Hierarchy:
+  - Hero Headline (H1):           48px – 64px | Line-Height: 1.05 | Weight: 700 | Tracking: -0.03em
+  - Section Title (H2):           28px – 34px | Line-Height: 1.15 | Weight: 600 | Tracking: -0.02em
+  - Card Metric / Values:         20px – 24px | Line-Height: 1.20 | Weight: 600 | Monospace Numeric
+  - Nav & Micro-Labels:           11px – 13px | Line-Height: 1.00 | Weight: 600 | Text-Transform: UPPERCASE | Tracking: +0.08em
+  - Body Copy (Paragraph):        14px – 15px | Line-Height: 1.50 | Weight: 400 | Tracking: -0.01em
+  - Inline Badges / Symbols:      Aligned baseline, custom typographic lockups (e.g., "✦", "↗", "×")
+
+
+3. CORNER GEOMETRY (BORDER RADII)
+--------------------------------------------------------------------------------
+• Radius Scale:
+  - `radius-pill` (Full):         9999px (Action buttons, floating tags, ticker chips, social anchors)
+  - `radius-card` (Container):    28px – 32px (Bento outer grid & major feature panels)
+  - `radius-inner` (Nested):      16px – 20px (Internal image cutouts, mini modules)
+  - `radius-sm` (Micro):          8px (Data tooltips, input focus indicators)
+
+
+4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+--------------------------------------------------------------------------------
+• Architectural Layering:
+  - Flat Bento Construction: Separation achieved via structural 1px borders rather than heavy drop shadows.
+  - 3D Dimensional Depth: High-contrast, tactile matte-white parametric renders (layered topographical clay textures).
+
+• Shadow Tokens:
+  - Elevation Base (Cards):       0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 8px -2px rgba(0, 0, 0, 0.03)
+  - Floating Elements (Pills):    0 8px 24px -4px rgba(0, 0, 0, 0.06), 0 0 0 1px #0A0B0D
+  - Focus / Popover:              0 16px 32px -6px rgba(0, 0, 0, 0.10)
+
+
+5. SPACING & SPATIAL SCALE
+--------------------------------------------------------------------------------
+• Base Grid: 8pt Grid System (4px Micro-steps)
+  - `space-xs`:                   4px  (Inline icon-to-label gaps)
+  - `space-sm`:                   8px  (Badge internal padding, micro chips)
+  - `space-md`:                   16px (Bento grid gutters, card padding)
+  - `space-lg`:                   24px (Standard panel internal padding)
+  - `space-xl`:                   32px – 40px (Section margins, headline offsets)
+  - Bento Container Padding:      20px outer frame padding surrounding rounded sub-cards.
+
+
+6. BORDERS & DIVIDERS
+--------------------------------------------------------------------------------
+• Border Tokens:
+  - Border Primary (Structural):  1.5px solid #0A0B0D (Primary buttons, hero badges, icon rings)
+  - Border Subtle (Separators):   1px solid rgba(10, 11, 13, 0.12) (Grid dividers, light pills)
+  - Border Active (Accent):       1.5px solid #00E58F (Active chart indicators, selected filters)
+  - Inverted Pill Border:         1px solid #FFFFFF (On dark surfaces/badges)
+
+
+7. ICONOGRAPHY LANGUAGE
+--------------------------------------------------------------------------------
+• Visual Characteristics:
+  - Stroke Style:                 Uniform 1.5px – 1.75px stroke width, geometric, monoline
+  - Enclosure:                    Housed in circular 32px – 40px pill containers with centered glyphs
+  - Terminal Ends:                Precise, rounded caps (`stroke-linecap: round`, `stroke-linejoin: round`)
+  - Integrated Glyphs:            Inline arrow triggers (↗), brandmark nodes (✦), directional sparklines (〰)
+
+
+8. INTERACTION & FEEDBACK RULES
+--------------------------------------------------------------------------------
+• Button States (Pill Action Modules):
+  - Default:                      White fill, 1.5px #0A0B0D border, black text + circular icon bubble
+  - Hover:                        Invert target circle; arrow rotates 45° on axis; scale 1.02x (`cubic-bezier(0.16, 1, 0.3, 1)`)
+  - Active / Pressed:             Scale 0.98x; slight background tint #F0F2F5
+
+• Chart & Metric Micro-Interactions:
+  - Chart Bars:                   Inactive bars = diagonal hatch / mint-outline; Active = solid #00E58F fill
+  - Hover Focus:                  Active bar reveals floating tooltip with monospaced value; siblings dim to 40% opacity
+  - Transition Curve:             `transition: all 200ms cubic-bezier(0.2, 0, 0, 1)`
+================================================================================
+  </script>
+
+  <!-- ========================================================================
+       11. JAVASCRIPT LOGIC & INTERACTION SCRIPTS
+       ======================================================================== -->
+  <script>
+    // --- 1. TOAST NOTIFICATION SYSTEM ---
+    function showToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast-message";
+      toast.innerHTML = `
+        <span class="toast-dot"></span>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 220);
+      }, 2400);
+    }
+
+    // --- 2. CLIPBOARD & DOWNLOAD HANDLERS ---
+    function getRawMarkdown() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    function copyMasterTilePrompt() {
+      const md = getRawMarkdown();
+      navigator.clipboard.writeText(md).then(() => {
+        showToast("Copied CryptoVista Style Tile to clipboard!");
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const orig = btn.innerHTML;
+          btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+          setTimeout(() => { btn.innerHTML = orig; }, 2000);
+        }
+      }).catch(err => {
+        console.error("Clipboard write failed", err);
+      });
+    }
+
+    function downloadStyleTileFile() {
+      const md = getRawMarkdown();
+      const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-cryptovista.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-cryptovista.md!");
+    }
+
+    function copySwatchHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${name} (${hex}) to clipboard!`);
+      });
+    }
+
+    // --- 3. MODAL SPEC INSPECTOR ---
+    function openSpecModal() {
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      const codeEl = document.getElementById("modal-spec-code-text");
+      if (codeEl) codeEl.textContent = getRawMarkdown();
+      if (backdrop) backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    // --- 4. CHART MICRO-INTERACTIONS ---
+    function focusBar(el, value, change) {
+      const metricEl = document.getElementById("chart-display-metric");
+      const changeEl = document.getElementById("chart-display-change");
+      if (metricEl) {
+        metricEl.innerHTML = `${value} <span class="chart-metric-badge" id="chart-display-change">${change} ↗</span>`;
+      }
+    }
+
+    function unfocusBar() {
+      const metricEl = document.getElementById("chart-display-metric");
+      if (metricEl) {
+        metricEl.innerHTML = `$148,920.40 <span class="chart-metric-badge" id="chart-display-change">+14.2% ↗</span>`;
+      }
+    }
+
+    function setChartRange(btn, range) {
+      document.querySelectorAll(".chart-panel-card .segmented-pill-item").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      showToast(`Timeframe switched to ${range}`, "✦");
+    }
+
+    function setSampleTimeframe(btn, range) {
+      btn.parentNode.querySelectorAll(".segmented-pill-item").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      showToast(`Selected timeframe: ${range}`, "✦");
+    }
+
+    // --- 5. SWAP SIMULATOR ---
+    function calculateSwap() {
+      const payInput = document.getElementById("swap-pay-amount");
+      const receiveInput = document.getElementById("swap-receive-amount");
+      if (!payInput || !receiveInput) return;
+      const val = parseFloat(payInput.value) || 0;
+      const rate = 3450.12;
+      receiveInput.value = (val * rate).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    function executeSwapAction() {
+      const btn = document.getElementById("swap-btn-text");
+      const orig = btn.textContent;
+      btn.textContent = "Routing Transaction...";
+      showToast("Routing order across liquidity pools...", "✦");
+      
+      setTimeout(() => {
+        btn.textContent = "Order Executed ✓";
+        showToast("Swapped 2.5 ETH for 8,625.30 VISTA!", "✓");
+        
+        // Append trade to live stream table
+        const tbody = document.getElementById("telemetry-trades-body");
+        if (tbody) {
+          const now = new Date();
+          const timeStr = now.toISOString().substring(11, 19);
+          const hash = "0x" + Math.random().toString(16).substring(2, 6) + "..." + Math.random().toString(16).substring(2, 6);
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${timeStr}</td>
+            <td style="color: var(--ink-secondary);">${hash}</td>
+            <td><strong>ETH / VISTA</strong></td>
+            <td>$8,625.30</td>
+            <td><span class="chip-tag chip-tag-mint" style="font-size: 10px; padding: 2px 6px;">SETTLED ↗</span></td>
+          `;
+          tbody.insertBefore(tr, tbody.firstChild);
+        }
+
+        setTimeout(() => {
+          btn.textContent = orig;
+        }, 2200);
+      }, 750);
+    }
+
+    function randomizeTelemetry() {
+      const blockEl = document.getElementById("telemetry-block-num");
+      if (blockEl) {
+        const next = Math.floor(19842109 + Math.random() * 500);
+        blockEl.textContent = `#${next.toLocaleString()}`;
+      }
+      showToast("Telemetry stream synced with Mainnet", "⌖");
+    }
+
+    // --- 6. INITIALIZATION & EVENT BINDINGS ---
+    document.addEventListener("DOMContentLoaded", () => {
+      // Header Action Buttons
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyMasterTilePrompt);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadStyleTileFile);
+
+      // Modal backdrop click
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      // Keyboard Esc to close modal
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+
+      // Type tester dynamic feedback
+      const typeInput = document.getElementById("type-live-input");
+      if (typeInput) {
+        typeInput.addEventListener("input", (e) => {
+          // Live tester responds smoothly
+        });
+      }
+    });
+  </script>
+</body>
+</html>
