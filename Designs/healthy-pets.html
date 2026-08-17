@@ -1,0 +1,2661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthy Pets, Happy Hearts — Style Tile & Design System (TILE-010)</title>
+  <meta name="description" content="Healthy Pets, Happy Hearts design system: Playful Neo-Retro, Organic Warmth, High-Contrast Editorial. Vivid terracotta canvas, butterscotch typography, espresso cocoa surfaces, and 2.5D flat layer overlaps.">
+
+  <!-- Google Fonts: Bebas Neue, Anton, Plus Jakarta Sans, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       STYLE TILE: "HEALTHY PETS, HAPPY HEARTS" DESIGN SYSTEM
+       Theme: Playful Neo-Retro / Organic Warmth / High-Contrast Editorial
+       Code: TILE-010
+       ========================================================================== */
+
+    :root {
+      /* ------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * ------------------------------------------------------------------------ */
+      --color-brand-primary:       #E05333; /* Vivid Terracotta / Warm Vermilion */
+      --color-brand-secondary:     #FED0A7; /* Warm Butterscotch / Peachy Cream (Display Type) */
+      --color-surface-dark:        #230C07; /* Deep Espresso Brown / Midnight Cocoa */
+      --color-surface-light:       #FFFFFF; /* Pure Snow White */
+      --color-surface-subtle:      #F7F3EE; /* Warm Off-White / Light Oatmeal */
+      --color-accent-amber:        #F4B258; /* Muted Gold / Highlight Accent */
+      --color-neutral-border:      #E8E1DA; /* Soft Sand Border */
+      --color-text-muted:          #7D716A; /* Warm Charcoal Subtitle */
+
+      /* Semantic Token Mapping */
+      --canvas-main:               var(--color-brand-primary);
+      --canvas-section-alt:        var(--color-surface-dark);
+      --surface-interactive:       var(--color-surface-light);
+      --text-display-primary:      var(--color-brand-secondary); /* on Primary */
+      --text-display-dark:         var(--color-surface-light);   /* on Dark */
+      --text-body-dark:            var(--color-surface-dark);    /* on Light */
+      --text-body-light:           var(--color-surface-subtle);  /* on Primary/Dark */
+
+      /* Functional & Status Tokens */
+      --color-success:             #2E7D32;
+      --color-warning:             #F4B258;
+      --color-danger:              #C62828;
+
+      /* ------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * ------------------------------------------------------------------------ */
+      --font-display:              "Bebas Neue", "Anton", sans-serif;
+      --font-sans:                 "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+      --font-mono:                 "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+      /* Type Scale & Hierarchy */
+      --text-h1:                   96px;
+      --text-h2:                   44px;
+      --text-h3:                   28px;
+      --text-accordion:            22px;
+      --text-body:                 14px;
+      --text-body-sm:              12px;
+      --text-pill:                 13px;
+
+      /* ------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * ------------------------------------------------------------------------ */
+      --radius-xs:                 6px;   /* Small badges & tooltips */
+      --radius-sm:                 12px;  /* Text inputs & form fields */
+      --radius-md:                 18px;  /* Compact content panels & expanded accordion */
+      --radius-lg:                 28px;  /* Feature category cards & doctor profile portraits */
+      --radius-full:               9999px;/* Buttons, date/time chips, segmented toggles */
+      --radius-bubble:             40% 60% 70% 30% / 40% 50% 60% 50%; /* Asymmetrical curved blob */
+
+      /* ------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (SHADOWS & LAYERING)
+       * ------------------------------------------------------------------------ */
+      /* Flat Neo-Editorial / 2.5D Layer Overlap (No blurry drop shadows) */
+      --shadow-elevation:          none;
+      --shadow-flat-border:        0 0 0 transparent;
+
+      /* ------------------------------------------------------------------------
+       * 5. SPACING & SPATIAL SCALE (4px / 8px Grid Scale)
+       * ------------------------------------------------------------------------ */
+      --space-2xs:                 4px;
+      --space-xs:                  8px;
+      --space-sm:                  12px;
+      --space-md:                  16px;
+      --space-lg:                  24px;
+      --space-xl:                  32px;
+      --space-2xl:                 48px;
+      --space-3xl:                 64px;
+
+      /* ------------------------------------------------------------------------
+       * 6. BORDERS & DIVIDERS
+       * ------------------------------------------------------------------------ */
+      --border-subtle:             1px solid rgba(255, 255, 255, 0.15); /* Accordion row dividers */
+      --border-input:              1px solid #E8E1DA;                    /* Form inputs inactive */
+      --border-active:             2px solid #230C07;                    /* Active selections */
+      --border-card-white:         1.5px solid #FFFFFF;                  /* Inset card borders */
+      --border-card-dark:          1.5px solid #230C07;
+
+      /* ------------------------------------------------------------------------
+       * 8. TRANSITIONS & TIMING
+       * ------------------------------------------------------------------------ */
+      --transition-fast:           all 200ms ease-out;
+      --transition-bounce:         transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* ==========================================================================
+       BASE RESET & FOUNDATION
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--color-brand-primary);
+      color: var(--color-surface-subtle);
+    }
+
+    body {
+      background-color: var(--color-brand-primary);
+      color: var(--color-surface-subtle);
+      font-family: var(--font-sans);
+      font-size: var(--text-body);
+      line-height: 1.5;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: var(--color-brand-secondary);
+      color: var(--color-surface-dark);
+    }
+
+    .layout-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ==========================================================================
+       MANDATORY HEADER BAR (agent.md Specification)
+       ========================================================================== */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--color-surface-dark);
+      border-bottom: 2px solid rgba(254, 208, 167, 0.2);
+      padding: 12px var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--color-brand-secondary);
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      border-radius: var(--radius-full);
+      background: rgba(254, 208, 167, 0.1);
+      border: 1px solid rgba(254, 208, 167, 0.25);
+      transition: var(--transition-fast);
+    }
+
+    .nav-back-link:hover {
+      background: var(--color-brand-secondary);
+      color: var(--color-surface-dark);
+      transform: translateX(-2px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--color-brand-primary);
+      color: #FFFFFF;
+      padding: 4px 8px;
+      border-radius: var(--radius-xs);
+      letter-spacing: 0.06em;
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 0.04em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-brand-secondary);
+      background: rgba(254, 208, 167, 0.12);
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(254, 208, 167, 0.2);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-preview {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-preview:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy {
+      background: var(--color-brand-secondary);
+      color: var(--color-surface-dark);
+    }
+
+    .btn-copy:hover {
+      background: #FFFFFF;
+      transform: scale(1.02);
+    }
+
+    .btn-download {
+      background: var(--color-brand-primary);
+      color: #FFFFFF;
+    }
+
+    .btn-download:hover {
+      background: #c84325;
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       HERO SECTION (Terracotta Canvas Base)
+       ========================================================================== */
+    .hero-section {
+      background-color: var(--color-brand-primary);
+      padding: var(--space-3xl) 0 var(--space-2xl) 0;
+      position: relative;
+    }
+
+    .hero-badge-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: var(--space-md);
+    }
+
+    .badge-pill {
+      font-family: var(--font-sans);
+      font-size: var(--text-pill);
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-pill.secondary {
+      background-color: var(--color-brand-secondary);
+      color: var(--color-surface-dark);
+    }
+
+    .badge-pill.dark {
+      background-color: var(--color-surface-dark);
+      color: #FFFFFF;
+    }
+
+    .badge-pill.light {
+      background-color: #FFFFFF;
+      color: var(--color-surface-dark);
+    }
+
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 8.5vw, 6rem); /* 96px target */
+      line-height: 0.90;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-brand-secondary);
+      margin-bottom: var(--space-lg);
+      text-shadow: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .hero-lead-text {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-surface-subtle);
+      margin-bottom: var(--space-xl);
+      max-width: 600px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: center;
+    }
+
+    /* Standard Interactive Button Tokens */
+    .btn-pet {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 26px;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: var(--transition-fast);
+    }
+
+    .btn-pet-cta {
+      background-color: var(--color-surface-light);
+      color: var(--color-surface-dark);
+    }
+
+    .btn-pet-cta:hover {
+      background-color: var(--color-brand-secondary);
+      transform: scale(1.02);
+    }
+
+    .btn-pet-dark {
+      background-color: var(--color-surface-dark);
+      color: #FFFFFF;
+    }
+
+    .btn-pet-dark:hover {
+      background-color: #38150d;
+      transform: scale(1.02);
+    }
+
+    .btn-pet-outline {
+      background: transparent;
+      color: #FFFFFF;
+      border: 1.5px solid #FFFFFF;
+    }
+
+    .btn-pet-outline:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.02);
+    }
+
+    /* Hero Visual Card with Character Blob & Overlapping Layering */
+    .hero-visual-card {
+      background-color: var(--color-surface-light);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      color: var(--color-surface-dark);
+      position: relative;
+      border: var(--border-card-white);
+      overflow: visible;
+    }
+
+    .hero-visual-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-visual-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-surface-dark);
+    }
+
+    .speech-bubble-hero {
+      background-color: var(--color-brand-secondary);
+      color: var(--color-surface-dark);
+      padding: 16px 20px;
+      border-radius: var(--radius-bubble);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: var(--space-md);
+      position: relative;
+    }
+
+    .hero-pet-badge-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: var(--space-md);
+    }
+
+    .social-circle-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: var(--color-surface-dark);
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      border: none;
+    }
+
+    .social-circle-badge:hover {
+      background: var(--color-brand-primary);
+      transform: scale(1.08);
+    }
+
+    /* ==========================================================================
+       ORGANIC WAVE SECTION DIVIDERS
+       ========================================================================== */
+    .wave-divider {
+      width: 100%;
+      line-height: 0;
+      position: relative;
+      z-index: 1;
+      display: block;
+    }
+
+    .wave-divider svg {
+      width: 100%;
+      height: 60px;
+      display: block;
+    }
+
+    /* ==========================================================================
+       SECTION 2: COLOR ROLES & PALETTE MATRIX (Deep Espresso Background)
+       ========================================================================== */
+    .palette-section {
+      background-color: var(--color-surface-dark);
+      padding: var(--space-3xl) 0;
+      color: #FFFFFF;
+      position: relative;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 2.75rem); /* 44px target */
+      line-height: 1.05;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-xs);
+    }
+
+    .section-title.light-text {
+      color: #FFFFFF;
+    }
+
+    .section-title.peachy-text {
+      color: var(--color-brand-secondary);
+    }
+
+    .section-title.dark-text {
+      color: var(--color-surface-dark);
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--color-brand-secondary);
+      margin-bottom: var(--space-xl);
+      max-width: 700px;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .swatch-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: var(--transition-fast);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--color-brand-secondary);
+      background-color: rgba(255, 255, 255, 0.09);
+    }
+
+    .swatch-color-chip {
+      height: 90px;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 8px;
+    }
+
+    .swatch-chip-hex {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-xs);
+      background: rgba(0, 0, 0, 0.4);
+      color: #FFFFFF;
+      backdrop-filter: blur(4px);
+    }
+
+    .swatch-details {
+      padding: 14px 16px;
+    }
+
+    .swatch-role-name {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .swatch-var-name {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-brand-secondary);
+      margin-bottom: 6px;
+    }
+
+    .swatch-desc {
+      font-size: 12px;
+      color: #D1C7BD;
+      line-height: 1.4;
+    }
+
+    /* Semantic Mapping Cards */
+    .semantic-mapping-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+
+    .semantic-card {
+      background: #FFFFFF;
+      color: var(--color-surface-dark);
+      padding: var(--space-lg);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-neutral-border);
+    }
+
+    .semantic-card.terracotta-card {
+      background: var(--color-brand-primary);
+      color: #FFFFFF;
+      border: none;
+    }
+
+    .semantic-card.dark-card {
+      background: #150603;
+      color: #FFFFFF;
+      border: 1px solid rgba(254, 208, 167, 0.2);
+    }
+
+    .semantic-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .semantic-token-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      display: inline-block;
+      padding: 3px 6px;
+      border-radius: var(--radius-xs);
+      background: rgba(0, 0, 0, 0.08);
+      margin-bottom: 8px;
+    }
+
+    .semantic-card.terracotta-card .semantic-token-code,
+    .semantic-card.dark-card .semantic-token-code {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--color-brand-secondary);
+    }
+
+    /* ==========================================================================
+       SECTION 3: TYPOGRAPHY SYSTEM SPECIMEN (Terracotta Canvas Base)
+       ========================================================================== */
+    .typography-section {
+      background-color: var(--color-brand-primary);
+      padding: var(--space-3xl) 0;
+      color: #FFFFFF;
+    }
+
+    .type-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .type-row {
+      background: rgba(35, 12, 7, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: var(--space-lg);
+      align-items: center;
+      transition: var(--transition-fast);
+    }
+
+    .type-row:hover {
+      background: rgba(35, 12, 7, 0.6);
+      border-color: var(--color-brand-secondary);
+    }
+
+    .type-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .type-role-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-brand-secondary);
+      text-transform: uppercase;
+    }
+
+    .type-specs {
+      font-size: 12px;
+      color: #E8E1DA;
+    }
+
+    .type-sample-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 0.90;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-brand-secondary);
+    }
+
+    .type-sample-h2 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      line-height: 1.05;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .type-sample-h3 {
+      font-family: var(--font-display);
+      font-size: 26px;
+      line-height: 1.10;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-accent-amber);
+    }
+
+    .type-sample-accordion {
+      font-family: var(--font-display);
+      font-size: 22px;
+      line-height: 1.20;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .type-sample-body {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.50;
+      font-weight: 400;
+      color: var(--color-surface-subtle);
+    }
+
+    .type-sample-meta {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      line-height: 1.40;
+      font-weight: 500;
+      color: var(--color-brand-secondary);
+    }
+
+    .type-sample-pill {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.00;
+      font-weight: 700;
+      color: var(--color-surface-dark);
+      background: var(--color-brand-secondary);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      display: inline-block;
+    }
+
+    /* Interactive Pangram Tester Box */
+    .pangram-tester-card {
+      background: #FFFFFF;
+      color: var(--color-surface-dark);
+      padding: var(--space-xl);
+      border-radius: var(--radius-lg);
+      border: var(--border-card-white);
+    }
+
+    .tester-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--color-neutral-border);
+    }
+
+    .pangram-input {
+      width: 100%;
+      font-family: var(--font-display);
+      font-size: 42px;
+      line-height: 1.0;
+      text-transform: uppercase;
+      color: var(--color-surface-dark);
+      border: none;
+      background: transparent;
+      outline: none;
+      padding: 8px 0;
+    }
+
+    /* ==========================================================================
+       SECTION 4: COMPONENT ARCHETYPE GALLERY (Off-White Background)
+       ========================================================================== */
+    .components-section {
+      background-color: var(--color-surface-subtle);
+      padding: var(--space-3xl) 0;
+      color: var(--color-surface-dark);
+    }
+
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .comp-block {
+      background: #FFFFFF;
+      border-radius: var(--radius-md);
+      padding: var(--space-xl);
+      border: 1px solid var(--color-neutral-border);
+    }
+
+    .comp-block-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-surface-dark);
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .comp-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: var(--space-md);
+    }
+
+    /* Selection Chips (Date/Time/Pet Type) */
+    .chip-interactive {
+      background: #FFFFFF;
+      color: var(--color-text-muted);
+      border: 1px solid var(--color-neutral-border);
+      border-radius: var(--radius-full);
+      padding: 8px 16px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-fast);
+    }
+
+    .chip-interactive:hover {
+      border-color: var(--color-surface-dark);
+      color: var(--color-surface-dark);
+    }
+
+    .chip-interactive.active {
+      background: var(--color-surface-dark);
+      color: #FFFFFF;
+      border-color: var(--color-surface-dark);
+    }
+
+    .chip-radio-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-full);
+      background: transparent;
+      border: 1.5px solid currentColor;
+      display: inline-block;
+    }
+
+    .chip-interactive.active .chip-radio-dot {
+      background: #FFFFFF;
+      border-color: #FFFFFF;
+    }
+
+    /* Form Fields */
+    .form-group {
+      margin-bottom: var(--space-md);
+    }
+
+    .form-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-surface-dark);
+      display: block;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      border: var(--border-input);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--color-surface-dark);
+      background: #FFFFFF;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .form-input:focus {
+      border: var(--border-active);
+    }
+
+    /* Radii & Corner Geometry Specimen Card */
+    .radii-showcase-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 10px;
+      margin-top: var(--space-md);
+    }
+
+    .radius-box {
+      background: var(--color-brand-primary);
+      color: #FFFFFF;
+      padding: 14px 8px;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    /* Accordion Archetype Specimen */
+    .specimen-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .accordion-row-specimen {
+      border-radius: var(--radius-sm);
+      padding: 14px 18px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition-fast);
+    }
+
+    .accordion-row-specimen.collapsed {
+      background-color: var(--color-brand-primary);
+      color: #FFFFFF;
+    }
+
+    .accordion-row-specimen.expanded {
+      background-color: #FFFFFF;
+      color: var(--color-surface-dark);
+      border-radius: var(--radius-md);
+      border: 2px solid var(--color-surface-dark);
+    }
+
+    .accordion-title-text {
+      font-family: var(--font-display);
+      font-size: var(--text-accordion);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .accordion-icon-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-full);
+      background: rgba(0, 0, 0, 0.15);
+      color: currentColor;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      transition: var(--transition-fast);
+    }
+
+    .accordion-row-specimen.expanded .accordion-icon-badge {
+      background: var(--color-surface-dark);
+      color: #FFFFFF;
+      transform: rotate(45deg);
+    }
+
+    /* ==========================================================================
+       SECTION 5: LIVING MICRO-EXPERIENCE (VETERINARY & WELLNESS CLINIC)
+       ========================================================================== */
+    .living-demo-section {
+      background-color: var(--color-surface-dark);
+      padding: var(--space-3xl) 0;
+      color: #FFFFFF;
+      position: relative;
+    }
+
+    .demo-dashboard {
+      background: var(--color-brand-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      border: 2px solid rgba(254, 208, 167, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .demo-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: var(--space-xl);
+      gap: var(--space-md);
+    }
+
+    .demo-title-block h3 {
+      font-family: var(--font-display);
+      font-size: 38px;
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-brand-secondary);
+      margin-bottom: 4px;
+    }
+
+    .demo-title-block p {
+      font-size: 13px;
+      color: var(--color-surface-subtle);
+    }
+
+    .demo-layout-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-xl);
+    }
+
+    /* Booking Studio Card */
+    .booking-card {
+      background: #FFFFFF;
+      color: var(--color-surface-dark);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+    }
+
+    .booking-step-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-surface-dark);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-number-badge {
+      background: var(--color-brand-primary);
+      color: #FFFFFF;
+      width: 22px;
+      height: 22px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-family: var(--font-mono);
+    }
+
+    /* Pet Selector Slots */
+    .pet-slots-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .pet-slot-card {
+      background: var(--color-surface-subtle);
+      border: 1.5px solid var(--color-neutral-border);
+      border-radius: var(--radius-md);
+      padding: 14px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pet-slot-card:hover {
+      border-color: var(--color-brand-primary);
+      transform: translateY(-2px);
+    }
+
+    .pet-slot-card.active {
+      background: var(--color-surface-dark);
+      color: #FFFFFF;
+      border-color: var(--color-surface-dark);
+    }
+
+    .pet-icon-svg {
+      width: 32px;
+      height: 32px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .pet-label {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* Wellness Services Grid */
+    .services-choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .service-item-chip {
+      background: #FFFFFF;
+      border: 1.5px solid var(--color-neutral-border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .service-item-chip:hover {
+      border-color: var(--color-brand-primary);
+    }
+
+    .service-item-chip.active {
+      background: var(--color-brand-secondary);
+      border-color: var(--color-surface-dark);
+      color: var(--color-surface-dark);
+    }
+
+    .service-item-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .service-item-price {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-brand-primary);
+    }
+
+    .service-item-chip.active .service-item-price {
+      color: var(--color-surface-dark);
+    }
+
+    /* Live Summary & Doctor Card */
+    .summary-side-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .doctor-profile-card {
+      background: var(--color-surface-dark);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      border: 1px solid rgba(254, 208, 167, 0.3);
+      position: relative;
+    }
+
+    .doctor-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: var(--space-md);
+    }
+
+    .doctor-avatar-box {
+      width: 58px;
+      height: 58px;
+      border-radius: var(--radius-lg);
+      background: var(--color-brand-secondary);
+      color: var(--color-surface-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .doctor-info h4 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-brand-secondary);
+    }
+
+    .doctor-info p {
+      font-size: 12px;
+      color: #D1C7BD;
+    }
+
+    .doctor-speech-bubble {
+      background: #FFFFFF;
+      color: var(--color-surface-dark);
+      padding: 12px 16px;
+      border-radius: var(--radius-bubble);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: var(--space-md);
+    }
+
+    .booking-summary-box {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      border: 1px dashed rgba(254, 208, 167, 0.4);
+    }
+
+    .summary-line-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 6px;
+      color: #E8E1DA;
+    }
+
+    .summary-line-item strong {
+      color: #FFFFFF;
+    }
+
+    /* Care & Wellness Interactive Accordion FAQ in Demo */
+    .care-faq-wrapper {
+      margin-top: var(--space-xl);
+      background: var(--color-surface-dark);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      border: 1px solid rgba(254, 208, 167, 0.2);
+    }
+
+    .faq-accordion-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: var(--space-md);
+    }
+
+    .faq-row {
+      background: var(--color-brand-primary);
+      color: #FFFFFF;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      transition: var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .faq-row.active {
+      background: #FFFFFF;
+      color: var(--color-surface-dark);
+      border-radius: var(--radius-md);
+    }
+
+    .faq-header {
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-header h4 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .faq-toggle-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-full);
+      background: rgba(0, 0, 0, 0.2);
+      color: currentColor;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+      transition: var(--transition-fast);
+    }
+
+    .faq-row.active .faq-toggle-circle {
+      background: var(--color-surface-dark);
+      color: #FFFFFF;
+      transform: rotate(45deg);
+    }
+
+    .faq-body {
+      display: none;
+      padding: 0 20px 18px 20px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--color-text-muted);
+    }
+
+    .faq-row.active .faq-body {
+      display: block;
+    }
+
+    /* ==========================================================================
+       SECTION 6: STYLE TILE PROMPT CODE DRAWER (Dark Espresso Background)
+       ========================================================================== */
+    .prompt-drawer-section {
+      background-color: var(--color-brand-primary);
+      padding: var(--space-3xl) 0;
+      color: #FFFFFF;
+    }
+
+    .prompt-card {
+      background: var(--color-surface-dark);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      border: 2px solid rgba(254, 208, 167, 0.3);
+    }
+
+    .prompt-card-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+      gap: var(--space-md);
+    }
+
+    .prompt-code-box {
+      background: #120502;
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      border: 1px solid rgba(254, 208, 167, 0.15);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.55;
+      color: #E8E1DA;
+      max-height: 480px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* ==========================================================================
+       MODAL INSPECTION SHEET (Markdown Preview)
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(35, 12, 7, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-sheet {
+      background: var(--color-surface-dark);
+      color: #FFFFFF;
+      border: 2px solid var(--color-brand-secondary);
+      border-radius: var(--radius-lg);
+      max-width: 860px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modalPop 200ms ease-out;
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.96); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 16px 24px;
+      background: #180805;
+      border-bottom: 1px solid rgba(254, 208, 167, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: #FFFFFF;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: var(--radius-xs);
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-body {
+      padding: 20px 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-code-block {
+      background: #110402;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.5;
+      color: #F7F3EE;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .modal-footer {
+      padding: 14px 24px;
+      background: #180805;
+      border-top: 1px solid rgba(254, 208, 167, 0.2);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* ==========================================================================
+       TOAST NOTIFICATION SYSTEM
+       ========================================================================== */
+    #toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--color-surface-dark);
+      color: #FFFFFF;
+      border: 1.5px solid var(--color-brand-secondary);
+      border-radius: var(--radius-full);
+      padding: 10px 20px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: auto;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast-icon {
+      color: var(--color-brand-secondary);
+    }
+
+    /* ==========================================================================
+       MOBILE RESPONSIVENESS OVERRIDES
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .hero-grid,
+      .demo-layout-grid,
+      .type-row {
+        grid-template-columns: 1fr !important;
+      }
+
+      .pet-slots-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+
+      .services-choice-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .hero-h1 {
+        font-size: clamp(2.5rem, 11vw, 3.5rem) !important;
+        line-height: 0.95 !important;
+      }
+
+      .section-title {
+        font-size: clamp(1.75rem, 8vw, 2.25rem) !important;
+      }
+
+      .form-input {
+        font-size: 16px !important; /* iOS zoom prevention */
+      }
+    }
+  </style>
+
+  <!-- Mobile safety sheet per agent.md -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+</head>
+<body>
+
+  <!-- 1. MANDATORY HEADER BAR -->
+  <header class="style-tile-header">
+    <!-- Return to Catalog -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-010</span>
+      <span class="design-title">Healthy Pets, Happy Hearts</span>
+      <span class="design-vibe-tag">Playful Neo-Retro</span>
+    </div>
+
+    <!-- Action Suite -->
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-healthy-pets.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 2. HERO DISPLAY BANNER -->
+    <section class="hero-section">
+      <div class="layout-wrapper">
+        <div class="hero-badge-strip">
+          <span class="badge-pill secondary">TILE-010 DESIGN SYSTEM</span>
+          <span class="badge-pill dark">PLAYFUL NEO-RETRO</span>
+          <span class="badge-pill light">ORGANIC WARMTH</span>
+          <span class="badge-pill dark">2.5D FLAT OVERLAP</span>
+        </div>
+
+        <div class="hero-grid">
+          <!-- Left Hero Column -->
+          <div class="hero-content">
+            <h1 class="hero-h1">HEALTHY PETS, HAPPY HEARTS</h1>
+            <p class="hero-lead-text">
+              A playful neo-retro design language and high-contrast editorial system engineered for modern pet care, veterinary wellness clinics, and empathetic animal lifestyle brands. Combines vivid terracotta canvas warmth, butterscotch peachy display typography, midnight cocoa contrast, fluid organic wave section masks, and flat 2.5D layer overlaps without blurry drop shadows.
+            </p>
+
+            <div class="hero-cta-group">
+              <a href="#living-demo" class="btn-pet btn-pet-cta">
+                <span>Book Care Demo</span>
+                <span style="font-weight: 900;">→</span>
+              </a>
+              <button class="btn-pet btn-pet-dark" onclick="copyMasterTilePrompt()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span>Copy Agent Prompt</span>
+              </button>
+              <a href="#palette" class="btn-pet btn-pet-outline">
+                <span>Inspect Tokens</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Hero Column: Visual Archetype Blob Card -->
+          <div class="hero-visual-card">
+            <div class="hero-visual-header">
+              <span class="hero-visual-title">VET CARE PHILOSOPHY</span>
+              <span class="badge-pill dark" style="font-size: 11px; padding: 4px 10px;">EST. 2026</span>
+            </div>
+
+            <!-- Asymmetrical Organic Blob Speech Bubble -->
+            <div class="speech-bubble-hero">
+              "We believe preventive wellness and warm empathetic design make every tail wag and every heart beat stronger."
+            </div>
+
+            <div style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 12px;">
+              Designed with bold typographic hierarchy, organic scallop dividers, and zero blurry shadows.
+            </div>
+
+            <div class="hero-pet-badge-row">
+              <button class="social-circle-badge" title="Canine Care" onclick="triggerToast('Selected: Canine Care')">🐕</button>
+              <button class="social-circle-badge" title="Feline Wellness" onclick="triggerToast('Selected: Feline Wellness')">🐈</button>
+              <button class="social-circle-badge" title="Avian & Small Pets" onclick="triggerToast('Selected: Avian & Small Pets')">🦜</button>
+              <button class="social-circle-badge" title="Rabbit & Exotic" onclick="triggerToast('Selected: Exotic Care')">🐇</button>
+              <span style="font-size: 12px; font-weight: 700; color: var(--color-surface-dark); margin-left: 6px;">4 Dedicated Care Wings</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wave divider: Terracotta to Dark Espresso -->
+    <div class="wave-divider" style="background: var(--color-brand-primary);">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" fill="#230C07">
+        <path d="M0,0 C320,50 480,10 720,40 C960,70 1120,20 1440,55 L1440,60 L0,60 Z"></path>
+      </svg>
+    </div>
+
+    <!-- 3. SECTION: COLOR ROLES & PALETTE MATRIX -->
+    <section class="palette-section" id="palette">
+      <div class="layout-wrapper">
+        <h2 class="section-title peachy-text">COLOR ROLES & PALETTE MATRIX</h2>
+        <p class="section-subtitle">
+          Click any color swatch to copy its hexadecimal token directly to your clipboard.
+        </p>
+
+        <div class="palette-grid">
+          <!-- 1. Brand Primary -->
+          <div class="swatch-card" onclick="copyHexColor('--color-brand-primary', '#E05333')">
+            <div class="swatch-color-chip" style="background-color: #E05333;">
+              <span class="swatch-chip-hex">#E05333</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">
+                <span>Vivid Terracotta</span>
+                <span>✦</span>
+              </div>
+              <div class="swatch-var-name">--color-brand-primary</div>
+              <p class="swatch-desc">Warm Vermilion. Primary brand signature and canvas main background.</p>
+            </div>
+          </div>
+
+          <!-- 2. Brand Secondary -->
+          <div class="swatch-card" onclick="copyHexColor('--color-brand-secondary', '#FED0A7')">
+            <div class="swatch-color-chip" style="background-color: #FED0A7;">
+              <span class="swatch-chip-hex" style="color: #230C07;">#FED0A7</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">
+                <span>Warm Butterscotch</span>
+                <span>✦</span>
+              </div>
+              <div class="swatch-var-name">--color-brand-secondary</div>
+              <p class="swatch-desc">Peachy Cream display typography and interactive button hover state.</p>
+            </div>
+          </div>
+
+          <!-- 3. Surface Dark -->
+          <div class="swatch-card" onclick="copyHexColor('--color-surface-dark', '#230C07')">
+            <div class="swatch-color-chip" style="background-color: #230C07; border: 1px solid rgba(255,255,255,0.15);">
+              <span class="swatch-chip-hex">#230C07</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">
+                <span>Midnight Cocoa</span>
+                <span>✦</span>
+              </div>
+              <div class="swatch-var-name">--color-surface-dark</div>
+              <p class="swatch-desc">Deep Espresso Brown. Canvas section alt, active chips, and dark typography.</p>
+            </div>
+          </div>
+
+          <!-- 4. Surface Light -->
+          <div class="swatch-card" onclick="copyHexColor('--color-surface-light', '#FFFFFF')">
+            <div class="swatch-color-chip" style="background-color: #FFFFFF;">
+              <span class="swatch-chip-hex" style="color: #230C07;">#FFFFFF</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">
+                <span>Pure Snow White</span>
+                <span>✦</span>
+              </div>
+              <div class="swatch-var-name">--color-surface-light</div>
+              <p class="swatch-desc">Interactive surface cards, high-contrast containers, and CTA buttons.</p>
+            </div>
+          </div>
+
+          <!-- 5. Surface Subtle -->
+          <div class="swatch-card" onclick="copyHexColor('--color-surface-subtle', '#F7F3EE')">
+            <div class="swatch-color-chip" style="background-color: #F7F3EE;">
+              <span class="swatch-chip-hex" style="color: #230C07;">#F7F3EE</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">
+                <span>Light Oatmeal</span>
+                <span>✦</span>
+              </div>
+              <div class="swatch-var-name">--color-surface-subtle</div>
+              <p class="swatch-desc">Warm Off-White body text on primary/dark canvas and subtle wells.</p>
+            </div>
+          </div>
+
+          <!-- 6. Accent Amber -->
+          <div class="swatch-card" onclick="copyHexColor('--color-accent-amber', '#F4B258')">
+            <div class="swatch-color-chip" style="background-color: #F4B258;">
+              <span class="swatch-chip-hex" style="color: #230C07;">#F4B258</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">
+                <span>Muted Gold</span>
+                <span>✦</span>
+              </div>
+              <div class="swatch-var-name">--color-accent-amber</div>
+              <p class="swatch-desc">Highlight accent, wellness stars, and warm focus badges.</p>
+            </div>
+          </div>
+
+          <!-- 7. Neutral Border -->
+          <div class="swatch-card" onclick="copyHexColor('--color-neutral-border', '#E8E1DA')">
+            <div class="swatch-color-chip" style="background-color: #E8E1DA;">
+              <span class="swatch-chip-hex" style="color: #230C07;">#E8E1DA</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">
+                <span>Soft Sand Border</span>
+                <span>✦</span>
+              </div>
+              <div class="swatch-var-name">--color-neutral-border</div>
+              <p class="swatch-desc">Inactive input fields, subtle card borders, and chip outlines.</p>
+            </div>
+          </div>
+
+          <!-- 8. Text Muted -->
+          <div class="swatch-card" onclick="copyHexColor('--color-text-muted', '#7D716A')">
+            <div class="swatch-color-chip" style="background-color: #7D716A;">
+              <span class="swatch-chip-hex" style="color: #230C07;">#7D716A</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">
+                <span>Warm Charcoal</span>
+                <span>✦</span>
+              </div>
+              <div class="swatch-var-name">--color-text-muted</div>
+              <p class="swatch-desc">Secondary subtitles, inactive chip text, and caption labels.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Semantic Token Mapping Matrix -->
+        <h3 class="section-title peachy-text" style="font-size: 26px;">SEMANTIC TOKEN MAPPING</h3>
+        <div class="semantic-mapping-grid">
+          <div class="semantic-card terracotta-card">
+            <span class="semantic-token-code">Canvas Main</span>
+            <h4 class="semantic-title">VIVID TERRACOTTA</h4>
+            <p style="font-size: 13px; line-height: 1.4;">Base canvas application background with high energy and welcoming warmth.</p>
+          </div>
+
+          <div class="semantic-card dark-card">
+            <span class="semantic-token-code">Canvas Section Alt</span>
+            <h4 class="semantic-title" style="color: var(--color-brand-secondary);">MIDNIGHT COCOA</h4>
+            <p style="font-size: 13px; line-height: 1.4; color: #D1C7BD;">High-contrast editorial anchor zones separating feature blocks.</p>
+          </div>
+
+          <div class="semantic-card">
+            <span class="semantic-token-code">Surface Interactive</span>
+            <h4 class="semantic-title">PURE SNOW WHITE</h4>
+            <p style="font-size: 13px; line-height: 1.4; color: var(--color-text-muted);">Tactile cards, booking flows, and default CTA button surfaces.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wave divider: Dark Espresso to Terracotta -->
+    <div class="wave-divider" style="background: var(--color-surface-dark);">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" fill="#E05333">
+        <path d="M0,0 C360,45 540,15 720,40 C900,65 1080,10 1440,50 L1440,60 L0,60 Z"></path>
+      </svg>
+    </div>
+
+    <!-- 4. SECTION: TYPOGRAPHY SYSTEM SPECIMEN -->
+    <section class="typography-section" id="typography">
+      <div class="layout-wrapper">
+        <h2 class="section-title peachy-text">TYPOGRAPHY SYSTEM & HIERARCHY</h2>
+        <p class="section-subtitle">
+          Display / Headers: "Bebas Neue", "Anton", sans-serif • Body & Interface: "Plus Jakarta Sans", "Inter", sans-serif.
+        </p>
+
+        <div class="type-ladder">
+          <!-- H1 Display -->
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-role-tag">Hero Display (H1)</span>
+              <span class="type-specs">96px / 0.90 / 0.02em / ALL CAPS</span>
+              <span class="type-specs" style="color: var(--color-brand-secondary);">Bebas Neue</span>
+            </div>
+            <div class="type-sample-h1">HAPPY HEARTS & VIBRANT PETS</div>
+          </div>
+
+          <!-- H2 Section Title -->
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-role-tag">Section Title (H2)</span>
+              <span class="type-specs">44px / 1.05 / 0.03em / ALL CAPS</span>
+              <span class="type-specs" style="color: var(--color-brand-secondary);">Bebas Neue</span>
+            </div>
+            <div class="type-sample-h2">PREVENTIVE CLINICAL WELLNESS & NUTRITION</div>
+          </div>
+
+          <!-- H3 Category Title -->
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-role-tag">Category Title (H3)</span>
+              <span class="type-specs">28px / 1.10 / 0.02em / ALL CAPS</span>
+              <span class="type-specs" style="color: var(--color-brand-secondary);">Bebas Neue</span>
+            </div>
+            <div class="type-sample-h3">CANINE CARDIOLOGY & DENTAL HYGIENE</div>
+          </div>
+
+          <!-- Accordion Label -->
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-role-tag">Accordion Label</span>
+              <span class="type-specs">22px / 1.20 / Weight: 700 / ALL CAPS</span>
+              <span class="type-specs" style="color: var(--color-brand-secondary);">Bebas Neue</span>
+            </div>
+            <div class="type-sample-accordion">WHAT VACCINATIONS DOES MY NEW PUPPY REQUIRE?</div>
+          </div>
+
+          <!-- Body Regular -->
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-role-tag">Body Regular</span>
+              <span class="type-specs">14px / 1.50 / Weight: 400</span>
+              <span class="type-specs" style="color: var(--color-brand-secondary);">Plus Jakarta Sans</span>
+            </div>
+            <div class="type-sample-body">
+              Our holistic veterinary clinic specializes in low-stress consultations, advanced cardiac sonography, and organic nutritional meal plans tailored to your companion’s exact breed and age profile.
+            </div>
+          </div>
+
+          <!-- Body Small / Meta -->
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-role-tag">Body Small / Meta</span>
+              <span class="type-specs">12px / 1.40 / Weight: 500</span>
+              <span class="type-specs" style="color: var(--color-brand-secondary);">Plus Jakarta Sans</span>
+            </div>
+            <div class="type-sample-meta">
+              CLINIC HOURS: MON–SAT 08:00–19:00 // EMERGENCY TRIAGE ON-CALL 24/7
+            </div>
+          </div>
+
+          <!-- Interactive / Pill -->
+          <div class="type-row">
+            <div class="type-meta">
+              <span class="type-role-tag">Interactive / Pill</span>
+              <span class="type-specs">13px / 1.00 / Weight: 600-700</span>
+              <span class="type-specs" style="color: var(--color-brand-secondary);">Plus Jakarta Sans</span>
+            </div>
+            <div>
+              <span class="type-sample-pill">COMPREHENSIVE EXAM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Pangram Tester -->
+        <div class="pangram-tester-card">
+          <div class="tester-controls">
+            <div>
+              <span style="font-weight: 700; font-size: 13px; text-transform: uppercase;">Type Hierarchy Tester</span>
+              <span style="font-size: 12px; color: var(--color-text-muted); margin-left: 8px;">(Type below to test display font rendering)</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 12px; font-weight: 600;">Size:</span>
+              <input type="range" id="pangram-slider" min="24" max="72" value="42" oninput="updatePangramSize(this.value)">
+              <span id="pangram-size-label" style="font-family: var(--font-mono); font-size: 12px; font-weight: 700;">42px</span>
+            </div>
+          </div>
+          <input type="text" id="pangram-input" class="pangram-input" value="THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG" spellcheck="false">
+        </div>
+      </div>
+    </section>
+
+    <!-- Wave divider: Terracotta to Off-White -->
+    <div class="wave-divider" style="background: var(--color-brand-primary);">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" fill="#F7F3EE">
+        <path d="M0,0 C300,50 600,10 900,45 C1100,65 1300,20 1440,55 L1440,60 L0,60 Z"></path>
+      </svg>
+    </div>
+
+    <!-- 5. SECTION: COMPONENT ARCHETYPE GALLERY -->
+    <section class="components-section" id="components">
+      <div class="layout-wrapper">
+        <h2 class="section-title dark-text">COMPONENT ARCHETYPE GALLERY</h2>
+        <p class="section-subtitle" style="color: var(--color-text-muted);">
+          Interactive buttons, selection chips, organic blob speech bubbles, corner geometry tokens, and accordion rows.
+        </p>
+
+        <div class="components-grid">
+          <!-- Button Archetypes -->
+          <div class="comp-block">
+            <div class="comp-block-title">
+              <span>CTA & ACTION BUTTONS</span>
+              <span class="badge-pill dark" style="font-size: 10px; padding: 2px 8px;">INTERACTIVE</span>
+            </div>
+            <div class="comp-row">
+              <button class="btn-pet btn-pet-cta" onclick="triggerToast('Clicked Primary CTA')">
+                <span>Book Now</span>
+                <span>→</span>
+              </button>
+              <button class="btn-pet btn-pet-dark" onclick="triggerToast('Clicked Midnight Cocoa')">
+                <span>Dark Action</span>
+              </button>
+            </div>
+            <div class="comp-row">
+              <button class="btn-pet" style="background: var(--color-brand-secondary); color: var(--color-surface-dark);" onclick="triggerToast('Clicked Butterscotch')">
+                <span>Butterscotch Hover</span>
+              </button>
+              <button class="btn-pet" style="background: var(--color-accent-amber); color: var(--color-surface-dark);" onclick="triggerToast('Clicked Amber Highlight')">
+                <span>Amber Tag</span>
+              </button>
+            </div>
+            <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 8px;">
+              Default: Background #FFFFFF, Text #230C07 • Hover: Background #FED0A7, Scale 1.02, 200ms ease-out.
+            </p>
+          </div>
+
+          <!-- Selection Chips -->
+          <div class="comp-block">
+            <div class="comp-block-title">
+              <span>SELECTION CHIPS (DATE / TIME / PET)</span>
+            </div>
+            <div class="comp-row">
+              <button class="chip-interactive active" onclick="toggleChip(this)">
+                <span class="chip-radio-dot"></span>
+                <span>Canine (Dog)</span>
+              </button>
+              <button class="chip-interactive" onclick="toggleChip(this)">
+                <span class="chip-radio-dot"></span>
+                <span>Feline (Cat)</span>
+              </button>
+              <button class="chip-interactive" onclick="toggleChip(this)">
+                <span class="chip-radio-dot"></span>
+                <span>Avian</span>
+              </button>
+            </div>
+            <div class="comp-row">
+              <button class="chip-interactive active" onclick="toggleChip(this)">
+                <span class="chip-radio-dot"></span>
+                <span>09:00 AM</span>
+              </button>
+              <button class="chip-interactive" onclick="toggleChip(this)">
+                <span class="chip-radio-dot"></span>
+                <span>11:30 AM</span>
+              </button>
+              <button class="chip-interactive" onclick="toggleChip(this)">
+                <span class="chip-radio-dot"></span>
+                <span>03:15 PM</span>
+              </button>
+            </div>
+            <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 8px;">
+              Inactive: #FFFFFF, border 1px #E8E1DA • Active: #230C07 with filled white radio dot.
+            </p>
+          </div>
+
+          <!-- Accordion Collapsed vs Expanded -->
+          <div class="comp-block">
+            <div class="comp-block-title">
+              <span>ACCORDION ROW STATES</span>
+            </div>
+            <div class="specimen-accordion">
+              <!-- Collapsed Specimen -->
+              <div class="accordion-row-specimen collapsed" onclick="triggerToast('Accordion row collapsed')">
+                <span class="accordion-title-text">COLLAPSED: GENERAL CHECKUP</span>
+                <span class="accordion-icon-badge">+</span>
+              </div>
+              <!-- Expanded Specimen -->
+              <div class="accordion-row-specimen expanded" onclick="triggerToast('Accordion row expanded')">
+                <span class="accordion-title-text">EXPANDED: CARDIAC SCREENING</span>
+                <span class="accordion-icon-badge">+</span>
+              </div>
+            </div>
+            <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 10px;">
+              Collapsed: #E05333 bg, White text • Expanded: #FFFFFF bg, #230C07 text, radius 18px.
+            </p>
+          </div>
+
+          <!-- Corner Geometry Showcase -->
+          <div class="comp-block">
+            <div class="comp-block-title">
+              <span>CORNER GEOMETRY (BORDER RADII)</span>
+            </div>
+            <div class="radii-showcase-row">
+              <div class="radius-box" style="border-radius: var(--radius-xs);">
+                <span>6px</span>
+                <span>--radius-xs</span>
+              </div>
+              <div class="radius-box" style="border-radius: var(--radius-sm);">
+                <span>12px</span>
+                <span>--radius-sm</span>
+              </div>
+              <div class="radius-box" style="border-radius: var(--radius-md);">
+                <span>18px</span>
+                <span>--radius-md</span>
+              </div>
+              <div class="radius-box" style="border-radius: var(--radius-lg);">
+                <span>28px</span>
+                <span>--radius-lg</span>
+              </div>
+              <div class="radius-box" style="border-radius: var(--radius-full);">
+                <span>9999px</span>
+                <span>--radius-full</span>
+              </div>
+            </div>
+            <p style="font-size: 12px; color: var(--color-text-muted); margin-top: 12px;">
+              Organic speech bubbles use asymmetrical curved radii: <code>40% 60% 70% 30% / 40% 50% 60% 50%</code>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wave divider: Off-White to Dark Espresso -->
+    <div class="wave-divider" style="background: var(--color-surface-subtle);">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" fill="#230C07">
+        <path d="M0,0 C360,50 600,10 900,45 C1200,75 1350,20 1440,55 L1440,60 L0,60 Z"></path>
+      </svg>
+    </div>
+
+    <!-- 6. SECTION: LIVING MICRO-EXPERIENCE (VETERINARY CLINIC STUDIO) -->
+    <section class="living-demo-section" id="living-demo">
+      <div class="layout-wrapper">
+        <h2 class="section-title peachy-text">LIVING CLINIC MICRO-EXPERIENCE</h2>
+        <p class="section-subtitle">
+          Interactive Pet Appointment Booking Studio & Care Protocol Demonstrator.
+        </p>
+
+        <div class="demo-dashboard">
+          <div class="demo-header">
+            <div class="demo-title-block">
+              <h3>HEALTHY PETS WELLNESS STUDIO</h3>
+              <p>Select your companion, choose a specialized wellness service, and configure an appointment.</p>
+            </div>
+            <span class="badge-pill dark" style="padding: 6px 14px;">LIVE INTERACTION PROTOCOL</span>
+          </div>
+
+          <div class="demo-layout-grid">
+            <!-- Left Column: Interactive Booking Card -->
+            <div class="booking-card">
+              <!-- Step 1: Select Patient -->
+              <div class="booking-step-title">
+                <span class="step-number-badge">1</span>
+                <span>SELECT PATIENT COMPANION</span>
+              </div>
+              <div class="pet-slots-grid">
+                <div class="pet-slot-card active" onclick="selectPetPatient(this, 'Canine (Dog)', 'Dr. Julian Vance, DVM')">
+                  <svg class="pet-icon-svg" viewBox="0 0 24 24"><path d="M10 5.5C10 5.5 8 4 6 5C4 6 4 8.5 5 10C5.5 10.8 6.5 11.5 7.5 12L7.5 18C7.5 19 8.5 20 9.5 20L10.5 20L10.5 15L13.5 15L13.5 20L14.5 20C15.5 20 16.5 19 16.5 18L16.5 12C17.5 11.5 18.5 10.8 19 10C20 8.5 20 6 18 5C16 4 14 5.5 14 5.5"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="9" r="1"/></svg>
+                  <span class="pet-label">Dog</span>
+                </div>
+
+                <div class="pet-slot-card" onclick="selectPetPatient(this, 'Feline (Cat)', 'Dr. Elena Rostova, DVM')">
+                  <svg class="pet-icon-svg" viewBox="0 0 24 24"><path d="M4 6L7 10L17 10L20 6L18 14C18 18 15 20 12 20C9 20 6 18 6 14Z"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/><path d="M11 16L12 17L13 16"/></svg>
+                  <span class="pet-label">Cat</span>
+                </div>
+
+                <div class="pet-slot-card" onclick="selectPetPatient(this, 'Avian (Bird)', 'Dr. Marcus Sterling, DVM')">
+                  <svg class="pet-icon-svg" viewBox="0 0 24 24"><path d="M16 7C16 7 13 4 9 5C5 6 4 10 5 14C6 18 10 20 15 19L20 19L18 14C18 14 20 12 20 9C20 6 16 7 16 7Z"/><circle cx="14" cy="9" r="1"/></svg>
+                  <span class="pet-label">Bird</span>
+                </div>
+
+                <div class="pet-slot-card" onclick="selectPetPatient(this, 'Rabbit (Small Pet)', 'Dr. Julian Vance, DVM')">
+                  <svg class="pet-icon-svg" viewBox="0 0 24 24"><path d="M7 3C7 3 5 7 7 11L9 11L9 3Z"/><path d="M17 3C17 3 19 7 17 11L15 11L15 3Z"/><ellipse cx="12" cy="15" rx="6" ry="5"/><circle cx="10" cy="14" r="1"/><circle cx="14" cy="14" r="1"/></svg>
+                  <span class="pet-label">Rabbit</span>
+                </div>
+              </div>
+
+              <!-- Step 2: Choose Wellness Service -->
+              <div class="booking-step-title">
+                <span class="step-number-badge">2</span>
+                <span>WELLNESS CARE PROTOCOL</span>
+              </div>
+              <div class="services-choice-grid">
+                <div class="service-item-chip active" onclick="selectServiceItem(this, 'Preventive Heart & Wellness Exam', '$85')">
+                  <span class="service-item-name">Heart & Vitality Exam</span>
+                  <span class="service-item-price">$85 • Comprehensive</span>
+                </div>
+
+                <div class="service-item-chip" onclick="selectServiceItem(this, 'Holistic Nutrition & Dietetics', '$65')">
+                  <span class="service-item-name">Holistic Nutrition</span>
+                  <span class="service-item-price">$65 • Meal Plan</span>
+                </div>
+
+                <div class="service-item-chip" onclick="selectServiceItem(this, 'Ultrasonic Dental Scaling', '$120')">
+                  <span class="service-item-name">Dental Scaling & Care</span>
+                  <span class="service-item-price">$120 • Hygiene</span>
+                </div>
+
+                <div class="service-item-chip" onclick="selectServiceItem(this, 'Low-Stress Vaccination Panel', '$55')">
+                  <span class="service-item-name">Vaccination Panel</span>
+                  <span class="service-item-price">$55 • Immunity</span>
+                </div>
+              </div>
+
+              <!-- Step 3: Date & Time Selection -->
+              <div class="booking-step-title">
+                <span class="step-number-badge">3</span>
+                <span>DATE & TIME APPOINTMENT CHIP</span>
+              </div>
+              <div class="comp-row" style="margin-bottom: var(--space-md);">
+                <button class="chip-interactive active" onclick="selectTimeChip(this, 'Today 09:30 AM')">
+                  <span class="chip-radio-dot"></span>
+                  <span>Today 09:30 AM</span>
+                </button>
+                <button class="chip-interactive" onclick="selectTimeChip(this, 'Today 02:00 PM')">
+                  <span class="chip-radio-dot"></span>
+                  <span>Today 02:00 PM</span>
+                </button>
+                <button class="chip-interactive" onclick="selectTimeChip(this, 'Tomorrow 10:15 AM')">
+                  <span class="chip-radio-dot"></span>
+                  <span>Tomorrow 10:15 AM</span>
+                </button>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="pet-owner-name">Owner & Patient Name</label>
+                <input type="text" id="pet-owner-name" class="form-input" placeholder="e.g. Buster & Sarah Jenkins" value="Buster & Sarah Jenkins" oninput="updateBookingSummary()">
+              </div>
+
+              <button class="btn-pet btn-pet-dark" style="width: 100%; justify-content: center;" onclick="confirmDemoBooking()">
+                <span>Confirm Appointment Booking</span>
+                <span>✓</span>
+              </button>
+            </div>
+
+            <!-- Right Column: Doctor Profile & Live Summary -->
+            <div class="summary-side-col">
+              <!-- Doctor Card -->
+              <div class="doctor-profile-card">
+                <div class="doctor-header">
+                  <div class="doctor-avatar-box">JV</div>
+                  <div class="doctor-info">
+                    <h4 id="lead-doctor-name">DR. JULIAN VANCE, DVM</h4>
+                    <p id="lead-doctor-title">Chief Cardiology & Preventive Specialist</p>
+                  </div>
+                </div>
+
+                <!-- Asymmetrical Speech Bubble -->
+                <div class="doctor-speech-bubble" id="doctor-speech-text">
+                  "Regular heart screenings and balanced whole-food diets can add up to 3 happy, energetic years to your companion’s life."
+                </div>
+
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                  <span class="badge-pill secondary" style="font-size: 11px; padding: 4px 10px;">Board Certified</span>
+                  <span class="badge-pill light" style="font-size: 11px; padding: 4px 10px;">Fear-Free Certified</span>
+                  <span class="badge-pill dark" style="font-size: 11px; padding: 4px 10px; border: 1px solid rgba(255,255,255,0.3);">14 Yrs Experience</span>
+                </div>
+              </div>
+
+              <!-- Live Booking Confirmation Ticket -->
+              <div class="booking-summary-box">
+                <div style="font-family: var(--font-display); font-size: 18px; color: var(--color-brand-secondary); margin-bottom: 8px; text-transform: uppercase;">
+                  APPOINTMENT SUMMARY
+                </div>
+                <div class="summary-line-item">
+                  <span>Selected Companion:</span>
+                  <strong id="summary-patient">Canine (Dog)</strong>
+                </div>
+                <div class="summary-line-item">
+                  <span>Wellness Service:</span>
+                  <strong id="summary-service">Heart & Vitality Exam</strong>
+                </div>
+                <div class="summary-line-item">
+                  <span>Selected Time Slot:</span>
+                  <strong id="summary-time">Today 09:30 AM</strong>
+                </div>
+                <div class="summary-line-item">
+                  <span>Assigned Doctor:</span>
+                  <strong id="summary-doctor">Dr. Julian Vance, DVM</strong>
+                </div>
+                <div class="summary-line-item" style="border-top: 1px solid rgba(255,255,255,0.15); padding-top: 6px; margin-top: 6px;">
+                  <span>Estimated Total:</span>
+                  <strong id="summary-price" style="color: var(--color-brand-secondary); font-size: 14px;">$85 USD</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Care & Wellness Accordion Rows in Demo -->
+          <div class="care-faq-wrapper">
+            <h3 class="section-title peachy-text" style="font-size: 26px;">CARE & WELLNESS PROTOCOLS (ACCORDION DEMO)</h3>
+            <p style="font-size: 13px; color: var(--color-surface-subtle); margin-bottom: 12px;">
+              Click rows to toggle between collapsed (Terracotta #E05333) and expanded (Pure White #FFFFFF with 18px radius).
+            </p>
+
+            <div class="faq-accordion-group">
+              <div class="faq-row active" onclick="toggleFaqAccordion(this)">
+                <div class="faq-header">
+                  <h4>HOW OFTEN SHOULD MY SENIOR DOG RECEIVE A CARDIAC CHECKUP?</h4>
+                  <span class="faq-toggle-circle">+</span>
+                </div>
+                <div class="faq-body">
+                  We recommend bi-annual cardiac screenings for dogs aged 7 and older. Our low-stress echocardiogram screening detects early valve changes before clinical symptoms appear, allowing proactive nutritional and botanical support.
+                </div>
+              </div>
+
+              <div class="faq-row" onclick="toggleFaqAccordion(this)">
+                <div class="faq-header">
+                  <h4>WHAT MAKES OUR FEAR-FREE PROTOCOL UNIQUE?</h4>
+                  <span class="faq-toggle-circle">+</span>
+                </div>
+                <div class="faq-body">
+                  We utilize species-specific waiting lounges, pheromone-diffused exam rooms, non-slip textured surfaces, and positive reinforcement treats to ensure your pet associates visits with joy and safety.
+                </div>
+              </div>
+
+              <div class="faq-row" onclick="toggleFaqAccordion(this)">
+                <div class="faq-header">
+                  <h4>CAN HOLISTIC NUTRITION RESOLVE CHRONIC ALLERGIES?</h4>
+                  <span class="faq-toggle-circle">+</span>
+                </div>
+                <div class="faq-body">
+                  Yes. By eliminating ultra-processed inflammatory fillers and incorporating single-source novel proteins with anti-inflammatory omega-3 fatty acids, over 85% of allergic patients experience rapid skin and gut relief.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wave divider: Dark Espresso to Terracotta -->
+    <div class="wave-divider" style="background: var(--color-surface-dark);">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" fill="#E05333">
+        <path d="M0,0 C300,55 550,15 800,45 C1050,75 1250,20 1440,55 L1440,60 L0,60 Z"></path>
+      </svg>
+    </div>
+
+    <!-- 7. SECTION: STYLE TILE PROMPT CODE DRAWER -->
+    <section class="prompt-drawer-section" id="prompt-drawer">
+      <div class="layout-wrapper">
+        <div class="prompt-card">
+          <div class="prompt-card-header">
+            <div>
+              <span class="badge-pill secondary" style="font-size: 11px; padding: 4px 10px; margin-bottom: 6px;">AGENT INGESTION READY</span>
+              <h2 class="section-title peachy-text" style="font-size: 32px; margin-bottom: 0;">STYLE TILE SPECIFICATION (MARKDOWN)</h2>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn-pet btn-pet-cta" onclick="copyMasterTilePrompt()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span>Copy Markdown</span>
+              </button>
+              <button class="btn-pet btn-pet-dark" onclick="downloadStyleTileFile()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Download .md</span>
+              </button>
+            </div>
+          </div>
+
+          <pre class="prompt-code-box"><code id="displayed-markdown-spec"></code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 8. MODAL SPEC INSPECTOR SHEET -->
+  <div class="modal-backdrop" id="modal-spec-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-spec-title">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="design-code">TILE-010</span>
+          <span class="design-title" id="modal-spec-title">Healthy Pets, Happy Hearts Style Tile</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeSpecModal()" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <p style="font-size: 12px; color: var(--color-brand-secondary); margin-bottom: 8px; font-family: var(--font-mono);">
+          RAW MARKDOWN SPECIFICATION (READY FOR AI AGENT INGESTION):
+        </p>
+        <pre class="modal-code-block"><code id="modal-spec-code-text"></code></pre>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-tile btn-copy" onclick="copyMasterTilePrompt()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Spec
+        </button>
+        <button class="btn-tile btn-download" onclick="downloadStyleTileFile()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download .md
+        </button>
+        <button class="btn-tile btn-preview" onclick="closeSpecModal()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- 9. EMBEDDED MACHINE-READABLE STYLE TILE MARKDOWN (agent.md Specification) -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  STYLE TILE: HEALTHY PETS, HAPPY HEARTS DESIGN SYSTEM
+  Theme: Playful Neo-Retro / Organic Warmth / High-Contrast Editorial
+  Code: TILE-010
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+--color-brand-primary:       #E05333; /* Vivid Terracotta / Warm Vermilion */
+--color-brand-secondary:     #FED0A7; /* Warm Butterscotch / Peachy Cream (Display Type) */
+--color-surface-dark:        #230C07; /* Deep Espresso Brown / Midnight Cocoa */
+--color-surface-light:       #FFFFFF; /* Pure Snow White */
+--color-surface-subtle:      #F7F3EE; /* Warm Off-White / Light Oatmeal */
+--color-accent-amber:        #F4B258; /* Muted Gold / Highlight Accent */
+--color-neutral-border:      #E8E1DA; /* Soft Sand Border */
+--color-text-muted:          #7D716A; /* Warm Charcoal Subtitle */
+
+Semantic Token Mapping:
+  • Canvas Main:             var(--color-brand-primary)
+  • Canvas Section Alt:      var(--color-surface-dark)
+  • Surface Interactive:     var(--color-surface-light)
+  • Typography Display:      var(--color-brand-secondary) on Primary; var(--color-surface-light) on Dark
+  • Typography Body Dark:    var(--color-surface-dark) on Light
+  • Typography Body Light:   var(--color-surface-subtle) on Primary/Dark
+
+/* -----------------------------------------------------------------------------
+ * 2. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+Font Families:
+  • Display / Headers:  "Bebas Neue", "Druk Wide Bold", "Anton", sans-serif
+  • Body & Interface:   "Plus Jakarta Sans", "Inter", sans-serif
+
+Type Scale & Hierarchy:
+  • Hero Display (H1):  96px / Line-height: 0.9  / Letter-spacing: 0.02em / ALL CAPS
+  • Section Title (H2): 44px / Line-height: 1.05 / Letter-spacing: 0.03em / ALL CAPS
+  • Category Title (H3):28px / Line-height: 1.1  / Letter-spacing: 0.02em / ALL CAPS
+  • Accordion Label:    22px / Line-height: 1.2  / Weight: 700            / ALL CAPS
+  • Body Regular:       14px / Line-height: 1.5  / Weight: 400
+  • Body Small / Meta:  12px / Line-height: 1.4  / Weight: 500
+  • Interactive / Pill: 13px / Line-height: 1.0  / Weight: 600-700
+
+/* -----------------------------------------------------------------------------
+ * 3. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-xs:    6px;   /* Small badges & tooltips */
+--radius-sm:    12px;  /* Text inputs & form fields */
+--radius-md:    18px;  /* Compact content panels */
+--radius-lg:    28px;  /* Feature category cards & doctor profile portraits */
+--radius-full:  9999px;/* Buttons, date/time chips, segmented toggles */
+
+Organic Shapes:
+  • Speech Bubbles: Asymmetrical curved blobs (e.g., border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%)
+  • Section Dividers: Fluid, organic wave / scallop mask SVG curves separating rust & espresso blocks.
+
+/* -----------------------------------------------------------------------------
+ * 4. ELEVATION & DEPTH (SHADOWS & LAYERING)
+ * -------------------------------------------------------------------------- */
+Depth Philosophy: Flat Neo-Editorial / 2.5D Layer Overlap (No blurry drop shadows).
+
+Layering Rules:
+  • Layer 0 (Base Canvas):   Solid brand background (Terracotta or Espresso)
+  • Layer 1 (Masks):         Organic SVG wavy sections
+  • Layer 2 (Cards):         High-contrast solid White or Espresso containers
+  • Layer 3 (Foreground):    Character illustrations overflowing container bounds
+  • Elevation Shadow:        none | 0 0 0 transparent (relies strictly on 1px-2px borders & contrast)
+
+/* -----------------------------------------------------------------------------
+ * 5. SPACING & SPATIAL SCALE
+ * -------------------------------------------------------------------------- */
+Base Unit: 4px / 8px Grid Scale
+  • space-2xs: 4px
+  • space-xs:  8px
+  • space-sm:  12px
+  • space-md:  16px
+  • space-lg:  24px
+  • space-xl:  32px
+  • space-2xl: 48px
+  • space-3xl: 64px
+
+Layout Specs:
+  • Content Container Max-Width: 1200px
+  • Grid Columns: 12-column desktop / 4-column mobile
+  • Card Internal Padding: 24px (compact) to 32px (spacious)
+  • Section Gutter: 24px
+
+/* -----------------------------------------------------------------------------
+ * 6. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-subtle:     1px solid rgba(255, 255, 255, 0.15); /* Accordion row dividers */
+--border-input:      1px solid #E8E1DA;                    /* Form inputs inactive */
+--border-active:     2px solid #230C07;                    /* Active selections */
+--border-card-white: 1.5px solid #FFFFFF;                  /* Inset card borders */
+
+/* -----------------------------------------------------------------------------
+ * 7. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+Style: Minimalist, clean-line glyphs with rounded terminals (1.5px to 2px stroke).
+Treatment:
+  • Social / Quick Links: Enclosed within solid dark/white circular badges (36px x 36px).
+  • Pet Selector Icons:   Monoline glyphs enclosed in pill/card slots with radio indicators.
+  • Accordion Toggles:    Crisp circular icon badges (+ / x or chevron up/down).
+
+/* -----------------------------------------------------------------------------
+ * 8. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+Hover & Focus States:
+  • CTA Buttons (e.g., "Book Now"):
+      Default:  Background: #FFFFFF | Text: #230C07
+      Hover:    Background: #FED0A7 | Scale: 1.02 | Transition: 200ms ease-out
+  • Accordion Row:
+      Collapsed: Background: #E05333 | Text: #FFFFFF
+      Expanded:  Background: #FFFFFF | Text: #230C07 | Border-radius: 18px
+  • Selection Chips (Date/Time/Pet Type):
+      Inactive: Background: #FFFFFF | Text: #7D716A | Border: 1px solid #E8E1DA
+      Active:   Background: #230C07 | Text: #FFFFFF | Radio Dot: Filled White
+
+/* -----------------------------------------------------------------------------
+ * 9. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- No blurry drop shadows or fuzzy box-shadows.
+- No purple or neon gradient fills on buttons or typography.
+- No generic rectangular stock containers lacking organic corner treatments.
+- No tiny untracked uppercase headers.
+- No grid particle mesh backgrounds.
+================================================================================
+  </script>
+
+  <!-- 10. JAVASCRIPT CONTROLLERS -->
+  <script>
+    // --- 1. TOAST SYSTEM ---
+    function triggerToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `<span class="toast-icon">${icon}</span><span>${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 200);
+      }, 2400);
+    }
+
+    // --- 2. MARKDOWN / SPEC HANDLERS ---
+    function getRawMarkdown() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    function copyMasterTilePrompt() {
+      const text = getRawMarkdown();
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const orig = btn.innerHTML;
+          btn.innerHTML = `<span>✓ Copied!</span>`;
+          setTimeout(() => { btn.innerHTML = orig; }, 2000);
+        }
+        triggerToast("Healthy Pets Style Tile copied to clipboard!", "✦");
+      }).catch(err => {
+        console.error("Clipboard copy error:", err);
+      });
+    }
+
+    function downloadStyleTileFile() {
+      const text = getRawMarkdown();
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-healthy-pets.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("Downloaded style-tile-healthy-pets.md", "↓");
+    }
+
+    function copyHexColor(varName, hex) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast(`Copied ${varName} (${hex})`, "⌖");
+      });
+    }
+
+    // --- 3. MODAL CONTROLS ---
+    function openSpecModal() {
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      const codeEl = document.getElementById("modal-spec-code-text");
+      if (codeEl) codeEl.textContent = getRawMarkdown();
+      if (backdrop) backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    // --- 4. INTERACTIVE CONTROLS ---
+    function updatePangramSize(val) {
+      const input = document.getElementById("pangram-input");
+      const label = document.getElementById("pangram-size-label");
+      if (input) input.style.fontSize = `${val}px`;
+      if (label) label.textContent = `${val}px`;
+    }
+
+    function toggleChip(chip) {
+      const parent = chip.parentElement;
+      if (parent) {
+        parent.querySelectorAll(".chip-interactive").forEach(c => c.classList.remove("active"));
+      }
+      chip.classList.add("active");
+      triggerToast(`Selected: ${chip.textContent.trim()}`);
+    }
+
+    // --- 5. LIVING DEMO CONTROLLER ---
+    let currentPatient = "Canine (Dog)";
+    let currentService = "Preventive Heart & Wellness Exam";
+    let currentPrice = "$85";
+    let currentTimeSlot = "Today 09:30 AM";
+    let currentDoctor = "Dr. Julian Vance, DVM";
+
+    function selectPetPatient(card, patientName, docName) {
+      document.querySelectorAll(".pet-slot-card").forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+      currentPatient = patientName;
+      currentDoctor = docName;
+      updateBookingSummary();
+      triggerToast(`Companion: ${patientName}`, "🐾");
+    }
+
+    function selectServiceItem(card, serviceName, price) {
+      document.querySelectorAll(".service-item-chip").forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+      currentService = serviceName;
+      currentPrice = price;
+      updateBookingSummary();
+      triggerToast(`Care Protocol: ${serviceName}`);
+    }
+
+    function selectTimeChip(chip, timeStr) {
+      const parent = chip.parentElement;
+      if (parent) {
+        parent.querySelectorAll(".chip-interactive").forEach(c => c.classList.remove("active"));
+      }
+      chip.classList.add("active");
+      currentTimeSlot = timeStr;
+      updateBookingSummary();
+      triggerToast(`Time Slot: ${timeStr}`);
+    }
+
+    function updateBookingSummary() {
+      const patientEl = document.getElementById("summary-patient");
+      const serviceEl = document.getElementById("summary-service");
+      const timeEl = document.getElementById("summary-time");
+      const docEl = document.getElementById("summary-doctor");
+      const priceEl = document.getElementById("summary-price");
+      const leadDocEl = document.getElementById("lead-doctor-name");
+
+      if (patientEl) patientEl.textContent = currentPatient;
+      if (serviceEl) serviceEl.textContent = currentService;
+      if (timeEl) timeEl.textContent = currentTimeSlot;
+      if (docEl) docEl.textContent = currentDoctor;
+      if (priceEl) priceEl.textContent = `${currentPrice} USD`;
+      if (leadDocEl) leadDocEl.textContent = currentDoctor.toUpperCase();
+    }
+
+    function confirmDemoBooking() {
+      const ownerInput = document.getElementById("pet-owner-name");
+      const ownerName = ownerInput ? ownerInput.value : "Buster";
+      triggerToast(`Confirmed ${currentService} for ${ownerName}!`, "🎉");
+    }
+
+    function toggleFaqAccordion(row) {
+      const isActive = row.classList.contains("active");
+      document.querySelectorAll(".faq-row").forEach(r => r.classList.remove("active"));
+      if (!isActive) {
+        row.classList.add("active");
+      }
+    }
+
+    // --- 6. INITIALIZATION ---
+    document.addEventListener("DOMContentLoaded", () => {
+      // Display initial markdown spec in drawer
+      const drawerCode = document.getElementById("displayed-markdown-spec");
+      if (drawerCode) drawerCode.textContent = getRawMarkdown();
+
+      // Button listeners
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyMasterTilePrompt);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadStyleTileFile);
+
+      // Modal backdrop click to close
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+    });
+  </script>
+</body>
+</html>

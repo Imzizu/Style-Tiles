@@ -1,6 +1,6 @@
 # Style Tiles — Agent Design Page Specification Guide (`agent.md`)
 
-> **Purpose**: This document defines the strict architecture, aesthetic criteria, header requirements, catalog card preview mechanism, and Markdown Style Tile format for every design page created under the `Designs/` directory in the **Style Tiles** repository.
+> **Purpose**: This document defines the strict architecture, aesthetic criteria, header requirements, catalog card preview mechanism, mobile layout rules, and Markdown Style Tile format for every design page created under the `Designs/` directory in the **Style Tiles** repository.
 > 
 > When creating a new design page, AI agents and developers **MUST** adhere to the rules, preview protocols, and template outlined below without exception.
 
@@ -270,11 +270,45 @@ Every design page created in `Designs/<slug>.html` must render the following ric
 
 ---
 
-## 6. Checklist for Publishing a New Design
+## 6. Mandatory Mobile Layout
+
+Every new design page **MUST** be usable on a phone. Desktop-only layouts are not acceptable. The aesthetic can stay bold; the structure must reflow.
+
+1. **Include the shared mobile safety sheet** immediately after the page's own `<style>` block:
+
+```html
+<link rel="stylesheet" href="design-page-mobile.css">
+```
+
+   This file stacks the mandatory header, keeps the Catalog / Preview / Copy / Download controls on-screen, and prevents the page from spilling sideways. It is a floor, not the whole job — each page must still write its own mobile rules for its unique hero, grids, specimens, and demo.
+
+2. **Keep a proper viewport tag**:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+3. **At `max-width: 768px` the page itself MUST**:
+   - Collapse multi-column grids (hero, swatches, type specimens, component galleries, living demo) to a **single column**.
+   - Keep every heading, paragraph, badge, button, and card **fully inside the viewport**. No clipped words, no horizontal scroll, no elements hanging off the right edge.
+   - Wrap or stack the `.style-tile-header` so the back link, title, and three action buttons remain tappable. Icon-only action buttons are allowed on small screens if `title` attributes stay in place.
+   - Use fluid type (`clamp(...)`) so the main `<h1>` wraps onto multiple lines instead of overflowing.
+   - Give inputs a `font-size` of at least `16px` so iOS does not zoom on focus.
+   - Avoid hover-only actions. Touch users must be able to open, copy, and inspect without a hover state.
+
+4. **Verify before publishing** at approximately **390×844** (phone) and **768×1024** (tablet), plus desktop. Confirm:
+   - The header is fully visible and the Catalog link works.
+   - Preview / Copy / Download still work.
+   - Hero, palette, type, components, and the living demo can all be read and used without sideways scrolling.
+
+---
+
+## 7. Checklist for Publishing a New Design
 
 When adding a new design:
 - [ ] Create `Designs/<design-slug>.html` following all rules in this document.
-- [ ] Ensure all 3 header buttons (`Preview`, `Copy Style Tile`, `Download Style Tile`) work seamlessly.
+- [ ] Link `Designs/design-page-mobile.css` and add page-specific `@media (max-width: 768px)` rules so the design is mobile-friendly.
+- [ ] Ensure all 3 header buttons (`Preview`, `Copy Style Tile`, `Download Style Tile`) work seamlessly on both desktop and mobile.
 - [ ] Embed the exact Markdown in `<script id="style-tile-markdown" type="text/markdown">`.
 - [ ] Update `app.js` `STYLE_TILES_DATA`:
   - [ ] Set `theme: "Dark" | "Light" | "Dark/Light"`.
@@ -282,4 +316,5 @@ When adding a new design:
   - [ ] Set `hasPage: true` to activate the live 16:9 scaled design preview iframe.
   - [ ] Include the complete Markdown Style Tile in `markdownSpec`.
 - [ ] Verify that the live 16:9 Design Page Preview displays and scales cleanly on the catalog card in `index.html` (testing Grid, Compact, and Editorial Spread views).
-- [ ] Test color contrast, responsiveness (mobile/tablet/desktop), and keyboard accessibility.
+- [ ] Test at phone (~390px), tablet (~768px), and desktop: no horizontal overflow, stacked layouts, readable type, and working header actions.
+- [ ] Test color contrast and keyboard accessibility.
