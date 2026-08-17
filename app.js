@@ -9,8 +9,8 @@ const STYLE_TILES_DATA = [
     slug: "editorial-brutalist",
     name: "Editorial Brutalist Gazette",
     vibe: "Archival Drafting • Neo-Brutalism • Tactile Risograph",
-    vibeBadge: "Editorial & Archival",
-    categories: ["editorial", "brutalist"],
+    vibeBadge: "Neo-Brutalism",
+    categories: ["brutalist"],
     theme: "Light",
     hasPage: true,
     fonts: {
@@ -122,8 +122,8 @@ const STYLE_TILES_DATA = [
     slug: "monolithic-hyper-editorial",
     name: "System 07 // Monolithic Hyper-Editorial",
     vibe: "1970s Swiss Archival • Industrial Telemetry • Tactile Physics",
-    vibeBadge: "Neo-Brutalism",
-    categories: ["editorial", "brutalist", "minimalist"],
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
     theme: "Dark",
     hasPage: true,
     fonts: {
@@ -267,7 +267,7 @@ const STYLE_TILES_DATA = [
     name: "CryptoVista Neo-FinTech",
     vibe: "Neo-FinTech Minimalist • Monochromatic Structured • Parametric Clay",
     vibeBadge: "Minimalist & Monastic",
-    categories: ["minimalist", "editorial"],
+    categories: ["minimalist"],
     theme: "Light",
     hasPage: true,
     fonts: {
@@ -394,8 +394,8 @@ const STYLE_TILES_DATA = [
     slug: "greenwrap",
     name: "Greenwrap Design System",
     vibe: "Modern Eco-Brutalist • Neo-Editorial • Organic Dark Mode",
-    vibeBadge: "Neo-Brutalism",
-    categories: ["brutalist", "editorial", "luxury"],
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
     theme: "Dark",
     hasPage: true,
     fonts: {
@@ -553,7 +553,7 @@ const STYLE_TILES_DATA = [
     name: "Neo-Memphis Risograph Pop",
     vibe: "Electric Halftone • Playful Geometry • Chunky 3D",
     vibeBadge: "Playful & Pop",
-    categories: ["playful", "retro", "brutalist"],
+    categories: ["playful"],
     theme: "Light",
     hasPage: true,
     fonts: {
@@ -812,7 +812,7 @@ const STYLE_TILES_DATA = [
     name: "Healthy Pets, Happy Hearts",
     vibe: "Playful Neo-Retro • Organic Warmth • High-Contrast Editorial",
     vibeBadge: "Playful & Pop",
-    categories: ["playful", "editorial", "retro"],
+    categories: ["playful"],
     theme: "Dark/Light",
     hasPage: true,
     fonts: {
@@ -960,8 +960,8 @@ const STYLE_TILES_DATA = [
     slug: "dark-tactical-editorial",
     name: "Dark Tactical Editorial / Cyber-Gothic",
     vibe: "Deep Obsidian • Cyber-Gothic Watermarks • 237° Telemetry • Engineered Brutalism",
-    vibeBadge: "Cyber & Blueprint",
-    categories: ["cyber", "editorial", "brutalist"],
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
     theme: "Dark",
     hasPage: true,
     fonts: {
@@ -1119,8 +1119,8 @@ const STYLE_TILES_DATA = [
     slug: "skybound",
     name: "Skybound Design System",
     vibe: "Cool Alabaster • Electric Lemon Lime • Modern Travel",
-    vibeBadge: "Playful & Pop",
-    categories: ["playful", "luxury"],
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
     theme: "Light",
     hasPage: true,
     fonts: {
@@ -1260,8 +1260,8 @@ const STYLE_TILES_DATA = [
     slug: "warm-wabisabi",
     name: "Warm Wabi-Sabi Ledger",
     vibe: "Organic Minimalism • Tactile Craft • Serene Editorial",
-    vibeBadge: "Quiet Luxury",
-    categories: ["minimalist", "luxury"],
+    vibeBadge: "Minimalist & Monastic",
+    categories: ["minimalist"],
     theme: "Light",
     hasPage: true,
     fonts: {
@@ -1448,7 +1448,7 @@ const STYLE_TILES_DATA = [
     name: "Industrial Blueprint HUD",
     vibe: "Architectural Cyanotype • CAD Precision • Aerospace Telemetry",
     vibeBadge: "Cyber & Blueprint",
-    categories: ["cyber", "editorial"],
+    categories: ["cyber"],
     theme: "Dark",
     hasPage: true,
     fonts: {
@@ -1832,7 +1832,7 @@ function renderCatalog() {
   if (!gridContainer) return;
 
   const filtered = STYLE_TILES_DATA.filter(tile => {
-    const matchesCat = currentCategory === "all" || tile.categories.includes(currentCategory);
+    const matchesCat = currentCategory === "all" || tile.vibeBadge === currentCategory;
     const q = currentSearchQuery.toLowerCase().trim();
     const matchesSearch = !q || 
       tile.name.toLowerCase().includes(q) ||
@@ -1866,7 +1866,7 @@ function renderCatalog() {
       <!-- Card Header with Vibe Filter Option Badge -->
       <div class="card-header-bar">
         <span class="card-code">${tile.id}</span>
-        <span class="card-vibe-badge" title="Filter by ${tile.vibeBadge}" onclick="setCategory('${tile.categories[0]}')">
+        <span class="card-vibe-badge" title="Filter by ${tile.vibeBadge}" onclick="setCategory('${tile.vibeBadge}')">
           <span class="vibe-dot"></span>
           ${tile.vibeBadge}
         </span>
@@ -2258,7 +2258,7 @@ function updateFilterChipCounts() {
     if (cat === "all") {
       countEl.textContent = STYLE_TILES_DATA.length;
     } else {
-      const count = STYLE_TILES_DATA.filter(t => t.categories && t.categories.includes(cat)).length;
+      const count = STYLE_TILES_DATA.filter(t => t.vibeBadge === cat).length;
       countEl.textContent = count;
     }
   });

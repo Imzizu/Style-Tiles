@@ -43,7 +43,7 @@ Every design page **MUST** include a persistent top navigation header containing
   <div class="header-title-block">
     <span class="design-code">TILE-00X</span>
     <span class="design-title">[Design Name]</span>
-    <span class="design-vibe-tag">[Primary Vibe Tag]</span>
+    <span class="design-vibe-tag">[Official vibeBadge — e.g. Neo-Brutalism]</span>
   </div>
 
   <!-- 3. Action Suite -->
@@ -97,8 +97,8 @@ Every design entry MUST include `theme`, `vibeBadge`, `hasPage: true`, and compl
   slug: "my-design-slug",
   name: "My Design Name",
   vibe: "Keyword 1 • Keyword 2 • Keyword 3",
-  vibeBadge: "Editorial & Archival", // <-- MANDATORY: Must match one of the search filter options!
-  categories: ["editorial", "minimalist"],
+  vibeBadge: "Editorial & Archival", // <-- MANDATORY: exactly ONE official filter name
+  categories: ["editorial"],         // <-- MANDATORY: only the slug that maps to vibeBadge
   theme: "Dark", // <-- MANDATORY: Must be "Dark", "Light", or "Dark/Light"
   hasPage: true, // <-- CRITICAL: Enables live 16:9 design preview iframe
   fonts: { display: "...", sans: "...", mono: "..." },
@@ -112,14 +112,55 @@ Every design entry MUST include `theme`, `vibeBadge`, `hasPage: true`, and compl
 ```
 
 #### Approved `vibeBadge` Filter Options:
-The `vibeBadge` attached to the card MUST match one of the filter options in the search filter bar:
-- `"Editorial & Archival"`
-- `"Neo-Brutalism"`
-- `"Cyber & Blueprint"`
-- `"Minimalist & Monastic"`
-- `"Playful & Pop"`
-- `"Retro & Y2K"`
-- `"Quiet Luxury"`
+The catalog **"Filter by vibe"** chips match `vibeBadge` exactly. Pick **exactly one**. The header `.design-vibe-tag` on the design page MUST use that same official string.
+
+| `vibeBadge` | `categories` slug |
+|---|---|
+| `"Editorial & Archival"` | `["editorial"]` |
+| `"Neo-Brutalism"` | `["brutalist"]` |
+| `"Cyber & Blueprint"` | `["cyber"]` |
+| `"Minimalist & Monastic"` | `["minimalist"]` |
+| `"Playful & Pop"` | `["playful"]` |
+| `"Retro & Y2K"` | `["retro"]` |
+| `"Quiet Luxury"` | `["luxury"]` |
+
+#### How to choose the vibe (judge the visual system, not the marketing copy)
+
+Do **not** tag from adjectives in the name, blurb, or industry story ("eco-brutalist", "neo-editorial", "telemetry", "neo-retro"). Tag from **construction**: radii, shadows, borders, type role, palette energy, and material metaphor.
+
+**`"Editorial & Archival"`** — The page *reads* like a magazine, gazette, journal, library index, or Swiss-international document.
+- Signals: display serif as the hero voice; paper / vellum / ink; folios, pull quotes, issue numbers, columned layouts.
+- Not this: a SaaS/fintech dashboard that happens to use a serif; a hospitality site; any page that only says "editorial" in copy.
+
+**`"Neo-Brutalism"`** — Raw graphic construction. Hard geometry is the system.
+- Signals: 0–2px radii; 2–3px high-contrast borders; hard **zero-blur** offset shadows (`4px 4px 0 #000`); stamp / sticker / risograph / die-cut chrome.
+- Not this: 20–32px rounded bento cards, soft shadows, or pill-default UI that merely *calls itself* brutalist.
+
+**`"Cyber & Blueprint"`** — HUD, CAD board, terminal, cyanotype, or instrument panel.
+- Signals: monospaced coordinates; hairline grids; cyan / amber vector ink; reticles, dimension callouts, scanlines, live telemetry.
+- Not this: any dark theme; a gothic/editorial magazine that mentions "telemetry"; luxury or brutalist pages with a single technical badge.
+
+**`"Minimalist & Monastic"`** — Sparse, quiet, material. Large empty fields. Wabi-sabi / craft **or** precise neo-minimal product UI.
+- Signals: linen / oat / sumi **or** stark white + one accent; lots of air; thin structural borders; 0–8px radii; no chunky shadows.
+- Not this: dense industrial dashboards; maximal Memphis; gold-foil hospitality luxury.
+
+**`"Playful & Pop"`** — Energy is the point: candy / spot inks, Memphis geometry, chunky 3D, stickers, cartoon warmth.
+- Signals: bubblegum / cadmium / acid palettes; playful display type; stickers, waves, toy shapes.
+- Not this: a luxury travel UI with one lime accent; a serious editorial that uses one bright badge.
+
+**`"Retro & Y2K"`** — The **period reference is the system**: Y2K chrome/gel, 90s/2000s web, vaporwave, pixel/LCD, millennial gloss.
+- Signals: chrome, gel buttons, aurora gradients, pixel fonts, 2000s cyan/magenta/silver.
+- Not this: "neo-retro" marketing on a modern playful brand; 1980s Memphis (that is Playful & Pop); "vintage" paper (that is Editorial & Archival).
+
+**`"Quiet Luxury"`** — Expensive and composed: hospitality, fashion, private travel, sustainable premium.
+- Signals: alabaster + onyx, sage/pine premium, frosted glass, large soft radii, restrained motion, fashion/hospitality voice.
+- Not this: rustic wabi-sabi craft (that is Minimalist & Monastic); eco copy pasted onto a brutalist or playful system.
+
+#### Hard rules (do not violate)
+1. **One `vibeBadge` only.** It is the catalog filter key. Hybrids still pick the *dominant construction*.
+2. **`categories` is a single matching slug.** Do not add extra categories because the copy mentioned them. Extra categories used to dump tiles into the wrong vibe filters.
+3. **Header `.design-vibe-tag` equals `vibeBadge`.** Flavor keywords belong in `vibe`, the hero narrative, and the Markdown spec — not on the filter tag.
+4. If two buckets seem plausible, use the exclusion tests above. When still torn, prefer the construction signals (shadows, radii, borders) over the product story.
 
 #### Approved `theme` Values:
 - `"Dark"`: Dark background / night aesthetic (e.g. OLED black, obsidian, deep navy, carbon).
@@ -312,7 +353,7 @@ When adding a new design:
 - [ ] Embed the exact Markdown in `<script id="style-tile-markdown" type="text/markdown">`.
 - [ ] Update `app.js` `STYLE_TILES_DATA`:
   - [ ] Set `theme: "Dark" | "Light" | "Dark/Light"`.
-  - [ ] Set `vibeBadge: "[Filter Option Name]"` (matching one of the search filter options, e.g. `"Editorial & Archival"`, `"Neo-Brutalism"`, `"Cyber & Blueprint"`, `"Minimalist & Monastic"`, `"Playful & Pop"`, `"Retro & Y2K"`, `"Quiet Luxury"`).
+  - [ ] Set exactly one `vibeBadge` using the classification guide in Section 3 (judge construction, not marketing copy). Set `categories` to only the matching slug. Set the page header `.design-vibe-tag` to that same official string.
   - [ ] Set `hasPage: true` to activate the live 16:9 scaled design preview iframe.
   - [ ] Include the complete Markdown Style Tile in `markdownSpec`.
 - [ ] Verify that the live 16:9 Design Page Preview displays and scales cleanly on the catalog card in `index.html` (testing Grid, Compact, and Editorial Spread views).
