@@ -1,0 +1,2993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKYBOUND DESIGN SYSTEM // STYLE TILE (TILE-008)</title>
+  <meta name="description" content="Production-ready design system specification for Skybound: Cool Alabaster, Deep Onyx Black, Electric Lemon Lime, Frosted Glass Surfaces, and High-Velocity Modern Travel interfaces.">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       SKYBOUND DESIGN SYSTEM // STYLE TILE SPECIFICATION (TILE-008)
+       ============================================================================= */
+
+    :root {
+      /* ---------------------------------------------------------------------------
+       * 01. COLOR ROLES & PALETTE
+       * --------------------------------------------------------------------------- */
+      /* Primary & Accents */
+      --brand-dark:               #0E0F12; /* Deep Onyx Black — Primary Text / Base CTA */
+      --brand-accent:             #EDF947; /* Electric Lemon Lime — Interactive Highlight */
+      --brand-accent-active:      #D8E534; /* Deep Lime — Active / Press */
+
+      /* Surfaces & Backgrounds */
+      --bg-canvas:                #F5F6F8; /* Cool Alabaster — Canvas / Page Background */
+      --surface-pure:             #FFFFFF; /* Pure White — Cards / Floating Bars */
+      --glass-surface:            rgba(255, 255, 255, 0.72); /* Glass Surface — Frosted Overlays */
+      --glass-surface-dense:      rgba(255, 255, 255, 0.85); /* Dense Frosted Float */
+      --glass-border:             rgba(255, 255, 255, 0.40); /* Glass Border */
+      --glass-border-dense:       rgba(255, 255, 255, 0.60); /* Dense Glass Border */
+
+      /* Neutrals & Grayscale */
+      --text-primary:             #0E0F12; /* Onyx — Text Primary */
+      --text-secondary:           #6C727F; /* Slate Gray — Text Secondary / Subtitles */
+      --text-muted:               #9CA3AF; /* Cool Gray — Text Muted / Placeholders */
+      --border-subdued:           #EAECEF; /* Soft Gray — Border Subdued / Divider */
+      --border-medium:            #DDE1E6; /* Outline Gray — Border Medium */
+
+      /* Micro-Badge & Tag Tints (Pastels) */
+      --tag-gold-bg:              #FEF3C7;
+      --tag-gold-text:            #78350F;
+      --tag-pink-bg:              #FFE4E6;
+      --tag-pink-text:            #9F1239;
+      --tag-mint-bg:              #D1FAE5;
+      --tag-mint-text:            #065F46;
+      --tag-sky-bg:               #E0F2FE;
+      --tag-sky-text:             #0369A1;
+
+      /* Structural Aliases */
+      --ink-primary:              var(--text-primary);
+      --ink-secondary:            var(--text-secondary);
+      --ink-muted:                var(--text-muted);
+      --ink-inverted:             #FFFFFF;
+
+      /* ---------------------------------------------------------------------------
+       * 02. TYPOGRAPHY SYSTEM
+       * --------------------------------------------------------------------------- */
+      --font-display:             "Plus Jakarta Sans", "Satoshi", system-ui, -apple-system, sans-serif;
+      --font-sans:                "Inter", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+      --font-mono:                ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+
+      /* Hierarchy Scale */
+      --type-display-hero:        800 56px / 1.1 var(--font-display);  /* Tracking: -0.03em */
+      --type-section-heading:     700 28px / 1.2 var(--font-display);  /* Tracking: -0.02em */
+      --type-card-title:          600 16px / 1.3 var(--font-display);  /* Tracking: -0.01em */
+      --type-subtitle-hero:       400 16px / 1.5 var(--font-sans);     /* Tracking:  0.00em */
+      --type-body-input:          500 14px / 1.4 var(--font-sans);     /* Tracking:  0.00em */
+      --type-micro-meta:          400 12px / 1.3 var(--font-sans);     /* Tracking: +0.01em */
+      --type-tag-pill:            600 11px / 1.0 var(--font-display);  /* Tracking: +0.02em */
+
+      /* ---------------------------------------------------------------------------
+       * 03. CORNER GEOMETRY (BORDER RADII)
+       * --------------------------------------------------------------------------- */
+      --radius-pill:              9999px; /* Full Round -> Buttons, Badges, Search Bar, Nav Pills */
+      --radius-3xl:               36px;   /* Hero Frame -> Master Page Container, Canvas Bounds */
+      --radius-2xl:               24px;   /* Cards -> Floating Search Bar, Category Cards */
+      --radius-xl:                16px;   /* Overlays -> Floating Mini-widgets, Popovers */
+      --radius-sm:                8px;    /* Micro Tags -> Metadata Pills, Tooltips */
+
+      /* ---------------------------------------------------------------------------
+       * 04. ELEVATION & DEPTH (SHADOWS & LAYERS)
+       * --------------------------------------------------------------------------- */
+      --shadow-level-0:           none;
+      --shadow-level-1:           0px 2px 8px -2px rgba(14, 15, 18, 0.04);
+      --shadow-level-2:           0px 20px 40px -12px rgba(14, 15, 18, 0.08),
+                                  0px 1px 3px 0px rgba(14, 15, 18, 0.02);
+      --shadow-level-3:           0px 28px 64px -16px rgba(14, 15, 18, 0.14);
+      --shadow-accent-glow:       0px 12px 28px -4px rgba(237, 249, 71, 0.45);
+
+      /* Glassmorphism Treatment */
+      --glass-frosted-float:      blur(20px) saturate(180%);
+
+      /* ---------------------------------------------------------------------------
+       * 05. SPACING & SPATIAL SCALE (4px / 8px Baseline System)
+       * --------------------------------------------------------------------------- */
+      --space-2xs:                4px;   /* Icon-to-label gaps, tag inner padding */
+      --space-xs:                 8px;   /* Input inner gaps, micro card padding */
+      --space-sm:                 12px;  /* Button vertical padding, chip spacing */
+      --space-md:                 16px;  /* Card padding horizontal/vertical */
+      --space-lg:                 24px;  /* Category card padding, grid gutter */
+      --space-xl:                 32px;  /* Section sub-spacing, search input groups */
+      --space-2xl:                48px;  /* Section separation, Hero margin */
+      --space-3xl:                64px;  /* Major layout division */
+
+      /* ---------------------------------------------------------------------------
+       * 06. BORDERS & DIVIDERS
+       * --------------------------------------------------------------------------- */
+      --border-card-default:      1px solid var(--border-subdued);
+      --border-card-hover:        1.5px solid var(--text-primary);
+      --border-divider:           1px solid var(--border-subdued);
+      --border-medium-solid:      1px solid var(--border-medium);
+      --focus-ring-shadow:        0 0 0 2px var(--surface-pure), 0 0 0 4px var(--text-primary);
+
+      /* ---------------------------------------------------------------------------
+       * 07. ICONOGRAPHY LANGUAGE & SPECS
+       * --------------------------------------------------------------------------- */
+      --icon-stroke-width:        1.6px;
+      --icon-size-action:         18px;
+      --icon-size-form:           16px;
+      --icon-size-category:       32px;
+
+      /* ---------------------------------------------------------------------------
+       * 08. INTERACTION & FEEDBACK RULES
+       * --------------------------------------------------------------------------- */
+      --ease-spring:              cubic-bezier(0.16, 1, 0.3, 1);
+      --duration-micro:           200ms;
+      --duration-card:            300ms;
+      --transition-standard:      all 200ms var(--ease-spring);
+      --transition-transform:     transform 300ms var(--ease-spring), box-shadow 300ms var(--ease-spring), border-color 300ms var(--ease-spring);
+    }
+
+    /* =============================================================================
+       BASE RESET & GLOBAL FOUNDATION
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: 0.00em;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: var(--brand-accent);
+      color: var(--brand-dark);
+    }
+
+    /* Subtle Architectural Ambience */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+      background: radial-gradient(circle at 85% 10%, rgba(237, 249, 71, 0.08) 0%, transparent 40%),
+                  radial-gradient(circle at 10% 40%, rgba(224, 242, 254, 0.5) 0%, transparent 45%);
+    }
+
+    .layout-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+
+    @media (max-width: 900px) {
+      .layout-wrapper {
+        padding: 0 var(--space-md);
+      }
+    }
+
+    /* =============================================================================
+       MANDATORY HEADER BAR COMPONENT
+       ============================================================================= */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: var(--glass-frosted-float);
+      -webkit-backdrop-filter: var(--glass-frosted-float);
+      border-bottom: 1px solid var(--border-subdued);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-sm) var(--space-xl);
+      gap: var(--space-md);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      padding: 6px 14px;
+      background: var(--surface-pure);
+      border: 1px solid var(--border-medium);
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-level-1);
+      transition: var(--transition-standard);
+    }
+
+    .nav-back-link:hover {
+      background: var(--brand-accent);
+      border-color: var(--brand-dark);
+      transform: translateY(-1px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 4px 10px;
+      background: var(--brand-dark);
+      color: var(--brand-accent);
+      border-radius: var(--radius-pill);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .design-vibe-tag {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--bg-canvas);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subdued);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition-standard);
+      border: 1px solid transparent;
+    }
+
+    .btn-tile svg {
+      flex-shrink: 0;
+    }
+
+    .btn-tile.btn-preview {
+      background: var(--surface-pure);
+      color: var(--text-primary);
+      border-color: var(--border-medium);
+    }
+
+    .btn-tile.btn-preview:hover {
+      background: var(--bg-canvas);
+      border-color: var(--text-primary);
+    }
+
+    .btn-tile.btn-copy {
+      background: var(--brand-accent);
+      color: var(--brand-dark);
+      box-shadow: 0 2px 6px rgba(237, 249, 71, 0.4);
+    }
+
+    .btn-tile.btn-copy:hover {
+      background: var(--brand-accent-active);
+      transform: translateY(-1px);
+    }
+
+    .btn-tile.btn-download {
+      background: var(--brand-dark);
+      color: #FFFFFF;
+    }
+
+    .btn-tile.btn-download:hover {
+      background: #252830;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .style-tile-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--space-sm) var(--space-md);
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+      .design-vibe-tag {
+        display: none;
+      }
+    }
+
+    /* =============================================================================
+       MASTER CANVAS CONTAINER & HERO BANNER
+       ============================================================================= */
+    .master-canvas {
+      background: var(--surface-pure);
+      border-radius: var(--radius-3xl);
+      border: 1px solid var(--border-subdued);
+      box-shadow: var(--shadow-level-2);
+      margin: var(--space-xl) auto var(--space-3xl);
+      padding: var(--space-2xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (max-width: 900px) {
+      .master-canvas {
+        padding: var(--space-lg);
+        border-radius: var(--radius-2xl);
+        margin: var(--space-md) auto var(--space-2xl);
+      }
+    }
+
+    /* Hero Section */
+    .hero-banner {
+      padding-bottom: var(--space-2xl);
+      border-bottom: 1px solid var(--border-subdued);
+      position: relative;
+    }
+
+    .hero-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-lg);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .hero-badge-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 5vw, 56px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--brand-dark);
+      margin-bottom: var(--space-md);
+      max-width: 900px;
+    }
+
+    .hero-headline span.accent-highlight {
+      background: linear-gradient(120deg, transparent 0%, transparent 60%, rgba(237, 249, 71, 0.4) 60%);
+      padding: 0 4px;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0.00em;
+      color: var(--text-secondary);
+      max-width: 780px;
+      margin-bottom: var(--space-xl);
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .hero-stats-strip {
+      margin-top: var(--space-2xl);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-md);
+      padding: var(--space-lg);
+      background: var(--bg-canvas);
+      border-radius: var(--radius-2xl);
+      border: 1px solid var(--border-subdued);
+    }
+
+    .stat-card {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--brand-dark);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* =============================================================================
+       SECTION HEADINGS & SYSTEM LAYOUT
+       ============================================================================= */
+    .system-section {
+      padding: var(--space-2xl) 0;
+      border-bottom: 1px solid var(--border-subdued);
+    }
+
+    .system-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-header-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: var(--space-xl);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .section-num-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--brand-dark);
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      max-width: 600px;
+    }
+
+    /* =============================================================================
+       01. COLOR MATRIX & SWATCHES
+       ============================================================================= */
+    .palette-group {
+      margin-bottom: var(--space-xl);
+    }
+
+    .palette-group-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .swatch-card {
+      background: var(--surface-pure);
+      border: 1px solid var(--border-subdued);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-level-1);
+      transition: var(--transition-transform);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-medium);
+      box-shadow: var(--shadow-level-2);
+    }
+
+    .swatch-color-box {
+      height: 90px;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: var(--space-xs);
+    }
+
+    .swatch-copy-hint {
+      background: rgba(14, 15, 18, 0.7);
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      opacity: 0;
+      transition: opacity 200ms ease;
+    }
+
+    .swatch-card:hover .swatch-copy-hint {
+      opacity: 1;
+    }
+
+    .swatch-info {
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: var(--surface-pure);
+    }
+
+    .swatch-role-name {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .swatch-hex-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .swatch-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Pastels Micro Badges Swatch Grid */
+    .pastels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .pastel-card {
+      border-radius: var(--radius-xl);
+      padding: var(--space-md);
+      border: 1px solid var(--border-subdued);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      cursor: pointer;
+      transition: var(--transition-transform);
+    }
+
+    .pastel-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-level-1);
+    }
+
+    /* =============================================================================
+       02. TYPOGRAPHY SYSTEM
+       ============================================================================= */
+    .type-stacks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .type-specimen-card {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subdued);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-lg);
+    }
+
+    .type-specimen-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: var(--space-xs);
+    }
+
+    .type-font-name {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--brand-dark);
+      margin-bottom: var(--space-xs);
+    }
+
+    .type-font-weights {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-md);
+    }
+
+    .type-sample-alphabet {
+      font-size: 16px;
+      line-height: 1.4;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+      word-break: break-word;
+    }
+
+    /* Type Hierarchy Scale Table */
+    .type-scale-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--surface-pure);
+      border: 1px solid var(--border-subdued);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .type-scale-table th {
+      background: var(--bg-canvas);
+      padding: var(--space-sm) var(--space-md);
+      text-align: left;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-subdued);
+    }
+
+    .type-scale-table td {
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--border-subdued);
+      vertical-align: middle;
+    }
+
+    .type-scale-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .type-scale-role {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--brand-dark);
+      white-space: nowrap;
+    }
+
+    .type-scale-token {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    /* Pangram Tester */
+    .pangram-tester-box {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subdued);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-lg);
+    }
+
+    .pangram-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .pangram-input {
+      width: 100%;
+      background: var(--surface-pure);
+      border: 1px solid var(--border-subdued);
+      border-radius: var(--radius-xl);
+      padding: var(--space-md);
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--brand-dark);
+      outline: none;
+      transition: var(--transition-standard);
+    }
+
+    .pangram-input:focus {
+      border-color: var(--brand-dark);
+      box-shadow: var(--focus-ring-shadow);
+    }
+
+    /* =============================================================================
+       03 & 04. CORNER GEOMETRY & ELEVATION
+       ============================================================================= */
+    .geometry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .geometry-card {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subdued);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-sm);
+    }
+
+    .geometry-visual {
+      width: 90px;
+      height: 90px;
+      background: var(--brand-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand-accent);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 13px;
+      box-shadow: var(--shadow-level-2);
+    }
+
+    .elevation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .elevation-card {
+      background: var(--surface-pure);
+      border: 1px solid var(--border-subdued);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-xl) var(--space-lg);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .elevation-card.frosted-demo {
+      background: var(--glass-surface-dense);
+      backdrop-filter: var(--glass-frosted-float);
+      -webkit-backdrop-filter: var(--glass-frosted-float);
+      border: 1px solid var(--glass-border-dense);
+    }
+
+    /* =============================================================================
+       05. COMPONENT ARCHETYPE GALLERY
+       ============================================================================= */
+    .archetype-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .archetype-card {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subdued);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .archetype-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--brand-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Button Archetypes */
+    .btn-skybound {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition-standard);
+      border: 1.5px solid transparent;
+      outline: none;
+    }
+
+    .btn-skybound:focus-visible {
+      box-shadow: var(--focus-ring-shadow);
+    }
+
+    .btn-skybound.btn-dark {
+      background: var(--brand-dark);
+      color: #FFFFFF;
+    }
+
+    .btn-skybound.btn-dark:hover {
+      background: #252830;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-level-1);
+    }
+
+    .btn-skybound.btn-accent {
+      background: var(--brand-accent);
+      color: var(--brand-dark);
+      box-shadow: 0 4px 12px rgba(237, 249, 71, 0.4);
+    }
+
+    .btn-skybound.btn-accent:hover {
+      background: var(--brand-accent-active);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-accent-glow);
+    }
+
+    .btn-skybound.btn-accent:active {
+      transform: scale(0.97);
+      background: var(--brand-accent-active);
+    }
+
+    .btn-skybound.btn-outline {
+      background: transparent;
+      border-color: var(--brand-dark);
+      color: var(--brand-dark);
+    }
+
+    .btn-skybound.btn-outline:hover {
+      background: var(--brand-dark);
+      color: #FFFFFF;
+    }
+
+    .btn-skybound.btn-glass {
+      background: var(--glass-surface-dense);
+      backdrop-filter: var(--glass-frosted-float);
+      -webkit-backdrop-filter: var(--glass-frosted-float);
+      border-color: var(--glass-border-dense);
+      color: var(--brand-dark);
+      box-shadow: var(--shadow-level-1);
+    }
+
+    .btn-skybound.btn-glass:hover {
+      background: var(--surface-pure);
+      border-color: var(--border-medium);
+    }
+
+    /* Arrow Pagination Controls */
+    .btn-arrow-control {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-pill);
+      background: var(--surface-pure);
+      border: 1px solid var(--border-subdued);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--brand-dark);
+      box-shadow: var(--shadow-level-1);
+      transition: var(--transition-standard);
+    }
+
+    .btn-arrow-control:hover {
+      background: var(--brand-accent);
+      border-color: var(--brand-dark);
+      transform: scale(1.05);
+    }
+
+    .btn-arrow-control:active {
+      transform: scale(0.94);
+      background: var(--brand-accent-active);
+    }
+
+    /* Navigation Pills Archetype */
+    .nav-pills-bar {
+      display: inline-flex;
+      background: var(--surface-pure);
+      padding: 4px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subdued);
+      box-shadow: var(--shadow-level-1);
+      gap: 4px;
+    }
+
+    .nav-pill-item {
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition-standard);
+      border: none;
+      background: transparent;
+    }
+
+    .nav-pill-item:hover {
+      color: var(--text-primary);
+      background: var(--bg-canvas);
+    }
+
+    .nav-pill-item.active {
+      background: var(--brand-accent);
+      color: var(--brand-dark);
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(237, 249, 71, 0.4);
+    }
+
+    /* Micro-Badges & Tag Tints */
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .tag-pill.tag-gold {
+      background: var(--tag-gold-bg);
+      color: var(--tag-gold-text);
+    }
+
+    .tag-pill.tag-pink {
+      background: var(--tag-pink-bg);
+      color: var(--tag-pink-text);
+    }
+
+    .tag-pill.tag-mint {
+      background: var(--tag-mint-bg);
+      color: var(--tag-mint-text);
+    }
+
+    .tag-pill.tag-sky {
+      background: var(--tag-sky-bg);
+      color: var(--tag-sky-text);
+    }
+
+    /* Form Fields Archetype */
+    .skybound-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .skybound-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .skybound-input {
+      background: var(--surface-pure);
+      border: 1px solid var(--border-subdued);
+      border-radius: var(--radius-xl);
+      padding: 12px 16px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--brand-dark);
+      outline: none;
+      transition: var(--transition-standard);
+    }
+
+    .skybound-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .skybound-input:focus {
+      border-color: var(--brand-dark);
+      box-shadow: var(--focus-ring-shadow);
+    }
+
+    /* =============================================================================
+       06. LIVING MICRO-EXPERIENCE // SKYBOUND LUXURY TRAVEL CONCIERGE
+       ============================================================================= */
+    .demo-experience-wrapper {
+      background: var(--bg-canvas);
+      border-radius: var(--radius-3xl);
+      padding: var(--space-xl);
+      border: 1px solid var(--border-subdued);
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .demo-experience-wrapper {
+        padding: var(--space-md);
+        border-radius: var(--radius-2xl);
+      }
+    }
+
+    /* Floating Search Bar (radius-2xl / radius-pill, Level 2 elevation) */
+    .floating-search-bar {
+      background: var(--surface-pure);
+      border-radius: var(--radius-2xl);
+      padding: 10px 14px;
+      box-shadow: var(--shadow-level-2);
+      border: 1px solid var(--border-subdued);
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-2xl);
+      flex-wrap: wrap;
+    }
+
+    .search-unit {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 150px;
+      padding: 4px 12px;
+      cursor: pointer;
+    }
+
+    .search-unit-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+      text-transform: uppercase;
+    }
+
+    .search-unit-input {
+      border: none;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      outline: none;
+      padding: 2px 0;
+    }
+
+    .search-unit-input:focus {
+      color: var(--brand-dark);
+      font-weight: 600;
+    }
+
+    .search-divider {
+      width: 1px;
+      height: 32px;
+      background-color: var(--border-subdued);
+    }
+
+    @media (max-width: 768px) {
+      .search-divider {
+        display: none;
+      }
+      .floating-search-bar {
+        border-radius: var(--radius-xl);
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    .search-cta-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-pill);
+      background: var(--brand-accent);
+      color: var(--brand-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(237, 249, 71, 0.45);
+      transition: transform 200ms var(--ease-spring), box-shadow 200ms var(--ease-spring), background 200ms var(--ease-spring);
+      flex-shrink: 0;
+    }
+
+    .search-cta-circle:hover {
+      transform: scale(1.05);
+      background: var(--brand-accent-active);
+      box-shadow: var(--shadow-accent-glow);
+    }
+
+    .search-cta-circle:active {
+      transform: scale(0.95);
+    }
+
+    /* Category Cards Grid (with 32x32 line art) */
+    .category-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .category-card {
+      background: var(--surface-pure);
+      border: 1px solid var(--border-subdued);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-lg) var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-xs);
+      cursor: pointer;
+      transition: transform 300ms var(--ease-spring), border-color 300ms var(--ease-spring), box-shadow 300ms var(--ease-spring);
+    }
+
+    .category-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-medium);
+      box-shadow: var(--shadow-level-2);
+    }
+
+    .category-card.active {
+      border-color: var(--brand-dark);
+      background: var(--surface-pure);
+      box-shadow: var(--shadow-level-2);
+    }
+
+    .category-card.active .category-icon-wrapper {
+      background: var(--brand-accent);
+    }
+
+    .category-icon-wrapper {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-canvas);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+      transition: var(--transition-standard);
+      color: var(--brand-dark);
+    }
+
+    .category-card-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--brand-dark);
+    }
+
+    .category-card-count {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    /* Destination Listing Cards */
+    .listings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .destination-card {
+      background: var(--surface-pure);
+      border: 1px solid var(--border-subdued);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-level-1);
+      transition: transform 300ms var(--ease-spring), box-shadow 300ms var(--ease-spring), border-color 300ms var(--ease-spring);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .destination-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-medium);
+      box-shadow: var(--shadow-level-3);
+    }
+
+    .card-media-hero {
+      height: 210px;
+      width: 100%;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: space-between;
+      padding: var(--space-md);
+      align-items: flex-start;
+    }
+
+    .card-fav-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: var(--glass-frosted-float);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--brand-dark);
+      transition: var(--transition-standard);
+    }
+
+    .card-fav-btn:hover {
+      background: var(--surface-pure);
+      transform: scale(1.1);
+    }
+
+    .card-fav-btn.active svg {
+      fill: #FF385C;
+      stroke: #FF385C;
+    }
+
+    .card-body-content {
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      flex: 1;
+    }
+
+    .card-location-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-location-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--brand-dark);
+    }
+
+    .card-rating-badge {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand-dark);
+    }
+
+    .card-meta-line {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .card-price-row {
+      margin-top: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--border-subdued);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-price-value {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--brand-dark);
+    }
+
+    .card-price-period {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* Interactive Flight / Suite Booking Drawer Simulator */
+    .simulator-drawer {
+      margin-top: var(--space-2xl);
+      background: var(--surface-pure);
+      border: 1px solid var(--border-subdued);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-level-2);
+    }
+
+    .drawer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    @media (max-width: 850px) {
+      .drawer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ticket-voucher-preview {
+      background: var(--bg-canvas);
+      border: 1.5px dashed var(--border-medium);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      position: relative;
+    }
+
+    .ticket-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ticket-flight-route {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid var(--border-subdued);
+    }
+
+    .airport-code {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--brand-dark);
+    }
+
+    .flight-pill-duration {
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--brand-accent);
+      color: var(--brand-dark);
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+    }
+
+    /* =============================================================================
+       07. STYLE TILE PROMPT CODE DRAWER & MODAL
+       ============================================================================= */
+    .spec-drawer-card {
+      background: var(--surface-pure);
+      border: 1px solid var(--border-subdued);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-level-1);
+    }
+
+    .spec-code-block {
+      background: var(--brand-dark);
+      color: #E2E8F0;
+      border-radius: var(--radius-xl);
+      padding: var(--space-lg);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      overflow-x: auto;
+      max-height: 440px;
+      white-space: pre-wrap;
+      border: 1px solid #2D3748;
+    }
+
+    /* Spec Inspection Modal */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(14, 15, 18, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 250ms ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--surface-pure);
+      width: 100%;
+      max-width: 840px;
+      max-height: 85vh;
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow-level-3);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.96) translateY(12px);
+      transition: transform 250ms var(--ease-spring);
+    }
+
+    .modal-backdrop.open .modal-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: 1px solid var(--border-subdued);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-footer {
+      padding: var(--space-md) var(--space-lg);
+      border-top: 1px solid var(--border-subdued);
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--space-xs);
+      background: var(--bg-canvas);
+    }
+
+    /* Toast Notification */
+    #toast-container {
+      position: fixed;
+      bottom: var(--space-xl);
+      right: var(--space-xl);
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--brand-dark);
+      color: #FFFFFF;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow-level-3);
+      transform: translateY(16px);
+      opacity: 0;
+      transition: all 250ms var(--ease-spring);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-accent {
+      color: var(--brand-accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Mandatory Header Bar Component -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code">TILE-008</span>
+      <span class="design-title">Skybound Design System</span>
+      <span class="design-vibe-tag">Cool Alabaster • Electric Lemon Lime • Modern Travel</span>
+    </div>
+
+    <div class="header-actions">
+      <!-- Preview Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-skybound.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Showcase Container -->
+  <main class="layout-wrapper">
+    <div class="master-canvas">
+
+      <!-- =====================================================================
+           SECTION: HERO DISPLAY BANNER
+           ===================================================================== -->
+      <section class="hero-banner">
+        <div class="hero-top-row">
+          <div class="hero-badge-group">
+            <span class="tag-pill tag-mint">✦ AVIATION & HOSPITALITY</span>
+            <span class="tag-pill tag-gold">★ ELECTRIC LEMON LIME ACCENT</span>
+            <span class="tag-pill tag-sky">⌖ FROSTED GLASS SURFACES</span>
+          </div>
+          <span style="font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); font-weight: 600;">REV 2026.08 // SPEC TILE-008</span>
+        </div>
+
+        <h1 class="hero-headline">
+          Skybound Design System
+        </h1>
+
+        <p class="hero-subtitle">
+          A high-utility visual architecture engineered for modern air travel, aviation hospitality, and luxury destination discovery. Built on cool alabaster foundations, deep onyx typography, electric lemon-lime tactile triggers, and frosted floating glass containers.
+        </p>
+
+        <div class="hero-cta-group">
+          <button class="btn-skybound btn-accent" onclick="copyMasterTilePrompt()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Style Tile for Agent
+          </button>
+          <a href="#micro-experience" class="btn-skybound btn-dark">
+            <span>Explore Live Concierge Demo</span>
+            <span>↓</span>
+          </a>
+          <a href="#component-archetypes" class="btn-skybound btn-glass">
+            <span>Inspect Archetypes</span>
+          </a>
+        </div>
+
+        <!-- Metric Specs Strip -->
+        <div class="hero-stats-strip">
+          <div class="stat-card">
+            <span class="stat-number">#EDF947</span>
+            <span class="stat-label">Electric Lemon Lime Accent</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">9999px</span>
+            <span class="stat-label">Pill Geometry Baseline</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">20px Blur</span>
+            <span class="stat-label">Frosted Floating Glass</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">0.16s Ease</span>
+            <span class="stat-label">Spring Smooth Easing</span>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- =====================================================================
+           01. COLOR ROLES & PALETTE MATRIX
+           ===================================================================== -->
+      <section class="system-section" id="color-palette">
+        <div class="section-header-block">
+          <div>
+            <div class="section-num-tag">SPECIFICATION 01</div>
+            <h2 class="section-title">Color Roles & Palette</h2>
+          </div>
+          <p class="section-desc">
+            Tailored chromatic hierarchy combining deep onyx black, cool alabaster canvas, frosted glass overlays, and signature electric lemon-lime tactile triggers.
+          </p>
+        </div>
+
+        <!-- Group: Primary & Accents -->
+        <div class="palette-group">
+          <div class="palette-group-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/></svg>
+            Primary & Accents
+          </div>
+          <div class="swatches-grid">
+            <div class="swatch-card" onclick="copySwatchHex('#0E0F12', 'Brand Dark')">
+              <div class="swatch-color-box" style="background-color: #0E0F12;">
+                <span class="swatch-copy-hint">Copy Hex</span>
+              </div>
+              <div class="swatch-info">
+                <span class="swatch-role-name">Brand Dark</span>
+                <div class="swatch-hex-row">
+                  <span>#0E0F12</span>
+                  <span>--brand-dark</span>
+                </div>
+                <span class="swatch-desc">Primary Text / Base CTA (Deep Onyx)</span>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copySwatchHex('#EDF947', 'Brand Accent')">
+              <div class="swatch-color-box" style="background-color: #EDF947;">
+                <span class="swatch-copy-hint" style="color: #0E0F12; background: rgba(255,255,255,0.9);">Copy Hex</span>
+              </div>
+              <div class="swatch-info">
+                <span class="swatch-role-name">Brand Accent</span>
+                <div class="swatch-hex-row">
+                  <span>#EDF947</span>
+                  <span>--brand-accent</span>
+                </div>
+                <span class="swatch-desc">Interactive Highlight (Electric Lemon)</span>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copySwatchHex('#D8E534', 'Brand Accent Active')">
+              <div class="swatch-color-box" style="background-color: #D8E534;">
+                <span class="swatch-copy-hint" style="color: #0E0F12; background: rgba(255,255,255,0.9);">Copy Hex</span>
+              </div>
+              <div class="swatch-info">
+                <span class="swatch-role-name">Brand Accent Active</span>
+                <div class="swatch-hex-row">
+                  <span>#D8E534</span>
+                  <span>--brand-accent-active</span>
+                </div>
+                <span class="swatch-desc">Active / Press State (Deep Lime)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group: Surfaces & Backgrounds -->
+        <div class="palette-group">
+          <div class="palette-group-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+            Surfaces & Backgrounds
+          </div>
+          <div class="swatches-grid">
+            <div class="swatch-card" onclick="copySwatchHex('#F5F6F8', 'Canvas Background')">
+              <div class="swatch-color-box" style="background-color: #F5F6F8; border-bottom: 1px solid #EAECEF;">
+                <span class="swatch-copy-hint">Copy Hex</span>
+              </div>
+              <div class="swatch-info">
+                <span class="swatch-role-name">Canvas Background</span>
+                <div class="swatch-hex-row">
+                  <span>#F5F6F8</span>
+                  <span>--bg-canvas</span>
+                </div>
+                <span class="swatch-desc">Cool Alabaster Page Background</span>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copySwatchHex('#FFFFFF', 'Surface Pure')">
+              <div class="swatch-color-box" style="background-color: #FFFFFF; border-bottom: 1px solid #EAECEF;">
+                <span class="swatch-copy-hint">Copy Hex</span>
+              </div>
+              <div class="swatch-info">
+                <span class="swatch-role-name">Surface Pure</span>
+                <div class="swatch-hex-row">
+                  <span>#FFFFFF</span>
+                  <span>--surface-pure</span>
+                </div>
+                <span class="swatch-desc">Pure White Cards & Floating Bars</span>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copySwatchHex('rgba(255,255,255,0.72)', 'Glass Surface')">
+              <div class="swatch-color-box" style="background: rgba(255,255,255,0.72); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.40);">
+                <span class="swatch-copy-hint">Copy RGBA</span>
+              </div>
+              <div class="swatch-info">
+                <span class="swatch-role-name">Glass Surface</span>
+                <div class="swatch-hex-row">
+                  <span>rgba(255,255,255,0.72)</span>
+                  <span>--glass-surface</span>
+                </div>
+                <span class="swatch-desc">Frosted Floating Overlays</span>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copySwatchHex('rgba(255,255,255,0.40)', 'Glass Border')">
+              <div class="swatch-color-box" style="background: #EAECEF; display: flex; align-items: center; justify-content: center;">
+                <div style="width: 80%; height: 40px; border: 2px solid rgba(255,255,255,0.40); background: #FFFFFF; border-radius: 8px;"></div>
+                <span class="swatch-copy-hint">Copy RGBA</span>
+              </div>
+              <div class="swatch-info">
+                <span class="swatch-role-name">Glass Border</span>
+                <div class="swatch-hex-row">
+                  <span>rgba(255,255,255,0.40)</span>
+                  <span>--glass-border</span>
+                </div>
+                <span class="swatch-desc">Translucent Boundary Stroke</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group: Neutrals & Grayscale -->
+        <div class="palette-group">
+          <div class="palette-group-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Neutrals & Grayscale
+          </div>
+          <div class="swatches-grid">
+            <div class="swatch-card" onclick="copySwatchHex('#0E0F12', 'Text Primary')">
+              <div class="swatch-color-box" style="background-color: #0E0F12;">
+                <span class="swatch-copy-hint">Copy Hex</span>
+              </div>
+              <div class="swatch-info">
+                <span class="swatch-role-name">Text Primary</span>
+                <div class="swatch-hex-row">
+                  <span>#0E0F12</span>
+                  <span>--text-primary</span>
+                </div>
+                <span class="swatch-desc">High-Contrast Onyx</span>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copySwatchHex('#6C727F', 'Text Secondary')">
+              <div class="swatch-color-box" style="background-color: #6C727F;">
+                <span class="swatch-copy-hint">Copy Hex</span>
+              </div>
+              <div class="swatch-info">
+                <span class="swatch-role-name">Text Secondary / Subtitles</span>
+                <div class="swatch-hex-row">
+                  <span>#6C727F</span>
+                  <span>--text-secondary</span>
+                </div>
+                <span class="swatch-desc">Slate Gray for Body & Subtitles</span>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copySwatchHex('#9CA3AF', 'Text Muted')">
+              <div class="swatch-color-box" style="background-color: #9CA3AF;">
+                <span class="swatch-copy-hint">Copy Hex</span>
+              </div>
+              <div class="swatch-info">
+                <span class="swatch-role-name">Text Muted / Placeholders</span>
+                <div class="swatch-hex-row">
+                  <span>#9CA3AF</span>
+                  <span>--text-muted</span>
+                </div>
+                <span class="swatch-desc">Cool Gray for Input Placeholders</span>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copySwatchHex('#EAECEF', 'Border Subdued')">
+              <div class="swatch-color-box" style="background-color: #EAECEF;">
+                <span class="swatch-copy-hint">Copy Hex</span>
+              </div>
+              <div class="swatch-info">
+                <span class="swatch-role-name">Border Subdued / Divider</span>
+                <div class="swatch-hex-row">
+                  <span>#EAECEF</span>
+                  <span>--border-subdued</span>
+                </div>
+                <span class="swatch-desc">Soft Gray Card Strokes & Rules</span>
+              </div>
+            </div>
+
+            <div class="swatch-card" onclick="copySwatchHex('#DDE1E6', 'Border Medium')">
+              <div class="swatch-color-box" style="background-color: #DDE1E6;">
+                <span class="swatch-copy-hint">Copy Hex</span>
+              </div>
+              <div class="swatch-info">
+                <span class="swatch-role-name">Border Medium</span>
+                <div class="swatch-hex-row">
+                  <span>#DDE1E6</span>
+                  <span>--border-medium</span>
+                </div>
+                <span class="swatch-desc">Outline Gray for Hover & Controls</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group: Micro-Badge & Tag Tints (Pastels) -->
+        <div class="palette-group">
+          <div class="palette-group-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Micro-Badge & Tag Tints (Pastels)
+          </div>
+          <div class="pastels-grid">
+            <div class="pastel-card" style="background: #FEF3C7; color: #78350F; border-color: #FDE68A;" onclick="copySwatchHex('#FEF3C7', 'Tag Gold')">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="tag-pill tag-gold">★ TOP RATED</span>
+                <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700;">BG: #FEF3C7</span>
+              </div>
+              <span style="font-size: 12px; font-weight: 600;">Text: #78350F (Warm Amber Gold)</span>
+            </div>
+
+            <div class="pastel-card" style="background: #FFE4E6; color: #9F1239; border-color: #FECDD3;" onclick="copySwatchHex('#FFE4E6', 'Tag Pink')">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="tag-pill tag-pink">🔥 TRENDING</span>
+                <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700;">BG: #FFE4E6</span>
+              </div>
+              <span style="font-size: 12px; font-weight: 600;">Text: #9F1239 (Rose Crimson)</span>
+            </div>
+
+            <div class="pastel-card" style="background: #D1FAE5; color: #065F46; border-color: #A7F3D0;" onclick="copySwatchHex('#D1FAE5', 'Tag Mint')">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="tag-pill tag-mint">✦ GUEST FAVORITE</span>
+                <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700;">BG: #D1FAE5</span>
+              </div>
+              <span style="font-size: 12px; font-weight: 600;">Text: #065F46 (Emerald Mint)</span>
+            </div>
+
+            <div class="pastel-card" style="background: #E0F2FE; color: #0369A1; border-color: #BAE6FD;" onclick="copySwatchHex('#E0F2FE', 'Tag Sky')">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span class="tag-pill tag-sky">⌖ LOCATION / INFO</span>
+                <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700;">BG: #E0F2FE</span>
+              </div>
+              <span style="font-size: 12px; font-weight: 600;">Text: #0369A1 (Azure Sky)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- =====================================================================
+           02. TYPOGRAPHY SYSTEM
+           ===================================================================== -->
+      <section class="system-section" id="typography">
+        <div class="section-header-block">
+          <div>
+            <div class="section-num-tag">SPECIFICATION 02</div>
+            <h2 class="section-title">Typography System</h2>
+          </div>
+          <p class="section-desc">
+            Precise typographic hierarchy pairing <strong>Plus Jakarta Sans</strong> for prominent headings and card titles with <strong>Inter</strong> for maximum body legibility.
+          </p>
+        </div>
+
+        <!-- Font Stacks -->
+        <div class="type-stacks-grid">
+          <div class="type-specimen-card">
+            <div class="type-specimen-title">PRIMARY / HEADINGS & TITLES</div>
+            <div class="type-font-name" style="font-family: var(--font-display);">Plus Jakarta Sans</div>
+            <div class="type-font-weights">Weights: 600 (SemiBold), 700 (Bold), 800 (ExtraBold)</div>
+            <div class="type-sample-alphabet" style="font-family: var(--font-display); font-weight: 800;">
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+              abcdefghijklmnopqrstuvwxyz 0123456789
+            </div>
+          </div>
+
+          <div class="type-specimen-card">
+            <div class="type-specimen-title">BODY & FUNCTIONAL CONTROLS</div>
+            <div class="type-font-name" style="font-family: var(--font-sans);">Inter</div>
+            <div class="type-font-weights">Weights: 400 (Regular), 500 (Medium), 600 (SemiBold)</div>
+            <div class="type-sample-alphabet" style="font-family: var(--font-sans); font-weight: 500;">
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+              abcdefghijklmnopqrstuvwxyz 0123456789
+            </div>
+          </div>
+        </div>
+
+        <!-- Hierarchy Scale Table -->
+        <table class="type-scale-table">
+          <thead>
+            <tr>
+              <th>ROLE / NAME</th>
+              <th>SCALE / SPECS</th>
+              <th>TRACKING</th>
+              <th>SAMPLE SPECIMEN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="type-scale-role">Display Hero</td>
+              <td class="type-scale-token">56px / 1.1 / 800 (ExtraBold)</td>
+              <td class="type-scale-token">-0.03em</td>
+              <td>
+                <span style="font-family: var(--font-display); font-size: 32px; font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: var(--brand-dark);">
+                  Skybound Global
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-scale-role">Section Heading</td>
+              <td class="type-scale-token">28px / 1.2 / 700 (Bold)</td>
+              <td class="type-scale-token">-0.02em</td>
+              <td>
+                <span style="font-family: var(--font-display); font-size: 24px; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--brand-dark);">
+                  Featured Aviation Suites
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-scale-role">Card Title</td>
+              <td class="type-scale-token">16px / 1.3 / 600 (SemiBold)</td>
+              <td class="type-scale-token">-0.01em</td>
+              <td>
+                <span style="font-family: var(--font-display); font-size: 16px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; color: var(--brand-dark);">
+                  The Alpine Penthouse • Zermatt
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-scale-role">Subtitle / Hero</td>
+              <td class="type-scale-token">16px / 1.5 / 400 (Regular)</td>
+              <td class="type-scale-token">0.00em</td>
+              <td>
+                <span style="font-family: var(--font-sans); font-size: 16px; font-weight: 400; line-height: 1.5; letter-spacing: 0.00em; color: var(--text-secondary);">
+                  Frictionless luxury travel engineered for high-altitude explorers.
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-scale-role">Body / Input</td>
+              <td class="type-scale-token">14px / 1.4 / 500 (Medium)</td>
+              <td class="type-scale-token">0.00em</td>
+              <td>
+                <span style="font-family: var(--font-sans); font-size: 14px; font-weight: 500; line-height: 1.4; letter-spacing: 0.00em; color: var(--text-primary);">
+                  Enter destination, airport code, or private retreat coordinates.
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-scale-role">Micro / Meta</td>
+              <td class="type-scale-token">12px / 1.3 / 400 (Regular)</td>
+              <td class="type-scale-token">+0.01em</td>
+              <td>
+                <span style="font-family: var(--font-sans); font-size: 12px; font-weight: 400; line-height: 1.3; letter-spacing: +0.01em; color: var(--text-secondary);">
+                  CONFIRMATION CODE: #SB-9482 // AIRBUS A350-1000
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="type-scale-role">Tag Pill Label</td>
+              <td class="type-scale-token">11px / 1.0 / 600 (SemiBold)</td>
+              <td class="type-scale-token">+0.02em</td>
+              <td>
+                <span class="tag-pill tag-gold">★ TOP RATED</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Live Type Tester -->
+        <div class="pangram-tester-box">
+          <div class="pangram-controls">
+            <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--text-secondary);">INTERACTIVE TYPE TESTER</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 12px; color: var(--text-muted);">Size:</span>
+              <input type="range" id="pangram-size-slider" min="14" max="48" value="28" style="accent-color: var(--brand-dark);" oninput="updatePangramSize(this.value)">
+              <span id="pangram-size-label" style="font-family: var(--font-mono); font-size: 12px; font-weight: 700;">28px</span>
+            </div>
+          </div>
+          <input type="text" id="pangram-input" class="pangram-input" value="Skybound takes flight across alpine horizons and private atolls." aria-label="Type specimen tester input">
+        </div>
+      </section>
+
+
+      <!-- =====================================================================
+           03 & 04. CORNER GEOMETRY & ELEVATION
+           ===================================================================== -->
+      <section class="system-section" id="geometry-elevation">
+        <div class="section-header-block">
+          <div>
+            <div class="section-num-tag">SPECIFICATIONS 03 & 04</div>
+            <h2 class="section-title">Corner Geometry & Elevation</h2>
+          </div>
+          <p class="section-desc">
+            A harmonious geometric curve system transitioning from full 9999px pills to 36px master frames, coupled with 3-tier elevation and 20px frosted glass treatments.
+          </p>
+        </div>
+
+        <!-- Radii Grid -->
+        <div class="geometry-grid">
+          <div class="geometry-card">
+            <div class="geometry-visual" style="border-radius: var(--radius-pill); width: 130px; height: 48px;">
+              9999px
+            </div>
+            <strong style="font-size: 13px;">radius-pill</strong>
+            <span style="font-size: 11px; color: var(--text-secondary);">Buttons, Badges, Search Bar, Nav Pills</span>
+          </div>
+
+          <div class="geometry-card">
+            <div class="geometry-visual" style="border-radius: var(--radius-3xl);">
+              36px
+            </div>
+            <strong style="font-size: 13px;">radius-3xl</strong>
+            <span style="font-size: 11px; color: var(--text-secondary);">Master Container, Canvas Bounds</span>
+          </div>
+
+          <div class="geometry-card">
+            <div class="geometry-visual" style="border-radius: var(--radius-2xl);">
+              24px
+            </div>
+            <strong style="font-size: 13px;">radius-2xl</strong>
+            <span style="font-size: 11px; color: var(--text-secondary);">Floating Search Bar, Category Cards</span>
+          </div>
+
+          <div class="geometry-card">
+            <div class="geometry-visual" style="border-radius: var(--radius-xl);">
+              16px
+            </div>
+            <strong style="font-size: 13px;">radius-xl</strong>
+            <span style="font-size: 11px; color: var(--text-secondary);">Floating Mini-widgets, Popovers</span>
+          </div>
+
+          <div class="geometry-card">
+            <div class="geometry-visual" style="border-radius: var(--radius-sm); width: 64px; height: 64px;">
+              8px
+            </div>
+            <strong style="font-size: 13px;">radius-sm</strong>
+            <span style="font-size: 11px; color: var(--text-secondary);">Metadata Pills, Tooltips</span>
+          </div>
+        </div>
+
+        <!-- Elevation Grid -->
+        <div class="elevation-grid">
+          <div class="elevation-card" style="box-shadow: var(--shadow-level-0); background: var(--bg-canvas);">
+            <strong style="font-size: 14px;">Level 0 (Flat)</strong>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">none</span>
+            <span style="font-size: 12px; color: var(--text-secondary);">Canvas baseline layers</span>
+          </div>
+
+          <div class="elevation-card" style="box-shadow: var(--shadow-level-1);">
+            <strong style="font-size: 14px;">Level 1 (Card Rest)</strong>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">0px 2px 8px -2px rgba(14,15,18,0.04)</span>
+            <span style="font-size: 12px; color: var(--text-secondary);">Resting component cards</span>
+          </div>
+
+          <div class="elevation-card" style="box-shadow: var(--shadow-level-2);">
+            <strong style="font-size: 14px;">Level 2 (Floating)</strong>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">0px 20px 40px -12px rgba(14,15,18,0.08)</span>
+            <span style="font-size: 12px; color: var(--text-secondary);">Floating Search Bar, Active Hover</span>
+          </div>
+
+          <div class="elevation-card" style="box-shadow: var(--shadow-level-3);">
+            <strong style="font-size: 14px;">Level 3 (Active Pop)</strong>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">0px 28px 64px -16px rgba(14,15,18,0.14)</span>
+            <span style="font-size: 12px; color: var(--text-secondary);">Modal Drawers, Overlays</span>
+          </div>
+
+          <div class="elevation-card frosted-demo" style="box-shadow: var(--shadow-level-2);">
+            <strong style="font-size: 14px;">Frosted Float Glass</strong>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">blur(20px) saturate(180%)</span>
+            <span style="font-size: 12px; color: var(--text-secondary);">rgba(255,255,255,0.85)</span>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- =====================================================================
+           05. COMPONENT ARCHETYPE GALLERY
+           ===================================================================== -->
+      <section class="system-section" id="component-archetypes">
+        <div class="section-header-block">
+          <div>
+            <div class="section-num-tag">SPECIFICATIONS 05 & 06</div>
+            <h2 class="section-title">Component Archetype Gallery</h2>
+          </div>
+          <p class="section-desc">
+            Production-ready UI primitives featuring electric lemon-lime CTA states, pill navigation tabs, monoline iconography, and focus-ring accessibility.
+          </p>
+        </div>
+
+        <div class="archetype-grid">
+          <!-- Card: Button Archetypes -->
+          <div class="archetype-card">
+            <div class="archetype-title">
+              <span>Buttons & Interactive CTAs</span>
+              <span class="tag-pill tag-mint">Pill 9999px</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+              <button class="btn-skybound btn-accent" onclick="triggerMicroAction('Electric Lemon CTA Clicked')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <span>Book Flight & Suite</span>
+              </button>
+
+              <button class="btn-skybound btn-dark" onclick="triggerMicroAction('Base Dark CTA Clicked')">
+                <span>Explore Destinations</span>
+              </button>
+
+              <button class="btn-skybound btn-outline" onclick="triggerMicroAction('Outline Button Clicked')">
+                <span>View Flight Telemetry</span>
+              </button>
+
+              <button class="btn-skybound btn-glass" onclick="triggerMicroAction('Glass Button Clicked')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                <span>Watch Cabin Tour (4K)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Card: Navigation Pills & Arrow Controls -->
+          <div class="archetype-card">
+            <div class="archetype-title">
+              <span>Navigation Pills & Arrow Controls</span>
+              <span class="tag-pill tag-sky">Interactive</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-md);">
+              <div class="nav-pills-bar">
+                <button class="nav-pill-item active" onclick="switchNavPill(this, 'Flights')">Flights</button>
+                <button class="nav-pill-item" onclick="switchNavPill(this, 'Penthouses')">Penthouses</button>
+                <button class="nav-pill-item" onclick="switchNavPill(this, 'Yachts')">Yachts</button>
+                <button class="nav-pill-item" onclick="switchNavPill(this, 'Cabins')">Cabins</button>
+              </div>
+
+              <div style="display: flex; align-items: center; justify-content: space-between; background: var(--surface-pure); padding: var(--space-md); border-radius: var(--radius-xl); border: 1px solid var(--border-subdued);">
+                <span style="font-size: 13px; font-weight: 600;">Pagination Directional Controls</span>
+                <div style="display: flex; gap: 8px;">
+                  <button class="btn-arrow-control" title="Previous page" onclick="triggerMicroAction('Previous Page')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                  </button>
+                  <button class="btn-arrow-control" title="Next page" onclick="triggerMicroAction('Next Page')">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Micro Badges Collection -->
+              <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                <span class="tag-pill tag-gold">★ 4.98 TOP RATED</span>
+                <span class="tag-pill tag-pink">🔥 TRENDING IN TOKYO</span>
+                <span class="tag-pill tag-mint">✦ GUEST FAVORITE</span>
+                <span class="tag-pill tag-sky">⌖ PRIVATE AVIATION</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card: Form Controls & Inputs -->
+          <div class="archetype-card">
+            <div class="archetype-title">
+              <span>Form Fields & Focus Rings</span>
+              <span class="tag-pill tag-gold">2px Ring Offset</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+              <div class="skybound-input-group">
+                <label class="skybound-label" for="demo-dest-input">DESTINATION / AIRPORT CODE</label>
+                <input type="text" id="demo-dest-input" class="skybound-input" placeholder="e.g. HND • Tokyo Haneda" value="ZQN • Queenstown, NZ">
+              </div>
+
+              <div class="skybound-input-group">
+                <label class="skybound-label" for="demo-passengers-select">PASSENGER SELECTION</label>
+                <input type="text" id="demo-passengers-select" class="skybound-input" placeholder="2 Guests, First Class Private Suite" value="2 Adults • First Class Cabin">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- =====================================================================
+           06. LIVING MICRO-EXPERIENCE // SKYBOUND TRAVEL CONCIERGE
+           ===================================================================== -->
+      <section class="system-section" id="micro-experience">
+        <div class="section-header-block">
+          <div>
+            <div class="section-num-tag">SPECIFICATION 07 & 08</div>
+            <h2 class="section-title">Living Micro-Experience // Skybound Concierge</h2>
+          </div>
+          <p class="section-desc">
+            A fully functional destination discovery & luxury suite booking prototype demonstrating how all Skybound design tokens harmonize in real-world products.
+          </p>
+        </div>
+
+        <div class="demo-experience-wrapper">
+
+          <!-- 1. Floating Search Bar (radius-2xl / Level 2 Shadow) -->
+          <div class="floating-search-bar">
+            <div class="search-unit" onclick="document.getElementById('search-dest').focus()">
+              <span class="search-unit-label">Where</span>
+              <input type="text" id="search-dest" class="search-unit-input" value="Reykjavik, Iceland" placeholder="Search destinations">
+            </div>
+
+            <div class="search-divider"></div>
+
+            <div class="search-unit" onclick="document.getElementById('search-dates').focus()">
+              <span class="search-unit-label">Check in — out</span>
+              <input type="text" id="search-dates" class="search-unit-input" value="Oct 14 — Oct 22" placeholder="Add dates">
+            </div>
+
+            <div class="search-divider"></div>
+
+            <div class="search-unit" onclick="document.getElementById('search-guests').focus()">
+              <span class="search-unit-label">Who</span>
+              <input type="text" id="search-guests" class="search-unit-input" value="2 Guests, Aviation Suite" placeholder="Add guests">
+            </div>
+
+            <button class="search-cta-circle" title="Search Flights and Stays" onclick="performDemoSearch()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
+          </div>
+
+          <!-- 2. Category Line Art Cards Grid -->
+          <div class="category-cards-grid">
+            <div class="category-card active" onclick="filterCategory(this, 'all')">
+              <div class="category-icon-wrapper">
+                <!-- Airplane Monoline SVG -->
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z"/></svg>
+              </div>
+              <span class="category-card-name">Aviation Jets</span>
+              <span class="category-card-count">14 Available</span>
+            </div>
+
+            <div class="category-card" onclick="filterCategory(this, 'chalets')">
+              <div class="category-icon-wrapper">
+                <!-- Mountain Chalet Monoline SVG -->
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/><path d="M4.14 15h15.72"/></svg>
+              </div>
+              <span class="category-card-name">Alpine Chalets</span>
+              <span class="category-card-count">28 Retreats</span>
+            </div>
+
+            <div class="category-card" onclick="filterCategory(this, 'islands')">
+              <div class="category-icon-wrapper">
+                <!-- Island / Sun Monoline SVG -->
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+              </div>
+              <span class="category-card-name">Private Atolls</span>
+              <span class="category-card-count">9 Sanctuaries</span>
+            </div>
+
+            <div class="category-card" onclick="filterCategory(this, 'penthouses')">
+              <div class="category-icon-wrapper">
+                <!-- Skyline Penthouse Monoline SVG -->
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/><line x1="9" y1="14" x2="9" y2="14.01"/><line x1="15" y1="14" x2="15" y2="14.01"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
+              </div>
+              <span class="category-card-name">Skyline Suites</span>
+              <span class="category-card-count">32 Lofts</span>
+            </div>
+
+            <div class="category-card" onclick="filterCategory(this, 'villas')">
+              <div class="category-icon-wrapper">
+                <!-- Coastal Villa Wave Monoline SVG -->
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
+              </div>
+              <span class="category-card-name">Coastal Villas</span>
+              <span class="category-card-count">19 Estates</span>
+            </div>
+          </div>
+
+          <!-- 3. Destination Listing Cards Grid -->
+          <div class="listings-grid" id="listings-container">
+            <!-- Listing 1 -->
+            <div class="destination-card" data-category="chalets">
+              <div class="card-media-hero" style="background: linear-gradient(180deg, rgba(14,15,18,0.2) 0%, rgba(14,15,18,0.6) 100%), #1E293B; background-image: radial-gradient(circle at 70% 30%, #38BDF8 0%, #0F172A 70%);">
+                <span class="tag-pill tag-gold">★ 4.98 GUEST CHOICE</span>
+                <button class="card-fav-btn active" title="Save to wishlist" onclick="toggleFavorite(this)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+              <div class="card-body-content">
+                <div class="card-location-row">
+                  <span class="card-location-title">Aurora Observatory Villa</span>
+                  <span class="card-rating-badge">★ 4.98</span>
+                </div>
+                <span class="card-meta-line">Reykjavik • Private Hot Spring & Heli-pad</span>
+                <span class="card-meta-line" style="color: var(--text-muted);">Available: Oct 14 — Oct 22</span>
+                <div class="card-price-row">
+                  <div>
+                    <span class="card-price-value">$1,850</span>
+                    <span class="card-price-period">/ night</span>
+                  </div>
+                  <button class="btn-skybound btn-accent" style="padding: 8px 18px; font-size: 13px;" onclick="openBookingSimulator('Aurora Observatory Villa', 1850, 'KEF • Reykjavik')">
+                    Reserve Suite
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Listing 2 -->
+            <div class="destination-card" data-category="penthouses">
+              <div class="card-media-hero" style="background: linear-gradient(180deg, rgba(14,15,18,0.2) 0%, rgba(14,15,18,0.6) 100%), #0F172A; background-image: radial-gradient(circle at 40% 60%, #F59E0B 0%, #1E1B4B 80%);">
+                <span class="tag-pill tag-pink">🔥 TRENDING IN TOKYO</span>
+                <button class="card-fav-btn" title="Save to wishlist" onclick="toggleFavorite(this)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+              <div class="card-body-content">
+                <div class="card-location-row">
+                  <span class="card-location-title">Shinjuku Skyline Loft 74</span>
+                  <span class="card-rating-badge">★ 4.95</span>
+                </div>
+                <span class="card-meta-line">Tokyo, Japan • 360° Fuji Panorama</span>
+                <span class="card-meta-line" style="color: var(--text-muted);">Available: Nov 01 — Nov 08</span>
+                <div class="card-price-row">
+                  <div>
+                    <span class="card-price-value">$2,400</span>
+                    <span class="card-price-period">/ night</span>
+                  </div>
+                  <button class="btn-skybound btn-accent" style="padding: 8px 18px; font-size: 13px;" onclick="openBookingSimulator('Shinjuku Skyline Loft 74', 2400, 'HND • Tokyo')">
+                    Reserve Suite
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Listing 3 -->
+            <div class="destination-card" data-category="islands">
+              <div class="card-media-hero" style="background: linear-gradient(180deg, rgba(14,15,18,0.2) 0%, rgba(14,15,18,0.6) 100%), #064E3B; background-image: radial-gradient(circle at 60% 40%, #10B981 0%, #064E3B 80%);">
+                <span class="tag-pill tag-sky">⌖ PRIVATE SEAPLANE ACCESS</span>
+                <button class="card-fav-btn" title="Save to wishlist" onclick="toggleFavorite(this)">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </button>
+              </div>
+              <div class="card-body-content">
+                <div class="card-location-row">
+                  <span class="card-location-title">Velaa Coral Sanctuary</span>
+                  <span class="card-rating-badge">★ 5.00</span>
+                </div>
+                <span class="card-meta-line">Noonu Atoll, Maldives • Overwater Pier</span>
+                <span class="card-meta-line" style="color: var(--text-muted);">Available: Dec 12 — Dec 20</span>
+                <div class="card-price-row">
+                  <div>
+                    <span class="card-price-value">$3,600</span>
+                    <span class="card-price-period">/ night</span>
+                  </div>
+                  <button class="btn-skybound btn-accent" style="padding: 8px 18px; font-size: 13px;" onclick="openBookingSimulator('Velaa Coral Sanctuary', 3600, 'MLE • Male Atoll')">
+                    Reserve Suite
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Interactive Booking Voucher Simulator Drawer -->
+          <div class="simulator-drawer" id="booking-drawer">
+            <div class="drawer-grid">
+              <!-- Form controls -->
+              <div>
+                <span class="tag-pill tag-mint" style="margin-bottom: 8px;">LIVE VOUCHER GENERATOR</span>
+                <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 800; margin-bottom: 6px;" id="sim-suite-title">Aurora Observatory Villa</h3>
+                <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: var(--space-md);">Customize your travel package to compute live rates & generate boarding credential.</p>
+
+                <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                  <div class="skybound-input-group">
+                    <label class="skybound-label">DURATION OF STAY (NIGHTS)</label>
+                    <input type="number" id="sim-nights" class="skybound-input" value="4" min="1" max="30" oninput="calculateSimulatorTotal()">
+                  </div>
+
+                  <div class="skybound-input-group">
+                    <label class="skybound-label">CLASS OF TRAVEL</label>
+                    <select id="sim-class" class="skybound-input" onchange="calculateSimulatorTotal()">
+                      <option value="1.0">Private Aviation Suite (Included)</option>
+                      <option value="1.25">Gulfstream G700 Dedicated Charter (+25%)</option>
+                      <option value="1.50">Orbital Supersonic Express (+50%)</option>
+                    </select>
+                  </div>
+
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding-top: var(--space-sm); border-top: 1px solid var(--border-subdued);">
+                    <div>
+                      <span style="font-size: 12px; color: var(--text-secondary);">Calculated Investment:</span>
+                      <div style="font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--brand-dark);" id="sim-total-price">$7,400</div>
+                    </div>
+                    <button class="btn-skybound btn-accent" onclick="confirmReservationTicket()">
+                      Confirm Reservation ✓
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ticket Preview -->
+              <div class="ticket-voucher-preview">
+                <div class="ticket-header">
+                  <span style="font-family: var(--font-display); font-size: 13px; font-weight: 800; letter-spacing: -0.01em;">SKYBOUND LUXURY CREDENTIAL</span>
+                  <span class="flight-pill-duration" id="sim-ticket-status">CONFIRMED</span>
+                </div>
+
+                <div class="ticket-flight-route">
+                  <div>
+                    <span style="font-size: 10px; color: var(--text-secondary); font-weight: 700;">ORIGIN</span>
+                    <div class="airport-code">JFK</div>
+                    <span style="font-size: 11px; color: var(--text-secondary);">New York, USA</span>
+                  </div>
+                  <div style="text-align: center;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand-dark)" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    <div style="font-size: 10px; font-weight: 700; color: var(--text-muted);" id="sim-ticket-duration">5h 45m NON-STOP</div>
+                  </div>
+                  <div style="text-align: right;">
+                    <span style="font-size: 10px; color: var(--text-secondary); font-weight: 700;">DESTINATION</span>
+                    <div class="airport-code" id="sim-dest-code">KEF</div>
+                    <span style="font-size: 11px; color: var(--text-secondary);" id="sim-dest-name">Reykjavik, IS</span>
+                  </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; font-size: 11px;">
+                  <div>
+                    <span style="color: var(--text-muted); font-weight: 600;">PASSENGER</span>
+                    <div style="font-weight: 700; color: var(--brand-dark);">Alex Vance</div>
+                  </div>
+                  <div>
+                    <span style="color: var(--text-muted); font-weight: 600;">CABIN SUITE</span>
+                    <div style="font-weight: 700; color: var(--brand-dark);" id="sim-ticket-suite">Suite 01A</div>
+                  </div>
+                  <div>
+                    <span style="color: var(--text-muted); font-weight: 600;">TOTAL PAID</span>
+                    <div style="font-weight: 700; color: var(--brand-dark);" id="sim-ticket-total">$7,400</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- =====================================================================
+           07. STYLE TILE PROMPT CODE DRAWER
+           ===================================================================== -->
+      <section class="system-section" id="prompt-spec">
+        <div class="section-header-block">
+          <div>
+            <div class="section-num-tag">SPECIFICATION VAULT</div>
+            <h2 class="section-title">Style Tile Markdown Token Spec</h2>
+          </div>
+          <div style="display: flex; gap: var(--space-xs);">
+            <button class="btn-skybound btn-accent" onclick="copyMasterTilePrompt()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Raw Spec
+            </button>
+            <button class="btn-skybound btn-dark" onclick="downloadStyleTileFile()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download .md File
+            </button>
+          </div>
+        </div>
+
+        <div class="spec-drawer-card">
+          <pre class="spec-code-block"><code id="spec-code-display">================================================================================
+                      SKYBOUND DESIGN SYSTEM // STYLE TILE                      
+================================================================================
+
+[ 01. COLOR ROLES & PALETTE ]
+--------------------------------------------------------------------------------
+• Primary & Accents:
+  - Brand Dark (Primary Text / Base CTA) : #0E0F12  (Deep Onyx Black)
+  - Brand Accent (Interactive Highlight) : #EDF947  (Electric Lemon Lime)
+  - Brand Accent Active / Press          : #D8E534  (Deep Lime)
+
+• Surfaces & Backgrounds:
+  - Canvas / Page Background             : #F5F6F8  (Cool Alabaster)
+  - Surface Pure (Cards / Floating Bars) : #FFFFFF  (Pure White)
+  - Glass Surface (Frosted Overlays)     : rgba(255, 255, 255, 0.72)
+  - Glass Border                         : rgba(255, 255, 255, 0.40)
+
+• Neutrals & Grayscale:
+  - Text Primary                         : #0E0F12  (Onyx)
+  - Text Secondary / Subtitles           : #6C727F  (Slate Gray)
+  - Text Muted / Placeholders            : #9CA3AF  (Cool Gray)
+  - Border Subdued / Divider             : #EAECEF  (Soft Gray)
+  - Border Medium                        : #DDE1E6  (Outline Gray)
+
+• Micro-Badge & Tag Tints (Pastels):
+  - Tag Gold (Top Rated)                 : BG: #FEF3C7 | Text: #78350F
+  - Tag Pink (Trending)                  : BG: #FFE4E6 | Text: #9F1239
+  - Tag Mint (Guest Favorite)            : BG: #D1FAE5 | Text: #065F46
+  - Tag Sky (Location / Info)            : BG: #E0F2FE | Text: #0369A1
+
+
+[ 02. TYPOGRAPHY SYSTEM ]
+--------------------------------------------------------------------------------
+• Font Families:
+  - Primary / Headings : "Plus Jakarta Sans", "Satoshi", system-ui, sans-serif
+  - Body / Functional  : "Inter", "Plus Jakarta Sans", system-ui, sans-serif
+
+• Hierarchy Scale:
+  - Display Hero     : 56px / 1.1 / 800 (ExtraBold)  - Tracking: -0.03em
+  - Section Heading  : 28px / 1.2 / 700 (Bold)       - Tracking: -0.02em
+  - Card Title       : 16px / 1.3 / 600 (SemiBold)   - Tracking: -0.01em
+  - Subtitle / Hero  : 16px / 1.5 / 400 (Regular)    - Tracking:  0.00em
+  - Body / Input     : 14px / 1.4 / 500 (Medium)     - Tracking:  0.00em
+  - Micro / Meta     : 12px / 1.3 / 400 (Regular)    - Tracking: +0.01em
+  - Tag Pill Label   : 11px / 1.0 / 600 (SemiBold)   - Tracking: +0.02em
+
+
+[ 03. CORNER GEOMETRY (BORDER RADII) ]
+--------------------------------------------------------------------------------
+• radius-pill  (Full Round) : 9999px  -> Buttons, Badges, Search Bar, Nav Pills
+• radius-3xl   (Hero Frame) : 36px    -> Master Page Container, Canvas Bounds
+• radius-2xl   (Cards)      : 24px    -> Floating Search Bar, Category Cards
+• radius-xl    (Overlays)   : 16px    -> Floating Mini-widgets, Popovers
+• radius-sm    (Micro Tags) : 8px     -> Metadata Pills, Tooltips
+
+
+[ 04. ELEVATION & DEPTH (SHADOWS & LAYERS) ]
+--------------------------------------------------------------------------------
+• Elevation Levels:
+  - Level 0 (Flat)       : none
+  - Level 1 (Card Rest)  : 0px 2px 8px -2px rgba(14, 15, 18, 0.04)
+  - Level 2 (Floating)   : 0px 20px 40px -12px rgba(14, 15, 18, 0.08),
+                           0px 1px 3px 0px rgba(14, 15, 18, 0.02)
+  - Level 3 (Active Pop) : 0px 28px 64px -16px rgba(14, 15, 18, 0.14)
+
+• Glassmorphism Treatment:
+  - Frosted Float : backdrop-filter: blur(20px) saturate(180%);
+                    background: rgba(255, 255, 255, 0.85);
+                    border: 1px solid rgba(255, 255, 255, 0.60);
+
+
+[ 05. SPACING & SPATIAL SCALE ]
+--------------------------------------------------------------------------------
+• Base Grid: 4px / 8px Baseline System
+• Spacing Tokens:
+  - space-2xs :  4px  -> Icon-to-label gaps, tag inner padding
+  - space-xs  :  8px  -> Input inner gaps, micro card padding
+  - space-sm  : 12px  -> Button vertical padding, chip spacing
+  - space-md  : 16px  -> Card padding horizontal/vertical
+  - space-lg  : 24px  -> Category card padding, grid gutter
+  - space-xl  : 32px  -> Section sub-spacing, search input groups
+  - space-2xl : 48px  -> Section separation, Hero margin
+  - space-3xl : 64px  -> Major layout division
+
+
+[ 06. BORDERS & DIVIDERS ]
+--------------------------------------------------------------------------------
+• Default Card Stroke   : 1px solid #EAECEF
+• Active / Hover Stroke : 1.5px solid #0E0F12
+• Search Divider        : 1px solid #EAECEF (Height: 32px, Vertical)
+• Focus Ring Token      : 2px solid #0E0F12, Offset: 2px
+
+
+[ 07. ICONOGRAPHY LANGUAGE ]
+--------------------------------------------------------------------------------
+• Style        : Clean Monoline / Architectural Line Art (1.5px - 1.75px stroke)
+• Endcaps      : Round (stroke-linecap: round; stroke-linejoin: round;)
+• Sizing       :
+  - Action / Button Icons : 18px x 18px
+  - Form & Search Icons   : 16px x 16px
+  - Category Line Art     : 32px x 32px (Custom linear illustrations)
+• Color Rule   : Inherit text primary (#0E0F12) for categories and controls;
+                 Muted (#9CA3AF) for placeholders and structural indicators.
+
+
+[ 08. INTERACTION & FEEDBACK RULES ]
+--------------------------------------------------------------------------------
+• Transitions:
+  - Standard Curve  : cubic-bezier(0.16, 1, 0.3, 1) (Smooth spring ease-out)
+  - Base Duration   : 200ms (Micro-interactions), 300ms (Card transforms)
+
+• Interactive Behaviors:
+  - Navigation Pill : Background changes to #EDF947 with instant active weight.
+  - Search CTA      : Circle button scale(1.05) on hover with deepened shadow.
+  - Category Cards  : Hover brings -3px translateY lift and border #DDE1E6.
+  - Arrow Controls  : Active click triggers scale(0.94); accent yellow indicates
+                      directional pagination readiness.
+================================================================================</code></pre>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Spec Inspection Modal -->
+  <div class="modal-backdrop" id="modal-spec-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-tile-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="tag-pill tag-gold">TILE-008</span>
+          <h3 class="section-title" id="modal-tile-title" style="font-size: 18px;">Skybound Design System // Markdown Spec</h3>
+        </div>
+        <button class="btn-tile btn-preview" onclick="closeSpecModal()" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-block" style="max-height: 500px;"><code id="modal-spec-code-text"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-skybound btn-accent" onclick="copyMasterTilePrompt()">
+          Copy Style Tile Prompt
+        </button>
+        <button class="btn-skybound btn-dark" onclick="downloadStyleTileFile()">
+          Download .md File
+        </button>
+        <button class="btn-skybound btn-outline" onclick="closeSpecModal()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- =====================================================================
+       EMBEDDED RAW STYLE TILE MARKDOWN SCRIPT
+       ===================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+                      SKYBOUND DESIGN SYSTEM // STYLE TILE                      
+================================================================================
+
+[ 01. COLOR ROLES & PALETTE ]
+--------------------------------------------------------------------------------
+• Primary & Accents:
+  - Brand Dark (Primary Text / Base CTA) : #0E0F12  (Deep Onyx Black)
+  - Brand Accent (Interactive Highlight) : #EDF947  (Electric Lemon Lime)
+  - Brand Accent Active / Press          : #D8E534  (Deep Lime)
+
+• Surfaces & Backgrounds:
+  - Canvas / Page Background             : #F5F6F8  (Cool Alabaster)
+  - Surface Pure (Cards / Floating Bars) : #FFFFFF  (Pure White)
+  - Glass Surface (Frosted Overlays)     : rgba(255, 255, 255, 0.72)
+  - Glass Border                         : rgba(255, 255, 255, 0.40)
+
+• Neutrals & Grayscale:
+  - Text Primary                         : #0E0F12  (Onyx)
+  - Text Secondary / Subtitles           : #6C727F  (Slate Gray)
+  - Text Muted / Placeholders            : #9CA3AF  (Cool Gray)
+  - Border Subdued / Divider             : #EAECEF  (Soft Gray)
+  - Border Medium                        : #DDE1E6  (Outline Gray)
+
+• Micro-Badge & Tag Tints (Pastels):
+  - Tag Gold (Top Rated)                 : BG: #FEF3C7 | Text: #78350F
+  - Tag Pink (Trending)                  : BG: #FFE4E6 | Text: #9F1239
+  - Tag Mint (Guest Favorite)            : BG: #D1FAE5 | Text: #065F46
+  - Tag Sky (Location / Info)            : BG: #E0F2FE | Text: #0369A1
+
+
+[ 02. TYPOGRAPHY SYSTEM ]
+--------------------------------------------------------------------------------
+• Font Families:
+  - Primary / Headings : "Plus Jakarta Sans", "Satoshi", system-ui, sans-serif
+  - Body / Functional  : "Inter", "Plus Jakarta Sans", system-ui, sans-serif
+
+• Hierarchy Scale:
+  - Display Hero     : 56px / 1.1 / 800 (ExtraBold)  - Tracking: -0.03em
+  - Section Heading  : 28px / 1.2 / 700 (Bold)       - Tracking: -0.02em
+  - Card Title       : 16px / 1.3 / 600 (SemiBold)   - Tracking: -0.01em
+  - Subtitle / Hero  : 16px / 1.5 / 400 (Regular)    - Tracking:  0.00em
+  - Body / Input     : 14px / 1.4 / 500 (Medium)     - Tracking:  0.00em
+  - Micro / Meta     : 12px / 1.3 / 400 (Regular)    - Tracking: +0.01em
+  - Tag Pill Label   : 11px / 1.0 / 600 (SemiBold)   - Tracking: +0.02em
+
+
+[ 03. CORNER GEOMETRY (BORDER RADII) ]
+--------------------------------------------------------------------------------
+• radius-pill  (Full Round) : 9999px  -> Buttons, Badges, Search Bar, Nav Pills
+• radius-3xl   (Hero Frame) : 36px    -> Master Page Container, Canvas Bounds
+• radius-2xl   (Cards)      : 24px    -> Floating Search Bar, Category Cards
+• radius-xl    (Overlays)   : 16px    -> Floating Mini-widgets, Popovers
+• radius-sm    (Micro Tags) : 8px     -> Metadata Pills, Tooltips
+
+
+[ 04. ELEVATION & DEPTH (SHADOWS & LAYERS) ]
+--------------------------------------------------------------------------------
+• Elevation Levels:
+  - Level 0 (Flat)       : none
+  - Level 1 (Card Rest)  : 0px 2px 8px -2px rgba(14, 15, 18, 0.04)
+  - Level 2 (Floating)   : 0px 20px 40px -12px rgba(14, 15, 18, 0.08),
+                           0px 1px 3px 0px rgba(14, 15, 18, 0.02)
+  - Level 3 (Active Pop) : 0px 28px 64px -16px rgba(14, 15, 18, 0.14)
+
+• Glassmorphism Treatment:
+  - Frosted Float : backdrop-filter: blur(20px) saturate(180%);
+                    background: rgba(255, 255, 255, 0.85);
+                    border: 1px solid rgba(255, 255, 255, 0.60);
+
+
+[ 05. SPACING & SPATIAL SCALE ]
+--------------------------------------------------------------------------------
+• Base Grid: 4px / 8px Baseline System
+• Spacing Tokens:
+  - space-2xs :  4px  -> Icon-to-label gaps, tag inner padding
+  - space-xs  :  8px  -> Input inner gaps, micro card padding
+  - space-sm  : 12px  -> Button vertical padding, chip spacing
+  - space-md  : 16px  -> Card padding horizontal/vertical
+  - space-lg  : 24px  -> Category card padding, grid gutter
+  - space-xl  : 32px  -> Section sub-spacing, search input groups
+  - space-2xl : 48px  -> Section separation, Hero margin
+  - space-3xl : 64px  -> Major layout division
+
+
+[ 06. BORDERS & DIVIDERS ]
+--------------------------------------------------------------------------------
+• Default Card Stroke   : 1px solid #EAECEF
+• Active / Hover Stroke : 1.5px solid #0E0F12
+• Search Divider        : 1px solid #EAECEF (Height: 32px, Vertical)
+• Focus Ring Token      : 2px solid #0E0F12, Offset: 2px
+
+
+[ 07. ICONOGRAPHY LANGUAGE ]
+--------------------------------------------------------------------------------
+• Style        : Clean Monoline / Architectural Line Art (1.5px - 1.75px stroke)
+• Endcaps      : Round (stroke-linecap: round; stroke-linejoin: round;)
+• Sizing       :
+  - Action / Button Icons : 18px x 18px
+  - Form & Search Icons   : 16px x 16px
+  - Category Line Art     : 32px x 32px (Custom linear illustrations)
+• Color Rule   : Inherit text primary (#0E0F12) for categories and controls;
+                 Muted (#9CA3AF) for placeholders and structural indicators.
+
+
+[ 08. INTERACTION & FEEDBACK RULES ]
+--------------------------------------------------------------------------------
+• Transitions:
+  - Standard Curve  : cubic-bezier(0.16, 1, 0.3, 1) (Smooth spring ease-out)
+  - Base Duration   : 200ms (Micro-interactions), 300ms (Card transforms)
+
+• Interactive Behaviors:
+  - Navigation Pill : Background changes to #EDF947 with instant active weight.
+  - Search CTA      : Circle button scale(1.05) on hover with deepened shadow.
+  - Category Cards  : Hover brings -3px translateY lift and border #DDE1E6.
+  - Arrow Controls  : Active click triggers scale(0.94); accent yellow indicates
+                      directional pagination readiness.
+================================================================================
+  </script>
+
+  <!-- =====================================================================
+       PAGE JAVASCRIPT LOGIC
+       ===================================================================== -->
+  <script>
+    // --- 1. TOAST SYSTEM ---
+    function showToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `
+        <span class="toast-accent">${icon}</span>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 250);
+      }, 2400);
+    }
+
+    // --- 2. MARKDOWN ACCESSORS ---
+    function getRawMarkdown() {
+      const scriptEl = document.getElementById("style-tile-markdown");
+      return scriptEl ? scriptEl.textContent.trim() : "";
+    }
+
+    function copyMasterTilePrompt() {
+      const md = getRawMarkdown();
+      navigator.clipboard.writeText(md).then(() => {
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const original = btn.innerHTML;
+          btn.innerHTML = `<span>✓ Copied to Clipboard!</span>`;
+          btn.style.background = "#D8E534";
+          setTimeout(() => {
+            btn.innerHTML = original;
+            btn.style.background = "";
+          }, 2000);
+        }
+        showToast("Copied Skybound Style Tile prompt to clipboard!", "✦");
+      }).catch(err => {
+        console.error("Clipboard copy failed:", err);
+      });
+    }
+
+    function downloadStyleTileFile() {
+      const md = getRawMarkdown();
+      const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-skybound.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-skybound.md!", "↓");
+    }
+
+    function copySwatchHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${name} (${hex}) to clipboard!`);
+      });
+    }
+
+    // --- 3. MODAL CONTROLS ---
+    function openSpecModal() {
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      const codeEl = document.getElementById("modal-spec-code-text");
+      if (codeEl) codeEl.textContent = getRawMarkdown();
+      if (backdrop) backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    // --- 4. MICRO-INTERACTION HELPERS ---
+    function triggerMicroAction(name) {
+      showToast(`Triggered: ${name}`, "✦");
+    }
+
+    function switchNavPill(btn, category) {
+      btn.parentElement.querySelectorAll(".nav-pill-item").forEach(p => p.classList.remove("active"));
+      btn.classList.add("active");
+      showToast(`Switched active tab to: ${category}`, "✦");
+    }
+
+    function updatePangramSize(val) {
+      const input = document.getElementById("pangram-input");
+      const label = document.getElementById("pangram-size-label");
+      if (input) input.style.fontSize = `${val}px`;
+      if (label) label.textContent = `${val}px`;
+    }
+
+    function toggleFavorite(btn) {
+      btn.classList.toggle("active");
+      const isActive = btn.classList.contains("active");
+      showToast(isActive ? "Saved suite to Wishlist!" : "Removed from Wishlist", isActive ? "❤️" : "✦");
+    }
+
+    // --- 5. CONCIERGE SEARCH & CATEGORY FILTERING ---
+    function performDemoSearch() {
+      const dest = document.getElementById("search-dest").value || "Destination";
+      showToast(`Searching flights & suites in ${dest}...`, "⌖");
+    }
+
+    function filterCategory(card, category) {
+      document.querySelectorAll(".category-card").forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+
+      const items = document.querySelectorAll("#listings-container .destination-card");
+      items.forEach(item => {
+        if (category === "all" || item.getAttribute("data-category") === category) {
+          item.style.display = "flex";
+        } else {
+          item.style.display = "none";
+        }
+      });
+      showToast(`Filtered category: ${card.querySelector(".category-card-name").textContent}`, "✦");
+    }
+
+    // --- 6. BOOKING SIMULATOR LOGIC ---
+    let activePricePerNight = 1850;
+    let activeSuiteName = "Aurora Observatory Villa";
+    let activeDestCode = "KEF";
+
+    function openBookingSimulator(suiteTitle, price, destCode) {
+      activeSuiteName = suiteTitle;
+      activePricePerNight = price;
+      activeDestCode = destCode.split("•")[0].trim();
+
+      const titleEl = document.getElementById("sim-suite-title");
+      const destCodeEl = document.getElementById("sim-dest-code");
+      const destNameEl = document.getElementById("sim-dest-name");
+      const ticketSuiteEl = document.getElementById("sim-ticket-suite");
+
+      if (titleEl) titleEl.textContent = suiteTitle;
+      if (destCodeEl) destCodeEl.textContent = activeDestCode;
+      if (destNameEl) destNameEl.textContent = destCode.split("•")[1] ? destCode.split("•")[1].trim() : "Destination";
+      if (ticketSuiteEl) ticketSuiteEl.textContent = suiteTitle.substring(0, 16);
+
+      calculateSimulatorTotal();
+
+      const drawer = document.getElementById("booking-drawer");
+      if (drawer) {
+        drawer.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      showToast(`Loaded ${suiteTitle} into booking simulator`, "✦");
+    }
+
+    function calculateSimulatorTotal() {
+      const nights = parseInt(document.getElementById("sim-nights").value) || 1;
+      const classMultiplier = parseFloat(document.getElementById("sim-class").value) || 1.0;
+      const total = Math.round(nights * activePricePerNight * classMultiplier);
+
+      const priceEl = document.getElementById("sim-total-price");
+      const ticketTotalEl = document.getElementById("sim-ticket-total");
+
+      const formatted = `$${total.toLocaleString()}`;
+      if (priceEl) priceEl.textContent = formatted;
+      if (ticketTotalEl) ticketTotalEl.textContent = formatted;
+    }
+
+    function confirmReservationTicket() {
+      const statusEl = document.getElementById("sim-ticket-status");
+      if (statusEl) {
+        statusEl.textContent = "ISSUED & PAID ✓";
+        statusEl.style.background = "#D1FAE5";
+        statusEl.style.color = "#065F46";
+      }
+      showToast("Boarding Credential confirmed and generated!", "✓");
+    }
+
+    // --- 7. INITIALIZATION & EVENT LISTENERS ---
+    document.addEventListener("DOMContentLoaded", () => {
+      // Header Action Bindings
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyMasterTilePrompt);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadStyleTileFile);
+
+      // Modal backdrop click to close
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      // Escape key to close modal
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+    });
+  </script>
+</body>
+</html>

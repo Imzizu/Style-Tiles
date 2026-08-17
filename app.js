@@ -1116,98 +1116,303 @@ body, .blueprint-viewport {
   },
   {
     id: "TILE-007",
-    slug: "y2k-acid-gloss",
-    name: "Y2K Acid Iridescent",
-    vibe: "Metallic Silver • Acid Highlighter • Rave Chrome",
-    vibeBadge: "Retro & Y2K",
-    categories: ["retro", "playful"],
+    slug: "dark-tactical-editorial",
+    name: "Dark Tactical Editorial / Cyber-Gothic",
+    vibe: "Deep Obsidian • Cyber-Gothic Watermarks • 237° Telemetry • Engineered Brutalism",
+    vibeBadge: "Cyber & Blueprint",
+    categories: ["cyber", "editorial", "brutalist"],
     theme: "Dark",
-    hasPage: false,
+    hasPage: true,
     fonts: {
       display: "Syne",
-      sans: "Uncut Sans",
-      mono: "JetBrains Mono"
-    },
-    palette: [
-      { name: "Obsidian", hex: "#0A0A0F" },
-      { name: "Chrome", hex: "#1C1C28" },
-      { name: "Acid Lime", hex: "#CCFF00" },
-      { name: "Hot Magenta", hex: "#FF007F" },
-      { name: "Electric Cyan", hex: "#00F0FF" }
-    ],
-    description: "High-contrast dark rave aesthetic with liquid chrome reflections, ultra-saturated acid highlighter badges, and wide tracked experimental typography.",
-    markdownSpec: `================================================================================
-  Aesthetic: Y2K Acid Iridescent • Rave Chrome • Electric Club
-================================================================================
-
-/* -----------------------------------------------------------------------------
- * 1. COLOR ROLES & PALETTE
- * -------------------------------------------------------------------------- */
-:root {
-  --bg-void:        #0A0A0F;
-  --bg-chrome:      #1C1C28;
-  --ink-acid:       #CCFF00;
-  --ink-magenta:    #FF007F;
-  --ink-cyan:       #00F0FF;
-  --ink-white:      #F0F0F5;
-}
-
-/* -----------------------------------------------------------------------------
- * 2. TYPOGRAPHY & BUTTONS
- * -------------------------------------------------------------------------- */
---font-display: "Syne", sans-serif;
---font-sans:    "Uncut Sans", sans-serif;
---text-display: 3.5rem / 0.95 var(--font-display); /* Weight: 800 */
---border-acid: 2px solid #CCFF00;
---shadow-acid: 0 0 16px rgba(204, 255, 0, 0.4);`
-  },
-  {
-    id: "TILE-008",
-    slug: "monastic-obsidian",
-    name: "Monastic Obsidian OLED",
-    vibe: "Pure Pitch Black • 1px Hairlines • Zen Clarity",
-    vibeBadge: "Minimalist & Monastic",
-    categories: ["minimalist", "luxury"],
-    theme: "Dark",
-    hasPage: false,
-    fonts: {
-      display: "Fraunces",
       sans: "Inter",
       mono: "JetBrains Mono"
     },
     palette: [
-      { name: "True Black", hex: "#000000" },
-      { name: "Sub-Black", hex: "#0D0D0D" },
-      { name: "Graphite", hex: "#222222" },
-      { name: "Muted Gray", hex: "#8E8E93" },
-      { name: "Stark White", hex: "#FFFFFF" }
+      { name: "Canvas Base", hex: "#0A0A0C" },
+      { name: "Canvas Subtle", hex: "#121216" },
+      { name: "Surface Card", hex: "#18181D" },
+      { name: "Surface Elevated", hex: "#22222A" },
+      { name: "Text Primary", hex: "#F5F5F7" },
+      { name: "Text Secondary", hex: "#9E9EA8" },
+      { name: "Text Muted", hex: "#52525B" },
+      { name: "Accent Solid", hex: "#FFFFFF" }
     ],
-    description: "0% pitch OLED black canvas with razor-sharp 1px monochrome borders, expansive negative space, and laser-precise editorial typography.",
+    description: "High-contrast dark tactical cyber-gothic design system featuring deep obsidian black surfaces, ambient blackletter calligraphy watermarks, 237° tactical telemetry, perspective dashed orbital ground stages, and razor-sharp engineered brutalism.",
     markdownSpec: `================================================================================
-  Aesthetic: Monastic Obsidian OLED • Pure Pitch Minimalism • Zen Luxury
+  STYLE TILE: "DARK TACTICAL EDITORIAL / CYBER-GOTHIC"
+  Production-Ready Design System Specification (TILE-007)
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. COLOR ROLES & PALETTE
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+A hyper-disciplined collision of high-fashion editorial brutalism, cybernetic aerospace telemetry, and monastic dark gothic calligraphy. Characterized by pitch-black obsidian planes (#0A0A0C), razor-sharp 0px angularity, atmospheric radial illumination, ambient ghost blackletter watermarks, 237° orbital perspective grids, and high-contrast stark white precision actuators.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  --bg-oled:        #000000; /* Pure 0% pitch black */
-  --bg-surface:     #0D0D0D; /* Layered card surface */
-  --border-subtle:  #222222; /* 1px hairline border */
-  --ink-primary:    #FFFFFF; /* High contrast reading text */
-  --ink-secondary:  #8E8E93; /* Subtle meta captions */
+  /* Canvas & Base Layers */
+  --canvas-base:            #0A0A0C; /* Deep obsidian black, primary viewport background */
+  --canvas-subtle:          #121216; /* Slight atmospheric radial lift */
+  --surface-card:           #18181D; /* Card / container baseline */
+  --surface-elevated:       #22222A; /* Tooltips, popovers, elevated interactive surfaces */
+
+  /* Inks & Signal Typography */
+  --text-primary:           #F5F5F7; /* High-contrast pure white for titles & actions */
+  --text-secondary:         #9E9EA8; /* Neutral cool grey for reading copy & paragraphs */
+  --text-muted:             #52525B; /* Low-contrast metadata, index tags, unit coordinates */
+  --text-watermark:         rgba(255, 255, 255, 0.035); /* Giant ambient blackletter calligraphy */
+
+  /* Accents & Tactical Highlights */
+  --accent-solid:           #FFFFFF; /* Sharp high-contrast micro-indicators & active borders */
+  --accent-subtle:          rgba(255, 255, 255, 0.12); /* Dashed guides, crosshairs, stage grids */
+  --state-focus:            rgba(255, 255, 255, 0.24); /* Active focal rings & targeting bounds */
+
+  /* Structural Aliases */
+  --bg-canvas:              var(--canvas-base);
+  --bg-surface:             var(--surface-card);
+  --bg-surface-elevated:    var(--surface-elevated);
+  --ink-primary:            var(--text-primary);
+  --ink-secondary:          var(--text-secondary);
+  --ink-muted:              var(--text-muted);
 }
 
 /* -----------------------------------------------------------------------------
- * 2. TYPOGRAPHY & ELEVATION
+ * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
---font-display: "Fraunces", serif;
---font-sans:    "Inter", sans-serif;
---font-mono:    "JetBrains Mono", monospace;
+/* Font Stacks */
+--font-display:   "Syne", "Monument Extended", "Druk Wide", -apple-system, sans-serif;
+--font-sans:      "Inter", "Aeonik", "Satoshi", -apple-system, sans-serif;
+--font-watermark: "UnifrakturMaguntia", "Old London", "Pirata One", cursive, serif;
+--font-mono:      "JetBrains Mono", "Space Mono", monospace;
 
---border-hairline: 1px solid #222222;
---shadow-none:     none;
---radius-sharp:    0px;`
+/* Type Scale & Typographic Metrics */
+--text-ambient-ghost:  220px  / 1.00  var(--font-watermark); /* Weight: 400 | Opacity: 0.035 */
+--text-hero-vertical:  96px   / 0.90  var(--font-display);   /* Weight: 900 | Tracking: -0.03em | Vertical (270deg) */
+--text-display:        3.5rem / 1.05  var(--font-display);   /* Weight: 800 | Tracking: -0.03em */
+--text-h1:             2.5rem / 1.15  var(--font-display);   /* Weight: 800 | Tracking: -0.02em */
+--text-h2:             1.5rem / 1.25  var(--font-display);   /* Weight: 700 | Tracking: -0.01em */
+--text-section-header: 13px   / 1.20  var(--font-display);   /* Weight: 800 | Tracking: 0.22em  | UPPERCASE */
+--text-nav-item:       12px   / 1.20  var(--font-display);   /* Weight: 700 | Tracking: 0.18em  | UPPERCASE */
+--text-cta-link:       13px   / 1.20  var(--font-display);   /* Weight: 800 | Tracking: 0.15em  | UPPERCASE */
+--text-badge-index:    18px   / 1.10  var(--font-display);   /* Weight: 800 | Tracking: -0.01em | Tabular figures (No.04) */
+--text-body:           14px   / 1.65  var(--font-sans);      /* Weight: 400 | Tracking: 0.01em  | Line-height: 1.65 */
+--text-micro-coord:    11px   / 1.30  var(--font-mono);      /* Weight: 600 | Tracking: 0.08em  | Monospaced (237°) */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-none:  0px;    /* Primary CTAs, cards, navigational frames */
+--radius-sm:    2px;    /* Badges, micro tags, chip indicators */
+--radius-full:  9999px; /* Circular orbital stage rings, radial markers */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+/* Optical Stacking Hierarchy (Back to Front):
+ * Layer 0 (Backdrop):   Radial gradient: radial-gradient(circle at 50% 45%, #18181D 0%, #0A0A0C 85%)
+ * Layer 1 (Ghost Text): Ambient blackletter graphic text positioned behind foreground subject
+ * Layer 2 (Guides):     Perspective dashed ellipse stage base (0 deg tilt ground plane)
+ * Layer 3 (Content):    HUD labels, floating text blocks, side rail navigation
+ * Layer 4 (Overlays):   Global fixed header, hamburger trigger, coordinate markers
+ */
+--backdrop-radial:    radial-gradient(circle at 50% 45%, #18181D 0%, #0A0A0C 85%);
+--depth-stage-glow:   0 0 120px rgba(0, 0, 0, 0.85);
+--depth-hover-subtle: 0 4px 20px rgba(0, 0, 0, 0.60);
+--depth-tooltip:      0 8px 32px rgba(0, 0, 0, 0.90), 0 0 0 1px rgba(255, 255, 255, 0.12);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (8-POINT SYSTEM)
+ * -------------------------------------------------------------------------- */
+--space-2xs: 4px;   /* Icon-to-text micro gaps */
+--space-xs:  8px;   /* Tag internal padding, chevron offsets */
+--space-sm:  16px;  /* Header text margin bottom */
+--space-md:  24px;  /* Paragraph gap, navigation spacing */
+--space-lg:  40px;  /* Section module separation */
+--space-xl:  64px;  /* Viewport edge insets */
+--space-2xl: 96px;  /* Hero display separation */
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-dashed: 1px dashed rgba(255, 255, 255, 0.18); /* Orbital floor rings */
+--border-solid:  1px solid rgba(255, 255, 255, 0.08);  /* Panel dividers */
+--border-accent: 1.5px solid #FFFFFF;                  /* Active markers */
+--divider-dash:  4px 6px;                              /* Dash 4px, Gap 6px */
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+- Style: Monoline, ultra-geometric, sharp terminal points (0px corner rounding).
+- Stroke Weight: 1.5px to 2.0px.
+- Standard Glyphs:
+  - Navigation Menu: Two parallel horizontal bars (Width: 20px, Gap: 6px)
+  - Directional Link: Square angled corner arrow (↳ / →)
+  - Stepper / Pagination: Double chevron (») with 3px inner spacing
+  - Spatial Orientation: Degree unit notation (237°) with monospaced font
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+- Nav Links: Hover -> letter-spacing: +0.03em; color: #FFFFFF; (Transition: 200ms ease-out)
+- Action CTA (↳ GET): Hover -> transform: translateX(4px); underline scale from left (0 to 100%)
+- Pagination (»): Hover -> Chevrons pulse rightwards by 2px in sequence
+- Stage Orbit: Hover -> Dashed ring opacity increases from 0.18 to 0.45
+- Cursor Dynamics:
+  - Default: Minimalist custom dot cursor (6px #FFF)
+  - Interactive Target: Expands to hollow targeting circle (28px border: 1px solid #FFF) with 0.15s lerp
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic purple/violet gradients on dark backgrounds (strict obsidian/neutral palette).
+- NO round pill buttons or soft rounded card corners (strictly 0px angularity; 2px for chips only).
+- NO blurry diffuse pastel shadows (rely on radial atmospheric contrast and crisp hairlines).
+- NO gradient keywords or rainbow accents.
+- NO floating cards without hairline borders or dark obsidian surface differentiation.`
+  },
+  {
+    id: "TILE-008",
+    slug: "skybound",
+    name: "Skybound Design System",
+    vibe: "Cool Alabaster • Electric Lemon Lime • Modern Travel",
+    vibeBadge: "Playful & Pop",
+    categories: ["playful", "luxury"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Inter",
+      mono: "Plus Jakarta Sans"
+    },
+    palette: [
+      { name: "Brand Dark", hex: "#0E0F12" },
+      { name: "Electric Lime", hex: "#EDF947" },
+      { name: "Canvas Alabaster", hex: "#F5F6F8" },
+      { name: "Surface Pure", hex: "#FFFFFF" },
+      { name: "Slate Gray", hex: "#6C727F" }
+    ],
+    description: "High-utility visual architecture for modern air travel, aviation hospitality, and luxury destination discovery. Built on cool alabaster foundations, onyx typography, electric lemon-lime tactile triggers, and frosted floating glass.",
+    markdownSpec: `================================================================================
+                      SKYBOUND DESIGN SYSTEM // STYLE TILE                      
+================================================================================
+
+[ 01. COLOR ROLES & PALETTE ]
+--------------------------------------------------------------------------------
+• Primary & Accents:
+  - Brand Dark (Primary Text / Base CTA) : #0E0F12  (Deep Onyx Black)
+  - Brand Accent (Interactive Highlight) : #EDF947  (Electric Lemon Lime)
+  - Brand Accent Active / Press          : #D8E534  (Deep Lime)
+
+• Surfaces & Backgrounds:
+  - Canvas / Page Background             : #F5F6F8  (Cool Alabaster)
+  - Surface Pure (Cards / Floating Bars) : #FFFFFF  (Pure White)
+  - Glass Surface (Frosted Overlays)     : rgba(255, 255, 255, 0.72)
+  - Glass Border                         : rgba(255, 255, 255, 0.40)
+
+• Neutrals & Grayscale:
+  - Text Primary                         : #0E0F12  (Onyx)
+  - Text Secondary / Subtitles           : #6C727F  (Slate Gray)
+  - Text Muted / Placeholders            : #9CA3AF  (Cool Gray)
+  - Border Subdued / Divider             : #EAECEF  (Soft Gray)
+  - Border Medium                        : #DDE1E6  (Outline Gray)
+
+• Micro-Badge & Tag Tints (Pastels):
+  - Tag Gold (Top Rated)                 : BG: #FEF3C7 | Text: #78350F
+  - Tag Pink (Trending)                  : BG: #FFE4E6 | Text: #9F1239
+  - Tag Mint (Guest Favorite)            : BG: #D1FAE5 | Text: #065F46
+  - Tag Sky (Location / Info)            : BG: #E0F2FE | Text: #0369A1
+
+
+[ 02. TYPOGRAPHY SYSTEM ]
+--------------------------------------------------------------------------------
+• Font Families:
+  - Primary / Headings : "Plus Jakarta Sans", "Satoshi", system-ui, sans-serif
+  - Body / Functional  : "Inter", "Plus Jakarta Sans", system-ui, sans-serif
+
+• Hierarchy Scale:
+  - Display Hero     : 56px / 1.1 / 800 (ExtraBold)  - Tracking: -0.03em
+  - Section Heading  : 28px / 1.2 / 700 (Bold)       - Tracking: -0.02em
+  - Card Title       : 16px / 1.3 / 600 (SemiBold)   - Tracking: -0.01em
+  - Subtitle / Hero  : 16px / 1.5 / 400 (Regular)    - Tracking:  0.00em
+  - Body / Input     : 14px / 1.4 / 500 (Medium)     - Tracking:  0.00em
+  - Micro / Meta     : 12px / 1.3 / 400 (Regular)    - Tracking: +0.01em
+  - Tag Pill Label   : 11px / 1.0 / 600 (SemiBold)   - Tracking: +0.02em
+
+
+[ 03. CORNER GEOMETRY (BORDER RADII) ]
+--------------------------------------------------------------------------------
+• radius-pill  (Full Round) : 9999px  -> Buttons, Badges, Search Bar, Nav Pills
+• radius-3xl   (Hero Frame) : 36px    -> Master Page Container, Canvas Bounds
+• radius-2xl   (Cards)      : 24px    -> Floating Search Bar, Category Cards
+• radius-xl    (Overlays)   : 16px    -> Floating Mini-widgets, Popovers
+• radius-sm    (Micro Tags) : 8px     -> Metadata Pills, Tooltips
+
+
+[ 04. ELEVATION & DEPTH (SHADOWS & LAYERS) ]
+--------------------------------------------------------------------------------
+• Elevation Levels:
+  - Level 0 (Flat)       : none
+  - Level 1 (Card Rest)  : 0px 2px 8px -2px rgba(14, 15, 18, 0.04)
+  - Level 2 (Floating)   : 0px 20px 40px -12px rgba(14, 15, 18, 0.08),
+                           0px 1px 3px 0px rgba(14, 15, 18, 0.02)
+  - Level 3 (Active Pop) : 0px 28px 64px -16px rgba(14, 15, 18, 0.14)
+
+• Glassmorphism Treatment:
+  - Frosted Float : backdrop-filter: blur(20px) saturate(180%);
+                    background: rgba(255, 255, 255, 0.85);
+                    border: 1px solid rgba(255, 255, 255, 0.60);
+
+
+[ 05. SPACING & SPATIAL SCALE ]
+--------------------------------------------------------------------------------
+• Base Grid: 4px / 8px Baseline System
+• Spacing Tokens:
+  - space-2xs :  4px  -> Icon-to-label gaps, tag inner padding
+  - space-xs  :  8px  -> Input inner gaps, micro card padding
+  - space-sm  : 12px  -> Button vertical padding, chip spacing
+  - space-md  : 16px  -> Card padding horizontal/vertical
+  - space-lg  : 24px  -> Category card padding, grid gutter
+  - space-xl  : 32px  -> Section sub-spacing, search input groups
+  - space-2xl : 48px  -> Section separation, Hero margin
+  - space-3xl : 64px  -> Major layout division
+
+
+[ 06. BORDERS & DIVIDERS ]
+--------------------------------------------------------------------------------
+• Default Card Stroke   : 1px solid #EAECEF
+• Active / Hover Stroke : 1.5px solid #0E0F12
+• Search Divider        : 1px solid #EAECEF (Height: 32px, Vertical)
+• Focus Ring Token      : 2px solid #0E0F12, Offset: 2px
+
+
+[ 07. ICONOGRAPHY LANGUAGE ]
+--------------------------------------------------------------------------------
+• Style        : Clean Monoline / Architectural Line Art (1.5px - 1.75px stroke)
+• Endcaps      : Round (stroke-linecap: round; stroke-linejoin: round;)
+• Sizing       :
+  - Action / Button Icons : 18px x 18px
+  - Form & Search Icons   : 16px x 16px
+  - Category Line Art     : 32px x 32px (Custom linear illustrations)
+• Color Rule   : Inherit text primary (#0E0F12) for categories and controls;
+                 Muted (#9CA3AF) for placeholders and structural indicators.
+
+
+[ 08. INTERACTION & FEEDBACK RULES ]
+--------------------------------------------------------------------------------
+• Transitions:
+  - Standard Curve  : cubic-bezier(0.16, 1, 0.3, 1) (Smooth spring ease-out)
+  - Base Duration   : 200ms (Micro-interactions), 300ms (Card transforms)
+
+• Interactive Behaviors:
+  - Navigation Pill : Background changes to #EDF947 with instant active weight.
+  - Search CTA      : Circle button scale(1.05) on hover with deepened shadow.
+  - Category Cards  : Hover brings -3px translateY lift and border #DDE1E6.
+  - Arrow Controls  : Active click triggers scale(0.94); accent yellow indicates
+                      directional pagination readiness.
+================================================================================`
   }
 ];
 
@@ -1498,7 +1703,7 @@ function copyTilePrompt(tileId) {
   const tile = STYLE_TILES_DATA.find(t => t.id === tileId);
   if (!tile) return;
 
-  const fullPrompt = `Please apply the following Style Tile design system to build the webpage:\n\n${tile.markdownSpec}`;
+  const fullPrompt = `Implement/redesign this webpage using the following Style Tile design system however applicable:\n\n${tile.markdownSpec}`;
 
   navigator.clipboard.writeText(fullPrompt).then(() => {
     showToast(`Copied ${tile.name} Style Tile to clipboard!`);
@@ -1579,11 +1784,26 @@ function updateDraftingClock() {
   clockEl.textContent = utcStr;
 }
 
+function updateFilterChipCounts() {
+  document.querySelectorAll(".filter-chip").forEach(chip => {
+    const cat = chip.getAttribute("data-cat");
+    const countEl = chip.querySelector(".chip-count");
+    if (!countEl) return;
+    if (cat === "all") {
+      countEl.textContent = STYLE_TILES_DATA.length;
+    } else {
+      const count = STYLE_TILES_DATA.filter(t => t.categories && t.categories.includes(cat)).length;
+      countEl.textContent = count;
+    }
+  });
+}
+
 // -----------------------------------------------------------------------------
 // INITIALIZATION
 // -----------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   renderCatalog();
+  updateFilterChipCounts();
   updateDraftingClock();
   setInterval(updateDraftingClock, 1000);
 

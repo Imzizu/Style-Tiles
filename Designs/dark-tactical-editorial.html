@@ -1,0 +1,2584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DARK TACTICAL EDITORIAL / CYBER-GOTHIC — Style Tile (TILE-007)</title>
+  <meta name="description" content="Production-ready design system specification for Dark Tactical Editorial / Cyber-Gothic. Deep obsidian black, ambient blackletter watermarks, 237° tactical telemetry, and engineered brutalism.">
+
+  <!-- Google Fonts: Syne (Display/UI), Inter (Body Sans), UnifrakturMaguntia & Pirata One (Ambient Blackletter), JetBrains Mono (Micro Coordinates) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Pirata+One&family=Syne:wght@700;800;900&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       STYLE TILE: DARK TACTICAL EDITORIAL / CYBER-GOTHIC (TILE-007)
+       Production-Ready Design System Specification
+       ============================================================================= */
+
+    :root {
+      /* ---------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * --------------------------------------------------------------------------- */
+      /* Canvas / Neutral Dark */
+      --canvas-base:          #0A0A0C; /* Deep obsidian black, viewport background */
+      --canvas-subtle:        #121216; /* Slight atmospheric radial lift */
+      --surface-card:         #18181D; /* Card/container baseline */
+      --surface-elevated:     #22222A; /* Tooltips, popovers, interactive surfaces */
+
+      /* Foreground & Content */
+      --text-primary:         #F5F5F7; /* High-contrast pure white for titles/actions */
+      --text-secondary:       #9E9EA8; /* Neutral cool grey for body reading copy */
+      --text-muted:           #52525B; /* Low-contrast metadata, tags, indices */
+      --text-watermark:       rgba(255, 255, 255, 0.035); /* Giant ambient calligraphy */
+
+      /* Accents & Highlights */
+      --accent-solid:         #FFFFFF; /* Sharp high-contrast micro-indicators */
+      --accent-subtle:        rgba(255, 255, 255, 0.12); /* Dashed guides, crosshairs */
+      --state-focus:          rgba(255, 255, 255, 0.24); /* Active focal rings */
+
+      /* Structural Aliases */
+      --bg-canvas:            var(--canvas-base);
+      --bg-surface:           var(--surface-card);
+      --bg-surface-elevated:  var(--surface-elevated);
+      --ink-primary:          var(--text-primary);
+      --ink-secondary:        var(--text-secondary);
+      --ink-muted:            var(--text-muted);
+
+      /* ---------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * --------------------------------------------------------------------------- */
+      --font-display:         "Syne", -apple-system, sans-serif;
+      --font-sans:            "Inter", -apple-system, sans-serif;
+      --font-watermark:       "UnifrakturMaguntia", "Pirata One", cursive, serif;
+      --font-mono:            "JetBrains Mono", monospace;
+
+      /* ---------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * --------------------------------------------------------------------------- */
+      --radius-none:          0px;     /* Primary CTAs, cards, navigational frames */
+      --radius-sm:            2px;     /* Badges, micro tags, chip indicators */
+      --radius-full:          9999px;  /* Circular orbital stage rings, radial markers */
+
+      /* ---------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (SHADOWS & OPTICAL STACKING)
+       * --------------------------------------------------------------------------- */
+      --backdrop-radial:      radial-gradient(circle at 50% 45%, #18181D 0%, #0A0A0C 85%);
+      --depth-stage-glow:     0 0 120px rgba(0, 0, 0, 0.85);
+      --depth-hover-subtle:   0 4px 20px rgba(0, 0, 0, 0.60);
+      --depth-tooltip:        0 8px 32px rgba(0, 0, 0, 0.90), 0 0 0 1px rgba(255, 255, 255, 0.12);
+
+      /* ---------------------------------------------------------------------------
+       * 5. SPACING & SPATIAL SCALE (8-POINT SYSTEM)
+       * --------------------------------------------------------------------------- */
+      --space-2xs:            4px;
+      --space-xs:             8px;
+      --space-sm:             16px;
+      --space-md:             24px;
+      --space-lg:             40px;
+      --space-xl:             64px;
+      --space-2xl:            96px;
+
+      /* ---------------------------------------------------------------------------
+       * 6. BORDERS & DIVIDERS (HAIRLINE SYSTEM)
+       * --------------------------------------------------------------------------- */
+      --border-dashed:        1px dashed rgba(255, 255, 255, 0.18);
+      --border-solid:         1px solid rgba(255, 255, 255, 0.08);
+      --border-accent:        1.5px solid #FFFFFF;
+      --border-focus:         1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    /* =============================================================================
+       BASE RESET & VIEWPORT
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--canvas-base);
+    }
+
+    body {
+      background-color: var(--canvas-base);
+      background-image: var(--backdrop-radial);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      cursor: default;
+    }
+
+    /* Custom Selection */
+    ::selection {
+      background-color: #FFFFFF;
+      color: #0A0A0C;
+    }
+
+    /* Custom Cursor Container */
+    #cursor-dot {
+      width: 6px;
+      height: 6px;
+      background-color: #FFFFFF;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.2s ease;
+    }
+
+    #cursor-reticle {
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.15s ease-out, height 0.15s ease-out, border-color 0.15s ease-out, background-color 0.15s ease-out;
+    }
+
+    body.cursor-active #cursor-reticle {
+      width: 44px;
+      height: 44px;
+      border-color: #FFFFFF;
+      background-color: rgba(255, 255, 255, 0.06);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--canvas-base);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--surface-elevated);
+      border-radius: var(--radius-none);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
+    }
+
+    /* Layout Wrapper */
+    .layout-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+      position: relative;
+    }
+
+    @media (max-width: 900px) {
+      .layout-wrapper {
+        padding: 0 var(--space-md);
+      }
+    }
+
+    /* =============================================================================
+       MANDATORY HEADER BAR COMPONENT
+       ============================================================================= */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(10, 10, 12, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: var(--border-solid);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-sm) var(--space-xl);
+      gap: var(--space-md);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: color 200ms ease-out, letter-spacing 200ms ease-out;
+      border: var(--border-solid);
+      padding: 6px 14px;
+      background: rgba(24, 24, 29, 0.5);
+    }
+
+    .nav-back-link:hover {
+      color: var(--text-primary);
+      letter-spacing: 0.21em;
+      border-color: var(--accent-solid);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      background: var(--surface-card);
+      border: var(--border-solid);
+      color: var(--text-primary);
+      border-radius: var(--radius-sm);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface-card);
+      color: var(--text-primary);
+      border: var(--border-solid);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      cursor: pointer;
+      border-radius: var(--radius-none);
+      transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease, color 150ms ease;
+    }
+
+    .btn-tile svg {
+      stroke: currentColor;
+    }
+
+    .btn-tile:hover {
+      background: var(--surface-elevated);
+      border-color: var(--accent-solid);
+      color: #FFFFFF;
+      transform: translateY(-1px);
+    }
+
+    .btn-tile:active {
+      transform: translateY(0);
+    }
+
+    .btn-tile.btn-copy {
+      background: #FFFFFF;
+      color: #0A0A0C;
+      border-color: #FFFFFF;
+    }
+
+    .btn-tile.btn-copy:hover {
+      background: #E5E5E8;
+      color: #0A0A0C;
+    }
+
+    @media (max-width: 960px) {
+      .style-tile-header {
+        padding: var(--space-sm) var(--space-md);
+        flex-wrap: wrap;
+      }
+      .design-vibe-tag {
+        display: none;
+      }
+    }
+
+    /* =============================================================================
+       HERO DISPLAY BANNER (LAYER 0 to 4 STACKING)
+       ============================================================================= */
+    .hero-display-section {
+      position: relative;
+      padding: var(--space-2xl) 0 var(--space-xl);
+      border-bottom: var(--border-solid);
+      overflow: hidden;
+    }
+
+    /* Layer 1: Ambient Ghost Blackletter Calligraphy */
+    .ambient-ghost-watermark {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-watermark);
+      font-size: clamp(140px, 20vw, 260px);
+      font-weight: 400;
+      line-height: 1.0;
+      color: var(--text-watermark);
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+      z-index: 1;
+      letter-spacing: 0.05em;
+    }
+
+    /* Layer 2: Perspective Dashed Ellipse Stage Base */
+    .hero-stage-guide {
+      position: absolute;
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%) rotateX(65deg);
+      width: 900px;
+      height: 380px;
+      border: var(--border-dashed);
+      border-radius: var(--radius-full);
+      box-shadow: var(--depth-stage-glow);
+      pointer-events: none;
+      z-index: 2;
+      transition: opacity 300ms ease;
+    }
+
+    .hero-display-section:hover .hero-stage-guide {
+      opacity: 0.45;
+    }
+
+    /* Hero Grid Layout */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 96px 1fr 340px;
+      gap: var(--space-xl);
+      align-items: start;
+      position: relative;
+      z-index: 3;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+    }
+
+    /* Vertical Hero Title Column (96px, 270deg) */
+    .hero-vertical-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      border-right: var(--border-solid);
+      padding-right: var(--space-md);
+      height: 100%;
+      min-height: 480px;
+    }
+
+    .vertical-hero-title {
+      font-family: var(--font-display);
+      font-size: 80px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      line-height: 0.85;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-vertical-col {
+        border-right: none;
+        border-bottom: var(--border-solid);
+        min-height: auto;
+        padding-bottom: var(--space-md);
+      }
+      .vertical-hero-title {
+        writing-mode: horizontal-tb;
+        transform: none;
+        font-size: 42px;
+      }
+    }
+
+    /* Main Hero Center Column */
+    .hero-main-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .hero-meta-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .tactical-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border: var(--border-solid);
+      background: var(--surface-card);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+    }
+
+    .tactical-badge.badge-white {
+      background: #FFFFFF;
+      color: #0A0A0C;
+      border-color: #FFFFFF;
+      font-weight: 700;
+    }
+
+    .tactical-badge .dot-indicator {
+      width: 5px;
+      height: 5px;
+      background: #FFFFFF;
+      border-radius: 50%;
+    }
+
+    .tactical-badge.badge-white .dot-indicator {
+      background: #0A0A0C;
+    }
+
+    .hero-title-main {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.25rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .hero-subhead-lead {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 680px;
+    }
+
+    .hero-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-xs);
+    }
+
+    /* Action CTA Link (↳ GET) with underline animation */
+    .cta-link-tactical {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      position: relative;
+      padding: 10px 18px;
+      border: var(--border-solid);
+      background: var(--surface-card);
+      transition: transform 200ms ease-out, border-color 200ms ease, background-color 200ms ease;
+    }
+
+    .cta-link-tactical .arrow-glyph {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      transition: transform 200ms ease-out;
+    }
+
+    .cta-link-tactical::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--accent-solid);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cta-link-tactical:hover {
+      transform: translateX(4px);
+      border-color: var(--accent-solid);
+      background: var(--surface-elevated);
+    }
+
+    .cta-link-tactical:hover .arrow-glyph {
+      transform: translateX(2px);
+    }
+
+    .cta-link-tactical:hover::after {
+      transform: scaleX(1);
+    }
+
+    .btn-solid-white {
+      background: #FFFFFF;
+      color: #0A0A0C;
+      border: 1.5px solid #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: var(--radius-none);
+      transition: background-color 150ms ease, transform 150ms ease, color 150ms ease;
+    }
+
+    .btn-solid-white:hover {
+      background: #E5E5E8;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+    }
+
+    /* Right Telemetry Column */
+    .hero-telemetry-panel {
+      background: var(--surface-card);
+      border: var(--border-solid);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      position: relative;
+    }
+
+    .hero-telemetry-panel::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 8px;
+      height: 8px;
+      border-top: var(--border-accent);
+      border-left: var(--border-accent);
+    }
+
+    .hero-telemetry-panel::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 8px;
+      height: 8px;
+      border-bottom: var(--border-accent);
+      border-right: var(--border-accent);
+    }
+
+    .telemetry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-solid);
+      padding-bottom: var(--space-xs);
+    }
+
+    .telemetry-title {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .telemetry-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+      padding: 6px 0;
+    }
+
+    .telemetry-label {
+      color: var(--text-muted);
+    }
+
+    .telemetry-value {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .telemetry-value.coordinate-highlight {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+    }
+
+    /* =============================================================================
+       SECTION HEADERS & ARCHITECTURAL GRID
+       ============================================================================= */
+    .section-block {
+      padding: var(--space-2xl) 0;
+      border-bottom: var(--border-solid);
+      position: relative;
+    }
+
+    .section-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: var(--space-lg);
+      border-bottom: var(--border-solid);
+      padding-bottom: var(--space-sm);
+    }
+
+    .section-headline-group {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-sm);
+    }
+
+    .section-index-badge {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      font-variant-numeric: tabular-nums;
+      color: var(--text-primary);
+      padding: 2px 8px;
+      background: var(--surface-card);
+      border: var(--border-solid);
+      border-radius: var(--radius-sm);
+    }
+
+    .section-header-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .section-header-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* =============================================================================
+       1. COLOR ROLES & PALETTE MATRIX
+       ============================================================================= */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .swatch-card {
+      background: var(--surface-card);
+      border: var(--border-solid);
+      border-radius: var(--radius-none);
+      padding: var(--space-sm);
+      cursor: pointer;
+      transition: border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .swatch-card:hover {
+      border-color: var(--accent-solid);
+      transform: translateY(-2px);
+      box-shadow: var(--depth-hover-subtle);
+    }
+
+    .swatch-preview-box {
+      height: 72px;
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 6px 8px;
+    }
+
+    .swatch-preview-box .click-copy-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(10, 10, 12, 0.85);
+      color: #FFFFFF;
+      padding: 2px 6px;
+      opacity: 0;
+      transition: opacity 150ms ease;
+    }
+
+    .swatch-card:hover .click-copy-tag {
+      opacity: 1;
+    }
+
+    .swatch-info-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .swatch-role-name {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .swatch-var-name {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .swatch-hex-val {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    /* =============================================================================
+       2. TYPOGRAPHY SYSTEM & HIERARCHY LADDER
+       ============================================================================= */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+    }
+
+    @media (max-width: 960px) {
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .type-hierarchy-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .type-scale-item {
+      background: var(--surface-card);
+      border: var(--border-solid);
+      padding: var(--space-sm) var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .type-meta-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+      padding-bottom: 4px;
+      margin-bottom: 4px;
+    }
+
+    .spec-ghost {
+      font-family: var(--font-watermark);
+      font-size: 42px;
+      color: rgba(255, 255, 255, 0.4);
+      line-height: 1.1;
+    }
+
+    .spec-vert-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .spec-section-head {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .spec-nav-item {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .spec-cta-link {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .spec-body-text {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    .spec-badge-index {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .spec-micro-coord {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+    }
+
+    /* Interactive Type Sandbox */
+    .type-sandbox-panel {
+      background: var(--surface-card);
+      border: var(--border-solid);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .sandbox-controls-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+      border-bottom: var(--border-solid);
+      padding-bottom: var(--space-sm);
+    }
+
+    .font-switch-btn {
+      background: var(--canvas-base);
+      color: var(--text-secondary);
+      border: var(--border-solid);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+      transition: color 150ms, border-color 150ms;
+    }
+
+    .font-switch-btn.active, .font-switch-btn:hover {
+      color: #FFFFFF;
+      border-color: #FFFFFF;
+      background: var(--surface-elevated);
+    }
+
+    .slider-control-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .slider-control-group input[type="range"] {
+      accent-color: #FFFFFF;
+      cursor: pointer;
+    }
+
+    .sandbox-textarea {
+      width: 100%;
+      height: 180px;
+      background: var(--canvas-base);
+      border: var(--border-solid);
+      color: var(--text-primary);
+      padding: var(--space-sm);
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.3;
+      resize: vertical;
+      outline: none;
+      transition: border-color 150ms ease;
+    }
+
+    .sandbox-textarea:focus {
+      border-color: var(--accent-solid);
+    }
+
+    /* =============================================================================
+       3. COMPONENT ARCHETYPES & TACTICAL INTERACTION
+       ============================================================================= */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .component-archetype-card {
+      background: var(--surface-card);
+      border: var(--border-solid);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .archetype-title {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: var(--border-solid);
+      padding-bottom: 6px;
+    }
+
+    /* Buttons Suite */
+    .buttons-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      align-items: center;
+    }
+
+    .btn-tactical-primary {
+      background: #FFFFFF;
+      color: #0A0A0C;
+      border: 1.5px solid #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 9px 18px;
+      cursor: pointer;
+      border-radius: var(--radius-none);
+      transition: transform 150ms ease, background-color 150ms ease;
+    }
+
+    .btn-tactical-primary:hover {
+      background: #E0E0E5;
+      transform: translateY(-1px);
+    }
+
+    .btn-tactical-ghost {
+      background: transparent;
+      color: var(--text-primary);
+      border: var(--border-dashed);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 9px 18px;
+      cursor: pointer;
+      border-radius: var(--radius-none);
+      transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+    }
+
+    .btn-tactical-ghost:hover {
+      border-color: var(--accent-solid);
+      background: rgba(255, 255, 255, 0.05);
+      color: #FFFFFF;
+    }
+
+    .btn-tactical-indicator {
+      background: var(--surface-elevated);
+      color: var(--text-primary);
+      border: var(--border-solid);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 9px 14px;
+      cursor: pointer;
+      border-radius: var(--radius-none);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 150ms ease;
+    }
+
+    .btn-tactical-indicator .status-dot-2px {
+      width: 4px;
+      height: 4px;
+      background: #FFFFFF;
+      border-radius: 2px;
+    }
+
+    .btn-tactical-indicator:hover {
+      border-color: var(--accent-solid);
+    }
+
+    /* Stepper / Pagination » */
+    .pagination-stepper-box {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: 8px 14px;
+      background: var(--surface-card);
+      border: var(--border-solid);
+      cursor: pointer;
+      user-select: none;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .pagination-chevrons {
+      display: inline-flex;
+      gap: 3px;
+      color: #FFFFFF;
+      font-weight: 900;
+      transition: transform 200ms ease;
+    }
+
+    .pagination-stepper-box:hover .pagination-chevrons {
+      transform: translateX(4px);
+    }
+
+    .pagination-chevrons span {
+      display: inline-block;
+      transition: transform 150ms ease;
+    }
+
+    .pagination-stepper-box:hover .pagination-chevrons span:nth-child(1) {
+      transform: translateX(2px);
+    }
+    .pagination-stepper-box:hover .pagination-chevrons span:nth-child(2) {
+      transform: translateX(4px);
+      transition-delay: 40ms;
+    }
+
+    /* Form Inputs & Controls */
+    .form-control-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .tactical-input-box {
+      width: 100%;
+      background: var(--canvas-base);
+      border: var(--border-solid);
+      color: var(--text-primary);
+      padding: 10px 14px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      outline: none;
+      border-radius: var(--radius-none);
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .tactical-input-box:focus {
+      border-color: var(--accent-solid);
+      box-shadow: 0 0 0 1px var(--state-focus);
+    }
+
+    .tactical-input-box::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* Checkbox & Switches */
+    .interactive-check-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .tactical-checkbox {
+      width: 18px;
+      height: 18px;
+      border: var(--border-solid);
+      background: var(--canvas-base);
+      border-radius: var(--radius-none);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 150ms, background-color 150ms;
+    }
+
+    .tactical-checkbox.checked {
+      background: #FFFFFF;
+      border-color: #FFFFFF;
+    }
+
+    .tactical-checkbox.checked::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #0A0A0C;
+    }
+
+    .interactive-check-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-primary);
+      letter-spacing: 0.05em;
+    }
+
+    /* Elevated Tooltip Demo */
+    .tooltip-demo-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .elevated-tooltip {
+      position: relative;
+      background: var(--surface-elevated);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: var(--depth-tooltip);
+      padding: 8px 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .elevated-tooltip::before {
+      content: '▲';
+      position: absolute;
+      top: -8px;
+      left: 20px;
+      font-size: 8px;
+      color: var(--surface-elevated);
+    }
+
+    /* =============================================================================
+       4. LIVING MICRO-EXPERIENCE: SECTOR 237° ORBITAL STAGE
+       ============================================================================= */
+    .orbital-stage-wrapper {
+      background: var(--surface-card);
+      border: var(--border-solid);
+      padding: var(--space-xl) var(--space-md);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-lg);
+      min-height: 520px;
+      justify-content: center;
+    }
+
+    /* Stage Floor Guides */
+    .stage-canvas-viewport {
+      width: 100%;
+      max-width: 860px;
+      height: 340px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 800px;
+    }
+
+    .orbital-ring-outer {
+      position: absolute;
+      width: 640px;
+      height: 280px;
+      border: var(--border-dashed);
+      border-radius: var(--radius-full);
+      transform: rotateX(70deg);
+      transition: opacity 250ms ease, transform 300ms ease-out;
+      box-shadow: var(--depth-stage-glow);
+    }
+
+    .orbital-ring-inner {
+      position: absolute;
+      width: 440px;
+      height: 190px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-full);
+      transform: rotateX(70deg);
+      transition: border-color 200ms ease;
+    }
+
+    .orbital-stage-wrapper:hover .orbital-ring-outer {
+      opacity: 0.45;
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .stage-crosshair-h {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
+      pointer-events: none;
+    }
+
+    .stage-crosshair-v {
+      position: absolute;
+      height: 100%;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.08);
+      pointer-events: none;
+    }
+
+    /* Floating Center Dossier */
+    .tactical-dossier-card {
+      background: rgba(18, 18, 22, 0.95);
+      border: var(--border-solid);
+      box-shadow: var(--depth-hover-subtle);
+      width: 380px;
+      padding: var(--space-md);
+      position: relative;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform 200ms ease-out, border-color 200ms ease;
+    }
+
+    .tactical-dossier-card:hover {
+      border-color: var(--accent-solid);
+      transform: scale(1.02);
+    }
+
+    .dossier-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-solid);
+      padding-bottom: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+
+    .dossier-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.1em;
+    }
+
+    .dossier-tag {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .dossier-body {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+
+    .dossier-lead {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .dossier-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: var(--border-solid);
+      padding-top: var(--space-xs);
+    }
+
+    .dossier-coord-readout {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+
+    /* Live Interactive Orbital Angle Slider */
+    .stage-interactive-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-md);
+      z-index: 10;
+      background: var(--surface-elevated);
+      border: var(--border-solid);
+      padding: var(--space-xs) var(--space-md);
+    }
+
+    /* =============================================================================
+       5. STYLE TILE PROMPT CODE DRAWER
+       ============================================================================= */
+    .code-spec-drawer {
+      background: var(--surface-card);
+      border: var(--border-solid);
+      position: relative;
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--canvas-subtle);
+      border-bottom: var(--border-solid);
+    }
+
+    .drawer-title {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .code-content-block {
+      padding: var(--space-md);
+      background: #0A0A0C;
+      color: #D4D4D8;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      overflow-x: auto;
+      max-height: 420px;
+    }
+
+    /* =============================================================================
+       SPEC INSPECTION MODAL BACKDROP
+       ============================================================================= */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 10, 12, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-sheet {
+      background: var(--surface-card);
+      border: var(--border-solid);
+      width: 90%;
+      max-width: 900px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 16px 64px rgba(0, 0, 0, 0.95);
+      border-radius: var(--radius-none);
+    }
+
+    .modal-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-md);
+      border-bottom: var(--border-solid);
+    }
+
+    .modal-title-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: var(--border-solid);
+      color: var(--text-primary);
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      transition: border-color 150ms, color 150ms;
+    }
+
+    .modal-close-btn:hover {
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+    }
+
+    .modal-body-content {
+      padding: var(--space-md);
+      overflow-y: auto;
+      background: #0A0A0C;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #E4E4E7;
+      white-space: pre-wrap;
+    }
+
+    .modal-footer-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--space-xs);
+      padding: var(--space-sm) var(--space-md);
+      border-top: var(--border-solid);
+      background: var(--surface-card);
+    }
+
+    /* =============================================================================
+       TOAST NOTIFICATIONS
+       ============================================================================= */
+    #toast-container {
+      position: fixed;
+      bottom: var(--space-lg);
+      right: var(--space-lg);
+      z-index: 9000;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      pointer-events: none;
+    }
+
+    .toast {
+      background: #FFFFFF;
+      color: #0A0A0C;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 10px 18px;
+      border-radius: var(--radius-none);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    .style-tile-footer {
+      padding: var(--space-xl) 0;
+      border-top: var(--border-solid);
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom Targeting Dot & Reticle Cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-reticle"></div>
+
+  <!-- Toast Notification System -->
+  <div id="toast-container"></div>
+
+  <!-- 1. MANDATORY HEADER BAR COMPONENT -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-007</span>
+      <span class="design-title">Dark Tactical Editorial / Cyber-Gothic</span>
+      <span class="design-vibe-tag">237° Telemetry</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-dark-tactical-editorial.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 2. HERO DISPLAY BANNER -->
+    <section class="hero-display-section">
+      <!-- Layer 1: Ambient Ghost Calligraphy -->
+      <div class="ambient-ghost-watermark">Cyber-Gothic</div>
+
+      <!-- Layer 2: Perspective Dashed Ellipse Stage Base -->
+      <div class="hero-stage-guide" id="hero-stage-guide"></div>
+
+      <div class="layout-wrapper">
+        <div class="hero-grid">
+          <!-- Left Column: Vertical Hero Title (96px, 270deg) -->
+          <div class="hero-vertical-col">
+            <div class="vertical-hero-title">TACTICAL</div>
+          </div>
+
+          <!-- Center Column: Primary Hero Statement -->
+          <div class="hero-main-col">
+            <div class="hero-meta-badge-row">
+              <span class="tactical-badge badge-white">
+                <span class="dot-indicator"></span>
+                SECTOR NO.04
+              </span>
+              <span class="tactical-badge">AZIMUTH: 237°</span>
+              <span class="tactical-badge">DEEP OBSIDIAN #0A0A0C</span>
+              <span class="tactical-badge">ENGINEERED BRUTALISM</span>
+            </div>
+
+            <h1 class="hero-title-main">
+              DARK TACTICAL EDITORIAL / CYBER-GOTHIC
+            </h1>
+
+            <p class="hero-subhead-lead">
+              A disciplined collision of high-fashion editorial brutalism, aerospace telemetry, and monastic dark gothic calligraphy. Strict 0px angularity, atmospheric radial illumination, ambient blackletter watermarks, and high-contrast stark white precision actuators.
+            </p>
+
+            <div class="hero-actions-row">
+              <button class="btn-solid-white" onclick="copyHeaderTile()">
+                ↳ DEPLOY PROMPT SPEC
+              </button>
+              <a href="#stage-demo" class="cta-link-tactical">
+                <span>SIMULATE STAGE 237°</span>
+                <span class="arrow-glyph">→</span>
+              </a>
+              <a href="#typography" class="cta-link-tactical">
+                <span>INSPECT TYPE SPECIMEN</span>
+                <span class="arrow-glyph">↳</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Micro Telemetry HUD -->
+          <div class="hero-telemetry-panel">
+            <div class="telemetry-header">
+              <span class="telemetry-title">TELEMETRY READOUT</span>
+              <span class="spec-micro-coord">ACTIVE</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="telemetry-label">SYSTEM_SPEC</span>
+              <span class="telemetry-value">TILE-007</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="telemetry-label">COORDINATE</span>
+              <span class="telemetry-value coordinate-highlight" id="telemetry-coord">237° 00' 00"</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="telemetry-label">GRID_ANGULARITY</span>
+              <span class="telemetry-value">0px STRICT</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="telemetry-label">WATERMARK_STACK</span>
+              <span class="telemetry-value">Blackletter 220px</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="telemetry-label">BASE_SURFACE</span>
+              <span class="telemetry-value">#0A0A0C</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="telemetry-label">HAIRLINE_DIV</span>
+              <span class="telemetry-value">1px solid (0.08)</span>
+            </div>
+            <div style="margin-top: 8px;">
+              <button class="btn-tile" style="width: 100%; justify-content: center;" onclick="pulseTelemetry()">
+                TEST RETICLE SENSOR
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. COLOR ROLES & PALETTE MATRIX -->
+    <section class="section-block" id="palette">
+      <div class="layout-wrapper">
+        <div class="section-header-row">
+          <div class="section-headline-group">
+            <span class="section-index-badge">01</span>
+            <h2 class="section-header-title">COLOR ROLES & PALETTE MATRIX</h2>
+          </div>
+          <span class="section-header-sub">11 CHROMATIC SPECIFICATIONS // CLICK TO COPY</span>
+        </div>
+
+        <div class="palette-grid">
+          <!-- Canvas Base -->
+          <div class="swatch-card" onclick="copySwatchHex('#0A0A0C', '--canvas-base')">
+            <div class="swatch-preview-box" style="background-color: #0A0A0C;">
+              <span class="click-copy-tag">COPY HEX</span>
+            </div>
+            <div class="swatch-info-group">
+              <span class="swatch-role-name">Canvas Base</span>
+              <span class="swatch-var-name">--canvas-base</span>
+              <span class="swatch-hex-val">#0A0A0C</span>
+            </div>
+          </div>
+
+          <!-- Canvas Subtle -->
+          <div class="swatch-card" onclick="copySwatchHex('#121216', '--canvas-subtle')">
+            <div class="swatch-preview-box" style="background-color: #121216;">
+              <span class="click-copy-tag">COPY HEX</span>
+            </div>
+            <div class="swatch-info-group">
+              <span class="swatch-role-name">Canvas Subtle</span>
+              <span class="swatch-var-name">--canvas-subtle</span>
+              <span class="swatch-hex-val">#121216</span>
+            </div>
+          </div>
+
+          <!-- Surface Card -->
+          <div class="swatch-card" onclick="copySwatchHex('#18181D', '--surface-card')">
+            <div class="swatch-preview-box" style="background-color: #18181D;">
+              <span class="click-copy-tag">COPY HEX</span>
+            </div>
+            <div class="swatch-info-group">
+              <span class="swatch-role-name">Surface Card</span>
+              <span class="swatch-var-name">--surface-card</span>
+              <span class="swatch-hex-val">#18181D</span>
+            </div>
+          </div>
+
+          <!-- Surface Elevated -->
+          <div class="swatch-card" onclick="copySwatchHex('#22222A', '--surface-elevated')">
+            <div class="swatch-preview-box" style="background-color: #22222A;">
+              <span class="click-copy-tag">COPY HEX</span>
+            </div>
+            <div class="swatch-info-group">
+              <span class="swatch-role-name">Surface Elevated</span>
+              <span class="swatch-var-name">--surface-elevated</span>
+              <span class="swatch-hex-val">#22222A</span>
+            </div>
+          </div>
+
+          <!-- Text Primary -->
+          <div class="swatch-card" onclick="copySwatchHex('#F5F5F7', '--text-primary')">
+            <div class="swatch-preview-box" style="background-color: #F5F5F7;">
+              <span class="click-copy-tag">COPY HEX</span>
+            </div>
+            <div class="swatch-info-group">
+              <span class="swatch-role-name">Text Primary</span>
+              <span class="swatch-var-name">--text-primary</span>
+              <span class="swatch-hex-val">#F5F5F7</span>
+            </div>
+          </div>
+
+          <!-- Text Secondary -->
+          <div class="swatch-card" onclick="copySwatchHex('#9E9EA8', '--text-secondary')">
+            <div class="swatch-preview-box" style="background-color: #9E9EA8;">
+              <span class="click-copy-tag">COPY HEX</span>
+            </div>
+            <div class="swatch-info-group">
+              <span class="swatch-role-name">Text Secondary</span>
+              <span class="swatch-var-name">--text-secondary</span>
+              <span class="swatch-hex-val">#9E9EA8</span>
+            </div>
+          </div>
+
+          <!-- Text Muted -->
+          <div class="swatch-card" onclick="copySwatchHex('#52525B', '--text-muted')">
+            <div class="swatch-preview-box" style="background-color: #52525B;">
+              <span class="click-copy-tag">COPY HEX</span>
+            </div>
+            <div class="swatch-info-group">
+              <span class="swatch-role-name">Text Muted</span>
+              <span class="swatch-var-name">--text-muted</span>
+              <span class="swatch-hex-val">#52525B</span>
+            </div>
+          </div>
+
+          <!-- Accent Solid -->
+          <div class="swatch-card" onclick="copySwatchHex('#FFFFFF', '--accent-solid')">
+            <div class="swatch-preview-box" style="background-color: #FFFFFF;">
+              <span class="click-copy-tag" style="background: #0A0A0C; color: #FFFFFF;">COPY HEX</span>
+            </div>
+            <div class="swatch-info-group">
+              <span class="swatch-role-name">Accent Solid</span>
+              <span class="swatch-var-name">--accent-solid</span>
+              <span class="swatch-hex-val">#FFFFFF</span>
+            </div>
+          </div>
+
+          <!-- Accent Subtle -->
+          <div class="swatch-card" onclick="copySwatchHex('rgba(255,255,255,0.12)', '--accent-subtle')">
+            <div class="swatch-preview-box" style="background: rgba(255, 255, 255, 0.12); border: 1px dashed rgba(255,255,255,0.3);">
+              <span class="click-copy-tag">COPY VAR</span>
+            </div>
+            <div class="swatch-info-group">
+              <span class="swatch-role-name">Accent Subtle</span>
+              <span class="swatch-var-name">--accent-subtle</span>
+              <span class="swatch-hex-val">rgba(255,255,255,0.12)</span>
+            </div>
+          </div>
+
+          <!-- State Focus -->
+          <div class="swatch-card" onclick="copySwatchHex('rgba(255,255,255,0.24)', '--state-focus')">
+            <div class="swatch-preview-box" style="background: rgba(255, 255, 255, 0.24); border: 1.5px solid #FFFFFF;">
+              <span class="click-copy-tag">COPY VAR</span>
+            </div>
+            <div class="swatch-info-group">
+              <span class="swatch-role-name">State Focus</span>
+              <span class="swatch-var-name">--state-focus</span>
+              <span class="swatch-hex-val">rgba(255,255,255,0.24)</span>
+            </div>
+          </div>
+
+          <!-- Text Watermark -->
+          <div class="swatch-card" onclick="copySwatchHex('rgba(255,255,255,0.035)', '--text-watermark')">
+            <div class="swatch-preview-box" style="background: rgba(255, 255, 255, 0.035); display: flex; align-items: center; justify-content: center;">
+              <span style="font-family: var(--font-watermark); font-size: 28px; color: rgba(255,255,255,0.2);">Gothic</span>
+            </div>
+            <div class="swatch-info-group">
+              <span class="swatch-role-name">Ghost Watermark</span>
+              <span class="swatch-var-name">--text-watermark</span>
+              <span class="swatch-hex-val">rgba(255,255,255,0.035)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TYPOGRAPHY SYSTEM SPECIMEN -->
+    <section class="section-block" id="typography">
+      <div class="layout-wrapper">
+        <div class="section-header-row">
+          <div class="section-headline-group">
+            <span class="section-index-badge">02</span>
+            <h2 class="section-header-title">TYPOGRAPHY SYSTEM & HIERARCHY LADDER</h2>
+          </div>
+          <span class="section-header-sub">SYNE • INTER • UNIFRAKTUR • JETBRAINS MONO</span>
+        </div>
+
+        <div class="type-specimen-grid">
+          <!-- Hierarchy Ladder -->
+          <div class="type-hierarchy-ladder">
+            <!-- 1. Ambient Ghost -->
+            <div class="type-scale-item">
+              <div class="type-meta-pill">
+                <span>AMBIENT GHOST WATERMARK</span>
+                <span>220PX | WEIGHT 400 | OPACITY 3.5%</span>
+              </div>
+              <div class="spec-ghost">Cyber-Gothic Calligraphy</div>
+            </div>
+
+            <!-- 2. Vertical Hero Title -->
+            <div class="type-scale-item">
+              <div class="type-meta-pill">
+                <span>VERTICAL HERO TITLE</span>
+                <span>96PX | WEIGHT 900 | TRACKING -0.03EM</span>
+              </div>
+              <div class="spec-vert-title">MONUMENTAL EDITORIAL</div>
+            </div>
+
+            <!-- 3. Section Header -->
+            <div class="type-scale-item">
+              <div class="type-meta-pill">
+                <span>SECTION HEADER</span>
+                <span>13PX | WEIGHT 800 | TRACKING 0.22EM UPPERCASE</span>
+              </div>
+              <div class="spec-section-head">SYSTEM ARCHITECTURE & PROTOCOL</div>
+            </div>
+
+            <!-- 4. Navigation Item -->
+            <div class="type-scale-item">
+              <div class="type-meta-pill">
+                <span>NAVIGATION ITEM</span>
+                <span>12PX | WEIGHT 700 | TRACKING 0.18EM UPPERCASE</span>
+              </div>
+              <div class="spec-nav-item">CATALOG // SECTOR 237° // TELEMETRY</div>
+            </div>
+
+            <!-- 5. Action / CTA Link -->
+            <div class="type-scale-item">
+              <div class="type-meta-pill">
+                <span>ACTION / CTA LINK</span>
+                <span>13PX | WEIGHT 800 | TRACKING 0.15EM UPPERCASE</span>
+              </div>
+              <div class="spec-cta-link">↳ GET SYSTEM INJECTION CODE</div>
+            </div>
+
+            <!-- 6. Body Text -->
+            <div class="type-scale-item">
+              <div class="type-meta-pill">
+                <span>BODY READING TEXT</span>
+                <span>14PX | WEIGHT 400 | TRACKING 0.01EM | LINE-HEIGHT 1.65</span>
+              </div>
+              <div class="spec-body-text">
+                Obsidian structures with high-density typographic hierarchy. Information density is maintained through rigorous hairline boundaries and precision monospace telemetry markers.
+              </div>
+            </div>
+
+            <!-- 7. Badge / Index -->
+            <div class="type-scale-item">
+              <div class="type-meta-pill">
+                <span>BADGE / INDEX TAG</span>
+                <span>18PX | WEIGHT 800 | TABULAR FIGURES</span>
+              </div>
+              <div class="spec-badge-index">NO.04 — GRID CALIBRATION [237°]</div>
+            </div>
+
+            <!-- 8. Micro Coordinate -->
+            <div class="type-scale-item">
+              <div class="type-meta-pill">
+                <span>MICRO COORDINATE</span>
+                <span>11PX | WEIGHT 600 | TRACKING 0.08EM MONOSPACED</span>
+              </div>
+              <div class="spec-micro-coord">AZIMUTH: 237.45° // LAT: 52.5200° N // LONG: 13.4050° E</div>
+            </div>
+          </div>
+
+          <!-- Interactive Type Sandbox -->
+          <div class="type-sandbox-panel">
+            <div class="telemetry-title" style="margin-bottom: 4px;">LIVE INTERACTIVE TYPE SANDBOX</div>
+            <div class="sandbox-controls-row">
+              <button class="font-switch-btn active" onclick="switchSandboxFont('Syne', this)">Syne (Display)</button>
+              <button class="font-switch-btn" onclick="switchSandboxFont('Inter', this)">Inter (Sans)</button>
+              <button class="font-switch-btn" onclick="switchSandboxFont('UnifrakturMaguntia', this)">Unifraktur (Gothic)</button>
+              <button class="font-switch-btn" onclick="switchSandboxFont('JetBrains Mono', this)">JetBrains (Mono)</button>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: var(--space-md);">
+              <div class="slider-control-group">
+                <label>SIZE:</label>
+                <input type="range" min="12" max="64" value="28" oninput="updateSandboxSize(this.value)">
+                <span id="sandbox-size-label">28px</span>
+              </div>
+              <div class="slider-control-group">
+                <label>TRACKING:</label>
+                <input type="range" min="-3" max="30" value="0" oninput="updateSandboxTracking(this.value)">
+                <span id="sandbox-track-label">0.00em</span>
+              </div>
+            </div>
+
+            <textarea id="sandbox-textarea" class="sandbox-textarea" spellcheck="false">SECTOR // 237° DARK TACTICAL ARCHIVAL</textarea>
+
+            <div class="telemetry-row">
+              <span class="telemetry-label">FONT FAMILY ACTIVE</span>
+              <span class="telemetry-value" id="sandbox-font-active">Syne (Sans Display)</span>
+            </div>
+            <div class="telemetry-row">
+              <span class="telemetry-label">ANGULAR GEOMETRY</span>
+              <span class="telemetry-value">Strict 0px Corners</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. COMPONENT ARCHETYPE GALLERY -->
+    <section class="section-block" id="components">
+      <div class="layout-wrapper">
+        <div class="section-header-row">
+          <div class="section-headline-group">
+            <span class="section-index-badge">03</span>
+            <h2 class="section-header-title">COMPONENT ARCHETYPE GALLERY</h2>
+          </div>
+          <span class="section-header-sub">TACTICAL BUTTONS • INPUTS • CHECKBOXES • TOOLTIPS</span>
+        </div>
+
+        <div class="components-grid">
+          <!-- Button Archetypes -->
+          <div class="component-archetype-card">
+            <div class="archetype-title">BUTTONS & TACTICAL ACTUATORS</div>
+            <div class="buttons-flow">
+              <button class="btn-tactical-primary" onclick="triggerTacticalSound()">
+                SOLID WHITE (0PX)
+              </button>
+              <button class="btn-tactical-ghost" onclick="triggerTacticalSound()">
+                DASHED GHOST
+              </button>
+              <button class="btn-tactical-indicator" onclick="triggerTacticalSound()">
+                <span class="status-dot-2px"></span>
+                INDICATOR TAB
+              </button>
+            </div>
+
+            <div class="buttons-flow" style="margin-top: 8px;">
+              <a href="javascript:void(0)" class="cta-link-tactical" onclick="triggerTacticalSound()">
+                <span>↳ GET PROTOCOL</span>
+              </a>
+
+              <div class="pagination-stepper-box" onclick="triggerTacticalSound()">
+                <span>NEXT SECTOR</span>
+                <span class="pagination-chevrons">
+                  <span>»</span><span>»</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Controls & Inputs -->
+          <div class="component-archetype-card">
+            <div class="archetype-title">PRECISION MONOLINE INPUTS</div>
+            <div class="form-control-row">
+              <input type="text" class="tactical-input-box" value="COORDINATE_AZIMUTH: 237.00°" placeholder="Enter tactical sector code...">
+              <input type="text" class="tactical-input-box" placeholder="TARGET_IDENTIFIER [e.g. ALPHA-9]...">
+            </div>
+
+            <div style="display: flex; gap: var(--space-md); margin-top: 4px;">
+              <div class="interactive-check-row" onclick="toggleTacticalCheck(this)">
+                <div class="tactical-checkbox checked"></div>
+                <span class="interactive-check-label">RADIAL GUIDE LOCK</span>
+              </div>
+              <div class="interactive-check-row" onclick="toggleTacticalCheck(this)">
+                <div class="tactical-checkbox"></div>
+                <span class="interactive-check-label">AUDIO TELEMETRY</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Badges & Tooltips -->
+          <div class="component-archetype-card">
+            <div class="archetype-title">BADGES, CHIPS & ELEVATED TOOLTIPS</div>
+            <div style="display: flex; flex-wrap: wrap; gap: var(--space-xs); align-items: center;">
+              <span class="tactical-badge badge-white">NO.04 INDEX</span>
+              <span class="tactical-badge">237° AZIMUTH</span>
+              <span class="tactical-badge" style="border-color: #FFFFFF;">STATUS: ARMORED</span>
+            </div>
+
+            <div style="margin-top: 12px;">
+              <div class="elevated-tooltip">
+                <span style="font-weight: 700; color: #FFFFFF;">SURFACE #22222A:</span>
+                <span>Active coordinate lock on 237° Vector</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. LIVING MICRO-EXPERIENCE: SECTOR 237° ORBITAL STAGE -->
+    <section class="section-block" id="stage-demo">
+      <div class="layout-wrapper">
+        <div class="section-header-row">
+          <div class="section-headline-group">
+            <span class="section-index-badge">04</span>
+            <h2 class="section-header-title">LIVING MICRO-EXPERIENCE // SECTOR 237°</h2>
+          </div>
+          <span class="section-header-sub">3D PERSPECTIVE ORBITAL STAGE • ROTATION SIMULATOR</span>
+        </div>
+
+        <div class="orbital-stage-wrapper" id="orbital-stage-container">
+          <!-- Stage Viewport -->
+          <div class="stage-canvas-viewport">
+            <div class="stage-crosshair-h"></div>
+            <div class="stage-crosshair-v"></div>
+
+            <!-- Layer 2 Orbital Ellipse Ground Planes -->
+            <div class="orbital-ring-outer" id="stage-outer-ring"></div>
+            <div class="orbital-ring-inner" id="stage-inner-ring"></div>
+
+            <!-- Layer 3 Tactical Editorial Dossier Card -->
+            <div class="tactical-dossier-card" id="stage-dossier-card">
+              <div class="dossier-header">
+                <span class="dossier-code">DOSSIER // SECTOR-237</span>
+                <span class="dossier-tag">TACTICAL EDITORIAL</span>
+              </div>
+              <div class="dossier-body">
+                <p class="dossier-lead">
+                  Atmospheric radial field centered on deep obsidian (#0A0A0C). 0px rectilinear chassis with perspective dashed ground orbit.
+                </p>
+              </div>
+              <div class="dossier-controls">
+                <span class="dossier-coord-readout" id="live-stage-coord">AZIMUTH 237.00°</span>
+                <button class="btn-tile" style="padding: 4px 10px; font-size: 10px;" onclick="lockStageCoordinate()">
+                  LOCK VECTOR
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Angle Control Bar -->
+          <div class="stage-interactive-bar">
+            <div class="slider-control-group">
+              <label>ORBITAL AZIMUTH:</label>
+              <input type="range" min="0" max="360" value="237" id="stage-angle-slider" oninput="updateStageAngle(this.value)">
+              <span id="stage-angle-val" style="color: #FFFFFF; font-weight: 700;">237°</span>
+            </div>
+
+            <button class="btn-tile" onclick="resetStageAngle()">
+              RESET 237°
+            </button>
+            <button class="btn-tile" onclick="autoRotateStageToggle()" id="btn-auto-rotate">
+              AUTO-ORBIT: OFF
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. STYLE TILE PROMPT CODE DRAWER -->
+    <section class="section-block" id="prompt-drawer">
+      <div class="layout-wrapper">
+        <div class="section-header-row">
+          <div class="section-headline-group">
+            <span class="section-index-badge">05</span>
+            <h2 class="section-header-title">STYLE TILE PROMPT SPECIFICATION</h2>
+          </div>
+          <span class="section-header-sub">READY FOR CURSOR • CLAUDE • ANTIGRAVITY • COPILOT</span>
+        </div>
+
+        <div class="code-spec-drawer">
+          <div class="drawer-header">
+            <span class="drawer-title">style-tile-dark-tactical-editorial.md</span>
+            <button class="btn-tile btn-copy" onclick="copyHeaderTile()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Markdown Prompt
+            </button>
+          </div>
+          <pre class="code-content-block" id="visible-markdown-code"></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="style-tile-footer">
+    <div class="layout-wrapper">
+      <p>STYLE TILE // TILE-007 // DARK TACTICAL EDITORIAL / CYBER-GOTHIC DESIGN SYSTEM SPECIFICATION</p>
+      <p style="margin-top: 4px; color: var(--text-muted);">ZERO-GUESS PROMPT ENGINEERING FOR AI AGENTS</p>
+    </div>
+  </footer>
+
+  <!-- 8. ARCHIVAL SPEC INSPECTION MODAL -->
+  <div class="modal-backdrop" id="spec-modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal-sheet">
+      <div class="modal-header-bar">
+        <div class="modal-title-group">
+          <span class="design-code">TILE-007</span>
+          <span class="design-title">DARK TACTICAL EDITORIAL / CYBER-GOTHIC</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeSpecModal()" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body-content" id="modal-markdown-content"></div>
+      <div class="modal-footer-bar">
+        <button class="btn-tile btn-copy" onclick="copyHeaderTile()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Style Tile
+        </button>
+        <button class="btn-tile btn-download" onclick="downloadHeaderTile()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Markdown (.md)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMBEDDED RAW MARKDOWN SPECIFICATION -->
+  <script id="style-tile-markdown" type="text/markdown">================================================================================
+  STYLE TILE: "DARK TACTICAL EDITORIAL / CYBER-GOTHIC"
+  Production-Ready Design System Specification (TILE-007)
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+A hyper-disciplined collision of high-fashion editorial brutalism, cybernetic aerospace telemetry, and monastic dark gothic calligraphy. Characterized by pitch-black obsidian planes (#0A0A0C), razor-sharp 0px angularity, atmospheric radial illumination, ambient ghost blackletter watermarks, 237° orbital perspective grids, and high-contrast stark white precision actuators.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Canvas & Base Layers */
+  --canvas-base:            #0A0A0C; /* Deep obsidian black, primary viewport background */
+  --canvas-subtle:          #121216; /* Slight atmospheric radial lift */
+  --surface-card:           #18181D; /* Card / container baseline */
+  --surface-elevated:       #22222A; /* Tooltips, popovers, elevated interactive surfaces */
+
+  /* Inks & Signal Typography */
+  --text-primary:           #F5F5F7; /* High-contrast pure white for titles & actions */
+  --text-secondary:         #9E9EA8; /* Neutral cool grey for reading copy & paragraphs */
+  --text-muted:             #52525B; /* Low-contrast metadata, index tags, unit coordinates */
+  --text-watermark:         rgba(255, 255, 255, 0.035); /* Giant ambient blackletter calligraphy */
+
+  /* Accents & Tactical Highlights */
+  --accent-solid:           #FFFFFF; /* Sharp high-contrast micro-indicators & active borders */
+  --accent-subtle:          rgba(255, 255, 255, 0.12); /* Dashed guides, crosshairs, stage grids */
+  --state-focus:            rgba(255, 255, 255, 0.24); /* Active focal rings & targeting bounds */
+
+  /* Structural Aliases */
+  --bg-canvas:              var(--canvas-base);
+  --bg-surface:             var(--surface-card);
+  --bg-surface-elevated:    var(--surface-elevated);
+  --ink-primary:            var(--text-primary);
+  --ink-secondary:          var(--text-secondary);
+  --ink-muted:              var(--text-muted);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display:   "Syne", "Monument Extended", "Druk Wide", -apple-system, sans-serif;
+--font-sans:      "Inter", "Aeonik", "Satoshi", -apple-system, sans-serif;
+--font-watermark: "UnifrakturMaguntia", "Old London", "Pirata One", cursive, serif;
+--font-mono:      "JetBrains Mono", "Space Mono", monospace;
+
+/* Type Scale & Typographic Metrics */
+--text-ambient-ghost:  220px  / 1.00  var(--font-watermark); /* Weight: 400 | Opacity: 0.035 */
+--text-hero-vertical:  96px   / 0.90  var(--font-display);   /* Weight: 900 | Tracking: -0.03em | Vertical (270deg) */
+--text-display:        3.5rem / 1.05  var(--font-display);   /* Weight: 800 | Tracking: -0.03em */
+--text-h1:             2.5rem / 1.15  var(--font-display);   /* Weight: 800 | Tracking: -0.02em */
+--text-h2:             1.5rem / 1.25  var(--font-display);   /* Weight: 700 | Tracking: -0.01em */
+--text-section-header: 13px   / 1.20  var(--font-display);   /* Weight: 800 | Tracking: 0.22em  | UPPERCASE */
+--text-nav-item:       12px   / 1.20  var(--font-display);   /* Weight: 700 | Tracking: 0.18em  | UPPERCASE */
+--text-cta-link:       13px   / 1.20  var(--font-display);   /* Weight: 800 | Tracking: 0.15em  | UPPERCASE */
+--text-badge-index:    18px   / 1.10  var(--font-display);   /* Weight: 800 | Tracking: -0.01em | Tabular figures (No.04) */
+--text-body:           14px   / 1.65  var(--font-sans);      /* Weight: 400 | Tracking: 0.01em  | Line-height: 1.65 */
+--text-micro-coord:    11px   / 1.30  var(--font-mono);      /* Weight: 600 | Tracking: 0.08em  | Monospaced (237°) */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-none:  0px;    /* Primary CTAs, cards, navigational frames */
+--radius-sm:    2px;    /* Badges, micro tags, chip indicators */
+--radius-full:  9999px; /* Circular orbital stage rings, radial markers */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+/* Optical Stacking Hierarchy (Back to Front):
+ * Layer 0 (Backdrop):   Radial gradient: radial-gradient(circle at 50% 45%, #18181D 0%, #0A0A0C 85%)
+ * Layer 1 (Ghost Text): Ambient blackletter graphic text positioned behind foreground subject
+ * Layer 2 (Guides):     Perspective dashed ellipse stage base (0 deg tilt ground plane)
+ * Layer 3 (Content):    HUD labels, floating text blocks, side rail navigation
+ * Layer 4 (Overlays):   Global fixed header, hamburger trigger, coordinate markers
+ */
+--backdrop-radial:    radial-gradient(circle at 50% 45%, #18181D 0%, #0A0A0C 85%);
+--depth-stage-glow:   0 0 120px rgba(0, 0, 0, 0.85);
+--depth-hover-subtle: 0 4px 20px rgba(0, 0, 0, 0.60);
+--depth-tooltip:      0 8px 32px rgba(0, 0, 0, 0.90), 0 0 0 1px rgba(255, 255, 255, 0.12);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (8-POINT SYSTEM)
+ * -------------------------------------------------------------------------- */
+--space-2xs: 4px;   /* Icon-to-text micro gaps */
+--space-xs:  8px;   /* Tag internal padding, chevron offsets */
+--space-sm:  16px;  /* Header text margin bottom */
+--space-md:  24px;  /* Paragraph gap, navigation spacing */
+--space-lg:  40px;  /* Section module separation */
+--space-xl:  64px;  /* Viewport edge insets */
+--space-2xl: 96px;  /* Hero display separation */
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-dashed: 1px dashed rgba(255, 255, 255, 0.18); /* Orbital floor rings */
+--border-solid:  1px solid rgba(255, 255, 255, 0.08);  /* Panel dividers */
+--border-accent: 1.5px solid #FFFFFF;                  /* Active markers */
+--divider-dash:  4px 6px;                              /* Dash 4px, Gap 6px */
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+- Style: Monoline, ultra-geometric, sharp terminal points (0px corner rounding).
+- Stroke Weight: 1.5px to 2.0px.
+- Standard Glyphs:
+  - Navigation Menu: Two parallel horizontal bars (Width: 20px, Gap: 6px)
+  - Directional Link: Square angled corner arrow (↳ / →)
+  - Stepper / Pagination: Double chevron (») with 3px inner spacing
+  - Spatial Orientation: Degree unit notation (237°) with monospaced font
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+- Nav Links: Hover -> letter-spacing: +0.03em; color: #FFFFFF; (Transition: 200ms ease-out)
+- Action CTA (↳ GET): Hover -> transform: translateX(4px); underline scale from left (0 to 100%)
+- Pagination (»): Hover -> Chevrons pulse rightwards by 2px in sequence
+- Stage Orbit: Hover -> Dashed ring opacity increases from 0.18 to 0.45
+- Cursor Dynamics:
+  - Default: Minimalist custom dot cursor (6px #FFF)
+  - Interactive Target: Expands to hollow targeting circle (28px border: 1px solid #FFF) with 0.15s lerp
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic purple/violet gradients on dark backgrounds (strict obsidian/neutral palette).
+- NO round pill buttons or soft rounded card corners (strictly 0px angularity; 2px for chips only).
+- NO blurry diffuse pastel shadows (rely on radial atmospheric contrast and crisp hairlines).
+- NO gradient keywords or rainbow accents.
+- NO floating cards without hairline borders or dark obsidian surface differentiation.
+</script>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. Markdown Retrieval Helper
+    function getMarkdownSpec() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    // 2. Toast System
+    function showToast(msg) {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `<span style="color:#0A0A0C;">✓</span> <span>${msg}</span>`;
+      container.appendChild(toast);
+      requestAnimationFrame(() => toast.classList.add("show"));
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 200);
+      }, 2200);
+    }
+
+    // 3. Audio Synthesizer (Web Audio API)
+    let audioCtx = null;
+    function triggerTacticalSound(type = 'click') {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        const now = audioCtx.currentTime;
+        if (type === 'click') {
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(880, now);
+          osc.frequency.exponentialRampToValueAtTime(220, now + 0.04);
+          gain.gain.setValueAtTime(0.05, now);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+          osc.start(now);
+          osc.stop(now + 0.04);
+        } else if (type === 'lock') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(440, now);
+          osc.frequency.setValueAtTime(880, now + 0.05);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+          osc.start(now);
+          osc.stop(now + 0.12);
+        }
+      } catch (e) {
+        // Audio fallback
+      }
+    }
+
+    // 4. Header Actions (Copy, Download, Preview)
+    function copyHeaderTile() {
+      const text = getMarkdownSpec();
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const original = btn.innerHTML;
+          btn.innerHTML = `✓ Copied!`;
+          setTimeout(() => btn.innerHTML = original, 2000);
+        }
+        showToast("Copied Style Tile to clipboard!");
+        triggerTacticalSound('click');
+      });
+    }
+
+    function downloadHeaderTile() {
+      const text = getMarkdownSpec();
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-dark-tactical-editorial.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-dark-tactical-editorial.md");
+      triggerTacticalSound('click');
+    }
+
+    function openSpecModal() {
+      const md = getMarkdownSpec();
+      document.getElementById("modal-markdown-content").textContent = md;
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+      triggerTacticalSound('click');
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    // 5. Swatch Copy
+    function copySwatchHex(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${varName} (${hex})`);
+        triggerTacticalSound('click');
+      });
+    }
+
+    // 6. Typography Tester
+    function switchSandboxFont(fontFamily, btn) {
+      const textarea = document.getElementById("sandbox-textarea");
+      const label = document.getElementById("sandbox-font-active");
+      if (!textarea) return;
+
+      document.querySelectorAll(".font-switch-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      textarea.style.fontFamily = fontFamily;
+      if (label) label.textContent = `${fontFamily}`;
+      triggerTacticalSound('click');
+    }
+
+    function updateSandboxSize(val) {
+      const textarea = document.getElementById("sandbox-textarea");
+      const label = document.getElementById("sandbox-size-label");
+      if (textarea) textarea.style.fontSize = `${val}px`;
+      if (label) label.textContent = `${val}px`;
+    }
+
+    function updateSandboxTracking(val) {
+      const textarea = document.getElementById("sandbox-textarea");
+      const label = document.getElementById("sandbox-track-label");
+      const emVal = (val * 0.01).toFixed(2);
+      if (textarea) textarea.style.letterSpacing = `${emVal}em`;
+      if (label) label.textContent = `${emVal}em`;
+    }
+
+    // 7. Checkbox Toggle
+    function toggleTacticalCheck(row) {
+      const box = row.querySelector(".tactical-checkbox");
+      if (box) {
+        box.classList.toggle("checked");
+        triggerTacticalSound('click');
+      }
+    }
+
+    // 8. Orbital Stage 237° Physics & Controls
+    let autoRotateInterval = null;
+    function updateStageAngle(angle) {
+      const outerRing = document.getElementById("stage-outer-ring");
+      const innerRing = document.getElementById("stage-inner-ring");
+      const angleLabel = document.getElementById("stage-angle-val");
+      const coordReadout = document.getElementById("live-stage-coord");
+      const telemetryCoord = document.getElementById("telemetry-coord");
+      const slider = document.getElementById("stage-angle-slider");
+
+      if (outerRing) outerRing.style.transform = `rotateX(70deg) rotateZ(${angle}deg)`;
+      if (innerRing) innerRing.style.transform = `rotateX(70deg) rotateZ(-${angle}deg)`;
+      if (angleLabel) angleLabel.textContent = `${angle}°`;
+      if (coordReadout) coordReadout.textContent = `AZIMUTH ${angle}.00°`;
+      if (telemetryCoord) telemetryCoord.textContent = `${angle}° 00' 00"`;
+      if (slider && slider.value != angle) slider.value = angle;
+    }
+
+    function resetStageAngle() {
+      updateStageAngle(237);
+      triggerTacticalSound('click');
+      showToast("Reset to standard Azimuth 237°");
+    }
+
+    function autoRotateStageToggle() {
+      const btn = document.getElementById("btn-auto-rotate");
+      if (autoRotateInterval) {
+        clearInterval(autoRotateInterval);
+        autoRotateInterval = null;
+        if (btn) btn.textContent = "AUTO-ORBIT: OFF";
+        triggerTacticalSound('click');
+      } else {
+        let currentAngle = parseInt(document.getElementById("stage-angle-slider").value, 10) || 237;
+        autoRotateInterval = setInterval(() => {
+          currentAngle = (currentAngle + 1) % 360;
+          updateStageAngle(currentAngle);
+        }, 40);
+        if (btn) btn.textContent = "AUTO-ORBIT: ON";
+        triggerTacticalSound('click');
+      }
+    }
+
+    function lockStageCoordinate() {
+      triggerTacticalSound('lock');
+      showToast("Vector Azimuth 237° locked into targeting register!");
+    }
+
+    function pulseTelemetry() {
+      triggerTacticalSound('lock');
+      const el = document.getElementById("telemetry-coord");
+      if (el) {
+        el.style.background = "#FFFFFF";
+        el.style.color = "#0A0A0C";
+        setTimeout(() => {
+          el.style.background = "rgba(255, 255, 255, 0.1)";
+          el.style.color = "#FFFFFF";
+        }, 400);
+      }
+      showToast("Reticle sensor calibrated: 237.45° True Azimuth");
+    }
+
+    // 9. Custom Dot & Hollow Targeting Reticle Cursor
+    const cursorDot = document.getElementById("cursor-dot");
+    const cursorReticle = document.getElementById("cursor-reticle");
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let reticleX = mouseX;
+    let reticleY = mouseY;
+
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (cursorDot) {
+        cursorDot.style.left = `${mouseX}px`;
+        cursorDot.style.top = `${mouseY}px`;
+      }
+    });
+
+    function renderCursor() {
+      reticleX += (mouseX - reticleX) * 0.2;
+      reticleY += (mouseY - reticleY) * 0.2;
+
+      if (cursorReticle) {
+        cursorReticle.style.left = `${reticleX}px`;
+        cursorReticle.style.top = `${reticleY}px`;
+      }
+      requestAnimationFrame(renderCursor);
+    }
+    requestAnimationFrame(renderCursor);
+
+    // Interactive target hover for cursor
+    function initCursorTargets() {
+      const targets = document.querySelectorAll("a, button, input, textarea, .swatch-card, .pagination-stepper-box, .interactive-check-row");
+      targets.forEach(el => {
+        el.addEventListener("mouseenter", () => document.body.classList.add("cursor-active"));
+        el.addEventListener("mouseleave", () => document.body.classList.remove("cursor-active"));
+      });
+    }
+
+    // 10. Initialization
+    document.addEventListener("DOMContentLoaded", () => {
+      // Wire Header Buttons
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyHeaderTile);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadHeaderTile);
+
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      // Populate Visible Markdown Block
+      const visibleCode = document.getElementById("visible-markdown-code");
+      if (visibleCode) visibleCode.textContent = getMarkdownSpec();
+
+      // Modal Event Listeners
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      initCursorTargets();
+      updateStageAngle(237);
+    });
+  </script>
+</body>
+</html>
