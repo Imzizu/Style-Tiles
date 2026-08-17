@@ -492,18 +492,19 @@ a {
   color: var(--accent-burnt-orange);
 }
 
-@media (max-width: 768px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-3);
-  }
-  .header-nav {
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: var(--space-2);
-  }
+/* Desktop: hide the mobile-only hero */
+.hero-mobile {
+  display: none;
+}
+
+.controls-view-tools {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+#displayed-count {
+  color: var(--ink-secondary);
 }
 
 /* -----------------------------------------------------------------------------
@@ -1576,4 +1577,352 @@ a {
   color: var(--ink-muted);
   flex-wrap: wrap;
   gap: var(--space-2);
+}
+
+/* -----------------------------------------------------------------------------
+ * 12. MOBILE LAYOUT — DESIGN-FIRST CATALOG
+ * -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .layout-wrapper {
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Drop the ticker — it wastes vertical space and wraps poorly */
+  .masthead-strip {
+    display: none;
+  }
+
+  /* Compact, single-row header */
+  .site-header {
+    position: sticky;
+    top: 0;
+  }
+
+  .header-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    gap: 10px;
+  }
+
+  .brand-block {
+    min-width: 0;
+    flex: 1 1 auto;
+    gap: 10px;
+  }
+
+  .brand-stamp {
+    width: 36px;
+    height: 36px;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+  }
+
+  .brand-text-group {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .brand-title {
+    font-size: 1.15rem;
+  }
+
+  .brand-sub {
+    display: none;
+  }
+
+  .header-nav {
+    width: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .header-link,
+  .btn-copy-master,
+  #header-compact-toggle {
+    display: none;
+  }
+
+  /* Simplified hero: headline + browse, no card */
+  .hero-section {
+    padding: 28px 0 20px;
+  }
+
+  .hero-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .hero-mobile .text-display {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    font-size: clamp(1.4rem, 4.6vw, 2rem) !important;
+    line-height: 1.16;
+    letter-spacing: -0.03em;
+    overflow-wrap: break-word;
+  }
+
+  .hero-mobile .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .hero-card {
+    display: none;
+  }
+
+  /* Catalog: search first, then designs */
+  .catalog-section {
+    padding-bottom: 48px;
+    scroll-margin-top: 68px;
+  }
+
+  .controls-panel {
+    padding: 14px;
+    margin-bottom: 20px;
+    gap: 14px;
+    scroll-margin-top: 68px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .controls-top-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .search-box {
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+  }
+
+  .search-input {
+    font-size: 16px; /* prevents iOS zoom on focus */
+  }
+
+  .controls-view-tools {
+    justify-content: center;
+  }
+
+  .view-options {
+    display: none;
+  }
+
+  #displayed-count {
+    text-align: center;
+    width: 100%;
+  }
+
+  .filter-chips-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-top: 12px;
+    margin: 0 -14px;
+    padding-left: 14px;
+    padding-right: 14px;
+    gap: 8px;
+  }
+
+  .filter-chips-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-label {
+    flex-shrink: 0;
+    margin-right: 0;
+  }
+
+  .filter-chip {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .catalog-grid,
+  .catalog-grid.is-compact,
+  .catalog-grid.view-compact,
+  .catalog-grid.view-split,
+  .catalog-grid.view-editorial,
+  .catalog-grid.view-split.is-compact,
+  .catalog-grid.view-editorial.is-compact {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .design-card:hover {
+    transform: none;
+    box-shadow: var(--shadow-base);
+  }
+
+  .card-header-bar {
+    padding: 8px 12px;
+    gap: 6px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card-vibe-badge {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Always show the open cue — hover is unavailable on touch */
+  .preview-overlay {
+    background: linear-gradient(to top, rgba(20, 19, 18, 0.42) 0%, transparent 46%);
+    align-items: flex-end;
+    padding-bottom: 12px;
+  }
+
+  .preview-open-badge {
+    opacity: 1;
+    transform: none;
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    min-height: 0;
+  }
+
+  .card-desc {
+    min-height: 0;
+  }
+
+  .card-actions-bar {
+    flex-wrap: wrap;
+    justify-content: stretch;
+  }
+
+  .card-actions-bar .btn {
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: nowrap;
+  }
+
+  /* Modal */
+  .modal-backdrop {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .modal-sheet {
+    max-height: 92vh;
+    box-shadow: 6px 6px 0 #000000;
+    width: 100%;
+  }
+
+  .modal-title-group {
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+
+  .modal-header .text-h3 {
+    font-size: 1rem;
+  }
+
+  .modal-body {
+    padding: 16px;
+  }
+
+  .modal-footer {
+    flex-wrap: wrap;
+    justify-content: stretch;
+  }
+
+  .modal-footer .btn {
+    flex: 1 1 auto;
+    white-space: nowrap;
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 32px 0 24px;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .footer-bottom-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  /* Toast stays on-screen */
+  .toast-container {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    align-items: stretch;
+  }
+
+  .toast {
+    width: 100%;
+  }
+}
+
+/* Extra-narrow phones */
+@media (max-width: 380px) {
+  .layout-wrapper {
+    padding: 0 12px;
+  }
+
+  .hero-mobile .text-display {
+    font-size: 1.35rem !important;
+  }
+
+  .filter-label {
+    display: none;
+  }
+}
+
+/* Disable lift-on-hover on touch devices so cards don't jump */
+@media (hover: none) {
+  .btn:hover,
+  .design-card:hover,
+  .filter-chip:hover,
+  .card-vibe-badge:hover {
+    transform: none;
+  }
+
+  .btn:hover {
+    box-shadow: var(--shadow-base);
+  }
+
+  .btn-sm:hover {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .design-card:hover {
+    box-shadow: var(--shadow-base);
+  }
 }

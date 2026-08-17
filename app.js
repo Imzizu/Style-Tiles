@@ -2125,10 +2125,19 @@ document.addEventListener("DOMContentLoaded", () => {
   updateDraftingClock();
   setInterval(updateDraftingClock, 1000);
 
-  // Search input listener
+  // Search input listener + viewport-aware placeholder
   const searchInput = document.getElementById("search-input");
   if (searchInput) {
     searchInput.addEventListener("input", handleSearchInput);
+
+    const syncSearchPlaceholder = () => {
+      const mobile = searchInput.getAttribute("data-placeholder-mobile");
+      const desktop = searchInput.getAttribute("data-placeholder-desktop");
+      if (!mobile || !desktop) return;
+      searchInput.placeholder = window.matchMedia("(max-width: 768px)").matches ? mobile : desktop;
+    };
+    syncSearchPlaceholder();
+    window.addEventListener("resize", syncSearchPlaceholder);
   }
 
   // Keyboard shortcut: Escape closes modal, / focuses search

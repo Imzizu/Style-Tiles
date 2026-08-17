@@ -47,9 +47,9 @@
         <a href="#catalog-controls" class="header-link" onclick="focusSearch(event)">Search</a>
         <button id="header-compact-toggle" class="view-btn active" onclick="toggleCompactMode()" title="Toggle Compact Mode (Hide details, show 16:9 previews only)" aria-pressed="true">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18"/><line x1="3" y1="8" x2="21" y2="8"/></svg>
-          Compact
+          <span class="compact-label">Compact</span>
         </button>
-        <button class="btn btn-primary btn-sm" onclick="copyMasterPrompt()" title="Copy the universal vibe-coding agent prompt">
+        <button class="btn btn-primary btn-sm btn-copy-master" onclick="copyMasterPrompt()" title="Copy the universal vibe-coding agent prompt">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           Copy Master Prompt
         </button>
@@ -61,6 +61,19 @@
     <!-- 3. Hero Editorial Drafting Board -->
     <section class="hero-section">
       <div class="layout-wrapper">
+        <!-- Mobile-only simplified hero: headline + browse, no card chrome -->
+        <div class="hero-mobile">
+          <h1 class="text-display">
+            Give your AI agent<br>
+            a design language,<br>
+            not a vague guess.
+          </h1>
+          <a href="#catalog" class="btn btn-primary">
+            <span>Browse Style Tiles</span>
+            <span style="font-weight: 900;">↓</span>
+          </a>
+        </div>
+
         <div class="hero-card">
           <div class="hero-grid">
             
@@ -157,12 +170,12 @@
               <span class="search-icon">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               </span>
-              <input type="text" id="search-input" class="search-input" placeholder="Search by vibe, typography, tag, or aesthetic... [ / ]" autocomplete="off">
+              <input type="text" id="search-input" class="search-input" placeholder="Search by vibe, type, or tag..." autocomplete="off" data-placeholder-desktop="Search by vibe, typography, tag, or aesthetic... [ / ]" data-placeholder-mobile="Search vibes, type, tags...">
             </div>
 
             <!-- View mode toggles & Stats -->
-            <div style="display: flex; align-items: center; gap: 16px;">
-              <span class="text-meta" id="displayed-count" style="color: var(--ink-secondary);">9 SPECS</span>
+            <div class="controls-view-tools">
+              <span class="text-meta" id="displayed-count">9 SPECS</span>
               <div class="view-options" aria-label="Catalog Layout Mode">
                 <button class="view-btn active" data-view="grid" onclick="setViewMode('grid')" title="Drafting Grid Layout (Multi-Column)">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
