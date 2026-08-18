@@ -2693,6 +2693,522 @@ States:
 - NO floating unanchored cards without structural grid alignment.
 - NO soft pastel colors (strictly Vermilion, Ink Black, Architectural Cream, Slate Grey, Pure White).
 ================================================================================`
+  },
+  {
+    id: "TILE-017",
+    slug: "bio-clinical-editorial",
+    name: "Bio-Clinical Technical Editorial",
+    vibe: "Warm Bio-Ivory & Olive • Monospace Telemetry • Flat Swiss Minimalist • High-Density Clinical Architecture",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Neue Haas Grotesk",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas Base", hex: "#F7F8F1" },
+      { name: "Surface Card", hex: "#FFFFFF" },
+      { name: "Primary Deep", hex: "#21361D" },
+      { name: "Olive Mid", hex: "#60714E" },
+      { name: "Accent Chartreuse", hex: "#DBE8B8" },
+      { name: "Ink Primary", hex: "#121610" }
+    ],
+    description: "Bio-Clinical Technical Editorial: Warm bio-ivory (#F7F8F1), coniferous pine (#21361D), radiant matcha chartreuse (#DBE8B8), flat Swiss minimalist layering, and monospace clinical telemetry.",
+    markdownSpec: `================================================================================
+  STYLE TILE // BIO-CLINICAL TECHNICAL EDITORIAL (TILE-017)
+================================================================================
+
+[ 01. DESIGN ETHOS & MOOD ]
+--------------------------------------------------------------------------------
+  * Aesthetic: Bio-Clinical Technical Editorial
+  * Vibe: Sterile yet organic, Swiss International layout discipline, clinical telemetry
+  * Visual Rhythm: High-density clinical data grids, bio-ivory parchment base,
+                    coniferous pine inks (#21361D), radiant matcha chartreuse alerts (#DBE8B8).
+  * Elevation Philosophy: Completely Flat / Swiss Minimalist (Zero blurred drop-shadows)
+  * Depth Method: Tonal layering, explicit line nesting, and high-contrast bounding boxes.
+
+[ 02. COLOR ROLES & PALETTE ]
+--------------------------------------------------------------------------------
+:root {
+  /* Canvas & Neutrals */
+  --color-canvas-base:       #F7F8F1; /* Warm parchment / bio-ivory background */
+  --color-surface-card:      #FFFFFF; /* Pure crisp white for primary modules */
+  --color-surface-tint:      #F0F3E7; /* Soft tinted container layer */
+  --color-surface-muted:     #E5ECD8; /* Mid-tone sage background */
+
+  /* Deep Accents & Brand */
+  --color-primary-deep:      #21361D; /* Deep coniferous / dark olive green */
+  --color-primary-hover:     #182914; /* High-contrast active dark green */
+  --color-olive-mid:         #60714E; /* Muted secondary olive */
+  --color-olive-light:       #8A9E75; /* Tertiary density tone */
+
+  /* Highlights & Functional States */
+  --color-accent-chartreuse: #DBE8B8; /* Radiant matcha / high-visibility alert */
+  --color-accent-lime-soft:  #E8F0CD; /* Low-friction status tint */
+  --color-neutral-empty:     #EDF1E4; /* Unfilled matrix / slot placeholder */
+
+  /* Text & Data Inks */
+  --color-ink-primary:       #121610; /* Deep near-black pine ink */
+  --color-ink-secondary:     #525E4B; /* Mid-contrast technical olive-grey */
+  --color-ink-inverse:       #F7F8F1; /* Inverse parchment ink on deep surfaces */
+
+  /* Status Tokens */
+  --color-status-success:    #21361D;
+  --color-status-warning:    #8A9E75;
+  --color-status-alert:      #DBE8B8;
+}
+
+[ 03. TYPOGRAPHY SYSTEM ]
+--------------------------------------------------------------------------------
+/* Font Stacks */
+--font-primary-display: "Neue Haas Grotesk", "PP Neue Montreal", "Plus Jakarta Sans", sans-serif;
+--font-secondary-tech:  "PP Supply Mono", "JetBrains Mono", monospace;
+
+/* Hierarchy & Tokens */
+Display Heading:
+  font-family:    var(--font-primary-display)
+  font-size:      38px
+  line-height:    1.08
+  font-weight:    500
+  letter-spacing: -0.03em
+  text-transform: none
+
+Metric / Data Stat:
+  font-family:    var(--font-primary-display)
+  font-size:      44px
+  line-height:    1.0
+  font-weight:    400
+  letter-spacing: -0.04em
+  font-variant-numeric: tabular-nums
+
+Section Label / Kicker:
+  font-family:    var(--font-secondary-tech)
+  font-size:      11px
+  line-height:    1.2
+  font-weight:    700
+  letter-spacing: 0.08em
+  text-transform: uppercase
+
+Data Row / Actionable Item:
+  font-family:    var(--font-secondary-tech)
+  font-size:      12px
+  line-height:    1.4
+  font-weight:    500
+  letter-spacing: 0.04em
+  text-transform: uppercase
+
+Body Secondary:
+  font-family:    var(--font-primary-display)
+  font-size:      14px
+  line-height:    1.45
+  font-weight:    400
+  letter-spacing: -0.01em
+
+[ 04. CORNER GEOMETRY (BORDER RADII) ]
+--------------------------------------------------------------------------------
+--radius-xs:    2px;   /* Micro markers, data heat-map cells */
+--radius-sm:    6px;   /* Input fields, utility pills, mini action tiles */
+--radius-md:   12px;   /* Nav buttons, secondary nested modules */
+--radius-lg:   20px;   /* Primary container cards, high-level dashboards */
+--radius-pill: 9999px; /* Standalone badges, status trackers */
+
+[ 05. ELEVATION & DEPTH (SHADOWS & LAYERS) ]
+--------------------------------------------------------------------------------
+* Philosophy: Completely Flat / Swiss Minimalist (Zero blurred drop-shadows)
+* Depth Method: Tonal layering, explicit line nesting, and high-contrast bounding boxes.
+* Layer Stack:
+  Layer 0 (Canvas):        --color-canvas-base (#F7F8F1)
+  Layer 1 (Card Frame):    --color-surface-card (#FFFFFF) + 1px solid/dashed border
+  Layer 2 (Internal Pill): --color-surface-tint (#F0F3E7) or --color-primary-deep (#21361D)
+  Layer 3 (Overlay Focus): Accent fills (#DBE8B8) without elevation shift
+
+[ 06. SPACING & SPATIAL SCALE ]
+--------------------------------------------------------------------------------
+* Base Unit: 4px / 8pt Geometric Modular Scale
+  --space-2xs: 4px;
+  --space-xs:  8px;
+  --space-sm:  12px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+
+* Layout Density:
+  Card Padding (Internal): 20px 24px
+  Grid Gap:                16px horizontal / 16px vertical
+  Data Row Height:         32px fixed baseline with hairline delimiter
+
+[ 07. BORDERS & DIVIDERS ]
+--------------------------------------------------------------------------------
+--border-hairline: 1px solid rgba(33, 54, 29, 0.25);
+--border-solid:    1px solid var(--color-primary-deep);
+--border-dashed:   1px dashed rgba(33, 54, 29, 0.45);
+--border-dotted:   1px dotted rgba(33, 54, 29, 0.50);
+
+* Divider Application:
+  - Top Utility Headers: Enclosed in 1px dashed/dotted bounds
+  - Internal Card Dividers: 1px solid horizontal lines anchoring category labels
+  - Data Lists: Full-width hairline bottom strokes between consecutive records
+
+[ 08. ICONOGRAPHY LANGUAGE ]
+--------------------------------------------------------------------------------
+* Paradigm: Utilitarian Monospace Glyphs & Technical Vector Primitives
+* Stroke Weight: 1.25px - 1.5px constant geometric stroke
+* Corner Treatment: Sharp or 0.5px micro-radius
+* Key Glyph Patterns:
+  - Bracketed Affordances: [VIEW ↗], [+], [−], [x], [RUN ASSAY ↗]
+  - Metric Indicators: ↗, →, ↓
+  - Matrix Elements: ○, ● and modular rectangular grids
+
+[ 09. INTERACTION & FEEDBACK RULES ]
+--------------------------------------------------------------------------------
+* Default Transition: 150ms cubic-bezier(0.16, 1, 0.3, 1) (Ease-Out Fast)
+* Interactive Hover:
+  - Text Links / Brackets: Background fill transitions to --color-accent-chartreuse (#DBE8B8)
+  - Inverted Cards: Shift background from #21361D to #182914
+  - Standard Card Hover: Outline shifts from --border-hairline to --border-solid
+* Selection / Active:
+  - Selected Pill: Full flood fill --color-primary-deep with --color-ink-inverse
+  - Alert Highlight: Persistent block-band fill of --color-accent-chartreuse
+* Focus State:
+  - 2px outline-offset, 1px solid var(--color-primary-deep)
+
+[ 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS ]
+--------------------------------------------------------------------------------
+- NO blurred drop shadows or skeuomorphic bevels (Strict flat tonal layering).
+- NO purple/violet dark theme or generic neon cyberspace glows.
+- NO high-saturation rainbow badges; stick strictly to pine, sage, chartreuse, olive.
+- NO floating unanchored cards without structural hairline bounds.
+- NO rounded biscuit headline pills with pulsing dots.
+================================================================================`
+  },
+  {
+    id: "TILE-018",
+    slug: "neo-dark-tactile-fintech",
+    name: "Neo-Dark Tactile FinTech / SaaS",
+    vibe: "Ultra-Deep Void Black • Pinned Tactile Hardware • Ambient Aura Blends • Electric Chartreuse & Warm Ochre",
+    vibeBadge: "Cyber & Blueprint",
+    categories: ["cyber"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Ground Canvas", hex: "#08090A" },
+      { name: "Elevated Card", hex: "#121316" },
+      { name: "Electric Lime", hex: "#D8F878" },
+      { name: "Warm Amber", hex: "#F7A832" },
+      { name: "Accent Cyan", hex: "#1FD5C9" },
+      { name: "Text Primary", hex: "#F4F5F6" }
+    ],
+    description: "Neo-Dark Tactile FinTech / SaaS: Ultra-deep void canvas (#08090A), frosted glass overlays, pinned hardware micro-plates with metallic rivets, atmospheric aura underglows, and high-energy electric chartreuse CTAs (#D8F878 → #AEE63A).",
+    markdownSpec: `================================================================================
+  STYLE TILE: NEO-DARK TACTILE FINTECH / SAAS (TILE-018)
+  Design Language & Machine-Readable Token Specification
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Neo-Dark Tactile FinTech / SaaS merges ultra-deep void canvas surfaces (#08090A) with high-density engineered glassmorphism, hardware-pinned micro-plates, and high-energy electric chartreuse CTAs (#D8F878 -> #AEE63A). Driven by atmospheric aura glows, 1px luminous edge strokes, and industrial micro-fasteners, this system delivers uncompromising tactile feedback and precision financial telemetry.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Canvas & Base Surfaces */
+  --surface-ground:         #08090A; /* Ultra-deep void black, base background */
+  --surface-elevated:       #121316; /* Card base & floating surface tone */
+  --surface-glass:          rgba(22, 24, 28, 0.75); /* Frosted glass overlay */
+  --surface-subtle:         rgba(255, 255, 255, 0.03); /* Hover wells / chip base */
+
+  /* Typography & Foreground */
+  --text-primary:           #F4F5F6; /* Pure crisp high-contrast off-white */
+  --text-secondary:         #8F94A0; /* Muted cool slate grey for body/descriptions */
+  --text-tertiary:          #525660; /* Low-emphasis micro labels and metadata */
+  --text-inverse:           #0B0D0E; /* Deep charcoal text for high-contrast CTA */
+
+  /* Brand Accents & Gradients */
+  --brand-primary-lime:     #D8F878; /* High-energy electric chartreuse start */
+  --brand-primary-lime-end: #AEE63A; /* High-energy electric chartreuse end */
+  --brand-warm-amber:       #F7A832; /* Signature brand warm ochre / gold */
+  --accent-cyan:            #1FD5C9; /* Electric teal micro-accent */
+  --accent-violet:          #8B3DFF; /* Deep atmospheric violet glow */
+
+  /* Ambient Aura Blends (Underglow & Lighting) */
+  --aura-gradient-primary:  linear-gradient(135deg, #7A22E5 0%, #1FD5C9 50%, #F7A832 100%);
+  --aura-cta-gradient:      linear-gradient(180deg, #D4F97E 0%, #A4E834 100%);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Plus Jakarta Sans", "Inter Display", -apple-system, sans-serif;
+--font-sans:    "Plus Jakarta Sans", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", "SF Mono", monospace;
+
+/* Scale & Hierarchy */
+Hero Display:   64px (4.0rem)   | Line-height: 1.05 | Tracking: -0.035em | Weight: 500/Medium
+Heading 1:      40px (2.5rem)   | Line-height: 1.15 | Tracking: -0.025em | Weight: 500/Medium
+Heading 2:      20px (1.25rem)  | Line-height: 1.30 | Tracking: -0.015em | Weight: 600/SemiBold
+Body Large:     16px (1.0rem)   | Line-height: 1.55 | Tracking: -0.010em | Weight: 400/Regular
+Body Regular:   14px (0.875rem) | Line-height: 1.50 | Tracking: normal   | Weight: 400/Regular
+Micro / Meta:   11px (0.6875rem)| Line-height: 1.40 | Tracking: +0.020em | Weight: 500/Medium
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-pill: 9999px;        /* Pill CTAs, header buttons, active state chips */
+--radius-xl:   30px;          /* 28px – 32px: Hero media containers, key feature blocks */
+--radius-lg:   18px;          /* 16px – 20px: Floating data cards, modals, contextual widgets */
+--radius-md:   11px;          /* 10px – 12px: Tactile micro-plates, status modules */
+--radius-sm:   7px;           /* 6px – 8px: Form controls, tooltips, nested status tags */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERING)
+ * -------------------------------------------------------------------------- */
+- Layer 0 (Canvas):   Static dot-matrix grid (24px x 24px, 2px dot @ 8% opacity) with scattered luminous nodes (#1FD5C9, #F7A832, #D8F878)
+- Layer 1 (Aura):     Soft radial backdrop blur [filter: blur(80px)] for vibrant halos
+- Layer 2 (Base):     Main media hero container with 1px luminous edge (rgba(255, 255, 255, 0.08))
+- Layer 3 (Overlay):  Floating glass morphism dialogs & data modules
+- Layer 4 (Tactile):  Hardware-styled pinned micro-plates with inner drop shadow
+
+--shadow-floating: 0 24px 48px -12px rgba(0, 0, 0, 0.75), 0 0 1px 1px rgba(255, 255, 255, 0.08);
+--shadow-plate:    0 12px 24px -6px rgba(0, 0, 0, 0.60), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+--shadow-ambient:  0 0 80px 20px rgba(122, 34, 229, 0.18);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE
+ * -------------------------------------------------------------------------- */
+--space-2xs: 4px;
+--space-xs:  8px;
+--space-sm:  12px;
+--space-md:  16px;
+--space-lg:  24px;
+--space-xl:  32px;
+--space-2xl: 48px;
+--space-3xl: 64px;
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-luminous: 1px solid rgba(255, 255, 255, 0.08);
+--border-active:   1px solid rgba(216, 248, 120, 0.40);
+--border-subtle:   1px solid rgba(255, 255, 255, 0.05);
+--border-chisel:   inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY & INDUSTRIAL ACCENTS
+ * -------------------------------------------------------------------------- */
+- Bounding Box: 20px / 24px optical grid
+- Stroke Weight: 1.75px uniform, rounded caps & joins
+- Treatment: Duo-tone or subtle monochrome with geometric framing
+- Hardware Motifs:
+  • Corner Rivets: Micro 4-corner metallic fasteners (3px circles with recessed inset shadow)
+  • Status Indicators: 2px vertical pill bars (Green = Active/Past, Amber = Pending/Future)
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+- Primary Lime Plate: Scale(0.98) on click | Box-shadow bloom on hover: 0 0 24px rgba(216, 248, 120, 0.35)
+- Secondary Text Links: Opacity shift 0.70 -> 1.00 with smooth 150ms cubic-bezier transition
+- Floating Card Parallax: Subtle +4px Y-axis translation with dampening on viewport hover
+- Transition Curve: cubic-bezier(0.16, 1, 0.3, 1)
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- NO generic purple-on-dark dashboard clichés with low-contrast violet text.
+- NO unbordered floating cards that bleed into void backgrounds.
+- NO headline biscuit pills with pulsating dots.
+- NO generic rainbow gradient keyword text fills.
+- NO zero-depth flat buttons lacking tactile feedback and luminous bloom.
+================================================================================`
+  },
+  {
+    id: "TILE-019",
+    slug: "editorial-chromatic-block",
+    name: "Editorial Chromatic Block",
+    vibe: "Tri-Tone Asymmetric Layout • Deep Indigo Anchor & Vivid Vermilion Rail • Warm Parchment Stage • Compressed Heavy Display Type",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Cabinet Grotesk",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Parchment Warm", hex: "#FAF8EE" },
+      { name: "Indigo Deep", hex: "#2D265C" },
+      { name: "Vermilion Vivid", hex: "#FF5338" },
+      { name: "Indigo Muted", hex: "#A59EC2" },
+      { name: "Ink Primary", hex: "#1C1A24" },
+      { name: "Focus Goldenrod", hex: "#FFD027" }
+    ],
+    description: "Editorial Chromatic Block: Tri-tone asymmetric editorial UI featuring high-contrast deep indigo (#2D265C) anchor rail, warm parchment (#FAF8EE) center stage, and vivid vermilion (#FF5338) navigation rail with compressed heavy typography.",
+    markdownSpec: `# ==============================================================================
+# DESIGN SYSTEM STYLE TILE: "EDITORIAL CHROMATIC BLOCK"
+# Visual Identity Spec: Tri-Tone Asymmetric Editorial UI
+# ==============================================================================
+
+1. COLOR ROLES & PALETTE
+--------------------------------------------------------------------------------
+  --palette-indigo-deep:      #2D265C  /* Left rail background, high-contrast anchor */
+  --palette-indigo-muted:     #A59EC2  /* Secondary text / metadata on dark canvas */
+  --palette-parchment-warm:   #FAF8EE  /* Primary center stage background */
+  --palette-vermilion-vivid:  #FF5338  /* Right rail background & focal display type */
+  --palette-vermilion-soft:   #FFE5E0  /* Light tint for vermilion hover states */
+  --palette-ink-primary:      #1C1A24  /* High-contrast body copy on parchment */
+  --palette-ink-secondary:    #636070  /* Author/metadata subtext on light stage */
+  --palette-pure-white:       #FFFFFF  /* Primary headers on dark rail, card canvas */
+
+  Semantic Mappings:
+    • Surface.Primary:        var(--palette-parchment-warm)
+    • Surface.Sidebar.Dark:   var(--palette-indigo-deep)
+    • Surface.Sidebar.Accent: var(--palette-vermilion-vivid)
+    • Surface.Card:           var(--palette-pure-white)
+    • Text.Primary.Dark:      var(--palette-pure-white)
+    • Text.Secondary.Dark:    var(--palette-indigo-muted)
+    • Text.Primary.Light:     var(--palette-ink-primary)
+    • Text.Secondary.Light:   var(--palette-ink-secondary)
+    • Text.Accent:            var(--palette-vermilion-vivid)
+    • Interactive.Focus:      #FFD027 (High-vis goldenrod for a11y focus rings)
+
+2. TYPOGRAPHY SYSTEM
+--------------------------------------------------------------------------------
+  Font Families:
+    • Display / Impact:       "Druk Condensed", "Cabinet Grotesk", sans-serif
+    • Body / Interface:       "Inter", "Satoshi", "Helvetica Neue", sans-serif
+    • Monospace / Meta:       "JetBrains Mono", monospace
+
+  Type Hierarchy:
+    • Display XXL (Review Count):
+        Font-Family:          var(--font-display)
+        Size / Line-Height:   72px / 0.88
+        Weight:               900 (Compressed Heavy)
+        Letter-Spacing:       -0.02em
+        Transform:            Uppercase
+
+    • Display XL (Section Headers):
+        Font-Family:          var(--font-body)
+        Size / Line-Height:   28px / 1.15
+        Weight:               700 (Bold)
+        Letter-Spacing:       -0.015em
+
+    • Card Title (Book Titles):
+        Font-Family:          var(--font-body)
+        Size / Line-Height:   16px / 1.25
+        Weight:               700 (Bold)
+        Letter-Spacing:       -0.01em
+        Color:                var(--palette-vermilion-vivid)
+
+    • Category / Nav Label (Right Sidebar):
+        Font-Family:          var(--font-body)
+        Size / Line-Height:   13px / 1.8
+        Weight:               500 (Medium)
+        Letter-Spacing:       0.04em
+        Transform:            Capitalize / Tracking Expanded
+
+    • Micro Tracked Caps (Awards/Footer):
+        Font-Family:          var(--font-body)
+        Size / Line-Height:   11px / 1.4
+        Weight:               700 (Bold)
+        Letter-Spacing:       0.12em
+        Transform:            Uppercase
+
+    • Body Text (Bio / Paragraphs):
+        Font-Family:          var(--font-body)
+        Size / Line-Height:   13px / 1.6
+        Weight:               400 (Regular)
+        Letter-Spacing:       0.005em
+
+3. CORNER GEOMETRY (BORDER RADII)
+--------------------------------------------------------------------------------
+  • Radius.None:              0px       /* Structural panels, color-block seams */
+  • Radius.Subtle:            3px       /* Book covers, media cards */
+  • Radius.Interactive:       6px       /* Buttons, pill tags, search inputs */
+  • Radius.Frame:             28px      /* Main viewport/application boundary */
+  • Radius.Full:              9999px    /* Profile avatars, status indicators */
+
+4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+--------------------------------------------------------------------------------
+  Approach: Hard Flat Aesthetic with Ambient Micro-Depth on Media
+
+  • Elevation 0 (Canvas Level):
+      Shadow:                  none (Pure flush color-blocking)
+  • Elevation 1 (Resting Media / Book Cover):
+      Shadow:                  0 4px 14px -2px rgba(45, 38, 92, 0.08)
+  • Elevation 2 (Hovered Media / Floating Badge):
+      Shadow:                  0 12px 28px -4px rgba(45, 38, 92, 0.16)
+  • Layer Z-Index Index:
+      - Deep Base (Rails):    z-index: 10
+      - Main Content:         z-index: 20
+      - Overlays / Kinetic:   z-index: 30
+      - Navigation / Modals:  z-index: 100
+
+5. SPACING & SPATIAL SCALE
+--------------------------------------------------------------------------------
+  Base Unit: 4px / 8px Grid Scale
+
+  • Space.2xs:                4px
+  • Space.xs:                 8px
+  • Space.sm:                 12px
+  • Space.md:                 16px
+  • Space.lg:                 24px
+  • Space.xl:                 32px
+  • Space.2xl:                48px
+  • Space.3xl:                64px
+
+  Layout Dimensions:
+    • Viewport Margins:       16px (Outer frame padding)
+    • Left Rail Width:        320px (Fixed or 26vw)
+    • Main Stage Width:       Flexible (1fr / ~56vw)
+    • Right Rail Width:       220px (Fixed or 18vw)
+    • Media Card Grid:        Repeat(3, minmax(140px, 1fr)) | Gap: 32px 24px
+
+6. BORDERS & DIVIDERS
+--------------------------------------------------------------------------------
+  • Column Transitions:       0px (Zero-gap chromatic boundary, clean vertical seam)
+  • Contrast Divider (Dark):  1px solid rgba(255, 255, 255, 0.08)
+  • Contrast Divider (Light): 1px solid rgba(45, 38, 92, 0.06)
+  • Outline Rings:            2px solid var(--palette-vermilion-vivid)
+
+7. ICONOGRAPHY LANGUAGE
+--------------------------------------------------------------------------------
+  • Style:                    Geometric Minimalist / Mono-weight Stroke
+  • Stroke Weight:            1.5px to 1.75px uniform
+  • Corner Cap / Join:        Round caps, crisp miters
+  • Default Bounding Box:     16x16px (Nav/Inline), 20x20px (Controls)
+  • Color Dynamic:            Inherits current section text token (currentColor)
+
+8. INTERACTION & FEEDBACK RULES
+--------------------------------------------------------------------------------
+  Motion Curves:
+    • Standard Transition:    200ms cubic-bezier(0.2, 0, 0, 1)
+    • Transform / Lift:       350ms cubic-bezier(0.16, 1, 0.3, 1)
+
+  Interactive States:
+    • Media Cover Hover:
+        - Transform:          translateY(-6px) scale(1.02)
+        - Shadow:             var(--Elevation-2)
+        - Duration:           var(--motion-lift)
+    • Genre Links (Right Rail):
+        - Default:            color: rgba(255, 255, 255, 0.82)
+        - Hover:              color: #FFFFFF; font-weight: 700; transform: translateX(4px)
+    • Interactive Kinetic Graphic (Badge/Globe):
+        - Continuous Subtle:  Slow rotational drift (30s linear infinite)
+        - Cursor Drag/Hover:  Interactive rotational displacement with friction
+    • Focus Visibility:
+        - Box-Shadow:         0 0 0 3px var(--palette-indigo-deep), 0 0 0 5px #FFD027`
   }
 ];
 

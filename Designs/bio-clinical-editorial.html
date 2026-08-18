@@ -1,0 +1,2770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bio-Clinical Technical Editorial // Design System Style Tile (TILE-017)</title>
+  <meta name="description" content="Bio-Clinical Technical Editorial design system: warm bio-ivory canvas (#F7F8F1), deep coniferous pine (#21361D), radiant matcha chartreuse (#DBE8B8), flat Swiss minimalist layering, and monospace clinical telemetry.">
+
+  <!-- Google Fonts: Plus Jakarta Sans (Swiss Neo-Grotesque Display fallback), Inter (Body Sans), JetBrains Mono (Technical Spec / Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       01. DESIGN SYSTEM TOKENS & ROLES (TILE-017)
+       ========================================================================== */
+    :root {
+      /* Canvas & Neutrals */
+      --color-canvas-base:       #F7F8F1; /* Warm parchment / bio-ivory background */
+      --color-surface-card:      #FFFFFF; /* Pure crisp white for primary modules */
+      --color-surface-tint:      #F0F3E7; /* Soft tinted container layer */
+      --color-surface-muted:     #E5ECD8; /* Mid-tone sage background */
+
+      /* Deep Accents & Brand */
+      --color-primary-deep:      #21361D; /* Deep coniferous / dark olive green */
+      --color-primary-hover:     #182914; /* High-contrast active dark green */
+      --color-olive-mid:         #60714E; /* Muted secondary olive */
+      --color-olive-light:       #8A9E75; /* Tertiary density tone */
+
+      /* Highlights & Functional States */
+      --color-accent-chartreuse: #DBE8B8; /* Radiant matcha / high-visibility alert */
+      --color-accent-lime-soft:  #E8F0CD; /* Low-friction status tint */
+      --color-neutral-empty:     #EDF1E4; /* Unfilled matrix / slot placeholder */
+
+      /* Text & Data Inks */
+      --color-ink-primary:       #121610; /* Deep near-black pine ink */
+      --color-ink-secondary:     #525E4B; /* Mid-contrast technical olive-grey */
+      --color-ink-inverse:       #F7F8F1; /* Inverse parchment ink on deep surfaces */
+
+      /* Status Tokens */
+      --color-status-success:    #21361D;
+      --color-status-warning:    #8A9E75;
+      --color-status-alert:      #DBE8B8;
+
+      /* Typography Stacks */
+      --font-primary-display:    "Neue Haas Grotesk", "PP Neue Montreal", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-secondary-tech:     "PP Supply Mono", "JetBrains Mono", "Space Mono", ui-monospace, monospace;
+
+      /* Corner Geometry (Border Radii) */
+      --radius-xs:    2px;   /* Micro markers, data heat-map cells */
+      --radius-sm:    6px;   /* Input fields, utility pills, mini action tiles */
+      --radius-md:   12px;   /* Nav buttons, secondary nested modules */
+      --radius-lg:   20px;   /* Primary container cards, high-level dashboards */
+      --radius-pill: 9999px; /* Standalone badges, status trackers */
+
+      /* Spacing Scale (4px / 8pt Geometric Modular Scale) */
+      --space-2xs: 4px;
+      --space-xs:  8px;
+      --space-sm:  12px;
+      --space-md:  16px;
+      --space-lg:  24px;
+      --space-xl:  32px;
+      --space-2xl: 48px;
+
+      /* Borders & Dividers */
+      --border-hairline: 1px solid rgba(33, 54, 29, 0.25);
+      --border-solid:    1px solid var(--color-primary-deep);
+      --border-dashed:   1px dashed rgba(33, 54, 29, 0.45);
+      --border-dotted:   1px dotted rgba(33, 54, 29, 0.50);
+
+      /* Transitions */
+      --ease-fast: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-default: 150ms var(--ease-fast);
+
+      /* Layout Constraints */
+      --max-width: 1280px;
+    }
+
+    /* ==========================================================================
+       02. RESET & BASE DOCUMENT
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--color-canvas-base);
+      color: var(--color-ink-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-primary-display);
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--color-ink-primary);
+      background-color: var(--color-canvas-base);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background-color: var(--color-accent-chartreuse);
+      color: var(--color-ink-primary);
+    }
+
+    /* Focus outline */
+    :focus-visible {
+      outline: 1px solid var(--color-primary-deep);
+      outline-offset: 2px;
+    }
+
+    .layout-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       03. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ========================================================================== */
+    .style-tile-header {
+      background-color: var(--color-surface-card);
+      border-bottom: var(--border-solid);
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      padding: 10px var(--space-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--color-ink-primary);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-ink-primary);
+      text-decoration: none;
+      padding: 6px 12px;
+      background: var(--color-surface-tint);
+      border: var(--border-hairline);
+      border-radius: var(--radius-sm);
+      transition: background-color var(--transition-default), border-color var(--transition-default);
+    }
+
+    .nav-back-link:hover {
+      background-color: var(--color-accent-chartreuse);
+      border-color: var(--color-primary-deep);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      background-color: var(--color-primary-deep);
+      color: var(--color-ink-inverse);
+      border-radius: var(--radius-xs);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .design-title {
+      font-family: var(--font-primary-display);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--color-ink-primary);
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-secondary-tech);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--color-olive-mid);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background-color: var(--color-surface-tint);
+      border: var(--border-hairline);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 7px 14px;
+      border: var(--border-hairline);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface-tint);
+      color: var(--color-ink-primary);
+      cursor: pointer;
+      transition: all var(--transition-default);
+    }
+
+    .btn-tile:hover {
+      background-color: var(--color-accent-chartreuse);
+      border-color: var(--color-primary-deep);
+    }
+
+    .btn-tile.btn-copy {
+      background-color: var(--color-primary-deep);
+      border-color: var(--color-primary-deep);
+      color: var(--color-ink-inverse);
+    }
+
+    .btn-tile.btn-copy:hover {
+      background-color: var(--color-primary-hover);
+    }
+
+    /* ==========================================================================
+       04. TOP UTILITY STATUS STRIP
+       ========================================================================== */
+    .utility-strip-container {
+      margin-top: var(--space-md);
+      margin-bottom: var(--space-md);
+      padding: 10px 16px;
+      background-color: var(--color-surface-card);
+      border: var(--border-dashed);
+      border-radius: var(--radius-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--color-ink-secondary);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .utility-strip-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .utility-badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      background-color: var(--color-accent-chartreuse);
+      color: var(--color-ink-primary);
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(33, 54, 29, 0.3);
+    }
+
+    .utility-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--color-primary-deep);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .utility-strip-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .bracket-link {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-primary-deep);
+      text-decoration: none;
+      padding: 2px 6px;
+      border-radius: var(--radius-xs);
+      transition: background-color var(--transition-default);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+    }
+
+    .bracket-link:hover {
+      background-color: var(--color-accent-chartreuse);
+      color: var(--color-ink-primary);
+    }
+
+    /* ==========================================================================
+       05. HERO DISPLAY BANNER & ARCHITECTURE
+       ========================================================================== */
+    .hero-card {
+      background-color: var(--color-surface-card);
+      border: var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 32px 36px;
+      margin-bottom: var(--space-xl);
+      transition: border-color var(--transition-default);
+    }
+
+    .hero-card:hover {
+      border-color: var(--color-primary-deep);
+    }
+
+    .hero-kicker-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .hero-kicker {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-olive-mid);
+    }
+
+    .hero-chip-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .hero-chip {
+      font-family: var(--font-secondary-tech);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      background-color: var(--color-surface-tint);
+      border: var(--border-hairline);
+      border-radius: var(--radius-pill);
+      color: var(--color-ink-secondary);
+    }
+
+    .hero-chip.active {
+      background-color: var(--color-primary-deep);
+      color: var(--color-ink-inverse);
+      border-color: var(--color-primary-deep);
+    }
+
+    h1.display-heading {
+      font-family: var(--font-primary-display);
+      font-size: 38px;
+      line-height: 1.08;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: var(--color-ink-primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-narrative {
+      font-family: var(--font-primary-display);
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--color-ink-secondary);
+      max-width: 860px;
+      margin-bottom: var(--space-xl);
+    }
+
+    /* Metric Stat Grid */
+    .metric-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+      padding: 20px 24px;
+      background-color: var(--color-surface-tint);
+      border: var(--border-hairline);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .metric-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .metric-label {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-olive-mid);
+    }
+
+    .metric-value {
+      font-family: var(--font-primary-display);
+      font-size: 44px;
+      line-height: 1.0;
+      font-weight: 400;
+      letter-spacing: -0.04em;
+      font-variant-numeric: tabular-nums;
+      color: var(--color-primary-deep);
+    }
+
+    .metric-sub {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--color-ink-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ==========================================================================
+       06. SECTION HEADER & CONTAINER BASE
+       ========================================================================== */
+    .section-container {
+      margin-bottom: var(--space-2xl);
+    }
+
+    .section-header-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 12px;
+      border-bottom: var(--border-solid);
+      margin-bottom: var(--space-lg);
+    }
+
+    .section-kicker {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-olive-mid);
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-family: var(--font-primary-display);
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--color-ink-primary);
+    }
+
+    .section-meta-tag {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-ink-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ==========================================================================
+       07. COLOR SWATCHES & PALETTE MATRIX
+       ========================================================================== */
+    .palette-group-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .swatch-card {
+      background-color: var(--color-surface-card);
+      border: var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      cursor: pointer;
+      transition: all var(--transition-default);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+    }
+
+    .swatch-card:hover {
+      border-color: var(--color-primary-deep);
+      transform: translateY(-2px);
+    }
+
+    .swatch-preview-box {
+      height: 72px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .swatch-copy-hint {
+      font-family: var(--font-secondary-tech);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0;
+      transition: opacity var(--transition-default);
+      padding: 4px 8px;
+      border-radius: var(--radius-xs);
+      background-color: rgba(255, 255, 255, 0.9);
+      color: var(--color-ink-primary);
+    }
+
+    .swatch-card:hover .swatch-copy-hint {
+      opacity: 1;
+    }
+
+    .swatch-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .swatch-name {
+      font-family: var(--font-primary-display);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--color-ink-primary);
+    }
+
+    .swatch-var {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--color-olive-mid);
+    }
+
+    .swatch-hex-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      padding-top: 8px;
+      border-top: 1px dotted rgba(33, 54, 29, 0.25);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-secondary-tech);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-ink-primary);
+      letter-spacing: 0.04em;
+    }
+
+    .swatch-role-chip {
+      font-family: var(--font-secondary-tech);
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 6px;
+      background-color: var(--color-surface-tint);
+      border-radius: var(--radius-xs);
+      color: var(--color-ink-secondary);
+    }
+
+    /* ==========================================================================
+       08. TYPOGRAPHY SYSTEM & SPECIMEN LAB
+       ========================================================================== */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .type-card {
+      background-color: var(--color-surface-card);
+      border: var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .type-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-primary-deep);
+      margin-bottom: 16px;
+    }
+
+    .type-family-name {
+      font-family: var(--font-primary-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--color-ink-primary);
+    }
+
+    .type-role-badge {
+      font-family: var(--font-secondary-tech);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      background-color: var(--color-surface-tint);
+      border-radius: var(--radius-pill);
+      color: var(--color-olive-mid);
+    }
+
+    /* Type Hierarchy Ladder */
+    .type-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .ladder-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-bottom: 14px;
+      border-bottom: var(--border-hairline);
+    }
+
+    .ladder-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .ladder-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-olive-mid);
+    }
+
+    .ladder-meta .ladder-specs {
+      font-weight: 500;
+      color: var(--color-ink-secondary);
+      letter-spacing: 0.04em;
+    }
+
+    .spec-display-heading {
+      font-family: var(--font-primary-display);
+      font-size: 38px;
+      line-height: 1.08;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: var(--color-ink-primary);
+    }
+
+    .spec-metric-stat {
+      font-family: var(--font-primary-display);
+      font-size: 44px;
+      line-height: 1.0;
+      font-weight: 400;
+      letter-spacing: -0.04em;
+      font-variant-numeric: tabular-nums;
+      color: var(--color-primary-deep);
+    }
+
+    .spec-section-kicker {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-primary-deep);
+    }
+
+    .spec-data-row {
+      font-family: var(--font-secondary-tech);
+      font-size: 12px;
+      line-height: 1.4;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-ink-primary);
+    }
+
+    .spec-body-secondary {
+      font-family: var(--font-primary-display);
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--color-ink-secondary);
+    }
+
+    /* Interactive Pangram Lab */
+    .pangram-lab-card {
+      background-color: var(--color-surface-card);
+      border: var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .pangram-controls-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding-bottom: 16px;
+      border-bottom: var(--border-hairline);
+      margin-bottom: 20px;
+    }
+
+    .pangram-toggle-group {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-pangram-toggle {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 6px 12px;
+      border: var(--border-hairline);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface-tint);
+      color: var(--color-ink-primary);
+      cursor: pointer;
+      transition: all var(--transition-default);
+    }
+
+    .btn-pangram-toggle.active {
+      background-color: var(--color-primary-deep);
+      color: var(--color-ink-inverse);
+      border-color: var(--color-primary-deep);
+    }
+
+    .slider-control-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-ink-secondary);
+      text-transform: uppercase;
+    }
+
+    .slider-control-group input[type="range"] {
+      accent-color: var(--color-primary-deep);
+      cursor: pointer;
+    }
+
+    .pangram-output-box {
+      min-height: 120px;
+      padding: 20px;
+      background-color: var(--color-surface-tint);
+      border: 1px solid rgba(33, 54, 29, 0.15);
+      border-radius: var(--radius-md);
+      font-family: var(--font-primary-display);
+      font-size: 28px;
+      line-height: 1.25;
+      color: var(--color-ink-primary);
+      outline: none;
+      transition: border-color var(--transition-default);
+    }
+
+    .pangram-output-box:focus {
+      border-color: var(--color-primary-deep);
+    }
+
+    /* ==========================================================================
+       09. COMPONENT ARCHETYPE GALLERY
+       ========================================================================== */
+    .components-layout-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .archetype-card {
+      background-color: var(--color-surface-card);
+      border: var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .archetype-title {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-olive-mid);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-primary-deep);
+    }
+
+    /* Button styles */
+    .btn-bio {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-secondary-tech);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      border: var(--border-hairline);
+      cursor: pointer;
+      transition: all var(--transition-default);
+      text-decoration: none;
+    }
+
+    .btn-bio-primary {
+      background-color: var(--color-primary-deep);
+      color: var(--color-ink-inverse);
+      border-color: var(--color-primary-deep);
+    }
+
+    .btn-bio-primary:hover {
+      background-color: var(--color-primary-hover);
+    }
+
+    .btn-bio-tint {
+      background-color: var(--color-surface-tint);
+      color: var(--color-ink-primary);
+      border-color: var(--border-hairline);
+    }
+
+    .btn-bio-tint:hover {
+      background-color: var(--color-accent-chartreuse);
+      border-color: var(--color-primary-deep);
+    }
+
+    .btn-bio-chartreuse {
+      background-color: var(--color-accent-chartreuse);
+      color: var(--color-ink-primary);
+      border-color: var(--color-primary-deep);
+      font-weight: 700;
+    }
+
+    .btn-bio-chartreuse:hover {
+      background-color: var(--color-primary-deep);
+      color: var(--color-ink-inverse);
+    }
+
+    .btn-bio-bracket {
+      font-family: var(--font-secondary-tech);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-primary-deep);
+      background-color: var(--color-surface-tint);
+      border: var(--border-dashed);
+      border-radius: var(--radius-sm);
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: all var(--transition-default);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-bio-bracket:hover {
+      background-color: var(--color-accent-chartreuse);
+      color: var(--color-ink-primary);
+      border-style: solid;
+    }
+
+    /* Form Controls */
+    .bio-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .bio-input-label {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-ink-secondary);
+    }
+
+    .bio-input-field {
+      font-family: var(--font-secondary-tech);
+      font-size: 12px;
+      padding: 10px 14px;
+      background-color: var(--color-surface-tint);
+      border: var(--border-hairline);
+      border-radius: var(--radius-sm);
+      color: var(--color-ink-primary);
+      outline: none;
+      transition: border-color var(--transition-default);
+    }
+
+    .bio-input-field:focus {
+      border-color: var(--color-primary-deep);
+      background-color: #FFFFFF;
+    }
+
+    .stepper-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stepper-btn {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-secondary-tech);
+      font-size: 14px;
+      font-weight: 700;
+      background-color: var(--color-surface-tint);
+      border: var(--border-hairline);
+      border-radius: var(--radius-sm);
+      color: var(--color-ink-primary);
+      cursor: pointer;
+      transition: background-color var(--transition-default);
+    }
+
+    .stepper-btn:hover {
+      background-color: var(--color-accent-chartreuse);
+      border-color: var(--color-primary-deep);
+    }
+
+    .stepper-value {
+      font-family: var(--font-secondary-tech);
+      font-size: 13px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      padding: 6px 14px;
+      background-color: var(--color-surface-tint);
+      border: var(--border-hairline);
+      border-radius: var(--radius-sm);
+      min-width: 70px;
+      text-align: center;
+    }
+
+    /* Radio & Checkboxes */
+    .bio-radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bio-radio-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-ink-primary);
+      cursor: pointer;
+    }
+
+    /* Badges & Status Tiles */
+    .status-badge-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .badge-bio-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background-color: var(--color-surface-tint);
+      border: var(--border-hairline);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .badge-pill-alert {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      background-color: var(--color-accent-chartreuse);
+      border-radius: var(--radius-pill);
+      color: var(--color-primary-deep);
+      font-weight: 700;
+      font-size: 10px;
+    }
+
+    .badge-pill-deep {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      background-color: var(--color-primary-deep);
+      border-radius: var(--radius-pill);
+      color: var(--color-ink-inverse);
+      font-weight: 700;
+      font-size: 10px;
+    }
+
+    /* ==========================================================================
+       10. LIVING MICRO-EXPERIENCE: BIO-CLINICAL ASSAY & TELEMETRY LAB
+       ========================================================================== */
+    .clinical-demo-card {
+      background-color: var(--color-surface-card);
+      border: var(--border-solid);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .clinical-demo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-primary-deep);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .clinical-demo-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .clinical-protocol-id {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-olive-mid);
+    }
+
+    .clinical-protocol-heading {
+      font-family: var(--font-primary-display);
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--color-ink-primary);
+    }
+
+    .protocol-switch-bar {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .btn-protocol {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 6px 12px;
+      background-color: var(--color-surface-tint);
+      border: var(--border-hairline);
+      border-radius: var(--radius-sm);
+      color: var(--color-ink-primary);
+      cursor: pointer;
+      transition: all var(--transition-default);
+    }
+
+    .btn-protocol.active {
+      background-color: var(--color-primary-deep);
+      color: var(--color-ink-inverse);
+      border-color: var(--color-primary-deep);
+    }
+
+    .clinical-layout-split {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    /* Matrix Micro-Plate Container */
+    .plate-card-frame {
+      background-color: var(--color-surface-tint);
+      border: var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .plate-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-olive-mid);
+    }
+
+    /* 12 x 6 Well Grid */
+    .well-plate-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 6px;
+      background-color: var(--color-surface-card);
+      padding: 16px;
+      border: var(--border-hairline);
+      border-radius: var(--radius-sm);
+    }
+
+    .well-cell {
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius-xs);
+      background-color: var(--color-neutral-empty);
+      border: 1px solid rgba(33, 54, 29, 0.15);
+      cursor: pointer;
+      transition: transform var(--transition-default), background-color var(--transition-default);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .well-cell:hover {
+      transform: scale(1.18);
+      z-index: 10;
+      border-color: var(--color-primary-deep);
+      box-shadow: 0 0 0 2px var(--color-accent-chartreuse);
+    }
+
+    .well-cell.selected {
+      border: 2px solid var(--color-primary-deep);
+      box-shadow: 0 0 0 2px var(--color-accent-chartreuse);
+    }
+
+    /* Density Tones */
+    .density-0 { background-color: var(--color-neutral-empty); }
+    .density-1 { background-color: var(--color-accent-lime-soft); }
+    .density-2 { background-color: var(--color-accent-chartreuse); }
+    .density-3 { background-color: var(--color-olive-light); }
+    .density-4 { background-color: var(--color-olive-mid); }
+    .density-5 { background-color: var(--color-primary-deep); }
+
+    /* Legend */
+    .plate-legend-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-secondary-tech);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-ink-secondary);
+    }
+
+    .legend-swatches {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .legend-chip {
+      width: 14px;
+      height: 14px;
+      border-radius: var(--radius-xs);
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    /* Telemetry Inspector Card */
+    .telemetry-inspector-card {
+      background-color: var(--color-surface-tint);
+      border: var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .inspector-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--color-primary-deep);
+    }
+
+    .inspector-well-id {
+      font-family: var(--font-secondary-tech);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-primary-deep);
+      letter-spacing: 0.08em;
+    }
+
+    .inspector-status-badge {
+      font-family: var(--font-secondary-tech);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      background-color: var(--color-accent-chartreuse);
+      border-radius: var(--radius-pill);
+      color: var(--color-primary-deep);
+    }
+
+    .telemetry-data-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .telemetry-data-row {
+      height: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-hairline);
+      font-family: var(--font-secondary-tech);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .telemetry-data-row:last-child {
+      border-bottom: none;
+    }
+
+    .data-key {
+      color: var(--color-olive-mid);
+    }
+
+    .data-val {
+      font-weight: 700;
+      color: var(--color-ink-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .data-val.val-deep {
+      color: var(--color-primary-deep);
+    }
+
+    .data-val.val-chartreuse {
+      background-color: var(--color-accent-chartreuse);
+      padding: 2px 6px;
+      border-radius: var(--radius-xs);
+    }
+
+    /* Spectrometry SVG Waveform */
+    .spectrometry-box {
+      background-color: var(--color-surface-card);
+      border: var(--border-hairline);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .spectrometry-title {
+      font-family: var(--font-secondary-tech);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-olive-mid);
+    }
+
+    /* Assay Action Bar */
+    .assay-footer-strip {
+      padding-top: 16px;
+      border-top: var(--border-dashed);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .assay-status-text {
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-ink-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ==========================================================================
+       11. STYLE TILE PROMPT CODE DRAWER (agent.md Section 5.6)
+       ======================================================================== */
+    .prompt-drawer-container {
+      background-color: var(--color-surface-card);
+      border: var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .prompt-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--color-primary-deep);
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .prompt-header-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-secondary-tech);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-primary-deep);
+    }
+
+    .prompt-raw-code {
+      background-color: var(--color-surface-tint);
+      border: var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--color-ink-primary);
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 480px;
+      overflow-y: auto;
+    }
+
+    /* ==========================================================================
+       12. MODAL SPEC INSPECTOR (agent.md Section 2)
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(18, 22, 16, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-window {
+      background-color: var(--color-surface-card);
+      border: var(--border-solid);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 860px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+    }
+
+    .modal-header {
+      padding: 16px 24px;
+      background-color: var(--color-surface-tint);
+      border-bottom: 1px solid var(--color-primary-deep);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-family: var(--font-secondary-tech);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-primary-deep);
+    }
+
+    .modal-close-btn {
+      font-family: var(--font-secondary-tech);
+      font-size: 16px;
+      font-weight: 700;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--color-ink-primary);
+      padding: 4px 8px;
+      border-radius: var(--radius-xs);
+    }
+
+    .modal-close-btn:hover {
+      background-color: var(--color-accent-chartreuse);
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      line-height: 1.55;
+      color: var(--color-ink-primary);
+      white-space: pre-wrap;
+      background-color: var(--color-canvas-base);
+    }
+
+    .modal-footer {
+      padding: 14px 24px;
+      background-color: var(--color-surface-tint);
+      border-top: var(--border-hairline);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    /* ==========================================================================
+       13. FLOATING TOAST NOTIFICATION SYSTEM
+       ========================================================================== */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast-notification {
+      background-color: var(--color-primary-deep);
+      color: var(--color-ink-inverse);
+      border: 1px solid var(--color-accent-chartreuse);
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      font-family: var(--font-secondary-tech);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all var(--transition-default);
+      pointer-events: auto;
+    }
+
+    .toast-notification.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast-icon {
+      color: var(--color-accent-chartreuse);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       14. PAGE-SPECIFIC RESPONSIVENESS
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .palette-group-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .components-layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .clinical-layout-split {
+        grid-template-columns: 1fr;
+      }
+      .metric-stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .metric-stat-grid {
+        grid-template-columns: 1fr;
+        padding: 16px;
+      }
+      .palette-group-grid {
+        grid-template-columns: 1fr;
+      }
+      .well-plate-grid {
+        gap: 3px;
+        padding: 8px;
+      }
+      .hero-card {
+        padding: 20px 16px;
+      }
+      .clinical-demo-card {
+        padding: 18px 14px;
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ======================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-017</span>
+      <span class="design-title">Bio-Clinical Technical Editorial</span>
+      <span class="design-vibe-tag">Editorial & Archival</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-bio-clinical-editorial.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <div class="layout-wrapper">
+
+    <!-- ========================================================================
+         2. TOP UTILITY STATUS STRIP
+         ======================================================================== -->
+    <aside class="utility-strip-container">
+      <div class="utility-strip-left">
+        <span class="utility-badge-live"><span class="utility-dot"></span> ASSAY ENGINE ACTIVE</span>
+        <span>SPEC REF: <strong>BIO-LAB.ISO-15189 // REV 2026.08</strong></span>
+        <span>CELL MATRIX: <strong>384-WELL EQUIVALENT</strong></span>
+      </div>
+      <div class="utility-strip-right">
+        <span>BUFFER pH: <strong>7.38</strong></span>
+        <span>TEMP: <strong>4.2°C</strong></span>
+        <button class="bracket-link" onclick="triggerMatrixPulse()">[RE-CALIBRATE MATRIX ↗]</button>
+      </div>
+    </aside>
+
+    <!-- ========================================================================
+         3. HERO DISPLAY BANNER & ARCHITECTURE
+         ======================================================================== -->
+    <section class="hero-card">
+      <div class="hero-kicker-row">
+        <span class="hero-kicker">[ BIO-CLINICAL TECHNICAL ARCHITECTURE // REV-2026.08 ]</span>
+        <div class="hero-chip-group">
+          <span class="hero-chip active">Bio-Ivory & Olive</span>
+          <span class="hero-chip">Swiss Editorial</span>
+          <span class="hero-chip">Monospace Telemetry</span>
+          <span class="hero-chip">Flat Minimalist</span>
+        </div>
+      </div>
+
+      <h1 class="display-heading">Bio-Clinical Technical Editorial</h1>
+
+      <p class="hero-narrative">
+        A sterile yet organic visual architecture engineered for clinical biotechnology, genomic assay archives, and technical laboratory telemetry. Rooted in Swiss International layout discipline and tonal layering, pairing warm bio-ivory (#F7F8F1) with coniferous pine (#21361D) and radiant matcha chartreuse (#DBE8B8). Zero blurred drop-shadows; structured entirely through tonal surface nesting, hairline grids, and monospace bracketed affordances.
+      </p>
+
+      <!-- Metric Stat Grid -->
+      <div class="metric-stat-grid">
+        <div class="metric-cell">
+          <span class="metric-label">ENZYMATIC FIDELITY</span>
+          <span class="metric-value">99.8%</span>
+          <span class="metric-sub">Across 384 Wells</span>
+        </div>
+        <div class="metric-cell">
+          <span class="metric-label">BEAM WAVELENGTH</span>
+          <span class="metric-value">532.4<span style="font-size:24px;">nm</span></span>
+          <span class="metric-sub">Fluorometer Peak</span>
+        </div>
+        <div class="metric-cell">
+          <span class="metric-label">ASSAY LATENCY</span>
+          <span class="metric-value">0.14<span style="font-size:24px;">s</span></span>
+          <span class="metric-sub">Real-Time Telemetry</span>
+        </div>
+        <div class="metric-cell">
+          <span class="metric-label">WELL PARTITIONS</span>
+          <span class="metric-value">72<span style="font-size:24px;">/72</span></span>
+          <span class="metric-sub">Viability Confirmed</span>
+        </div>
+      </div>
+
+      <!-- Action Row -->
+      <div class="hero-actions-row">
+        <button class="btn-bio btn-bio-primary" onclick="copyMasterTileSpec()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          [COPY AGENT PROMPT]
+        </button>
+        <button class="btn-bio btn-bio-tint" onclick="scrollToSection('clinical-assay-demo')">
+          [RUN INTERACTIVE ASSAY ↗]
+        </button>
+        <button class="btn-bio btn-bio-bracket" onclick="openSpecModal()">
+          [INSPECT TOKEN SPEC ↗]
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         4. COLOR SWATCHES & PALETTE MATRIX (agent.md Section 5.2)
+         ======================================================================== -->
+    <section class="section-container" id="color-palette-section">
+      <div class="section-header-block">
+        <div>
+          <div class="section-kicker">[ 01. COLOR ROLES & PALETTE ]</div>
+          <h2 class="section-title">Harmonious Bio-Clinical Palette</h2>
+        </div>
+        <span class="section-meta-tag">11 Curated HSL Tokens // Click to Copy</span>
+      </div>
+
+      <!-- Group 1: Canvas & Neutrals -->
+      <div style="margin-bottom: 12px; font-family: var(--font-secondary-tech); font-size: 11px; font-weight: 700; color: var(--color-olive-mid); text-transform: uppercase;">
+        // Canvas & Neutrals
+      </div>
+      <div class="palette-group-grid">
+        <div class="swatch-card" onclick="copyColorHex('#F7F8F1', '--color-canvas-base')">
+          <div class="swatch-preview-box" style="background-color: #F7F8F1;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Canvas Base</span>
+            <span class="swatch-var">--color-canvas-base</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#F7F8F1</span>
+              <span class="swatch-role-chip">Bio-Ivory Canvas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorHex('#FFFFFF', '--color-surface-card')">
+          <div class="swatch-preview-box" style="background-color: #FFFFFF;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Surface Card</span>
+            <span class="swatch-var">--color-surface-card</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#FFFFFF</span>
+              <span class="swatch-role-chip">Primary Card</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorHex('#F0F3E7', '--color-surface-tint')">
+          <div class="swatch-preview-box" style="background-color: #F0F3E7;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Surface Tint</span>
+            <span class="swatch-var">--color-surface-tint</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#F0F3E7</span>
+              <span class="swatch-role-chip">Tinted Container</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorHex('#E5ECD8', '--color-surface-muted')">
+          <div class="swatch-preview-box" style="background-color: #E5ECD8;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Surface Muted</span>
+            <span class="swatch-var">--color-surface-muted</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#E5ECD8</span>
+              <span class="swatch-role-chip">Mid Sage Base</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 2: Deep Accents & Brand -->
+      <div style="margin-bottom: 12px; font-family: var(--font-secondary-tech); font-size: 11px; font-weight: 700; color: var(--color-olive-mid); text-transform: uppercase;">
+        // Deep Accents & Brand Inks
+      </div>
+      <div class="palette-group-grid">
+        <div class="swatch-card" onclick="copyColorHex('#21361D', '--color-primary-deep')">
+          <div class="swatch-preview-box" style="background-color: #21361D;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Primary Deep</span>
+            <span class="swatch-var">--color-primary-deep</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#21361D</span>
+              <span class="swatch-role-chip">Deep Coniferous</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorHex('#182914', '--color-primary-hover')">
+          <div class="swatch-preview-box" style="background-color: #182914;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Primary Hover</span>
+            <span class="swatch-var">--color-primary-hover</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#182914</span>
+              <span class="swatch-role-chip">Active Focus</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorHex('#60714E', '--color-olive-mid')">
+          <div class="swatch-preview-box" style="background-color: #60714E;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Olive Mid</span>
+            <span class="swatch-var">--color-olive-mid</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#60714E</span>
+              <span class="swatch-role-chip">Secondary Olive</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorHex('#8A9E75', '--color-olive-light')">
+          <div class="swatch-preview-box" style="background-color: #8A9E75;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Olive Light</span>
+            <span class="swatch-var">--color-olive-light</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#8A9E75</span>
+              <span class="swatch-role-chip">Tertiary Density</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 3: Highlights, Functional States & Inks -->
+      <div style="margin-bottom: 12px; font-family: var(--font-secondary-tech); font-size: 11px; font-weight: 700; color: var(--color-olive-mid); text-transform: uppercase;">
+        // Highlights, Functional States & Inks
+      </div>
+      <div class="palette-group-grid">
+        <div class="swatch-card" onclick="copyColorHex('#DBE8B8', '--color-accent-chartreuse')">
+          <div class="swatch-preview-box" style="background-color: #DBE8B8;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Accent Chartreuse</span>
+            <span class="swatch-var">--color-accent-chartreuse</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#DBE8B8</span>
+              <span class="swatch-role-chip">Radiant Matcha</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorHex('#E8F0CD', '--color-accent-lime-soft')">
+          <div class="swatch-preview-box" style="background-color: #E8F0CD;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Accent Lime Soft</span>
+            <span class="swatch-var">--color-accent-lime-soft</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#E8F0CD</span>
+              <span class="swatch-role-chip">Status Tint</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorHex('#EDF1E4', '--color-neutral-empty')">
+          <div class="swatch-preview-box" style="background-color: #EDF1E4;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Neutral Empty</span>
+            <span class="swatch-var">--color-neutral-empty</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#EDF1E4</span>
+              <span class="swatch-role-chip">Slot Placeholder</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorHex('#121610', '--color-ink-primary')">
+          <div class="swatch-preview-box" style="background-color: #121610;">
+            <span class="swatch-copy-hint" style="color:#000;">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Ink Primary</span>
+            <span class="swatch-var">--color-ink-primary</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#121610</span>
+              <span class="swatch-role-chip">Near-Black Pine</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         5. TYPOGRAPHY SYSTEM & SPECIMEN LAB (agent.md Section 5.3)
+         ======================================================================== -->
+    <section class="section-container" id="typography-specimen-section">
+      <div class="section-header-block">
+        <div>
+          <div class="section-kicker">[ 02. TYPOGRAPHY SYSTEM ]</div>
+          <h2 class="section-title">Editorial Hierarchy & Technical Monospace</h2>
+        </div>
+        <span class="section-meta-tag">Neue Haas Grotesk • PP Supply Mono</span>
+      </div>
+
+      <div class="type-specimen-grid">
+        <!-- Card 1: Type Ladder -->
+        <div class="type-card">
+          <div class="type-card-header">
+            <span class="type-family-name">Hierarchy Ladder</span>
+            <span class="type-role-badge">Scale Specification</span>
+          </div>
+
+          <div class="type-ladder">
+            <!-- Row 1: Display Heading -->
+            <div class="ladder-row">
+              <div class="ladder-meta">
+                <span>Display Heading</span>
+                <span class="ladder-specs">38px / 1.08 / 500 / -0.03em</span>
+              </div>
+              <div class="spec-display-heading">Bio-Assay Telemetry</div>
+            </div>
+
+            <!-- Row 2: Metric Stat -->
+            <div class="ladder-row">
+              <div class="ladder-meta">
+                <span>Metric / Data Stat</span>
+                <span class="ladder-specs">44px / 1.0 / 400 / tabular-nums</span>
+              </div>
+              <div class="spec-metric-stat">99.84% VIABLE</div>
+            </div>
+
+            <!-- Row 3: Section Label / Kicker -->
+            <div class="ladder-row">
+              <div class="ladder-meta">
+                <span>Section Label / Kicker</span>
+                <span class="ladder-specs">11px / 1.2 / 700 / +0.08em</span>
+              </div>
+              <div class="spec-section-kicker">[ REAGENT SAMPLING PROTOCOL // ISO-15189 ]</div>
+            </div>
+
+            <!-- Row 4: Data Row / Actionable Item -->
+            <div class="ladder-row">
+              <div class="ladder-meta">
+                <span>Data Row / Actionable</span>
+                <span class="ladder-specs">12px / 1.4 / 500 / +0.04em</span>
+              </div>
+              <div class="spec-data-row">ASSAY-904: MEMBRANE FLUOROMETRY CONFIRMED [VIEW ↗]</div>
+            </div>
+
+            <!-- Row 5: Body Secondary -->
+            <div class="ladder-row">
+              <div class="ladder-meta">
+                <span>Body Secondary</span>
+                <span class="ladder-specs">14px / 1.45 / 400 / -0.01em</span>
+              </div>
+              <div class="spec-body-secondary">
+                Cellular viability across all 384 partition wells exhibited optimal enzymatic stability under regulated 4.2°C incubation.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Interactive Pangram Lab -->
+        <div class="pangram-lab-card">
+          <div class="type-card-header">
+            <span class="type-family-name">Interactive Type Specimen</span>
+            <span class="type-role-badge">Live Tester</span>
+          </div>
+
+          <div class="pangram-controls-bar">
+            <div class="pangram-toggle-group">
+              <button class="btn-pangram-toggle active" id="btn-font-display" onclick="setPangramFont('display')">Display Sans</button>
+              <button class="btn-pangram-toggle" id="btn-font-mono" onclick="setPangramFont('mono')">Tech Mono</button>
+            </div>
+
+            <div class="slider-control-group">
+              <span>Size: <strong id="val-font-size">28px</strong></span>
+              <input type="range" min="14" max="52" value="28" oninput="updatePangramSize(this.value)">
+            </div>
+          </div>
+
+          <div class="pangram-output-box" id="pangram-output" contenteditable="true" spellcheck="false">
+            Sequencing 384 synthetic oligonucleotides yielded 99.8% enzymatic fidelity across all lipid partitions.
+          </div>
+
+          <div style="display: flex; justify-content: space-between; margin-top: 12px; font-family: var(--font-secondary-tech); font-size: 11px; color: var(--color-olive-mid);">
+            <span>[EDITABLE CLINICAL SPECIMEN]</span>
+            <button class="bracket-link" onclick="resetPangram()">[RESET TEXT ↺]</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         6. COMPONENT ARCHETYPE GALLERY (agent.md Section 5.4)
+         ======================================================================== -->
+    <section class="section-container" id="components-gallery-section">
+      <div class="section-header-block">
+        <div>
+          <div class="section-kicker">[ 03. COMPONENT ARCHETYPES ]</div>
+          <h2 class="section-title">Clinical Controls & Data Affordances</h2>
+        </div>
+        <span class="section-meta-tag">Flat Swiss Architecture // Zero Drop-Shadows</span>
+      </div>
+
+      <div class="components-layout-grid">
+        <!-- Card 1: Buttons & Bracket Affordances -->
+        <div class="archetype-card">
+          <span class="archetype-title">01 // Buttons & Affordances</span>
+
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <button class="btn-bio btn-bio-primary" onclick="showToast('Assay sequence initiated')">
+              <span>[PRIMARY DEEP]</span>
+              <span>RUN ASSAY ↗</span>
+            </button>
+
+            <button class="btn-bio btn-bio-tint" onclick="showToast('Sampling buffer calibrated')">
+              <span>[SECONDARY TINT]</span>
+              <span>CALIBRATE SENSOR</span>
+            </button>
+
+            <button class="btn-bio btn-bio-chartreuse" onclick="showToast('High-priority alert acknowledged')">
+              <span>[ALERT HIGHLIGHT]</span>
+              <span>CONFIRM PROTOCOL</span>
+            </button>
+
+            <button class="btn-bio-bracket" onclick="showToast('Telemetry exported to CSV')">
+              [EXPORT TELEMETRY CSV ↗]
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 2: Form Controls & Inputs -->
+        <div class="archetype-card">
+          <span class="archetype-title">02 // Clinical Inputs & Steppers</span>
+
+          <div class="bio-input-group">
+            <label class="bio-input-label">SPECIMEN SEARCH QUERY</label>
+            <input type="text" class="bio-input-field" placeholder="[QUERY BY LOT ID OR WELL COORD...]" value="SP-904-CHLOROPLAST">
+          </div>
+
+          <div class="bio-input-group">
+            <label class="bio-input-label">TITRATION DOSAGE (µL)</label>
+            <div class="stepper-row">
+              <button class="stepper-btn" onclick="stepDosage(-5)">−</button>
+              <span class="stepper-value" id="val-dosage">25 µL</span>
+              <button class="stepper-btn" onclick="stepDosage(5)">+</button>
+              <span style="font-family: var(--font-secondary-tech); font-size: 11px; color: var(--color-olive-mid);">FLOW: 0.42 mL/s</span>
+            </div>
+          </div>
+
+          <div class="bio-input-group">
+            <label class="bio-input-label">ASSAY PARTITION STATUS</label>
+            <div class="bio-radio-group">
+              <label class="bio-radio-item">
+                <input type="radio" name="sample-radio" checked>
+                <span>● Viable Matrix Partitions</span>
+              </label>
+              <label class="bio-radio-item">
+                <input type="radio" name="sample-radio">
+                <span>○ Quarantined Reagents</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Badges & Data Tiles -->
+        <div class="archetype-card">
+          <span class="archetype-title">03 // Status Badges & Data Rows</span>
+
+          <div class="status-badge-list">
+            <div class="badge-bio-row">
+              <span>FLUOROMETRY LASER</span>
+              <span class="badge-pill-deep">● 532nm ACTIVE</span>
+            </div>
+
+            <div class="badge-bio-row">
+              <span>REAGENT THERMAL STATE</span>
+              <span class="badge-pill-alert">4.2°C NOMINAL</span>
+            </div>
+
+            <div class="badge-bio-row">
+              <span>SPECTROMETRY STATUS</span>
+              <span style="color: var(--color-primary-deep); font-weight: 700;">CALIBRATED</span>
+            </div>
+
+            <div style="padding: 12px; background-color: var(--color-surface-tint); border: var(--border-dashed); border-radius: var(--radius-sm); margin-top: 4px;">
+              <span style="font-family: var(--font-secondary-tech); font-size: 10px; font-weight: 700; color: var(--color-primary-deep); display: block; margin-bottom: 2px;">
+                [ALERT // THRESHOLD WARNING]
+              </span>
+              <span style="font-family: var(--font-primary-display); font-size: 12px; color: var(--color-ink-secondary);">
+                Osmotic pressure maintained at 294 mOsm/kg.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         7. LIVING MICRO-EXPERIENCE: CLINICAL ASSAY & TELEMETRY LAB (agent.md Section 5.5)
+         ======================================================================== -->
+    <section class="clinical-demo-card" id="clinical-assay-demo">
+      <div class="clinical-demo-header">
+        <div class="clinical-demo-title-group">
+          <span class="clinical-protocol-id">[ ASSAY-904 // RECOMBINANT LIPID PURIFICATION ]</span>
+          <h3 class="clinical-protocol-heading">Live Cellular Matrix Telemetry</h3>
+        </div>
+
+        <div class="protocol-switch-bar">
+          <button class="btn-protocol active" id="btn-proto-a" onclick="switchProtocol('alpha', this)">[ASSAY α: LIPID FLUX]</button>
+          <button class="btn-protocol" id="btn-proto-b" onclick="switchProtocol('beta', this)">[ASSAY β: CRISPR AMPLICON]</button>
+          <button class="btn-protocol" id="btn-proto-c" onclick="switchProtocol('gamma', this)">[ASSAY γ: MYCELIAL MATRIX]</button>
+        </div>
+      </div>
+
+      <div class="clinical-layout-split">
+        <!-- Left: Micro-Plate Well Matrix (12x6 grid) -->
+        <div class="plate-card-frame">
+          <div class="plate-meta-bar">
+            <span>72-WELL CELLULAR HEATMAP MATRIX</span>
+            <span id="plate-active-status">● REAL-TIME FLUOROMETRY</span>
+          </div>
+
+          <div class="well-plate-grid" id="well-matrix-container">
+            <!-- Dynamically populated 72 wells -->
+          </div>
+
+          <div class="plate-legend-row">
+            <span>Density Scale:</span>
+            <div class="legend-swatches">
+              <span>Empty</span>
+              <div class="legend-chip density-0"></div>
+              <div class="legend-chip density-1"></div>
+              <div class="legend-chip density-2"></div>
+              <div class="legend-chip density-3"></div>
+              <div class="legend-chip density-4"></div>
+              <div class="legend-chip density-5"></div>
+              <span>Saturated</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Telemetry Inspector & Spectrometry Waveform -->
+        <div class="telemetry-inspector-card">
+          <div class="inspector-header">
+            <span class="inspector-well-id" id="val-inspector-well">WELL D-07</span>
+            <span class="inspector-status-badge" id="val-inspector-badge">OPTIMAL FLUX</span>
+          </div>
+
+          <div class="telemetry-data-list">
+            <div class="telemetry-data-row">
+              <span class="data-key">SPECIMEN ID</span>
+              <span class="data-val val-deep" id="val-inspector-spec">SP-904-CHLOROPLAST</span>
+            </div>
+            <div class="telemetry-data-row">
+              <span class="data-key">FLUOROMETRY</span>
+              <span class="data-val val-chartreuse" id="val-inspector-rfu">482.6 RFU</span>
+            </div>
+            <div class="telemetry-data-row">
+              <span class="data-key">MOTILITY INDEX</span>
+              <span class="data-val" id="val-inspector-motility">94.8%</span>
+            </div>
+            <div class="telemetry-data-row">
+              <span class="data-key">BUFFER pH</span>
+              <span class="data-val" id="val-inspector-ph">7.41</span>
+            </div>
+            <div class="telemetry-data-row">
+              <span class="data-key">ENZYMATIC RATE</span>
+              <span class="data-val" id="val-inspector-rate">1.28 µmol/min</span>
+            </div>
+          </div>
+
+          <!-- Spectrometry Vector Graphic -->
+          <div class="spectrometry-box">
+            <span class="spectrometry-title">ABSORPTION SPECTRUM (400–700 NM)</span>
+            <svg viewBox="0 0 300 80" style="width: 100%; height: 75px; background: #F7F8F1; border-radius: 4px; border: 1px solid rgba(33,54,29,0.15);">
+              <!-- Grid lines -->
+              <line x1="0" y1="20" x2="300" y2="20" stroke="rgba(33,54,29,0.1)" stroke-dasharray="3,3"/>
+              <line x1="0" y1="40" x2="300" y2="40" stroke="rgba(33,54,29,0.1)" stroke-dasharray="3,3"/>
+              <line x1="0" y1="60" x2="300" y2="60" stroke="rgba(33,54,29,0.1)" stroke-dasharray="3,3"/>
+              <line x1="150" y1="0" x2="150" y2="80" stroke="rgba(33,54,29,0.2)" stroke-dasharray="2,2"/>
+
+              <!-- Spectrum curve -->
+              <path id="spectrum-path" d="M 10 70 Q 70 65, 110 50 T 150 15 T 190 48 T 290 70" fill="none" stroke="#21361D" stroke-width="2"/>
+
+              <!-- Peak indicator -->
+              <circle id="spectrum-peak" cx="150" cy="15" r="4" fill="#DBE8B8" stroke="#21361D" stroke-width="1.5"/>
+              <text x="156" y="16" fill="#21361D" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700">532.4 nm</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Assay Control Footer -->
+      <div class="assay-footer-strip">
+        <span class="assay-status-text" id="assay-live-ticker">
+          ● REAL-TIME MATRIX POLLING: 72/72 ACTIVE PARTITIONS SYNCHRONIZED
+        </span>
+
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-bio btn-bio-tint" style="padding: 6px 12px; font-size: 11px;" onclick="addReagentTitration()">
+            [+] TITRATE REAGENT +5µL
+          </button>
+          <button class="btn-bio btn-bio-primary" style="padding: 6px 14px; font-size: 11px;" onclick="randomizeAssayPlate()">
+            [SHUFFLE MATRIX]
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         8. STYLE TILE PROMPT CODE DRAWER (agent.md Section 5.6)
+         ======================================================================== -->
+    <section class="prompt-drawer-container" id="agent-prompt-drawer">
+      <div class="prompt-drawer-header">
+        <div class="prompt-header-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          <span>Style Tile Markdown Spec // Machine Prompt for Coding Agents</span>
+        </div>
+
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-bio btn-bio-primary" style="padding: 6px 14px; font-size: 11px;" onclick="copyMasterTileSpec()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13"/><path d="M5 15H4V4h11v1"/></svg>
+            Copy Full Spec
+          </button>
+          <button class="btn-bio btn-bio-tint" style="padding: 6px 14px; font-size: 11px;" onclick="downloadMasterTileSpec()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4H3v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download .md
+          </button>
+        </div>
+      </div>
+
+      <pre class="prompt-raw-code" id="raw-spec-display"></pre>
+    </section>
+
+  </div>
+
+  <!-- ========================================================================
+       9. MODAL SPEC INSPECTOR (agent.md Section 2)
+       ======================================================================== -->
+  <div class="modal-backdrop" id="spec-modal-backdrop">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div class="modal-title">STYLE TILE // BIO-CLINICAL TECHNICAL EDITORIAL (TILE-017)</div>
+        <button class="modal-close-btn" onclick="closeSpecModal()" title="Close (Esc)">✕</button>
+      </div>
+      <div class="modal-body" id="modal-spec-content"></div>
+      <div class="modal-footer">
+        <button class="btn-bio btn-bio-tint" style="padding: 8px 14px;" onclick="closeSpecModal()">Close</button>
+        <button class="btn-bio btn-bio-primary" style="padding: 8px 16px;" onclick="copyMasterTileSpec()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13"/><path d="M5 15H4V4h11v1"/></svg>
+          Copy Markdown Spec
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       10. FLOATING TOAST NOTIFICATION CONTAINER
+       ======================================================================== -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ========================================================================
+       11. RAW MARKDOWN SPEC EMBEDDED BLOCK (agent.md Section 2)
+       ======================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  STYLE TILE // BIO-CLINICAL TECHNICAL EDITORIAL (TILE-017)
+================================================================================
+
+[ 01. DESIGN ETHOS & MOOD ]
+--------------------------------------------------------------------------------
+  * Aesthetic: Bio-Clinical Technical Editorial
+  * Vibe: Sterile yet organic, Swiss International layout discipline, clinical telemetry
+  * Visual Rhythm: High-density clinical data grids, bio-ivory parchment base,
+                    coniferous pine inks (#21361D), radiant matcha chartreuse alerts (#DBE8B8).
+  * Elevation Philosophy: Completely Flat / Swiss Minimalist (Zero blurred drop-shadows)
+  * Depth Method: Tonal layering, explicit line nesting, and high-contrast bounding boxes.
+
+[ 02. COLOR ROLES & PALETTE ]
+--------------------------------------------------------------------------------
+:root {
+  /* Canvas & Neutrals */
+  --color-canvas-base:       #F7F8F1; /* Warm parchment / bio-ivory background */
+  --color-surface-card:      #FFFFFF; /* Pure crisp white for primary modules */
+  --color-surface-tint:      #F0F3E7; /* Soft tinted container layer */
+  --color-surface-muted:     #E5ECD8; /* Mid-tone sage background */
+
+  /* Deep Accents & Brand */
+  --color-primary-deep:      #21361D; /* Deep coniferous / dark olive green */
+  --color-primary-hover:     #182914; /* High-contrast active dark green */
+  --color-olive-mid:         #60714E; /* Muted secondary olive */
+  --color-olive-light:       #8A9E75; /* Tertiary density tone */
+
+  /* Highlights & Functional States */
+  --color-accent-chartreuse: #DBE8B8; /* Radiant matcha / high-visibility alert */
+  --color-accent-lime-soft:  #E8F0CD; /* Low-friction status tint */
+  --color-neutral-empty:     #EDF1E4; /* Unfilled matrix / slot placeholder */
+
+  /* Text & Data Inks */
+  --color-ink-primary:       #121610; /* Deep near-black pine ink */
+  --color-ink-secondary:     #525E4B; /* Mid-contrast technical olive-grey */
+  --color-ink-inverse:       #F7F8F1; /* Inverse parchment ink on deep surfaces */
+
+  /* Status Tokens */
+  --color-status-success:    #21361D;
+  --color-status-warning:    #8A9E75;
+  --color-status-alert:      #DBE8B8;
+}
+
+[ 03. TYPOGRAPHY SYSTEM ]
+--------------------------------------------------------------------------------
+/* Font Stacks */
+--font-primary-display: "Neue Haas Grotesk", "PP Neue Montreal", "Plus Jakarta Sans", sans-serif;
+--font-secondary-tech:  "PP Supply Mono", "JetBrains Mono", monospace;
+
+/* Hierarchy & Tokens */
+Display Heading:
+  font-family:    var(--font-primary-display)
+  font-size:      38px
+  line-height:    1.08
+  font-weight:    500
+  letter-spacing: -0.03em
+  text-transform: none
+
+Metric / Data Stat:
+  font-family:    var(--font-primary-display)
+  font-size:      44px
+  line-height:    1.0
+  font-weight:    400
+  letter-spacing: -0.04em
+  font-variant-numeric: tabular-nums
+
+Section Label / Kicker:
+  font-family:    var(--font-secondary-tech)
+  font-size:      11px
+  line-height:    1.2
+  font-weight:    700
+  letter-spacing: 0.08em
+  text-transform: uppercase
+
+Data Row / Actionable Item:
+  font-family:    var(--font-secondary-tech)
+  font-size:      12px
+  line-height:    1.4
+  font-weight:    500
+  letter-spacing: 0.04em
+  text-transform: uppercase
+
+Body Secondary:
+  font-family:    var(--font-primary-display)
+  font-size:      14px
+  line-height:    1.45
+  font-weight:    400
+  letter-spacing: -0.01em
+
+[ 04. CORNER GEOMETRY (BORDER RADII) ]
+--------------------------------------------------------------------------------
+--radius-xs:    2px;   /* Micro markers, data heat-map cells */
+--radius-sm:    6px;   /* Input fields, utility pills, mini action tiles */
+--radius-md:   12px;   /* Nav buttons, secondary nested modules */
+--radius-lg:   20px;   /* Primary container cards, high-level dashboards */
+--radius-pill: 9999px; /* Standalone badges, status trackers */
+
+[ 05. ELEVATION & DEPTH (SHADOWS & LAYERS) ]
+--------------------------------------------------------------------------------
+* Philosophy: Completely Flat / Swiss Minimalist (Zero blurred drop-shadows)
+* Depth Method: Tonal layering, explicit line nesting, and high-contrast bounding boxes.
+* Layer Stack:
+  Layer 0 (Canvas):        --color-canvas-base (#F7F8F1)
+  Layer 1 (Card Frame):    --color-surface-card (#FFFFFF) + 1px solid/dashed border
+  Layer 2 (Internal Pill): --color-surface-tint (#F0F3E7) or --color-primary-deep (#21361D)
+  Layer 3 (Overlay Focus): Accent fills (#DBE8B8) without elevation shift
+
+[ 06. SPACING & SPATIAL SCALE ]
+--------------------------------------------------------------------------------
+* Base Unit: 4px / 8pt Geometric Modular Scale
+  --space-2xs: 4px;
+  --space-xs:  8px;
+  --space-sm:  12px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+
+* Layout Density:
+  Card Padding (Internal): 20px 24px
+  Grid Gap:                16px horizontal / 16px vertical
+  Data Row Height:         32px fixed baseline with hairline delimiter
+
+[ 07. BORDERS & DIVIDERS ]
+--------------------------------------------------------------------------------
+--border-hairline: 1px solid rgba(33, 54, 29, 0.25);
+--border-solid:    1px solid var(--color-primary-deep);
+--border-dashed:   1px dashed rgba(33, 54, 29, 0.45);
+--border-dotted:   1px dotted rgba(33, 54, 29, 0.50);
+
+* Divider Application:
+  - Top Utility Headers: Enclosed in 1px dashed/dotted bounds
+  - Internal Card Dividers: 1px solid horizontal lines anchoring category labels
+  - Data Lists: Full-width hairline bottom strokes between consecutive records
+
+[ 08. ICONOGRAPHY LANGUAGE ]
+--------------------------------------------------------------------------------
+* Paradigm: Utilitarian Monospace Glyphs & Technical Vector Primitives
+* Stroke Weight: 1.25px - 1.5px constant geometric stroke
+* Corner Treatment: Sharp or 0.5px micro-radius
+* Key Glyph Patterns:
+  - Bracketed Affordances: `[VIEW ↗]`, `[+]`, `[−]`, `[x]`, `[RUN ASSAY ↗]`
+  - Metric Indicators: `↗`, `→`, `↓`
+  - Matrix Elements: `○`, `●` and modular rectangular grids
+
+[ 09. INTERACTION & FEEDBACK RULES ]
+--------------------------------------------------------------------------------
+* Default Transition: 150ms cubic-bezier(0.16, 1, 0.3, 1) (Ease-Out Fast)
+* Interactive Hover:
+  - Text Links / Brackets: Background fill transitions to `--color-accent-chartreuse` (#DBE8B8)
+  - Inverted Cards: Shift background from #21361D to #182914
+  - Standard Card Hover: Outline shifts from `--border-hairline` to `--border-solid`
+* Selection / Active:
+  - Selected Pill: Full flood fill `--color-primary-deep` with `--color-ink-inverse`
+  - Alert Highlight: Persistent block-band fill of `--color-accent-chartreuse`
+* Focus State:
+  - 2px outline-offset, 1px solid var(--color-primary-deep)
+
+[ 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS ]
+--------------------------------------------------------------------------------
+- NO blurred drop shadows or skeuomorphic bevels (Strict flat tonal layering).
+- NO purple/violet dark theme or generic neon cyberspace glows.
+- NO high-saturation rainbow badges; stick strictly to pine, sage, chartreuse, olive.
+- NO floating unanchored cards without structural hairline bounds.
+- NO rounded biscuit headline pills with pulsing dots.
+================================================================================
+  </script>
+
+  <!-- ========================================================================
+       12. JAVASCRIPT CONTROLLERS
+       ======================================================================== -->
+  <script>
+    // --------------------------------------------------------------------------
+    // TOAST NOTIFICATION SYSTEM
+    // --------------------------------------------------------------------------
+    function showToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast-notification";
+      toast.innerHTML = `<span class="toast-icon">${icon}</span><span>${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 200);
+      }, 2400);
+    }
+
+    // --------------------------------------------------------------------------
+    // MARKDOWN EXTRACTION & HEADER BUTTONS (agent.md Section 2)
+    // --------------------------------------------------------------------------
+    function getMarkdownText() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    function copyMasterTileSpec() {
+      const text = getMarkdownText();
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const original = btn.innerHTML;
+          btn.innerHTML = `<span style="color:#FFF;">✓ Copied to Clipboard!</span>`;
+          setTimeout(() => { btn.innerHTML = original; }, 2000);
+        }
+        showToast("Style Tile Prompt copied to clipboard!");
+      }).catch(err => {
+        console.error("Clipboard copy failed:", err);
+        showToast("Failed to copy spec", "✕");
+      });
+    }
+
+    function downloadMasterTileSpec() {
+      const text = getMarkdownText();
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-bio-clinical-editorial.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-bio-clinical-editorial.md");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      const content = document.getElementById("modal-spec-content");
+      if (modal && content) {
+        content.textContent = getMarkdownText();
+        modal.classList.add("active");
+      }
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      if (modal) modal.classList.remove("active");
+    }
+
+    // --------------------------------------------------------------------------
+    // SWATCH COLOR COPY
+    // --------------------------------------------------------------------------
+    function copyColorHex(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${hex} (${varName}) to clipboard!`);
+      });
+    }
+
+    // --------------------------------------------------------------------------
+    // PANGRAM TESTER CONTROLS
+    // --------------------------------------------------------------------------
+    function setPangramFont(type) {
+      const output = document.getElementById("pangram-output");
+      const btnDisplay = document.getElementById("btn-font-display");
+      const btnMono = document.getElementById("btn-font-mono");
+
+      if (type === "display") {
+        output.style.fontFamily = "var(--font-primary-display)";
+        btnDisplay.classList.add("active");
+        btnMono.classList.remove("active");
+        showToast("Active Font: Neue Haas Grotesk (Display)");
+      } else {
+        output.style.fontFamily = "var(--font-secondary-tech)";
+        btnMono.classList.add("active");
+        btnDisplay.classList.remove("active");
+        showToast("Active Font: PP Supply Mono (Tech Mono)");
+      }
+    }
+
+    function updatePangramSize(val) {
+      const label = document.getElementById("val-font-size");
+      const output = document.getElementById("pangram-output");
+      if (label) label.textContent = val + "px";
+      if (output) output.style.fontSize = val + "px";
+    }
+
+    function resetPangram() {
+      const output = document.getElementById("pangram-output");
+      if (output) {
+        output.textContent = "Sequencing 384 synthetic oligonucleotides yielded 99.8% enzymatic fidelity across all lipid partitions.";
+        showToast("Reset specimen pangram text");
+      }
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+
+    // --------------------------------------------------------------------------
+    // CLINICAL STEPPER & PROTOCOL CONTROLS
+    // --------------------------------------------------------------------------
+    let currentDosage = 25;
+    function stepDosage(delta) {
+      currentDosage = Math.max(5, Math.min(100, currentDosage + delta));
+      const valEl = document.getElementById("val-dosage");
+      if (valEl) valEl.textContent = currentDosage + " µL";
+      showToast(`Titration Dosage adjusted to ${currentDosage} µL`);
+    }
+
+    // --------------------------------------------------------------------------
+    // 72-WELL CELLULAR HEATMAP MATRIX CONTROLLER
+    // --------------------------------------------------------------------------
+    const WELL_ROWS = ["A", "B", "C", "D", "E", "F"];
+    const WELL_COLS = 12;
+    let wellData = [];
+    let selectedWellIndex = 42; // Default Well D-07 (row index 3, col index 6)
+
+    function initWellPlate() {
+      const container = document.getElementById("well-matrix-container");
+      if (!container) return;
+      container.innerHTML = "";
+      wellData = [];
+
+      let idx = 0;
+      for (let r = 0; r < WELL_ROWS.length; r++) {
+        for (let c = 1; c <= WELL_COLS; c++) {
+          const rowLetter = WELL_ROWS[r];
+          const colNum = c < 10 ? "0" + c : c;
+          const wellCoord = `${rowLetter}-${colNum}`;
+
+          // Seed density pattern
+          const density = Math.floor(Math.random() * 6);
+          const rfu = (120 + Math.random() * 580).toFixed(1);
+          const motility = (88 + Math.random() * 11.5).toFixed(1);
+          const ph = (7.25 + Math.random() * 0.30).toFixed(2);
+          const rate = (0.6 + Math.random() * 1.4).toFixed(2);
+
+          const cellObj = {
+            index: idx,
+            coord: wellCoord,
+            density: density,
+            rfu: rfu,
+            motility: motility,
+            ph: ph,
+            rate: rate,
+            specimen: idx % 3 === 0 ? "SP-904-CHLOROPLAST" : (idx % 3 === 1 ? "SP-882-LIPOSOME" : "SP-719-MYCELIUM")
+          };
+          wellData.push(cellObj);
+
+          const cellEl = document.createElement("div");
+          cellEl.className = `well-cell density-${density} ${idx === selectedWellIndex ? "selected" : ""}`;
+          cellEl.title = `Well ${wellCoord} // RFU: ${rfu}`;
+          cellEl.dataset.index = idx;
+          cellEl.addEventListener("click", () => selectWell(idx));
+          container.appendChild(cellEl);
+
+          idx++;
+        }
+      }
+
+      updateInspector(wellData[selectedWellIndex]);
+    }
+
+    function selectWell(index) {
+      selectedWellIndex = index;
+      const cells = document.querySelectorAll(".well-cell");
+      cells.forEach(c => c.classList.remove("selected"));
+
+      const activeCell = document.querySelector(`.well-cell[data-index="${index}"]`);
+      if (activeCell) activeCell.classList.add("selected");
+
+      const data = wellData[index];
+      updateInspector(data);
+
+      // Animate SVG spectrum peak slightly
+      const peak = document.getElementById("spectrum-peak");
+      if (peak) {
+        const newY = 10 + Math.random() * 20;
+        peak.setAttribute("cy", newY);
+      }
+
+      showToast(`Selected Well ${data.coord} // ${data.rfu} RFU`);
+    }
+
+    function updateInspector(data) {
+      if (!data) return;
+      document.getElementById("val-inspector-well").textContent = `WELL ${data.coord}`;
+      document.getElementById("val-inspector-spec").textContent = data.specimen;
+      document.getElementById("val-inspector-rfu").textContent = `${data.rfu} RFU`;
+      document.getElementById("val-inspector-motility").textContent = `${data.motility}%`;
+      document.getElementById("val-inspector-ph").textContent = data.ph;
+      document.getElementById("val-inspector-rate").textContent = `${data.rate} µmol/min`;
+
+      const badge = document.getElementById("val-inspector-badge");
+      if (badge) {
+        if (data.density >= 4) {
+          badge.textContent = "HIGH DENSITY";
+          badge.style.backgroundColor = "var(--color-accent-chartreuse)";
+        } else if (data.density >= 2) {
+          badge.textContent = "OPTIMAL FLUX";
+          badge.style.backgroundColor = "var(--color-surface-muted)";
+        } else {
+          badge.textContent = "BASELINE";
+          badge.style.backgroundColor = "var(--color-surface-tint)";
+        }
+      }
+    }
+
+    function switchProtocol(proto, btn) {
+      document.querySelectorAll(".btn-protocol").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const titleEl = document.querySelector(".clinical-protocol-heading");
+      const idEl = document.querySelector(".clinical-protocol-id");
+
+      if (proto === "alpha") {
+        idEl.textContent = "[ ASSAY-904 // RECOMBINANT LIPID PURIFICATION ]";
+        titleEl.textContent = "Live Cellular Matrix Telemetry";
+      } else if (proto === "beta") {
+        idEl.textContent = "[ ASSAY-905 // CRISPR AMPLICON HYBRIDIZATION ]";
+        titleEl.textContent = "Target Cleavage & Amplicon Kinetics";
+      } else {
+        idEl.textContent = "[ ASSAY-906 // MYCELIAL BIO-MATRIX RESISTANCE ]";
+        titleEl.textContent = "Hyphal Tensile Strength & Porosity";
+      }
+
+      randomizeAssayPlate();
+      showToast(`Switched Protocol: ${idEl.textContent}`);
+    }
+
+    function randomizeAssayPlate() {
+      initWellPlate();
+      showToast("Matrix partitions re-scanned & updated");
+    }
+
+    function addReagentTitration() {
+      const data = wellData[selectedWellIndex];
+      if (data) {
+        data.density = Math.min(5, data.density + 1);
+        data.rfu = (parseFloat(data.rfu) + 42.5).toFixed(1);
+        updateInspector(data);
+
+        const activeCell = document.querySelector(`.well-cell[data-index="${selectedWellIndex}"]`);
+        if (activeCell) {
+          activeCell.className = `well-cell density-${data.density} selected`;
+        }
+        showToast(`Added Reagent to Well ${data.coord} (+42.5 RFU)`);
+      }
+    }
+
+    function triggerMatrixPulse() {
+      showToast("Re-calibrating 72-well fluorometer matrix...", "⚡");
+      setTimeout(() => {
+        randomizeAssayPlate();
+        showToast("Matrix calibration complete // Nominal Baseline");
+      }, 300);
+    }
+
+    // --------------------------------------------------------------------------
+    // INITIALIZATION ON LOAD
+    // --------------------------------------------------------------------------
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Populate Code Drawer
+      const rawDisplay = document.getElementById("raw-spec-display");
+      if (rawDisplay) rawDisplay.textContent = getMarkdownText();
+
+      // 2. Bind Header Buttons
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyMasterTileSpec);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadMasterTileSpec);
+
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      // 3. Modal close on backdrop & Escape
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+
+      // 4. Initialize Well Matrix
+      initWellPlate();
+    });
+  </script>
+</body>
+</html>
