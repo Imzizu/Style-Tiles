@@ -905,6 +905,40 @@ a {
   }
 }
 
+/* Show More — appears after every 15 design previews */
+.catalog-show-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.catalog-show-more[hidden] {
+  display: none;
+}
+
+.catalog-show-more-rule {
+  flex: 1;
+  height: 0;
+  border-top: var(--divider-perforated);
+  min-width: 24px;
+}
+
+.catalog-show-more-btn {
+  flex-shrink: 0;
+}
+
+.catalog-show-more-btn .show-more-count {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  opacity: 0.9;
+  padding: 2px 7px;
+  background-color: rgba(0, 0, 0, 0.16);
+  border-radius: 2px;
+}
+
 /* Design Card Structure */
 .design-card {
   background-color: var(--surface-sheet);
@@ -1771,6 +1805,22 @@ a {
   .catalog-grid.view-editorial.is-compact {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  .catalog-show-more {
+    margin-top: 24px;
+    gap: 0;
+  }
+
+  .catalog-show-more-rule {
+    display: none;
+  }
+
+  .catalog-show-more-btn {
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
   }
 
   .design-card:hover {

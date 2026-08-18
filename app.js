@@ -2703,6 +2703,8 @@ let currentLayoutMode = "grid"; // 'grid' or 'split'
 let userToggledCompact = false;
 const isMobileViewport = () => typeof window !== "undefined" && window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
 let isCompactMode = isMobileViewport(); // Default OFF on desktop (> 768px), default ON on mobile (<= 768px)
+const CATALOG_PAGE_SIZE = 15;
+let catalogVisibleCount = CATALOG_PAGE_SIZE;
 
 // -----------------------------------------------------------------------------
 // TOAST SYSTEM
@@ -2802,14 +2804,11 @@ function resizeCardIframes() {
 // -----------------------------------------------------------------------------
 // RENDER SKELETON & LIVE CATALOG CARDS
 // -----------------------------------------------------------------------------
-function renderCatalog() {
-  const gridContainer = document.getElementById("catalog-grid");
-  if (!gridContainer) return;
-
-  const filtered = STYLE_TILES_DATA.filter(tile => {
+function getFilteredTiles() {
+  return STYLE_TILES_DATA.filter(tile => {
     const matchesCat = currentCategory === "all" || tile.vibeBadge === currentCategory;
     const q = currentSearchQuery.toLowerCase().trim();
-    const matchesSearch = !q || 
+    const matchesSearch = !q ||
       tile.name.toLowerCase().includes(q) ||
       tile.vibe.toLowerCase().includes(q) ||
       (tile.vibeBadge && tile.vibeBadge.toLowerCase().includes(q)) ||
@@ -2820,23 +2819,10 @@ function renderCatalog() {
       tile.fonts.sans.toLowerCase().includes(q);
     return matchesCat && matchesSearch;
   });
+}
 
-  // Update total counter in UI
-  const totalCountEl = document.getElementById("displayed-count");
-  if (totalCountEl) totalCountEl.textContent = `${filtered.length} SPECS`;
-
-  if (filtered.length === 0) {
-    gridContainer.innerHTML = `
-      <div style="grid-column: 1 / -1; padding: 48px; text-align: center; background: var(--surface-sheet); border: var(--border-core); box-shadow: var(--shadow-base);">
-        <p class="font-mono text-h3" style="margin-bottom: 8px;">NO DRAFT SPECIFICATIONS FOUND</p>
-        <p class="text-body-sm" style="color: var(--ink-muted);">No Style Tiles match "${currentSearchQuery}". Try clearing search query or filter tags.</p>
-        <button class="btn btn-mustard btn-sm" style="margin-top: 16px;" onclick="resetFilters()">Reset All Filters</button>
-      </div>
-    `;
-    return;
-  }
-
-  gridContainer.innerHTML = filtered.map(tile => `
+function renderTileCard(tile) {
+  return `
     <article class="design-card" data-id="${tile.id}">
       <!-- Card Header with Vibe Filter Option Badge -->
       <div class="card-header-bar">
@@ -2895,7 +2881,96 @@ function renderCatalog() {
         </a>
       </div>
     </article>
-  `).join('');
+  `;
+}
+
+function updateDisplayedCount(visibleCount, totalFiltered) {
+  const totalCountEl = document.getElementById("displayed-count");
+  if (!totalCountEl) return;
+  if (visibleCount < totalFiltered) {
+    totalCountEl.textContent = `${visibleCount} / ${totalFiltered} SPECS`;
+  } else {
+    totalCountEl.textContent = `${totalFiltered} SPECS`;
+  }
+}
+
+function updateShowMoreBar(totalFiltered) {
+  const bar = document.getElementById("catalog-show-more");
+  if (!bar) return;
+
+  const remaining = Math.max(0, totalFiltered - catalogVisibleCount);
+  if (remaining === 0) {
+    bar.hidden = true;
+    bar.innerHTML = "";
+    return;
+  }
+
+  const nextBatch = Math.min(CATALOG_PAGE_SIZE, remaining);
+  bar.hidden = false;
+  bar.innerHTML = `
+    <span class="catalog-show-more-rule" aria-hidden="true"></span>
+    <button type="button" class="btn btn-primary catalog-show-more-btn" onclick="showMoreTiles()" title="Load the next ${nextBatch} design preview${nextBatch === 1 ? "" : "s"}">
+      Show More
+      <span class="show-more-count">+${nextBatch} of ${remaining} remaining</span>
+    </button>
+    <span class="catalog-show-more-rule" aria-hidden="true"></span>
+  `;
+}
+
+function renderCatalog() {
+  const gridContainer = document.getElementById("catalog-grid");
+  if (!gridContainer) return;
+
+  catalogVisibleCount = CATALOG_PAGE_SIZE;
+  const filtered = getFilteredTiles();
+
+  updateDisplayedCount(Math.min(catalogVisibleCount, filtered.length), filtered.length);
+
+  if (filtered.length === 0) {
+    gridContainer.innerHTML = `
+      <div style="grid-column: 1 / -1; padding: 48px; text-align: center; background: var(--surface-sheet); border: var(--border-core); box-shadow: var(--shadow-base);">
+        <p class="font-mono text-h3" style="margin-bottom: 8px;">NO DRAFT SPECIFICATIONS FOUND</p>
+        <p class="text-body-sm" style="color: var(--ink-muted);">No Style Tiles match "${currentSearchQuery}". Try clearing search query or filter tags.</p>
+        <button class="btn btn-mustard btn-sm" style="margin-top: 16px;" onclick="resetFilters()">Reset All Filters</button>
+      </div>
+    `;
+    updateShowMoreBar(0);
+    return;
+  }
+
+  const visibleTiles = filtered.slice(0, catalogVisibleCount);
+  gridContainer.innerHTML = visibleTiles.map(renderTileCard).join("");
+  updateShowMoreBar(filtered.length);
+
+  requestAnimationFrame(resizeCardIframes);
+  setTimeout(resizeCardIframes, 100);
+}
+
+function showMoreTiles() {
+  const gridContainer = document.getElementById("catalog-grid");
+  if (!gridContainer) return;
+
+  const filtered = getFilteredTiles();
+  const alreadyRendered = gridContainer.querySelectorAll(".design-card").length;
+  const nextVisible = Math.min(alreadyRendered + CATALOG_PAGE_SIZE, filtered.length);
+  const nextBatch = filtered.slice(alreadyRendered, nextVisible);
+
+  if (!nextBatch.length) {
+    catalogVisibleCount = filtered.length;
+    updateDisplayedCount(filtered.length, filtered.length);
+    updateShowMoreBar(filtered.length);
+    return;
+  }
+
+  const staging = document.createElement("div");
+  staging.innerHTML = nextBatch.map(renderTileCard).join("");
+  const fragment = document.createDocumentFragment();
+  while (staging.firstChild) fragment.appendChild(staging.firstChild);
+  gridContainer.appendChild(fragment);
+
+  catalogVisibleCount = nextVisible;
+  updateDisplayedCount(catalogVisibleCount, filtered.length);
+  updateShowMoreBar(filtered.length);
 
   requestAnimationFrame(resizeCardIframes);
   setTimeout(resizeCardIframes, 100);
