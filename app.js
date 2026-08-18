@@ -4770,6 +4770,224 @@ Interactive Component Specs:
 - NO headline biscuit pills with pulsing dots placed above the main headline.
 - NO flat textureless surfaces without crisp surface contrast (#EFECE6 canvas vs #FFFFFF cards vs #E5E1D8 raised wells).
 ================================================================================`
+  },
+  {
+    id: "TILE-029",
+    slug: "vintage-modern-quirky-brutalism",
+    name: "Vintage-Modern Editorial & Quirky Neo-Brutalism",
+    vibe: "Warm Vanilla Newsprint • High-Energy Tangerine • Checkerboard Ribbons • Serrated Starbursts • 0px Razor Geometry • Playful Line Mascots",
+    vibeBadge: "Neo-Brutalism",
+    categories: ["brutalist"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Syne",
+      sans: "Plus Jakarta Sans",
+      mono: "Space Mono"
+    },
+    palette: [
+      { name: "Base Canvas", hex: "#FAF7EE" },
+      { name: "Grid Micro-Line", hex: "#EBE5D8" },
+      { name: "Clean White", hex: "#FFFFFF" },
+      { name: "Deep Ink", hex: "#240A18" },
+      { name: "Muted Plum", hex: "#4A3542" },
+      { name: "Action Tangerine", hex: "#FA6A1C" },
+      { name: "Periwinkle Blue", hex: "#6B8CFE" },
+      { name: "Forest Pine", hex: "#1C5443" }
+    ],
+    description: "Vintage-Modern Editorial & Quirky Neo-Brutalism: A tactile, high-personality editorial design architecture fusing newsprint cream papercraft (#FAF7EE) with razor-sharp 0px brutalist geometry, rich plum deep ink (#240A18), high-energy tangerine (#FA6A1C), periwinkle blue, two-tone forest pine checkerboard ribbons, and serrated starburst decals.",
+    markdownSpec: `================================================================================
+  DESIGN SYSTEM STYLE TILE // "VINTAGE-MODERN EDITORIAL & QUIRKY NEO-BRUTALISM" (TILE-029)
+  Aesthetic: Vintage-Modern Editorial • Quirky Neo-Brutalism • Warm Vanilla • Tangerine • Deep Ink
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Vintage-Modern Editorial & Quirky Neo-Brutalism is a high-personality design language
+that fuses the tactile warmth of newsprint editorial with the bold, unapologetic geometry
+of Neo-Brutalism. Built on a warm vanilla canvas (#FAF7EE) etched with a faint 24px micro-grid,
+it pairs rich dark blackcurrant ink (#240A18) with a vibrant decal spectrum of tangerine (#FA6A1C),
+periwinkle blue (#6B8CFE), dusty petal pink (#F7ADC2), and forest pine (#1C5443).
+With razor-sharp 0px structural geometry, hard zero-blur offset shadows, dynamic serrated starbursts,
+checkerboard ribbon trims, and playful continuous-line character art, it delivers an eccentric,
+memorable editorial atmosphere for modern publishing, creative agencies, cultural zines,
+and avant-garde SaaS products.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FAF7EE; /* Warm Vanilla / Newsprint Cream */
+  --bg-grid-line:           #EBE5D8; /* Faint Graph Grid, 1px on 24px tile */
+  --bg-surface-clean:       #FFFFFF; /* Pristine Paper for nav bars/callouts */
+  --bg-surface-alt:         #F3EDE0; /* Recessed paper well / warm tint */
+  --bg-surface-dark:        #240A18; /* Inverted containers / Deep Ink */
+
+  /* Inks & Typography */
+  --ink-primary:            #240A18; /* Deep Ink (Very Dark Blackcurrant / Rich Plum) */
+  --ink-body:               #4A3542; /* Muted Plum for body paragraphs */
+  --ink-subtle:             #7E6B77; /* Soft plum captions, placeholders */
+  --ink-inverted:           #FAF7EE; /* Warm vanilla on dark surfaces */
+  --ink-white:              #FFFFFF; /* Crisp white on saturated fills */
+
+  /* Accent & Decal Spectrum */
+  --accent-action:          #FA6A1C; /* Action Primary: Tangerine / High-Energy Orange */
+  --accent-action-hover:    #240A18; /* Button hover state tone */
+  --accent-periwinkle:      #6B8CFE; /* Electric Slate Sky */
+  --accent-pink:            #F7ADC2; /* Soft Petal Pink / Dusty Carnation */
+  --accent-pine:            #1C5443; /* Forest Pine / Deep Botanical Racing Green */
+  --accent-amber:           #F28C28; /* Marigold Amber / Warm Ochre */
+
+  /* Status Tokens */
+  --status-success:         #1C5443; /* Forest Pine */
+  --status-warning:         #F28C28; /* Marigold Amber */
+  --status-danger:          #E63946; /* Crimson Red */
+  --status-info:            #6B8CFE; /* Periwinkle Blue */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display:             "Syne", "Fraunces", "Clash Display", sans-serif;
+--font-sans:                "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-header:              "Space Grotesk", "Syne", "Cabinet Grotesk", sans-serif;
+--font-mono:                "Space Mono", "JetBrains Mono", monospace;
+
+/* Type Scale & Styles */
+• Display / Hero Title:
+    Font Family:    var(--font-display)
+    Weight:         800 / 900 (ExtraBold / Black)
+    Transform:      UPPERCASE
+    Letter-Spacing: -0.03em
+    Line-Height:    0.95 – 1.05
+    Size:           clamp(3.0rem, 6.5vw, 5.5rem)
+
+• Navigation & Action Headers:
+    Font Family:    var(--font-header)
+    Weight:         700 / 800 (Bold / Heavy)
+    Transform:      UPPERCASE
+    Letter-Spacing: +0.06em
+    Line-Height:    1.0
+    Size:           14px – 16px (0.875rem – 1.0rem)
+
+• Section & Card Headings (H2 / H3):
+    Font Family:    var(--font-display)
+    Weight:         700 / 800
+    Letter-Spacing: -0.02em
+    Line-Height:    1.15
+    Size:           1.5rem – 2.25rem
+
+• Body & Narrative:
+    Font Family:    var(--font-sans)
+    Weight:         400 (Regular) / 500 (Medium)
+    Letter-Spacing: 0em
+    Line-Height:    1.55
+    Size:           16px – 18px (1.0rem – 1.125rem)
+
+• Badge & Sticker Labels:
+    Font Family:    var(--font-mono)
+    Weight:         700 (Ultra-Bold)
+    Transform:      UPPERCASE
+    Letter-Spacing: +0.08em
+    Line-Height:    1.0
+    Size:           10px – 12px (0.625rem – 0.75rem)
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-structural:        0px;       /* Strict, razor-sharp brutalist edges for all cards, containers, buttons */
+--radius-badge-pill:        9999px;    /* Pill capsule for select sub-labels and chips */
+--shape-starburst-12:       polygon(50% 0%, 63% 13%, 80% 6%, 85% 24%, 100% 29%, 94% 47%, 100% 65%, 85% 71%, 80% 89%, 63% 82%, 50% 95%, 37% 82%, 20% 89%, 15% 71%, 0% 65%, 6% 47%, 0% 29%, 15% 24%, 20% 6%, 37% 13%);
+--shape-starburst-16:       polygon(50% 0%, 59% 10%, 71% 4%, 77% 16%, 90% 14%, 92% 27%, 100% 33%, 97% 46%, 100% 60%, 92% 67%, 90% 80%, 77% 78%, 71% 90%, 59% 84%, 50% 94%, 41% 84%, 29% 90%, 23% 78%, 10% 80%, 8% 67%, 0% 60%, 3% 46%, 0% 33%, 8% 27%, 10% 14%, 23% 16%, 29% 4%, 41% 10%);
+--shape-scallop-stamp:      radial-gradient(circle at 10px 10px, transparent 4px, #FAF7EE 4.5px);
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * Flat Physical Collage / 2D Z-Index Layering
+ * -------------------------------------------------------------------------- */
+--elevation-level-0:        #FAF7EE canvas with faint 24px micro-grid;
+--elevation-level-1:        Flat layout containers & structural frames (0px radii);
+--elevation-level-2:        Line-art illustrative characters overlapping type;
+--elevation-level-3:        "Stickers" & "Decals" floating over headings (Rotated: -8deg, +4deg, +12deg);
+
+/* Shadows */
+--shadow-none:              none;
+--shadow-hard-offset:       2px 2px 0px #240A18;
+--shadow-hard-hover:        3px 3px 0px #240A18;
+--shadow-hard-pressed:      0px 0px 0px #240A18;
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (8-Point Grid)
+ * -------------------------------------------------------------------------- */
+--space-8:                  8px;
+--space-16:                 16px;
+--space-24:                 24px;
+--space-32:                 32px;
+--space-48:                 48px;
+--space-64:                 64px;
+--space-96:                 96px;
+
+--canvas-grid-size:         24px;      /* 24px × 24px faint grid mesh overlay */
+--typography-tension:       Ultra-tight line heights paired with 64px+ negative margins;
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-hairline:          1px solid #240A18; /* Crisp box segmenting on nav & modules */
+--border-thick:             2px solid #240A18; /* High-contrast card & hero frames */
+--border-heavy:             3px solid #240A18; /* Outer layout boundaries */
+--ribbon-checkerboard:      conic-gradient(#1C5443 90deg, #FAF7EE 90deg 180deg, #1C5443 180deg 270deg, #FAF7EE 270deg); /* 16px high ribbon */
+--illustration-stroke:      2.5px;             /* Uniform stroke for line illustrations */
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY & GRAPHIC ACCENTS
+ * -------------------------------------------------------------------------- */
+• Accent Motifs:            4-Point Retro Sparkles (✦), 8-Point Twinkle Stars (✴), Daisy/Floral Stamps (✿), Circular Rosettes, Die-Cut Stamp Perforations
+• Navigation Glyphs:        Monoline Directional Vectors (→, ⌄, ↗, ←)
+• Illustration Voice:       Playful continuous-line character art rendered in solid #240A18 stroke with minimal flat color blocking
+
+/* -----------------------------------------------------------------------------
+ * 9. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+• Primary CTA Button:
+    Background:             #FA6A1C (Tangerine)
+    Color:                  #FFFFFF
+    Border:                 1px solid #240A18
+    Radius:                 0px (Strict brutalist edge)
+    Typography:             var(--font-header), 800 weight, UPPERCASE, +0.06em
+    Hover State:            Background: #240A18 | Color: #FAF7EE | Transform: translateX(4px)
+    Active State:           Transform: scale(0.98)
+
+• Interactive Stickers / Badges:
+    Default:                Angled static rotation (transform: rotate(-6deg) or +4deg)
+    Hover State:            Transform: rotate(0deg) scale(1.12) | Cursor: pointer | Transition: 200ms cubic-bezier(0.34, 1.56, 0.64, 1)
+
+• Navigation Items:
+    Default:                Transparent background | Color: #240A18
+    Hover State:            Color: #FA6A1C with a 2px solid bottom underline tick
+
+• Cards & Structural Panels:
+    Default:                Background: #FFFFFF or #FAF7EE | Border: 1px solid #240A18 | Radius: 0px
+    Hover State:            Box-Shadow: 3px 3px 0px #240A18 | Transform: translateY(-2px)
+
+• Inputs & Form Controls:
+    Default:                Background: #FFFFFF | Border: 1px solid #240A18 | Color: #240A18 | Radius: 0px | Font-Size: >= 16px
+    Focus State:            Background: #FAF7EE | Outline: none | Box-Shadow: 2px 2px 0px #FA6A1C
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO rounded card corners on structural containers (strictly 0px brutalist edges).
+- NO purple on dark themes or generic neon violet accents.
+- NO Gaussian blurred drop shadows (strictly flat or hard 0-blur offset shadows).
+- NO textureless digital flat surfaces without the warm vanilla #FAF7EE canvas & 24px micro-grid.
+- NO headline biscuit pills with pulsing dots placed above the main headline.
+- NO gradient text fills across headline keywords.
+- NO icon-stuffed bento boxes with generic 3D glyphs.
+================================================================================`
   }
 ];
 

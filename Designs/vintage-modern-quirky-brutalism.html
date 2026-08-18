@@ -1,0 +1,3239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vintage-Modern Editorial &amp; Quirky Neo-Brutalism // Design System Style Tile (TILE-029)</title>
+  <meta name="description" content="Vintage-Modern Editorial &amp; Quirky Neo-Brutalism (TILE-029): Warm vanilla newsprint canvas (#FAF7EE), 24px micro-grid, deep plum ink (#240A18), high-energy tangerine (#FA6A1C), two-tone forest pine checkerboard ribbons, razor 0px geometry, serrated starbursts, and playful continuous line art.">
+
+  <!-- Google Fonts: Syne (Display Neo-Woodblock), Fraunces (Art Serif), Space Grotesk (Condensed Action Sans), Plus Jakarta Sans (Humanist Body), Space Mono (Micro/Stickers) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Space+Grotesk:wght@500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       01. DESIGN SYSTEM TOKENS & ROLES (TILE-029: VINTAGE-MODERN & QUIRKY NEO-BRUTALISM)
+       ============================================================================= */
+    :root {
+      /* --- 1. Canvas & Surfaces --- */
+      --bg-canvas:              #FAF7EE; /* Warm Vanilla / Newsprint Cream */
+      --bg-grid-line:           #EBE5D8; /* Faint Graph Grid, 1px on 24px tile */
+      --bg-surface-clean:       #FFFFFF; /* Pristine Paper for nav bars/callouts */
+      --bg-surface-alt:         #F3EDE0; /* Recessed paper well / warm tint */
+      --bg-surface-dark:        #240A18; /* Inverted containers / Deep Ink */
+
+      /* --- 2. Inks & Typography --- */
+      --ink-primary:            #240A18; /* Deep Ink: Very Dark Blackcurrant / Rich Plum */
+      --ink-body:               #4A3542; /* Muted Plum for body paragraphs */
+      --ink-subtle:             #7E6B77; /* Soft plum captions, placeholders */
+      --ink-inverted:           #FAF7EE; /* Warm vanilla on dark surfaces */
+      --ink-white:              #FFFFFF; /* Crisp white on saturated fills */
+
+      /* --- 3. Accent & Decal Spectrum --- */
+      --accent-action:          #FA6A1C; /* Action Primary: Tangerine / High-Energy Orange */
+      --accent-action-hover:    #240A18; /* Action Hover tone */
+      --accent-periwinkle:      #6B8CFE; /* Electric Slate Sky */
+      --accent-pink:            #F7ADC2; /* Soft Petal Pink / Dusty Carnation */
+      --accent-pine:            #1C5443; /* Forest Pine / Deep Botanical Racing Green */
+      --accent-amber:           #F28C28; /* Marigold Amber / Warm Ochre */
+
+      /* --- 4. Status Tokens --- */
+      --status-success:         #1C5443; /* Forest Pine */
+      --status-warning:         #F28C28; /* Marigold Amber */
+      --status-danger:          #E63946; /* Crimson Red */
+      --status-info:            #6B8CFE; /* Periwinkle Blue */
+
+      /* --- 5. Typography Stacks --- */
+      --font-display:           "Syne", "Fraunces", sans-serif;
+      --font-serif:             "Fraunces", Georgia, serif;
+      --font-header:            "Space Grotesk", "Syne", sans-serif;
+      --font-body:              "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+      --font-mono:              "Space Mono", monospace;
+
+      /* --- 6. Corner Geometry (Strict 0px Brutalism + Dynamic Sticker Shapes) --- */
+      --radius-structural:      0px;    /* Razor-sharp edges on all containers and buttons */
+      --radius-pill:            9999px; /* Pill capsule for select chips and sub-labels */
+
+      /* --- 7. Elevation & Shadows (Flat Physical Collage / 0 Gaussian Blur) --- */
+      --shadow-none:            none;
+      --shadow-hard-offset:     2px 2px 0px #240A18;
+      --shadow-hard-md:         3px 3px 0px #240A18;
+      --shadow-hard-lg:         5px 5px 0px #240A18;
+      --shadow-hard-pressed:    0px 0px 0px #240A18;
+
+      /* --- 8. Borders & Dividers --- */
+      --border-hairline:        1px solid #240A18;
+      --border-thick:           2px solid #240A18;
+      --border-heavy:           3px solid #240A18;
+      --border-dashed:          2px dashed #240A18;
+      --stroke-illustration:    2.5px;
+
+      /* --- 9. Spatial Scale (8-Point Grid) --- */
+      --space-2xs: 4px;
+      --space-xs:  8px;
+      --space-sm:  12px;
+      --space-md:  16px;
+      --space-lg:  24px;
+      --space-xl:  32px;
+      --space-2xl: 48px;
+      --space-3xl: 64px;
+      --space-4xl: 96px;
+
+      /* --- 10. Dimensions & Motion --- */
+      --max-width: 1280px;
+      --transition-fast: 150ms ease-out;
+      --transition-bounce: 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* =============================================================================
+       02. RESET & BASE CANVAS TEXTURE
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--ink-body);
+      background-color: var(--bg-canvas);
+      /* 24px x 24px Faint Graph Grid Texture */
+      background-image:
+        linear-gradient(to right, var(--bg-grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--bg-grid-line) 1px, transparent 1px);
+      background-size: 24px 24px;
+      background-position: top left;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background-color: var(--accent-action);
+      color: var(--ink-white);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-action);
+      outline-offset: 2px;
+    }
+
+    .layout-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =============================================================================
+       03. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ============================================================================= */
+    .style-tile-header {
+      background-color: var(--bg-surface-clean);
+      border-bottom: 2px solid var(--ink-primary);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px var(--space-lg);
+      gap: var(--space-md);
+      box-shadow: 0 2px 0 var(--ink-primary);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-header);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid var(--ink-primary);
+      background-color: var(--bg-canvas);
+      transition: background-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .nav-back-link:hover {
+      background-color: var(--accent-action);
+      color: var(--ink-white);
+      transform: translateX(-2px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      background-color: var(--ink-primary);
+      color: var(--bg-canvas);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .design-title {
+      font-family: var(--font-header);
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--ink-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      background-color: var(--accent-pink);
+      color: var(--ink-primary);
+      border: 1px solid var(--ink-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-header);
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 8px 14px;
+      border: 1px solid var(--ink-primary);
+      cursor: pointer;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-tile svg {
+      flex-shrink: 0;
+    }
+
+    .btn-tile.btn-preview:hover {
+      background-color: var(--accent-periwinkle);
+      color: var(--ink-primary);
+      box-shadow: 2px 2px 0 var(--ink-primary);
+    }
+
+    .btn-tile.btn-copy {
+      background-color: var(--accent-action);
+      color: var(--ink-white);
+      border-color: var(--ink-primary);
+    }
+
+    .btn-tile.btn-copy:hover {
+      background-color: var(--ink-primary);
+      color: var(--bg-canvas);
+      box-shadow: 2px 2px 0 var(--accent-action);
+      transform: translateY(-1px);
+    }
+
+    .btn-tile.btn-download:hover {
+      background-color: var(--accent-pine);
+      color: var(--ink-white);
+      box-shadow: 2px 2px 0 var(--ink-primary);
+    }
+
+    /* =============================================================================
+       04. DECORATIVE CHECKERBOARD RIBBON
+       ============================================================================= */
+    .checkerboard-ribbon {
+      width: 100%;
+      height: 16px;
+      background-image: conic-gradient(var(--accent-pine) 90deg, var(--bg-canvas) 90deg 180deg, var(--accent-pine) 180deg 270deg, var(--bg-canvas) 270deg);
+      background-size: 16px 16px;
+      border-top: 1px solid var(--ink-primary);
+      border-bottom: 1px solid var(--ink-primary);
+    }
+
+    .checkerboard-ribbon-slim {
+      height: 12px;
+      background-size: 12px 12px;
+    }
+
+    /* =============================================================================
+       05. HERO DISPLAY SECTION
+       ============================================================================= */
+    .hero-section {
+      padding: var(--space-2xl) 0 var(--space-3xl);
+      border-bottom: 2px solid var(--ink-primary);
+      position: relative;
+    }
+
+    .hero-top-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: var(--space-md);
+      margin-bottom: var(--space-lg);
+      border-bottom: 1px solid var(--ink-primary);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-primary);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: var(--space-2xl);
+      align-items: start;
+      position: relative;
+    }
+
+    .hero-main-column {
+      position: relative;
+    }
+
+    .hero-sticker-cluster {
+      position: absolute;
+      top: -24px;
+      right: 0;
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+      pointer-events: auto;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.75rem, 6.5vw, 5.25rem);
+      font-weight: 800;
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      color: var(--ink-primary);
+      margin-bottom: var(--space-lg);
+      position: relative;
+    }
+
+    .hero-title .title-accent {
+      color: var(--accent-action);
+      display: inline-block;
+      position: relative;
+    }
+
+    .hero-title .title-alt-font {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 700;
+      text-transform: lowercase;
+      letter-spacing: -0.02em;
+      color: var(--accent-pine);
+    }
+
+    .hero-lead-box {
+      background-color: var(--bg-surface-clean);
+      border: 2px solid var(--ink-primary);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-xl);
+      box-shadow: var(--shadow-hard-md);
+      position: relative;
+    }
+
+    .hero-lead-text {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--ink-body);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-lead-text strong {
+      color: var(--ink-primary);
+      font-weight: 700;
+    }
+
+    .hero-chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: var(--space-md);
+    }
+
+    .vibe-chip {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border: 1px solid var(--ink-primary);
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+    }
+
+    .vibe-chip.chip-tangerine {
+      background-color: var(--accent-action);
+      color: var(--ink-white);
+    }
+
+    .vibe-chip.chip-periwinkle {
+      background-color: var(--accent-periwinkle);
+    }
+
+    .vibe-chip.chip-pink {
+      background-color: var(--accent-pink);
+    }
+
+    .vibe-chip.chip-pine {
+      background-color: var(--accent-pine);
+      color: var(--ink-white);
+    }
+
+    .vibe-chip.chip-amber {
+      background-color: var(--accent-amber);
+      color: var(--ink-primary);
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: center;
+    }
+
+    .btn-brutal-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font-header);
+      font-size: 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 14px 24px;
+      background-color: var(--accent-action);
+      color: var(--ink-white);
+      border: 1px solid var(--ink-primary);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+      position: relative;
+    }
+
+    .btn-brutal-primary:hover {
+      background-color: var(--ink-primary);
+      color: var(--bg-canvas);
+      transform: translateX(4px);
+      box-shadow: 2px 2px 0 var(--accent-action);
+    }
+
+    .btn-brutal-primary:active {
+      transform: scale(0.98);
+    }
+
+    .btn-brutal-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font-header);
+      font-size: 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 14px 22px;
+      background-color: var(--bg-surface-clean);
+      color: var(--ink-primary);
+      border: 1px solid var(--ink-primary);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-brutal-secondary:hover {
+      background-color: var(--accent-periwinkle);
+      box-shadow: 3px 3px 0 var(--ink-primary);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Right Side: Mascot Art Box */
+    .hero-art-box {
+      background-color: var(--bg-surface-clean);
+      border: 2px solid var(--ink-primary);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-hard-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      position: relative;
+    }
+
+    .hero-art-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--ink-primary);
+      padding-bottom: var(--space-xs);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .mascot-frame {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--ink-primary);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+    }
+
+    .mascot-svg {
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+      stroke: var(--ink-primary);
+      stroke-width: var(--stroke-illustration);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .mascot-caption {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+      margin-top: var(--space-xs);
+    }
+
+    .art-box-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .art-meta-item {
+      padding: 6px 10px;
+      background-color: var(--bg-surface-alt);
+      border: 1px solid var(--ink-primary);
+    }
+
+    .art-meta-item strong {
+      display: block;
+      color: var(--ink-primary);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* =============================================================================
+       06. STICKER, BURST & ROSETTE GRAPHIC ACCENTS
+       ============================================================================= */
+    .sticker-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: transform var(--transition-bounce), filter var(--transition-fast);
+      user-select: none;
+      position: relative;
+    }
+
+    .sticker-badge:hover {
+      transform: scale(1.12) rotate(0deg) !important;
+      z-index: 20;
+    }
+
+    .sticker-badge.rot-neg-8 { transform: rotate(-8deg); }
+    .sticker-badge.rot-pos-4 { transform: rotate(4deg); }
+    .sticker-badge.rot-pos-12 { transform: rotate(12deg); }
+    .sticker-badge.rot-neg-4 { transform: rotate(-4deg); }
+
+    /* Starburst (12-point CSS clip) */
+    .starburst-12 {
+      width: 88px;
+      height: 88px;
+      background-color: var(--accent-action);
+      color: var(--ink-white);
+      clip-path: polygon(50% 0%, 63% 13%, 80% 6%, 85% 24%, 100% 29%, 94% 47%, 100% 65%, 85% 71%, 80% 89%, 63% 82%, 50% 95%, 37% 82%, 20% 89%, 15% 71%, 0% 65%, 6% 47%, 0% 29%, 15% 24%, 20% 6%, 37% 13%);
+      padding: 12px;
+      text-align: center;
+      line-height: 1.1;
+      font-size: 10px;
+      box-shadow: var(--shadow-hard-offset);
+    }
+
+    /* Starburst (16-point CSS clip) */
+    .starburst-16 {
+      width: 96px;
+      height: 96px;
+      background-color: var(--accent-periwinkle);
+      color: var(--ink-primary);
+      clip-path: polygon(50% 0%, 59% 10%, 71% 4%, 77% 16%, 90% 14%, 92% 27%, 100% 33%, 97% 46%, 100% 60%, 92% 67%, 90% 80%, 77% 78%, 71% 90%, 59% 84%, 50% 94%, 41% 84%, 29% 90%, 23% 78%, 10% 80%, 8% 67%, 0% 60%, 3% 46%, 0% 33%, 8% 27%, 10% 14%, 23% 16%, 29% 4%, 41% 10%);
+      padding: 14px;
+      text-align: center;
+      line-height: 1.1;
+      font-size: 10px;
+      border: 1px solid var(--ink-primary);
+    }
+
+    /* Scalloped Stamp Decal */
+    .stamp-rosette {
+      padding: 8px 16px;
+      background-color: var(--accent-pink);
+      color: var(--ink-primary);
+      border: 2px solid var(--ink-primary);
+      box-shadow: 2px 2px 0 var(--ink-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Pill Sticker */
+    .sticker-pill {
+      border-radius: var(--radius-pill);
+      padding: 6px 14px;
+      background-color: var(--accent-pine);
+      color: var(--ink-white);
+      border: 1.5px solid var(--ink-primary);
+      box-shadow: 2px 2px 0 var(--ink-primary);
+    }
+
+    /* =============================================================================
+       07. SECTION CONTAINER SYSTEM & SECTION HEADERS
+       ============================================================================= */
+    .spec-section {
+      padding: var(--space-3xl) 0;
+      border-bottom: 2px solid var(--ink-primary);
+      position: relative;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: var(--space-2xl);
+      border-bottom: 2px solid var(--ink-primary);
+      padding-bottom: var(--space-sm);
+    }
+
+    .section-title-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .section-number {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-action);
+      letter-spacing: 0.08em;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .section-meta-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-subtle);
+    }
+
+    /* =============================================================================
+       08. COLOR ROLES & PALETTE MATRIX (SECTION 1)
+       ============================================================================= */
+    .palette-group-title {
+      font-family: var(--font-header);
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .palette-group-title::before {
+      content: "■";
+      color: var(--accent-action);
+      font-size: 10px;
+    }
+
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .swatch-card {
+      background-color: var(--bg-surface-clean);
+      border: 1px solid var(--ink-primary);
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hard-md);
+    }
+
+    .swatch-preview {
+      height: 96px;
+      width: 100%;
+      border-bottom: 1px solid var(--ink-primary);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 8px;
+    }
+
+    .swatch-preview-grid {
+      background-color: #FAF7EE;
+      background-image:
+        linear-gradient(to right, #EBE5D8 1px, transparent 1px),
+        linear-gradient(to bottom, #EBE5D8 1px, transparent 1px);
+      background-size: 12px 12px;
+    }
+
+    .swatch-copy-badge {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background-color: var(--ink-primary);
+      color: var(--bg-canvas);
+      padding: 2px 6px;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .swatch-card:hover .swatch-copy-badge {
+      opacity: 1;
+    }
+
+    .swatch-body {
+      padding: var(--space-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .swatch-name {
+      font-family: var(--font-header);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-primary);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-action);
+    }
+
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-subtle);
+    }
+
+    .swatch-desc {
+      font-size: 12px;
+      color: var(--ink-body);
+      line-height: 1.4;
+      margin-top: 4px;
+      border-top: 1px dashed rgba(36, 10, 24, 0.2);
+      padding-top: 4px;
+    }
+
+    /* WCAG Contrast Strip */
+    .contrast-matrix-box {
+      background-color: var(--bg-surface-clean);
+      border: 1px solid var(--ink-primary);
+      padding: var(--space-lg);
+      margin-top: var(--space-lg);
+    }
+
+    .contrast-matrix-title {
+      font-family: var(--font-header);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .contrast-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .contrast-chip {
+      padding: var(--space-md);
+      border: 1px solid var(--ink-primary);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contrast-chip-val {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* =============================================================================
+       09. TYPOGRAPHY SYSTEM & SPECIMEN LAB (SECTION 2)
+       ============================================================================= */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .type-font-card {
+      background-color: var(--bg-surface-clean);
+      border: 1px solid var(--ink-primary);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-hard-offset);
+    }
+
+    .font-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--ink-primary);
+      padding-bottom: var(--space-xs);
+      margin-bottom: var(--space-md);
+    }
+
+    .font-role-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-action);
+    }
+
+    .font-sample-display {
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.0;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      color: var(--ink-primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .font-sample-serif {
+      font-family: var(--font-serif);
+      font-size: 2.25rem;
+      font-style: italic;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--accent-pine);
+      margin-bottom: var(--space-sm);
+    }
+
+    .font-sample-header {
+      font-family: var(--font-header);
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .font-sample-body {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--ink-body);
+      margin-bottom: var(--space-sm);
+    }
+
+    .font-sample-mono {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--ink-primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .font-charset {
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--ink-subtle);
+      border-top: 1px dashed rgba(36, 10, 24, 0.2);
+      padding-top: var(--space-xs);
+      word-break: break-all;
+    }
+
+    /* Type Hierarchy Ladder */
+    .type-ladder-box {
+      background-color: var(--bg-surface-clean);
+      border: 2px solid var(--ink-primary);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+      box-shadow: var(--shadow-hard-md);
+    }
+
+    .type-ladder-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      align-items: baseline;
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid var(--bg-grid-line);
+      gap: var(--space-md);
+    }
+
+    .type-ladder-row:last-child {
+      border-bottom: none;
+    }
+
+    .type-ladder-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-subtle);
+    }
+
+    .type-scale-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      color: var(--ink-primary);
+    }
+
+    .type-scale-h1 {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .type-scale-h2 {
+      font-family: var(--font-header);
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+    }
+
+    .type-scale-h3 {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--accent-pine);
+    }
+
+    .type-scale-body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--ink-body);
+    }
+
+    .type-scale-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-action);
+    }
+
+    /* Live Interactive Pangram Tester */
+    .interactive-tester-box {
+      background-color: var(--bg-surface-alt);
+      border: 2px solid var(--ink-primary);
+      padding: var(--space-xl);
+    }
+
+    .tester-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: center;
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--ink-primary);
+    }
+
+    .tester-control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tester-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .tester-btn {
+      font-family: var(--font-header);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 6px 12px;
+      border: 1px solid var(--ink-primary);
+      background-color: var(--bg-surface-clean);
+      color: var(--ink-primary);
+      cursor: pointer;
+    }
+
+    .tester-btn.active {
+      background-color: var(--accent-action);
+      color: var(--ink-white);
+    }
+
+    .tester-slider {
+      accent-color: var(--accent-action);
+    }
+
+    .tester-editable-output {
+      font-family: var(--font-display);
+      font-size: 42px;
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      color: var(--ink-primary);
+      background-color: var(--bg-surface-clean);
+      border: 1px solid var(--ink-primary);
+      padding: var(--space-lg);
+      min-height: 120px;
+      outline: none;
+    }
+
+    .tester-editable-output:focus {
+      border-color: var(--accent-action);
+      box-shadow: 2px 2px 0 var(--accent-action);
+    }
+
+    /* =============================================================================
+       10. CORNER GEOMETRY & GRAPHIC ACCENTS (SECTION 3)
+       ============================================================================= */
+    .geometry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .geometry-card {
+      background-color: var(--bg-surface-clean);
+      border: 2px solid var(--ink-primary);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-hard-offset);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .geometry-card-title {
+      font-family: var(--font-header);
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+      border-bottom: 1px solid var(--ink-primary);
+      padding-bottom: 6px;
+    }
+
+    .sticker-playboard {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--ink-primary);
+      padding: var(--space-xl);
+      min-height: 180px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-lg);
+      position: relative;
+    }
+
+    /* Motifs Grid */
+    .motifs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .motif-item {
+      background-color: var(--bg-surface-clean);
+      border: 1px solid var(--ink-primary);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+      transition: transform var(--transition-bounce);
+      cursor: pointer;
+    }
+
+    .motif-item:hover {
+      transform: translateY(-4px) rotate(2deg);
+      box-shadow: 2px 2px 0 var(--ink-primary);
+    }
+
+    .motif-glyph {
+      font-size: 28px;
+      line-height: 1;
+      color: var(--accent-action);
+    }
+
+    .motif-svg-icon {
+      width: 36px;
+      height: 36px;
+      stroke: var(--ink-primary);
+      stroke-width: 2.5;
+      fill: none;
+    }
+
+    .motif-name {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* =============================================================================
+       11. COMPONENT ARCHETYPE GALLERY (SECTION 4)
+       ============================================================================= */
+    .components-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .component-panel {
+      background-color: var(--bg-surface-clean);
+      border: 2px solid var(--ink-primary);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-hard-offset);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .component-panel-title {
+      font-family: var(--font-header);
+      font-size: 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+      border-bottom: 2px solid var(--ink-primary);
+      padding-bottom: var(--space-xs);
+    }
+
+    /* Button Showcase */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-brutal-inverted {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-header);
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 12px 20px;
+      background-color: var(--ink-primary);
+      color: var(--bg-canvas);
+      border: 1px solid var(--ink-primary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-brutal-inverted:hover {
+      background-color: var(--accent-action);
+      color: var(--ink-white);
+      transform: translateX(4px);
+    }
+
+    .btn-brutal-periwinkle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-header);
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 12px 20px;
+      background-color: var(--accent-periwinkle);
+      color: var(--ink-primary);
+      border: 1px solid var(--ink-primary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-brutal-periwinkle:hover {
+      background-color: var(--ink-primary);
+      color: var(--ink-white);
+      box-shadow: 2px 2px 0 var(--accent-periwinkle);
+    }
+
+    .btn-brutal-pink {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-header);
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 12px 20px;
+      background-color: var(--accent-pink);
+      color: var(--ink-primary);
+      border: 1px solid var(--ink-primary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-brutal-pink:hover {
+      background-color: var(--ink-primary);
+      color: var(--accent-pink);
+    }
+
+    .btn-brutal-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-header);
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 12px 20px;
+      background-color: transparent;
+      color: var(--ink-primary);
+      border: 1px solid var(--ink-primary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-brutal-ghost:hover {
+      background-color: var(--bg-surface-alt);
+      box-shadow: 2px 2px 0 var(--ink-primary);
+    }
+
+    /* Form Controls */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-family: var(--font-header);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+    }
+
+    .brutal-input {
+      font-family: var(--font-body);
+      font-size: 16px;
+      padding: 12px 14px;
+      border: 1px solid var(--ink-primary);
+      background-color: var(--bg-surface-clean);
+      color: var(--ink-primary);
+      border-radius: 0px;
+      outline: none;
+      transition: all var(--transition-fast);
+    }
+
+    .brutal-input:focus {
+      background-color: var(--bg-canvas);
+      box-shadow: 2px 2px 0 var(--accent-action);
+      border-color: var(--accent-action);
+    }
+
+    .controls-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .checkbox-label, .radio-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-header);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .brutal-checkbox {
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid var(--ink-primary);
+      background-color: var(--bg-surface-clean);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--ink-white);
+      transition: background-color var(--transition-fast);
+    }
+
+    .brutal-checkbox.checked {
+      background-color: var(--accent-action);
+    }
+
+    .brutal-toggle {
+      width: 48px;
+      height: 24px;
+      border: 1.5px solid var(--ink-primary);
+      background-color: var(--bg-surface-alt);
+      position: relative;
+      cursor: pointer;
+      transition: background-color var(--transition-fast);
+    }
+
+    .brutal-toggle.active {
+      background-color: var(--accent-pine);
+    }
+
+    .brutal-toggle-thumb {
+      width: 18px;
+      height: 18px;
+      background-color: var(--ink-primary);
+      position: absolute;
+      top: 1.5px;
+      left: 2px;
+      transition: transform var(--transition-fast), background-color var(--transition-fast);
+    }
+
+    .brutal-toggle.active .brutal-toggle-thumb {
+      transform: translateX(23px);
+      background-color: var(--bg-canvas);
+    }
+
+    /* Cards & Containers Showcase */
+    .card-archetype-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .editorial-col-card {
+      background-color: var(--bg-surface-clean);
+      border: 1px solid var(--ink-primary);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .editorial-col-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 3px 3px 0 var(--ink-primary);
+    }
+
+    .inverted-feature-card {
+      background-color: var(--ink-primary);
+      color: var(--bg-canvas);
+      padding: var(--space-md);
+      border: 1px solid var(--ink-primary);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .inverted-feature-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      color: var(--accent-action);
+    }
+
+    /* Scalloped Stamp Coupon Card */
+    .stamp-coupon-card {
+      background-color: var(--bg-surface-clean);
+      border: 2px dashed var(--ink-primary);
+      padding: var(--space-md);
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-image: radial-gradient(circle at 0px 50%, transparent 8px, var(--bg-surface-clean) 8.5px), radial-gradient(circle at 100% 50%, transparent 8px, var(--bg-surface-clean) 8.5px);
+    }
+
+    /* =============================================================================
+       12. LIVING MICRO-EXPERIENCE: "THE DAILY EPHEMERA" (SECTION 5)
+       ============================================================================= */
+    .demo-wrapper {
+      background-color: var(--bg-surface-clean);
+      border: 2px solid var(--ink-primary);
+      box-shadow: var(--shadow-hard-lg);
+      overflow: hidden;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .demo-masthead {
+      border-bottom: 2px solid var(--ink-primary);
+      padding: var(--space-md) var(--space-lg);
+      background-color: var(--bg-surface-clean);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .demo-masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid var(--bg-grid-line);
+      padding-bottom: 6px;
+    }
+
+    .demo-gazette-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.0rem, 5vw, 3.75rem);
+      font-weight: 800;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+      line-height: 0.95;
+      padding: var(--space-xs) 0;
+    }
+
+    .demo-gazette-title span {
+      color: var(--accent-action);
+    }
+
+    .demo-issue-nav {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--ink-primary);
+      padding-top: 8px;
+    }
+
+    .issue-tab-btn {
+      font-family: var(--font-header);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 6px 14px;
+      border: 1px solid var(--ink-primary);
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .issue-tab-btn.active {
+      background-color: var(--accent-action);
+      color: var(--ink-white);
+      box-shadow: 2px 2px 0 var(--ink-primary);
+    }
+
+    .demo-body-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      border-bottom: 2px solid var(--ink-primary);
+    }
+
+    .demo-article-col {
+      padding: var(--space-xl);
+      border-right: 2px solid var(--ink-primary);
+      background-color: var(--bg-canvas);
+      /* Grid background */
+      background-image:
+        linear-gradient(to right, var(--bg-grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--bg-grid-line) 1px, transparent 1px);
+      background-size: 24px 24px;
+      position: relative;
+    }
+
+    .demo-article-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--ink-primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .demo-article-subhead {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.25rem;
+      line-height: 1.35;
+      color: var(--accent-pine);
+      margin-bottom: var(--space-lg);
+    }
+
+    .demo-pull-quote {
+      border-left: 3px solid var(--accent-action);
+      padding-left: var(--space-md);
+      margin: var(--space-lg) 0;
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--ink-primary);
+    }
+
+    .demo-interactive-canvas {
+      padding: var(--space-xl);
+      background-color: var(--bg-surface-clean);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .interactive-canvas-header {
+      font-family: var(--font-header);
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+      border-bottom: 1px solid var(--ink-primary);
+      padding-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sticker-selector-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .stamp-palette-btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 6px 12px;
+      border: 1px solid var(--ink-primary);
+      background-color: var(--bg-canvas);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .stamp-palette-btn:hover {
+      background-color: var(--accent-periwinkle);
+      transform: translateY(-2px);
+    }
+
+    .sticker-drop-target {
+      min-height: 220px;
+      border: 2px dashed var(--ink-primary);
+      background-color: var(--bg-canvas);
+      padding: var(--space-md);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-md);
+      position: relative;
+    }
+
+    .drop-hint {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      pointer-events: none;
+    }
+
+    /* Print Dispatch Simulator Bar */
+    .demo-dispatch-bar {
+      padding: var(--space-md) var(--space-xl);
+      background-color: var(--bg-surface-alt);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .dispatch-info {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-primary);
+    }
+
+    .dispatch-info strong {
+      color: var(--accent-action);
+    }
+
+    /* =============================================================================
+       13. STYLE TILE PROMPT CODE DRAWER & ACCORDION (SECTION 6)
+       ============================================================================= */
+    .prompt-drawer-box {
+      background-color: var(--bg-surface-dark);
+      color: var(--bg-canvas);
+      border: 2px solid var(--ink-primary);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-3xl);
+      box-shadow: var(--shadow-hard-lg);
+    }
+
+    .prompt-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(250, 247, 238, 0.2);
+      padding-bottom: var(--space-md);
+      margin-bottom: var(--space-lg);
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .prompt-drawer-title {
+      font-family: var(--font-header);
+      font-size: 16px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent-action);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .prompt-pre-container {
+      background-color: #15060E;
+      border: 1px solid rgba(250, 247, 238, 0.2);
+      padding: var(--space-lg);
+      max-height: 420px;
+      overflow-y: auto;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #FAF7EE;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* =============================================================================
+       14. FLOATING TOAST NOTIFICATION
+       ============================================================================= */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast-message {
+      background-color: var(--ink-primary);
+      color: var(--bg-canvas);
+      border: 2px solid var(--accent-action);
+      padding: 12px 20px;
+      font-family: var(--font-header);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      box-shadow: 4px 4px 0 var(--accent-action);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform var(--transition-fast), opacity var(--transition-fast);
+      pointer-events: auto;
+    }
+
+    .toast-message.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* =============================================================================
+       15. MARKDOWN SPEC MODAL (Preview Style Tile)
+       ============================================================================= */
+    .spec-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(36, 10, 24, 0.85);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      backdrop-filter: blur(4px);
+    }
+
+    .spec-modal-backdrop.open {
+      display: flex;
+    }
+
+    .spec-modal-dialog {
+      background-color: var(--bg-canvas);
+      border: 3px solid var(--ink-primary);
+      box-shadow: 8px 8px 0 var(--accent-action);
+      width: 100%;
+      max-width: 960px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      animation: modalPop 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes modalPop {
+      0% { transform: scale(0.95); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      background-color: var(--bg-surface-clean);
+      border-bottom: 2px solid var(--ink-primary);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-family: var(--font-header);
+      font-size: 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: 1px solid var(--ink-primary);
+      padding: 4px 10px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      background-color: var(--accent-pink);
+      color: var(--ink-primary);
+    }
+
+    .modal-close-btn:hover {
+      background-color: var(--accent-action);
+      color: var(--ink-white);
+    }
+
+    .modal-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-pre {
+      background-color: #15060E;
+      color: #FAF7EE;
+      padding: var(--space-md);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid var(--ink-primary);
+    }
+
+    .modal-footer {
+      background-color: var(--bg-surface-clean);
+      border-top: 2px solid var(--ink-primary);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    /* =============================================================================
+       16. PAGE-SPECIFIC RESPONSIVE OVERRIDES
+       ============================================================================= */
+    @media (max-width: 768px) {
+      .hero-grid,
+      .type-specimen-grid,
+      .components-layout,
+      .demo-body-grid,
+      .card-archetype-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .hero-section {
+        padding: var(--space-lg) 0;
+      }
+
+      .hero-sticker-cluster {
+        position: static;
+        margin-bottom: var(--space-md);
+        flex-wrap: wrap;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-brutal-primary,
+      .btn-brutal-secondary {
+        width: 100%;
+        text-align: center;
+      }
+
+      .type-ladder-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .demo-article-col {
+        border-right: none;
+        border-bottom: 2px solid var(--ink-primary);
+      }
+    }
+  </style>
+
+  <!-- Mandatory Mobile Safety Sheet (agent.md Section 6) -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+</head>
+<body>
+
+  <!-- 01. MANDATORY HEADER BAR COMPONENT (agent.md Section 2) -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-029</span>
+      <span class="design-title">Vintage-Modern Quirky Brutalism</span>
+      <span class="design-vibe-tag">Neo-Brutalism</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-vintage-modern-quirky-brutalism.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <!-- Decorative Checkerboard Ribbon -->
+  <div class="checkerboard-ribbon" aria-hidden="true"></div>
+
+  <!-- MAIN WRAPPER -->
+  <main class="layout-wrapper">
+
+    <!-- 02. HERO DISPLAY SECTION -->
+    <section class="hero-section">
+      <div class="hero-top-strip">
+        <span>★ ARCHIVE NO. 2026 // VOL. 29</span>
+        <span>NEWS-PRINT MATRIX // 24PX GRID</span>
+        <span>STATUS: SYSTEM ACTIVE ✦</span>
+      </div>
+
+      <div class="hero-grid">
+        <!-- Main Column -->
+        <div class="hero-main-column">
+          <!-- Floating Sticker Cluster -->
+          <div class="hero-sticker-cluster">
+            <div class="sticker-badge starburst-12 rot-neg-8" title="Click to inspect sticker!" onclick="showToast('Serrated Starburst: 100% Quirky Novelty')">
+              <span>100%<br>QUIRKY<br>NOVELTY</span>
+            </div>
+            <div class="sticker-badge stamp-rosette rot-pos-4" title="Click to inspect badge!" onclick="showToast('Stamp Rosette: Hand-Set Typography')">
+              <span>✿ HAND-SET</span>
+            </div>
+            <div class="sticker-badge sticker-pill rot-pos-12" title="Click to inspect pill!" onclick="showToast('Pill Capsule: Zero-Blur Depth')">
+              <span>0PX STRICT</span>
+            </div>
+          </div>
+
+          <!-- Main Hero Display Heading -->
+          <h1 class="hero-title">
+            VINTAGE-MODERN EDITORIAL <span class="title-alt-font">&amp;</span> <span class="title-accent">QUIRKY</span> NEO-BRUTALISM
+          </h1>
+
+          <!-- Lead Box -->
+          <div class="hero-lead-box">
+            <p class="hero-lead-text">
+              <strong>A high-personality design architecture</strong> marrying the tactile warmth of newsprint papercraft with the razor-sharp geometric posture of Neo-Brutalism. Built over a <strong>#FAF7EE vanilla grid</strong>, rich <strong>#240A18 deep plum ink</strong>, high-energy <strong>#FA6A1C tangerine</strong>, and botanical checkerboard ribbons.
+            </p>
+            <div class="hero-chips-row">
+              <span class="vibe-chip chip-tangerine">#FA6A1C Tangerine</span>
+              <span class="vibe-chip chip-periwinkle">#6B8CFE Periwinkle</span>
+              <span class="vibe-chip chip-pink">#F7ADC2 Petal Pink</span>
+              <span class="vibe-chip chip-pine">#1C5443 Forest Pine</span>
+              <span class="vibe-chip chip-amber">#F28C28 Marigold</span>
+              <span class="vibe-chip">0px Geometry</span>
+              <span class="vibe-chip">24px Graph Grid</span>
+            </div>
+          </div>
+
+          <!-- Hero CTAs -->
+          <div class="hero-cta-group">
+            <button class="btn-brutal-primary" onclick="copyTilePrompt('TILE-029')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+              Copy Style Tile Prompt
+            </button>
+            <a href="#demo-section" class="btn-brutal-secondary">
+              Explore Living Demo ↓
+            </a>
+            <button class="btn-brutal-ghost" onclick="toggleGridPreview()">
+              Toggle 24px Grid Overlay
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero Mascot & Art Box -->
+        <aside class="hero-art-box">
+          <div class="hero-art-header">
+            <span>EDITORIAL MASCOT // FIG. 01</span>
+            <span>✦ LIVE VECTOR</span>
+          </div>
+
+          <div class="mascot-frame">
+            <!-- Quirky Gazette Cat Mascot SVG -->
+            <svg class="mascot-svg" viewBox="0 0 200 200" aria-label="Quirky Cat Mascot with Spectacles Reading Gazette">
+              <!-- Cat Head Outline -->
+              <path d="M 45 90 L 35 45 L 75 60 C 90 55 110 55 125 60 L 165 45 L 155 90 C 170 120 160 160 100 160 C 40 160 30 120 45 90 Z" fill="#FFFFFF" />
+              <!-- Cat Ears Detail -->
+              <path d="M 48 55 L 70 65" />
+              <path d="M 152 55 L 130 65" />
+              <!-- Horn-rimmed Spectacles (Tangerine fill) -->
+              <rect x="55" y="85" width="38" height="28" fill="#FA6A1C" stroke="#240A18" />
+              <rect x="107" y="85" width="38" height="28" fill="#FA6A1C" stroke="#240A18" />
+              <line x1="93" y1="98" x2="107" y2="98" />
+              <!-- Eyes Inside Glasses -->
+              <circle cx="74" cy="99" r="4" fill="#FFFFFF" stroke="none" />
+              <circle cx="126" cy="99" r="4" fill="#FFFFFF" stroke="none" />
+              <!-- Cat Nose & Whiskers -->
+              <polygon points="96,118 104,118 100,124" fill="#240A18" />
+              <path d="M 100 124 Q 92 135 85 130" />
+              <path d="M 100 124 Q 108 135 115 130" />
+              <!-- Whiskers -->
+              <line x1="45" y1="118" x2="20" y2="114" />
+              <line x1="45" y1="125" x2="18" y2="128" />
+              <line x1="155" y1="118" x2="180" y2="114" />
+              <line x1="155" y1="125" x2="182" y2="128" />
+              <!-- Mini Bowtie (Periwinkle) -->
+              <polygon points="100,160 80,150 80,170" fill="#6B8CFE" stroke="#240A18" />
+              <polygon points="100,160 120,150 120,170" fill="#6B8CFE" stroke="#240A18" />
+              <circle cx="100" cy="160" r="5" fill="#FA6A1C" stroke="#240A18" />
+              <!-- Sparkle Accents -->
+              <path d="M 25 30 Q 30 20 35 30 Q 45 35 35 40 Q 30 50 25 40 Q 15 35 25 30 Z" fill="#F7ADC2" stroke="#240A18" />
+              <path d="M 175 160 Q 180 155 185 160 Q 190 165 185 170 Q 180 175 175 170 Q 170 165 175 160 Z" fill="#F28C28" stroke="#240A18" />
+            </svg>
+            <span class="mascot-caption">“PROSPECTOR” // CHIEF PROOFREADER</span>
+          </div>
+
+          <div class="art-box-meta-grid">
+            <div class="art-meta-item">
+              <strong>STROKE WEIGHT</strong>
+              2.5px Solid Ink
+            </div>
+            <div class="art-meta-item">
+              <strong>DEPTH SYSTEM</strong>
+              2D Flat Collage
+            </div>
+            <div class="art-meta-item">
+              <strong>GEOMETRY</strong>
+              0px Razor Edge
+            </div>
+            <div class="art-meta-item">
+              <strong>GRID STEP</strong>
+              24px Newsprint
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 03. COLOR ROLES & PALETTE MATRIX -->
+    <section class="spec-section" id="palette-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-number">01 //</span>
+          <h2 class="section-title">Color Roles &amp; Palette Matrix</h2>
+        </div>
+        <span class="section-meta-tag">Click Any Swatch to Copy Hex</span>
+      </div>
+
+      <!-- Canvas & Surfaces -->
+      <h3 class="palette-group-title">Canvas &amp; Structural Surfaces</h3>
+      <div class="swatches-grid">
+        <!-- Swatch 1 -->
+        <div class="swatch-card" onclick="copySwatchHex('#FAF7EE', '--bg-canvas')">
+          <div class="swatch-preview" style="background-color: #FAF7EE;">
+            <span class="swatch-copy-badge">Copy Token</span>
+          </div>
+          <div class="swatch-body">
+            <span class="swatch-name">Base Canvas</span>
+            <span class="swatch-hex">#FAF7EE</span>
+            <span class="swatch-var">--bg-canvas</span>
+            <p class="swatch-desc">Warm Vanilla / Newsprint Cream. Primary application background.</p>
+          </div>
+        </div>
+
+        <!-- Swatch 2 -->
+        <div class="swatch-card" onclick="copySwatchHex('#EBE5D8', '--bg-grid-line')">
+          <div class="swatch-preview swatch-preview-grid">
+            <span class="swatch-copy-badge">Copy Token</span>
+          </div>
+          <div class="swatch-body">
+            <span class="swatch-name">Grid Micro-Line</span>
+            <span class="swatch-hex">#EBE5D8</span>
+            <span class="swatch-var">--bg-grid-line</span>
+            <p class="swatch-desc">Faint 1px graph mesh lines spaced on 24px tiles.</p>
+          </div>
+        </div>
+
+        <!-- Swatch 3 -->
+        <div class="swatch-card" onclick="copySwatchHex('#FFFFFF', '--bg-surface-clean')">
+          <div class="swatch-preview" style="background-color: #FFFFFF;">
+            <span class="swatch-copy-badge">Copy Token</span>
+          </div>
+          <div class="swatch-body">
+            <span class="swatch-name">Pristine Paper</span>
+            <span class="swatch-hex">#FFFFFF</span>
+            <span class="swatch-var">--bg-surface-clean</span>
+            <p class="swatch-desc">Crisp white paper for floating cards, nav bars, and callouts.</p>
+          </div>
+        </div>
+
+        <!-- Swatch 4 -->
+        <div class="swatch-card" onclick="copySwatchHex('#F3EDE0', '--bg-surface-alt')">
+          <div class="swatch-preview" style="background-color: #F3EDE0;">
+            <span class="swatch-copy-badge">Copy Token</span>
+          </div>
+          <div class="swatch-body">
+            <span class="swatch-name">Recessed Well</span>
+            <span class="swatch-hex">#F3EDE0</span>
+            <span class="swatch-var">--bg-surface-alt</span>
+            <p class="swatch-desc">Warm paper tint for recessed containers and controls.</p>
+          </div>
+        </div>
+
+        <!-- Swatch 5 -->
+        <div class="swatch-card" onclick="copySwatchHex('#240A18', '--bg-surface-dark')">
+          <div class="swatch-preview" style="background-color: #240A18;">
+            <span class="swatch-copy-badge" style="background-color: #FAF7EE; color: #240A18;">Copy Token</span>
+          </div>
+          <div class="swatch-body">
+            <span class="swatch-name">Inverted Surface</span>
+            <span class="swatch-hex">#240A18</span>
+            <span class="swatch-var">--bg-surface-dark</span>
+            <p class="swatch-desc">Very Dark Blackcurrant. Inverted containers and code vaults.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Inks & Accents Spectrum -->
+      <h3 class="palette-group-title">Primary Inks &amp; Accent Decal Spectrum</h3>
+      <div class="swatches-grid">
+        <!-- Deep Ink -->
+        <div class="swatch-card" onclick="copySwatchHex('#240A18', '--ink-primary')">
+          <div class="swatch-preview" style="background-color: #240A18;">
+            <span class="swatch-copy-badge" style="background-color: #FA6A1C; color: #FFFFFF;">Copy Token</span>
+          </div>
+          <div class="swatch-body">
+            <span class="swatch-name">Deep Ink</span>
+            <span class="swatch-hex">#240A18</span>
+            <span class="swatch-var">--ink-primary</span>
+            <p class="swatch-desc">Rich Dark Plum. Primary reading text, borders, and line strokes.</p>
+          </div>
+        </div>
+
+        <!-- Muted Plum -->
+        <div class="swatch-card" onclick="copySwatchHex('#4A3542', '--ink-body')">
+          <div class="swatch-preview" style="background-color: #4A3542;">
+            <span class="swatch-copy-badge" style="background-color: #FAF7EE; color: #240A18;">Copy Token</span>
+          </div>
+          <div class="swatch-body">
+            <span class="swatch-name">Muted Plum</span>
+            <span class="swatch-hex">#4A3542</span>
+            <span class="swatch-var">--ink-body</span>
+            <p class="swatch-desc">Soft Ink for secondary paragraphs and long-form narrative.</p>
+          </div>
+        </div>
+
+        <!-- Tangerine Action -->
+        <div class="swatch-card" onclick="copySwatchHex('#FA6A1C', '--accent-action')">
+          <div class="swatch-preview" style="background-color: #FA6A1C;">
+            <span class="swatch-copy-badge">Copy Token</span>
+          </div>
+          <div class="swatch-body">
+            <span class="swatch-name">Action Tangerine</span>
+            <span class="swatch-hex">#FA6A1C</span>
+            <span class="swatch-var">--accent-action</span>
+            <p class="swatch-desc">High-Energy Orange. Primary CTA buttons, starbursts, focal points.</p>
+          </div>
+        </div>
+
+        <!-- Periwinkle Blue -->
+        <div class="swatch-card" onclick="copySwatchHex('#6B8CFE', '--accent-periwinkle')">
+          <div class="swatch-preview" style="background-color: #6B8CFE;">
+            <span class="swatch-copy-badge">Copy Token</span>
+          </div>
+          <div class="swatch-body">
+            <span class="swatch-name">Periwinkle Blue</span>
+            <span class="swatch-hex">#6B8CFE</span>
+            <span class="swatch-var">--accent-periwinkle</span>
+            <p class="swatch-desc">Electric Slate Sky. Secondary action highlights, stickers, badges.</p>
+          </div>
+        </div>
+
+        <!-- Soft Petal Pink -->
+        <div class="swatch-card" onclick="copySwatchHex('#F7ADC2', '--accent-pink')">
+          <div class="swatch-preview" style="background-color: #F7ADC2;">
+            <span class="swatch-copy-badge">Copy Token</span>
+          </div>
+          <div class="swatch-body">
+            <span class="swatch-name">Soft Petal Pink</span>
+            <span class="swatch-hex">#F7ADC2</span>
+            <span class="swatch-var">--accent-pink</span>
+            <p class="swatch-desc">Dusty Carnation Rose. Delicate decal stamps, tags, rosettes.</p>
+          </div>
+        </div>
+
+        <!-- Forest Pine -->
+        <div class="swatch-card" onclick="copySwatchHex('#1C5443', '--accent-pine')">
+          <div class="swatch-preview" style="background-color: #1C5443;">
+            <span class="swatch-copy-badge" style="background-color: #FAF7EE; color: #1C5443;">Copy Token</span>
+          </div>
+          <div class="swatch-body">
+            <span class="swatch-name">Forest Pine</span>
+            <span class="swatch-hex">#1C5443</span>
+            <span class="swatch-var">--accent-pine</span>
+            <p class="swatch-desc">Deep Botanical Racing Green. Checkerboard ribbons &amp; status success.</p>
+          </div>
+        </div>
+
+        <!-- Marigold Amber -->
+        <div class="swatch-card" onclick="copySwatchHex('#F28C28', '--accent-amber')">
+          <div class="swatch-preview" style="background-color: #F28C28;">
+            <span class="swatch-copy-badge">Copy Token</span>
+          </div>
+          <div class="swatch-body">
+            <span class="swatch-name">Marigold Amber</span>
+            <span class="swatch-hex">#F28C28</span>
+            <span class="swatch-var">--accent-amber</span>
+            <p class="swatch-desc">Warm Ochre Accent. Ratings, warning badges, retro stars.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- WCAG Contrast Matrix Box -->
+      <div class="contrast-matrix-box">
+        <h4 class="contrast-matrix-title">WCAG 2.1 Accessibility &amp; Contrast Validation</h4>
+        <div class="contrast-grid">
+          <div class="contrast-chip" style="background-color: #FAF7EE; color: #240A18;">
+            <span class="contrast-chip-val">15.8:1 (AAA)</span>
+            <span>#240A18 on #FAF7EE Canvas</span>
+          </div>
+          <div class="contrast-chip" style="background-color: #240A18; color: #FAF7EE;">
+            <span class="contrast-chip-val">15.8:1 (AAA)</span>
+            <span>#FAF7EE on #240A18 Inverted</span>
+          </div>
+          <div class="contrast-chip" style="background-color: #FA6A1C; color: #FFFFFF;">
+            <span class="contrast-chip-val">3.4:1 (Large Text)</span>
+            <span>#FFFFFF on #FA6A1C Tangerine</span>
+          </div>
+          <div class="contrast-chip" style="background-color: #1C5443; color: #FAF7EE;">
+            <span class="contrast-chip-val">8.2:1 (AAA)</span>
+            <span>#FAF7EE on #1C5443 Forest Pine</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04. TYPOGRAPHY SYSTEM & SPECIMEN LAB -->
+    <section class="spec-section" id="typography-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-number">02 //</span>
+          <h2 class="section-title">Typography System &amp; Specimen Lab</h2>
+        </div>
+        <span class="section-meta-tag">Google Fonts Pairings</span>
+      </div>
+
+      <!-- Font Specimen Cards -->
+      <div class="type-specimen-grid">
+        <!-- Display Woodblock Font -->
+        <div class="type-font-card">
+          <div class="font-card-header">
+            <span class="font-role-title">HERO DISPLAY // NEO-WOODBLOCK SANS</span>
+            <span class="vibe-chip">Syne 800</span>
+          </div>
+          <p class="font-sample-display">QUIRKY EDITORIAL</p>
+          <p class="font-charset">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789 (Tight Kerning -0.03em, Upper Case)</p>
+        </div>
+
+        <!-- Custom Art Serif Font -->
+        <div class="type-font-card">
+          <div class="font-card-header">
+            <span class="font-role-title">ART SERIF // EDITORIAL ACCENT</span>
+            <span class="vibe-chip">Fraunces Italic</span>
+          </div>
+          <p class="font-sample-serif">Ephemera &amp; Fine Newsprint</p>
+          <p class="font-charset">abcdefghijklmnopqrstuvwxyz 0123456789 (Expressive Glyphs, Optical Size 144)</p>
+        </div>
+
+        <!-- Action / Header Font -->
+        <div class="type-font-card">
+          <div class="font-card-header">
+            <span class="font-role-title">NAVIGATION &amp; BUTTONS // HEAVY GROTESK</span>
+            <span class="vibe-chip">Space Grotesk 800</span>
+          </div>
+          <p class="font-sample-header">TACTILE DISPATCH &amp; CATALOG</p>
+          <p class="font-charset">ALL-CAPS, LETTER-SPACING +0.06EM, BOLD 800 WEIGHT</p>
+        </div>
+
+        <!-- Humanist Body Sans -->
+        <div class="type-font-card">
+          <div class="font-card-header">
+            <span class="font-role-title">NARRATIVE BODY // HUMANIST SANS</span>
+            <span class="vibe-chip">Plus Jakarta Sans</span>
+          </div>
+          <p class="font-sample-body">
+            Every pixel must earn its place on the page. We reject textureless flat digital surfaces in favor of warm vanilla newsprint (#FAF7EE) and rich dark plum ink.
+          </p>
+          <p class="font-charset">Regular 400 &amp; Medium 500, Relaxed Kerning, 1.55 Line-Height</p>
+        </div>
+      </div>
+
+      <!-- Type Hierarchy Ladder -->
+      <div class="type-ladder-box">
+        <h3 class="palette-group-title">Typographic Scale Hierarchy Ladder</h3>
+        
+        <div class="type-ladder-row">
+          <div class="type-ladder-meta">DISPLAY / HERO<br>72PX / 0.95</div>
+          <div class="type-scale-display">ECCENTRIC EDITORIAL</div>
+        </div>
+
+        <div class="type-ladder-row">
+          <div class="type-ladder-meta">HEADING 1<br>36PX / 1.05</div>
+          <div class="type-scale-h1">NEO-BRUTALIST ARCHIVES</div>
+        </div>
+
+        <div class="type-ladder-row">
+          <div class="type-ladder-meta">HEADING 2 / NAV<br>24PX / 1.15</div>
+          <div class="type-scale-h2">PHYSICAL COLLAGE &amp; GRAPHIC DECALS</div>
+        </div>
+
+        <div class="type-ladder-row">
+          <div class="type-ladder-meta">HEADING 3 / SERIF<br>20PX / 1.30</div>
+          <div class="type-scale-h3">Hand-Crafted Gazette Specimens &amp; Rosettes</div>
+        </div>
+
+        <div class="type-ladder-row">
+          <div class="type-ladder-meta">BODY COPY<br>16PX / 1.55</div>
+          <div class="type-scale-body">
+            Built on a 24px micro-grid, the layout uses sharp 0px brutalist containers with hard zero-blur offset shadows to create tangible physical depth.
+          </div>
+        </div>
+
+        <div class="type-ladder-row">
+          <div class="type-ladder-meta">MICRO / BADGE<br>11PX / +0.08EM</div>
+          <div class="type-scale-meta">★ ARCHIVE SPECIFICATION NO. TILE-029 // CONFIRMED NOVELTY</div>
+        </div>
+      </div>
+
+      <!-- Interactive Pangram Tester -->
+      <div class="interactive-tester-box">
+        <div class="tester-controls">
+          <div class="tester-control-group">
+            <span class="tester-label">Font Family:</span>
+            <button class="tester-btn active" id="btn-font-display" onclick="setTesterFont('display')">Display Sans</button>
+            <button class="tester-btn" id="btn-font-serif" onclick="setTesterFont('serif')">Art Serif</button>
+            <button class="tester-btn" id="btn-font-header" onclick="setTesterFont('header')">Action Grotesk</button>
+            <button class="tester-btn" id="btn-font-mono" onclick="setTesterFont('mono')">Sticker Mono</button>
+          </div>
+
+          <div class="tester-control-group">
+            <span class="tester-label">Size: <span id="tester-size-val">42px</span></span>
+            <input type="range" min="16" max="80" value="42" class="tester-slider" oninput="updateTesterSize(this.value)">
+          </div>
+
+          <div class="tester-control-group">
+            <span class="tester-label">Tracking: <span id="tester-tracking-val">-0.03em</span></span>
+            <input type="range" min="-5" max="15" value="-3" class="tester-slider" oninput="updateTesterTracking(this.value)">
+          </div>
+        </div>
+
+        <div id="tester-output" class="tester-editable-output" contenteditable="true" spellcheck="false">
+          THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG ★ 1926–2026
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. CORNER GEOMETRY, ELEVATION & GRAPHIC MOTIFS -->
+    <section class="spec-section" id="geometry-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-number">03 //</span>
+          <h2 class="section-title">Corner Geometry &amp; Graphic Decals</h2>
+        </div>
+        <span class="section-meta-tag">0px Brutalism + Serrated Bursts</span>
+      </div>
+
+      <div class="geometry-grid">
+        <!-- Razor 0px Geometry -->
+        <div class="geometry-card">
+          <span class="geometry-card-title">01. STRUCTURAL UI GEOMETRY</span>
+          <p style="font-size: 14px; color: var(--ink-body);">
+            Strict <strong>0px border-radius</strong> on all structural containers, cards, dialogs, and primary CTA buttons. No soft rounded bento boxes.
+          </p>
+          <div style="background-color: var(--bg-canvas); border: 2px solid var(--ink-primary); padding: 16px; box-shadow: var(--shadow-hard-md);">
+            <span style="font-family: var(--font-header); font-size: 12px; font-weight: 800; text-transform: uppercase;">0px Razor Perimeter</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Sticker Geometry -->
+        <div class="geometry-card">
+          <span class="geometry-card-title">02. ORGANIC &amp; SERRATED STICKERS</span>
+          <p style="font-size: 14px; color: var(--ink-body);">
+            High-chroma decorative decals floating at jaunty angles (<code>-8deg</code>, <code>+4deg</code>, <code>+12deg</code>) with micro-wobble hover physics.
+          </p>
+          <div class="sticker-playboard">
+            <div class="sticker-badge starburst-12 rot-neg-8" title="Click to pop!" onclick="showToast('Serrated Starburst (12-Point)')">
+              <span>SPECIAL<br>EDITION</span>
+            </div>
+            <div class="sticker-badge starburst-16 rot-pos-12" title="Click to pop!" onclick="showToast('Serrated Starburst (16-Point)')">
+              <span>★ NEW ★<br>ZINE</span>
+            </div>
+            <div class="sticker-badge stamp-rosette rot-neg-4" title="Click to pop!" onclick="showToast('Stamp Rosette')">
+              <span>✦ CERTIFIED</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2D Collage Elevation -->
+        <div class="geometry-card">
+          <span class="geometry-card-title">03. FLAT PHYSICAL COLLAGE DEPTH</span>
+          <p style="font-size: 14px; color: var(--ink-body);">
+            Zero Gaussian blur shadows. Physical tactile presence is achieved with crisp 1px borders and hard 2px–5px offset solid blackcurrant drop shadows.
+          </p>
+          <div style="display: flex; gap: 10px;">
+            <div style="flex: 1; padding: 12px; background: #FFF; border: 1px solid #240A18; box-shadow: 2px 2px 0 #240A18; font-family: var(--font-mono); font-size: 11px; text-align: center;">2px Offset</div>
+            <div style="flex: 1; padding: 12px; background: #FFF; border: 1px solid #240A18; box-shadow: 4px 4px 0 #240A18; font-family: var(--font-mono); font-size: 11px; text-align: center;">4px Offset</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Motifs and Glyphs Grid -->
+      <h3 class="palette-group-title">Graphic Accents &amp; Monoline Motifs</h3>
+      <div class="motifs-grid">
+        <div class="motif-item" onclick="showToast('4-Point Retro Sparkle (✦)')">
+          <span class="motif-glyph">✦</span>
+          <span class="motif-name">4-Point Sparkle</span>
+        </div>
+        <div class="motif-item" onclick="showToast('8-Point Twinkle Star (✴)')">
+          <span class="motif-glyph">✴</span>
+          <span class="motif-name">Twinkle Star</span>
+        </div>
+        <div class="motif-item" onclick="showToast('Daisy Flower Stamp (✿)')">
+          <span class="motif-glyph">✿</span>
+          <span class="motif-name">Daisy Stamp</span>
+        </div>
+        <div class="motif-item" onclick="showToast('Checkerboard Segment')">
+          <div style="width: 24px; height: 24px; background-image: conic-gradient(#1C5443 90deg, #FAF7EE 90deg 180deg, #1C5443 180deg 270deg, #FAF7EE 270deg); background-size: 12px 12px; border: 1px solid #240A18;"></div>
+          <span class="motif-name">Checkerboard</span>
+        </div>
+        <div class="motif-item" onclick="showToast('Directional Vector (→)')">
+          <span class="motif-glyph">→</span>
+          <span class="motif-name">Monoline Arrow</span>
+        </div>
+        <div class="motif-item" onclick="showToast('Action External Link (↗)')">
+          <span class="motif-glyph">↗</span>
+          <span class="motif-name">Export Vector</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06. COMPONENT ARCHETYPE GALLERY -->
+    <section class="spec-section" id="components-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-number">04 //</span>
+          <h2 class="section-title">Component Archetype Gallery</h2>
+        </div>
+        <span class="section-meta-tag">Live Interactive Controls</span>
+      </div>
+
+      <div class="components-layout">
+        <!-- Buttons Panel -->
+        <div class="component-panel">
+          <h3 class="component-panel-title">01. Button Suite &amp; Action Triggers</h3>
+          <p style="font-size: 13px; color: var(--ink-body);">
+            Strict 0px corners, high-energy color fills, solid blackcurrant borders, and <code>translateX(4px)</code> hover motion.
+          </p>
+
+          <div class="btn-row">
+            <button class="btn-brutal-primary" onclick="showToast('Clicked Primary Tangerine CTA!')">
+              Primary Action →
+            </button>
+            <button class="btn-brutal-inverted" onclick="showToast('Clicked Inverted Deep Ink!')">
+              Inverted Plum ↗
+            </button>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn-brutal-periwinkle" onclick="showToast('Clicked Periwinkle Blue Button!')">
+              Periwinkle Blue
+            </button>
+            <button class="btn-brutal-pink" onclick="showToast('Clicked Petal Pink Button!')">
+              ✿ Petal Pink
+            </button>
+            <button class="btn-brutal-ghost" onclick="showToast('Clicked Ghost Brutalist Button!')">
+              Ghost Border
+            </button>
+          </div>
+        </div>
+
+        <!-- Form Controls Panel -->
+        <div class="component-panel">
+          <h3 class="component-panel-title">02. Form Controls &amp; Micro-Inputs</h3>
+          
+          <div class="form-group">
+            <label class="form-label" for="sample-input-1">Search Gazette Archives</label>
+            <div style="display: flex; gap: 0;">
+              <input type="text" id="sample-input-1" class="brutal-input" style="flex: 1;" placeholder="e.g. Neo-Woodblock Serifs...">
+              <button class="btn-brutal-primary" style="padding: 0 18px;" onclick="showToast('Searched Archives!')">Go</button>
+            </div>
+          </div>
+
+          <div class="controls-row">
+            <label class="checkbox-label" onclick="toggleBrutalCheckbox(this)">
+              <span class="brutal-checkbox checked">✓</span>
+              <span>Grid Snap (24px)</span>
+            </label>
+
+            <label class="checkbox-label" onclick="toggleBrutalCheckbox(this)">
+              <span class="brutal-checkbox"></span>
+              <span>Print Decals</span>
+            </label>
+
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="form-label">Ink Mode:</span>
+              <div class="brutal-toggle active" onclick="toggleBrutalSwitch(this)" title="Toggle Switch">
+                <div class="brutal-toggle-thumb"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards & Container Archetypes -->
+      <h3 class="palette-group-title">Container Archetypes &amp; Layout Cards</h3>
+      <div class="card-archetype-grid">
+        <!-- Editorial Column Card -->
+        <div class="editorial-col-card">
+          <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--accent-action);">
+            <span>FEATURE NO. 01</span>
+            <span>VOL. 29</span>
+          </div>
+          <h4 style="font-family: var(--font-display); font-size: 1.25rem; text-transform: uppercase; color: var(--ink-primary);">
+            The Woodblock Revival
+          </h4>
+          <p style="font-size: 13.5px; color: var(--ink-body); line-height: 1.5;">
+            Discover how compressed neo-grotesk display types create unparalleled focal punch when juxtaposed with delicate art serifs.
+          </p>
+          <div style="margin-top: auto; padding-top: 8px; border-top: 1px dashed rgba(36,10,24,0.2); display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700;">READ ISSUE →</span>
+            <span class="vibe-chip chip-pink">3 MIN</span>
+          </div>
+        </div>
+
+        <!-- Inverted Feature Card -->
+        <div class="inverted-feature-card">
+          <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--accent-pink);">
+            <span>SPECIAL DISPATCH</span>
+            <span>★ VERIFIED</span>
+          </div>
+          <h4>Zero-Blur Shadow Mechanics</h4>
+          <p style="font-size: 13.5px; color: var(--bg-canvas); line-height: 1.5;">
+            By replacing misty Gaussian blurs with crisp <code>2px 2px 0 #240A18</code> drop offsets, the UI adopts a tactile physical collage aesthetic.
+          </p>
+          <div style="margin-top: auto; padding-top: 8px; border-top: 1px dashed rgba(250,247,238,0.3); display: flex; justify-content: space-between;">
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-action);">INSPECT SPEC →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07. LIVING MICRO-EXPERIENCE: "THE DAILY EPHEMERA" (SECTION 5) -->
+    <section class="spec-section" id="demo-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <span class="section-number">05 //</span>
+          <h2 class="section-title">Living Micro-Experience</h2>
+        </div>
+        <span class="section-meta-tag">The Daily Ephemera &amp; Print Studio</span>
+      </div>
+
+      <div class="demo-wrapper">
+        <!-- Gazette Masthead -->
+        <div class="demo-masthead">
+          <div class="demo-masthead-top">
+            <span>EDITION NO. 42 // WORLDWIDE DISPATCH</span>
+            <span>THE TACTILE PRESS</span>
+            <span>PRICE: 25¢ // WEATHER: BRISK &amp; SUNNY ✦</span>
+          </div>
+          <h2 class="demo-gazette-title">
+            THE DAILY <span>EPHEMERA</span> &amp; GAZETTE
+          </h2>
+          <div class="demo-issue-nav">
+            <button class="issue-tab-btn active" onclick="switchDemoIssue(1, this)">Vol. 42: Neo-Woodblock</button>
+            <button class="issue-tab-btn" onclick="switchDemoIssue(2, this)">Vol. 43: Physical Collages</button>
+            <button class="issue-tab-btn" onclick="switchDemoIssue(3, this)">Vol. 44: Botanical Inks</button>
+          </div>
+        </div>
+
+        <!-- Checkerboard Ribbon Divider -->
+        <div class="checkerboard-ribbon checkerboard-ribbon-slim" aria-hidden="true"></div>
+
+        <!-- Gazette Body Split -->
+        <div class="demo-body-grid">
+          <!-- Left: Editorial Article -->
+          <article class="demo-article-col" id="demo-article-content">
+            <span class="vibe-chip chip-tangerine" style="margin-bottom: 8px; display: inline-block;">LEAD ESSAY</span>
+            <h3 class="demo-article-headline">
+              Why We Traded Gaussian Blurs For Hard Newsprint Geometry
+            </h3>
+            <p class="demo-article-subhead">
+              “When every pixel has tangible weight, the screen ceases to feel like cold glass and begins to feel like living paper.”
+            </p>
+            <p style="font-size: 15px; color: var(--ink-body); line-height: 1.6; margin-bottom: 12px;">
+              The digital design landscape has spent a decade smoothed over by soft gradients, rounded jelly buttons, and frictionless uniformity. Vintage-Modern Editorial &amp; Quirky Neo-Brutalism introduces intentional friction, handcrafted eccentricity, and unapologetic character.
+            </p>
+            <blockquote class="demo-pull-quote">
+              “Texture is memory. The 24px micro-grid and deep blackcurrant ink anchor the reader in a physical place.”
+            </blockquote>
+            <p style="font-size: 15px; color: var(--ink-body); line-height: 1.6;">
+              By combining high-chroma decal accents (tangerine #FA6A1C and electric slate #6B8CFE) with two-tone checkerboard ribbons, each layout becomes a celebratory broadsheet artifact.
+            </p>
+          </article>
+
+          <!-- Right: Interactive Decal & Stamp Board -->
+          <aside class="demo-interactive-canvas">
+            <div class="interactive-canvas-header">
+              <span>✦ DECAL STAMP BOARD</span>
+              <button class="btn-tile" style="padding: 3px 8px; font-size: 11px;" onclick="clearStickerBoard()">Clear</button>
+            </div>
+            
+            <p style="font-size: 12.5px; color: var(--ink-body);">
+              Click any sticker below to stamp it onto the live broadsheet canvas:
+            </p>
+
+            <div class="sticker-selector-row">
+              <button class="stamp-palette-btn" onclick="addStickerToBoard('starburst-12')">★ 12-Pt Burst</button>
+              <button class="stamp-palette-btn" onclick="addStickerToBoard('rosette')">✿ Daisy Stamp</button>
+              <button class="stamp-palette-btn" onclick="addStickerToBoard('approved')">✓ Verified Pill</button>
+              <button class="stamp-palette-btn" onclick="addStickerToBoard('sparkle')">✦ Retro Sparkle</button>
+            </div>
+
+            <!-- Target Drop Canvas -->
+            <div class="sticker-drop-target" id="sticker-board">
+              <span class="drop-hint" id="drop-hint-text">Stamped decals will appear here...</span>
+            </div>
+
+            <!-- Franking Simulator -->
+            <div style="border-top: 1px solid var(--ink-primary); padding-top: 12px;">
+              <span style="font-family: var(--font-header); font-size: 12px; font-weight: 800; text-transform: uppercase; display: block; margin-bottom: 6px;">
+                Dispatch Gazette Issue:
+              </span>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" id="subscriber-name" class="brutal-input" style="flex: 1; padding: 8px 10px; font-size: 13px;" placeholder="Enter Subscriber Name...">
+                <button class="btn-brutal-primary" style="padding: 8px 14px; font-size: 12px;" onclick="dispatchGazette()">
+                  Frank Issue →
+                </button>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Dispatch Bar -->
+        <div class="demo-dispatch-bar">
+          <div class="dispatch-info">
+            <span>LAST FRANKED: <strong id="franked-recipient">NONE YET</strong></span>
+            <span style="margin-left: 16px;">CONSIGNMENT NO: <strong id="franked-consignment">CH-8492-VOL29</strong></span>
+          </div>
+          <span class="vibe-chip chip-pine">READY FOR PRESS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08. STYLE TILE PROMPT CODE DRAWER (SECTION 6) -->
+    <section class="spec-section" id="spec-drawer-section">
+      <div class="prompt-drawer-box">
+        <div class="prompt-drawer-header">
+          <div class="prompt-drawer-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            STYLE TILE MARKDOWN TOKEN VAULT (TILE-029)
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn-tile btn-copy" onclick="copyTilePrompt('TILE-029')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Raw Prompt
+            </button>
+            <button class="btn-tile btn-download" onclick="downloadSpecFile()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download .md
+            </button>
+          </div>
+        </div>
+
+        <pre class="prompt-pre-container" id="markdown-display-pre">Loading Style Tile Specification...</pre>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Checkerboard Ribbon -->
+  <div class="checkerboard-ribbon" aria-hidden="true"></div>
+
+  <!-- FLOATING TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- MARKDOWN SPEC MODAL DIALOG -->
+  <div class="spec-modal-backdrop" id="spec-modal-backdrop">
+    <div class="spec-modal-dialog">
+      <div class="modal-header">
+        <span class="modal-title">Style Tile Specification // TILE-029</span>
+        <button class="modal-close-btn" onclick="closeSpecModal()">✕ Close</button>
+      </div>
+      <div class="modal-body">
+        <pre class="modal-pre" id="modal-markdown-content">Loading markdown spec...</pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-tile btn-copy" onclick="copyTilePrompt('TILE-029')">
+          Copy Prompt
+        </button>
+        <button class="btn-tile btn-download" onclick="downloadSpecFile()">
+          Download .md
+        </button>
+        <button class="btn-tile" onclick="closeSpecModal()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================================================
+       09. RAW MARKDOWN SPECIFICATION SCRIPT (agent.md Section 2 & 4)
+       ============================================================================= -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  DESIGN SYSTEM STYLE TILE // "VINTAGE-MODERN EDITORIAL & QUIRKY NEO-BRUTALISM" (TILE-029)
+  Aesthetic: Vintage-Modern Editorial • Quirky Neo-Brutalism • Warm Vanilla • Tangerine • Deep Ink
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Vintage-Modern Editorial & Quirky Neo-Brutalism is a high-personality design language
+that fuses the tactile warmth of newsprint editorial with the bold, unapologetic geometry
+of Neo-Brutalism. Built on a warm vanilla canvas (#FAF7EE) etched with a faint 24px micro-grid,
+it pairs rich dark blackcurrant ink (#240A18) with a vibrant decal spectrum of tangerine (#FA6A1C),
+periwinkle blue (#6B8CFE), dusty petal pink (#F7ADC2), and forest pine (#1C5443).
+With razor-sharp 0px structural geometry, hard zero-blur offset shadows, dynamic serrated starbursts,
+checkerboard ribbon trims, and playful continuous-line character art, it delivers an eccentric,
+memorable editorial atmosphere for modern publishing, creative agencies, cultural zines,
+and avant-garde SaaS products.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FAF7EE; /* Warm Vanilla / Newsprint Cream */
+  --bg-grid-line:           #EBE5D8; /* Faint Graph Grid, 1px on 24px tile */
+  --bg-surface-clean:       #FFFFFF; /* Pristine Paper for nav bars/callouts */
+  --bg-surface-alt:         #F3EDE0; /* Recessed paper well / warm tint */
+  --bg-surface-dark:        #240A18; /* Inverted containers / Deep Ink */
+
+  /* Inks & Typography */
+  --ink-primary:            #240A18; /* Deep Ink (Very Dark Blackcurrant / Rich Plum) */
+  --ink-body:               #4A3542; /* Muted Plum for body paragraphs */
+  --ink-subtle:             #7E6B77; /* Soft plum captions, placeholders */
+  --ink-inverted:           #FAF7EE; /* Warm vanilla on dark surfaces */
+  --ink-white:              #FFFFFF; /* Crisp white on saturated fills */
+
+  /* Accent & Decal Spectrum */
+  --accent-action:          #FA6A1C; /* Action Primary: Tangerine / High-Energy Orange */
+  --accent-action-hover:    #240A18; /* Button hover state tone */
+  --accent-periwinkle:      #6B8CFE; /* Electric Slate Sky */
+  --accent-pink:            #F7ADC2; /* Soft Petal Pink / Dusty Carnation */
+  --accent-pine:            #1C5443; /* Forest Pine / Deep Botanical Racing Green */
+  --accent-amber:           #F28C28; /* Marigold Amber / Warm Ochre */
+
+  /* Status Tokens */
+  --status-success:         #1C5443; /* Forest Pine */
+  --status-warning:         #F28C28; /* Marigold Amber */
+  --status-danger:          #E63946; /* Crimson Red */
+  --status-info:            #6B8CFE; /* Periwinkle Blue */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display:             "Syne", "Fraunces", "Clash Display", sans-serif;
+--font-sans:                "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-header:              "Space Grotesk", "Syne", "Cabinet Grotesk", sans-serif;
+--font-mono:                "Space Mono", "JetBrains Mono", monospace;
+
+/* Type Scale & Styles */
+• Display / Hero Title:
+    Font Family:    var(--font-display)
+    Weight:         800 / 900 (ExtraBold / Black)
+    Transform:      UPPERCASE
+    Letter-Spacing: -0.03em
+    Line-Height:    0.95 – 1.05
+    Size:           clamp(3.0rem, 6.5vw, 5.5rem)
+
+• Navigation & Action Headers:
+    Font Family:    var(--font-header)
+    Weight:         700 / 800 (Bold / Heavy)
+    Transform:      UPPERCASE
+    Letter-Spacing: +0.06em
+    Line-Height:    1.0
+    Size:           14px – 16px (0.875rem – 1.0rem)
+
+• Section & Card Headings (H2 / H3):
+    Font Family:    var(--font-display)
+    Weight:         700 / 800
+    Letter-Spacing: -0.02em
+    Line-Height:    1.15
+    Size:           1.5rem – 2.25rem
+
+• Body & Narrative:
+    Font Family:    var(--font-sans)
+    Weight:         400 (Regular) / 500 (Medium)
+    Letter-Spacing: 0em
+    Line-Height:    1.55
+    Size:           16px – 18px (1.0rem – 1.125rem)
+
+• Badge & Sticker Labels:
+    Font Family:    var(--font-mono)
+    Weight:         700 (Ultra-Bold)
+    Transform:      UPPERCASE
+    Letter-Spacing: +0.08em
+    Line-Height:    1.0
+    Size:           10px – 12px (0.625rem – 0.75rem)
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-structural:        0px;       /* Strict, razor-sharp brutalist edges for all cards, containers, buttons */
+--radius-badge-pill:        9999px;    /* Pill capsule for select sub-labels and chips */
+--shape-starburst-12:       polygon(50% 0%, 63% 13%, 80% 6%, 85% 24%, 100% 29%, 94% 47%, 100% 65%, 85% 71%, 80% 89%, 63% 82%, 50% 95%, 37% 82%, 20% 89%, 15% 71%, 0% 65%, 6% 47%, 0% 29%, 15% 24%, 20% 6%, 37% 13%);
+--shape-starburst-16:       polygon(50% 0%, 59% 10%, 71% 4%, 77% 16%, 90% 14%, 92% 27%, 100% 33%, 97% 46%, 100% 60%, 92% 67%, 90% 80%, 77% 78%, 71% 90%, 59% 84%, 50% 94%, 41% 84%, 29% 90%, 23% 78%, 10% 80%, 8% 67%, 0% 60%, 3% 46%, 0% 33%, 8% 27%, 10% 14%, 23% 16%, 29% 4%, 41% 10%);
+--shape-scallop-stamp:      radial-gradient(circle at 10px 10px, transparent 4px, #FAF7EE 4.5px);
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * Flat Physical Collage / 2D Z-Index Layering
+ * -------------------------------------------------------------------------- */
+--elevation-level-0:        #FAF7EE canvas with faint 24px micro-grid;
+--elevation-level-1:        Flat layout containers & structural frames (0px radii);
+--elevation-level-2:        Line-art illustrative characters overlapping type;
+--elevation-level-3:        "Stickers" & "Decals" floating over headings (Rotated: -8deg, +4deg, +12deg);
+
+/* Shadows */
+--shadow-none:              none;
+--shadow-hard-offset:       2px 2px 0px #240A18;
+--shadow-hard-hover:        3px 3px 0px #240A18;
+--shadow-hard-pressed:      0px 0px 0px #240A18;
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (8-Point Grid)
+ * -------------------------------------------------------------------------- */
+--space-8:                  8px;
+--space-16:                 16px;
+--space-24:                 24px;
+--space-32:                 32px;
+--space-48:                 48px;
+--space-64:                 64px;
+--space-96:                 96px;
+
+--canvas-grid-size:         24px;      /* 24px × 24px faint grid mesh overlay */
+--typography-tension:       Ultra-tight line heights paired with 64px+ negative margins;
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-hairline:          1px solid #240A18; /* Crisp box segmenting on nav & modules */
+--border-thick:             2px solid #240A18; /* High-contrast card & hero frames */
+--border-heavy:             3px solid #240A18; /* Outer layout boundaries */
+--ribbon-checkerboard:      conic-gradient(#1C5443 90deg, #FAF7EE 90deg 180deg, #1C5443 180deg 270deg, #FAF7EE 270deg); /* 16px high ribbon */
+--illustration-stroke:      2.5px;             /* Uniform stroke for line illustrations */
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY & GRAPHIC ACCENTS
+ * -------------------------------------------------------------------------- */
+• Accent Motifs:            4-Point Retro Sparkles (✦), 8-Point Twinkle Stars (✴), Daisy/Floral Stamps (✿), Circular Rosettes, Die-Cut Stamp Perforations
+• Navigation Glyphs:        Monoline Directional Vectors (→, ⌄, ↗, ←)
+• Illustration Voice:       Playful continuous-line character art rendered in solid #240A18 stroke with minimal flat color blocking
+
+/* -----------------------------------------------------------------------------
+ * 9. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+• Primary CTA Button:
+    Background:             #FA6A1C (Tangerine)
+    Color:                  #FFFFFF
+    Border:                 1px solid #240A18
+    Radius:                 0px (Strict brutalist edge)
+    Typography:             var(--font-header), 800 weight, UPPERCASE, +0.06em
+    Hover State:            Background: #240A18 | Color: #FAF7EE | Transform: translateX(4px)
+    Active State:           Transform: scale(0.98)
+
+• Interactive Stickers / Badges:
+    Default:                Angled static rotation (transform: rotate(-6deg) or +4deg)
+    Hover State:            Transform: rotate(0deg) scale(1.12) | Cursor: pointer | Transition: 200ms cubic-bezier(0.34, 1.56, 0.64, 1)
+
+• Navigation Items:
+    Default:                Transparent background | Color: #240A18
+    Hover State:            Color: #FA6A1C with a 2px solid bottom underline tick
+
+• Cards & Structural Panels:
+    Default:                Background: #FFFFFF or #FAF7EE | Border: 1px solid #240A18 | Radius: 0px
+    Hover State:            Box-Shadow: 3px 3px 0px #240A18 | Transform: translateY(-2px)
+
+• Inputs & Form Controls:
+    Default:                Background: #FFFFFF | Border: 1px solid #240A18 | Color: #240A18 | Radius: 0px | Font-Size: >= 16px
+    Focus State:            Background: #FAF7EE | Outline: none | Box-Shadow: 2px 2px 0px #FA6A1C
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO rounded card corners on structural containers (strictly 0px brutalist edges).
+- NO purple on dark themes or generic neon violet accents.
+- NO Gaussian blurred drop shadows (strictly flat or hard 0-blur offset shadows).
+- NO textureless digital flat surfaces without the warm vanilla #FAF7EE canvas & 24px micro-grid.
+- NO headline biscuit pills with pulsing dots placed above the main headline.
+- NO gradient text fills across headline keywords.
+- NO icon-stuffed bento boxes with generic 3D glyphs.
+================================================================================
+  </script>
+
+  <!-- =============================================================================
+       10. CLIENT-SIDE INTERACTION & CLIPBOARD ENGINE
+       ============================================================================= */
+  <script>
+    // Toast Notification System
+    function showToast(msg) {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+      const toast = document.createElement("div");
+      toast.className = "toast-message";
+      toast.textContent = msg;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 200);
+      }, 2600);
+    }
+
+    // Markdown Extractor
+    function getRawMarkdown() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    // Initialize Markdown Spec in Code Drawer
+    document.addEventListener("DOMContentLoaded", () => {
+      const pre = document.getElementById("markdown-display-pre");
+      if (pre) pre.textContent = getRawMarkdown();
+    });
+
+    // Copy Prompt Function (agent.md Section 2)
+    function copyTilePrompt(tileId) {
+      const md = getRawMarkdown();
+      const prompt = `Implement this design using the following Style Tile as the design system specification:\n\n${md}`;
+      navigator.clipboard.writeText(prompt).then(() => {
+        showToast("✓ Copied Vintage-Modern Quirky Brutalism Style Tile to clipboard!");
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const orig = btn.innerHTML;
+          btn.innerHTML = `✓ Copied!`;
+          setTimeout(() => { btn.innerHTML = orig; }, 2000);
+        }
+      }).catch(err => {
+        console.error("Clipboard write error:", err);
+      });
+    }
+
+    // Copy Swatch Hex Token
+    function copySwatchHex(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${varName} (${hex}) to clipboard!`);
+      });
+    }
+
+    // Modal Handling (Preview Style Tile)
+    function openSpecModal() {
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      const content = document.getElementById("modal-markdown-content");
+      if (content) content.textContent = getRawMarkdown();
+      if (backdrop) backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    // Download Spec File (agent.md Section 2)
+    function downloadSpecFile() {
+      const md = getRawMarkdown();
+      const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "style-tile-vintage-modern-quirky-brutalism.md";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-vintage-modern-quirky-brutalism.md!");
+    }
+
+    // Header Button Bindings (agent.md Section 2)
+    document.getElementById("btn-copy-tile").addEventListener("click", () => copyTilePrompt("TILE-029"));
+    document.getElementById("btn-download-tile").addEventListener("click", downloadSpecFile);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+
+    // Modal Escape Key & Backdrop Listeners
+    const backdrop = document.getElementById("spec-modal-backdrop");
+    if (backdrop) {
+      backdrop.addEventListener("click", (e) => {
+        if (e.target === backdrop) closeSpecModal();
+      });
+    }
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    // Interactive Pangram / Type Tester
+    function updateTesterSize(val) {
+      const output = document.getElementById("tester-output");
+      const label = document.getElementById("tester-size-val");
+      if (output) output.style.fontSize = val + "px";
+      if (label) label.textContent = val + "px";
+    }
+
+    function updateTesterTracking(val) {
+      const output = document.getElementById("tester-output");
+      const label = document.getElementById("tester-tracking-val");
+      const emVal = (val / 100).toFixed(2) + "em";
+      if (output) output.style.letterSpacing = emVal;
+      if (label) label.textContent = emVal;
+    }
+
+    function setTesterFont(type) {
+      const output = document.getElementById("tester-output");
+      const btns = document.querySelectorAll(".tester-btn");
+      btns.forEach(b => b.classList.remove("active"));
+
+      if (type === "display") {
+        output.style.fontFamily = "var(--font-display)";
+        output.style.textTransform = "uppercase";
+        document.getElementById("btn-font-display").classList.add("active");
+      } else if (type === "serif") {
+        output.style.fontFamily = "var(--font-serif)";
+        output.style.textTransform = "none";
+        document.getElementById("btn-font-serif").classList.add("active");
+      } else if (type === "header") {
+        output.style.fontFamily = "var(--font-header)";
+        output.style.textTransform = "uppercase";
+        document.getElementById("btn-font-header").classList.add("active");
+      } else if (type === "mono") {
+        output.style.fontFamily = "var(--font-mono)";
+        output.style.textTransform = "none";
+        document.getElementById("btn-font-mono").classList.add("active");
+      }
+    }
+
+    // Toggle 24px Canvas Grid Overlay
+    let gridVisible = true;
+    function toggleGridPreview() {
+      gridVisible = !gridVisible;
+      if (gridVisible) {
+        document.body.style.backgroundImage = "linear-gradient(to right, var(--bg-grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--bg-grid-line) 1px, transparent 1px)";
+        showToast("24px Newsprint Grid Overlay Enabled");
+      } else {
+        document.body.style.backgroundImage = "none";
+        showToast("24px Grid Overlay Disabled");
+      }
+    }
+
+    // Checkbox UI Toggle
+    function toggleBrutalCheckbox(elem) {
+      const box = elem.querySelector(".brutal-checkbox");
+      if (!box) return;
+      box.classList.toggle("checked");
+      box.textContent = box.classList.contains("checked") ? "✓" : "";
+    }
+
+    // Switch UI Toggle
+    function toggleBrutalSwitch(elem) {
+      elem.classList.toggle("active");
+      showToast(`Ink Mode: ${elem.classList.contains("active") ? "High-Chroma Accent" : "Muted Editorial"}`);
+    }
+
+    // Living Demo: Switch Gazette Issues
+    const demoArticles = {
+      1: {
+        headline: "Why We Traded Gaussian Blurs For Hard Newsprint Geometry",
+        subhead: "“When every pixel has tangible weight, the screen ceases to feel like cold glass and begins to feel like living paper.”",
+        body1: "The digital design landscape has spent a decade smoothed over by soft gradients, rounded jelly buttons, and frictionless uniformity. Vintage-Modern Editorial & Quirky Neo-Brutalism introduces intentional friction, handcrafted eccentricity, and unapologetic character.",
+        quote: "“Texture is memory. The 24px micro-grid and deep blackcurrant ink anchor the reader in a physical place.”",
+        body2: "By combining high-chroma decal accents (tangerine #FA6A1C and electric slate #6B8CFE) with two-tone checkerboard ribbons, each layout becomes a celebratory broadsheet artifact."
+      },
+      2: {
+        headline: "Physical Collages & The Art Of Layered Decals",
+        subhead: "“Layering stickers at jaunty angles breaks the clinical sterility of the digital frame.”",
+        body1: "Neo-Brutalism is often misunderstood as merely harsh or unapproachable. When tempered by vintage newsprint cream (#FAF7EE) and playful continuous line art, it becomes intensely tactile, warm, and inviting.",
+        quote: "“The serrated starburst is the exclamation point of mid-century editorial print.”",
+        body2: "Using 12-point and 16-point geometric starbursts, designers can direct visual focus with joyful immediacy."
+      },
+      3: {
+        headline: "Botanical Forest Inks & Two-Tone Checkerboard Ribbons",
+        subhead: "“Deep racing green #1C5443 provides botanical gravitas against hot tangerine.”",
+        body1: "Every high-energy palette requires a stabilizing anchor. Forest Pine (#1C5443) acts as the typographic forest bed, grounding the high-chroma tangerine and soft petal pink elements.",
+        quote: "“A repeating 16px checkerboard ribbon establishes a crisp, graphic frame.”",
+        body2: "This rhythm of hard lines and organic rosettes creates a memorable contrast between discipline and playfulness."
+      }
+    };
+
+    function switchDemoIssue(issueNum, btn) {
+      document.querySelectorAll(".issue-tab-btn").forEach(b => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+
+      const art = demoArticles[issueNum];
+      if (!art) return;
+
+      const container = document.getElementById("demo-article-content");
+      if (container) {
+        container.innerHTML = `
+          <span class="vibe-chip chip-tangerine" style="margin-bottom: 8px; display: inline-block;">VOL. ${41 + issueNum} ESSAY</span>
+          <h3 class="demo-article-headline">${art.headline}</h3>
+          <p class="demo-article-subhead">${art.subhead}</p>
+          <p style="font-size: 15px; color: var(--ink-body); line-height: 1.6; margin-bottom: 12px;">${art.body1}</p>
+          <blockquote class="demo-pull-quote">${art.quote}</blockquote>
+          <p style="font-size: 15px; color: var(--ink-body); line-height: 1.6;">${art.body2}</p>
+        `;
+      }
+      showToast(`Loaded Gazette Issue Vol. ${41 + issueNum}!`);
+    }
+
+    // Sticker Board Simulator
+    function addStickerToBoard(type) {
+      const board = document.getElementById("sticker-board");
+      const hint = document.getElementById("drop-hint-text");
+      if (hint) hint.style.display = "none";
+
+      const badge = document.createElement("div");
+      const rotations = [-12, -8, -4, 4, 8, 12];
+      const randomRot = rotations[Math.floor(Math.random() * rotations.length)];
+
+      if (type === "starburst-12") {
+        badge.className = "sticker-badge starburst-12";
+        badge.style.transform = `rotate(${randomRot}deg)`;
+        badge.innerHTML = `<span>★ NOVELTY ★</span>`;
+      } else if (type === "rosette") {
+        badge.className = "sticker-badge stamp-rosette";
+        badge.style.transform = `rotate(${randomRot}deg)`;
+        badge.innerHTML = `<span>✿ DAISY STAMP</span>`;
+      } else if (type === "approved") {
+        badge.className = "sticker-badge sticker-pill";
+        badge.style.transform = `rotate(${randomRot}deg)`;
+        badge.innerHTML = `<span>✓ VERIFIED ISSUE</span>`;
+      } else if (type === "sparkle") {
+        badge.className = "sticker-badge";
+        badge.style.cssText = `font-size: 32px; color: #FA6A1C; transform: rotate(${randomRot}deg); text-shadow: 2px 2px 0 #240A18;`;
+        badge.innerHTML = `✦`;
+      }
+
+      badge.title = "Click to remove";
+      badge.onclick = () => {
+        badge.remove();
+        if (board.children.length === 1 && hint) hint.style.display = "block";
+      };
+
+      board.appendChild(badge);
+      showToast(`Stamped new decal! (${type})`);
+    }
+
+    function clearStickerBoard() {
+      const board = document.getElementById("sticker-board");
+      if (!board) return;
+      board.innerHTML = `<span class="drop-hint" id="drop-hint-text">Stamped decals will appear here...</span>`;
+      showToast("Cleared Decal Board!");
+    }
+
+    // Franking & Dispatch Simulator
+    function dispatchGazette() {
+      const input = document.getElementById("subscriber-name");
+      const name = (input && input.value.trim()) ? input.value.trim().toUpperCase() : "SUBSCRIBER NO. 142";
+      const consignment = "CH-" + Math.floor(1000 + Math.random() * 9000) + "-VOL29";
+
+      document.getElementById("franked-recipient").textContent = name;
+      document.getElementById("franked-consignment").textContent = consignment;
+
+      showToast(`✓ Gazette Issue Franked & Dispatched to ${name}! Ref: ${consignment}`);
+    }
+  </script>
+</body>
+</html>
