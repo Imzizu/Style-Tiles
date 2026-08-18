@@ -45,7 +45,7 @@
       <nav class="header-nav" aria-label="Main Navigation">
         <a href="#catalog" class="header-link">Catalog</a>
         <a href="#catalog-controls" class="header-link" onclick="focusSearch(event)">Search</a>
-        <button id="header-compact-toggle" class="view-btn active" onclick="toggleCompactMode()" title="Toggle Compact Mode (Hide details, show 16:9 previews only)" aria-pressed="true">
+        <button id="header-compact-toggle" class="view-btn" onclick="toggleCompactMode()" title="Toggle Compact Mode (Hide details, show 16:9 previews only)" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18"/><line x1="3" y1="8" x2="21" y2="8"/></svg>
           <span class="compact-label">Compact</span>
         </button>
@@ -220,7 +220,7 @@
         </div>
 
         <!-- 16:9 Skeleton Cards Grid (Dynamically rendered by app.js) -->
-        <div class="catalog-grid is-compact" id="catalog-grid">
+        <div class="catalog-grid" id="catalog-grid">
           <!-- Dynamically populated by app.js -->
         </div>
 

@@ -2228,7 +2228,9 @@ Neo-Brutalist Tech is a high-density, hyper-tactile design system engineered for
 let currentCategory = "all";
 let currentSearchQuery = "";
 let currentLayoutMode = "grid"; // 'grid' or 'split'
-let isCompactMode = true; // default ON
+let userToggledCompact = false;
+const isMobileViewport = () => typeof window !== "undefined" && window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
+let isCompactMode = isMobileViewport(); // Default OFF on desktop (> 768px), default ON on mobile (<= 768px)
 
 // -----------------------------------------------------------------------------
 // TOAST SYSTEM
@@ -2613,6 +2615,7 @@ function setViewMode(mode) {
 }
 
 function toggleCompactMode() {
+  userToggledCompact = true;
   const anchor = getFocalCardAnchor();
   isCompactMode = !isCompactMode;
   applyViewSettings();
@@ -2788,6 +2791,23 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     syncSearchPlaceholder();
     window.addEventListener("resize", syncSearchPlaceholder);
+  }
+
+  // Responsive default for compact mode (switches between desktop default and mobile default if user hasn't explicitly toggled)
+  const mobileMediaQuery = window.matchMedia("(max-width: 768px)");
+  const handleViewportChange = (e) => {
+    if (!userToggledCompact) {
+      const shouldBeCompact = e.matches;
+      if (isCompactMode !== shouldBeCompact) {
+        isCompactMode = shouldBeCompact;
+        applyViewSettings();
+      }
+    }
+  };
+  if (mobileMediaQuery.addEventListener) {
+    mobileMediaQuery.addEventListener("change", handleViewportChange);
+  } else if (mobileMediaQuery.addListener) {
+    mobileMediaQuery.addListener(handleViewportChange);
   }
 
   // Keyboard shortcut: Escape closes modal, / focuses search
