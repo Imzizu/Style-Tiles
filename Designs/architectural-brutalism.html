@@ -1,0 +1,2633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Architectural Brutalism & Editorial Modernism // Design System Style Tile (TILE-016)</title>
+  <meta name="description" content="Swiss International meets Constructivist Editorial design system: Vermilion Red (#D7261E), Ink Black (#121212), Architectural Cream (#F6F4EE), strict zero-radius geometry, 14°-18° diagonal architectural cuts, and high-impact editorial typography.">
+
+  <!-- Google Fonts: Syne (Architectural Display), Inter (Swiss Neo-Grotesque Sans), JetBrains Mono (Technical Spec / Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       01. DESIGN SYSTEM TOKENS & ROLES (TILE-016)
+       ========================================================================== */
+    :root {
+      /* Primary & Accent */
+      --color-vermilion:         #D7261E; /* Brand Core: Primary visual anchor, high-impact hero backgrounds, active states */
+      --color-vermilion-dark:    #B51D16; /* Deep Signal Red: Hover states on red, deep emphasis */
+      --color-vermilion-subtle:  rgba(215, 38, 30, 0.08); /* Faint highlight tint */
+
+      /* Monochrome & Neutrals */
+      --color-ink-black:         #121212; /* High Contrast: Primary typography, dominant utility bars, stark surface contrast */
+      --color-canvas-cream:      #F6F4EE; /* Architectural Cream: Primary page background, editorial breathing room */
+      --color-slate-grey:        #8A8D8F; /* Muted Slate Grey: Secondary captions, inactive controls, building texture balance */
+      --color-pure-white:        #FFFFFF; /* Pure White: Inverted typography on black/red blocks, crisp UI elements */
+      --color-white-translucent: rgba(255, 255, 255, 0.88);
+
+      /* Status Tokens */
+      --color-status-active:     #D7261E;
+      --color-status-muted:      #8A8D8F;
+      --color-status-success:    #2E6F40;
+      --color-status-warning:    #D97706;
+
+      /* Typography Stacks */
+      --font-display: "Syne", "Monument Extended", sans-serif;
+      --font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono:    "JetBrains Mono", "Space Mono", ui-monospace, monospace;
+
+      /* Corner Geometry */
+      --radius-none: 0px;
+      --radius-sm:   0px;
+      --radius-lg:   0px;
+
+      /* Elevation & Shadows */
+      --shadow-none:           none;
+      --shadow-hard:           4px 4px 0px #121212;
+      --shadow-hard-vermilion: 4px 4px 0px #D7261E;
+      --shadow-hard-sm:        2px 2px 0px #121212;
+
+      /* Spacing Scale (4px / 8px progressive base) */
+      --space-2xs: 4px;
+      --space-xs:  8px;
+      --space-sm:  16px;
+      --space-md:  24px;
+      --space-lg:  48px;
+      --space-xl:  80px;
+      --space-2xl: 120px;
+
+      /* Hairline Borders & Linework */
+      --border-hairline-dark:  1px solid rgba(18, 18, 18, 0.15);
+      --border-hairline-light: 1px solid rgba(255, 255, 255, 0.20);
+      --border-heavy-accent:   2px solid #121212;
+      --border-vermilion-bold: 2px solid #D7261E;
+
+      /* Mechanical Easing */
+      --ease-sharp:     cubic-bezier(0.16, 1, 0.3, 1);
+      --duration-quick: 140ms;
+      --duration-base:  200ms;
+
+      /* Layout */
+      --max-width: 1320px;
+    }
+
+    /* ==========================================================================
+       02. RESET & BASE DOCUMENT
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border-radius: 0 !important; /* Radical Rectilinear strict enforcement */
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--color-canvas-cream);
+      color: var(--color-ink-black);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.45;
+      color: var(--color-ink-black);
+      background-color: var(--color-canvas-cream);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Subtle Architectural Horizon Grid Overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background-image: 
+        linear-gradient(to right, rgba(18, 18, 18, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(18, 18, 18, 0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    ::selection {
+      background-color: var(--color-vermilion);
+      color: var(--color-pure-white);
+    }
+
+    .layout-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       03. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ========================================================================== */
+    .style-tile-header {
+      background-color: var(--color-ink-black);
+      border-bottom: 2px solid var(--color-vermilion);
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      padding: 10px var(--space-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--color-pure-white);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-pure-white);
+      text-decoration: none;
+      padding: 6px 14px;
+      background: #222222;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background-color var(--duration-quick) var(--ease-sharp), border-color var(--duration-quick) var(--ease-sharp);
+    }
+
+    .nav-back-link:hover {
+      background-color: var(--color-vermilion);
+      border-color: var(--color-vermilion);
+      color: var(--color-pure-white);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      background-color: var(--color-vermilion);
+      color: var(--color-pure-white);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-pure-white);
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--color-slate-grey);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 2px 7px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 7px 13px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      background: transparent;
+      color: var(--color-pure-white);
+      cursor: pointer;
+      transition: all var(--duration-quick) var(--ease-sharp);
+    }
+
+    .btn-tile:hover {
+      background-color: var(--color-vermilion);
+      border-color: var(--color-vermilion);
+      color: var(--color-pure-white);
+    }
+
+    .btn-tile.btn-copy {
+      background-color: var(--color-vermilion);
+      border-color: var(--color-vermilion);
+      color: var(--color-pure-white);
+    }
+
+    .btn-tile.btn-copy:hover {
+      background-color: var(--color-vermilion-dark);
+      border-color: var(--color-vermilion-dark);
+    }
+
+    /* ==========================================================================
+       04. HERO DISPLAY BANNER & CONSTRUCTIVIST STACK
+       ========================================================================== */
+    .hero-container {
+      padding-top: var(--space-lg);
+      padding-bottom: var(--space-lg);
+      border-bottom: var(--border-heavy-accent);
+      position: relative;
+    }
+
+    .hero-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--border-hairline-dark);
+      margin-bottom: var(--space-md);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-slate-grey);
+    }
+
+    .hero-meta-bar strong {
+      color: var(--color-ink-black);
+    }
+
+    .hero-main-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 0;
+      border: var(--border-heavy-accent);
+      background-color: var(--color-pure-white);
+      box-shadow: var(--shadow-hard);
+      position: relative;
+    }
+
+    /* Left Hero Column: Typographic Monument */
+    .hero-left-column {
+      padding: var(--space-lg) var(--space-lg) var(--space-md) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: var(--border-heavy-accent);
+      background-color: var(--color-canvas-cream);
+      position: relative;
+    }
+
+    .hero-badge-strip {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+    }
+
+    .arch-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 4px 10px;
+      border: 1px solid var(--color-ink-black);
+      background: var(--color-pure-white);
+      color: var(--color-ink-black);
+    }
+
+    .arch-tag.tag-vermilion {
+      background-color: var(--color-vermilion);
+      border-color: var(--color-vermilion);
+      color: var(--color-pure-white);
+    }
+
+    .arch-tag.tag-black {
+      background-color: var(--color-ink-black);
+      color: var(--color-pure-white);
+    }
+
+    /* Display Heading XXL */
+    .hero-display-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 7.5vw, 6.2rem);
+      line-height: 0.85;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+      color: var(--color-ink-black);
+      margin-bottom: var(--space-md);
+      word-break: break-word;
+    }
+
+    .hero-display-h1 span.accent-red {
+      color: var(--color-vermilion);
+      display: block;
+    }
+
+    .hero-statement {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #333333;
+      margin-bottom: var(--space-md);
+      max-width: 580px;
+      border-left: 3px solid var(--color-vermilion);
+      padding-left: var(--space-sm);
+    }
+
+    .hero-quick-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: var(--space-sm);
+      border-top: var(--border-hairline-dark);
+    }
+
+    /* Right Hero Column: Monolithic Visual Arch & 16° Diagonal Slash */
+    .hero-right-column {
+      background-color: var(--color-ink-black);
+      color: var(--color-pure-white);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 16° Diagonal Accent Banner (Architectural Cut) */
+    .diagonal-architectural-banner {
+      background-color: var(--color-vermilion);
+      color: var(--color-pure-white);
+      padding: 14px 20px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), 0 100%);
+    }
+
+    .hero-architectural-art {
+      flex: 1;
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .brutalist-svg-monolith {
+      width: 100%;
+      max-width: 440px;
+      height: auto;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+      transition: transform var(--duration-base) var(--ease-sharp);
+    }
+
+    .brutalist-svg-monolith:hover {
+      transform: scale(1.02);
+    }
+
+    .hero-coords-strip {
+      padding: 10px var(--space-md);
+      background-color: #0A0A0A;
+      border-top: var(--border-hairline-light);
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--color-slate-grey);
+      text-transform: uppercase;
+    }
+
+    /* ==========================================================================
+       05. SECTION CONTAINERS & ARCHITECTURAL GRID
+       ========================================================================== */
+    .section-block {
+      padding-top: var(--space-xl);
+      padding-bottom: var(--space-xl);
+      border-bottom: var(--border-heavy-accent);
+    }
+
+    .section-header {
+      margin-bottom: var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: var(--border-heavy-accent);
+      padding-bottom: var(--space-xs);
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .section-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .section-index {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-vermilion);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 0.95;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--color-ink-black);
+    }
+
+    .section-description {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--color-slate-grey);
+      max-width: 440px;
+      text-align: right;
+    }
+
+    /* ==========================================================================
+       06. COLOR MATRIX & SWATCHES
+       ========================================================================== */
+    .swatches-matrix {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0;
+      border: var(--border-heavy-accent);
+      box-shadow: var(--shadow-hard);
+      background-color: var(--color-ink-black);
+    }
+
+    .swatch-card {
+      background-color: var(--color-pure-white);
+      border-right: var(--border-heavy-accent);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform var(--duration-quick) var(--ease-sharp), z-index 0s;
+      position: relative;
+    }
+
+    .swatch-card:last-child {
+      border-right: none;
+    }
+
+    .swatch-card:hover {
+      z-index: 10;
+      outline: 2px solid var(--color-vermilion);
+    }
+
+    .swatch-color-box {
+      height: 140px;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: var(--space-xs);
+    }
+
+    .swatch-click-hint {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 3px 6px;
+      opacity: 0;
+      transition: opacity var(--duration-quick) var(--ease-sharp);
+    }
+
+    .swatch-card:hover .swatch-click-hint {
+      opacity: 1;
+    }
+
+    .swatch-details {
+      padding: var(--space-sm);
+      border-top: var(--border-hairline-dark);
+      background-color: var(--color-pure-white);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .swatch-name {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-ink-black);
+      margin-bottom: 4px;
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-vermilion);
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-slate-grey);
+      margin-bottom: 8px;
+    }
+
+    .swatch-role-desc {
+      font-size: 11px;
+      line-height: 1.35;
+      color: #555;
+      border-top: 1px dashed rgba(18, 18, 18, 0.15);
+      padding-top: 6px;
+    }
+
+    /* ==========================================================================
+       07. TYPOGRAPHY SPECIMEN SYSTEM
+       ========================================================================== */
+    .typography-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .font-family-card {
+      border: var(--border-heavy-accent);
+      background-color: var(--color-pure-white);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-hard);
+    }
+
+    .font-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-hairline-dark);
+      padding-bottom: var(--space-xs);
+      margin-bottom: var(--space-sm);
+    }
+
+    .font-role-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      background: var(--color-ink-black);
+      color: var(--color-pure-white);
+    }
+
+    .font-role-badge.badge-vermilion {
+      background: var(--color-vermilion);
+    }
+
+    .font-sample-display {
+      font-family: var(--font-display);
+      font-size: 42px;
+      line-height: 0.95;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-xs);
+      color: var(--color-ink-black);
+    }
+
+    .font-sample-sans {
+      font-family: var(--font-sans);
+      font-size: 26px;
+      line-height: 1.2;
+      font-weight: 700;
+      color: var(--color-ink-black);
+      margin-bottom: var(--space-xs);
+    }
+
+    .font-sample-mono {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      line-height: 1.3;
+      font-weight: 600;
+      color: var(--color-ink-black);
+      margin-bottom: var(--space-xs);
+    }
+
+    .font-glyph-strip {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-slate-grey);
+      letter-spacing: 0.08em;
+      word-break: break-all;
+      border-top: var(--border-hairline-dark);
+      padding-top: var(--space-xs);
+    }
+
+    /* Dynamic Typographic Ladder */
+    .type-scale-ladder {
+      border: var(--border-heavy-accent);
+      background-color: var(--color-pure-white);
+      box-shadow: var(--shadow-hard);
+    }
+
+    .scale-row {
+      display: grid;
+      grid-template-columns: 180px 1fr 200px;
+      align-items: center;
+      border-bottom: var(--border-hairline-dark);
+      padding: var(--space-sm) var(--space-md);
+      gap: var(--space-md);
+    }
+
+    .scale-row:last-child {
+      border-bottom: none;
+    }
+
+    .scale-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      color: var(--color-slate-grey);
+    }
+
+    .scale-meta strong {
+      color: var(--color-ink-black);
+      display: block;
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    .scale-spec {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-slate-grey);
+      text-align: right;
+      letter-spacing: 0.05em;
+    }
+
+    /* Live Pangram Specimen Tester */
+    .pangram-tester-box {
+      margin-top: var(--space-lg);
+      border: var(--border-heavy-accent);
+      background-color: var(--color-ink-black);
+      color: var(--color-pure-white);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-hard);
+    }
+
+    .pangram-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-hairline-light);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .pangram-font-select {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-font-toggle {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: transparent;
+      color: var(--color-pure-white);
+      cursor: pointer;
+      transition: all var(--duration-quick) var(--ease-sharp);
+    }
+
+    .btn-font-toggle.active,
+    .btn-font-toggle:hover {
+      background-color: var(--color-vermilion);
+      border-color: var(--color-vermilion);
+    }
+
+    .pangram-slider-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    .pangram-slider-group input[type="range"] {
+      accent-color: var(--color-vermilion);
+      cursor: pointer;
+    }
+
+    .pangram-editable-output {
+      outline: none;
+      font-family: var(--font-display);
+      font-size: 40px;
+      line-height: 1.05;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      color: var(--color-pure-white);
+      min-height: 80px;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      padding: var(--space-sm);
+      background-color: #1A1A1A;
+    }
+
+    /* ==========================================================================
+       08. COMPONENT ARCHETYPE GALLERY
+       ========================================================================== */
+    .archetype-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+    }
+
+    .archetype-card {
+      border: var(--border-heavy-accent);
+      background-color: var(--color-pure-white);
+      box-shadow: var(--shadow-hard);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .archetype-header {
+      background-color: var(--color-canvas-cream);
+      border-bottom: var(--border-heavy-accent);
+      padding: 10px var(--space-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .archetype-body {
+      padding: var(--space-md);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    /* Strict Zero-Radius Buttons */
+    .btn-arch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      padding: 12px 20px;
+      border: var(--border-heavy-accent);
+      cursor: pointer;
+      transition: all var(--duration-quick) var(--ease-sharp);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    /* Vermilion Solid */
+    .btn-arch-vermilion {
+      background-color: var(--color-vermilion);
+      border-color: var(--color-vermilion);
+      color: var(--color-pure-white);
+    }
+
+    .btn-arch-vermilion:hover {
+      background-color: var(--color-vermilion-dark);
+      border-color: var(--color-vermilion-dark);
+      box-shadow: var(--shadow-hard);
+      transform: translate(-2px, -2px);
+    }
+
+    .btn-arch-vermilion:active {
+      transform: translate(0, 0);
+      box-shadow: none;
+    }
+
+    /* Ink Black Bar Module (Shifts to Vermilion on Active/Focus) */
+    .btn-arch-black {
+      background-color: var(--color-ink-black);
+      border-color: var(--color-ink-black);
+      color: var(--color-pure-white);
+    }
+
+    .btn-arch-black:hover,
+    .btn-arch-black:focus-visible {
+      background-color: var(--color-vermilion);
+      border-color: var(--color-vermilion);
+      box-shadow: var(--shadow-hard);
+      transform: translate(-2px, -2px);
+    }
+
+    .btn-arch-black:active {
+      transform: translate(0, 0);
+      box-shadow: none;
+    }
+
+    /* Ghost Hairline */
+    .btn-arch-ghost {
+      background-color: transparent;
+      border: 1px solid var(--color-ink-black);
+      color: var(--color-ink-black);
+    }
+
+    .btn-arch-ghost:hover {
+      background-color: var(--color-ink-black);
+      color: var(--color-pure-white);
+    }
+
+    /* Inverted White */
+    .btn-arch-white {
+      background-color: var(--color-pure-white);
+      border: 1px solid var(--color-ink-black);
+      color: var(--color-ink-black);
+    }
+
+    .btn-arch-white:hover {
+      background-color: var(--color-vermilion);
+      border-color: var(--color-vermilion);
+      color: var(--color-pure-white);
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-hard);
+    }
+
+    /* Form Controls & Tabular Inputs with Hairline Vertical Dividers */
+    .tabular-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border: var(--border-heavy-accent);
+      background-color: var(--color-pure-white);
+    }
+
+    .tabular-form-cell {
+      padding: 10px 14px;
+      border-right: 1px solid rgba(18, 18, 18, 0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .tabular-form-cell:last-child {
+      border-right: none;
+    }
+
+    .tabular-form-cell label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-slate-grey);
+    }
+
+    .tabular-form-cell input,
+    .tabular-form-cell select {
+      border: none;
+      outline: none;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-ink-black);
+      background: transparent;
+      width: 100%;
+    }
+
+    .tabular-form-cell:focus-within {
+      background-color: var(--color-vermilion-subtle);
+      box-shadow: inset 0 -2px 0 var(--color-vermilion);
+    }
+
+    /* Search Loupe with Strict Sharp Miter */
+    .search-loupe-bar {
+      display: flex;
+      border: var(--border-heavy-accent);
+      background-color: var(--color-pure-white);
+    }
+
+    .search-loupe-bar input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 12px 14px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--color-ink-black);
+    }
+
+    .search-loupe-bar button {
+      background-color: var(--color-ink-black);
+      border: none;
+      color: var(--color-pure-white);
+      padding: 0 18px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color var(--duration-quick) var(--ease-sharp);
+    }
+
+    .search-loupe-bar button:hover {
+      background-color: var(--color-vermilion);
+    }
+
+    /* Checkbox & Radio Rectilinear Matrix */
+    .toggles-matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .arch-checkbox-label,
+    .arch-radio-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      padding: 8px 12px;
+      border: 1px solid rgba(18, 18, 18, 0.15);
+      background-color: var(--color-canvas-cream);
+      transition: all var(--duration-quick) var(--ease-sharp);
+    }
+
+    .arch-checkbox-label:hover,
+    .arch-radio-label:hover {
+      border-color: var(--color-ink-black);
+      background-color: var(--color-pure-white);
+    }
+
+    .arch-checkbox-input,
+    .arch-radio-input {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--color-ink-black);
+      background: var(--color-pure-white);
+      display: grid;
+      place-content: center;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    .arch-checkbox-input:checked {
+      background-color: var(--color-vermilion);
+      border-color: var(--color-vermilion);
+    }
+
+    .arch-checkbox-input:checked::before {
+      content: "✓";
+      color: var(--color-pure-white);
+      font-size: 11px;
+      font-weight: 900;
+      font-family: var(--font-mono);
+    }
+
+    .arch-radio-input:checked {
+      background-color: var(--color-ink-black);
+      border-color: var(--color-ink-black);
+    }
+
+    .arch-radio-input:checked::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background-color: var(--color-pure-white);
+    }
+
+    /* Mechanical Switch */
+    .arch-switch-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      border: 1px solid rgba(18, 18, 18, 0.15);
+      background-color: var(--color-canvas-cream);
+    }
+
+    .arch-switch-btn {
+      width: 48px;
+      height: 24px;
+      background-color: var(--color-slate-grey);
+      border: 2px solid var(--color-ink-black);
+      position: relative;
+      cursor: pointer;
+      transition: background-color var(--duration-quick) var(--ease-sharp);
+    }
+
+    .arch-switch-btn.active {
+      background-color: var(--color-vermilion);
+    }
+
+    .arch-switch-handle {
+      width: 14px;
+      height: 16px;
+      background-color: var(--color-pure-white);
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      border: 1px solid var(--color-ink-black);
+      transition: transform var(--duration-quick) var(--ease-sharp);
+    }
+
+    .arch-switch-btn.active .arch-switch-handle {
+      transform: translateX(24px);
+    }
+
+    /* ==========================================================================
+       09. LIVING MICRO-EXPERIENCE: THE ARCHITECTURAL MONOGRAPH & CAD DOSSIER
+       ========================================================================== */
+    .monograph-dossier {
+      border: var(--border-heavy-accent);
+      background-color: var(--color-pure-white);
+      box-shadow: var(--shadow-hard);
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      overflow: hidden;
+    }
+
+    /* Dossier Left: Index & Structural Controls */
+    .dossier-sidebar {
+      background-color: var(--color-ink-black);
+      color: var(--color-pure-white);
+      border-right: var(--border-heavy-accent);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .dossier-masthead {
+      padding: var(--space-md);
+      border-bottom: 2px solid var(--color-vermilion);
+    }
+
+    .dossier-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      color: var(--color-pure-white);
+    }
+
+    .dossier-sub {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-slate-grey);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .dossier-project-nav {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dossier-nav-item {
+      padding: 14px var(--space-md);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all var(--duration-quick) var(--ease-sharp);
+    }
+
+    .dossier-nav-item:hover,
+    .dossier-nav-item.active {
+      background-color: var(--color-vermilion);
+      color: var(--color-pure-white);
+      padding-left: 28px;
+    }
+
+    .dossier-nav-item span.project-code {
+      font-weight: 700;
+    }
+
+    .dossier-material-matrix {
+      padding: var(--space-md);
+      border-top: var(--border-hairline-light);
+      background-color: #0A0A0A;
+    }
+
+    .matrix-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--color-vermilion);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .material-btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .btn-material {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 6px 8px;
+      background: #1C1C1C;
+      color: var(--color-slate-grey);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      transition: all var(--duration-quick) var(--ease-sharp);
+      text-align: center;
+    }
+
+    .btn-material.active,
+    .btn-material:hover {
+      background-color: var(--color-vermilion);
+      color: var(--color-pure-white);
+      border-color: var(--color-vermilion);
+    }
+
+    /* Dossier Right: Interactive Blueprint & CAD Viewport */
+    .dossier-viewport {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-canvas-cream);
+    }
+
+    .viewport-topbar {
+      padding: 12px var(--space-md);
+      background-color: var(--color-pure-white);
+      border-bottom: var(--border-heavy-accent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .viewport-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .active-project-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-ink-black);
+    }
+
+    .viewport-mode-pills {
+      display: flex;
+      gap: 6px;
+    }
+
+    .btn-mode-pill {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      padding: 4px 10px;
+      border: 1px solid var(--color-ink-black);
+      background: var(--color-canvas-cream);
+      color: var(--color-ink-black);
+      cursor: pointer;
+      transition: all var(--duration-quick) var(--ease-sharp);
+    }
+
+    .btn-mode-pill.active,
+    .btn-mode-pill:hover {
+      background: var(--color-ink-black);
+      color: var(--color-pure-white);
+    }
+
+    .viewport-cad-canvas {
+      padding: var(--space-lg);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background-color: #ECE8DE;
+      background-image: 
+        linear-gradient(to right, rgba(18, 18, 18, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(18, 18, 18, 0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+      min-height: 380px;
+    }
+
+    /* 16° Diagonal Cut Architectural Plate inside Dossier */
+    .cad-drawing-wrapper {
+      width: 100%;
+      max-width: 680px;
+      background: var(--color-ink-black);
+      border: var(--border-heavy-accent);
+      box-shadow: 6px 6px 0px #121212;
+      position: relative;
+      overflow: hidden;
+      transition: all var(--duration-base) var(--ease-sharp);
+    }
+
+    .cad-drawing-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .viewport-data-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: var(--border-heavy-accent);
+      background-color: var(--color-pure-white);
+    }
+
+    .data-cell {
+      padding: 12px 16px;
+      border-right: var(--border-hairline-dark);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .data-cell:last-child {
+      border-right: none;
+    }
+
+    .data-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--color-slate-grey);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .data-val {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-ink-black);
+      letter-spacing: 0.04em;
+    }
+
+    .data-val.val-vermilion {
+      color: var(--color-vermilion);
+    }
+
+    /* ==========================================================================
+       10. STYLE TILE PROMPT CODE DRAWER (agent.md Section 5.6)
+       ========================================================================== */
+    .prompt-drawer-container {
+      border: var(--border-heavy-accent);
+      background-color: var(--color-ink-black);
+      color: var(--color-pure-white);
+      box-shadow: var(--shadow-hard);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .prompt-drawer-header {
+      padding: 14px var(--space-md);
+      border-bottom: 2px solid var(--color-vermilion);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .prompt-header-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .prompt-raw-code {
+      padding: var(--space-md);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.5;
+      color: #D1D5DB;
+      white-space: pre-wrap;
+      word-break: break-all;
+      background-color: #0E0E0E;
+      max-height: 480px;
+      overflow-y: auto;
+    }
+
+    /* ==========================================================================
+       11. MODAL SPEC INSPECTOR (agent.md Section 2)
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(18, 18, 18, 0.75);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-window {
+      background-color: var(--color-ink-black);
+      color: var(--color-pure-white);
+      border: 2px solid var(--color-vermilion);
+      box-shadow: 8px 8px 0px #000000;
+      width: 100%;
+      max-width: 860px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      padding: 14px var(--space-md);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-pure-white);
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: var(--color-pure-white);
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-content: center;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      transition: all var(--duration-quick) var(--ease-sharp);
+    }
+
+    .modal-close-btn:hover {
+      background-color: var(--color-vermilion);
+      border-color: var(--color-vermilion);
+    }
+
+    .modal-body {
+      padding: var(--space-md);
+      overflow-y: auto;
+      flex: 1;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.5;
+      color: #E5E7EB;
+      white-space: pre-wrap;
+      background-color: #0E0E0E;
+    }
+
+    .modal-footer {
+      padding: 12px var(--space-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      background-color: #161616;
+    }
+
+    /* ==========================================================================
+       12. FLOATING TOAST NOTIFICATION
+       ========================================================================== */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast-notification {
+      background-color: var(--color-ink-black);
+      border: 2px solid var(--color-vermilion);
+      color: var(--color-pure-white);
+      padding: 10px 18px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      box-shadow: 4px 4px 0px #000000;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 160ms var(--ease-sharp), transform 160ms var(--ease-sharp);
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-notification.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast-icon {
+      color: var(--color-vermilion);
+      font-weight: 900;
+    }
+
+    /* ==========================================================================
+       13. RESPONSIVE REFLOW (agent.md Section 6)
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .swatches-matrix {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .swatch-card {
+        border-bottom: var(--border-heavy-accent);
+      }
+      .monograph-dossier {
+        grid-template-columns: 1fr;
+      }
+      .dossier-sidebar {
+        border-right: none;
+        border-bottom: var(--border-heavy-accent);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-main-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-left-column {
+        border-right: none;
+        border-bottom: var(--border-heavy-accent);
+        padding: var(--space-md) var(--space-sm);
+      }
+      .swatches-matrix {
+        grid-template-columns: 1fr;
+      }
+      .typography-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+      .scale-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .scale-spec {
+        text-align: left;
+      }
+      .archetype-grid {
+        grid-template-columns: 1fr;
+      }
+      .tabular-form-row {
+        grid-template-columns: 1fr;
+      }
+      .tabular-form-cell {
+        border-right: none;
+        border-bottom: 1px solid rgba(18, 18, 18, 0.15);
+      }
+      .viewport-data-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+      .data-cell {
+        border-bottom: var(--border-hairline-dark);
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet (agent.md Section 6.1) -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ======================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span>←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-016</span>
+      <span class="design-title">Architectural Brutalism & Editorial Modernism</span>
+      <span class="design-vibe-tag">Neo-Brutalism</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><rect x="9" y="9" width="13" height="13"/><path d="M5 15H4V4h11v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-architectural-brutalism.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><path d="M21 15v4H3v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <div class="layout-wrapper">
+
+    <!-- ========================================================================
+         2. HERO DISPLAY BANNER & ARCHITECTURAL MANIFEST
+         ======================================================================== -->
+    <section class="hero-container">
+      <div class="hero-meta-bar">
+        <div>REF: <strong>TILE-016 // ARCH-MODERNIST-REV-1.0</strong></div>
+        <div>VIBE: <strong>SWISS INTERNATIONAL × CONSTRUCTIVIST EDITORIAL</strong></div>
+        <div>GEO: <strong>STRICT 0PX ZERO-RADIUS</strong></div>
+      </div>
+
+      <div class="hero-main-grid">
+        <!-- Left Column: Monumental Type Specimen -->
+        <div class="hero-left-column">
+          <div>
+            <div class="hero-badge-strip">
+              <span class="arch-tag tag-vermilion">VERMILION CORE #D7261E</span>
+              <span class="arch-tag tag-black">INK CONTRAST #121212</span>
+              <span class="arch-tag">CREAM CANVAS #F6F4EE</span>
+              <span class="arch-tag">14°–18° HARD ANGLES</span>
+            </div>
+
+            <h1 class="hero-display-h1">
+              ARCHITECTURAL<br>
+              <span class="accent-red">BRUTALISM</span>
+              & EDITORIAL
+            </h1>
+
+            <p class="hero-statement">
+              High-impact tension born from massive Swiss typographic scale colliding with unapologetic Constructivist grid structures, stark zero-radius rectilinear geometry, 14°–18° diagonal silhouette cuts, and high-contrast Vermilion red visual anchors.
+            </p>
+          </div>
+
+          <div class="hero-quick-actions">
+            <button class="btn-arch btn-arch-vermilion" onclick="copyMasterTileSpec()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><rect x="9" y="9" width="13" height="13"/><path d="M5 15H4V4h11v1"/></svg>
+              Copy Prompt for Agent
+            </button>
+            <button class="btn-arch btn-arch-black" onclick="document.getElementById('living-monograph').scrollIntoView({behavior: 'smooth'})">
+              <span>Inspect Monograph CAD</span>
+              <span>↓</span>
+            </button>
+            <button class="btn-arch btn-arch-ghost" onclick="triggerDiagonalSlashPulse()">
+              <span>Trigger 16° Cut Pulse</span>
+              <span>⚡</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Duotone Constructivist Structural Monolith -->
+        <div class="hero-right-column">
+          <div class="diagonal-architectural-banner" id="hero-diagonal-banner">
+            <span>TECTONIC PLATE // ELEVATION 01</span>
+            <span style="font-family: var(--font-mono); font-size: 11px;">16.4° ANGLE CUT</span>
+          </div>
+
+          <div class="hero-architectural-art">
+            <!-- Precise Constructivist Architectural Monolith SVG -->
+            <svg class="brutalist-svg-monolith" viewBox="0 0 420 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Background blueprint coordinates -->
+              <line x1="20" y1="20" x2="400" y2="20" stroke="#262626" stroke-width="1" stroke-dasharray="4 4"/>
+              <line x1="20" y1="170" x2="400" y2="170" stroke="#262626" stroke-width="1" stroke-dasharray="4 4"/>
+              <line x1="20" y1="320" x2="400" y2="320" stroke="#262626" stroke-width="1" stroke-dasharray="4 4"/>
+              <line x1="210" y1="20" x2="210" y2="320" stroke="#262626" stroke-width="1" stroke-dasharray="4 4"/>
+
+              <!-- Large Bold Vermilion Cantilever Geometry (16° Angle Cut) -->
+              <polygon points="60,60 360,60 360,200 240,240 60,180" fill="#D7261E"/>
+
+              <!-- Concrete Heavy Shadow Block -->
+              <polygon points="60,180 240,240 240,300 60,240" fill="#B51D16"/>
+
+              <!-- Inverted White Graphic Modular Louvres -->
+              <rect x="80" y="80" width="16" height="70" fill="#FFFFFF"/>
+              <rect x="110" y="80" width="16" height="70" fill="#FFFFFF"/>
+              <rect x="140" y="80" width="16" height="70" fill="#FFFFFF"/>
+              <rect x="170" y="80" width="16" height="70" fill="#FFFFFF"/>
+              <rect x="200" y="80" width="16" height="70" fill="#FFFFFF"/>
+
+              <!-- Angular Shadow Wedge -->
+              <polygon points="240,80 340,80 340,180 240,140" fill="#121212"/>
+
+              <!-- Hairline Structural Wireframe Overlay -->
+              <line x1="60" y1="60" x2="60" y2="240" stroke="#FFFFFF" stroke-width="1.5"/>
+              <line x1="360" y1="60" x2="360" y2="200" stroke="#FFFFFF" stroke-width="1.5"/>
+              <line x1="60" y1="60" x2="360" y2="60" stroke="#FFFFFF" stroke-width="1.5"/>
+              <line x1="240" y1="240" x2="240" y2="300" stroke="#FFFFFF" stroke-width="1.5"/>
+              <line x1="60" y1="240" x2="240" y2="300" stroke="#FFFFFF" stroke-width="1.5"/>
+
+              <!-- Dimension Callout Glyphs -->
+              <circle cx="60" cy="60" r="3" fill="#FFFFFF"/>
+              <circle cx="360" cy="60" r="3" fill="#FFFFFF"/>
+              <circle cx="240" cy="240" r="3" fill="#FFFFFF"/>
+              <circle cx="240" cy="300" r="3" fill="#FFFFFF"/>
+
+              <!-- Construction Tag Text -->
+              <text x="70" y="270" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" letter-spacing="1">CANTILEVER: 18.4M</text>
+              <text x="250" y="230" fill="#8A8D8F" font-family="'JetBrains Mono', monospace" font-size="9" letter-spacing="1">LOAD: 480 KN/M²</text>
+            </svg>
+          </div>
+
+          <div class="hero-coords-strip">
+            <span>GRID: 12-COL MODULAR</span>
+            <span>RATIO: 16:9 RIGID</span>
+            <span>SHADOW: 4PX OFFSET (#121212)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         3. COLOR ROLES & PALETTE MATRIX
+         ======================================================================== -->
+    <section class="section-block" id="palette-matrix">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span class="section-index">[ 02. COLOR ROLES & PALETTE ]</span>
+          <h2 class="section-title">Color Roles & Palette Matrix</h2>
+        </div>
+        <p class="section-description">
+          Stark, unapologetic contrast between Vermilion Red anchors, Ink Black structure, and Architectural Cream canvas breathing room.
+        </p>
+      </div>
+
+      <div class="swatches-matrix">
+        <!-- 1. Vermilion Red -->
+        <div class="swatch-card" onclick="copyColorHex('#D7261E', '--color-vermilion')">
+          <div class="swatch-color-box" style="background-color: #D7261E; color: #FFFFFF;">
+            <span class="swatch-click-hint" style="background: #121212; color: #FFFFFF;">Click to Copy</span>
+          </div>
+          <div class="swatch-details">
+            <div>
+              <div class="swatch-name">Vermilion Red</div>
+              <div class="swatch-hex">#D7261E</div>
+              <div class="swatch-var">--color-vermilion</div>
+            </div>
+            <div class="swatch-role-desc">Brand Core: Primary visual anchor, high-impact hero backgrounds, active CTA states.</div>
+          </div>
+        </div>
+
+        <!-- 2. Deep Signal Red -->
+        <div class="swatch-card" onclick="copyColorHex('#B51D16', '--color-vermilion-dark')">
+          <div class="swatch-color-box" style="background-color: #B51D16; color: #FFFFFF;">
+            <span class="swatch-click-hint" style="background: #121212; color: #FFFFFF;">Click to Copy</span>
+          </div>
+          <div class="swatch-details">
+            <div>
+              <div class="swatch-name">Deep Signal Red</div>
+              <div class="swatch-hex">#B51D16</div>
+              <div class="swatch-var">--color-vermilion-dark</div>
+            </div>
+            <div class="swatch-role-desc">Dark Variant: Hover states on red, deep emphasis, shadow planes.</div>
+          </div>
+        </div>
+
+        <!-- 3. Ink Black -->
+        <div class="swatch-card" onclick="copyColorHex('#121212', '--color-ink-black')">
+          <div class="swatch-color-box" style="background-color: #121212; color: #FFFFFF;">
+            <span class="swatch-click-hint" style="background: #D7261E; color: #FFFFFF;">Click to Copy</span>
+          </div>
+          <div class="swatch-details">
+            <div>
+              <div class="swatch-name">Ink Black</div>
+              <div class="swatch-hex">#121212</div>
+              <div class="swatch-var">--color-ink-black</div>
+            </div>
+            <div class="swatch-role-desc">High Contrast: Primary typography, dominant utility bars, stark borders.</div>
+          </div>
+        </div>
+
+        <!-- 4. Architectural Cream -->
+        <div class="swatch-card" onclick="copyColorHex('#F6F4EE', '--color-canvas-cream')">
+          <div class="swatch-color-box" style="background-color: #F6F4EE; color: #121212; border-bottom: 1px solid rgba(18,18,18,0.1);">
+            <span class="swatch-click-hint" style="background: #121212; color: #FFFFFF;">Click to Copy</span>
+          </div>
+          <div class="swatch-details">
+            <div>
+              <div class="swatch-name">Architectural Cream</div>
+              <div class="swatch-hex">#F6F4EE</div>
+              <div class="swatch-var">--color-canvas-cream</div>
+            </div>
+            <div class="swatch-role-desc">Base Canvas: Primary page background, editorial breathing room.</div>
+          </div>
+        </div>
+
+        <!-- 5. Muted Slate Grey -->
+        <div class="swatch-card" onclick="copyColorHex('#8A8D8F', '--color-slate-grey')">
+          <div class="swatch-color-box" style="background-color: #8A8D8F; color: #FFFFFF;">
+            <span class="swatch-click-hint" style="background: #121212; color: #FFFFFF;">Click to Copy</span>
+          </div>
+          <div class="swatch-details">
+            <div>
+              <div class="swatch-name">Muted Slate Grey</div>
+              <div class="swatch-hex">#8A8D8F</div>
+              <div class="swatch-var">--color-slate-grey</div>
+            </div>
+            <div class="swatch-role-desc">Structural Balance: Secondary captions, inactive controls, dimension labels.</div>
+          </div>
+        </div>
+
+        <!-- 6. Pure White -->
+        <div class="swatch-card" onclick="copyColorHex('#FFFFFF', '--color-pure-white')">
+          <div class="swatch-color-box" style="background-color: #FFFFFF; color: #121212; border-bottom: 1px solid rgba(18,18,18,0.1);">
+            <span class="swatch-click-hint" style="background: #121212; color: #FFFFFF;">Click to Copy</span>
+          </div>
+          <div class="swatch-details">
+            <div>
+              <div class="swatch-name">Pure White</div>
+              <div class="swatch-hex">#FFFFFF</div>
+              <div class="swatch-var">--color-pure-white</div>
+            </div>
+            <div class="swatch-role-desc">Crisp Inverted: Text on dark/vermilion blocks, elevated card surfaces.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         4. TYPOGRAPHY SYSTEM SPECIMENS
+         ======================================================================== -->
+    <section class="section-block" id="typography-system">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span class="section-index">[ 03. TYPOGRAPHY SYSTEM ]</span>
+          <h2 class="section-title">Typography & Scale Hierarchy</h2>
+        </div>
+        <p class="section-description">
+          Primary Display: Syne & Monument Extended. Primary Sans: Inter. Technical Coordinates: JetBrains Mono.
+        </p>
+      </div>
+
+      <div class="typography-specimen-grid">
+        <!-- Font Specimen 1: Syne Display -->
+        <div class="font-family-card">
+          <div class="font-card-header">
+            <div>
+              <strong style="font-family: var(--font-display); font-size: 16px; text-transform: uppercase;">Syne (Display)</strong>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--color-slate-grey);">Weights: 700 / 800 Bold & ExtraBold</div>
+            </div>
+            <span class="font-role-badge badge-vermilion">HERO DISPLAY (XXL / XL)</span>
+          </div>
+          <div class="font-sample-display">ARCHITECTURAL TECTONICS 1928</div>
+          <div class="font-glyph-strip">ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789 —+×÷%#</div>
+        </div>
+
+        <!-- Font Specimen 2: Inter Sans -->
+        <div class="font-family-card">
+          <div class="font-card-header">
+            <div>
+              <strong style="font-family: var(--font-sans); font-size: 16px; font-weight: 700;">Inter (Swiss Neo-Grotesque)</strong>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--color-slate-grey);">Weights: 400 Regular / 600 SemiBold</div>
+            </div>
+            <span class="font-role-badge">BODY & UTILITY (REGULAR)</span>
+          </div>
+          <div class="font-sample-sans">Pure functional precision and effortless editorial legibility.</div>
+          <div class="font-glyph-strip">abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</div>
+        </div>
+      </div>
+
+      <!-- Type Scale Ladder -->
+      <div class="type-scale-ladder">
+        <!-- Scale 1: Display XXL -->
+        <div class="scale-row">
+          <div class="scale-meta">
+            <strong>DISPLAY / HERO (XXL)</strong>
+            <span>--text-display</span>
+          </div>
+          <div style="font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 800; line-height: 0.85; text-transform: uppercase; letter-spacing: -0.04em; color: var(--color-ink-black);">
+            CONSTRUCTIVIST FORM
+          </div>
+          <div class="scale-spec">120px–180px | LH: 0.85 | -0.04em</div>
+        </div>
+
+        <!-- Scale 2: Section Title XL -->
+        <div class="scale-row">
+          <div class="scale-meta">
+            <strong>SECTION TITLE (XL)</strong>
+            <span>--text-title-xl</span>
+          </div>
+          <div style="font-family: var(--font-display); font-size: 26px; font-weight: 700; line-height: 0.95; text-transform: uppercase; letter-spacing: -0.02em; color: var(--color-vermilion);">
+            BRUTALIST MONOLITH DOSSIER
+          </div>
+          <div class="scale-spec">64px–96px | LH: 0.95 | -0.02em</div>
+        </div>
+
+        <!-- Scale 3: Subheader L -->
+        <div class="scale-row">
+          <div class="scale-meta">
+            <strong>SUBHEADER (L)</strong>
+            <span>--text-subhead-l</span>
+          </div>
+          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 600; line-height: 1.20; text-transform: uppercase; letter-spacing: +0.02em;">
+            CANTILEVER STRUCTURE & LOAD AXIS
+          </div>
+          <div class="scale-spec">24px–32px | LH: 1.20 | +0.02em</div>
+        </div>
+
+        <!-- Scale 4: Body Regular -->
+        <div class="scale-row">
+          <div class="scale-meta">
+            <strong>BODY TEXT (REGULAR)</strong>
+            <span>--text-body-reg</span>
+          </div>
+          <div style="font-family: var(--font-sans); font-size: 15px; line-height: 1.45; font-weight: 400;">
+            The structural composition operates with unyielding discipline, rejecting decorative ornament in favor of raw concrete planes and vermilion anchor points.
+          </div>
+          <div class="scale-spec">14px–16px | LH: 1.45 | 0.00em</div>
+        </div>
+
+        <!-- Scale 5: UI Micro Labels -->
+        <div class="scale-row">
+          <div class="scale-meta">
+            <strong>UI / MICRO LABELS</strong>
+            <span>--text-micro-ui</span>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-slate-grey);">
+            ELEVATION_REF // COORD_X: 48.8566 // COORD_Y: 2.3522 // STRUCT_GRID_ACTIVE
+          </div>
+          <div class="scale-spec">10px–12px | LH: 1.00 | +0.12em</div>
+        </div>
+      </div>
+
+      <!-- Interactive Pangram Tester -->
+      <div class="pangram-tester-box">
+        <div class="pangram-controls">
+          <div class="pangram-font-select">
+            <button class="btn-font-toggle active" onclick="setPangramFont('Syne', this)">Syne (Display)</button>
+            <button class="btn-font-toggle" onclick="setPangramFont('Inter', this)">Inter (Sans)</button>
+            <button class="btn-font-toggle" onclick="setPangramFont('JetBrains Mono', this)">JetBrains Mono</button>
+          </div>
+
+          <div class="pangram-slider-group">
+            <span>SIZE: <strong id="val-font-size">40px</strong></span>
+            <input type="range" id="slider-font-size" min="20" max="72" value="40" oninput="updatePangramSize(this.value)">
+          </div>
+        </div>
+
+        <div class="pangram-editable-output" id="pangram-output" contenteditable="true" spellcheck="false">
+          RAW CONSTRUCTIVIST ARCHITECTURE DEMANDS ABSOLUTE PRECISION.
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         5. COMPONENT ARCHETYPE GALLERY
+         ======================================================================== -->
+    <section class="section-block" id="component-gallery">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span class="section-index">[ 04. COMPONENT ARCHETYPES & CONTROLS ]</span>
+          <h2 class="section-title">Zero-Radius Component Archetypes</h2>
+        </div>
+        <p class="section-description">
+          Strict zero-radius buttons, hairline-divided tabular inputs, search loupes, square toggles, and mechanical action states.
+        </p>
+      </div>
+
+      <div class="archetype-grid">
+        <!-- Card 1: Action Buttons & Tactile States -->
+        <div class="archetype-card">
+          <div class="archetype-header">
+            <span>BUTTON ARCHETYPES & HOVER STATES</span>
+            <span style="color: var(--color-vermilion);">--radius-none: 0px</span>
+          </div>
+          <div class="archetype-body">
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button class="btn-arch btn-arch-vermilion">
+                <span>Vermilion Action</span>
+                <span>→</span>
+              </button>
+
+              <button class="btn-arch btn-arch-black">
+                <span>Ink Black Bar</span>
+                <span>⚡</span>
+              </button>
+
+              <button class="btn-arch btn-arch-ghost">
+                <span>Hairline Ghost</span>
+              </button>
+
+              <button class="btn-arch btn-arch-white">
+                <span>Inverted White</span>
+              </button>
+            </div>
+
+            <div style="border-top: var(--border-hairline-dark); padding-top: var(--space-sm); font-size: 12px; color: var(--color-slate-grey);">
+              <strong>Interaction Rule:</strong> Black Bar modules transition instantaneously from <code style="color: var(--color-ink-black);">#121212</code> to <code style="color: var(--color-vermilion);">#D7261E</code> on hover/focus with a sharp 4px brutalist shadow offset.
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Tabular Form Inputs with Hairline Dividers -->
+        <div class="archetype-card">
+          <div class="archetype-header">
+            <span>TABULAR FORM ROW (HAIRLINE DIVIDERS)</span>
+            <span>VERTICAL 1PX INK BORDERS</span>
+          </div>
+          <div class="archetype-body">
+            <div class="tabular-form-row">
+              <div class="tabular-form-cell">
+                <label>STRUCTURE ID</label>
+                <input type="text" value="MONOLITH-08" spellcheck="false">
+              </div>
+              <div class="tabular-form-cell">
+                <label>MATERIAL PROFILE</label>
+                <select>
+                  <option>Raw Cast Concrete</option>
+                  <option>Vermilion Steel Plate</option>
+                  <option>Oxidized Zinc</option>
+                </select>
+              </div>
+              <div class="tabular-form-cell">
+                <label>LOAD LIMIT (KN)</label>
+                <input type="text" value="1,240 KN" spellcheck="false">
+              </div>
+            </div>
+
+            <!-- Search Loupe with Sharp Miter Join -->
+            <div class="search-loupe-bar">
+              <input type="text" placeholder="Search architectural dossier or coordinate index..." spellcheck="false">
+              <button type="button" title="Execute Search">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Checkbox & Radio Rectilinear Matrix -->
+        <div class="archetype-card">
+          <div class="archetype-header">
+            <span>SQUARE TOGGLES & RADIO SELECTION</span>
+            <span>SHARP GEOMETRY</span>
+          </div>
+          <div class="archetype-body">
+            <div class="toggles-matrix">
+              <label class="arch-checkbox-label">
+                <input type="checkbox" class="arch-checkbox-input" checked>
+                <span>Grid Scaffolding</span>
+              </label>
+
+              <label class="arch-checkbox-label">
+                <input type="checkbox" class="arch-checkbox-input" checked>
+                <span>16° Angular Slice</span>
+              </label>
+
+              <label class="arch-radio-label">
+                <input type="radio" name="arch-view-mode" class="arch-radio-input" checked>
+                <span>Plan Elevation</span>
+              </label>
+
+              <label class="arch-radio-label">
+                <input type="radio" name="arch-view-mode" class="arch-radio-input">
+                <span>Axonometric CAD</span>
+              </label>
+            </div>
+
+            <div class="arch-switch-row">
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">High-Contrast Duotone Mode</span>
+              <div class="arch-switch-btn active" id="demo-switch" onclick="toggleSwitch(this)">
+                <div class="arch-switch-handle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Structural Data Badges & Status Blocks -->
+        <div class="archetype-card">
+          <div class="archetype-header">
+            <span>METRIC BADGES & STATUS INDICATORS</span>
+            <span>HIGH CONTRAST</span>
+          </div>
+          <div class="archetype-body">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span class="arch-tag tag-vermilion">ACTIVE ANCHOR</span>
+              <span class="arch-tag tag-black">STRUCTURAL FRAME</span>
+              <span class="arch-tag" style="border-color: var(--color-status-success); color: var(--color-status-success);">LOAD COMPLIANT ✓</span>
+              <span class="arch-tag" style="border-color: var(--color-status-warning); color: var(--color-status-warning);">STRESS WARNING ⚠</span>
+            </div>
+
+            <div style="border: var(--border-hairline-dark); padding: var(--space-xs); background: var(--color-canvas-cream); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px;">
+              <span>SYSTEM LATENCY: <strong>120MS (MECHANICAL)</strong></span>
+              <span style="color: var(--color-vermilion);">RADICAL RECTILINEAR</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         6. LIVING MICRO-EXPERIENCE: THE CONSTRUCTIVIST MONOGRAPH DOSSIER
+         ======================================================================== -->
+    <section class="section-block" id="living-monograph">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span class="section-index">[ 05. LIVING ARCHITECTURAL MICRO-EXPERIENCE ]</span>
+          <h2 class="section-title">Constructivist Monograph CAD Dossier</h2>
+        </div>
+        <p class="section-description">
+          A living architectural dossier demonstrating the tokens in concert: interactive structural layer viewports, live material matrix switches, and tabular metrics.
+        </p>
+      </div>
+
+      <div class="monograph-dossier">
+        <!-- Sidebar: Project Index & Material Switcher -->
+        <div class="dossier-sidebar">
+          <div>
+            <div class="dossier-masthead">
+              <div class="dossier-title">TECTONIC DOSSIER</div>
+              <div class="dossier-sub">ARCHIVAL MONOGRAPH INDEX // 2026</div>
+            </div>
+
+            <ul class="dossier-project-nav">
+              <li class="dossier-nav-item active" onclick="switchDossierProject('MONOLITH-08', 'The Cantilever Pavilion', '18.4M', '480 KN/M²', 'Cast Concrete', this)">
+                <span class="project-code">MONOLITH 08</span>
+                <span>Cantilever Pavilion →</span>
+              </li>
+              <li class="dossier-nav-item" onclick="switchDossierProject('HABITAT-74', 'Constructivist Archive Tower', '32.0M', '920 KN/M²', 'Vermilion Steel', this)">
+                <span class="project-code">HABITAT 74</span>
+                <span>Archive Tower →</span>
+              </li>
+              <li class="dossier-nav-item" onclick="switchDossierProject('ROTUNDA-01', 'Tectonic Assembly Hall', '44.8M', '1,640 KN/M²', 'Precast Monolith', this)">
+                <span class="project-code">ROTUNDA 01</span>
+                <span>Assembly Hall →</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="dossier-material-matrix">
+            <div class="matrix-title">ACTIVE MATERIAL SURFACE</div>
+            <div class="material-btn-group">
+              <button class="btn-material active" onclick="setDossierMaterial('Cast Concrete', '#8A8D8F', this)">Concrete</button>
+              <button class="btn-material" onclick="setDossierMaterial('Vermilion Steel', '#D7261E', this)">Vermilion</button>
+              <button class="btn-material" onclick="setDossierMaterial('Oxidized Zinc', '#4A5568', this)">Oxide Zinc</button>
+              <button class="btn-material" onclick="setDossierMaterial('Deep Basalt', '#121212', this)">Basalt</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Viewport: Interactive CAD & Blueprint Drawing -->
+        <div class="dossier-viewport">
+          <div class="viewport-topbar">
+            <div class="viewport-title-group">
+              <span class="arch-tag tag-vermilion" id="dossier-id-tag">MONOLITH-08</span>
+              <span class="active-project-name" id="dossier-name-text">The Cantilever Pavilion</span>
+            </div>
+
+            <div class="viewport-mode-pills">
+              <button class="btn-mode-pill active" onclick="setCadViewMode('elevation', this)">Elevation</button>
+              <button class="btn-mode-pill" onclick="setCadViewMode('section', this)">Section</button>
+              <button class="btn-mode-pill" onclick="setCadViewMode('stress', this)">Stress Map</button>
+            </div>
+          </div>
+
+          <div class="viewport-cad-canvas">
+            <div class="cad-drawing-wrapper" id="cad-interactive-container">
+              <svg class="cad-drawing-svg" viewBox="0 0 600 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Precision Horizon Grid -->
+                <line x1="0" y1="160" x2="600" y2="160" stroke="#333333" stroke-width="1" stroke-dasharray="6 6"/>
+                <line x1="300" y1="0" x2="300" y2="320" stroke="#333333" stroke-width="1" stroke-dasharray="6 6"/>
+
+                <!-- Ground Horizon Line -->
+                <line x1="40" y1="260" x2="560" y2="260" stroke="#FFFFFF" stroke-width="2"/>
+
+                <!-- Primary Brutalist Structural Block with 16.4° Cut -->
+                <polygon id="cad-poly-main" points="80,100 520,100 520,200 380,240 80,180" fill="#D7261E" stroke="#FFFFFF" stroke-width="2"/>
+
+                <!-- Pillar Monolith Foundations -->
+                <rect id="cad-pillar-1" x="120" y="180" width="40" height="80" fill="#121212" stroke="#FFFFFF" stroke-width="1.5"/>
+                <rect id="cad-pillar-2" x="240" y="200" width="40" height="60" fill="#121212" stroke="#FFFFFF" stroke-width="1.5"/>
+                <rect id="cad-pillar-3" x="380" y="240" width="50" height="20" fill="#B51D16" stroke="#FFFFFF" stroke-width="1.5"/>
+
+                <!-- Modular Architectural Louvres -->
+                <g id="cad-louvres" stroke="#FFFFFF" stroke-width="2">
+                  <line x1="140" y1="120" x2="140" y2="160"/>
+                  <line x1="180" y1="120" x2="180" y2="160"/>
+                  <line x1="220" y1="120" x2="220" y2="170"/>
+                  <line x1="260" y1="120" x2="260" y2="180"/>
+                  <line x1="300" y1="120" x2="300" y2="190"/>
+                  <line x1="340" y1="120" x2="340" y2="200"/>
+                  <line x1="380" y1="120" x2="380" y2="210"/>
+                  <line x1="420" y1="120" x2="420" y2="180"/>
+                  <line x1="460" y1="120" x2="460" y2="180"/>
+                </g>
+
+                <!-- Technical Callout Box -->
+                <rect x="440" y="30" width="130" height="46" fill="#121212" stroke="#D7261E" stroke-width="1.5"/>
+                <text x="450" y="48" fill="#D7261E" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700">SPAN: 18.4M</text>
+                <text x="450" y="64" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="9">STATUS: RIGID</text>
+              </svg>
+            </div>
+          </div>
+
+          <div class="viewport-data-strip">
+            <div class="data-cell">
+              <span class="data-label">PROJECT ID</span>
+              <span class="data-val val-vermilion" id="val-dossier-code">MONOLITH-08</span>
+            </div>
+            <div class="data-cell">
+              <span class="data-label">CANTILEVER SPAN</span>
+              <span class="data-val" id="val-dossier-span">18.4M</span>
+            </div>
+            <div class="data-cell">
+              <span class="data-label">LOAD CAPACITY</span>
+              <span class="data-val" id="val-dossier-load">480 KN/M²</span>
+            </div>
+            <div class="data-cell">
+              <span class="data-label">MATERIAL CORE</span>
+              <span class="data-val" id="val-dossier-mat">Cast Concrete</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         7. STYLE TILE PROMPT CODE DRAWER (agent.md Section 5.6)
+         ======================================================================== -->
+    <section class="prompt-drawer-container" id="agent-prompt-drawer">
+      <div class="prompt-drawer-header">
+        <div class="prompt-header-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          <span>Style Tile Markdown Spec // Machine Prompt for Coding Agents</span>
+        </div>
+
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-arch btn-arch-vermilion" style="padding: 6px 14px; font-size: 11px;" onclick="copyMasterTileSpec()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><rect x="9" y="9" width="13" height="13"/><path d="M5 15H4V4h11v1"/></svg>
+            Copy Full Spec
+          </button>
+          <button class="btn-arch btn-arch-ghost" style="padding: 6px 14px; font-size: 11px; color: #FFF; border-color: rgba(255,255,255,0.3);" onclick="downloadMasterTileSpec()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><path d="M21 15v4H3v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download .md
+          </button>
+        </div>
+      </div>
+
+      <pre class="prompt-raw-code" id="raw-spec-display"></pre>
+    </section>
+
+  </div>
+
+  <!-- ========================================================================
+       8. MODAL SPEC INSPECTOR (agent.md Section 2)
+       ======================================================================== -->
+  <div class="modal-backdrop" id="spec-modal-backdrop">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div class="modal-title">STYLE TILE // ARCHITECTURAL BRUTALISM & EDITORIAL MODERNISM</div>
+        <button class="modal-close-btn" onclick="closeSpecModal()" title="Close (Esc)">✕</button>
+      </div>
+      <div class="modal-body" id="modal-spec-content"></div>
+      <div class="modal-footer">
+        <button class="btn-arch btn-arch-ghost" style="color: #FFF; border-color: rgba(255,255,255,0.3); padding: 8px 14px;" onclick="closeSpecModal()">Close</button>
+        <button class="btn-arch btn-arch-vermilion" style="padding: 8px 16px;" onclick="copyMasterTileSpec()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><rect x="9" y="9" width="13" height="13"/><path d="M5 15H4V4h11v1"/></svg>
+          Copy Markdown Spec
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       9. FLOATING TOAST NOTIFICATION
+       ======================================================================== -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ========================================================================
+       10. RAW MARKDOWN SPEC EMBEDDED BLOCK (agent.md Section 2)
+       ======================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  STYLE TILE // ARCHITECTURAL BRUTALISM & EDITORIAL MODERNISM (TILE-016)
+================================================================================
+
+[ 01. DESIGN ETHOS & MOOD ]
+--------------------------------------------------------------------------------
+  * Aesthetic: Swiss International meets Constructivist Editorial
+  * Vibe: High-impact, stark architectural contrast, precise, unapologetic
+  * Visual Rhythm: Massive typographic scale colliding with strict grid structures,
+                    hard diagonal silhouettes, and high-contrast duotone imagery.
+
+[ 02. COLOR ROLES & PALETTE ]
+--------------------------------------------------------------------------------
+:root {
+  /* Primary & Accent */
+  --color-vermilion:         #D7261E; /* Brand Core: Primary visual anchor, high-impact hero backgrounds, active states */
+  --color-vermilion-dark:    #B51D16; /* Deep Signal Red: Hover states on red, deep emphasis */
+  --color-vermilion-subtle:  rgba(215, 38, 30, 0.08); /* Faint highlight tint */
+
+  /* Monochrome & Neutrals */
+  --color-ink-black:         #121212; /* High Contrast: Primary typography, dominant utility bars, stark surface contrast */
+  --color-canvas-cream:      #F6F4EE; /* Architectural Cream: Primary page background, editorial breathing room */
+  --color-slate-grey:        #8A8D8F; /* Muted Slate Grey: Secondary captions, inactive controls, building texture balance */
+  --color-pure-white:        #FFFFFF; /* Pure White: Inverted typography on black/red blocks, crisp UI elements */
+  --color-white-translucent: rgba(255, 255, 255, 0.88);
+
+  /* Status Tokens */
+  --color-status-active:     #D7261E;
+  --color-status-muted:      #8A8D8F;
+  --color-status-success:    #2E6F40;
+  --color-status-warning:    #D97706;
+}
+
+[ 03. TYPOGRAPHY SYSTEM ]
+--------------------------------------------------------------------------------
+/* Font Stacks */
+--font-display: "Syne", "Monument Extended", sans-serif;
+--font-sans:    "Inter", -apple-system, "Neue Haas Grotesk", sans-serif;
+--font-mono:    "JetBrains Mono", "Space Mono", monospace;
+
+/* Hierarchy & Tokens */
+--text-display:   clamp(4.5rem, 10vw, 10rem) / 0.85 var(--font-display); /* 120px–180px | Weight: 700/800 | UPPERCASE | Tracking: -0.04em */
+--text-title-xl:  clamp(2.5rem, 5.5vw, 5.5rem) / 0.95 var(--font-display); /* 64px–96px | Weight: 600/700 | UPPERCASE | Tracking: -0.02em */
+--text-subhead-l: clamp(1.25rem, 2vw, 1.75rem) / 1.20 var(--font-display); /* 24px–32px | Weight: 500/600 | UPPERCASE | Tracking: +0.02em */
+--text-body-reg:  0.9375rem / 1.45 var(--font-sans); /* 14px–16px | Weight: 400 | Sentence case | Tracking: 0.00em */
+--text-micro-ui:  0.6875rem / 1.00 var(--font-mono); /* 10px–12px | Weight: 600 | UPPERCASE | Tracking: +0.12em */
+
+[ 04. CORNER GEOMETRY (BORDER RADII) ]
+--------------------------------------------------------------------------------
+* Strategy: Strict Zero-Radius (Radical Rectilinear)
+* Tokens:
+  --radius-none: 0px; /* Global buttons, inputs, cards, toolbars, badges */
+  --radius-sm:   0px;
+  --radius-lg:   0px;
+
+* Architectural Cuts: Hard diagonal mask angles (14°–18° slope) for hero image
+  containers, accent ribbons, and content sectional dividers (clip-path polygons).
+
+[ 05. ELEVATION & DEPTH (SHADOWS & LAYERS) ]
+--------------------------------------------------------------------------------
+* Strategy: Flat Editorial Stacking (Zero blur-shadows, pure z-axis overlap)
+* Tokens:
+  --shadow-none:           none;
+  --shadow-hard:           4px 4px 0px #121212; /* Hard brutalist offset, used sparingly */
+  --shadow-hard-vermilion: 4px 4px 0px #D7261E;
+
+* Layering Hierarchy:
+  Z-0 : Architectural Cream Base Canvas (#F6F4EE)
+  Z-1 : Monochromatic / Duotone Architectural Image Layers
+  Z-2 : Bold Color Blocks (Vermilion Red #D7261E with angled cutouts)
+  Z-3 : Overlapping Typography (Large display text interacting across seams)
+  Z-4 : Fixed Utility/Navigation Toolbars (Deep Ink Black #121212)
+
+[ 06. SPACING & SPATIAL SCALE ]
+--------------------------------------------------------------------------------
+* Grid System: 12-Column Responsive Grid | Gutters: 0px or 16px (Flush edge-to-edge)
+* Base Unit: 4px / 8px scale
+  --space-2xs: 4px;
+  --space-xs:  8px;
+  --space-sm:  16px;
+  --space-md:  24px;
+  --space-lg:  48px;
+  --space-xl:  80px;
+  --space-2xl: 120px;
+
+[ 07. BORDERS & DIVIDERS ]
+--------------------------------------------------------------------------------
+* Style: Hairline Minimalist
+* Tokens:
+  --border-hairline-dark:  1px solid rgba(18, 18, 18, 0.15);
+  --border-hairline-light: 1px solid rgba(255, 255, 255, 0.20);
+  --border-heavy-accent:   2px solid #121212;
+  --border-vermilion-bold: 2px solid #D7261E;
+
+[ 08. ICONOGRAPHY LANGUAGE ]
+--------------------------------------------------------------------------------
+* Style: Ultra-thin, geometric hairline glyphs
+* Stroke Width: 1.25px–1.5px (Matches typography weight)
+* Corner Join: Miter / Sharp (stroke-linecap: square; stroke-linejoin: miter)
+* Visuals: Minimalist downward chevrons, geometric search loupes, strict directional arrows.
+
+[ 09. INTERACTION & FEEDBACK RULES ]
+--------------------------------------------------------------------------------
+* Motion Curve: cubic-bezier(0.16, 1, 0.3, 1) [Fast, sharp, mechanical]
+* Duration: 120ms – 200ms (Instantaneous tactile feel)
+* Hover Behaviors:
+  - Text Links: Instant color inversion (Ink Black -> Vermilion Red) or underline draw.
+  - Black Bar Modules: Background shift from #121212 -> #D7261E on active focus.
+  - Filter Dropdowns: Subtle 1px border highlight with instantaneous chevron rotation.
+  - Image Interactions: Greyscale to subtle high-contrast sharpen/color bleed on hover.
+
+[ 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS ]
+--------------------------------------------------------------------------------
+- NO rounded corners or pill-shaped buttons (Strict 0px radius everywhere).
+- NO diffuse blurred drop shadows or neon glows.
+- NO purple/violet dark theme or generic tech gradients.
+- NO floating unanchored cards without structural grid alignment.
+- NO soft pastel colors (strictly Vermilion, Ink Black, Architectural Cream, Slate Grey, Pure White).
+================================================================================
+  </script>
+
+  <!-- ========================================================================
+       11. JAVASCRIPT CONTROLLERS
+       ======================================================================== -->
+  <script>
+    // --------------------------------------------------------------------------
+    // TOAST NOTIFICATION SYSTEM
+    // --------------------------------------------------------------------------
+    function showToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast-notification";
+      toast.innerHTML = `<span class="toast-icon">${icon}</span><span>${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 200);
+      }, 2400);
+    }
+
+    // --------------------------------------------------------------------------
+    // MARKDOWN EXTRACTION & HEADER BUTTONS (agent.md Section 2)
+    // --------------------------------------------------------------------------
+    function getMarkdownText() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    function copyMasterTileSpec() {
+      const text = getMarkdownText();
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const original = btn.innerHTML;
+          btn.innerHTML = `<span style="color:#FFF;">✓ Copied to Clipboard!</span>`;
+          setTimeout(() => { btn.innerHTML = original; }, 2000);
+        }
+        showToast("Style Tile Prompt copied to clipboard!");
+      }).catch(err => {
+        console.error("Clipboard copy failed:", err);
+        showToast("Failed to copy spec", "✕");
+      });
+    }
+
+    function downloadMasterTileSpec() {
+      const text = getMarkdownText();
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-architectural-brutalism.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-architectural-brutalism.md");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      const content = document.getElementById("modal-spec-content");
+      if (modal && content) {
+        content.textContent = getMarkdownText();
+        modal.classList.add("active");
+      }
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      if (modal) modal.classList.remove("active");
+    }
+
+    // --------------------------------------------------------------------------
+    // SWATCH COLOR COPY
+    // --------------------------------------------------------------------------
+    function copyColorHex(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${hex} (${varName}) to clipboard!`);
+      });
+    }
+
+    // --------------------------------------------------------------------------
+    // PANGRAM TESTER CONTROLS
+    // --------------------------------------------------------------------------
+    function setPangramFont(fontFamily, btn) {
+      document.querySelectorAll(".btn-font-toggle").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const output = document.getElementById("pangram-output");
+      if (output) {
+        output.style.fontFamily = fontFamily === "Syne" ? "var(--font-display)" : (fontFamily === "Inter" ? "var(--font-sans)" : "var(--font-mono)");
+      }
+      showToast(`Active Font: ${fontFamily}`);
+    }
+
+    function updatePangramSize(val) {
+      const label = document.getElementById("val-font-size");
+      const output = document.getElementById("pangram-output");
+      if (label) label.textContent = val + "px";
+      if (output) output.style.fontSize = val + "px";
+    }
+
+    // --------------------------------------------------------------------------
+    // INTERACTIVE DOSSIER & CAD CONTROLS
+    // --------------------------------------------------------------------------
+    function switchDossierProject(code, name, span, load, mat, item) {
+      document.querySelectorAll(".dossier-nav-item").forEach(el => el.classList.remove("active"));
+      item.classList.add("active");
+
+      document.getElementById("dossier-id-tag").textContent = code;
+      document.getElementById("dossier-name-text").textContent = name;
+      document.getElementById("val-dossier-code").textContent = code;
+      document.getElementById("val-dossier-span").textContent = span;
+      document.getElementById("val-dossier-load").textContent = load;
+      document.getElementById("val-dossier-mat").textContent = mat;
+
+      // Slight animated pulse on CAD canvas
+      const poly = document.getElementById("cad-poly-main");
+      if (poly) {
+        poly.style.transform = "scale(1.02)";
+        poly.style.transformOrigin = "center";
+        setTimeout(() => { poly.style.transform = "scale(1)"; }, 150);
+      }
+
+      showToast(`Loaded dossier: ${code} // ${name}`);
+    }
+
+    function setDossierMaterial(matName, colorHex, btn) {
+      document.querySelectorAll(".btn-material").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      document.getElementById("val-dossier-mat").textContent = matName;
+
+      const poly = document.getElementById("cad-poly-main");
+      if (poly) {
+        poly.setAttribute("fill", colorHex);
+      }
+
+      showToast(`Applied material: ${matName}`);
+    }
+
+    function setCadViewMode(mode, btn) {
+      document.querySelectorAll(".btn-mode-pill").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const louvres = document.getElementById("cad-louvres");
+      const poly = document.getElementById("cad-poly-main");
+
+      if (mode === "section") {
+        if (louvres) louvres.style.display = "block";
+        if (poly) poly.setAttribute("fill", "transparent");
+      } else if (mode === "stress") {
+        if (louvres) louvres.style.display = "none";
+        if (poly) poly.setAttribute("fill", "#D7261E");
+      } else {
+        if (louvres) louvres.style.display = "block";
+        if (poly) poly.setAttribute("fill", "#D7261E");
+      }
+
+      showToast(`CAD Viewport Mode: ${mode.toUpperCase()}`);
+    }
+
+    function toggleSwitch(btn) {
+      btn.classList.toggle("active");
+      const isActive = btn.classList.contains("active");
+      showToast(`Duotone Mode: ${isActive ? "ENABLED" : "DISABLED"}`);
+    }
+
+    function triggerDiagonalSlashPulse() {
+      const banner = document.getElementById("hero-diagonal-banner");
+      if (!banner) return;
+      banner.style.backgroundColor = "#FFFFFF";
+      banner.style.color = "#D7261E";
+      setTimeout(() => {
+        banner.style.backgroundColor = "#D7261E";
+        banner.style.color = "#FFFFFF";
+      }, 200);
+      showToast("16.4° Diagonal Cut Pulse Triggered!", "⚡");
+    }
+
+    // --------------------------------------------------------------------------
+    // INITIALIZATION
+    // --------------------------------------------------------------------------
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Populate Code Drawer
+      const rawDisplay = document.getElementById("raw-spec-display");
+      if (rawDisplay) rawDisplay.textContent = getMarkdownText();
+
+      // 2. Bind Header Buttons
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyMasterTileSpec);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadMasterTileSpec);
+
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      // 3. Modal close on backdrop & Escape
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+    });
+  </script>
+</body>
+</html>

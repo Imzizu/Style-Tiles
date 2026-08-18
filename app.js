@@ -2550,6 +2550,149 @@ States:
 - NO heavy skeuomorphic 3D bevels or black zero-blur drop shadows.
 - NO low-contrast illegible text on purple surfaces.
 ================================================================================`
+  },
+  {
+    id: "TILE-016",
+    slug: "architectural-brutalism",
+    name: "Architectural Brutalism & Editorial Modernism",
+    vibe: "Swiss International • Constructivist Tension • Vermilion & Ink Contrast",
+    vibeBadge: "Neo-Brutalism",
+    categories: ["brutalist"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Syne",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Vermilion Red Core", hex: "#D7261E" },
+      { name: "Deep Signal Red", hex: "#B51D16" },
+      { name: "Ink Black Contrast", hex: "#121212" },
+      { name: "Architectural Cream", hex: "#F6F4EE" },
+      { name: "Muted Slate Grey", hex: "#8A8D8F" },
+      { name: "Pure White", hex: "#FFFFFF" }
+    ],
+    description: "Swiss International meets Constructivist Editorial: Vermilion Red (#D7261E), Ink Black (#121212), Architectural Cream (#F6F4EE), strict zero-radius geometry, 14°-18° diagonal architectural cuts, and monumental typographic contrast.",
+    markdownSpec: `================================================================================
+  STYLE TILE // ARCHITECTURAL BRUTALISM & EDITORIAL MODERNISM (TILE-016)
+================================================================================
+
+[ 01. DESIGN ETHOS & MOOD ]
+--------------------------------------------------------------------------------
+  * Aesthetic: Swiss International meets Constructivist Editorial
+  * Vibe: High-impact, stark architectural contrast, precise, unapologetic
+  * Visual Rhythm: Massive typographic scale colliding with strict grid structures,
+                    hard diagonal silhouettes, and high-contrast duotone imagery.
+
+[ 02. COLOR ROLES & PALETTE ]
+--------------------------------------------------------------------------------
+:root {
+  /* Primary & Accent */
+  --color-vermilion:         #D7261E; /* Brand Core: Primary visual anchor, high-impact hero backgrounds, active states */
+  --color-vermilion-dark:    #B51D16; /* Deep Signal Red: Hover states on red, deep emphasis */
+  --color-vermilion-subtle:  rgba(215, 38, 30, 0.08); /* Faint highlight tint */
+
+  /* Monochrome & Neutrals */
+  --color-ink-black:         #121212; /* High Contrast: Primary typography, dominant utility bars, stark surface contrast */
+  --color-canvas-cream:      #F6F4EE; /* Architectural Cream: Primary page background, editorial breathing room */
+  --color-slate-grey:        #8A8D8F; /* Muted Slate Grey: Secondary captions, inactive controls, building texture balance */
+  --color-pure-white:        #FFFFFF; /* Pure White: Inverted typography on black/red blocks, crisp UI elements */
+  --color-white-translucent: rgba(255, 255, 255, 0.88);
+
+  /* Status Tokens */
+  --color-status-active:     #D7261E;
+  --color-status-muted:      #8A8D8F;
+  --color-status-success:    #2E6F40;
+  --color-status-warning:    #D97706;
+}
+
+[ 03. TYPOGRAPHY SYSTEM ]
+--------------------------------------------------------------------------------
+/* Font Stacks */
+--font-display: "Syne", "Monument Extended", sans-serif;
+--font-sans:    "Inter", -apple-system, "Neue Haas Grotesk", sans-serif;
+--font-mono:    "JetBrains Mono", "Space Mono", monospace;
+
+/* Hierarchy & Tokens */
+--text-display:   clamp(4.5rem, 10vw, 10rem) / 0.85 var(--font-display); /* 120px–180px | Weight: 700/800 | UPPERCASE | Tracking: -0.04em */
+--text-title-xl:  clamp(2.5rem, 5.5vw, 5.5rem) / 0.95 var(--font-display); /* 64px–96px | Weight: 600/700 | UPPERCASE | Tracking: -0.02em */
+--text-subhead-l: clamp(1.25rem, 2vw, 1.75rem) / 1.20 var(--font-display); /* 24px–32px | Weight: 500/600 | UPPERCASE | Tracking: +0.02em */
+--text-body-reg:  0.9375rem / 1.45 var(--font-sans); /* 14px–16px | Weight: 400 | Sentence case | Tracking: 0.00em */
+--text-micro-ui:  0.6875rem / 1.00 var(--font-mono); /* 10px–12px | Weight: 600 | UPPERCASE | Tracking: +0.12em */
+
+[ 04. CORNER GEOMETRY (BORDER RADII) ]
+--------------------------------------------------------------------------------
+* Strategy: Strict Zero-Radius (Radical Rectilinear)
+* Tokens:
+  --radius-none: 0px; /* Global buttons, inputs, cards, toolbars, badges */
+  --radius-sm:   0px;
+  --radius-lg:   0px;
+
+* Architectural Cuts: Hard diagonal mask angles (14°–18° slope) for hero image
+  containers, accent ribbons, and content sectional dividers (clip-path polygons).
+
+[ 05. ELEVATION & DEPTH (SHADOWS & LAYERS) ]
+--------------------------------------------------------------------------------
+* Strategy: Flat Editorial Stacking (Zero blur-shadows, pure z-axis overlap)
+* Tokens:
+  --shadow-none:           none;
+  --shadow-hard:           4px 4px 0px #121212; /* Hard brutalist offset, used sparingly */
+  --shadow-hard-vermilion: 4px 4px 0px #D7261E;
+
+* Layering Hierarchy:
+  Z-0 : Architectural Cream Base Canvas (#F6F4EE)
+  Z-1 : Monochromatic / Duotone Architectural Image Layers
+  Z-2 : Bold Color Blocks (Vermilion Red #D7261E with angled cutouts)
+  Z-3 : Overlapping Typography (Large display text interacting across seams)
+  Z-4 : Fixed Utility/Navigation Toolbars (Deep Ink Black #121212)
+
+[ 06. SPACING & SPATIAL SCALE ]
+--------------------------------------------------------------------------------
+* Grid System: 12-Column Responsive Grid | Gutters: 0px or 16px (Flush edge-to-edge)
+* Base Unit: 4px / 8px scale
+  --space-2xs: 4px;
+  --space-xs:  8px;
+  --space-sm:  16px;
+  --space-md:  24px;
+  --space-lg:  48px;
+  --space-xl:  80px;
+  --space-2xl: 120px;
+
+[ 07. BORDERS & DIVIDERS ]
+--------------------------------------------------------------------------------
+* Style: Hairline Minimalist
+* Tokens:
+  --border-hairline-dark:  1px solid rgba(18, 18, 18, 0.15);
+  --border-hairline-light: 1px solid rgba(255, 255, 255, 0.20);
+  --border-heavy-accent:   2px solid #121212;
+  --border-vermilion-bold: 2px solid #D7261E;
+
+[ 08. ICONOGRAPHY LANGUAGE ]
+--------------------------------------------------------------------------------
+* Style: Ultra-thin, geometric hairline glyphs
+* Stroke Width: 1.25px–1.5px (Matches typography weight)
+* Corner Join: Miter / Sharp (stroke-linecap: square; stroke-linejoin: miter)
+* Visuals: Minimalist downward chevrons, geometric search loupes, strict directional arrows.
+
+[ 09. INTERACTION & FEEDBACK RULES ]
+--------------------------------------------------------------------------------
+* Motion Curve: cubic-bezier(0.16, 1, 0.3, 1) [Fast, sharp, mechanical]
+* Duration: 120ms – 200ms (Instantaneous tactile feel)
+* Hover Behaviors:
+  - Text Links: Instant color inversion (Ink Black -> Vermilion Red) or underline draw.
+  - Black Bar Modules: Background shift from #121212 -> #D7261E on active focus.
+  - Filter Dropdowns: Subtle 1px border highlight with instantaneous chevron rotation.
+  - Image Interactions: Greyscale to subtle high-contrast sharpen/color bleed on hover.
+
+[ 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS ]
+--------------------------------------------------------------------------------
+- NO rounded corners or pill-shaped buttons (Strict 0px radius everywhere).
+- NO diffuse blurred drop shadows or neon glows.
+- NO purple/violet dark theme or generic tech gradients.
+- NO floating unanchored cards without structural grid alignment.
+- NO soft pastel colors (strictly Vermilion, Ink Black, Architectural Cream, Slate Grey, Pure White).
+================================================================================`
   }
 ];
 
