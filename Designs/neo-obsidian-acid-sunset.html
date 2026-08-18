@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neo-Obsidian & Acid Sunset — High-Contrast Dark Surface UI (TILE-032)</title>
+  <meta name="description" content="Neo-Obsidian & Acid Sunset: High-Contrast Dark Surface UI with Warm-to-Acid Kinetic Data Layer. #0D1111 obsidian canvas, 108deg kinetic sunset spectrum (#F59E0B → #C4E041 → #8CE452), 32px squircle window framing, and micro-precision data typography.">
+
+  <!-- Google Fonts: Plus Jakarta Sans (Primary UI), JetBrains Mono (Telemetry/Numeric) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       DESIGN SYSTEM & STYLE TILE: "NEO-OBSIDIAN & ACID SUNSET" (TILE-032)
+       High-Contrast Dark Surface UI with Warm-to-Acid Kinetic Data Layer
+       ============================================================================= */
+
+    :root {
+      /* 1. COLOR ROLES & PALETTE */
+      /* Canvas & Neutral Base */
+      --canvas-surface:         #0D1111; /* hsl(180, 13%, 6%) - Main App Canvas */
+      --card-surface-default:   #141918; /* hsl(168, 11%, 9%) - L1 Default Card */
+      --card-surface-elevated:  #1A211F; /* hsl(165, 12%, 12%) - L2 Elevated Surface */
+      --input-subsurface:       #0A0D0C; /* hsl(160, 14%, 4%) - L3 Input/Sub-surface */
+
+      /* Hero Gradient (Kinetic Spectrum) */
+      --gradient-stop-0:        #F59E0B; /* Amber Gold (hsl(38, 92%, 50%)) */
+      --gradient-stop-50:       #C4E041; /* Chartreuse (hsl(71, 74%, 57%)) */
+      --gradient-stop-100:      #8CE452; /* Acid Lime (hsl(96, 74%, 61%)) */
+      --hero-gradient:          linear-gradient(108deg, #F59E0B 0%, #C4E041 52%, #8CE452 100%);
+      --hero-gradient-subtle:   linear-gradient(108deg, rgba(245, 158, 11, 0.15) 0%, rgba(196, 224, 65, 0.15) 52%, rgba(140, 228, 82, 0.15) 100%);
+
+      /* Semantic & Accents */
+      --brand-primary:          #F38C38; /* CTA Orange (hsl(27, 89%, 59%)) */
+      --brand-hover:            #FA9A4B; /* CTA Hover (hsl(27, 94%, 64%)) */
+      --accent-mint:            #3CD070; /* Positive / Success (hsl(141, 62%, 53%)) */
+      --accent-coral:           #F87171; /* Negative / Danger (hsl(0, 91%, 71%)) */
+      --accent-cyan:            #38BDF8; /* Info / Telemetry (hsl(199, 95%, 60%)) */
+      --accent-gold:            #FBBF24; /* Warning (hsl(43, 96%, 56%)) */
+
+      /* Typography Colors */
+      --text-primary:           #FFFFFF; /* 100% White */
+      --text-secondary:         #8B9994; /* hsl(163, 7%, 58%) */
+      --text-muted:             #4B5552; /* hsl(162, 7%, 31%) */
+      --text-inverted:          #0A0D0C; /* hsl(160, 14%, 4%) - On Gradient */
+      --text-inverted-muted:    #2A332F; /* hsl(156, 10%, 18%) */
+
+      /* 2. TYPOGRAPHY SYSTEM */
+      --font-sans:              "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+      --font-mono:              "JetBrains Mono", "SF Mono", monospace;
+
+      /* 3. CORNER GEOMETRY (BORDER RADII) */
+      --radius-xl:              32px;   /* App Window/Shell (Extreme continuous squircle) */
+      --radius-lg:              24px;   /* Primary Containers (Main hero & dashboard cards) */
+      --radius-md:              16px;   /* Standard Cards (Metric tiles, chart panels) */
+      --radius-sm:              10px;   /* Inputs & Buttons (Controls, small widgets) */
+      --radius-xs:              6px;    /* Tooltips & Badges (Micro tags, indicator pills) */
+      --radius-pill:            9999px; /* Tokens & Action (Circular coin badges, chip toggles) */
+
+      /* 4. ELEVATION & DEPTH */
+      --shadow-l0:              none;
+      --shadow-l1:              0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+      --shadow-l2:              0 12px 32px -6px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
+      --shadow-glow-orange:     0 4px 20px -2px rgba(243, 140, 56, 0.35);
+      --shadow-glow-hero:       0 16px 48px -8px rgba(196, 224, 65, 0.18);
+
+      /* Glassmorphism & Overlays */
+      --glass-tooltip:          rgba(10, 13, 12, 0.88);
+      --glass-blur:             blur(12px);
+      --chart-scrubber-overlay: rgba(255, 255, 255, 0.04);
+
+      /* 5. SPACING & SPATIAL SCALE (8-POINT GRID) */
+      --space-2xs:              4px;
+      --space-xs:               8px;
+      --space-sm:               12px;
+      --space-md:               16px;
+      --space-lg:               24px;
+      --space-xl:               32px;
+      --space-2xl:              64px;
+
+      /* 6. BORDERS & DIVIDERS */
+      --border-card:            1px solid rgba(255, 255, 255, 0.05);
+      --border-active:          1px solid rgba(255, 255, 255, 0.18);
+      --border-table-row:       1px solid rgba(255, 255, 255, 0.04);
+      --border-inset-light:     inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+
+      /* 7. INTERACTION & ANIMATIONS */
+      --trans-fluid:            all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Base Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--canvas-surface);
+      color: var(--text-primary);
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--text-primary);
+      background-color: var(--canvas-surface);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background-color: var(--gradient-stop-50);
+      color: var(--text-inverted);
+    }
+
+    /* Ambient Kinetic Background Glow */
+    .ambient-glow-bg {
+      position: fixed;
+      top: -15vw;
+      right: -10vw;
+      width: 50vw;
+      height: 50vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196, 224, 65, 0.045) 0%, rgba(245, 158, 11, 0.02) 50%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* =============================================================================
+       MANDATORY TOP HEADER BAR
+       ============================================================================= */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding: 14px var(--space-xl);
+      background: rgba(13, 17, 17, 0.92);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-bottom: var(--border-card);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      background: var(--card-surface-default);
+      border: var(--border-card);
+      transition: var(--trans-fluid);
+    }
+
+    .nav-back-link:hover {
+      color: var(--text-primary);
+      border-color: var(--border-active);
+      transform: translateY(-1px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border-radius: var(--radius-xs);
+      background: var(--input-subsurface);
+      border: 1px solid rgba(196, 224, 65, 0.3);
+      color: var(--gradient-stop-50);
+    }
+
+    .design-title {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(243, 140, 56, 0.12);
+      border: 1px solid rgba(243, 140, 56, 0.35);
+      color: var(--brand-primary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      border: var(--border-card);
+      cursor: pointer;
+      transition: var(--trans-fluid);
+      text-decoration: none;
+    }
+
+    .btn-preview {
+      background: var(--card-surface-default);
+      color: var(--text-secondary);
+    }
+
+    .btn-preview:hover {
+      background: var(--card-surface-elevated);
+      color: var(--text-primary);
+      border-color: var(--border-active);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy {
+      background: var(--brand-primary);
+      color: var(--text-inverted);
+      font-weight: 600;
+      border: none;
+      box-shadow: var(--shadow-glow-orange);
+    }
+
+    .btn-copy:hover {
+      background: var(--brand-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px -2px rgba(243, 140, 56, 0.45);
+    }
+
+    .btn-download {
+      background: var(--card-surface-elevated);
+      color: var(--text-primary);
+      border: var(--border-card);
+    }
+
+    .btn-download:hover {
+      background: #232B28;
+      border-color: var(--border-active);
+      transform: translateY(-1px);
+    }
+
+    /* =============================================================================
+       MAIN PAGE CONTAINER & SECTIONS
+       ============================================================================= */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-xl) var(--space-2xl);
+    }
+
+    .section-header {
+      margin-bottom: var(--space-lg);
+      position: relative;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gradient-stop-50);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-2xs);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 2px;
+      background: var(--gradient-stop-50);
+      border-radius: 1px;
+    }
+
+    .section-title {
+      font-family: var(--font-sans);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 32px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      max-width: 720px;
+      margin-top: 6px;
+      line-height: 20px;
+    }
+
+    .section-spacer {
+      height: var(--space-2xl);
+    }
+
+    /* =============================================================================
+       1. HERO DISPLAY BANNER & DASHBOARD COMPONENT
+       ============================================================================= */
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-xl);
+      align-items: center;
+      padding: var(--space-xl) 0 calc(var(--space-2xl) * 0.8);
+      border-bottom: var(--border-card);
+    }
+
+    .hero-text-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .hero-chips-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hero-metric-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      padding: 4px 10px;
+      border-radius: var(--radius-xs);
+      background: rgba(60, 208, 112, 0.12);
+      color: var(--accent-mint);
+      border: 1px solid rgba(60, 208, 112, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .hero-title-main {
+      font-family: var(--font-sans);
+      font-size: clamp(32px, 4.4vw, 48px);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-title-gradient {
+      background: var(--hero-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .hero-narrative-copy {
+      font-size: 15px;
+      line-height: 24px;
+      color: var(--text-secondary);
+      max-width: 620px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      background: var(--brand-primary);
+      color: var(--text-inverted);
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow-glow-orange);
+      transition: var(--trans-fluid);
+      text-decoration: none;
+    }
+
+    .btn-hero-primary:hover {
+      background: var(--brand-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px -2px rgba(243, 140, 56, 0.45);
+    }
+
+    .btn-hero-secondary {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 22px;
+      border-radius: var(--radius-sm);
+      background: var(--card-surface-default);
+      color: var(--text-primary);
+      border: var(--border-card);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--trans-fluid);
+      text-decoration: none;
+    }
+
+    .btn-hero-secondary:hover {
+      background: var(--card-surface-elevated);
+      border-color: var(--border-active);
+      transform: translateY(-1px);
+    }
+
+    /* Hero Interactive Kinetic Card */
+    .hero-interactive-card {
+      background: var(--hero-gradient);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-glow-hero);
+      color: var(--text-inverted);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      transition: var(--trans-fluid);
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .hero-card-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 4px 10px;
+      border-radius: var(--radius-xs);
+      background: rgba(10, 13, 12, 0.15);
+      color: var(--text-inverted);
+    }
+
+    .hero-metric-display {
+      font-family: var(--font-sans);
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 44px;
+      letter-spacing: -0.03em;
+      color: var(--text-inverted);
+    }
+
+    .hero-card-meta {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-inverted-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-mini-chart {
+      width: 100%;
+      height: 70px;
+      margin-top: 4px;
+    }
+
+    .hero-mini-chart svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    /* =============================================================================
+       2. COLOR MATRIX & SWATCH TILES
+       ============================================================================= */
+    .color-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .color-specimen-tile {
+      background: var(--card-surface-default);
+      border-radius: var(--radius-md);
+      border: var(--border-card);
+      box-shadow: var(--shadow-l1);
+      overflow: hidden;
+      transition: var(--trans-fluid);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .color-specimen-tile:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-active);
+      box-shadow: var(--shadow-l2);
+    }
+
+    .swatch-fill-area {
+      height: 110px;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: var(--space-sm);
+      position: relative;
+    }
+
+    .swatch-hex-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-xs);
+      background: rgba(10, 13, 12, 0.85);
+      color: #FFFFFF;
+      backdrop-filter: var(--glass-blur);
+    }
+
+    .swatch-details-box {
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .swatch-title-label {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .swatch-token-var {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--gradient-stop-50);
+    }
+
+    .swatch-role-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      line-height: 16px;
+    }
+
+    /* =============================================================================
+       3. TYPOGRAPHY SYSTEM MATRIX
+       ============================================================================= */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: var(--space-lg);
+    }
+
+    .type-container-card {
+      background: var(--card-surface-default);
+      border-radius: var(--radius-md);
+      border: var(--border-card);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-l1);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .type-hierarchy-table {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .type-row-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: var(--space-md);
+      border-bottom: var(--border-table-row);
+    }
+
+    .type-row-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .type-row-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .specimen-display {
+      font-size: 36px;
+      line-height: 44px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+    }
+
+    .specimen-h1 {
+      font-size: 24px;
+      line-height: 32px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .specimen-h2 {
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--gradient-stop-50);
+    }
+
+    .specimen-card-subtitle {
+      font-size: 11px;
+      line-height: 16px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .specimen-body {
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    .specimen-table-data {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 18px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: var(--accent-mint);
+    }
+
+    /* Live Pangram Card */
+    .pangram-test-box {
+      background: var(--input-subsurface);
+      border-radius: var(--radius-sm);
+      border: var(--border-card);
+      padding: var(--space-md);
+      font-size: 16px;
+      line-height: 26px;
+      color: var(--text-primary);
+      outline: none;
+      min-height: 100px;
+    }
+
+    .pangram-test-box:focus {
+      border-color: var(--border-active);
+    }
+
+    /* =============================================================================
+       4. COMPONENT ARCHETYPE GALLERY
+       ============================================================================= */
+    .components-layout-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .component-tile-panel {
+      background: var(--card-surface-default);
+      border-radius: var(--radius-md);
+      border: var(--border-card);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-l1);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .component-tile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .component-tile-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .component-group-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Button Archetypes */
+    .btn-obsidian-primary {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      background: var(--brand-primary);
+      color: var(--text-inverted);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-glow-orange);
+      transition: var(--trans-fluid);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-obsidian-primary:hover {
+      background: var(--brand-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 22px -2px rgba(243, 140, 56, 0.45);
+    }
+
+    .btn-obsidian-secondary {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      background: var(--card-surface-elevated);
+      color: var(--text-primary);
+      border: var(--border-card);
+      cursor: pointer;
+      transition: var(--trans-fluid);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-obsidian-secondary:hover {
+      background: #232B28;
+      border-color: var(--border-active);
+      transform: translateY(-1px);
+    }
+
+    .btn-obsidian-gradient {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      background: var(--hero-gradient);
+      color: var(--text-inverted);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-glow-hero);
+      transition: var(--trans-fluid);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-obsidian-gradient:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px -4px rgba(196, 224, 65, 0.35);
+    }
+
+    /* Micro Indicator Tags */
+    .indicator-pill-mint {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-xs);
+      background: rgba(60, 208, 112, 0.15);
+      color: var(--accent-mint);
+      border: 1px solid rgba(60, 208, 112, 0.3);
+    }
+
+    .indicator-pill-coral {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-xs);
+      background: rgba(248, 113, 113, 0.15);
+      color: var(--accent-coral);
+      border: 1px solid rgba(248, 113, 113, 0.3);
+    }
+
+    .indicator-pill-cyan {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-xs);
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    /* Form Inputs */
+    .input-wrapper-obsidian {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .input-field-obsidian {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--input-subsurface);
+      border: var(--border-card);
+      color: var(--text-primary);
+      outline: none;
+      width: 100%;
+      transition: var(--trans-fluid);
+    }
+
+    .input-field-obsidian:focus {
+      border-color: var(--border-active);
+      box-shadow: 0 0 0 2px rgba(196, 224, 65, 0.2);
+    }
+
+    .input-field-obsidian::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* Asset Coin Token Disc */
+    .coin-disc {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-pill);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #FFFFFF;
+      box-shadow: var(--shadow-l1);
+    }
+
+    /* =============================================================================
+       5. LIVING MICRO-EXPERIENCE (KINETIC ASSET TELEMETRY DASHBOARD)
+       ============================================================================= */
+    .dashboard-shell {
+      background: var(--card-surface-default);
+      border-radius: var(--radius-xl);
+      border: var(--border-card);
+      box-shadow: var(--shadow-l2);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dashboard-top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: var(--space-md);
+      border-bottom: var(--border-table-row);
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .nav-tabs-group {
+      display: flex;
+      gap: 6px;
+      background: var(--input-subsurface);
+      padding: 4px;
+      border-radius: var(--radius-pill);
+      border: var(--border-card);
+    }
+
+    .nav-tab-pill {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      color: var(--text-secondary);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      transition: var(--trans-fluid);
+    }
+
+    .nav-tab-pill.active {
+      background: var(--card-surface-elevated);
+      color: var(--text-primary);
+      box-shadow: var(--shadow-l1);
+    }
+
+    .dashboard-metrics-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .metric-panel {
+      background: var(--card-surface-elevated);
+      border-radius: var(--radius-md);
+      border: var(--border-card);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+
+    .metric-panel.highlight-sunset {
+      background: var(--hero-gradient);
+      color: var(--text-inverted);
+    }
+
+    .metric-panel.highlight-sunset .metric-header-title {
+      color: var(--text-inverted-muted);
+    }
+
+    .metric-panel.highlight-sunset .metric-big-num {
+      color: var(--text-inverted);
+    }
+
+    .metric-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .metric-header-title {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--text-secondary);
+    }
+
+    .metric-big-num {
+      font-family: var(--font-sans);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    /* Live Telemetry Table */
+    .telemetry-table-card {
+      background: var(--card-surface-elevated);
+      border-radius: var(--radius-md);
+      border: var(--border-card);
+      overflow: hidden;
+    }
+
+    .telemetry-table-header {
+      padding: var(--space-sm) var(--space-md);
+      display: grid;
+      grid-template-columns: 2fr 1.2fr 1.2fr 1fr;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      border-bottom: var(--border-table-row);
+      text-transform: uppercase;
+    }
+
+    .telemetry-row {
+      padding: 12px var(--space-md);
+      display: grid;
+      grid-template-columns: 2fr 1.2fr 1.2fr 1fr;
+      align-items: center;
+      border-bottom: var(--border-table-row);
+      transition: var(--trans-fluid);
+      cursor: pointer;
+    }
+
+    .telemetry-row:last-child {
+      border-bottom: none;
+    }
+
+    .telemetry-row:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .asset-name-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Monoline SVG Icon standard */
+    .icon-vector {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke: currentColor;
+      fill: none;
+      vertical-align: middle;
+    }
+
+    /* =============================================================================
+       6. STYLE TILE PROMPT CODE DRAWER / ACCORDION
+       ============================================================================= */
+    .spec-drawer-card {
+      background: var(--card-surface-default);
+      border-radius: var(--radius-lg);
+      border: var(--border-card);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-l1);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .drawer-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .code-display-block {
+      background: var(--input-subsurface);
+      border-radius: var(--radius-sm);
+      border: var(--border-card);
+      padding: var(--space-md);
+      overflow-x: auto;
+    }
+
+    .code-display-pre {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #C8D6D1;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* =============================================================================
+       MODAL: PREVIEW STYLE TILE
+       ============================================================================= */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 13, 12, 0.8);
+      backdrop-filter: var(--glass-blur);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease;
+    }
+
+    .modal-backdrop.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      background: var(--card-surface-default);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 860px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: var(--shadow-l2);
+      border: var(--border-active);
+      transform: scale(0.96);
+      transition: transform 200ms ease;
+    }
+
+    .modal-backdrop.is-open .modal-container {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: var(--border-table-row);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-surface-elevated);
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 20px;
+      padding: 4px 8px;
+      border-radius: var(--radius-xs);
+      transition: var(--trans-fluid);
+    }
+
+    .modal-close-btn:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .modal-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      background: var(--input-subsurface);
+      color: #C8D6D1;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .modal-footer {
+      padding: var(--space-sm) var(--space-lg);
+      border-top: var(--border-table-row);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      background: var(--card-surface-elevated);
+    }
+
+    /* Toast Notification */
+    .toast-notification {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      background: var(--brand-primary);
+      color: var(--text-inverted);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: var(--shadow-glow-orange);
+      z-index: 3000;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 200ms ease;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-notification.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Media Queries for Responsive Reflow */
+    @media (max-width: 900px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+      .dashboard-metrics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .style-tile-header {
+        flex-wrap: wrap;
+        padding: 10px 14px;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+      }
+      .page-wrapper {
+        padding: var(--space-md) var(--space-sm) var(--space-2xl);
+      }
+      .hero-title-main {
+        font-size: 32px;
+      }
+      .telemetry-table-header, .telemetry-row {
+        grid-template-columns: 1.5fr 1fr;
+      }
+      .telemetry-col-hide-mobile {
+        display: none;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="design-page-mobile.css">
+</head>
+<body>
+  <div class="ambient-glow-bg"></div>
+
+  <!-- Mandatory Top Header Bar -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span>←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code">TILE-032</span>
+      <span class="design-title">Neo-Obsidian & Acid Sunset</span>
+      <span class="design-vibe-tag">Cyber & Blueprint</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg class="icon-vector" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg class="icon-vector" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download neo-obsidian-acid-sunset.md">
+        <svg class="icon-vector" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="page-wrapper">
+    <!-- 1. HERO DISPLAY BANNER -->
+    <section class="hero-layout">
+      <div class="hero-text-block">
+        <div class="hero-chips-row">
+          <span class="hero-metric-tag">
+            <svg class="icon-vector" width="12" height="12" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            +24.8% KINETIC DELTA
+          </span>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">TILE-032 SPEC</span>
+        </div>
+
+        <h1 class="hero-title-main">
+          Neo-Obsidian & <span class="hero-title-gradient">Acid Sunset</span>
+        </h1>
+
+        <p class="hero-narrative-copy">
+          High-contrast dark surface UI designed for high-frequency telemetry and asset dashboards. Engineered with an obsidian canvas (#0D1111), continuous 32px squircle window framing, and a vibrant warm-to-acid kinetic gradient (#F59E0B → #C4E041 → #8CE452).
+        </p>
+
+        <div class="hero-cta-group">
+          <button class="btn-hero-primary" onclick="copyStyleTileDirect()">
+            <svg class="icon-vector" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Design Prompt
+          </button>
+          <a href="#live-dashboard" class="btn-hero-secondary">
+            Inspect Kinetic Dashboard
+            <svg class="icon-vector" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Interactive Card -->
+      <div class="hero-interactive-card">
+        <div class="hero-card-header">
+          <div>
+            <span class="hero-card-badge">Kinetic Spectrum</span>
+            <div class="hero-metric-display" style="margin-top: 6px;">$184,920.40</div>
+          </div>
+          <div class="indicator-pill-mint" style="background: rgba(10,13,12,0.25); color: #0A0D0C; border:none; font-weight:700;">
+            ▲ 14.2% 24H
+          </div>
+        </div>
+
+        <div class="hero-card-meta">
+          <span>Active Asset Index</span>
+          <span>•</span>
+          <span>108° Multi-Stop Vector</span>
+        </div>
+
+        <!-- SVG Mini Waveform Graphic -->
+        <div class="hero-mini-chart">
+          <svg viewBox="0 0 300 70" preserveAspectRatio="none">
+            <path d="M0,50 Q35,20 70,40 T140,25 T210,45 T280,15 L300,20 L300,70 L0,70 Z" fill="rgba(10, 13, 12, 0.12)"></path>
+            <path d="M0,50 Q35,20 70,40 T140,25 T210,45 T280,15 L300,20" fill="none" stroke="#0A0D0C" stroke-width="2.5" stroke-linecap="round"></path>
+            <circle cx="280" cy="15" r="4" fill="#0A0D0C"></circle>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. COLOR ROLES & PALETTE MATRIX -->
+    <div class="section-spacer"></div>
+    <section class="section-container">
+      <div class="section-header">
+        <div class="section-eyebrow">01 // Color Foundation</div>
+        <h2 class="section-title">Color Roles & Palette Architecture</h2>
+        <p class="section-desc">Click any tile to instantly copy its exact HEX code or CSS variable.</p>
+      </div>
+
+      <div class="color-matrix-grid">
+        <!-- Canvas Surface -->
+        <div class="color-specimen-tile" onclick="copyColorHex('#0D1111', '--canvas-surface')">
+          <div class="swatch-fill-area" style="background: #0D1111; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <span class="swatch-hex-badge">#0D1111</span>
+          </div>
+          <div class="swatch-details-box">
+            <span class="swatch-title-label">Canvas Surface</span>
+            <span class="swatch-token-var">--canvas-surface</span>
+            <p class="swatch-role-desc">Main app foundation canvas (hsl(180, 13%, 6%)).</p>
+          </div>
+        </div>
+
+        <!-- L1 Card Surface Default -->
+        <div class="color-specimen-tile" onclick="copyColorHex('#141918', '--card-surface-default')">
+          <div class="swatch-fill-area" style="background: #141918;">
+            <span class="swatch-hex-badge">#141918</span>
+          </div>
+          <div class="swatch-details-box">
+            <span class="swatch-title-label">Card Default (L1)</span>
+            <span class="swatch-token-var">--card-surface-default</span>
+            <p class="swatch-role-desc">Primary container tiles & structural frames.</p>
+          </div>
+        </div>
+
+        <!-- L2 Card Surface Elevated -->
+        <div class="color-specimen-tile" onclick="copyColorHex('#1A211F', '--card-surface-elevated')">
+          <div class="swatch-fill-area" style="background: #1A211F;">
+            <span class="swatch-hex-badge">#1A211F</span>
+          </div>
+          <div class="swatch-details-box">
+            <span class="swatch-title-label">Card Elevated (L2)</span>
+            <span class="swatch-token-var">--card-surface-elevated</span>
+            <p class="swatch-role-desc">Hovered panels, table rows, and active well backgrounds.</p>
+          </div>
+        </div>
+
+        <!-- L3 Input Sub-surface -->
+        <div class="color-specimen-tile" onclick="copyColorHex('#0A0D0C', '--input-subsurface')">
+          <div class="swatch-fill-area" style="background: #0A0D0C;">
+            <span class="swatch-hex-badge">#0A0D0C</span>
+          </div>
+          <div class="swatch-details-box">
+            <span class="swatch-title-label">Input / Subsurface (L3)</span>
+            <span class="swatch-token-var">--input-subsurface</span>
+            <p class="swatch-role-desc">Sunken text inputs, code wrappers, and search bars.</p>
+          </div>
+        </div>
+
+        <!-- Amber Gold -->
+        <div class="color-specimen-tile" onclick="copyColorHex('#F59E0B', '--gradient-stop-0')">
+          <div class="swatch-fill-area" style="background: #F59E0B;">
+            <span class="swatch-hex-badge">#F59E0B</span>
+          </div>
+          <div class="swatch-details-box">
+            <span class="swatch-title-label">Amber Gold</span>
+            <span class="swatch-token-var">--gradient-stop-0</span>
+            <p class="swatch-role-desc">Gradient Stop 0% (hsl(38, 92%, 50%)).</p>
+          </div>
+        </div>
+
+        <!-- Chartreuse -->
+        <div class="color-specimen-tile" onclick="copyColorHex('#C4E041', '--gradient-stop-50')">
+          <div class="swatch-fill-area" style="background: #C4E041;">
+            <span class="swatch-hex-badge" style="color: #0A0D0C; background: #FFFFFF;">#C4E041</span>
+          </div>
+          <div class="swatch-details-box">
+            <span class="swatch-title-label">Chartreuse Mid</span>
+            <span class="swatch-token-var">--gradient-stop-50</span>
+            <p class="swatch-role-desc">Gradient Stop 50% (hsl(71, 74%, 57%)).</p>
+          </div>
+        </div>
+
+        <!-- Acid Lime -->
+        <div class="color-specimen-tile" onclick="copyColorHex('#8CE452', '--gradient-stop-100')">
+          <div class="swatch-fill-area" style="background: #8CE452;">
+            <span class="swatch-hex-badge" style="color: #0A0D0C; background: #FFFFFF;">#8CE452</span>
+          </div>
+          <div class="swatch-details-box">
+            <span class="swatch-title-label">Acid Lime</span>
+            <span class="swatch-token-var">--gradient-stop-100</span>
+            <p class="swatch-role-desc">Gradient Stop 100% (hsl(96, 74%, 61%)).</p>
+          </div>
+        </div>
+
+        <!-- Brand CTA Orange -->
+        <div class="color-specimen-tile" onclick="copyColorHex('#F38C38', '--brand-primary')">
+          <div class="swatch-fill-area" style="background: #F38C38;">
+            <span class="swatch-hex-badge">#F38C38</span>
+          </div>
+          <div class="swatch-details-box">
+            <span class="swatch-title-label">CTA Orange</span>
+            <span class="swatch-token-var">--brand-primary</span>
+            <p class="swatch-role-desc">High-priority button actions & glow highlights.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TYPOGRAPHY SYSTEM SPECIMEN -->
+    <div class="section-spacer"></div>
+    <section class="section-container">
+      <div class="section-header">
+        <div class="section-eyebrow">02 // Typography System</div>
+        <h2 class="section-title">Plus Jakarta Sans & JetBrains Mono Hierarchy</h2>
+        <p class="section-desc">Micro-precision typography calibrated for telemetry legibility and numeric alignment.</p>
+      </div>
+
+      <div class="type-specimen-grid">
+        <!-- Hierarchy Specimen Ladder -->
+        <div class="type-container-card">
+          <div class="type-hierarchy-table">
+            <div class="type-row-item">
+              <div class="type-row-meta">
+                <span>DISPLAY / LARGE METRIC</span>
+                <span>36px / 44px</span>
+                <span>Weight: 700 (Bold) • Tracking: -0.03em</span>
+              </div>
+              <div class="specimen-display">94.825 BTC</div>
+            </div>
+
+            <div class="type-row-item">
+              <div class="type-row-meta">
+                <span>H1 / PAGE HEADING</span>
+                <span>24px / 32px</span>
+                <span>Weight: 600 (SemiBold) • Tracking: -0.02em</span>
+              </div>
+              <div class="specimen-h1">Real-Time Liquidity Pool Telemetry</div>
+            </div>
+
+            <div class="type-row-item">
+              <div class="type-row-meta">
+                <span>H2 / SECTION TITLE</span>
+                <span>18px / 24px</span>
+                <span>Weight: 600 (SemiBold) • Tracking: -0.01em</span>
+              </div>
+              <div class="specimen-h2">Kinetic Yield Optimization Parameters</div>
+            </div>
+
+            <div class="type-row-item">
+              <div class="type-row-meta">
+                <span>BODY REGULAR</span>
+                <span>14px / 20px</span>
+                <span>Weight: 400 (Regular) • Tracking: 0em</span>
+              </div>
+              <div class="specimen-body">
+                The Neo-Obsidian data layer combines deep mineral carbon surfaces with high-excitation spectral gradients to provide high-velocity visual scan paths.
+              </div>
+            </div>
+
+            <div class="type-row-item">
+              <div class="type-row-meta">
+                <span>CARD SUBTITLE / LABEL</span>
+                <span>11px / 16px</span>
+                <span>Weight: 500 (Medium) • UPPERCASE</span>
+              </div>
+              <div class="specimen-card-subtitle">TOTAL VALUE LOCKED // 24H DELTA VOLUME</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Editable Pangram Box -->
+        <div class="type-container-card">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="component-tile-title">Interactive Telemetry Editor</span>
+            <span class="indicator-pill-cyan">EDITABLE</span>
+          </div>
+
+          <div class="pangram-test-box" contenteditable="true" spellcheck="false" title="Click to test text editing">
+            The quick brown fox jumps over the lazy dog while streaming 108° kinetic sunset telemetry at 60 FPS.
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-size: 13px; font-weight: 600; color: var(--text-primary);">Corner Geometry System</span>
+            <ul style="padding-left: 18px; font-size: 13px; color: var(--text-secondary); line-height: 22px;">
+              <li><strong>Radius-XL (32px)</strong>: Extreme continuous squircle shell</li>
+              <li><strong>Radius-LG (24px)</strong>: Primary hero & dashboard cards</li>
+              <li><strong>Radius-MD (16px)</strong>: Metric tiles & chart panels</li>
+              <li><strong>Radius-SM (10px)</strong>: Inputs, buttons, controls</li>
+              <li><strong>Radius-Pill (9999px)</strong>: Coin emblems, chip toggles</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. COMPONENT ARCHETYPE GALLERY -->
+    <div class="section-spacer"></div>
+    <section class="section-container">
+      <div class="section-header">
+        <div class="section-eyebrow">03 // Component Archetypes</div>
+        <h2 class="section-title">Controls, Data Chips & Token Badges</h2>
+        <p class="section-desc">Interactive components with 200ms cubic-bezier transition feedback.</p>
+      </div>
+
+      <div class="components-layout-grid">
+        <!-- Buttons & CTAs -->
+        <div class="component-tile-panel">
+          <div class="component-tile-header">
+            <span class="component-tile-title">Action Suite</span>
+            <span class="indicator-pill-mint">200ms ease</span>
+          </div>
+
+          <div class="component-group-row">
+            <button class="btn-obsidian-primary">
+              <svg class="icon-vector" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              Execute Swap
+            </button>
+            <button class="btn-obsidian-gradient">
+              Kinetic Action
+            </button>
+            <button class="btn-obsidian-secondary">
+              Settings
+            </button>
+          </div>
+
+          <div style="margin-top: 8px;">
+            <div class="specimen-card-subtitle" style="margin-bottom: 8px;">Status Badges</div>
+            <div class="component-group-row">
+              <span class="indicator-pill-mint">▲ +12.4% ACTIVE</span>
+              <span class="indicator-pill-coral">▼ -3.2% VOLATILE</span>
+              <span class="indicator-pill-cyan">● SYNCHRONIZED</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Controls -->
+        <div class="component-tile-panel">
+          <div class="component-tile-header">
+            <span class="component-tile-title">Input Controls</span>
+            <span class="indicator-pill-cyan">Radius-SM (10px)</span>
+          </div>
+
+          <div class="input-wrapper-obsidian">
+            <label style="font-size: 11px; font-weight: 500; color: var(--text-secondary); text-transform: uppercase;">Asset Search Query</label>
+            <input type="text" class="input-field-obsidian" placeholder="Search tokens by ticker e.g. SOL, ETH...">
+          </div>
+
+          <div class="input-wrapper-obsidian">
+            <label style="font-size: 11px; font-weight: 500; color: var(--text-secondary); text-transform: uppercase;">Slippage Tolerance</label>
+            <div class="component-group-row">
+              <button class="btn-obsidian-secondary" style="padding: 6px 12px; font-size: 12px;">0.1%</button>
+              <button class="btn-obsidian-secondary" style="padding: 6px 12px; font-size: 12px; border-color: var(--brand-primary); color: var(--brand-primary);">0.5%</button>
+              <button class="btn-obsidian-secondary" style="padding: 6px 12px; font-size: 12px;">1.0%</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Asset Coins & Disc Badges -->
+        <div class="component-tile-panel">
+          <div class="component-tile-header">
+            <span class="component-tile-title">Asset Coin Discs</span>
+            <span class="indicator-pill-mint">32x32px</span>
+          </div>
+
+          <div class="component-group-row" style="gap: 16px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div class="coin-disc" style="background: #F59E0B;">₿</div>
+              <div style="display:flex; flex-direction:column;">
+                <span style="font-weight:600; font-size:13px;">BTC</span>
+                <span style="font-size:11px; color:var(--text-secondary);">$96,240</span>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div class="coin-disc" style="background: #38BDF8;">Ξ</div>
+              <div style="display:flex; flex-direction:column;">
+                <span style="font-weight:600; font-size:13px;">ETH</span>
+                <span style="font-size:11px; color:var(--text-secondary);">$3,480</span>
+              </div>
+            </div>
+
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div class="coin-disc" style="background: #C4E041; color:#0A0D0C;">◎</div>
+              <div style="display:flex; flex-direction:column;">
+                <span style="font-weight:600; font-size:13px;">SOL</span>
+                <span style="font-size:11px; color:var(--text-secondary);">$194</span>
+              </div>
+            </div>
+          </div>
+
+          <p style="font-size: 12px; color: var(--text-secondary); line-height: 18px; margin-top: 4px;">
+            Flat white emblem centered on solid colored circular discs with subtle elevation shadows.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. LIVING MICRO-EXPERIENCE (KINETIC ASSET TELEMETRY DASHBOARD) -->
+    <div class="section-spacer"></div>
+    <section id="live-dashboard" class="dashboard-shell">
+      <div class="dashboard-top-nav">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span style="font-weight: 700; font-size: 16px; color: var(--text-primary);">OBSIDIAN TELEMETRY</span>
+          <span class="indicator-pill-mint">● LIVE STREAM</span>
+        </div>
+
+        <div class="nav-tabs-group">
+          <button class="nav-tab-pill active" onclick="switchTab(this, 'all')">All Pools</button>
+          <button class="nav-tab-pill" onclick="switchTab(this, 'yield')">High Yield</button>
+          <button class="nav-tab-pill" onclick="switchTab(this, 'derivative')">Derivatives</button>
+        </div>
+      </div>
+
+      <!-- Metrics Cards Row -->
+      <div class="dashboard-metrics-grid">
+        <!-- Sunset Highlight Card -->
+        <div class="metric-panel highlight-sunset">
+          <div class="metric-header-row">
+            <span class="metric-header-title">Total Protocol TVL</span>
+            <span class="indicator-pill-mint" style="background:rgba(10,13,12,0.25); color:#0A0D0C; border:none;">▲ 8.4%</span>
+          </div>
+          <div class="metric-big-num">$42,918,240.00</div>
+          <div style="font-size: 12px; font-weight: 500; color: var(--text-inverted-muted);">
+            Auto-compounding in 108° kinetic pool
+          </div>
+        </div>
+
+        <!-- 24h Volume -->
+        <div class="metric-panel">
+          <div class="metric-header-row">
+            <span class="metric-header-title">24h Trading Volume</span>
+            <span class="indicator-pill-mint">+18.2%</span>
+          </div>
+          <div class="metric-big-num">$8,420,195</div>
+          <div style="font-size: 12px; color: var(--text-secondary);">
+            Peak throughput: 4,820 TPS
+          </div>
+        </div>
+
+        <!-- Active Nodes -->
+        <div class="metric-panel">
+          <div class="metric-header-row">
+            <span class="metric-header-title">Active Mesh Nodes</span>
+            <span class="indicator-pill-cyan">100% HEALTH</span>
+          </div>
+          <div class="metric-big-num" style="color: var(--gradient-stop-50);">1,024 / 1,024</div>
+          <div style="font-size: 12px; color: var(--text-secondary);">
+            Global latency: 12ms
+          </div>
+        </div>
+      </div>
+
+      <!-- Telemetry Live Table -->
+      <div class="telemetry-table-card">
+        <div class="telemetry-table-header">
+          <span>Asset Pair</span>
+          <span>Liquidity Depth</span>
+          <span class="telemetry-col-hide-mobile">24h Dynamic APR</span>
+          <span>Action</span>
+        </div>
+
+        <div class="telemetry-row" onclick="triggerToast('Viewing BTC / SOL Telemetry...')">
+          <div class="asset-name-block">
+            <div class="coin-disc" style="background: #F59E0B; width:26px; height:26px; font-size:10px;">₿</div>
+            <div>
+              <div style="font-weight: 600; font-size: 13px;">BTC / SOL Kinetic</div>
+              <div style="font-size: 11px; color: var(--text-secondary);">Automated Rebalance</div>
+            </div>
+          </div>
+          <div class="specimen-table-data">$14,820,000</div>
+          <div class="specimen-table-data telemetry-col-hide-mobile" style="color: var(--gradient-stop-50);">24.8% APR</div>
+          <div>
+            <button class="btn-obsidian-primary" style="padding: 6px 12px; font-size: 11px;">Deposit</button>
+          </div>
+        </div>
+
+        <div class="telemetry-row" onclick="triggerToast('Viewing ETH / USDC Telemetry...')">
+          <div class="asset-name-block">
+            <div class="coin-disc" style="background: #38BDF8; width:26px; height:26px; font-size:10px;">Ξ</div>
+            <div>
+              <div style="font-weight: 600; font-size: 13px;">ETH / USDC Concentrated</div>
+              <div style="font-size: 11px; color: var(--text-secondary);">0.05% Fee Tier</div>
+            </div>
+          </div>
+          <div class="specimen-table-data">$22,450,000</div>
+          <div class="specimen-table-data telemetry-col-hide-mobile" style="color: var(--gradient-stop-50);">18.4% APR</div>
+          <div>
+            <button class="btn-obsidian-primary" style="padding: 6px 12px; font-size: 11px;">Deposit</button>
+          </div>
+        </div>
+
+        <div class="telemetry-row" onclick="triggerToast('Viewing SOL / ACID Telemetry...')">
+          <div class="asset-name-block">
+            <div class="coin-disc" style="background: #C4E041; color:#0A0D0C; width:26px; height:26px; font-size:10px;">◎</div>
+            <div>
+              <div style="font-weight: 600; font-size: 13px;">SOL / ACID High-Velocity</div>
+              <div style="font-size: 11px; color: var(--text-secondary);">Kinetic Sunset Anchor</div>
+            </div>
+          </div>
+          <div class="specimen-table-data">$5,640,000</div>
+          <div class="specimen-table-data telemetry-col-hide-mobile" style="color: var(--gradient-stop-50);">42.6% APR</div>
+          <div>
+            <button class="btn-obsidian-primary" style="padding: 6px 12px; font-size: 11px;">Deposit</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. STYLE TILE PROMPT CODE DRAWER -->
+    <div class="section-spacer"></div>
+    <section class="spec-drawer-card">
+      <div class="drawer-header-row">
+        <div>
+          <div class="section-eyebrow">04 // Machine-Readable Token Vault</div>
+          <h2 style="font-size: 18px; font-weight: 600; color: var(--text-primary);">Markdown Style Tile Specification</h2>
+        </div>
+
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-tile btn-copy" onclick="copyStyleTileDirect()">
+            <svg class="icon-vector" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Prompt Spec
+          </button>
+          <button class="btn-tile btn-download" onclick="downloadStyleTileDirect()">
+            <svg class="icon-vector" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download .md
+          </button>
+        </div>
+      </div>
+
+      <div class="code-display-block">
+        <pre class="code-display-pre" id="visible-spec-pre"></pre>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL: PREVIEW STYLE TILE -->
+  <div id="spec-modal-backdrop" class="modal-backdrop">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Neo-Obsidian & Acid Sunset Specification</h3>
+        <button class="modal-close-btn" onclick="closeSpecModal()" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-spec-content"></div>
+      <div class="modal-footer">
+        <button class="btn-tile btn-copy" onclick="copyStyleTileDirect()">
+          <svg class="icon-vector" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy to Clipboard
+        </button>
+        <button class="btn-tile btn-download" onclick="downloadStyleTileDirect()">
+          <svg class="icon-vector" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Markdown
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast-notification" class="toast-notification">
+    <svg class="icon-vector" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+    <span id="toast-text">Copied to Clipboard!</span>
+  </div>
+
+  <!-- RAW EMBEDDED MARKDOWN SPECIFICATION -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  DESIGN SYSTEM & STYLE TILE: "NEO-OBSIDIAN & ACID SUNSET" (TILE-032)
+  High-Contrast Dark Surface UI with Warm-to-Acid Kinetic Data Layer
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Neo-Obsidian & Acid Sunset is an elite, high-contrast dark surface design language engineered for
+high-frequency asset telemetry, DeFi yield interfaces, and real-time data visualizers.
+Layered upon deep carbon obsidian surfaces (#0D1111), the interface activates user attention through a
+kinetic 108° sunset spectrum (#F59E0B Amber Gold → #C4E041 Chartreuse → #8CE452 Acid Lime).
+With 32px continuous squircle window framing, 200ms cubic-bezier interactions, and micro-precision
+monospaced telemetry alignment, it establishes an energetic yet surgically disciplined UI.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Canvas & Neutral Base */
+  --canvas-surface:         #0D1111; /* hsl(180, 13%, 6%) - Main App Canvas */
+  --card-surface-default:   #141918; /* hsl(168, 11%, 9%) - L1 Default Card */
+  --card-surface-elevated:  #1A211F; /* hsl(165, 12%, 12%) - L2 Elevated Surface */
+  --input-subsurface:       #0A0D0C; /* hsl(160, 14%, 4%) - L3 Input/Sub-surface */
+
+  /* Hero Gradient (Kinetic Spectrum) */
+  --gradient-stop-0:        #F59E0B; /* Amber Gold (hsl(38, 92%, 50%)) */
+  --gradient-stop-50:       #C4E041; /* Chartreuse (hsl(71, 74%, 57%)) */
+  --gradient-stop-100:      #8CE452; /* Acid Lime (hsl(96, 74%, 61%)) */
+  --hero-gradient:          linear-gradient(108deg, #F59E0B 0%, #C4E041 52%, #8CE452 100%);
+
+  /* Semantic & Accents */
+  --brand-primary:          #F38C38; /* CTA Orange (hsl(27, 89%, 59%)) */
+  --brand-hover:            #FA9A4B; /* CTA Hover (hsl(27, 94%, 64%)) */
+  --accent-mint:            #3CD070; /* Positive / Success (hsl(141, 62%, 53%)) */
+  --accent-coral:           #F87171; /* Negative / Danger (hsl(0, 91%, 71%)) */
+  --accent-cyan:            #38BDF8; /* Info / Telemetry (hsl(199, 95%, 60%)) */
+  --accent-gold:            #FBBF24; /* Warning (hsl(43, 96%, 56%)) */
+
+  /* Typography Colors */
+  --text-primary:           #FFFFFF; /* 100% White */
+  --text-secondary:         #8B9994; /* hsl(163, 7%, 58%) */
+  --text-muted:             #4B5552; /* hsl(162, 7%, 31%) */
+  --text-inverted:          #0A0D0C; /* hsl(160, 14%, 4%) - On Gradient */
+  --text-inverted-muted:    #2A332F; /* hsl(156, 10%, 18%) */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+Primary Font Family:        "Plus Jakarta Sans", "Inter", -apple-system, sans-serif
+Numeric / Monospace:        "JetBrains Mono", "SF Mono", monospace
+
+/* Type Hierarchy */
+• Display / Large Metric:   36px | Line-Height: 44px | Weight: 700 (Bold)     | Tracking: -0.03em
+• H1 / Page Heading:        24px | Line-Height: 32px | Weight: 600 (SemiBold) | Tracking: -0.02em
+• H2 / Section Title:       18px | Line-Height: 24px | Weight: 600 (SemiBold) | Tracking: -0.01em
+• Card Subtitle / Label:    11px | Line-Height: 16px | Weight: 500 (Medium)   | Tracking: +0.02em (UPPERCASE)
+• Body Regular:             14px | Line-Height: 20px | Weight: 400 (Regular)  | Tracking: 0em
+• Body Medium (Table Data): 13px | Line-Height: 18px | Weight: 500 (Medium)   | Tracking: +0.01em
+• Micro / Trend Tag:        10px | Line-Height: 14px | Weight: 600 (SemiBold) | Tracking: +0.03em
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+• Radius-XL (App Window/Shell):  32px (Extreme continuous squircle)
+• Radius-LG (Primary Containers):24px (Main hero & dashboard cards)
+• Radius-MD (Standard Cards):    16px (Metric tiles, chart panels)
+• Radius-SM (Inputs & Buttons):  10px (Controls, small widgets)
+• Radius-XS (Tooltips & Badges): 6px  (Micro tags, indicator pills)
+• Radius-Pill (Tokens & Action): 9999px (Circular coin badges, chip toggles)
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & OVERLAYS)
+ * -------------------------------------------------------------------------- */
+• Level 0 (Base Canvas):    none
+• Level 1 (Default Card):   0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px -4px rgba(0, 0, 0, 0.4)
+• Level 2 (Floating):       0 12px 32px -6px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08)
+• Glow Effect (CTA Orange): 0 4px 20px -2px rgba(243, 140, 56, 0.35)
+• Glow Effect (Hero Card):  0 16px 48px -8px rgba(196, 224, 65, 0.15)
+• Tooltip Surface:          rgba(10, 13, 12, 0.88) + backdrop-filter: blur(12px)
+• Chart Scrubber Overlay:   rgba(255, 255, 255, 0.04)
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (8-POINT GRID)
+ * -------------------------------------------------------------------------- */
+• space-2xs:                4px   (Inner badge padding, micro gaps)
+• space-xs:                 8px   (Icon-to-text spacing, compact table rows)
+• space-sm:                 12px  (Internal input padding, chip margins)
+• space-md:                 16px  (Standard component gap, nested card padding)
+• space-lg:                 24px  (Card internal padding, grid gutters)
+• space-xl:                 32px  (Section separations, panel margins)
+• Layout Grid:              12-Column fluid / 24px gutters / 24px outer margin
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+• Primary Card Border:      1px solid rgba(255, 255, 255, 0.05)
+• Active / Focused Border:  1px solid rgba(255, 255, 255, 0.18)
+• Table Row Divider:        1px solid rgba(255, 255, 255, 0.04)
+• Inset Light Edge:         inset 0 1px 0 0 rgba(255, 255, 255, 0.06) (Top-edge lighting)
+• Chart Guideline Rule:     1px dashed rgba(0, 0, 0, 0.15) (On Gradient), rgba(255, 255, 255, 0.08) (On Dark)
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+• Style Guide:              Geometric, mono-line vector glyphs with rounded terminals
+• Stroke Weight:            1.75px uniform optical thickness
+• Default Canvas:           20x20px viewport in a 24x24px bounding box
+• Asset Coin Icons:         Flat white emblem centered on solid colored circular discs (32x32px)
+• Navigation State:         Unselected = 40% Opacity Mono (#8B9994) | Selected = 100% White + Active Pill
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+• Transitions:              200ms ease-out (cubic-bezier(0.16, 1, 0.3, 1)) across color & transform
+• Button Hover:             Transform: translateY(-1px) | Brightness: 108% | Box-shadow: expand +4px
+• Button Press:             Transform: translateY(0px) | Scale: 0.98 | Brightness: 95%
+• Data Row Hover:           Background: rgba(255, 255, 255, 0.03) | Border-radius: 8px
+• Chart Cursor Pin:         Dual ring (#0A0D0C solid center, #FFFFFF outer 2px halo) + vertical dashed guide
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic purple/violet neon gradients on dark surfaces.
+- NO unbordered floating cards lacking top inset lighting or precise 1px borders.
+- NO arbitrary inconsistent border radii (strictly adhere to 32/24/16/10/6 scale).
+- NO muddy gray low-contrast backgrounds; canvas must remain anchored to #0D1111.
+================================================================================
+  </script>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    function getMarkdownSpec() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-notification");
+      const toastText = document.getElementById("toast-text");
+      if (!toast) return;
+      if (toastText) toastText.textContent = message;
+      toast.classList.add("is-visible");
+      setTimeout(() => {
+        toast.classList.remove("is-visible");
+      }, 2500);
+    }
+
+    function copyStyleTileDirect() {
+      const text = getMarkdownSpec();
+      navigator.clipboard.writeText(text).then(() => {
+        triggerToast("✓ Copied Style Tile to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const origHtml = copyBtn.innerHTML;
+          copyBtn.innerHTML = `✓ Copied!`;
+          setTimeout(() => { copyBtn.innerHTML = origHtml; }, 2000);
+        }
+      }).catch(err => {
+        console.error("Copy failed:", err);
+      });
+    }
+
+    function downloadStyleTileDirect() {
+      const text = getMarkdownSpec();
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-neo-obsidian-acid-sunset.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloaded style-tile-neo-obsidian-acid-sunset.md");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      const content = document.getElementById("modal-spec-content");
+      if (content) content.textContent = getMarkdownSpec();
+      if (modal) modal.classList.add("is-open");
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      if (modal) modal.classList.remove("is-open");
+    }
+
+    function copyColorHex(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast(`✓ Copied ${hex} (${varName})`);
+      });
+    }
+
+    function switchTab(btn, category) {
+      document.querySelectorAll(".nav-tab-pill").forEach(t => t.classList.remove("active"));
+      btn.classList.add("active");
+      triggerToast(`Filtered telemetry: ${btn.textContent.trim()}`);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Header Controls
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyStyleTileDirect);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadStyleTileDirect);
+
+      // Populate Visible Pre Block
+      const preEl = document.getElementById("visible-spec-pre");
+      if (preEl) preEl.textContent = getMarkdownSpec();
+
+      // Modal backdrop click
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      // Escape key handler
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+    });
+  </script>
+</body>
+</html>

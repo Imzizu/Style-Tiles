@@ -5202,6 +5202,339 @@ and high-velocity developer tools.
 - NO muddy, low-contrast grayscale without the stark #051226 / #00F0FF / #F1F5F9 tension.
 - NO blurry uncalibrated drop shadows; strictly L3/L4 luminescent phosphor spreads.
 ================================================================================`
+  },
+  {
+    id: "TILE-031",
+    slug: "elenrn-design-system",
+    name: "ELEnRN Design System",
+    vibe: "Sophisticated Heritage • Modern Clarity • Deep Forest Emerald • Warm Terracotta • 30px Card Geometry • Pill Controls",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Avenir Serif Display",
+      sans: "Poppins Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Off-White Cream", hex: "#FDFBF6" },
+      { name: "Deep Forest Emerald", hex: "#1A4F4F" },
+      { name: "Warm Terracotta-Rust", hex: "#C86B39" },
+      { name: "Darkened Emerald", hex: "#143F3F" },
+      { name: "Off-Black", hex: "#2A2A2A" },
+      { name: "Mid-Gray", hex: "#5A5A5A" }
+    ],
+    description: "ELEnRN Design System: Sophisticated Heritage meets Modern Clarity. Built on an Off-White Cream foundation (#FDFBF6) with Deep Forest Emerald structural elements (#1A4F4F), Warm Terracotta-Rust accents (#C86B39), 30px soft card geometry, full 5000px pill buttons, and calligraphic Avenir Display serifs.",
+    markdownSpec: `================================================================================
+  STYLE TILE // SPECIFICATION SYSTEM: "ELENRN DESIGN SYSTEM" (TILE-031)
+  Aesthetic: Sophisticated Heritage meets Modern Clarity • Quiet Luxury
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+The ELEnRN Design System embodies a serene, composed luxury where sophisticated archival heritage
+meets contemporary geometric clarity. Rooted in an Off-White Cream foundation (#FDFBF6) and Deep Forest
+Emerald anchors (#1A4F4F), it uses Warm Terracotta-Rust (#C86B39) as a warm tactile accent.
+With 30px soft-radii card geometry, full 5000px pill buttons and input containers, monoline 1.5pt
+iconography, and calligraphic Avenir Display serifs, it establishes an unhurried, tactile editorial presence.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Core Foundation */
+  --bg-canvas:              #FDFBF6; /* Off-White Cream (Primary Application Canvas) */
+  --bg-secondary:           #1A4F4F; /* Deep Forest Emerald (Secondary Background) */
+  --bg-alt:                 #C86B39; /* Warm Terracotta-Rust (Alternative Accent Background) */
+  --bg-surface-white:       #FFFFFF; /* Pure White Container Highlight */
+  --bg-surface-card:        #FAF6EE; /* Elevated Parchment Surface */
+
+  /* Primary & Accents */
+  --color-primary:          #1A4F4F; /* Deep Forest Emerald */
+  --color-secondary:        #C86B39; /* Warm Terracotta-Rust */
+  --color-interactive:      #1A4F4F; /* Deep Forest Emerald */
+  --color-interactive-hover:#143F3F; /* Darkened Emerald */
+  --color-accent-line:      #C86B39; /* Terracotta-Rust Line Accent */
+
+  /* Text & Text-On-Color */
+  --text-body-primary:      #2A2A2A; /* Off-Black (Body Copy) */
+  --text-body-secondary:    #5A5A5A; /* Mid-Gray (Subtitles & Meta) */
+  --text-header:            #1A4F4F; /* Deep Forest Emerald (Headlines) */
+  --text-on-primary:        #FDFBF6; /* Off-White Cream */
+  --text-on-terracotta:     #FDFBF6; /* Off-White Cream */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Family Pairing */
+--font-serif:               "Avenir Serif Display", "Cormorant Garamond", "Playfair Display", Georgia, serif;
+--font-sans:                "Poppins Sans", "Poppins", -apple-system, sans-serif;
+--font-mono:                "JetBrains Mono", monospace;
+
+/* Scale & Specifications */
+• H1: HEADLINE 1 (Serif)
+    - Family:               Avenir Serif Display
+    - Size:                 4.8rem (76.8px)
+    - Weight:               600 (Semibold)
+    - Line-Height:          1.1
+    - Case:                 Sentence case
+    - Feature:              Calligraphic flourish on key letters (e.g., 'f', 'e')
+
+• H2: SUB-HEADLINE (Sans)
+    - Family:               Poppins Sans
+    - Size:                 1.5rem (24px)
+    - Weight:               500 (Medium)
+    - Line-Height:          1.4
+    - Color:                #C86B39 (Warm Terracotta-Rust)
+
+• BODY-PRIMARY (Sans)
+    - Family:               Poppins Sans
+    - Size:                 1.1rem (17.6px)
+    - Weight:               400 (Regular)
+    - Line-Height:          1.7
+    - Color:                #2A2A2A
+
+• NAV-ITEM (Sans)
+    - Family:               Poppins Sans
+    - Size:                 0.95rem (15.2px)
+    - Weight:               500 (Medium)
+    - Text-Transform:       Sentence case
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+• radius-pill:              5000px  /* Full pill shape for all tags, select fields, and main buttons */
+• radius-card:              30px    /* Soft, generous radius for all image tiles, community blocks */
+• radius-input:             radius-pill
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+/* Layer Stacking Order */
+1. [ BACK ]  Canvas background (#FDFBF6)
+2. [ MID ]   Serif Text Headlines (Layer 1 text)
+3. [ FRONT ] Cards and Content Tiles (Layer 2)
+4. [ TOP ]   Floating Navigation, Modal Dialogs
+
+/* Elevation Tokens */
+• elevation-none:           Box-shadow: none (Used for default content cards)
+• elevation-focus:          Box-shadow: 0 0 15px rgba(26, 79, 79, 0.15) (Subtle blue-green glow)
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (Base 8px)
+ * -------------------------------------------------------------------------- */
+• space-xs:                 4px
+• space-s:                  8px
+• space-m:                  16px
+• space-l:                  24px
+• space-xl:                 32px
+• space-xxl:                64px
+• space-section-gap:        128px (space-xxl * 2)
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+• border-default:           none
+• border-accent:            1px solid #C86B39 (Thin terracotta line for tags)
+• divider-line:             1px solid #EAEAEA (Very subtle light gray line)
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+• Type:                     Monoline, minimalist
+• Weight:                   Thin, approx 1.5pt
+• Cap Style:                Rounded, for all stroke ends
+• Corner Style:             Soft, rounded, non-angular
+• Color:                    Primarily primary text color, with occasional secondary line accents
+• Examples:                 Search magnifying glass, user-group avatar shapes, directional arrows
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+• Hover Primary Button:
+    - Fill transitions to #143F3F (Darker Emerald) over 150ms.
+    - Scale up by 1.02x (subtle focus).
+• Hover Secondary Tag:
+    - Background-color transitions to #C86B39 (solid terracotta) over 150ms.
+    - Text-color transitions to #FDFBF6 over 150ms.
+• Hover Card Item:
+    - Elevation-focus shadow applied (0 0 15px rgba(26, 79, 79, 0.15)).
+    - Subtle text color shift or underline appearance.
+• Focus States:
+    - Clear, accessible focus-ring around form elements.
+• Micro-Animations:
+    - All state transitions (hover, active, focus) are smooth with an ease-in-out curve over 150ms.
+    - Section loading and card appearances are triggered by subtle slide-up or scale-in effects.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO harsh, sharp 0px brutalist corners on cards (strictly 30px soft radius).
+- NO noisy high-contrast drop shadows; rely on subtle blue-green glow focus or flat layering.
+- NO bright neon or synthetic acid accents; strictly deep emerald and terracotta.
+- NO uppercase shouting on navigation items (strictly sentence case).
+================================================================================`
+  },
+  {
+    id: "TILE-032",
+    slug: "neo-obsidian-acid-sunset",
+    name: "Neo-Obsidian & Acid Sunset",
+    vibe: "High-Contrast Dark Surface • Warm-to-Acid Kinetic Spectrum • Obsidian Canvas • 32px Squircle Shell • Micro-Precision Telemetry",
+    vibeBadge: "Cyber & Blueprint",
+    categories: ["cyber"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas Surface", hex: "#0D1111" },
+      { name: "Card Default", hex: "#141918" },
+      { name: "Card Elevated", hex: "#1A211F" },
+      { name: "Amber Gold", hex: "#F59E0B" },
+      { name: "Chartreuse Mid", hex: "#C4E041" },
+      { name: "Acid Lime", hex: "#8CE452" },
+      { name: "CTA Orange", hex: "#F38C38" },
+      { name: "Accent Mint", hex: "#3CD070" },
+      { name: "Accent Coral", hex: "#F87171" },
+      { name: "Accent Cyan", hex: "#38BDF8" }
+    ],
+    description: "Neo-Obsidian & Acid Sunset: High-Contrast Dark Surface UI with Warm-to-Acid Kinetic Data Layer. Built on an obsidian canvas (#0D1111) with L1/L2 dark surface cards, continuous 32px squircle shell framing, 108° multi-stop kinetic spectrum (#F59E0B → #C4E041 → #8CE452), and surgical numeric monospace typography.",
+    markdownSpec: `================================================================================
+  DESIGN SYSTEM & STYLE TILE: "NEO-OBSIDIAN & ACID SUNSET" (TILE-032)
+  High-Contrast Dark Surface UI with Warm-to-Acid Kinetic Data Layer
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Neo-Obsidian & Acid Sunset is an elite, high-contrast dark surface design language engineered for
+high-frequency asset telemetry, DeFi yield interfaces, and real-time data visualizers.
+Layered upon deep carbon obsidian surfaces (#0D1111), the interface activates user attention through a
+kinetic 108° sunset spectrum (#F59E0B Amber Gold → #C4E041 Chartreuse → #8CE452 Acid Lime).
+With 32px continuous squircle window framing, 200ms cubic-bezier interactions, and micro-precision
+monospaced telemetry alignment, it establishes an energetic yet surgically disciplined UI.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Canvas & Neutral Base */
+  --canvas-surface:         #0D1111; /* hsl(180, 13%, 6%) - Main App Canvas */
+  --card-surface-default:   #141918; /* hsl(168, 11%, 9%) - L1 Default Card */
+  --card-surface-elevated:  #1A211F; /* hsl(165, 12%, 12%) - L2 Elevated Surface */
+  --input-subsurface:       #0A0D0C; /* hsl(160, 14%, 4%) - L3 Input/Sub-surface */
+
+  /* Hero Gradient (Kinetic Spectrum) */
+  --gradient-stop-0:        #F59E0B; /* Amber Gold (hsl(38, 92%, 50%)) */
+  --gradient-stop-50:       #C4E041; /* Chartreuse (hsl(71, 74%, 57%)) */
+  --gradient-stop-100:      #8CE452; /* Acid Lime (hsl(96, 74%, 61%)) */
+  --hero-gradient:          linear-gradient(108deg, #F59E0B 0%, #C4E041 52%, #8CE452 100%);
+
+  /* Semantic & Accents */
+  --brand-primary:          #F38C38; /* CTA Orange (hsl(27, 89%, 59%)) */
+  --brand-hover:            #FA9A4B; /* CTA Hover (hsl(27, 94%, 64%)) */
+  --accent-mint:            #3CD070; /* Positive / Success (hsl(141, 62%, 53%)) */
+  --accent-coral:           #F87171; /* Negative / Danger (hsl(0, 91%, 71%)) */
+  --accent-cyan:            #38BDF8; /* Info / Telemetry (hsl(199, 95%, 60%)) */
+  --accent-gold:            #FBBF24; /* Warning (hsl(43, 96%, 56%)) */
+
+  /* Typography Colors */
+  --text-primary:           #FFFFFF; /* 100% White */
+  --text-secondary:         #8B9994; /* hsl(163, 7%, 58%) */
+  --text-muted:             #4B5552; /* hsl(162, 7%, 31%) */
+  --text-inverted:          #0A0D0C; /* hsl(160, 14%, 4%) - On Gradient */
+  --text-inverted-muted:    #2A332F; /* hsl(156, 10%, 18%) */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+Primary Font Family:        "Plus Jakarta Sans", "Inter", -apple-system, sans-serif
+Numeric / Monospace:        "JetBrains Mono", "SF Mono", monospace
+
+/* Type Hierarchy */
+• Display / Large Metric:   36px | Line-Height: 44px | Weight: 700 (Bold)     | Tracking: -0.03em
+• H1 / Page Heading:        24px | Line-Height: 32px | Weight: 600 (SemiBold) | Tracking: -0.02em
+• H2 / Section Title:       18px | Line-Height: 24px | Weight: 600 (SemiBold) | Tracking: -0.01em
+• Card Subtitle / Label:    11px | Line-Height: 16px | Weight: 500 (Medium)   | Tracking: +0.02em (UPPERCASE)
+• Body Regular:             14px | Line-Height: 20px | Weight: 400 (Regular)  | Tracking: 0em
+• Body Medium (Table Data): 13px | Line-Height: 18px | Weight: 500 (Medium)   | Tracking: +0.01em
+• Micro / Trend Tag:        10px | Line-Height: 14px | Weight: 600 (SemiBold) | Tracking: +0.03em
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+• Radius-XL (App Window/Shell):  32px (Extreme continuous squircle)
+• Radius-LG (Primary Containers):24px (Main hero & dashboard cards)
+• Radius-MD (Standard Cards):    16px (Metric tiles, chart panels)
+• Radius-SM (Inputs & Buttons):  10px (Controls, small widgets)
+• Radius-XS (Tooltips & Badges): 6px  (Micro tags, indicator pills)
+• Radius-Pill (Tokens & Action): 9999px (Circular coin badges, chip toggles)
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & OVERLAYS)
+ * -------------------------------------------------------------------------- */
+• Level 0 (Base Canvas):    none
+• Level 1 (Default Card):   0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px -4px rgba(0, 0, 0, 0.4)
+• Level 2 (Floating):       0 12px 32px -6px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08)
+• Glow Effect (CTA Orange): 0 4px 20px -2px rgba(243, 140, 56, 0.35)
+• Glow Effect (Hero Card):  0 16px 48px -8px rgba(196, 224, 65, 0.15)
+• Tooltip Surface:          rgba(10, 13, 12, 0.88) + backdrop-filter: blur(12px)
+• Chart Scrubber Overlay:   rgba(255, 255, 255, 0.04)
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (8-POINT GRID)
+ * -------------------------------------------------------------------------- */
+• space-2xs:                4px   (Inner badge padding, micro gaps)
+• space-xs:                 8px   (Icon-to-text spacing, compact table rows)
+• space-sm:                 12px  (Internal input padding, chip margins)
+• space-md:                 16px  (Standard component gap, nested card padding)
+• space-lg:                 24px  (Card internal padding, grid gutters)
+• space-xl:                 32px  (Section separations, panel margins)
+• Layout Grid:              12-Column fluid / 24px gutters / 24px outer margin
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+• Primary Card Border:      1px solid rgba(255, 255, 255, 0.05)
+• Active / Focused Border:  1px solid rgba(255, 255, 255, 0.18)
+• Table Row Divider:        1px solid rgba(255, 255, 255, 0.04)
+• Inset Light Edge:         inset 0 1px 0 0 rgba(255, 255, 255, 0.06) (Top-edge lighting)
+• Chart Guideline Rule:     1px dashed rgba(0, 0, 0, 0.15) (On Gradient), rgba(255, 255, 255, 0.08) (On Dark)
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+• Style Guide:              Geometric, mono-line vector glyphs with rounded terminals
+• Stroke Weight:            1.75px uniform optical thickness
+• Default Canvas:           20x20px viewport in a 24x24px bounding box
+• Asset Coin Icons:         Flat white emblem centered on solid colored circular discs (32x32px)
+• Navigation State:         Unselected = 40% Opacity Mono (#8B9994) | Selected = 100% White + Active Pill
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+• Transitions:              200ms ease-out (cubic-bezier(0.16, 1, 0.3, 1)) across color & transform
+• Button Hover:             Transform: translateY(-1px) | Brightness: 108% | Box-shadow: expand +4px
+• Button Press:             Transform: translateY(0px) | Scale: 0.98 | Brightness: 95%
+• Data Row Hover:           Background: rgba(255, 255, 255, 0.03) | Border-radius: 8px
+• Chart Cursor Pin:         Dual ring (#0A0D0C solid center, #FFFFFF outer 2px halo) + vertical dashed guide
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic purple/violet neon gradients on dark surfaces.
+- NO unbordered floating cards lacking top inset lighting or precise 1px borders.
+- NO arbitrary inconsistent border radii (strictly adhere to 32/24/16/10/6 scale).
+- NO muddy gray low-contrast backgrounds; canvas must remain anchored to #0D1111.
+================================================================================`
   }
 ];
 
