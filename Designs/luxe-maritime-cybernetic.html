@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxe Maritime Cybernetic — Cinematic Dark Glass Design System (TILE-033)</title>
+  <meta name="description" content="Luxe Maritime Cybernetic: Cinematic Dark Glass UI. Oceanic abyss voids (#030B12), translucent glass HUD panels, frosted ice pills (#D2E6F5), crimson hull anchors (#E52521), electric azure glows (#2488CE), and brushed chrome display typography.">
+
+  <!-- Google Fonts: Syne (Display & Headings), Plus Jakarta Sans / Inter (Metrics & UI), JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       STYLE TILE // LUXE MARITIME CYBERNETIC (CINEMATIC DARK GLASS) (TILE-033)
+       ============================================================================= */
+
+    :root {
+      /* 1. COLOR ROLES & PALETTE */
+      /* Surface & Abyss */
+      --bg-abyss-primary:       #030B12; /* Deep oceanic void black */
+      --bg-abyss-secondary:     #081624; /* Rich deep sea navy */
+      --bg-surface-glass:       rgba(9, 23, 37, 0.65); /* Translucent floating panel */
+      --bg-surface-glass-card:  rgba(13, 30, 48, 0.55); /* Nested telemetry module */
+      --bg-surface-pill:        rgba(210, 230, 245, 0.90); /* Frosted ice primary pill */
+      --bg-surface-pill-hover:  #FFFFFF; /* Pure white luminescence */
+
+      /* Kinetic & Accent */
+      --accent-crimson-core:    #E52521; /* High-intensity hull red / focal anchor */
+      --accent-crimson-deep:    #9E1311; /* Shadow red / hull shade */
+      --accent-azure-active:    #2488CE; /* Oceanic electric blue / secondary CTA */
+      --accent-azure-glow:      rgba(36, 136, 206, 0.35); /* Atmospheric halo */
+
+      /* Typography & Inks */
+      --text-primary:           #FFFFFF; /* 100% white */
+      --text-metallic-top:      #FFFFFF; /* Chrome gradient start */
+      --text-metallic-bottom:   #8C9FA8; /* Chrome gradient end / brushed titanium */
+      --text-secondary:         #8FA5B8; /* Muted glacial steel */
+      --text-tertiary:          #4B6375; /* Subdued structural label */
+      --text-inverted:          #030B12; /* For high-contrast white/light pills */
+
+      /* 2. TYPOGRAPHY SYSTEM */
+      --font-display:           "Syne", "Plus Jakarta Sans", -apple-system, sans-serif;
+      --font-ui:                "Plus Jakarta Sans", "Inter", sans-serif;
+      --font-mono:              "JetBrains Mono", monospace;
+
+      /* 3. CORNER GEOMETRY (BORDER RADII) */
+      --radius-pill:            9999px; /* Buttons, badges, video trigger chips */
+      --radius-card-lg:         24px;   /* Floating HUD modules & telemetry cards */
+      --radius-card-sm:         14px;   /* Nested visual viewports / interactive insets */
+      --radius-avatar:          50%;    /* Overlapping social proof avatars */
+
+      /* 4. ELEVATION, DEPTH & BLUR */
+      --blur-hud:               blur(24px) saturate(180%);
+      --elevation-glass-hud:    0 30px 60px -12px rgba(0, 0, 0, 0.75), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+      --elevation-pill-floating:0 12px 32px rgba(0, 0, 0, 0.45);
+      --elevation-glow-accent:  0 0 28px rgba(36, 136, 206, 0.40);
+      --elevation-glow-crimson: 0 0 28px rgba(229, 37, 33, 0.40);
+
+      /* 5. SPACING & SPATIAL SCALE (8pt Baseline Grid) */
+      --space-xs:               4px;
+      --space-sm:               8px;
+      --space-md:               16px;
+      --space-lg:               24px;
+      --space-xl:               40px;
+      --space-2xl:              80px;
+
+      /* 6. BORDERS & DIVIDERS */
+      --border-glass-subtle:    1px solid rgba(255, 255, 255, 0.08);
+      --border-glass-highlight: 1px solid rgba(255, 255, 255, 0.16);
+      --border-active-pill:     1px solid rgba(255, 255, 255, 0.35);
+      --divider-vertical-grid:  1px solid rgba(143, 165, 184, 0.15);
+      --avatar-ring-overlap:    2px solid #061320;
+
+      /* 7. INTERACTION & ANIMATIONS */
+      --trans-mechanical:       all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Base Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-abyss-primary);
+      color: var(--text-primary);
+    }
+
+    body {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background-color: var(--bg-abyss-primary);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background-color: var(--accent-azure-active);
+      color: #FFFFFF;
+    }
+
+    /* Atmospheric Oceanic Caustics Gradient */
+    .oceanic-abyss-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(36, 136, 206, 0.09) 0%, transparent 60%),
+                  radial-gradient(circle at 20% 80%, rgba(229, 37, 33, 0.05) 0%, transparent 50%),
+                  linear-gradient(180deg, #030B12 0%, #06121D 50%, #030B12 100%);
+    }
+
+    /* =============================================================================
+       MANDATORY TOP HEADER BAR
+       ============================================================================= */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding: 14px var(--space-xl);
+      background: rgba(3, 11, 18, 0.85);
+      backdrop-filter: var(--blur-hud);
+      -webkit-backdrop-filter: var(--blur-hud);
+      border-bottom: var(--border-glass-subtle);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface-glass);
+      border: var(--border-glass-subtle);
+      transition: var(--trans-mechanical);
+    }
+
+    .nav-back-link:hover {
+      color: var(--text-primary);
+      border-color: var(--border-glass-highlight);
+      transform: translateY(-1px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(36, 136, 206, 0.15);
+      border: 1px solid rgba(36, 136, 206, 0.4);
+      color: var(--accent-azure-active);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(229, 37, 33, 0.12);
+      border: 1px solid rgba(229, 37, 33, 0.35);
+      color: var(--accent-crimson-core);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      border: var(--border-glass-subtle);
+      cursor: pointer;
+      transition: var(--trans-mechanical);
+      text-decoration: none;
+    }
+
+    .btn-preview {
+      background: var(--bg-surface-glass);
+      color: var(--text-secondary);
+    }
+
+    .btn-preview:hover {
+      background: rgba(13, 30, 48, 0.8);
+      color: var(--text-primary);
+      border-color: var(--border-glass-highlight);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy {
+      background: var(--bg-surface-pill);
+      color: var(--text-inverted);
+      font-weight: 600;
+      border: var(--border-active-pill);
+      box-shadow: var(--elevation-pill-floating);
+    }
+
+    .btn-copy:hover {
+      background: var(--bg-surface-pill-hover);
+      transform: scale(1.02);
+      box-shadow: 0 0 24px rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-download {
+      background: var(--bg-surface-glass);
+      color: var(--text-primary);
+      border: var(--border-glass-subtle);
+    }
+
+    .btn-download:hover {
+      background: rgba(36, 136, 206, 0.2);
+      border-color: var(--accent-azure-active);
+      transform: translateY(-1px);
+    }
+
+    /* =============================================================================
+       PAGE LAYOUT & SECTIONS
+       ============================================================================= */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-xl) var(--space-2xl);
+    }
+
+    .section-header {
+      margin-bottom: var(--space-lg);
+      position: relative;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--accent-azure-active);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: var(--space-xs);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 14px;
+      height: 1.5px;
+      background: var(--accent-azure-active);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      max-width: 740px;
+      margin-top: 6px;
+      line-height: 22px;
+    }
+
+    .section-spacer {
+      height: var(--space-2xl);
+    }
+
+    /* =============================================================================
+       1. HERO DISPLAY BANNER & HUD DISPLAY
+       ============================================================================= */
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-xl);
+      align-items: center;
+      padding: var(--space-xl) 0 calc(var(--space-2xl) * 0.8);
+      border-bottom: var(--border-glass-subtle);
+    }
+
+    .hero-text-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .hero-meta-badges {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge-crimson-hull {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(229, 37, 33, 0.15);
+      border: 1px solid rgba(229, 37, 33, 0.45);
+      color: var(--accent-crimson-core);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-title-main {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5.5vw, 76px);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      background: linear-gradient(180deg, #FFFFFF 30%, #8C9FA8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-headline-accent {
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: var(--text-secondary);
+      -webkit-text-fill-color: var(--text-secondary);
+      display: block;
+      font-size: clamp(24px, 3.2vw, 44px);
+      margin-top: 4px;
+    }
+
+    .hero-narrative {
+      font-size: 15px;
+      line-height: 24px;
+      color: var(--text-secondary);
+      max-width: 620px;
+    }
+
+    .hero-cta-suite {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-luxe-primary {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface-pill);
+      color: var(--text-inverted);
+      border: var(--border-active-pill);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--elevation-pill-floating);
+      transition: var(--trans-mechanical);
+      text-decoration: none;
+    }
+
+    .btn-luxe-primary:hover {
+      background: var(--bg-surface-pill-hover);
+      transform: scale(1.02);
+      box-shadow: 0 0 28px rgba(255, 255, 255, 0.45);
+    }
+
+    .btn-luxe-video-trigger {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface-glass);
+      color: var(--text-primary);
+      border: var(--border-glass-subtle);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      backdrop-filter: var(--blur-hud);
+      transition: var(--trans-mechanical);
+      text-decoration: none;
+    }
+
+    .btn-luxe-video-trigger:hover {
+      border-color: var(--accent-azure-active);
+      box-shadow: var(--elevation-glow-accent);
+      transform: translateY(-1px);
+    }
+
+    .video-play-ring {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      padding-left: 2px;
+      color: var(--text-primary);
+    }
+
+    /* Hero HUD Glass Display Card */
+    .hero-hud-card {
+      background: var(--bg-surface-glass);
+      backdrop-filter: var(--blur-hud);
+      -webkit-backdrop-filter: var(--blur-hud);
+      border-radius: var(--radius-card-lg);
+      border: var(--border-glass-subtle);
+      box-shadow: var(--elevation-glass-hud);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-hud-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-azure-active), transparent);
+    }
+
+    .hud-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hud-status-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-azure-active);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hud-status-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-azure-active);
+      box-shadow: 0 0 8px var(--accent-azure-active);
+    }
+
+    .hud-hero-metric {
+      font-family: var(--font-ui);
+      font-size: 38px;
+      font-weight: 500;
+      line-height: 1.1;
+      color: var(--text-primary);
+      font-feature-settings: "tnum";
+      letter-spacing: -0.02em;
+    }
+
+    .hud-metrics-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      padding-top: var(--space-sm);
+      border-top: var(--divider-vertical-grid);
+    }
+
+    .hud-metric-col-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .hud-col-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+
+    .hud-col-val {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* Social Proof Stacked Avatars */
+    .hud-social-proof {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: var(--space-sm);
+    }
+
+    .avatar-stack-row {
+      display: flex;
+    }
+
+    .avatar-item {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-avatar);
+      border: var(--avatar-ring-overlap);
+      background: #122B42;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-right: -8px;
+    }
+
+    .avatar-item:nth-child(2) { background: #1C3E5E; }
+    .avatar-item:nth-child(3) { background: var(--accent-azure-active); margin-right: 0; }
+
+    /* =============================================================================
+       2. COLOR MATRIX & SWATCH TILES
+       ============================================================================= */
+    .palette-grid-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .color-swatch-tile {
+      background: var(--bg-surface-glass);
+      backdrop-filter: var(--blur-hud);
+      border-radius: var(--radius-card-sm);
+      border: var(--border-glass-subtle);
+      box-shadow: var(--elevation-glass-hud);
+      overflow: hidden;
+      transition: var(--trans-mechanical);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .color-swatch-tile:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-glass-highlight);
+    }
+
+    .swatch-color-substrate {
+      height: 110px;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: var(--space-sm);
+      position: relative;
+    }
+
+    .swatch-hex-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(3, 11, 18, 0.85);
+      color: #FFFFFF;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .swatch-meta-content {
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .swatch-name-text {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .swatch-var-text {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-azure-active);
+    }
+
+    .swatch-desc-text {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      line-height: 16px;
+    }
+
+    /* =============================================================================
+       3. TYPOGRAPHY SYSTEM SPECIMEN
+       ============================================================================= */
+    .type-specimen-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: var(--space-lg);
+    }
+
+    .type-panel-hud {
+      background: var(--bg-surface-glass);
+      backdrop-filter: var(--blur-hud);
+      border-radius: var(--radius-card-lg);
+      border: var(--border-glass-subtle);
+      padding: var(--space-lg);
+      box-shadow: var(--elevation-glass-hud);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .type-hierarchy-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .type-ladder-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: var(--space-md);
+      border-bottom: var(--border-glass-subtle);
+    }
+
+    .type-ladder-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .type-row-metadata {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-azure-active);
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .sample-hero-display {
+      font-family: var(--font-display);
+      font-size: 44px;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      background: linear-gradient(180deg, #FFFFFF 30%, #8C9FA8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .sample-headline-accent {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: var(--text-secondary);
+    }
+
+    .sample-card-title {
+      font-family: var(--font-ui);
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .sample-hero-metric {
+      font-family: var(--font-ui);
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--text-primary);
+      font-feature-settings: "tnum";
+    }
+
+    .sample-micro-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+
+    /* Live Pangram Specimen */
+    .pangram-hud-box {
+      background: var(--bg-abyss-primary);
+      border-radius: var(--radius-card-sm);
+      border: var(--border-glass-subtle);
+      padding: var(--space-md);
+      font-family: var(--font-display);
+      font-size: 20px;
+      line-height: 1.4;
+      color: var(--text-primary);
+      outline: none;
+      min-height: 110px;
+    }
+
+    .pangram-hud-box:focus {
+      border-color: var(--accent-azure-active);
+      box-shadow: var(--elevation-glow-accent);
+    }
+
+    /* =============================================================================
+       4. COMPONENT ARCHETYPE GALLERY
+       ============================================================================= */
+    .components-grid-suite {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .component-card-module {
+      background: var(--bg-surface-glass);
+      backdrop-filter: var(--blur-hud);
+      border-radius: var(--radius-card-lg);
+      border: var(--border-glass-subtle);
+      box-shadow: var(--elevation-glass-hud);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .module-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .module-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .module-elements-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Controls & Buttons */
+    .btn-maritime-pill {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface-pill);
+      color: var(--text-inverted);
+      border: var(--border-active-pill);
+      cursor: pointer;
+      transition: var(--trans-mechanical);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-maritime-pill:hover {
+      background: var(--bg-surface-pill-hover);
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-maritime-azure {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      background: var(--accent-azure-active);
+      color: #FFFFFF;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--elevation-glow-accent);
+      transition: var(--trans-mechanical);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-maritime-azure:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 32px rgba(36, 136, 206, 0.6);
+    }
+
+    .btn-maritime-crimson {
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      background: var(--accent-crimson-core);
+      color: #FFFFFF;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--elevation-glow-crimson);
+      transition: var(--trans-mechanical);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-maritime-crimson:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 32px rgba(229, 37, 33, 0.6);
+    }
+
+    /* Nested Telemetry Inset Box */
+    .telemetry-inset-viewport {
+      background: var(--bg-surface-glass-card);
+      border-radius: var(--radius-card-sm);
+      border: var(--border-glass-subtle);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Monoline 1.5px Icons */
+    .icon-maritime {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke: currentColor;
+      fill: none;
+      vertical-align: middle;
+    }
+
+    /* =============================================================================
+       5. LIVING MICRO-EXPERIENCE (NAVAL AUTONOMY TELEMETRY DECK)
+       ============================================================================= */
+    .telemetry-deck-container {
+      background: var(--bg-surface-glass);
+      backdrop-filter: var(--blur-hud);
+      border-radius: var(--radius-card-lg);
+      border: var(--border-glass-subtle);
+      box-shadow: var(--elevation-glass-hud);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .telemetry-deck-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: var(--space-md);
+      border-bottom: var(--border-glass-subtle);
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .nav-vessel-spec {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .vessel-hull-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-crimson-core);
+      box-shadow: var(--elevation-glow-crimson);
+    }
+
+    .deck-modules-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .deck-module-cell {
+      background: var(--bg-surface-glass-card);
+      border-radius: var(--radius-card-sm);
+      border: var(--border-glass-subtle);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: var(--trans-mechanical);
+      cursor: pointer;
+    }
+
+    .deck-module-cell:hover {
+      border-color: var(--border-glass-highlight);
+      transform: translateY(-2px);
+    }
+
+    .deck-cell-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+
+    .deck-cell-value {
+      font-family: var(--font-ui);
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-feature-settings: "tnum";
+    }
+
+    /* Waveform Graphic */
+    .sonar-waveform-canvas {
+      width: 100%;
+      height: 60px;
+      margin-top: 4px;
+    }
+
+    .sonar-waveform-canvas svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* =============================================================================
+       6. STYLE TILE PROMPT CODE DRAWER / ACCORDION
+       ============================================================================= */
+    .spec-drawer-card {
+      background: var(--bg-surface-glass);
+      backdrop-filter: var(--blur-hud);
+      border-radius: var(--radius-card-lg);
+      border: var(--border-glass-subtle);
+      box-shadow: var(--elevation-glass-hud);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .drawer-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .code-display-block {
+      background: var(--bg-abyss-primary);
+      border-radius: var(--radius-card-sm);
+      border: var(--border-glass-subtle);
+      padding: var(--space-md);
+      overflow-x: auto;
+    }
+
+    .code-display-pre {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #A3BDCD;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* =============================================================================
+       MODAL: PREVIEW STYLE TILE
+       ============================================================================= */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(3, 11, 18, 0.85);
+      backdrop-filter: var(--blur-hud);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease;
+    }
+
+    .modal-backdrop.is-open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      background: var(--bg-surface-glass);
+      border-radius: var(--radius-card-lg);
+      width: 100%;
+      max-width: 860px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: var(--elevation-glass-hud);
+      border: var(--border-glass-highlight);
+      transform: scale(0.96);
+      transition: transform 200ms ease;
+    }
+
+    .modal-backdrop.is-open .modal-container {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: var(--border-glass-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(9, 23, 37, 0.8);
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 20px;
+      padding: 4px 8px;
+      border-radius: var(--radius-pill);
+      transition: var(--trans-mechanical);
+    }
+
+    .modal-close-btn:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .modal-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      background: var(--bg-abyss-primary);
+      color: #A3BDCD;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .modal-footer {
+      padding: var(--space-sm) var(--space-lg);
+      border-top: var(--border-glass-subtle);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      background: rgba(9, 23, 37, 0.8);
+    }
+
+    /* Toast Notification */
+    .toast-notification {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface-pill);
+      color: var(--text-inverted);
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(255, 255, 255, 0.4);
+      z-index: 3000;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 200ms ease;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-notification.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Media Queries for Responsive Reflow */
+    @media (max-width: 900px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+      .type-specimen-layout {
+        grid-template-columns: 1fr;
+      }
+      .deck-modules-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .style-tile-header {
+        flex-wrap: wrap;
+        padding: 10px 14px;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+      }
+      .page-wrapper {
+        padding: var(--space-md) var(--space-sm) var(--space-2xl);
+      }
+      .hero-title-main {
+        font-size: 38px;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="design-page-mobile.css">
+</head>
+<body>
+  <div class="oceanic-abyss-bg"></div>
+
+  <!-- Mandatory Top Header Bar -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span>←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code">TILE-033</span>
+      <span class="design-title">Luxe Maritime Cybernetic</span>
+      <span class="design-vibe-tag">Cyber & Blueprint</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg class="icon-maritime" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg class="icon-maritime" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download luxe-maritime-cybernetic.md">
+        <svg class="icon-maritime" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="page-wrapper">
+    <!-- 1. HERO DISPLAY BANNER -->
+    <section class="hero-layout">
+      <div class="hero-text-block">
+        <div class="hero-meta-badges">
+          <span class="badge-crimson-hull">
+            <svg class="icon-maritime" width="12" height="12" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            HULL ANCHOR // CLASSIFIED
+          </span>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">TILE-033 // LUXE MARITIME</span>
+        </div>
+
+        <h1 class="hero-title-main">
+          Luxe Maritime
+          <span class="hero-headline-accent">Cybernetic Intelligence</span>
+        </h1>
+
+        <p class="hero-narrative">
+          Cinematic dark glass architecture engineered for autonomous maritime operations and naval telemetry. Built upon deep oceanic abyss black (#030B12), translucent 24px blur glass HUD modules, high-intensity crimson hull anchors (#E52521), and brushed titanium chrome typography.
+        </p>
+
+        <div class="hero-cta-suite">
+          <button class="btn-luxe-primary" onclick="copyStyleTileDirect()">
+            <svg class="icon-maritime" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Design Prompt
+            <span style="font-size: 16px;">↗</span>
+          </button>
+          <a href="#telemetry-deck" class="btn-luxe-video-trigger">
+            <span class="video-play-ring">▶</span>
+            Inspect Telemetry Deck
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero HUD Glass Card -->
+      <div class="hero-hud-card">
+        <div class="hud-card-top">
+          <span class="hud-status-badge">SONAR LINK ONLINE</span>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">DEPTH: 4,280M</span>
+        </div>
+
+        <div>
+          <div class="hud-col-label" style="margin-bottom: 2px;">AUTONOMOUS VESSEL SPEED</div>
+          <div class="hud-hero-metric">48.2 <span style="font-size: 20px; color: var(--text-secondary);">KTS</span></div>
+        </div>
+
+        <div class="hud-metrics-columns">
+          <div class="hud-metric-col-item">
+            <span class="hud-col-label">HULL PRESSURE</span>
+            <span class="hud-col-val">428.5 BAR</span>
+          </div>
+          <div class="hud-metric-col-item">
+            <span class="hud-col-label">AZURE GRID LINK</span>
+            <span class="hud-col-val" style="color: var(--accent-azure-active);">99.98% SYNC</span>
+          </div>
+        </div>
+
+        <div class="hud-social-proof">
+          <div class="avatar-stack-row">
+            <div class="avatar-item">C1</div>
+            <div class="avatar-item">C2</div>
+            <div class="avatar-item">⚓</div>
+          </div>
+          <span style="font-size: 12px; color: var(--text-secondary);">3 Active Fleet Command Units</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. COLOR ROLES & PALETTE MATRIX -->
+    <div class="section-spacer"></div>
+    <section class="section-container">
+      <div class="section-header">
+        <div class="section-eyebrow">01 // Color Matrix</div>
+        <h2 class="section-title">Deep Oceanic Void & Kinetic Accents</h2>
+        <p class="section-desc">Click any swatch tile to copy its exact HEX code or CSS variable.</p>
+      </div>
+
+      <div class="palette-grid-matrix">
+        <!-- Abyss Primary -->
+        <div class="color-swatch-tile" onclick="copySwatchValue('#030B12', '--bg-abyss-primary')">
+          <div class="swatch-color-substrate" style="background: #030B12; border-bottom: 1px solid rgba(255,255,255,0.08);">
+            <span class="swatch-hex-pill">#030B12</span>
+          </div>
+          <div class="swatch-meta-content">
+            <span class="swatch-name-text">Abyss Void Primary</span>
+            <span class="swatch-var-text">--bg-abyss-primary</span>
+            <p class="swatch-desc-text">Deep oceanic void black application canvas.</p>
+          </div>
+        </div>
+
+        <!-- Abyss Secondary -->
+        <div class="color-swatch-tile" onclick="copySwatchValue('#081624', '--bg-abyss-secondary')">
+          <div class="swatch-color-substrate" style="background: #081624;">
+            <span class="swatch-hex-pill">#081624</span>
+          </div>
+          <div class="swatch-meta-content">
+            <span class="swatch-name-text">Deep Sea Navy</span>
+            <span class="swatch-var-text">--bg-abyss-secondary</span>
+            <p class="swatch-desc-text">Rich deep sea navy for secondary well framing.</p>
+          </div>
+        </div>
+
+        <!-- Crimson Hull Core -->
+        <div class="color-swatch-tile" onclick="copySwatchValue('#E52521', '--accent-crimson-core')">
+          <div class="swatch-color-substrate" style="background: #E52521;">
+            <span class="swatch-hex-pill">#E52521</span>
+          </div>
+          <div class="swatch-meta-content">
+            <span class="swatch-name-text">Crimson Hull Core</span>
+            <span class="swatch-var-text">--accent-crimson-core</span>
+            <p class="swatch-desc-text">High-intensity hull red focal anchor & warning signifier.</p>
+          </div>
+        </div>
+
+        <!-- Crimson Deep -->
+        <div class="color-swatch-tile" onclick="copySwatchValue('#9E1311', '--accent-crimson-deep')">
+          <div class="swatch-color-substrate" style="background: #9E1311;">
+            <span class="swatch-hex-pill">#9E1311</span>
+          </div>
+          <div class="swatch-meta-content">
+            <span class="swatch-name-text">Crimson Shadow Deep</span>
+            <span class="swatch-var-text">--accent-crimson-deep</span>
+            <p class="swatch-desc-text">Deep hull shade & recessed warning accent.</p>
+          </div>
+        </div>
+
+        <!-- Azure Active -->
+        <div class="color-swatch-tile" onclick="copySwatchValue('#2488CE', '--accent-azure-active')">
+          <div class="swatch-color-substrate" style="background: #2488CE;">
+            <span class="swatch-hex-pill">#2488CE</span>
+          </div>
+          <div class="swatch-meta-content">
+            <span class="swatch-name-text">Oceanic Electric Azure</span>
+            <span class="swatch-var-text">--accent-azure-active</span>
+            <p class="swatch-desc-text">Kinetic telemetry blue & secondary call-to-action.</p>
+          </div>
+        </div>
+
+        <!-- Frosted Ice Pill -->
+        <div class="color-swatch-tile" onclick="copySwatchValue('rgba(210, 230, 245, 0.90)', '--bg-surface-pill')">
+          <div class="swatch-color-substrate" style="background: rgba(210, 230, 245, 0.90);">
+            <span class="swatch-hex-pill" style="color: #030B12; background: #FFFFFF;">#D2E6F5</span>
+          </div>
+          <div class="swatch-meta-content">
+            <span class="swatch-name-text">Frosted Ice Pill</span>
+            <span class="swatch-var-text">--bg-surface-pill</span>
+            <p class="swatch-desc-text">High-contrast frosted ice primary interactive pill.</p>
+          </div>
+        </div>
+
+        <!-- Glacial Steel -->
+        <div class="color-swatch-tile" onclick="copySwatchValue('#8FA5B8', '--text-secondary')">
+          <div class="swatch-color-substrate" style="background: #8FA5B8;">
+            <span class="swatch-hex-pill" style="color: #030B12; background: #FFFFFF;">#8FA5B8</span>
+          </div>
+          <div class="swatch-meta-content">
+            <span class="swatch-name-text">Muted Glacial Steel</span>
+            <span class="swatch-var-text">--text-secondary</span>
+            <p class="swatch-desc-text">Secondary body text, subtitles & coordinate metrics.</p>
+          </div>
+        </div>
+
+        <!-- Structural Tertiary -->
+        <div class="color-swatch-tile" onclick="copySwatchValue('#4B6375', '--text-tertiary')">
+          <div class="swatch-color-substrate" style="background: #4B6375;">
+            <span class="swatch-hex-pill">#4B6375</span>
+          </div>
+          <div class="swatch-meta-content">
+            <span class="swatch-name-text">Subdued Structural Label</span>
+            <span class="swatch-var-text">--text-tertiary</span>
+            <p class="swatch-desc-text">ALL-CAPS micro metadata labels & grid borders.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TYPOGRAPHY SYSTEM SPECIMEN -->
+    <div class="section-spacer"></div>
+    <section class="section-container">
+      <div class="section-header">
+        <div class="section-eyebrow">02 // Typography System</div>
+        <h2 class="section-title">Syne Display & Plus Jakarta Sans Pairing</h2>
+        <p class="section-desc">Brushed titanium chrome gradients with surgical tabular telemetry.</p>
+      </div>
+
+      <div class="type-specimen-layout">
+        <!-- Hierarchy Ladder -->
+        <div class="type-panel-hud">
+          <div class="type-hierarchy-ladder">
+            <div class="type-ladder-row">
+              <div class="type-row-metadata">
+                <span>HERO DISPLAY</span>
+                <span>72px - 96px</span>
+                <span>SemiBold (600) • Tracking: -0.04em</span>
+              </div>
+              <div class="sample-hero-display">NAVAL TITANIUM</div>
+            </div>
+
+            <div class="type-ladder-row">
+              <div class="type-row-metadata">
+                <span>HEADLINE ACCENT</span>
+                <span>48px - 64px</span>
+                <span>Light (300) • Tracking: -0.03em</span>
+              </div>
+              <div class="sample-headline-accent">Cybernetic Deep-Sea Telemetry</div>
+            </div>
+
+            <div class="type-ladder-row">
+              <div class="type-row-metadata">
+                <span>SECTION / CARD TITLE</span>
+                <span>18px - 22px</span>
+                <span>Medium (500) • Tracking: -0.02em</span>
+              </div>
+              <div class="sample-card-title">Acoustic Hull Vibration Sensors</div>
+            </div>
+
+            <div class="type-ladder-row">
+              <div class="type-row-metadata">
+                <span>HERO METRIC</span>
+                <span>32px - 40px</span>
+                <span>Medium (500) • Tabular figures</span>
+              </div>
+              <div class="sample-hero-metric">1,480.92 RPM</div>
+            </div>
+
+            <div class="type-ladder-row">
+              <div class="type-row-metadata">
+                <span>MICRO LABELS / META</span>
+                <span>9px - 10px</span>
+                <span>Bold (700) • ALL CAPS • Tracking: +0.12em</span>
+              </div>
+              <div class="sample-micro-label">SONAR BEARING // SUB-SURFACE HYDROPHONE ARRAY</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Editable Pangram & Geometry Spec -->
+        <div class="type-panel-hud">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="module-title">Interactive Display Pangram</span>
+            <span class="badge-crimson-hull" style="font-size:9px;">EDITABLE</span>
+          </div>
+
+          <div class="pangram-hud-box" contenteditable="true" spellcheck="false" title="Click to test text editing">
+            The quick brown fox navigates the deep oceanic abyss with 24px glass HUD telemetry.
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-size: 13px; font-weight: 600; color: var(--text-primary);">Corner Geometry & Depth Stack</span>
+            <ul style="padding-left: 18px; font-size: 13px; color: var(--text-secondary); line-height: 22px;">
+              <li><strong>Radius-Pill (9999px)</strong>: Buttons, badges, video trigger chips</li>
+              <li><strong>Radius-Card-LG (24px)</strong>: Floating HUD modules & telemetry cards</li>
+              <li><strong>Radius-Card-SM (14px)</strong>: Nested visual viewports / insets</li>
+              <li><strong>Radius-Avatar (50%)</strong>: Overlapping command proof avatars</li>
+              <li><strong>Glass HUD Elevation</strong>: blur(24px) saturate(180%) + 60px ambient drop shadow</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. COMPONENT ARCHETYPE GALLERY -->
+    <div class="section-spacer"></div>
+    <section class="section-container">
+      <div class="section-header">
+        <div class="section-eyebrow">03 // Component Archetypes</div>
+        <h2 class="section-title">Pill Ergonomics & Nested Telemetry Viewports</h2>
+        <p class="section-desc">Monoline 1.5px icons, directional indicators (↗), and tactile action chips.</p>
+      </div>
+
+      <div class="components-grid-suite">
+        <!-- Action Buttons -->
+        <div class="component-card-module">
+          <div class="module-header-row">
+            <span class="module-title">Action Suite</span>
+            <span class="badge-crimson-hull" style="font-size:9px;">RADIUS-PILL</span>
+          </div>
+
+          <div class="module-elements-row">
+            <button class="btn-maritime-pill">
+              Primary Pill
+              <span style="font-size: 14px;">↗</span>
+            </button>
+            <button class="btn-maritime-azure">
+              Azure Action
+            </button>
+            <button class="btn-maritime-crimson">
+              Hull Alarm
+            </button>
+          </div>
+
+          <div style="margin-top: 8px;">
+            <div class="sample-micro-label" style="margin-bottom: 8px;">Interactive Chips & Trigger Pills</div>
+            <div class="module-elements-row">
+              <button class="btn-luxe-video-trigger" style="padding: 6px 16px; font-size: 12px;">
+                <span class="video-play-ring" style="width: 16px; height: 16px; font-size: 7px;">▶</span>
+                Sonar Reel
+              </button>
+              <span class="badge-crimson-hull">HULL INTEGRITY 100%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nested Viewport Panel -->
+        <div class="component-card-module">
+          <div class="module-header-row">
+            <span class="module-title">Nested Viewport</span>
+            <span style="font-family: var(--font-mono); font-size: 10px; color: var(--accent-azure-active);">RADIUS-CARD-SM (14PX)</span>
+          </div>
+
+          <div class="telemetry-inset-viewport">
+            <div style="display:flex; justify-content:space-between;">
+              <span class="sample-micro-label">DEPTH SOUNDER SCAN</span>
+              <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-primary);">CHIRP 200kHz</span>
+            </div>
+            <div style="font-size: 18px; font-weight: 600; color: var(--text-primary);">
+              Sub-Surface Trench Mapping: OK
+            </div>
+            <div style="font-size: 12px; color: var(--text-secondary);">
+              Transducer Array: 16-Beam Phased Array Active
+            </div>
+          </div>
+        </div>
+
+        <!-- Monoline Iconography -->
+        <div class="component-card-module">
+          <div class="module-header-row">
+            <span class="module-title">Monoline Iconography</span>
+            <span class="badge-crimson-hull" style="font-size:9px;">1.5PX STROKE</span>
+          </div>
+
+          <div class="module-elements-row" style="gap: 20px;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+              <div style="width:40px; height:40px; border-radius:var(--radius-pill); background:var(--bg-surface-glass-card); display:flex; align-items:center; justify-content:center; color:var(--accent-azure-active); border:var(--border-glass-subtle);">
+                <svg class="icon-maritime" viewBox="0 0 24 24"><path d="M7 17l9.2-9.2M17 17V7H7"/></svg>
+              </div>
+              <span style="font-size:10px; color:var(--text-tertiary);">Action ↗</span>
+            </div>
+
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+              <div style="width:40px; height:40px; border-radius:var(--radius-pill); background:var(--bg-surface-glass-card); display:flex; align-items:center; justify-content:center; color:var(--accent-crimson-core); border:var(--border-glass-subtle);">
+                <svg class="icon-maritime" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+              </div>
+              <span style="font-size:10px; color:var(--text-tertiary);">Global ⚓</span>
+            </div>
+
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+              <div style="width:40px; height:40px; border-radius:var(--radius-pill); background:var(--bg-surface-glass-card); display:flex; align-items:center; justify-content:center; color:var(--text-primary); border:var(--border-glass-subtle);">
+                <svg class="icon-maritime" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              </div>
+              <span style="font-size:10px; color:var(--text-tertiary);">Play ▷</span>
+            </div>
+          </div>
+
+          <p style="font-size: 12px; color: var(--text-secondary); line-height: 18px; margin-top: 4px;">
+            Ultra-refined monoline glyphs with rounded caps and 14px - 18px optical bounding boxes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. LIVING MICRO-EXPERIENCE (NAVAL AUTONOMY TELEMETRY DECK) -->
+    <div class="section-spacer"></div>
+    <section id="telemetry-deck" class="telemetry-deck-container">
+      <div class="telemetry-deck-nav">
+        <div class="nav-vessel-spec">
+          <div class="vessel-hull-indicator"></div>
+          <div>
+            <span style="font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--text-primary);">NAVAL TELEMETRY DECK // VESSEL 09</span>
+            <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary);">AUTONOMOUS CRUISE: NORTH SEA CORRIDOR</div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 8px;">
+          <span class="badge-crimson-hull">STEALTH MODE</span>
+          <span class="badge-crimson-hull" style="border-color:rgba(36,136,206,0.4); background:rgba(36,136,206,0.15); color:var(--accent-azure-active);">5G MESH LOCKED</span>
+        </div>
+      </div>
+
+      <!-- Modules Grid -->
+      <div class="deck-modules-grid">
+        <!-- Module 1 -->
+        <div class="deck-module-cell" onclick="triggerToast('Inspecting Acoustic Sonar...')">
+          <span class="deck-cell-label">HYDROACOUSTIC PROFILER</span>
+          <div class="deck-cell-value">3,840 <span style="font-size: 14px; color: var(--text-secondary);">M/S VELOCITY</span></div>
+          <div class="sonar-waveform-canvas">
+            <svg viewBox="0 0 300 60" preserveAspectRatio="none">
+              <path d="M0,30 Q25,5 50,30 T100,30 T150,15 T200,45 T250,25 T300,30" fill="none" stroke="var(--accent-azure-active)" stroke-width="1.8" stroke-linecap="round"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Module 2 -->
+        <div class="deck-module-cell" onclick="triggerToast('Inspecting Hull Strain Sensors...')">
+          <span class="deck-cell-label">HULL MICRO-STRAIN</span>
+          <div class="deck-cell-value" style="color: var(--accent-crimson-core);">0.042 <span style="font-size: 14px; color: var(--text-secondary);">μE (NOMINAL)</span></div>
+          <div style="font-size: 12px; color: var(--text-secondary); margin-top: 8px;">
+            Titanium bulkhead deflection within 99.8% structural safety margins.
+          </div>
+        </div>
+
+        <!-- Module 3 -->
+        <div class="deck-module-cell" onclick="triggerToast('Inspecting Propulsor Telemetry...')">
+          <span class="deck-cell-label">ELECTRIC PROPULSION</span>
+          <div class="deck-cell-value">94.8% <span style="font-size: 14px; color: var(--text-secondary);">EFFICIENCY</span></div>
+          <div style="font-size: 12px; color: var(--text-secondary); margin-top: 8px;">
+            Twin contra-rotating magnetic pods at 1,200 RPM silent glide.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. STYLE TILE PROMPT CODE DRAWER -->
+    <div class="section-spacer"></div>
+    <section class="spec-drawer-card">
+      <div class="drawer-header-row">
+        <div>
+          <div class="section-eyebrow">04 // Machine-Readable Token Vault</div>
+          <h2 style="font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--text-primary);">Markdown Style Tile Specification</h2>
+        </div>
+
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-tile btn-copy" onclick="copyStyleTileDirect()">
+            <svg class="icon-maritime" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Prompt Spec
+          </button>
+          <button class="btn-tile btn-download" onclick="downloadStyleTileDirect()">
+            <svg class="icon-maritime" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download .md
+          </button>
+        </div>
+      </div>
+
+      <div class="code-display-block">
+        <pre class="code-display-pre" id="visible-spec-pre"></pre>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL: PREVIEW STYLE TILE -->
+  <div id="spec-modal-backdrop" class="modal-backdrop">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Luxe Maritime Cybernetic Specification</h3>
+        <button class="modal-close-btn" onclick="closeSpecModal()" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-spec-content"></div>
+      <div class="modal-footer">
+        <button class="btn-tile btn-copy" onclick="copyStyleTileDirect()">
+          <svg class="icon-maritime" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy to Clipboard
+        </button>
+        <button class="btn-tile btn-download" onclick="downloadStyleTileDirect()">
+          <svg class="icon-maritime" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Markdown
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast-notification" class="toast-notification">
+    <svg class="icon-maritime" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+    <span id="toast-text">Copied to Clipboard!</span>
+  </div>
+
+  <!-- RAW EMBEDDED MARKDOWN SPECIFICATION -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  STYLE TILE // LUXE MARITIME CYBERNETIC (CINEMATIC DARK GLASS) (TILE-033)
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Luxe Maritime Cybernetic is a cinematic dark glass design system engineered for autonomous naval
+telemetry, luxury maritime interfaces, and oceanographic research platforms.
+Rooted in deep oceanic void blacks (#030B12) and rich sea navies (#081624), the aesthetic achieves
+high-tension contrast with frosted ice pills (#D2E6F5), high-intensity crimson hull anchors (#E52521),
+electric azure halos (#2488CE), 24px blurred glass HUD modules, and brushed titanium typography.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surface & Abyss */
+  --bg-abyss-primary:       #030B12; /* Deep oceanic void black */
+  --bg-abyss-secondary:     #081624; /* Rich deep sea navy */
+  --bg-surface-glass:       rgba(9, 23, 37, 0.65); /* Translucent floating panel */
+  --bg-surface-pill:        rgba(210, 230, 245, 0.90); /* Frosted ice primary pill */
+  --bg-surface-pill-hover:  #FFFFFF; /* Pure white luminescence */
+
+  /* Kinetic & Accent */
+  --accent-crimson-core:    #E52521; /* High-intensity hull red / focal anchor */
+  --accent-crimson-deep:    #9E1311; /* Shadow red / hull shade */
+  --accent-azure-active:    #2488CE; /* Oceanic electric blue / secondary CTA */
+  --accent-azure-glow:      rgba(36, 136, 206, 0.35); /* Atmospheric halo */
+
+  /* Typography & Iconography */
+  --text-primary:           #FFFFFF; /* 100% white */
+  --text-metallic-top:      #FFFFFF; /* Chrome gradient start */
+  --text-metallic-bottom:   #8C9FA8; /* Chrome gradient end / brushed titanium */
+  --text-secondary:         #8FA5B8; /* Muted glacial steel */
+  --text-tertiary:          #4B6375; /* Subdued structural label */
+  --text-inverted:          #030B12; /* For high-contrast white/light pills */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Families */
+--font-display:             "Syne", "Plus Jakarta Sans", -apple-system, sans-serif;
+--font-ui:                  "Plus Jakarta Sans", "Inter", sans-serif;
+--font-mono:                "JetBrains Mono", monospace;
+
+/* Hierarchy & Scale */
+• Hero Display:             72px - 96px | SemiBold (600) | Tracking: -0.04em
+                            Fill: linear-gradient(180deg, #FFFFFF 30%, #8C9FA8 100%)
+• Headline Accent:          48px - 64px | Light (300) / Regular (400) | Tracking: -0.03em
+• Section / Card Title:     18px - 22px | Medium (500) | Tracking: -0.02em
+• Hero Metrics:             32px - 40px | Medium (500) | Tabular figures
+• Micro Metric Values:      13px - 14px | SemiBold (600) | Tracking: -0.01em
+• Micro Labels / Meta:      9px - 10px  | Bold (700)   | Tracking: +0.12em (ALL CAPS)
+• Navigation Links:         13px - 14px | Regular (400) | Tracking: -0.01em
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+• radius-pill:              9999px (Buttons, badges, video trigger chips)
+• radius-card-lg:           24px   (Floating HUD modules & telemetry cards)
+• radius-card-sm:           14px   (Nested visual viewports / interactive insets)
+• radius-avatar:            50%    (Overlapping social proof avatars)
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION, DEPTH & BLUR
+ * -------------------------------------------------------------------------- */
+• elevation-glass-hud:
+    - Backdrop Filter:      blur(24px) saturate(180%)
+    - Box Shadow:           0 30px 60px -12px rgba(0, 0, 0, 0.75), inset 0 1px 0 0 rgba(255, 255, 255, 0.12)
+• elevation-pill-floating:  0 12px 32px rgba(0, 0, 0, 0.45)
+• elevation-glow-accent:    0 0 28px rgba(36, 136, 206, 0.40)
+• elevation-glow-crimson:   0 0 28px rgba(229, 37, 33, 0.40)
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (8pt Baseline Grid)
+ * -------------------------------------------------------------------------- */
+• space-xs:                 4px   (Badge internal spacing, indicator gaps)
+• space-sm:                 8px   (Icon-to-text spacing, micro metadata gaps)
+• space-md:                 16px  (Button padding Y/X ratio: 12px 24px)
+• space-lg:                 24px  (Card inner padding, telemetry cluster gap)
+• space-xl:                 40px  (Hero sub-element separation)
+• space-2xl:                80px+ (Screen edges, negative space canvas anchors)
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+• border-glass-subtle:      1px solid rgba(255, 255, 255, 0.08)
+• border-glass-highlight:   1px solid rgba(255, 255, 255, 0.16)
+• border-active-pill:       1px solid rgba(255, 255, 255, 0.35)
+• divider-vertical-grid:    1px solid rgba(143, 165, 184, 0.15) (Metric column dividers)
+• avatar-ring-overlap:      2px solid #061320 (Keeps stacked avatars distinct)
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+• Stroke Weight:            1.5px (Monoline, ultra-refined)
+• Corner Treatment:         Subtle round caps (stroke-linecap: round)
+• Primary Functional:       North-East directional arrow (↗) for primary actions
+• Multimedia Token:         Glass-ring encircled minimal play triangle (▷)
+• Icon Scale:               14px - 18px bounding box
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+• Motion Curve:             cubic-bezier(0.16, 1, 0.3, 1) (Snappy, mechanical-luxury)
+• Duration Token:           200ms - 300ms
+• Primary CTA (Pill):
+    - Rest:                 bg: rgba(210, 230, 245, 0.90) | text: #030B12
+    - Hover:                bg: #FFFFFF | scale: 1.02 | box-shadow: 0 0 24px rgba(255,255,255,0.4)
+    - Active:               scale: 0.98
+• Nav Link / Text Action:
+    - Rest:                 text: #8FA5B8
+    - Hover:                text: #FFFFFF | text-shadow: 0 0 12px rgba(255,255,255,0.5)
+• Glass HUD / Cards:
+    - Rest:                 border: rgba(255, 255, 255, 0.08)
+    - Hover:                border: rgba(255, 255, 255, 0.22) | translateY(-2px)
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic pastel gradients or muddy flat gray backgrounds.
+- NO unblurred flat cards; always preserve the 24px backdrop blur and top inset lighting.
+- NO sharp 0px brutalist corners; strictly 24px/14px/pill geometry.
+================================================================================
+  </script>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    function getMarkdownSpec() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-notification");
+      const toastText = document.getElementById("toast-text");
+      if (!toast) return;
+      if (toastText) toastText.textContent = message;
+      toast.classList.add("is-visible");
+      setTimeout(() => {
+        toast.classList.remove("is-visible");
+      }, 2500);
+    }
+
+    function copyStyleTileDirect() {
+      const text = getMarkdownSpec();
+      navigator.clipboard.writeText(text).then(() => {
+        triggerToast("✓ Copied Style Tile to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const origHtml = copyBtn.innerHTML;
+          copyBtn.innerHTML = `✓ Copied!`;
+          setTimeout(() => { copyBtn.innerHTML = origHtml; }, 2000);
+        }
+      }).catch(err => {
+        console.error("Copy failed:", err);
+      });
+    }
+
+    function downloadStyleTileDirect() {
+      const text = getMarkdownSpec();
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-luxe-maritime-cybernetic.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloaded style-tile-luxe-maritime-cybernetic.md");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      const content = document.getElementById("modal-spec-content");
+      if (content) content.textContent = getMarkdownSpec();
+      if (modal) modal.classList.add("is-open");
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      if (modal) modal.classList.remove("is-open");
+    }
+
+    function copySwatchValue(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast(`✓ Copied ${hex} (${varName})`);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyStyleTileDirect);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadStyleTileDirect);
+
+      const preEl = document.getElementById("visible-spec-pre");
+      if (preEl) preEl.textContent = getMarkdownSpec();
+
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+    });
+  </script>
+</body>
+</html>
