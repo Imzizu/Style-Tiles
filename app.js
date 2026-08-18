@@ -5687,6 +5687,170 @@ electric azure halos (#2488CE), 24px blurred glass HUD modules, and brushed tita
 - NO unblurred flat cards; always preserve the 24px backdrop blur and top inset lighting.
 - NO sharp 0px brutalist corners; strictly 24px/14px/pill geometry.
 ================================================================================`
+  },
+  {
+    id: "TILE-034",
+    slug: "neo-editorial-poster-brutalism",
+    name: "Neo-Editorial / Poster Brutalism",
+    vibe: "High-Contrast Condensed Display • Acid-Pop Vector Overlays • Utilitarian 0px Grid • Zine-Inspired Collage • Concrete Paper",
+    vibeBadge: "Neo-Brutalism",
+    categories: ["brutalist"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Bebas Neue",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Concrete Paper Base", hex: "#E1E1E1" },
+      { name: "Deep Carbon Black", hex: "#111111" },
+      { name: "Acid Coral Burst", hex: "#FF505F" },
+      { name: "Electric Chartreuse", hex: "#D9FF38" },
+      { name: "Deep Electric Violet", hex: "#481A66" },
+      { name: "Pure Paper White", hex: "#FFFFFF" }
+    ],
+    description: "Neo-Editorial Poster Brutalism: High-contrast, hyper-condensed typography, acid-pop vector overlays, utilitarian 0px grid geometry, and zine-inspired collage layering. Built on an unbleached concrete paper base (#E1E1E1) with carbon black (#111111), acid coral starbursts (#FF505F), and chartreuse organic blobs (#D9FF38).",
+    markdownSpec: `================================================================================
+  STYLE TILE: NEO-EDITORIAL / POSTER BRUTALISM (TILE-034)
+  Aesthetic: High-contrast, hyper-condensed typography, acid-pop vector overlays,
+             utilitarian grid geometry, and zine-inspired collage layering.
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  --color-canvas-base:         #E1E1E1; /* Neutral warm concrete / industrial paper */
+  --color-ink-primary:         #111111; /* Deep carbon black / brutalist black */
+  --color-ink-inverted:        #FFFFFF; /* Pure paper white (badges / inverted text) */
+
+  /* Accent Pop Tokens */
+  --color-accent-burst:        #FF505F; /* Acid coral / neon punch pink (stickers, bursts) */
+  --color-accent-highlight:    #D9FF38; /* Electric chartreuse / acid lime (ambient blobs) */
+  --color-accent-subtle:       #481A66; /* Deep electric violet / framing accent */
+
+  /* Semantic Aliases */
+  --bg-surface:                var(--color-canvas-base);
+  --text-primary:              var(--color-ink-primary);
+  --text-badge:                var(--color-ink-inverted);
+  --border-divider:            var(--color-ink-primary);
+  --badge-fill:                var(--color-accent-burst);
+  --blob-fill:                 var(--color-accent-highlight);
+}
+
+/* -----------------------------------------------------------------------------
+ * 2. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Families */
+--font-family-display:         "Druk Condensed", "Impact", "Bebas Neue", sans-serif;
+--font-family-sans:            "Neue Haas Grotesk", "Helvetica Now", "Inter", sans-serif;
+--font-family-mono:            "JetBrains Mono", monospace;
+
+/* Typography Scale & Weight Tokens */
+• Hero Display:
+    - Font Family:             var(--font-family-display)
+    - Size:                    clamp(6.5rem, 16vw, 15rem)
+    - Line-Height:             0.82
+    - Letter-Spacing:          -0.03em
+    - Text-Transform:          UPPERCASE
+    - Font-Stretch:            Ultra-condensed
+    - Weight:                  900
+
+• Heading Grid:
+    - Font Family:             var(--font-family-sans)
+    - Size:                    1.25rem (20px)
+    - Line-Height:             1.05
+    - Letter-Spacing:          -0.01em
+    - Text-Transform:          UPPERCASE
+    - Weight:                  800
+
+• Body Dense:
+    - Font Family:             var(--font-family-sans)
+    - Size:                    0.75rem (12px)
+    - Line-Height:             1.25
+    - Letter-Spacing:          0.02em
+    - Text-Transform:          UPPERCASE
+    - Weight:                  700
+
+• Badge Label:
+    - Font Family:             var(--font-family-sans)
+    - Size:                    0.7rem (11px)
+    - Line-Height:             1.1
+    - Letter-Spacing:          0.01em
+    - Text-Transform:          UPPERCASE
+    - Weight:                  800
+    - Text-Align:              Center
+
+/* -----------------------------------------------------------------------------
+ * 3. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+• radius-none:                 0px (Strict default: cards, containers, buttons)
+• radius-sharp:                0px (No soft rounded UI curves)
+• geometry-sticker:            polygon(16-point starburst sticker path)
+• geometry-ambient-blob:       path(asymmetric smooth fluid chartreuse curve)
+
+/* -----------------------------------------------------------------------------
+ * 4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+• shadow-none:                 none (Zero gaussian blur / soft elevation)
+
+/* Z-Index Hierarchy (Raw Collage Overlap) */
+0. [ Base ]     Base concrete background (--color-canvas-base: #E1E1E1)
+1. [ Layer 1 ]  Organic chartreuse fluid vector (--color-accent-highlight: #D9FF38)
+2. [ Layer 2 ]  Hairline grid rules (1px solid #111111)
+3. [ Layer 3 ]  Headings, numbers, body copy
+4. [ Layer 4 ]  Dominant condensed display type
+5. [ Top ]      Overlapping coral starbursts & badges (--color-accent-burst: #FF505F)
+
+/* -----------------------------------------------------------------------------
+ * 5. SPACING & SPATIAL SCALE
+ * -------------------------------------------------------------------------- */
+• grid-columns-layout:         12
+• grid-split-display:          5 cols (Massive vertical display anchor left)
+• grid-split-content:          7 cols (2x3 dense modular information matrix right)
+• space-2xs:                   4px (Internal badge padding)
+• space-xs:                    8px (Gap between title & descriptive body text)
+• space-sm:                    16px (Margin above divider lines)
+• space-md:                    24px (Vertical module spacing)
+• space-lg:                    40px (Grid gutter between columns)
+• space-xl:                    56px (Page margins / container boundaries)
+
+/* -----------------------------------------------------------------------------
+ * 6. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+• divider-thickness:           1px
+• divider-style:               solid
+• divider-color:               var(--color-ink-primary) (#111111)
+• divider-rule:                1px solid var(--color-ink-primary)
+• divider-placement:           Bottom-border per row (spans localized grid cells only)
+
+/* -----------------------------------------------------------------------------
+ * 7. ICONOGRAPHY & GRAPHIC ACCENTS LANGUAGE
+ * -------------------------------------------------------------------------- */
+• Icon Style:                  None (Typographic & Vector Geometry Driven)
+• Graphic Burst Accent:        Spiky multi-vertex starbursts with embedded text
+• Graphic Fluid Accent:        Freeform asymmetric organic blobs in high-vis lime
+• Graphic Numeral Prominence:  Large standalone brutal numerals embedded in headlines
+
+/* -----------------------------------------------------------------------------
+ * 8. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+• Transition Speed:            0.12s
+• Transition Curve:            cubic-bezier(0, 0, 0.2, 1) (Snappy / Instantaneous)
+• Hover Link:                  color: var(--color-accent-burst)
+• Hover Card:                  transform: translate(-2px, -2px)
+• Hover Badge:                 transform: rotate(6deg) scale(1.05)
+• Invert Mode:                 background: var(--color-ink-primary); color: var(--color-canvas-base)
+
+/* -----------------------------------------------------------------------------
+ * 9. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO rounded corners (0px strict on all cards, buttons, frames).
+- NO soft gaussian shadows or blur layers.
+- NO low-contrast gray text; keep carbon black on concrete paper.
+- NO lowercase shouting or uncalibrated mixed line heights.
+================================================================================`
   }
 ];
 
