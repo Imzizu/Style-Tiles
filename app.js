@@ -2670,7 +2670,7 @@ function copyTilePrompt(tileId) {
   const tile = STYLE_TILES_DATA.find(t => t.id === tileId);
   if (!tile) return;
 
-  const fullPrompt = `Implement/redesign this webpage using the following Style Tile design system however applicable:\n\n${tile.markdownSpec}`;
+  const fullPrompt = `Implement this website using the following Style Tile as the design system:\n\n${tile.markdownSpec}`;
 
   navigator.clipboard.writeText(fullPrompt).then(() => {
     showToast(`Copied ${tile.name} Style Tile to clipboard!`);
