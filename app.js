@@ -4545,6 +4545,231 @@ Base: 4px | Scale: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192
 - NO icon-stuffed bento boxes or generic stock 3D illustrations.
 - NO headline biscuit pills with pulsing dots placed above the main headline.
 ================================================================================`
+  },
+  {
+    id: "TILE-028",
+    slug: "editorial-neo-humanist",
+    name: "Editorial Neo-Humanist / Impact Refined",
+    vibe: "Warm Oat Parchment • High-Impact Compressed Display • Vibrant Emerald Jade • Documentary Stacking • Subtle Tonal Shifts",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Bebas Neue",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Surface Canvas", hex: "#EFECE6" },
+      { name: "Surface Raised", hex: "#E5E1D8" },
+      { name: "Surface Card", hex: "#FFFFFF" },
+      { name: "Surface Inverted", hex: "#121212" },
+      { name: "Primary Ink", hex: "#121212" },
+      { name: "Secondary Ink", hex: "#5C5851" },
+      { name: "Emerald Jade", hex: "#2E9E6B" },
+      { name: "Terracotta Accent", hex: "#E4633B" }
+    ],
+    description: "Editorial Neo-Humanist / Impact Refined: A high-craft editorial design architecture blending compressed, high-impact headline typography (Bebas Neue / Oswald) with warm oat parchment surfaces (#EFECE6), pure solid ink, and vibrant emerald jade accents (#2E9E6B). Flat editorial depth relying on subtle tonal shifts rather than heavy drop shadows, multi-image vertical stacking, and refined neo-humanist ergonomics.",
+    markdownSpec: `================================================================================
+  DESIGN SYSTEM STYLE TILE // "EDITORIAL NEO-HUMANIST / IMPACT REFINED" (TILE-028)
+  Aesthetic: Editorial Neo-Humanist • Impact Refined • Warm Oat Parchment • Emerald Jade
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Editorial Neo-Humanist / Impact Refined is a high-craft editorial design architecture
+blending compressed, high-impact headline typography with warm oat parchment surfaces,
+pure solid ink, and vibrant emerald jade accents. Built on subtle tonal shifts rather
+than heavy drop shadows, it pairs documentary visual storytelling and multi-image
+vertical stacking with refined neo-humanist interface ergonomics for premier publishing,
+cultural institutes, architecture journals, and impact-driven venture platforms.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --surface-canvas:         #EFECE6; /* Warm oat / parchment background */
+  --surface-raised:         #E5E1D8; /* Muted secondary containers & pills */
+  --surface-card:           #FFFFFF; /* Clean contrast cards (when needed) */
+  --surface-inverted:       #121212; /* Deep charcoal / near-black */
+  --surface-subtle:         #F7F5F0; /* Soft parchment highlight / well */
+
+  /* Content & Typography */
+  --text-primary:           #121212; /* High-contrast solid ink */
+  --text-secondary:         #5C5851; /* Warm slate body & subtext */
+  --text-muted:             #8C877E; /* Captions, subtle labels & disabled */
+  --text-on-accent:         #FFFFFF; /* Pure white on saturated buttons */
+  --text-inverted:          #FFFFFF; /* Inverted reading text */
+
+  /* Brand & Accents */
+  --accent-primary:         #2E9E6B; /* Vibrant emerald jade */
+  --accent-primary-hover:   #258459; /* Deep emerald hover */
+  --accent-primary-active:  #1D6B47; /* Darkened jade press */
+  --accent-warm:            #E4633B; /* Terracotta / rating stars */
+  --accent-primary-soft:    #EAF6F0; /* Soft emerald badge wash */
+  --accent-warm-soft:       #FDF2EE; /* Soft terracotta badge wash */
+
+  /* Status Tokens */
+  --status-success:         #2E9E6B;
+  --status-warning:         #E4633B;
+  --status-info:            #2E7D9E;
+  --status-danger:          #D9383A;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display:             "Bebas Neue", "Oswald", "PP Right Grotesk", sans-serif;
+--font-sans:                "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:                "JetBrains Mono", "SF Mono", monospace;
+
+/* Type Scale & Styles */
+• Display / Hero:
+    Font Family:    var(--font-display)
+    Weight:         700 (Bold / Compressed)
+    Transform:      UPPERCASE
+    Letter-Spacing: -0.01em
+    Line-Height:    0.95 – 1.05
+    Size:           clamp(2.75rem, 6vw, 4.5rem)
+
+• Heading 1 / 2:
+    Font Family:    var(--font-display)
+    Weight:         700
+    Transform:      UPPERCASE
+    Letter-Spacing: -0.02em
+    Line-Height:    1.15
+    Size:           1.75rem – 2.5rem
+
+• Heading 3 / Subhead:
+    Font Family:    var(--font-sans)
+    Weight:         600 (SemiBold)
+    Letter-Spacing: -0.01em
+    Line-Height:    1.30
+    Size:           1.25rem
+
+• Navigation & Buttons:
+    Font Family:    var(--font-sans)
+    Weight:         500 / 600 (Medium/SemiBold)
+    Letter-Spacing: -0.01em
+    Line-Height:    1.20
+    Size:           0.9375rem (15px)
+
+• Body / Paragraph:
+    Font Family:    var(--font-sans)
+    Weight:         400 (Regular)
+    Letter-Spacing: -0.01em
+    Line-Height:    1.55
+    Size:           1.0rem (16px)
+
+• Micro / Metadata:
+    Font Family:    var(--font-sans)
+    Weight:         500 (Medium)
+    Letter-Spacing: +0.01em
+    Line-Height:    1.40
+    Size:           0.8125rem (13px)
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-xs:                4px;       /* Badges, micro tooltips */
+--radius-sm:                8px;       /* Small inputs, tags */
+--radius-md:                12px;      /* Standard buttons & interactive pills */
+--radius-lg:                18px;      /* Media containers, feature cards */
+--radius-xl:                24px;      /* Large modal sheets, hero image modules */
+--radius-full:              9999px;    /* Circular avatars, icon chips */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+Design Principle: Flat editorial layout relying on subtle tonal shifts rather than heavy drop shadows.
+
+--elevation-flat:           none;
+--elevation-ambient:        0 2px 8px rgba(18, 18, 18, 0.04);
+--elevation-floating:       0 8px 24px -4px rgba(18, 18, 18, 0.08);
+--elevation-popover:        0 16px 32px -8px rgba(18, 18, 18, 0.12);
+--layer-treatment:          Multi-image vertical stacking with 12px-16px gap;
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (4px / 8px Grid)
+ * -------------------------------------------------------------------------- */
+--space-2xs:                4px;
+--space-xs:                 8px;
+--space-sm:                 12px;
+--space-md:                 16px;
+--space-lg:                 24px;
+--space-xl:                 32px;
+--space-2xl:                48px;
+--space-3xl:                64px;
+--space-4xl:                96px;
+
+Layout Density:
+• Button Padding:           12px 22px (Primary & Secondary)
+• Nav Link Spacing:         28px – 36px inline gap
+• Hero Grid Split:          45% Text Content / 55% Media Showcase Stack
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-width-hairline:    1px;
+--border-width-focus:       2px;
+--border-subtle:            rgba(18, 18, 18, 0.08);    /* Inactive borders/dividers */
+--border-interactive:       rgba(18, 18, 18, 0.22);    /* Secondary ghost buttons */
+--border-avatar-overlap:    2px solid #EFECE6;         /* Overlapping avatar rings */
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+• Style:                    Minimal, geometric, monoline line art
+• Stroke Weight:            1.75px – 2.0px
+• Corner Caps:              Round / Smooth
+• Key Metaphors:
+    - Trailing arrows:      45° upward-right angled arrow (↗) for actions/links
+    - Rating:               Solid filled 5-point stars with micro rounding (#E4633B)
+    - Social / Trust:       Stacked circular avatars with clipping masks and overlap border
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+--transition-fast:          150ms cubic-bezier(0.4, 0, 0.2, 1);
+--transition-smooth:        240ms cubic-bezier(0.16, 1, 0.3, 1);
+
+Interactive Component Specs:
+• Primary Button:
+    Background:             var(--accent-primary)
+    Color:                  var(--text-on-accent)
+    Border:                 none
+    Hover State:            Transform translateY(-1px) + var(--accent-primary-hover)
+    Active State:           Transform scale(0.98) + var(--accent-primary-active)
+
+• Secondary / Ghost Button:
+    Background:             transparent
+    Color:                  var(--text-primary)
+    Border:                 1px solid var(--border-interactive)
+    Hover State:            Background rgba(18, 18, 18, 0.04) + border opacity 40%
+
+• Navigation Links:
+    Color:                  var(--text-primary)
+    Hover State:            Color shift to var(--accent-primary) (Opacity 100% -> 80%)
+
+• Image Tiles / Media:
+    Tone:                   Documentary / high-contrast desaturated imagery
+    Corners:                Smooth continuous rounded rectangle (var(--radius-lg))
+    Hover Micro-action:     Scale transform 1.015 with overflow hidden
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic purple or neon gradients on dark backgrounds.
+- NO heavy murky black drop shadows (rely on subtle tonal shifts and flat editorial borders).
+- NO untracked compressed headlines (enforce exact letter-spacing: -0.01em to -0.02em).
+- NO icon-stuffed bento boxes or generic stock 3D illustrations.
+- NO headline biscuit pills with pulsing dots placed above the main headline.
+- NO flat textureless surfaces without crisp surface contrast (#EFECE6 canvas vs #FFFFFF cards vs #E5E1D8 raised wells).
+================================================================================`
   }
 ];
 
