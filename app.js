@@ -4988,6 +4988,220 @@ and avant-garde SaaS products.
 - NO gradient text fills across headline keywords.
 - NO icon-stuffed bento boxes with generic 3D glyphs.
 ================================================================================`
+  },
+  {
+    id: "TILE-030",
+    slug: "tactical-hyper-light",
+    name: "Tactical Hyper-Light",
+    vibe: "High-Performance Esport • Editorial Modernist • Aero Slate Canvas • Pulse Cyan Vector • 24px Media Frames • L4 Drag Controller",
+    vibeBadge: "Cyber & Blueprint",
+    categories: ["cyber"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Bebas Neue",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Aero Slate", hex: "#F1F5F9" },
+      { name: "Ghost Slate", hex: "#E2E8F0" },
+      { name: "Abyss Navy", hex: "#051226" },
+      { name: "Deep Void", hex: "#0A1D38" },
+      { name: "Pulse Cyan", hex: "#00F0FF" },
+      { name: "Hyper Cyan", hex: "#33F3FF" },
+      { name: "Slate Core", hex: "#334155" },
+      { name: "Trust Green", hex: "#00B67A" },
+      { name: "Review Amber", hex: "#FF5A00" }
+    ],
+    description: "Tactical Hyper-Light: A high-performance design architecture fusing the kinetic precision of esport telemetry HUDs with the compositional clarity of editorial modernism. Built on an Aero Slate canvas (#F1F5F9) with Abyss Navy structural anchors (#051226), electric Pulse Cyan vector ink (#00F0FF), 24px media cards, segmented compass rulers, and floating L4 draggable tokens.",
+    markdownSpec: `================================================================================
+  STYLE TILE // SPECIFICATION SYSTEM: "TACTICAL HYPER-LIGHT" (TILE-030)
+  Aesthetic: High-Performance Esport / Editorial Modernist UI
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Tactical Hyper-Light is a high-performance design architecture that synthesizes the razor-sharp
+telemetry and velocity of professional esport HUDs with the compositional restraint of editorial modernism.
+Built upon an "Aero Slate" canvas (#F1F5F9) layered beneath deep "Abyss Navy" structural anchors (#051226),
+the system deploys electric "Pulse Cyan" (#00F0FF) as high-energy kinetic vector ink.
+With 24px rounded media frames, segmented compass rulers, floating L4 draggable tokens,
+geometric micro-star ratings, and crisp L0–L5 depth stacking, it creates an elite, competitive,
+and tactile digital atmosphere engineered for gaming platforms, telemetry dashboards, sports media,
+and high-velocity developer tools.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & TOKEN PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Substrates */
+  --bg-canvas:              #F1F5F9; /* "Aero Slate" — Primary page background */
+  --bg-ghost:               #E2E8F0; /* "Ghost Slate" — Oversized background watermarks */
+  --bg-surface-dark:        #051226; /* "Abyss Navy" — Navigation bars, input backgrounds */
+  --bg-surface-elevated:    #0A1D38; /* "Deep Void" — Card overlays, active wells */
+  --bg-surface-white:       #FFFFFF; /* "Pure Light" — High-contrast container surface */
+  --bg-surface-alt:         #E8EEF5; /* Recessed tactical wells & telemetry strips */
+
+  /* Kinetic Brand Accents */
+  --brand-electric:         #00F0FF; /* "Pulse Cyan" — Primary CTA, drag pills, reticles */
+  --brand-electric-hover:   #33F3FF; /* "Hyper Cyan" — Hover & active glow states */
+  --brand-electric-glow:    rgba(0, 240, 255, 0.45); /* Phosphor luminescent spread */
+
+  /* Inks & Typography */
+  --text-primary:           #051226; /* "Abyss Navy" — Hero headlines, high-emphasis text */
+  --text-secondary:         #334155; /* "Slate Core" — Body copy, descriptions */
+  --text-inverse:           #FFFFFF; /* "Pure White" — Text on dark containers & imagery */
+  --text-muted:             #64748B; /* "Muted Steel" — Input placeholders, metadata */
+
+  /* Semantic & Ratings */
+  --semantic-success:       #00B67A; /* "Trust Green" — Verification badges & Trustpilot */
+  --semantic-warning:       #FF5A00; /* "Review Amber" — Star ratings & review badges */
+  --semantic-danger:        #FF2A55; /* "Apex Red" — Critical alerts & elimination flags */
+
+  /* Tactical Borders & Dividers */
+  --border-subtle:          rgba(5, 18, 38, 0.08); /* "Navy Hairline" — Structural dividers */
+  --border-dark:            #051226;               /* Solid 1px flush container border */
+  --border-electric:        rgba(0, 240, 255, 0.35);/* Cyan vector guide outline */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display:             "Bebas Neue", "Space Grotesk", sans-serif;
+--font-sans:                "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-hud:                 "Space Grotesk", "Plus Jakarta Sans", sans-serif;
+--font-mono:                "JetBrains Mono", "Chivo Mono", monospace;
+
+/* Type Scale Ladder */
+• Display-XL:
+    Font Family:            var(--font-display)
+    Weight:                 900
+    Size:                   clamp(4.0rem, 7.5vw, 6.0rem) (72px - 96px)
+    Line-Height:            0.92
+    Letter-Spacing:         +0.02em
+    Transform:              UPPERCASE
+
+• Display-MD:
+    Font Family:            var(--font-display)
+    Weight:                 800
+    Size:                   clamp(2.25rem, 4.0vw, 3.0rem) (36px - 48px)
+    Line-Height:            1.00
+    Letter-Spacing:         +0.01em
+    Transform:              UPPERCASE
+
+• Nav Link:
+    Font Family:            var(--font-hud)
+    Weight:                 700
+    Size:                   13px – 14px
+    Line-Height:            1.20
+    Letter-Spacing:         +0.06em
+    Transform:              UPPERCASE
+
+• Body-Lead:
+    Font Family:            var(--font-sans)
+    Weight:                 600
+    Size:                   18px – 20px
+    Line-Height:            1.40
+    Letter-Spacing:         -0.01em
+    Transform:              Sentence
+
+• Body-Base:
+    Font Family:            var(--font-sans)
+    Weight:                 400
+    Size:                   15px – 16px
+    Line-Height:            1.50
+    Letter-Spacing:         +0.00em
+    Transform:              Sentence
+
+• HUD / Ticks:
+    Font Family:            var(--font-mono)
+    Weight:                 700
+    Size:                   10px – 11px
+    Line-Height:            1.00
+    Letter-Spacing:         +0.12em
+    Transform:              UPPERCASE
+
+• Button / Pill:
+    Font Family:            var(--font-display)
+    Weight:                 700
+    Size:                   14px – 16px
+    Line-Height:            1.00
+    Letter-Spacing:         +0.08em
+    Transform:              UPPERCASE
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-xs:                2px;    /* Technical compass ticks, sub-pixel indicators */
+--radius-sm:                4px;    /* Search button append, tag chips */
+--radius-md:                8px;    /* Input containers, dropdown menus */
+--radius-xl:                24px;   /* Primary media cards, showcase carousel frames */
+--radius-pill:              9999px; /* Floating drag token, primary action buttons, badges */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION, DEPTH & LAYERING
+ * -------------------------------------------------------------------------- */
+• L0 (Base Canvas):         z-0   Solid #F1F5F9 canvas.
+• L1 (Watermark):           z-1   Oversized Display typography, repeated, 4% opacity navy (#051226).
+• L2 (Content):             z-10  Standard layout elements, text blocks, inputs.
+• L3 (Cards):               z-20  box-shadow: 0 16px 36px -12px rgba(5, 18, 38, 0.25);
+                                  Card image with top-to-bottom dark gradient vignette.
+• L4 (Floating Token):      z-30  box-shadow: 0 0 24px rgba(0, 240, 255, 0.45),
+                                              0 8px 16px rgba(5, 18, 38, 0.20);
+• L5 (Overlays & Headers):  z-50  Modals, navigation sticky headers, global tooltips.
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (8-Point Fluid Spatial Metric)
+ * -------------------------------------------------------------------------- */
+--space-2:                  4px;    /* Icon-to-text spacing, HUD tick intervals */
+--space-4:                  8px;    /* Tight internal chip padding, rating star gaps */
+--space-6:                  12px;   /* Standard form element padding (inline) */
+--space-8:                  16px;   /* Card row gaps, input field block padding */
+--space-12:                 24px;   /* Section intra-item margins */
+--space-16:                 32px;   /* Horizontal card carousel gutters */
+--space-24:                 48px;   /* Hero container vertical stacking rhythm */
+--space-32:                 64px+;  /* Macro section separation blocks */
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & TACTICAL DIVIDERS
+ * -------------------------------------------------------------------------- */
+• Input Shell:              Solid 1px #051226 flush border with integrated action button.
+• Compass/HUD Ruler:        1px hairline border with segmented tick markers (2px x 6px)
+                            and coordinate labels ("N", "NE", "E", "SE", "S") positioned on macro scale.
+• Section Directional:      Center-aligned geometric chevron caret (▼) acting as visual gravity anchor
+                            toward interactive showcase components.
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+• Style:                    Geometric, 2.0px stroke, sharp corners with subtle optical rounding.
+• Search Icon:              Minimalist line-drawn magnifying glass centered in Cyan block.
+• Tactical / Nav:           Dual-direction chevrons (‹ DRAG ›) encased in circular pills.
+• Ratings:                  Solid filled geometric micro-stars with uniform 4px kerning.
+• Scale:                    16px (micro UI), 20px (inputs), 24px (action buttons).
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+• Hover Media Cards:        Scale 1.03x; brightness +10%; transition cubic-bezier(0.16, 1, 0.3, 1) 300ms.
+• Hover Cyan Actions:       Background #33F3FF; box-shadow glow expands from 24px to 32px spread.
+• Focus-Visible Inputs:     2px solid #00F0FF outline offset by 2px.
+• Active / Drag Pill:       Cursor shifts to 'grabbing'; scale compresses to 0.95x; subtle radial ripple emitted.
+• Idle Motion:              Continuous subtle horizontal parallax glide on mouse movement across X-axis.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic purple or violet gradients on dark themes.
+- NO unbordered floating cards lacking the sharp 24px radius vignette or solid structure.
+- NO headline biscuit pills with pulsing dots placed above the main headline.
+- NO icon-stuffed bento boxes with arbitrary symbols.
+- NO muddy, low-contrast grayscale without the stark #051226 / #00F0FF / #F1F5F9 tension.
+- NO blurry uncalibrated drop shadows; strictly L3/L4 luminescent phosphor spreads.
+================================================================================`
   }
 ];
 
