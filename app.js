@@ -2359,6 +2359,177 @@ The Editorial Letterpress is a high-tactility, print-shop aesthetic blending his
 - No cold blue-gray or dark-mode OLED cyber backdrops.
 - No unbordered floating cards without tactile ink linework.
 ================================================================================`
+  },
+  {
+    id: "TILE-015",
+    slug: "vibrant-fluidity",
+    name: "Vibrant Fluidity // Neo-Pop Liquid Energy",
+    vibe: "Electric Cobalt • Marigold Sunburst • Liquid Curves & Elastic Pop",
+    vibeBadge: "Playful & Pop",
+    categories: ["playful"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Shrikhand",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Electric Cobalt Base", hex: "#154AE8" },
+      { name: "Midnight Marine", hex: "#0D245A" },
+      { name: "Marigold Sunburst (CTA)", hex: "#FFC600" },
+      { name: "Periwinkle Mist", hex: "#7697F7" },
+      { name: "Warm Oat Sand", hex: "#D6C2AF" },
+      { name: "Soft Pistachio", hex: "#99D6C4" }
+    ],
+    description: "High-energy neo-pop visual language celebrating liquid motion, saturated electric cobalt foundations, sunburst marigold CTAs, 32px nested curvature cards, and bouncy elastic spring physics.",
+    markdownSpec: `================================================================================
+  Aesthetic: Vibrant Fluidity • Neo-Pop Liquid Energy • Saturated Electric Cobalt
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Vibrant Fluidity is an energetic, neo-pop visual language celebrating liquid motion, saturated electric cobalt foundations, and warm marigold sunburst accents. Combining organic fluid display typography with ultra-smooth 32px nested curvature cards, 9999px pill controls, whimsical botanical/liquid monoline iconography, and bouncy elastic spring physics, this system turns modern digital products into vibrant, tactile, and living kinetic experiences. Ideal for beverage and tonic brands, creative studios, modern wellness, consumer audio, and high-energy SaaS products.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Primary Canvas & Deep Surfaces */
+  --color-canvas-base:         #154AE8; /* Electric Cobalt Blue (Primary background) */
+  --color-canvas-elevated:     #0D245A; /* Midnight Marine (Dark surface cards) */
+
+  /* Brand & Key Accents */
+  --color-accent-primary:      #FFC600; /* Marigold / Sunburst Yellow (Primary CTA) */
+  --color-accent-primary-text: #0E1A38; /* Deep Ink (CTA label color) */
+  --color-accent-badge:        #0E265C; /* Deep Slate Pill (Badge background) */
+
+  /* Pastel Surface Variants (Cards & Containers) */
+  --color-surface-lavender:    #7697F7; /* Periwinkle Mist */
+  --color-surface-oat:         #D6C2AF; /* Warm Oat Sand */
+  --color-surface-mint:        #99D6C4; /* Soft Pistachio */
+
+  /* Typography & Inks */
+  --color-ink-pure:            #FFFFFF; /* Milk White (Headings, primary icons) */
+  --color-ink-subtle:          rgba(255, 255, 255, 0.72); /* Muted text / meta */
+  --color-ink-inverse:         #111827; /* Dark Graphite (Text on light cards) */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-family-display: "Cheee", "Recoleta", "Shrikhand", "Fraunces", cursive, serif;
+--font-family-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-family-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+/* Type Scale & Hierarchy */
+--type-display:        clamp(3.5rem, 8vw, 7rem) / 0.95 var(--font-family-display); /* Weight: 900 / Heavy | Letter-spacing: -0.03em */
+--type-h1:             1.75rem (28px)           / 1.15 var(--font-family-sans);    /* Weight: 800 (ExtraBold) | Letter-spacing: -0.02em */
+--type-h2:             1.00rem (16px)           / 1.30 var(--font-family-sans);    /* Weight: 700 (Bold) | Letter-spacing: -0.01em */
+--type-body:           0.9375rem (15px)         / 1.40 var(--font-family-sans);    /* Weight: 500 (Medium) | Letter-spacing: 0.0em */
+--type-meta:           0.8125rem (13px)         / 1.20 var(--font-family-sans);    /* Weight: 600 (SemiBold) | Letter-spacing: 0.01em */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-xs:           6px;    /* Tooltips, indicators */
+--radius-sm:           12px;   /* Inner elements, chips */
+--radius-md:           20px;   /* Nested modals, secondary containers */
+--radius-lg:           32px;   /* Product cards, content tiles */
+--radius-pill:         9999px; /* Buttons, navigation pills, floating tags, badges */
+
+/* Rule of Geometry */
+Outer container corners match inner card radius + padding (nested curvature).
+All interactive clickable buttons must default to --radius-pill.
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+--z-canvas:            0;   /* Flat background */
+--z-splatter:          1;   /* Background liquid textures & display graphics */
+--z-content:           10;  /* Cards & primary text */
+--z-floating:          20;  /* 3D Product renders, floating CTA */
+--z-nav:               100; /* Fixed top bar */
+
+/* Shadow Tokens */
+--shadow-cta:             0 12px 28px -6px rgba(255, 198, 0, 0.4), 0 4px 10px -2px rgba(0, 0, 0, 0.1);
+--shadow-floating-object:  0 32px 64px -16px rgba(10, 20, 50, 0.45), 0 12px 24px -8px rgba(10, 20, 50, 0.25);
+--shadow-card-subtle:     0 8px 24px -4px rgba(7, 20, 55, 0.2);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE
+ * -------------------------------------------------------------------------- */
+Base Unit: 4px grid (8pt system preferred)
+--space-2xs:           4px;
+--space-xs:            8px;
+--space-sm:            16px;
+--space-md:            24px;
+--space-lg:            32px;
+--space-xl:            48px;
+--space-2xl:           64px;
+--space-3xl:           96px;
+
+/* Layout Density */
+- Navigation Item Gap:        28px
+- Card Interior Padding:      24px (Mobile: 18px)
+- Card Grid Column Gap:       20px
+- Hero Section Canvas Gutter: 48px to 64px
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-pill-ghost:   1.5px solid rgba(255, 255, 255, 0.6);
+--border-card-subtle:  1.0px solid rgba(255, 255, 255, 0.08);
+--border-focus-ring:   3.0px solid #FFC600;
+
+/* Design Rules */
+- Card separations rely on high solid-color contrast rather than dividers.
+- Ghost navigation buttons use clean white outline strokes with no backdrop.
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+- Weight: Stroke-based (1.75px to 2.0px stroke-width).
+- Terminals: Fully rounded ends (stroke-linecap: round; stroke-linejoin: round).
+- Aesthetic: Whimsical line-art / simplified botanical & minimal glyphs.
+- Framing: Encapsulated within dark midnight circles (--color-accent-badge: #0E265C).
+- Size: 18px glyph inside a 44px round container.
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+--ease-bounce:         cubic-bezier(0.34, 1.56, 0.64, 1); /* Neo-pop elastic curve */
+--ease-smooth:         cubic-bezier(0.16, 1, 0.3, 1);      /* Decelerated fluid curve */
+--duration-fast:       150ms;
+--duration-base:       280ms;
+
+- Primary CTA Button (Yellow):
+  Default:   Background #FFC600, Color #0E1A38, Shadow --shadow-cta
+  Hover:     Scale 1.05x, translateY(-2px), Brightness 1.05
+  Active:    Scale 0.96x, translateY(1px)
+  Transition: all 220ms var(--ease-bounce)
+
+- Ghost Nav Button:
+  Default:   Border --border-pill-ghost, Color #FFFFFF, BG Transparent
+  Hover:     Background #FFFFFF, Color #154AE8
+  Active:    Scale 0.97x
+
+- Product Cards:
+  Default:   Smooth vertical alignment, static surface fill
+  Hover:     translateY(-6px), Shadow --shadow-floating-object
+  Transition: transform 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth)
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- No muddy, desaturated corporate grays or boring monochrome flat rectangles.
+- No tiny sharp 0px/2px brutalist corners (minimum radius for components is 12px/20px/32px/9999px).
+- No linear gradient keyword text fills on headlines.
+- No blurry glowing neon border halos.
+- No rigid boxy layouts without organic fluid curves or playful elastic micro-feedback.
+================================================================================`
   }
 ];
 

@@ -1,0 +1,2728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibrant Fluidity // Neo-Pop Liquid Energy — Style Tile & Design System (TILE-015)</title>
+  <meta name="description" content="Production-ready design system specification for Vibrant Fluidity: Electric Cobalt Blue #154AE8, Midnight Marine #0D245A, Marigold Yellow #FFC600, Periwinkle, Oat, and Pistachio pastels, 32px nested curvature, and elastic neo-pop physics.">
+
+  <!-- Google Fonts: Shrikhand, Fraunces, Plus Jakarta Sans, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700..900;1,9..144,700..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700;1,800&family=Shrikhand&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       VIBRANT FLUIDITY // DESIGN SYSTEM & STYLE TILE SPECIFICATION (TILE-015)
+       ============================================================================= */
+
+    :root {
+      /* ---------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * ------------------------------------------------------------------------ */
+      /* Primary Canvas */
+      --color-canvas-base:         #154AE8; /* Electric Cobalt Blue (Primary background) */
+      --color-canvas-elevated:     #0D245A; /* Midnight Marine (Dark surface cards) */
+
+      /* Brand & Accents */
+      --color-accent-primary:      #FFC600; /* Marigold / Sunburst Yellow (Primary CTA) */
+      --color-accent-primary-text: #0E1A38; /* Deep Ink (CTA label color) */
+      --color-accent-badge:        #0E265C; /* Deep Slate Pill (Badge background) */
+
+      /* Pastel Surface Variants (Cards & Containers) */
+      --color-surface-lavender:    #7697F7; /* Periwinkle Mist */
+      --color-surface-oat:         #D6C2AF; /* Warm Oat Sand */
+      --color-surface-mint:        #99D6C4; /* Soft Pistachio (System expansion) */
+
+      /* Typography & Inks */
+      --color-ink-pure:            #FFFFFF; /* Milk White (Headings, primary icons) */
+      --color-ink-subtle:          rgba(255, 255, 255, 0.72); /* Muted text / meta */
+      --color-ink-inverse:         #111827; /* Dark Graphite (Text on light cards) */
+
+      /* Structural Aliases */
+      --bg-canvas:                 var(--color-canvas-base);
+      --bg-surface:                var(--color-canvas-elevated);
+      --ink-primary:               var(--color-ink-pure);
+      --ink-secondary:             var(--color-ink-subtle);
+      --accent-primary:            var(--color-accent-primary);
+
+      /* ---------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * ------------------------------------------------------------------------ */
+      --font-family-display:       "Shrikhand", "Fraunces", "Recoleta", cursive, serif;
+      --font-family-sans:          "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+      --font-family-mono:          "JetBrains Mono", ui-monospace, monospace;
+
+      /* Type Hierarchy Scale */
+      --type-display-hero:         900 clamp(3.5rem, 8vw, 7rem) / 0.95 var(--font-family-display);
+      --type-heading-1:            800 1.75rem / 1.15 var(--font-family-sans);
+      --type-heading-2:            700 1.00rem / 1.30 var(--font-family-sans);
+      --type-body-ui:              500 0.9375rem / 1.40 var(--font-family-sans);
+      --type-meta-micro:           600 0.8125rem / 1.20 var(--font-family-sans);
+
+      /* Tracking */
+      --tracking-tight-display:    -0.03em;
+      --tracking-tight-h1:         -0.02em;
+      --tracking-tight-h2:         -0.01em;
+      --tracking-normal:            0.00em;
+      --tracking-micro:            0.01em;
+
+      /* ---------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * ------------------------------------------------------------------------ */
+      --radius-xs:                 6px;    /* Tooltips, indicators */
+      --radius-sm:                 12px;   /* Inner elements, chips */
+      --radius-md:                 20px;   /* Nested modals, secondary containers */
+      --radius-lg:                 32px;   /* Product cards, content tiles */
+      --radius-pill:               9999px; /* Buttons, navigation pills, floating tags, badges */
+
+      /* ---------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+       * ------------------------------------------------------------------------ */
+      --z-canvas:                  0;
+      --z-splatter:                1;
+      --z-content:                 10;
+      --z-floating:                20;
+      --z-nav:                     100;
+
+      --shadow-cta:
+        0 12px 28px -6px rgba(255, 198, 0, 0.45),
+        0 4px 10px -2px rgba(0, 0, 0, 0.15);
+
+      --shadow-floating-object:
+        0 32px 64px -16px rgba(10, 20, 50, 0.45),
+        0 12px 24px -8px rgba(10, 20, 50, 0.25);
+
+      --shadow-card-subtle:
+        0 8px 24px -4px rgba(7, 20, 55, 0.2);
+
+      --shadow-bubble:
+        0 20px 40px -10px rgba(13, 36, 90, 0.35);
+
+      /* ---------------------------------------------------------------------------
+       * 5. SPACING & SPATIAL SCALE (4px / 8px Grid)
+       * ------------------------------------------------------------------------ */
+      --space-2xs:                 4px;
+      --space-xs:                  8px;
+      --space-sm:                  16px;
+      --space-md:                  24px;
+      --space-lg:                  32px;
+      --space-xl:                  48px;
+      --space-2xl:                 64px;
+      --space-3xl:                 96px;
+
+      /* ---------------------------------------------------------------------------
+       * 6. BORDERS & DIVIDERS
+       * ------------------------------------------------------------------------ */
+      --border-pill-ghost:         1.5px solid rgba(255, 255, 255, 0.6);
+      --border-card-subtle:        1.0px solid rgba(255, 255, 255, 0.08);
+      --border-focus-ring:         3.0px solid #FFC600;
+      --border-subtle-white:       1.0px solid rgba(255, 255, 255, 0.15);
+
+      /* ---------------------------------------------------------------------------
+       * 7. ICONOGRAPHY LANGUAGE & SPECS
+       * ------------------------------------------------------------------------ */
+      --icon-stroke-width:         1.85px;
+      --icon-size-default:         18px;
+      --icon-container-size:       44px;
+
+      /* ---------------------------------------------------------------------------
+       * 8. INTERACTION & FEEDBACK RULES (PHYSICS & TIMING)
+       * ------------------------------------------------------------------------ */
+      --ease-bounce:               cubic-bezier(0.34, 1.56, 0.64, 1); /* Neo-pop elastic curve */
+      --ease-smooth:               cubic-bezier(0.16, 1, 0.3, 1);      /* Decelerated fluid curve */
+      --duration-fast:             150ms;
+      --duration-base:             280ms;
+    }
+
+    /* =============================================================================
+       BASE RESET & GLOBAL FOUNDATION
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--color-canvas-base);
+      color: var(--color-ink-pure);
+    }
+
+    body {
+      background-color: var(--color-canvas-base);
+      color: var(--color-ink-pure);
+      font-family: var(--font-family-sans);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: 0.0em;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection {
+      background: var(--color-accent-primary);
+      color: var(--color-accent-primary-text);
+    }
+
+    /* Background Liquid Splatter & Organic Blobs */
+    .canvas-liquid-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: var(--z-splatter);
+      overflow: hidden;
+    }
+
+    .liquid-blob-1 {
+      position: absolute;
+      top: -120px;
+      right: -80px;
+      width: 620px;
+      height: 620px;
+      background: radial-gradient(circle at 40% 40%, rgba(118, 151, 247, 0.38) 0%, rgba(21, 74, 232, 0) 70%);
+      filter: blur(40px);
+      border-radius: 43% 57% 70% 30% / 45% 45% 55% 55%;
+      animation: floatMorph 16s ease-in-out infinite alternate;
+    }
+
+    .liquid-blob-2 {
+      position: absolute;
+      bottom: 10%;
+      left: -140px;
+      width: 680px;
+      height: 680px;
+      background: radial-gradient(circle at 50% 50%, rgba(13, 36, 90, 0.7) 0%, rgba(21, 74, 232, 0) 75%);
+      filter: blur(50px);
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      animation: floatMorph 20s ease-in-out infinite alternate-reverse;
+    }
+
+    .liquid-blob-3 {
+      position: absolute;
+      top: 45%;
+      right: 15%;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(255, 198, 0, 0.12) 0%, transparent 65%);
+      filter: blur(60px);
+      border-radius: 50%;
+    }
+
+    @keyframes floatMorph {
+      0% {
+        transform: translate(0px, 0px) rotate(0deg) scale(1);
+        border-radius: 43% 57% 70% 30% / 45% 45% 55% 55%;
+      }
+      50% {
+        transform: translate(25px, 35px) rotate(12deg) scale(1.05);
+        border-radius: 55% 45% 35% 65% / 40% 60% 40% 60%;
+      }
+      100% {
+        transform: translate(-20px, 50px) rotate(-8deg) scale(0.96);
+        border-radius: 38% 62% 63% 37% / 60% 35% 65% 40%;
+      }
+    }
+
+    .layout-wrapper {
+      position: relative;
+      z-index: var(--z-content);
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+
+    /* =============================================================================
+       MANDATORY HEADER BAR COMPONENT (agent.md Specification)
+       ============================================================================= */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: var(--z-nav);
+      background: rgba(13, 36, 90, 0.88);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-sm) var(--space-xl);
+      gap: var(--space-md);
+      transition: all var(--duration-base) var(--ease-smooth);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--color-ink-pure);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      border: var(--border-pill-ghost);
+      background: transparent;
+      transition: all 220ms var(--ease-bounce);
+    }
+
+    .nav-back-link:hover {
+      background: #FFFFFF;
+      color: var(--color-canvas-base);
+      transform: translateY(-2px);
+    }
+
+    .nav-back-link:active {
+      transform: scale(0.97);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .design-code {
+      font-family: var(--font-family-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      background: var(--color-accent-badge);
+      color: var(--color-accent-primary);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 198, 0, 0.3);
+    }
+
+    .design-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--color-ink-pure);
+      letter-spacing: -0.01em;
+    }
+
+    .design-vibe-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--color-ink-pure);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-family-sans);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: all 220ms var(--ease-bounce);
+      white-space: nowrap;
+    }
+
+    .btn-preview {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--color-ink-pure);
+      border: var(--border-pill-ghost);
+    }
+
+    .btn-preview:hover {
+      background: #FFFFFF;
+      color: var(--color-canvas-base);
+      transform: translateY(-2px);
+    }
+
+    .btn-copy {
+      background: var(--color-accent-primary);
+      color: var(--color-accent-primary-text);
+      box-shadow: var(--shadow-cta);
+    }
+
+    .btn-copy:hover {
+      transform: scale(1.05) translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    .btn-copy:active {
+      transform: scale(0.96) translateY(1px);
+    }
+
+    .btn-download {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--color-ink-pure);
+      border: var(--border-pill-ghost);
+    }
+
+    .btn-download:hover {
+      background: #FFFFFF;
+      color: var(--color-canvas-base);
+      transform: translateY(-2px);
+    }
+
+    /* =============================================================================
+       BUTTONS & CORE INTERACTIVE CONTROLS
+       ============================================================================= */
+    .btn-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--color-accent-primary);
+      color: var(--color-accent-primary-text);
+      font-family: var(--font-family-sans);
+      font-size: 0.9375rem;
+      font-weight: 800;
+      padding: 14px 28px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-cta);
+      text-decoration: none;
+      transition: all 220ms var(--ease-bounce);
+    }
+
+    .btn-cta-primary:hover {
+      transform: scale(1.05) translateY(-2px);
+      filter: brightness(1.05);
+      box-shadow: 0 16px 32px -4px rgba(255, 198, 0, 0.55), 0 6px 14px -2px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-cta-primary:active {
+      transform: scale(0.96) translateY(1px);
+    }
+
+    .btn-ghost-nav {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--color-ink-pure);
+      font-family: var(--font-family-sans);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      padding: 13px 26px;
+      border-radius: var(--radius-pill);
+      border: var(--border-pill-ghost);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 220ms var(--ease-bounce);
+    }
+
+    .btn-ghost-nav:hover {
+      background: #FFFFFF;
+      color: var(--color-canvas-base);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost-nav:active {
+      transform: scale(0.97);
+    }
+
+    .btn-marine-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--color-canvas-elevated);
+      color: var(--color-ink-pure);
+      font-family: var(--font-family-sans);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      padding: 13px 26px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: var(--shadow-card-subtle);
+      transition: all 220ms var(--ease-bounce);
+    }
+
+    .btn-marine-action:hover {
+      background: #102B6C;
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-marine-action:active {
+      transform: scale(0.97);
+    }
+
+    /* Botanical & Liquid Icon Badge */
+    .icon-badge-round {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--icon-container-size);
+      height: var(--icon-container-size);
+      min-width: var(--icon-container-size);
+      min-height: var(--icon-container-size);
+      border-radius: 50%;
+      background: var(--color-accent-badge);
+      color: var(--color-ink-pure);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 240ms var(--ease-bounce);
+      box-shadow: var(--shadow-card-subtle);
+    }
+
+    .icon-badge-round svg {
+      width: var(--icon-size-default);
+      height: var(--icon-size-default);
+      stroke-width: var(--icon-stroke-width);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon-badge-round:hover {
+      transform: scale(1.1) rotate(6deg);
+      background: #12327A;
+      color: var(--color-accent-primary);
+      border-color: rgba(255, 198, 0, 0.4);
+    }
+
+    /* =============================================================================
+       HERO SECTION: VIBRANT FLUIDITY SPLASH
+       ============================================================================= */
+    .hero-section {
+      padding: var(--space-3xl) 0 var(--space-2xl);
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+
+    .hero-pill-tagrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-tag {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+    }
+
+    .tag-yellow {
+      background: var(--color-accent-primary);
+      color: var(--color-accent-primary-text);
+      box-shadow: 0 4px 12px rgba(255, 198, 0, 0.35);
+    }
+
+    .tag-marine {
+      background: var(--color-canvas-elevated);
+      color: var(--color-ink-pure);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .tag-lavender {
+      background: var(--color-surface-lavender);
+      color: var(--color-canvas-elevated);
+      font-weight: 800;
+    }
+
+    .hero-title {
+      font-family: var(--font-family-display);
+      font-size: clamp(3.5rem, 7.5vw, 6.5rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: var(--tracking-tight-display);
+      color: var(--color-ink-pure);
+      margin-bottom: var(--space-md);
+      text-shadow: 0 8px 32px rgba(13, 36, 90, 0.4);
+    }
+
+    .hero-title span.curved-word {
+      display: inline-block;
+      color: var(--color-accent-primary);
+      transform: rotate(-1.5deg);
+      transition: transform 300ms var(--ease-bounce);
+    }
+
+    .hero-title span.curved-word:hover {
+      transform: rotate(2deg) scale(1.04);
+    }
+
+    .hero-lead {
+      font-size: 1.125rem;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--color-ink-subtle);
+      max-width: 580px;
+      margin-bottom: var(--space-xl);
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    /* Hero Interactive Floating Specimen Card */
+    .hero-interactive-card {
+      background: var(--color-canvas-elevated);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-floating-object);
+      border: var(--border-card-subtle);
+      position: relative;
+      overflow: hidden;
+      transition: transform 350ms var(--ease-smooth), box-shadow 350ms var(--ease-smooth);
+    }
+
+    .hero-interactive-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 40px 80px -16px rgba(5, 15, 45, 0.6);
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-card-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--color-ink-pure);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .fluid-wave-preview {
+      background: rgba(21, 74, 232, 0.35);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      margin-bottom: var(--space-md);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    .fluid-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xs);
+    }
+
+    .metric-pill-card {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      text-align: center;
+    }
+
+    .metric-pill-val {
+      font-family: var(--font-family-mono);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-accent-primary);
+    }
+
+    .metric-pill-lbl {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--color-ink-subtle);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* =============================================================================
+       SECTION HEADERS & STRUCTURAL CONTAINERS
+       ============================================================================= */
+    .section-container {
+      padding: var(--space-2xl) 0;
+      position: relative;
+    }
+
+    .section-header-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xs);
+      margin-bottom: var(--space-xl);
+    }
+
+    .section-kicker-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .section-kicker {
+      font-family: var(--font-family-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-accent-primary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: var(--font-family-sans);
+      font-size: 1.75rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: var(--tracking-tight-h1);
+      color: var(--color-ink-pure);
+    }
+
+    .section-subtitle {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--color-ink-subtle);
+      max-width: 640px;
+    }
+
+    /* Nested Curvature Outer Container */
+    .nested-curvature-box {
+      background: var(--color-canvas-elevated);
+      border-radius: calc(var(--radius-lg) + 24px); /* 32px + 24px = 56px outer radius */
+      padding: var(--space-lg);
+      border: var(--border-card-subtle);
+      box-shadow: var(--shadow-card-subtle);
+    }
+
+    /* =============================================================================
+       01. COLOR PALETTE MATRIX & CLICK-TO-COPY SWATCHES
+       ============================================================================= */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .swatch-card {
+      background: var(--color-canvas-elevated);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-card-subtle);
+      border: var(--border-card-subtle);
+      cursor: pointer;
+      transition: transform 260ms var(--ease-bounce), box-shadow 260ms var(--ease-bounce);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      position: relative;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: var(--shadow-floating-object);
+    }
+
+    .swatch-card:active {
+      transform: scale(0.98);
+    }
+
+    .swatch-color-pill {
+      height: 96px;
+      width: 100%;
+      border-radius: var(--radius-md);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 10px 14px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+    }
+
+    .swatch-copy-badge {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      background: rgba(13, 36, 90, 0.8);
+      color: #FFFFFF;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: all 200ms var(--ease-bounce);
+    }
+
+    .swatch-card:hover .swatch-copy-badge {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .swatch-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .swatch-role-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--color-ink-pure);
+    }
+
+    .swatch-token-name {
+      font-family: var(--font-family-mono);
+      font-size: 0.75rem;
+      color: var(--color-accent-primary);
+    }
+
+    .swatch-hex-val {
+      font-family: var(--font-family-mono);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-ink-subtle);
+    }
+
+    /* =============================================================================
+       02. TYPOGRAPHY SYSTEM & SPECIMEN LADDER
+       ============================================================================= */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    .type-specimen-card {
+      background: var(--color-canvas-elevated);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      border: var(--border-card-subtle);
+      box-shadow: var(--shadow-card-subtle);
+    }
+
+    .type-ladder-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .type-ladder-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .type-meta-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-family-mono);
+      font-size: 0.6875rem;
+      color: var(--color-ink-subtle);
+      margin-bottom: 2px;
+    }
+
+    .specimen-display {
+      font-family: var(--font-family-display);
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: var(--tracking-tight-display);
+      color: var(--color-ink-pure);
+    }
+
+    .specimen-h1 {
+      font-family: var(--font-family-sans);
+      font-size: 1.75rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: var(--tracking-tight-h1);
+      color: var(--color-ink-pure);
+    }
+
+    .specimen-h2 {
+      font-family: var(--font-family-sans);
+      font-size: 1.00rem;
+      font-weight: 700;
+      line-height: 1.30;
+      letter-spacing: var(--tracking-tight-h2);
+      color: var(--color-accent-primary);
+    }
+
+    .specimen-body {
+      font-family: var(--font-family-sans);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      line-height: 1.40;
+      color: var(--color-ink-subtle);
+    }
+
+    .specimen-meta {
+      font-family: var(--font-family-sans);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      line-height: 1.20;
+      letter-spacing: var(--tracking-micro);
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Pangram Interactive Tester */
+    .pangram-tester-box {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .pangram-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      background: rgba(255, 255, 255, 0.06);
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+    }
+
+    .slider-range {
+      flex: 1;
+      accent-color: var(--color-accent-primary);
+      cursor: pointer;
+    }
+
+    .pangram-editable-output {
+      background: rgba(21, 74, 232, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      font-family: var(--font-family-display);
+      font-weight: 900;
+      color: var(--color-ink-pure);
+      outline: none;
+      min-height: 120px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      transition: border-color 200ms;
+    }
+
+    .pangram-editable-output:focus {
+      border-color: var(--color-accent-primary);
+    }
+
+    /* =============================================================================
+       03. COMPONENT ARCHETYPE GALLERY
+       ============================================================================= */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .component-tile {
+      background: var(--color-canvas-elevated);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      border: var(--border-card-subtle);
+      box-shadow: var(--shadow-card-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .component-tile-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--color-ink-pure);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    /* Botanical & Liquid Icon Strip */
+    .icon-archetype-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    /* Fluid Form Input */
+    .fluid-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .fluid-input-label {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-ink-subtle);
+    }
+
+    .fluid-input-field {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius-pill);
+      padding: 12px 20px;
+      color: var(--color-ink-pure);
+      font-family: var(--font-family-sans);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      outline: none;
+      transition: all 200ms var(--ease-smooth);
+    }
+
+    .fluid-input-field:focus {
+      background: rgba(255, 255, 255, 0.12);
+      border: var(--border-focus-ring);
+      box-shadow: 0 0 0 4px rgba(255, 198, 0, 0.25);
+    }
+
+    .fluid-input-field::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Segmented Pill Selector */
+    .segmented-pill-bar {
+      display: inline-flex;
+      background: var(--color-accent-badge);
+      border-radius: var(--radius-pill);
+      padding: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      gap: 4px;
+    }
+
+    .segmented-pill-item {
+      background: transparent;
+      border: none;
+      color: var(--color-ink-subtle);
+      font-family: var(--font-family-sans);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 220ms var(--ease-bounce);
+    }
+
+    .segmented-pill-item.active {
+      background: var(--color-accent-primary);
+      color: var(--color-accent-primary-text);
+      box-shadow: 0 4px 12px rgba(255, 198, 0, 0.35);
+    }
+
+    .segmented-pill-item:not(.active):hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Elastic Toggle Switch */
+    .elastic-toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-md);
+    }
+
+    .toggle-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-ink-pure);
+    }
+
+    .switch-track {
+      width: 52px;
+      height: 30px;
+      background: var(--color-accent-badge);
+      border-radius: var(--radius-pill);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      position: relative;
+      cursor: pointer;
+      transition: background 260ms var(--ease-bounce), border-color 260ms var(--ease-bounce);
+    }
+
+    .switch-track.active {
+      background: var(--color-accent-primary);
+      border-color: var(--color-accent-primary);
+    }
+
+    .switch-thumb {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 22px;
+      height: 22px;
+      background: #FFFFFF;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+      transition: transform 260ms var(--ease-bounce), background 260ms var(--ease-bounce);
+    }
+
+    .switch-track.active .switch-thumb {
+      transform: translateX(22px);
+      background: var(--color-accent-primary-text);
+    }
+
+    /* Nested Curvature Demo Card */
+    .nested-rule-demo {
+      background: var(--color-canvas-base);
+      border-radius: calc(var(--radius-lg) + 20px); /* 52px */
+      padding: 20px;
+      border: 1.5px dashed rgba(255, 255, 255, 0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .nested-inner-card {
+      background: var(--color-surface-lavender);
+      color: var(--color-ink-inverse);
+      border-radius: var(--radius-lg); /* 32px */
+      padding: 20px;
+      font-weight: 700;
+      box-shadow: var(--shadow-card-subtle);
+    }
+
+    /* =============================================================================
+       04. LIVING MICRO-EXPERIENCE: "KINETICA // FLUID TONICS & SOUND LAB"
+       ============================================================================= */
+    .demo-app-frame {
+      background: var(--color-canvas-elevated);
+      border-radius: calc(var(--radius-lg) + 28px);
+      padding: var(--space-xl);
+      border: var(--border-card-subtle);
+      box-shadow: var(--shadow-floating-object);
+      position: relative;
+    }
+
+    .demo-masthead {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-xl);
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .demo-brand-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .demo-brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--color-accent-primary);
+      color: var(--color-accent-primary-text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-family-display);
+      font-size: 1.5rem;
+      font-weight: 900;
+      box-shadow: var(--shadow-cta);
+    }
+
+    .demo-brand-title {
+      font-family: var(--font-family-display);
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--color-ink-pure);
+    }
+
+    .demo-brand-sub {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-surface-lavender);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Floating Cart Pill */
+    .floating-cart-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--color-accent-primary);
+      color: var(--color-accent-primary-text);
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      font-weight: 800;
+      font-size: 0.9375rem;
+      box-shadow: var(--shadow-cta);
+      cursor: pointer;
+      transition: all 220ms var(--ease-bounce);
+    }
+
+    .floating-cart-pill:hover {
+      transform: scale(1.06) translateY(-2px);
+    }
+
+    .cart-counter {
+      background: var(--color-accent-primary-text);
+      color: var(--color-accent-primary);
+      font-family: var(--font-family-mono);
+      font-size: 0.8125rem;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+    }
+
+    /* Product Cards Showcase across Pastel Surfaces */
+    .tonic-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .tonic-product-card {
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      min-height: 380px;
+      transition: transform 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth);
+      box-shadow: var(--shadow-card-subtle);
+    }
+
+    .tonic-product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-floating-object);
+    }
+
+    /* Card Variant: Lavender (Periwinkle Mist #7697F7) */
+    .card-variant-lavender {
+      background: var(--color-surface-lavender);
+      color: var(--color-ink-inverse);
+    }
+
+    /* Card Variant: Oat (Warm Oat Sand #D6C2AF) */
+    .card-variant-oat {
+      background: var(--color-surface-oat);
+      color: var(--color-ink-inverse);
+    }
+
+    /* Card Variant: Mint (Soft Pistachio #99D6C4) */
+    .card-variant-mint {
+      background: var(--color-surface-mint);
+      color: var(--color-ink-inverse);
+    }
+
+    /* Card Variant: Midnight Marine (#0D245A) */
+    .card-variant-marine {
+      background: #08173E;
+      color: var(--color-ink-pure);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .tonic-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .tonic-pill-badge {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(17, 24, 39, 0.12);
+    }
+
+    .card-variant-marine .tonic-pill-badge {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--color-accent-primary);
+    }
+
+    /* Bottle Silhouette Vector Art */
+    .bottle-art-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: var(--space-md) 0;
+      position: relative;
+    }
+
+    .bottle-art-svg {
+      width: 90px;
+      height: 160px;
+      filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.15));
+      transition: transform 300ms var(--ease-bounce);
+    }
+
+    .tonic-product-card:hover .bottle-art-svg {
+      transform: translateY(-8px) scale(1.08) rotate(3deg);
+    }
+
+    .tonic-info-group {
+      margin-top: var(--space-xs);
+    }
+
+    .tonic-name {
+      font-family: var(--font-family-display);
+      font-size: 1.35rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .tonic-details {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      opacity: 0.85;
+      margin-bottom: var(--space-md);
+    }
+
+    .tonic-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tonic-price {
+      font-family: var(--font-family-mono);
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .btn-tonic-add {
+      background: #111827;
+      color: #FFFFFF;
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-family-sans);
+      font-size: 0.8125rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      transition: all 220ms var(--ease-bounce);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-tonic-add:hover {
+      transform: scale(1.08) translateY(-2px);
+      background: var(--color-accent-primary);
+      color: var(--color-accent-primary-text);
+      box-shadow: var(--shadow-cta);
+    }
+
+    .card-variant-marine .btn-tonic-add {
+      background: var(--color-accent-primary);
+      color: var(--color-accent-primary-text);
+      box-shadow: var(--shadow-cta);
+    }
+
+    .card-variant-marine .btn-tonic-add:hover {
+      background: #FFFFFF;
+      color: var(--color-canvas-base);
+    }
+
+    /* Interactive Fluid Customizer & Wave Synthesizer */
+    .synth-customizer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      background: rgba(21, 74, 232, 0.2);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .synth-panel {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .synth-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--color-ink-pure);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .wave-canvas-wrapper {
+      width: 100%;
+      height: 90px;
+      background: var(--color-accent-badge);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .wave-path-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Adaptogen Booster Check Chips */
+    .adaptogen-chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .adaptogen-chip {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--color-ink-pure);
+      cursor: pointer;
+      transition: all 200ms var(--ease-bounce);
+      user-select: none;
+    }
+
+    .adaptogen-chip.selected {
+      background: var(--color-accent-primary);
+      color: var(--color-accent-primary-text);
+      border-color: var(--color-accent-primary);
+      box-shadow: 0 4px 12px rgba(255, 198, 0, 0.35);
+    }
+
+    /* =============================================================================
+       05. STYLE TILE PROMPT CODE DRAWER
+       ============================================================================= */
+    .spec-code-drawer-card {
+      background: var(--color-canvas-elevated);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      border: var(--border-card-subtle);
+      box-shadow: var(--shadow-card-subtle);
+    }
+
+    .spec-code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .spec-code-pre {
+      background: #071536;
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      font-family: var(--font-family-mono);
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: #E2E8F0;
+      overflow-x: auto;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-height: 480px;
+    }
+
+    /* =============================================================================
+       MODAL INSPECTION SHEET
+       ============================================================================= */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(8, 20, 50, 0.8);
+      backdrop-filter: blur(16px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 280ms var(--ease-smooth);
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-sheet {
+      background: var(--color-canvas-elevated);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 860px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-floating-object);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transform: scale(0.95);
+      transition: transform 280ms var(--ease-bounce);
+      overflow: hidden;
+    }
+
+    .modal-backdrop.open .modal-sheet {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-title {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--color-ink-pure);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-close-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: var(--color-ink-pure);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 200ms;
+    }
+
+    .modal-close-btn:hover {
+      background: #FFFFFF;
+      color: var(--color-canvas-base);
+    }
+
+    .modal-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+    }
+
+    .modal-body pre {
+      background: #071536;
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      font-family: var(--font-family-mono);
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: #E2E8F0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Toast Notification Container */
+    #toast-container {
+      position: fixed;
+      bottom: var(--space-lg);
+      right: var(--space-lg);
+      z-index: 11000;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--color-accent-primary);
+      color: var(--color-accent-primary-text);
+      font-family: var(--font-family-sans);
+      font-size: 0.875rem;
+      font-weight: 800;
+      padding: 12px 22px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(16px) scale(0.92);
+      transition: all 240ms var(--ease-bounce);
+      pointer-events: auto;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Footer Strip */
+    .page-footer-strip {
+      padding: var(--space-2xl) 0 var(--space-3xl);
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--color-ink-subtle);
+      font-size: 0.875rem;
+    }
+
+    /* =============================================================================
+       PAGE-SPECIFIC MOBILE REFLOW RULES (Max 768px)
+       ============================================================================= */
+    @media (max-width: 768px) {
+      .hero-grid,
+      .type-specimen-grid,
+      .synth-customizer-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-lg) !important;
+      }
+
+      .hero-title {
+        font-size: clamp(2.4rem, 11vw, 3.8rem) !important;
+        line-height: 1.0 !important;
+      }
+
+      .nested-curvature-box,
+      .demo-app-frame {
+        border-radius: var(--radius-lg) !important;
+        padding: var(--space-md) !important;
+      }
+
+      .layout-wrapper {
+        padding: 0 var(--space-md) !important;
+      }
+
+      .hero-section {
+        padding: var(--space-xl) 0 var(--space-lg) !important;
+      }
+
+      .section-container {
+        padding: var(--space-xl) 0 !important;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-cta-primary,
+      .btn-ghost-nav,
+      .btn-marine-action {
+        width: 100%;
+        text-align: center;
+      }
+
+      .segmented-pill-bar {
+        width: 100%;
+        display: flex;
+        overflow-x: auto;
+      }
+
+      .segmented-pill-item {
+        flex: 1;
+        text-align: center;
+        padding: 8px 10px;
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+
+  <!-- Mandatory Mobile Safety Sheet from agent.md -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+</head>
+<body>
+
+  <!-- Liquid Backdrop Canvas -->
+  <div class="canvas-liquid-backdrop" aria-hidden="true">
+    <div class="liquid-blob-1"></div>
+    <div class="liquid-blob-2"></div>
+    <div class="liquid-blob-3"></div>
+  </div>
+
+  <!-- 1. Mandatory Top Header Bar -->
+  <header class="style-tile-header">
+    <!-- Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-015</span>
+      <span class="design-title">Vibrant Fluidity</span>
+      <span class="design-vibe-tag">Playful & Pop</span>
+    </div>
+
+    <!-- Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-vibrant-fluidity.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- 2. Hero Display Banner -->
+    <section class="hero-section">
+      <div class="hero-grid">
+        
+        <!-- Left: Hero Headline & Vision -->
+        <div class="hero-text-block">
+          <div class="hero-pill-tagrow">
+            <span class="hero-tag tag-yellow">Playful & Pop</span>
+            <span class="hero-tag tag-marine">Electric Cobalt #154AE8</span>
+            <span class="hero-tag tag-lavender">Neo-Pop Elasticity</span>
+          </div>
+
+          <h1 class="hero-title">
+            Vibrant <span class="curved-word">Fluidity</span>
+          </h1>
+
+          <p class="hero-lead">
+            An energetic, high-tactility design language marrying electric cobalt foundations, sunburst marigold accents, and periwinkle pastel cards with organic liquid typography, 32px nested curvature, and spring-loaded neo-pop physics.
+          </p>
+
+          <div class="hero-cta-group">
+            <button class="btn-cta-primary" onclick="copyMasterTilePrompt()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Prompt for Agent
+            </button>
+            <a href="#living-demo" class="btn-ghost-nav">
+              Explore Living Demo ↓
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Hero Liquid Specimen -->
+        <div class="hero-interactive-card">
+          <div class="hero-card-header">
+            <div class="hero-card-title">
+              <span class="icon-badge-round" style="width: 36px; height: 36px; min-width: 36px; min-height: 36px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </span>
+              <span>Kinetic Fluid Metrics</span>
+            </div>
+            <span class="hero-tag tag-yellow" style="font-size: 0.6875rem;">LIVE RENDER</span>
+          </div>
+
+          <div class="fluid-wave-preview">
+            <svg viewBox="0 0 400 90" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 75px;">
+              <path d="M0,45 C60,10 120,80 180,45 C240,10 300,80 360,45 C380,33 400,45 400,45" stroke="#FFC600" stroke-width="4" stroke-linecap="round" fill="none"/>
+              <path d="M0,55 C70,25 130,85 200,55 C270,25 330,85 400,55" stroke="#7697F7" stroke-width="2.5" stroke-linecap="round" opacity="0.6" fill="none"/>
+            </svg>
+          </div>
+
+          <div class="fluid-metrics-grid">
+            <div class="metric-pill-card">
+              <div class="metric-pill-val">32px</div>
+              <div class="metric-pill-lbl">Radius Lg</div>
+            </div>
+            <div class="metric-pill-card">
+              <div class="metric-pill-val">9999px</div>
+              <div class="metric-pill-lbl">Pill CTA</div>
+            </div>
+            <div class="metric-pill-card">
+              <div class="metric-pill-val">#FFC600</div>
+              <div class="metric-pill-lbl">Sunburst</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. Color Swatches & Palette Matrix -->
+    <section class="section-container" id="color-palette">
+      <div class="section-header-block">
+        <div class="section-kicker-row">
+          <span class="section-kicker">01 // COLOR ROLES</span>
+        </div>
+        <h2 class="section-title">Harmonious Saturated Palette Matrix</h2>
+        <p class="section-subtitle">Electric Cobalt Base, Midnight Marine elevated surfaces, Marigold CTAs, and Periwinkle/Oat/Pistachio pastel containers.</p>
+      </div>
+
+      <div class="palette-grid">
+        
+        <!-- Swatch 1: Electric Cobalt Blue -->
+        <div class="swatch-card" onclick="copySwatchHex('#154AE8', '--color-canvas-base')">
+          <div class="swatch-color-pill" style="background: #154AE8;">
+            <span class="swatch-copy-badge">Click to Copy</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-role-title">Electric Cobalt Base</div>
+            <div class="swatch-token-name">--color-canvas-base</div>
+            <div class="swatch-hex-val">#154AE8</div>
+          </div>
+        </div>
+
+        <!-- Swatch 2: Midnight Marine -->
+        <div class="swatch-card" onclick="copySwatchHex('#0D245A', '--color-canvas-elevated')">
+          <div class="swatch-color-pill" style="background: #0D245A;">
+            <span class="swatch-copy-badge">Click to Copy</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-role-title">Midnight Marine</div>
+            <div class="swatch-token-name">--color-canvas-elevated</div>
+            <div class="swatch-hex-val">#0D245A</div>
+          </div>
+        </div>
+
+        <!-- Swatch 3: Marigold Sunburst Yellow -->
+        <div class="swatch-card" onclick="copySwatchHex('#FFC600', '--color-accent-primary')">
+          <div class="swatch-color-pill" style="background: #FFC600;">
+            <span class="swatch-copy-badge" style="background: #0E1A38;">Click to Copy</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-role-title">Marigold Sunburst (CTA)</div>
+            <div class="swatch-token-name">--color-accent-primary</div>
+            <div class="swatch-hex-val">#FFC600</div>
+          </div>
+        </div>
+
+        <!-- Swatch 4: Periwinkle Mist -->
+        <div class="swatch-card" onclick="copySwatchHex('#7697F7', '--color-surface-lavender')">
+          <div class="swatch-color-pill" style="background: #7697F7;">
+            <span class="swatch-copy-badge">Click to Copy</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-role-title">Periwinkle Mist</div>
+            <div class="swatch-token-name">--color-surface-lavender</div>
+            <div class="swatch-hex-val">#7697F7</div>
+          </div>
+        </div>
+
+        <!-- Swatch 5: Warm Oat Sand -->
+        <div class="swatch-card" onclick="copySwatchHex('#D6C2AF', '--color-surface-oat')">
+          <div class="swatch-color-pill" style="background: #D6C2AF;">
+            <span class="swatch-copy-badge">Click to Copy</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-role-title">Warm Oat Sand</div>
+            <div class="swatch-token-name">--color-surface-oat</div>
+            <div class="swatch-hex-val">#D6C2AF</div>
+          </div>
+        </div>
+
+        <!-- Swatch 6: Soft Pistachio -->
+        <div class="swatch-card" onclick="copySwatchHex('#99D6C4', '--color-surface-mint')">
+          <div class="swatch-color-pill" style="background: #99D6C4;">
+            <span class="swatch-copy-badge">Click to Copy</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-role-title">Soft Pistachio</div>
+            <div class="swatch-token-name">--color-surface-mint</div>
+            <div class="swatch-hex-val">#99D6C4</div>
+          </div>
+        </div>
+
+        <!-- Swatch 7: Deep Ink Text -->
+        <div class="swatch-card" onclick="copySwatchHex('#0E1A38', '--color-accent-primary-text')">
+          <div class="swatch-color-pill" style="background: #0E1A38;">
+            <span class="swatch-copy-badge">Click to Copy</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-role-title">Deep Ink (CTA Text)</div>
+            <div class="swatch-token-name">--color-accent-primary-text</div>
+            <div class="swatch-hex-val">#0E1A38</div>
+          </div>
+        </div>
+
+        <!-- Swatch 8: Deep Slate Pill -->
+        <div class="swatch-card" onclick="copySwatchHex('#0E265C', '--color-accent-badge')">
+          <div class="swatch-color-pill" style="background: #0E265C;">
+            <span class="swatch-copy-badge">Click to Copy</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-role-title">Deep Slate Pill</div>
+            <div class="swatch-token-name">--color-accent-badge</div>
+            <div class="swatch-hex-val">#0E265C</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. Typography & Typeface Specimen -->
+    <section class="section-container" id="typography">
+      <div class="section-header-block">
+        <div class="section-kicker-row">
+          <span class="section-kicker">02 // TYPOGRAPHY SYSTEM</span>
+        </div>
+        <h2 class="section-title">Organic Curves & Plus Jakarta Sans Hierarchy</h2>
+        <p class="section-subtitle">Chunky fluid display curves paired with razor-sharp geometric sans body copy for maximum legibility and personality.</p>
+      </div>
+
+      <div class="type-specimen-grid">
+        
+        <!-- Left: Hierarchy Scale Ladder -->
+        <div class="type-specimen-card">
+          <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: var(--space-md); color: var(--color-ink-pure);">
+            Scale & Hierarchy Ladder
+          </h3>
+
+          <div class="type-ladder-row">
+            <div class="type-meta-pill">
+              <span>DISPLAY HERO</span>
+              <span>clamp(3.5rem, 8vw, 7rem) / 0.95 • 900</span>
+            </div>
+            <div class="specimen-display">Liquid Joy</div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-meta-pill">
+              <span>HEADING 1</span>
+              <span>1.75rem (28px) / 1.15 • 800 Sans</span>
+            </div>
+            <div class="specimen-h1">Botanical Adaptogens & Tonics</div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-meta-pill">
+              <span>HEADING 2</span>
+              <span>1.00rem (16px) / 1.30 • 700 Sans</span>
+            </div>
+            <div class="specimen-h2">MICRO TITLES & NAVIGATION PILLS</div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-meta-pill">
+              <span>BODY / UI LABELS</span>
+              <span>0.9375rem (15px) / 1.40 • 500 Medium</span>
+            </div>
+            <div class="specimen-body">
+              Engineered for seamless tactile engagement. Every curve, radius, and button state responds with bouncy elastic spring physics.
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-meta-pill">
+              <span>META / PRICING</span>
+              <span>0.8125rem (13px) / 1.20 • 600 SemiBold</span>
+            </div>
+            <div class="specimen-meta">
+              $18.00 / 350ML • ORGANIC CERTIFIED • COLD PRESSED
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Pangram Tester -->
+        <div class="type-specimen-card pangram-tester-box">
+          <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--color-ink-pure);">
+            Interactive Type Playground
+          </h3>
+
+          <div class="pangram-controls">
+            <span style="font-size: 0.8125rem; font-weight: 700; color: var(--color-ink-subtle);">Size:</span>
+            <input type="range" id="pangram-slider" class="slider-range" min="24" max="72" value="42" oninput="updatePangramSize(this.value)">
+            <span id="pangram-size-label" style="font-family: var(--font-family-mono); font-weight: 700; font-size: 0.8125rem; color: var(--color-accent-primary);">42px</span>
+          </div>
+
+          <div id="pangram-output" class="pangram-editable-output" contenteditable="true" spellcheck="false" style="font-size: 42px;">
+            The quick brown fox jumps over the lazy dog into sparkling liquid energy.
+          </div>
+
+          <p style="font-size: 0.8125rem; color: var(--color-ink-subtle);">
+            💡 Click above to edit live. Test custom brand slogans, fluid headlines, and character glyphs.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. Component Archetype Gallery -->
+    <section class="section-container" id="components">
+      <div class="section-header-block">
+        <div class="section-kicker-row">
+          <span class="section-kicker">03 // COMPONENT ARCHETYPES</span>
+        </div>
+        <h2 class="section-title">Tactile Buttons, Whimsical Glyphs & Nested Curvature</h2>
+        <p class="section-subtitle">Buttons default to 9999px pills with elastic bounce feedback, encapsulated 44px round icon badges, and 32px product cards.</p>
+      </div>
+
+      <div class="components-grid">
+        
+        <!-- Tile 1: Button Archetypes -->
+        <div class="component-tile">
+          <div class="component-tile-title">
+            <span class="icon-badge-round" style="width: 32px; height: 32px; min-width: 32px; min-height: 32px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            </span>
+            <span>Interactive Button States</span>
+          </div>
+
+          <div class="control-row">
+            <button class="btn-cta-primary" onclick="triggerToast('Primary Marigold CTA triggered!')">
+              Primary CTA
+            </button>
+            <button class="btn-ghost-nav" onclick="triggerToast('Ghost Nav Pill triggered!')">
+              Ghost Pill
+            </button>
+          </div>
+
+          <div class="control-row">
+            <button class="btn-marine-action" onclick="triggerToast('Midnight Action clicked!')">
+              Midnight Marine
+            </button>
+            <button class="btn-tile btn-preview" onclick="triggerToast('Micro Pill Action!')">
+              Micro Badge
+            </button>
+          </div>
+        </div>
+
+        <!-- Tile 2: Whimsical Iconography Language -->
+        <div class="component-tile">
+          <div class="component-tile-title">
+            <span class="icon-badge-round" style="width: 32px; height: 32px; min-width: 32px; min-height: 32px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            </span>
+            <span>Whimsical Monoline Glyphs</span>
+          </div>
+
+          <div class="icon-archetype-strip">
+            <!-- Leaf / Botanical -->
+            <div class="icon-badge-round" title="Botanical Sprout">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+            </div>
+            <!-- Droplet / Liquid -->
+            <div class="icon-badge-round" title="Liquid Drop">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            </div>
+            <!-- Spark / Energy -->
+            <div class="icon-badge-round" title="Vital Spark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            </div>
+            <!-- Wave / Flow -->
+            <div class="icon-badge-round" title="Kinetic Wave">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2 12c2.5-3 5-3 7.5 0s5 3 7.5 0 5-3 5-3"/></svg>
+            </div>
+            <!-- Sunburst / Citrus -->
+            <div class="icon-badge-round" title="Sunburst Citrus">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </div>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--color-ink-subtle);">
+            18px monoline glyphs (1.85px rounded stroke) encapsulated inside 44px dark midnight circles.
+          </p>
+        </div>
+
+        <!-- Tile 3: Inputs & Focus States -->
+        <div class="component-tile">
+          <div class="component-tile-title">
+            <span class="icon-badge-round" style="width: 32px; height: 32px; min-width: 32px; min-height: 32px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg>
+            </span>
+            <span>Focus Rings & Form Inputs</span>
+          </div>
+
+          <div class="fluid-input-group">
+            <label class="fluid-input-label" for="sample-email">Subscriber Fluid Dispatch:</label>
+            <input type="email" id="sample-email" class="fluid-input-field" placeholder="zizu@adaptogen.lab" autocomplete="off">
+          </div>
+
+          <div class="elastic-toggle-row">
+            <span class="toggle-label">Haptic Elastic Physics</span>
+            <div class="switch-track active" onclick="this.classList.toggle('active'); triggerToast('Toggled Haptic Physics');">
+              <div class="switch-thumb"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tile 4: Segmented Pill & Nested Curvature Rule -->
+        <div class="component-tile">
+          <div class="component-tile-title">
+            <span class="icon-badge-round" style="width: 32px; height: 32px; min-width: 32px; min-height: 32px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>
+            </span>
+            <span>Segmented Pills & Nested Curvature</span>
+          </div>
+
+          <div class="segmented-pill-bar">
+            <button class="segmented-pill-item active" onclick="switchSegment(this, 'Daily Wave')">Daily Wave</button>
+            <button class="segmented-pill-item" onclick="switchSegment(this, 'Weekly Refill')">Weekly Refill</button>
+            <button class="segmented-pill-item" onclick="switchSegment(this, 'Curated Crate')">Curated Crate</button>
+          </div>
+
+          <div class="nested-rule-demo">
+            <div class="nested-inner-card">
+              Outer (52px) = Inner (32px) + Padding (20px)
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. Living Micro-Experience / Landing Demo -->
+    <section class="section-container" id="living-demo">
+      <div class="section-header-block">
+        <div class="section-kicker-row">
+          <span class="section-kicker">04 // LIVING MICRO-EXPERIENCE</span>
+        </div>
+        <h2 class="section-title">KINETICA // Fluid Botanicals & Super-Tonics</h2>
+        <p class="section-subtitle">A live interactive tonic bar and fluid sound synthesizer demonstrating all color surfaces, floating bottle elevation, and elastic interactions.</p>
+      </div>
+
+      <div class="demo-app-frame">
+        
+        <!-- Demo Masthead -->
+        <div class="demo-masthead">
+          <div class="demo-brand-group">
+            <div class="demo-brand-logo">K</div>
+            <div>
+              <div class="demo-brand-title">KINETICA</div>
+              <div class="demo-brand-sub">Organic Adaptogen Lab & Sound Bar</div>
+            </div>
+          </div>
+
+          <div class="floating-cart-pill" onclick="openCartPreview()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span>Fluid Crate</span>
+            <span class="cart-counter" id="cart-count">2</span>
+            <span id="cart-total-badge" style="font-family: var(--font-family-mono); font-size: 0.8125rem;">$40.00</span>
+          </div>
+        </div>
+
+        <!-- Product Cards Grid across Pastel Surfaces -->
+        <div class="tonic-cards-grid">
+          
+          <!-- Product Card 1: Lavender (Periwinkle Mist #7697F7) -->
+          <div class="tonic-product-card card-variant-lavender">
+            <div class="tonic-header-row">
+              <span class="tonic-pill-badge">Nootropic Spark</span>
+              <div class="icon-badge-round" style="width: 36px; height: 36px; min-width: 36px; min-height: 36px; background: #111827;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFC600"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+            </div>
+
+            <div class="bottle-art-wrapper">
+              <!-- Stylized Bottle SVG -->
+              <svg class="bottle-art-svg" viewBox="0 0 90 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Bottle Neck -->
+                <rect x="35" y="10" width="20" height="24" rx="4" fill="#0E1A38"/>
+                <rect x="32" y="4" width="26" height="8" rx="3" fill="#FFC600"/>
+                <!-- Bottle Body -->
+                <rect x="15" y="34" width="60" height="116" rx="26" fill="#154AE8"/>
+                <!-- Glass Reflection & Liquid -->
+                <path d="M22 60 C35 50 55 70 68 60 L68 130 C68 140 60 144 45 144 C30 144 22 140 22 130 Z" fill="#0D245A" opacity="0.4"/>
+                <circle cx="45" cy="90" r="14" fill="#FFC600"/>
+                <text x="45" y="94" font-family="sans-serif" font-size="10" font-weight="900" fill="#0E1A38" text-anchor="middle">01</text>
+              </svg>
+            </div>
+
+            <div>
+              <div class="tonic-name">Blue Lotus & Citrus Tonic</div>
+              <div class="tonic-details">350ml • Organic Blue Lotus, L-Theanine, Yuzu</div>
+              <div class="tonic-footer-row">
+                <div class="tonic-price">$18.00</div>
+                <button class="btn-tonic-add" onclick="addToCart('Blue Lotus & Citrus Tonic', 18)">
+                  <span>+ Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card 2: Oat (Warm Oat Sand #D6C2AF) -->
+          <div class="tonic-product-card card-variant-oat">
+            <div class="tonic-header-row">
+              <span class="tonic-pill-badge">Mushroom Latte</span>
+              <div class="icon-badge-round" style="width: 36px; height: 36px; min-width: 36px; min-height: 36px; background: #111827;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFC600"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
+              </div>
+            </div>
+
+            <div class="bottle-art-wrapper">
+              <svg class="bottle-art-svg" viewBox="0 0 90 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="35" y="10" width="20" height="24" rx="4" fill="#111827"/>
+                <rect x="32" y="4" width="26" height="8" rx="3" fill="#D6C2AF"/>
+                <rect x="15" y="34" width="60" height="116" rx="26" fill="#8C6E52"/>
+                <path d="M22 65 C38 55 52 75 68 65 L68 130 C68 140 60 144 45 144 C30 144 22 140 22 130 Z" fill="#594430" opacity="0.45"/>
+                <circle cx="45" cy="90" r="14" fill="#FFC600"/>
+                <text x="45" y="94" font-family="sans-serif" font-size="10" font-weight="900" fill="#0E1A38" text-anchor="middle">02</text>
+              </svg>
+            </div>
+
+            <div>
+              <div class="tonic-name">Golden Spiced Shroom</div>
+              <div class="tonic-details">500ml • Lion's Mane, Cordyceps, Oat Milk, Cardamom</div>
+              <div class="tonic-footer-row">
+                <div class="tonic-price">$22.00</div>
+                <button class="btn-tonic-add" onclick="addToCart('Golden Spiced Shroom', 22)">
+                  <span>+ Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card 3: Mint (Soft Pistachio #99D6C4) -->
+          <div class="tonic-product-card card-variant-mint">
+            <div class="tonic-header-row">
+              <span class="tonic-pill-badge">Hydration Wave</span>
+              <div class="icon-badge-round" style="width: 36px; height: 36px; min-width: 36px; min-height: 36px; background: #111827;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFC600"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+              </div>
+            </div>
+
+            <div class="bottle-art-wrapper">
+              <svg class="bottle-art-svg" viewBox="0 0 90 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="35" y="10" width="20" height="24" rx="4" fill="#0E1A38"/>
+                <rect x="32" y="4" width="26" height="8" rx="3" fill="#99D6C4"/>
+                <rect x="15" y="34" width="60" height="116" rx="26" fill="#1F7A65"/>
+                <path d="M22 58 C36 48 54 68 68 58 L68 130 C68 140 60 144 45 144 C30 144 22 140 22 130 Z" fill="#0F4A3C" opacity="0.45"/>
+                <circle cx="45" cy="90" r="14" fill="#FFC600"/>
+                <text x="45" y="94" font-family="sans-serif" font-size="10" font-weight="900" fill="#0E1A38" text-anchor="middle">03</text>
+              </svg>
+            </div>
+
+            <div>
+              <div class="tonic-name">Pistachio Matcha Wave</div>
+              <div class="tonic-details">350ml • Ceremonial Matcha, Chlorophyll, Electrolytes</div>
+              <div class="tonic-footer-row">
+                <div class="tonic-price">$19.50</div>
+                <button class="btn-tonic-add" onclick="addToCart('Pistachio Matcha Wave', 19.50)">
+                  <span>+ Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Card 4: Midnight Marine (#0D245A) -->
+          <div class="tonic-product-card card-variant-marine">
+            <div class="tonic-header-row">
+              <span class="tonic-pill-badge">Deep Cosmic</span>
+              <div class="icon-badge-round" style="width: 36px; height: 36px; min-width: 36px; min-height: 36px; background: rgba(255,255,255,0.1);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFC600"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+            </div>
+
+            <div class="bottle-art-wrapper">
+              <svg class="bottle-art-svg" viewBox="0 0 90 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="35" y="10" width="20" height="24" rx="4" fill="#154AE8"/>
+                <rect x="32" y="4" width="26" height="8" rx="3" fill="#FFC600"/>
+                <rect x="15" y="34" width="60" height="116" rx="26" fill="#071536"/>
+                <path d="M22 62 C38 52 52 72 68 62 L68 130 C68 140 60 144 45 144 C30 144 22 140 22 130 Z" fill="#154AE8" opacity="0.3"/>
+                <circle cx="45" cy="90" r="14" fill="#FFC600"/>
+                <text x="45" y="94" font-family="sans-serif" font-size="10" font-weight="900" fill="#0E1A38" text-anchor="middle">04</text>
+              </svg>
+            </div>
+
+            <div>
+              <div class="tonic-name">Midnight Marine Nootropic</div>
+              <div class="tonic-details">500ml • Magnesium L-Threonate, Tart Cherry, Reishi</div>
+              <div class="tonic-footer-row">
+                <div class="tonic-price">$26.00</div>
+                <button class="btn-tonic-add" onclick="addToCart('Midnight Marine Nootropic', 26)">
+                  <span>+ Add</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Interactive Liquid Customizer & Frequency Synthesizer -->
+        <div class="synth-customizer-grid">
+          
+          <!-- Left Panel: Customizer -->
+          <div class="synth-panel">
+            <div class="synth-title">
+              <span class="icon-badge-round" style="width: 32px; height: 32px; min-width: 32px; min-height: 32px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              </span>
+              <span>Adaptogen Booster Matrix</span>
+            </div>
+
+            <p style="font-size: 0.8125rem; color: var(--color-ink-subtle);">
+              Customize active functional compounds infused into your custom crate:
+            </p>
+
+            <div class="adaptogen-chips-row">
+              <div class="adaptogen-chip selected" onclick="toggleAdaptogen(this)">+ Lion's Mane (2000mg)</div>
+              <div class="adaptogen-chip selected" onclick="toggleAdaptogen(this)">+ Ashwagandha KSM-66</div>
+              <div class="adaptogen-chip" onclick="toggleAdaptogen(this)">+ Rhodiola Rosea</div>
+              <div class="adaptogen-chip" onclick="toggleAdaptogen(this)">+ Magnesium Glycinate</div>
+              <div class="adaptogen-chip" onclick="toggleAdaptogen(this)">+ Marine Collagen</div>
+            </div>
+          </div>
+
+          <!-- Right Panel: Kinetic Sound Wave Visualizer -->
+          <div class="synth-panel">
+            <div class="synth-title">
+              <span class="icon-badge-round" style="width: 32px; height: 32px; min-width: 32px; min-height: 32px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+              </span>
+              <span>Fluid Waveform Synthesizer</span>
+            </div>
+
+            <div class="wave-canvas-wrapper" id="wave-synthesizer">
+              <svg class="wave-path-svg" viewBox="0 0 400 90" fill="none">
+                <path id="dynamic-wave-1" d="M0,45 Q50,15 100,45 T200,45 T300,45 T400,45" stroke="#FFC600" stroke-width="3.5" fill="none"/>
+                <path id="dynamic-wave-2" d="M0,45 Q50,75 100,45 T200,45 T300,45 T400,45" stroke="#7697F7" stroke-width="2" opacity="0.6" fill="none"/>
+              </svg>
+            </div>
+
+            <div style="display: flex; gap: var(--space-xs); align-items: center;">
+              <button class="btn-tile btn-copy" style="padding: 6px 14px; font-size: 0.75rem;" onclick="randomizeWaveform()">
+                ⚡ Modulate Wave
+              </button>
+              <span style="font-size: 0.75rem; color: var(--color-ink-subtle);">Real-time SVG harmonic osc</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. Style Tile Prompt Code Drawer -->
+    <section class="section-container" id="prompt-spec">
+      <div class="section-header-block">
+        <div class="section-kicker-row">
+          <span class="section-kicker">05 // AGENT SPECIFICATION</span>
+        </div>
+        <h2 class="section-title">Machine-Readable Style Tile Token Vault</h2>
+        <p class="section-subtitle">Copy this complete token blueprint into Cursor, Claude, Antigravity, or Copilot to replicate this exact aesthetic in any app.</p>
+      </div>
+
+      <div class="spec-code-drawer-card">
+        <div class="spec-code-header">
+          <div>
+            <span class="design-code">TILE-015 // VIBRANT FLUIDITY</span>
+            <span style="font-size: 0.8125rem; color: var(--color-ink-subtle); margin-left: 10px;">Full Design Spec</span>
+          </div>
+          <button class="btn-cta-primary" style="padding: 10px 22px; font-size: 0.8125rem;" onclick="copyMasterTilePrompt()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Markdown Style Tile
+          </button>
+        </div>
+
+        <pre class="spec-code-pre" id="visible-spec-code"></pre>
+      </div>
+    </section>
+
+    <!-- Footer Strip -->
+    <footer class="page-footer-strip">
+      <p>STYLE TILES REGISTRY // TILE-015: VIBRANT FLUIDITY • CURATED FOR AI CODING AGENTS & VIBE CODERS</p>
+    </footer>
+
+  </main>
+
+  <!-- 8. Modal Spec Inspector -->
+  <div class="modal-backdrop" id="modal-spec-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-tile-title">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <div class="modal-title" id="modal-tile-title">
+          <span class="design-code">TILE-015</span>
+          <span>Vibrant Fluidity Specification</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeSpecModal()" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre id="modal-spec-code-text"></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-tile btn-preview" onclick="closeSpecModal()">Close</button>
+        <button class="btn-tile btn-download" onclick="downloadStyleTileFile()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download .md
+        </button>
+        <button class="btn-tile btn-copy" onclick="copyMasterTilePrompt()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Spec
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Hub -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- 9. Machine-Readable Markdown Specification Script -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Aesthetic: Vibrant Fluidity • Neo-Pop Liquid Energy • Saturated Electric Cobalt
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Vibrant Fluidity is an energetic, neo-pop visual language celebrating liquid motion, saturated electric cobalt foundations, and warm marigold sunburst accents. Combining organic fluid display typography with ultra-smooth 32px nested curvature cards, 9999px pill controls, whimsical botanical/liquid monoline iconography, and bouncy elastic spring physics, this system turns modern digital products into vibrant, tactile, and living kinetic experiences. Ideal for beverage and tonic brands, creative studios, modern wellness, consumer audio, and high-energy SaaS products.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Primary Canvas & Deep Surfaces */
+  --color-canvas-base:         #154AE8; /* Electric Cobalt Blue (Primary background) */
+  --color-canvas-elevated:     #0D245A; /* Midnight Marine (Dark surface cards) */
+
+  /* Brand & Key Accents */
+  --color-accent-primary:      #FFC600; /* Marigold / Sunburst Yellow (Primary CTA) */
+  --color-accent-primary-text: #0E1A38; /* Deep Ink (CTA label color) */
+  --color-accent-badge:        #0E265C; /* Deep Slate Pill (Badge background) */
+
+  /* Pastel Surface Variants (Cards & Containers) */
+  --color-surface-lavender:    #7697F7; /* Periwinkle Mist */
+  --color-surface-oat:         #D6C2AF; /* Warm Oat Sand */
+  --color-surface-mint:        #99D6C4; /* Soft Pistachio */
+
+  /* Typography & Inks */
+  --color-ink-pure:            #FFFFFF; /* Milk White (Headings, primary icons) */
+  --color-ink-subtle:          rgba(255, 255, 255, 0.72); /* Muted text / meta */
+  --color-ink-inverse:         #111827; /* Dark Graphite (Text on light cards) */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-family-display: "Cheee", "Recoleta", "Shrikhand", "Fraunces", cursive, serif;
+--font-family-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-family-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+/* Type Scale & Hierarchy */
+--type-display:        clamp(3.5rem, 8vw, 7rem) / 0.95 var(--font-family-display); /* Weight: 900 / Heavy | Letter-spacing: -0.03em */
+--type-h1:             1.75rem (28px)           / 1.15 var(--font-family-sans);    /* Weight: 800 (ExtraBold) | Letter-spacing: -0.02em */
+--type-h2:             1.00rem (16px)           / 1.30 var(--font-family-sans);    /* Weight: 700 (Bold) | Letter-spacing: -0.01em */
+--type-body:           0.9375rem (15px)         / 1.40 var(--font-family-sans);    /* Weight: 500 (Medium) | Letter-spacing: 0.0em */
+--type-meta:           0.8125rem (13px)         / 1.20 var(--font-family-sans);    /* Weight: 600 (SemiBold) | Letter-spacing: 0.01em */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-xs:           6px;    /* Tooltips, indicators */
+--radius-sm:           12px;   /* Inner elements, chips */
+--radius-md:           20px;   /* Nested modals, secondary containers */
+--radius-lg:           32px;   /* Product cards, content tiles */
+--radius-pill:         9999px; /* Buttons, navigation pills, floating tags, badges */
+
+/* Rule of Geometry */
+Outer container corners match inner card radius + padding (nested curvature).
+All interactive clickable buttons must default to --radius-pill.
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+--z-canvas:            0;   /* Flat background */
+--z-splatter:          1;   /* Background liquid textures & display graphics */
+--z-content:           10;  /* Cards & primary text */
+--z-floating:          20;  /* 3D Product renders, floating CTA */
+--z-nav:               100; /* Fixed top bar */
+
+/* Shadow Tokens */
+--shadow-cta:             0 12px 28px -6px rgba(255, 198, 0, 0.4), 0 4px 10px -2px rgba(0, 0, 0, 0.1);
+--shadow-floating-object:  0 32px 64px -16px rgba(10, 20, 50, 0.45), 0 12px 24px -8px rgba(10, 20, 50, 0.25);
+--shadow-card-subtle:     0 8px 24px -4px rgba(7, 20, 55, 0.2);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE
+ * -------------------------------------------------------------------------- */
+Base Unit: 4px grid (8pt system preferred)
+--space-2xs:           4px;
+--space-xs:            8px;
+--space-sm:            16px;
+--space-md:            24px;
+--space-lg:            32px;
+--space-xl:            48px;
+--space-2xl:           64px;
+--space-3xl:           96px;
+
+/* Layout Density */
+- Navigation Item Gap:        28px
+- Card Interior Padding:      24px (Mobile: 18px)
+- Card Grid Column Gap:       20px
+- Hero Section Canvas Gutter: 48px to 64px
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-pill-ghost:   1.5px solid rgba(255, 255, 255, 0.6);
+--border-card-subtle:  1.0px solid rgba(255, 255, 255, 0.08);
+--border-focus-ring:   3.0px solid #FFC600;
+
+/* Design Rules */
+- Card separations rely on high solid-color contrast rather than dividers.
+- Ghost navigation buttons use clean white outline strokes with no backdrop.
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+- Weight: Stroke-based (1.75px to 2.0px stroke-width).
+- Terminals: Fully rounded ends (stroke-linecap: round; stroke-linejoin: round).
+- Aesthetic: Whimsical line-art / simplified botanical & minimal glyphs.
+- Framing: Encapsulated within dark midnight circles (--color-accent-badge: #0E265C).
+- Size: 18px glyph inside a 44px round container.
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+--ease-bounce:         cubic-bezier(0.34, 1.56, 0.64, 1); /* Neo-pop elastic curve */
+--ease-smooth:         cubic-bezier(0.16, 1, 0.3, 1);      /* Decelerated fluid curve */
+--duration-fast:       150ms;
+--duration-base:       280ms;
+
+- Primary CTA Button (Yellow):
+  Default:   Background #FFC600, Color #0E1A38, Shadow --shadow-cta
+  Hover:     Scale 1.05x, translateY(-2px), Brightness 1.05
+  Active:    Scale 0.96x, translateY(1px)
+  Transition: all 220ms var(--ease-bounce)
+
+- Ghost Nav Button:
+  Default:   Border --border-pill-ghost, Color #FFFFFF, BG Transparent
+  Hover:     Background #FFFFFF, Color #154AE8
+  Active:    Scale 0.97x
+
+- Product Cards:
+  Default:   Smooth vertical alignment, static surface fill
+  Hover:     translateY(-6px), Shadow --shadow-floating-object
+  Transition: transform 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth)
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- No muddy, desaturated corporate grays or boring monochrome flat rectangles.
+- No tiny sharp 0px/2px brutalist corners (minimum radius for components is 12px/20px/32px/9999px).
+- No linear gradient keyword text fills on headlines.
+- No blurry glowing neon border halos.
+- No rigid boxy layouts without organic fluid curves or playful elastic micro-feedback.
+================================================================================
+  </script>
+
+  <!-- 10. Client JavaScript Logic -->
+  <script>
+    // --- 1. TOAST SYSTEM ---
+    function triggerToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `<span style="font-size: 1.1rem;">${icon}</span><span>${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 250);
+      }, 2600);
+    }
+
+    // --- 2. MARKDOWN EXTRACTION & HEADER BUTTONS ---
+    function getRawMarkdown() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    function copyMasterTilePrompt() {
+      const md = getRawMarkdown();
+      const fullPrompt = `Implement this website using the following Style Tile as the design system:\n\n${md}`;
+      
+      navigator.clipboard.writeText(fullPrompt).then(() => {
+        triggerToast("Copied Vibrant Fluidity Style Tile to clipboard!");
+        
+        // Button feedback
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const orig = btn.innerHTML;
+          btn.innerHTML = `✓ Copied!`;
+          btn.style.background = "#FFFFFF";
+          btn.style.color = "#154AE8";
+          setTimeout(() => {
+            btn.innerHTML = orig;
+            btn.style.background = "";
+            btn.style.color = "";
+          }, 2000);
+        }
+      }).catch(err => {
+        console.error("Clipboard write error:", err);
+      });
+    }
+
+    function downloadStyleTileFile() {
+      const md = getRawMarkdown();
+      const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-vibrant-fluidity.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("Downloaded style-tile-vibrant-fluidity.md!");
+    }
+
+    function copySwatchHex(hex, token) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast(`Copied ${token} (${hex}) to clipboard!`);
+      });
+    }
+
+    // --- 3. MODAL CONTROLS ---
+    function openSpecModal() {
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      const codeEl = document.getElementById("modal-spec-code-text");
+      if (codeEl) codeEl.textContent = getRawMarkdown();
+      if (backdrop) backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    // --- 4. INTERACTIVE CONTROLS & MICRO-EXPERIENCE ---
+    function updatePangramSize(val) {
+      const output = document.getElementById("pangram-output");
+      const label = document.getElementById("pangram-size-label");
+      if (output) output.style.fontSize = `${val}px`;
+      if (label) label.textContent = `${val}px`;
+    }
+
+    function switchSegment(btn, name) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll(".segmented-pill-item").forEach(item => item.classList.remove("active"));
+      btn.classList.add("active");
+      triggerToast(`Switched plan to: ${name}`, "✦");
+    }
+
+    function toggleAdaptogen(chip) {
+      chip.classList.toggle("selected");
+      const isSel = chip.classList.contains("selected");
+      const name = chip.textContent.replace("+", "").trim();
+      triggerToast(isSel ? `Infused ${name}` : `Removed ${name}`, isSel ? "✦" : "−");
+    }
+
+    // Cart Simulator State
+    let cartItemsCount = 2;
+    let cartTotalPrice = 40.00;
+
+    function addToCart(title, price) {
+      cartItemsCount += 1;
+      cartTotalPrice += price;
+
+      const countEl = document.getElementById("cart-count");
+      const totalEl = document.getElementById("cart-total-badge");
+
+      if (countEl) countEl.textContent = cartItemsCount;
+      if (totalEl) totalEl.textContent = `$${cartTotalPrice.toFixed(2)}`;
+
+      triggerToast(`Added 1x ${title} ($${price.toFixed(2)}) to Fluid Crate!`, "🛍️");
+    }
+
+    function openCartPreview() {
+      triggerToast(`Fluid Crate: ${cartItemsCount} Tonics ($${cartTotalPrice.toFixed(2)}) ready for dispatch!`, "📦");
+    }
+
+    // Randomize Waveform Visualizer
+    function randomizeWaveform() {
+      const w1 = document.getElementById("dynamic-wave-1");
+      const w2 = document.getElementById("dynamic-wave-2");
+      if (!w1 || !w2) return;
+
+      const h1 = Math.floor(Math.random() * 40) + 10;
+      const h2 = Math.floor(Math.random() * 50) + 20;
+
+      w1.setAttribute("d", `M0,45 Q50,${45 - h1} 100,45 T200,45 T300,45 T400,45`);
+      w2.setAttribute("d", `M0,45 Q50,${45 + h2} 100,45 T200,45 T300,45 T400,45`);
+
+      triggerToast("Modulated Fluid Waveform Frequency", "〰️");
+    }
+
+    // --- 5. INITIALIZATION ---
+    document.addEventListener("DOMContentLoaded", () => {
+      // Bind Header Action Buttons
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyMasterTilePrompt);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadStyleTileFile);
+
+      // Populate Visible Spec Pre Block
+      const visibleSpec = document.getElementById("visible-spec-code");
+      if (visibleSpec) visibleSpec.textContent = getRawMarkdown();
+
+      // Modal Backdrop Click
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      // Escape key to close modal
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+    });
+  </script>
+</body>
+</html>
