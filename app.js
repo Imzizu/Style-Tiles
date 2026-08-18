@@ -5848,8 +5848,144 @@ electric azure halos (#2488CE), 24px blurred glass HUD modules, and brushed tita
  * -------------------------------------------------------------------------- */
 - NO rounded corners (0px strict on all cards, buttons, frames).
 - NO soft gaussian shadows or blur layers.
+- NO rounded corners (0px strict on all cards, buttons, frames).
+- NO soft gaussian shadows or blur layers.
 - NO low-contrast gray text; keep carbon black on concrete paper.
 - NO lowercase shouting or uncalibrated mixed line heights.
+================================================================================`
+  },
+  {
+    id: "TILE-035",
+    slug: "neo-pop-playful-grotesque",
+    name: "Neo-Pop Playful Grotesque",
+    vibe: "Gen-Z Vibe • Soft Neo-Brutalist UI • Electric Lime • Soft Lilac • Bubblegum Pink • Spring Physics • 32px Squircle",
+    vibeBadge: "Playful & Pop",
+    categories: ["playful"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Pure Cream Base", hex: "#F8F9FA" },
+      { name: "Charcoal Void", hex: "#111215" },
+      { name: "Electric Lime", hex: "#E0FA53" },
+      { name: "Soft Lilac", hex: "#D0B8FF" },
+      { name: "Bubblegum Pink", hex: "#FCAFD2" },
+      { name: "Mint Sherbet", hex: "#C5F7DC" },
+      { name: "Card White", hex: "#FFFFFF" }
+    ],
+    description: "Neo-Pop Playful Grotesque: Gen-Z Vibe-Driven, High-Contrast Neo-Brutalist Soft UI. Built on pure cream canvas (#F8F9FA) with charcoal void typography (#111215), energetic electric lime (#E0FA53), soft lilac (#D0B8FF), bubblegum pink (#FCAFD2), mint sherbet (#C5F7DC), tactile spring physics, and pastel aura gradients.",
+    markdownSpec: `================================================================================
+  DESIGN SYSTEM & STYLE TILE: NEO-POP PLAYFUL GROTESQUE (TILE-035)
+  Aesthetic: Gen-Z Vibe-Driven, High-Contrast Neo-Brutalist Soft UI
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Core Brand Surfaces & Solids */
+  --charcoal-void:             #111215; /* hsl(225, 12%, 8%) - Dark Base / Text */
+  --pure-cream:                #F8F9FA; /* hsl(210, 17%, 98%) - Light Base Canvas */
+  --surface-pure:              #FFFFFF; /* hsl(0, 0%, 100%) - Card White */
+
+  /* Energetic Accents & Chips */
+  --electric-lime:             #E0FA53; /* hsl(70, 94%, 65%) - Hero Energy */
+  --soft-lilac:                #D0B8FF; /* hsl(260, 100%, 86%) - Secondary Chill */
+  --bubblegum-pink:            #FCAFD2; /* hsl(333, 94%, 84%) - Playful / Love */
+  --mint-sherbet:              #C5F7DC; /* hsl(147, 74%, 87%) - Organic / Fresh */
+
+  /* Text & State Neutrals */
+  --neutral-900:               #18181B; /* hsl(240, 6%, 10%) - Headings */
+  --neutral-600:               #71717A; /* hsl(240, 5%, 46%) - Subtext */
+  --neutral-400:               #A1A1AA; /* hsl(240, 5%, 65%) - Muted */
+  --neutral-100:               #E4E4E7; /* hsl(240, 6%, 90%) - Borders */
+
+  /* Atmospheric Gradients */
+  --aura-mesh-01:              linear-gradient(135deg, #FAD0E6 0%, #D8C3FE 50%, #E8FAA8 100%);
+  --aura-mesh-02:              linear-gradient(180deg, #FFFFFF 0%, #F5F0FF 50%, #F8FDE8 100%);
+  --dark-obsidian:             radial-gradient(circle at center, #27282D 0%, #111215 100%);
+}
+
+/* -----------------------------------------------------------------------------
+ * 2. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+Primary Typeface:              "Satoshi", -apple-system, BlinkMacSystemFont, "Cabinet Grotesk", sans-serif
+Handcrafted Accent:            Doodle/Marker Highlights (Underlines, hand-drawn emphasis marks)
+
+[ TYPE SCALE & ROLES ]
+• Display-Hero:                48px | 900 Bold | Line Height: 1.05 | Tracking: -0.03em  (Landing & Hero titles)
+• Heading-1:                   32px | 800 Bold | Line Height: 1.15 | Tracking: -0.025em (Main section headers)
+• Heading-2:                   22px | 700 Bold | Line Height: 1.25 | Tracking: -0.015em (Card / Modal headers)
+• Subheading:                  16px | 600 Semi | Line Height: 1.35 | Tracking: -0.010em (Taglines, pill headers)
+• Body-Lead:                   16px | 400 Reg  | Line Height: 1.50 | Tracking:  0.000em (Primary readable text)
+• Body-Small:                  13px | 500 Med  | Line Height: 1.40 | Tracking: +0.010em (Stats, secondary info)
+• Micro / Pill:                11px | 700 Bold | Line Height: 1.20 | Tracking: +0.030em (Category pills, tags)
+
+/* -----------------------------------------------------------------------------
+ * 3. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+• Radius-Pill (9999px):        Buttons, active filters, search bars, floating badges
+• Radius-XL (32px):            Hero modules, primary container cards, viewport wrappers
+• Radius-LG (24px):            Standard interaction cards, content panels
+• Radius-MD (16px):            Icon badges, mini metric cards, status containers
+• Radius-SM (10px):            Small nested elements, micro-indicators, tooltip cards
+
+/* -----------------------------------------------------------------------------
+ * 4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+• Ambient Float:               0px 16px 36px -8px rgba(17, 18, 21, 0.08)
+• Card Surface:                0px 4px 20px -2px rgba(17, 18, 21, 0.04)
+• Pop Accent:                  0px 10px 24px -4px rgba(224, 250, 83, 0.35) [Glow for Lime CTA]
+• Neomorphic Dark:             0px 8px 30px rgba(0, 0, 0, 0.25), inset 0px 1px 1px rgba(255, 255, 255, 0.15)
+• Pixel Overlays:              0px elevation; rely entirely on hard edge contrast & layering.
+
+/* -----------------------------------------------------------------------------
+ * 5. SPACING & SPATIAL SCALE (4px / 8px Modular System)
+ * -------------------------------------------------------------------------- */
+• space-2:                     8px   (Tight element separation)
+• space-3:                     12px  (Button inner padding vertical, badge spacing)
+• space-4:                     16px  (Standard inner-card padding, gap in tight grids)
+• space-6:                     24px  (Standard card outer margins, header padding)
+• space-8:                     32px  (Container gutters, section vertical separation)
+• space-12:                    48px  (Hero padding, major module separators)
+
+/* -----------------------------------------------------------------------------
+ * 6. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+• Crisp Divider:               1px solid #ECECF0 (Neutral Light)
+• Stroke Badge:                1.5px solid #111215 (High-contrast chip border)
+• Frosted Rim:                 1px solid rgba(255, 255, 255, 0.6) (For glass/gradient tiles)
+• Dark Inset Ring:             1.5px solid rgba(255, 255, 255, 0.08) (Inside dark mode modules)
+
+/* -----------------------------------------------------------------------------
+ * 7. ICONOGRAPHY & GRAPHIC ACCENTS
+ * -------------------------------------------------------------------------- */
+• Style Hybrid:                Rounded Mono-line (2px uniform stroke) + Solid Playful Glyphs.
+• Pop Accents:                 8-bit Pixelated Stars, retro 4-point Sparkles (✦), Daisy Flowers (✿), Smileys (☺).
+• Stroke Ends:                 Round caps (stroke-linecap="round") and smooth corner joins.
+• Container Tile:              Nested within 44x44px rounded squares or pill shapes filled with solid accents.
+
+/* -----------------------------------------------------------------------------
+ * 8. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+• Spring Curve:                cubic-bezier(0.34, 1.56, 0.64, 1) [Bouncy, playful tactile feel]
+• Smooth Ease:                 cubic-bezier(0.16, 1, 0.3, 1) [For sheets, fades, expands]
+• Base Duration:               200ms - 280ms
+• Hover State:                 Micro-scale scale(1.03) + slight shadow bloom.
+• Active / Press:              scale(0.95) with snappy 120ms release.
+• Tag Toggle:                  Instant background shift from Neutral Light to Active Solid Accent + text flip.
+• Focus Ring:                  3px solid #111215 with a 2px offset.
+
+/* -----------------------------------------------------------------------------
+ * 9. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO muddy, desaturated gray cards lacking the crisp 1.5px charcoal boundary.
+- NO rigid sharp 0px corners on soft UI tiles (strictly adhere to 32px/24px/pill scale).
+- NO corporate stiff transitions; always retain bouncy spring feedback.
 ================================================================================`
   }
 ];
