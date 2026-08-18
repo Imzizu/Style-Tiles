@@ -2362,173 +2362,193 @@ The Editorial Letterpress is a high-tactility, print-shop aesthetic blending his
   },
   {
     id: "TILE-015",
-    slug: "vibrant-fluidity",
-    name: "Vibrant Fluidity // Neo-Pop Liquid Energy",
-    vibe: "Electric Cobalt • Marigold Sunburst • Liquid Curves & Elastic Pop",
+    slug: "hyper-vibrant-geometric",
+    name: "Modern Hyper-Vibrant Geometric",
+    vibe: "Electric Iris • Blueprint Scaffolding • Squircle Flow & Rotational Geometry",
     vibeBadge: "Playful & Pop",
     categories: ["playful"],
-    theme: "Dark",
+    theme: "Light",
     hasPage: true,
     fonts: {
-      display: "Shrikhand",
+      display: "THICCCBOI",
       sans: "Plus Jakarta Sans",
       mono: "JetBrains Mono"
     },
     palette: [
-      { name: "Electric Cobalt Base", hex: "#154AE8" },
-      { name: "Midnight Marine", hex: "#0D245A" },
-      { name: "Marigold Sunburst (CTA)", hex: "#FFC600" },
-      { name: "Periwinkle Mist", hex: "#7697F7" },
-      { name: "Warm Oat Sand", hex: "#D6C2AF" },
-      { name: "Soft Pistachio", hex: "#99D6C4" }
+      { name: "Electric Iris Base", hex: "#614DFF" },
+      { name: "Deep Focus Hover", hex: "#4E37F0" },
+      { name: "High-Press Active", hex: "#3C24DF" },
+      { name: "Lavender Tint Subtle", hex: "#EDE9FE" },
+      { name: "Pure Canvas White", hex: "#FFFFFF" },
+      { name: "Cool Foundation Tint", hex: "#F7F7FD" },
+      { name: "High-Contrast Carbon", hex: "#0E0E12" }
     ],
-    description: "High-energy neo-pop visual language celebrating liquid motion, saturated electric cobalt foundations, sunburst marigold CTAs, 32px nested curvature cards, and bouncy elastic spring physics.",
+    description: "Electric iris foundations (#614DFF), pure white canvas planes, squircle continuous flow radii (6px to 32px), filleted rotational petal geometry, technical blueprint scaffolding, and snappy elastic physics.",
     markdownSpec: `================================================================================
-  Aesthetic: Vibrant Fluidity • Neo-Pop Liquid Energy • Saturated Electric Cobalt
+  Aesthetic: Modern Hyper-Vibrant Geometric • Electric Iris • Curved Squircle Flow
 ================================================================================
 
 /* -----------------------------------------------------------------------------
  * 1. DESIGN STATEMENT & VIBE SUMMARY
  * -------------------------------------------------------------------------- */
-Vibrant Fluidity is an energetic, neo-pop visual language celebrating liquid motion, saturated electric cobalt foundations, and warm marigold sunburst accents. Combining organic fluid display typography with ultra-smooth 32px nested curvature cards, 9999px pill controls, whimsical botanical/liquid monoline iconography, and bouncy elastic spring physics, this system turns modern digital products into vibrant, tactile, and living kinetic experiences. Ideal for beverage and tonic brands, creative studios, modern wellness, consumer audio, and high-energy SaaS products.
+Modern Hyper-Vibrant Geometric is an electric, high-precision digital design language blending Signature Electric Iris violet foundations (#614DFF), pure white canvas planes (#FFFFFF), and soft lavender tinted surfaces (#EDE9FE). Grounded by technical blueprint scaffolding lines, subtle crosshairs (✕), continuous squircle corner geometry (6px to 32px), rotational petal motifs with filleted vertices, and snappy elastic micro-interactions, this language brings luminous precision, modern pop energy, and kinetic depth to next-generation software products.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Primary Canvas & Deep Surfaces */
-  --color-canvas-base:         #154AE8; /* Electric Cobalt Blue (Primary background) */
-  --color-canvas-elevated:     #0D245A; /* Midnight Marine (Dark surface cards) */
+  /* Brand */
+  --color-primary-base:        #614DFF; /* Signature electric iris / violet-blue */
+  --color-primary-hover:       #4E37F0; /* Deepened optical focus state */
+  --color-primary-active:      #3C24DF; /* High-press interaction */
+  --color-primary-subtle:      #EDE9FE; /* Tinted surface background */
+  --color-primary-glow:        rgba(97, 77, 255, 0.28);
 
-  /* Brand & Key Accents */
-  --color-accent-primary:      #FFC600; /* Marigold / Sunburst Yellow (Primary CTA) */
-  --color-accent-primary-text: #0E1A38; /* Deep Ink (CTA label color) */
-  --color-accent-badge:        #0E265C; /* Deep Slate Pill (Badge background) */
+  /* Surface & Backgrounds */
+  --color-surface-canvas:      #FFFFFF; /* Pure clean white */
+  --color-surface-subtle:      #F7F7FD; /* Cool ultra-light foundation tint */
+  --color-surface-brand:       #614DFF; /* Full-bleed primary surface */
+  --color-surface-overlay:     #0D0B1A; /* Solid backdrop / modal scrim */
 
-  /* Pastel Surface Variants (Cards & Containers) */
-  --color-surface-lavender:    #7697F7; /* Periwinkle Mist */
-  --color-surface-oat:         #D6C2AF; /* Warm Oat Sand */
-  --color-surface-mint:        #99D6C4; /* Soft Pistachio */
+  /* Content & Typography */
+  --color-text-primary:        #0E0E12; /* High-contrast deep carbon */
+  --color-text-secondary:      #6A6C7A; /* Mid-tone neutral for secondary body */
+  --color-text-muted:          #9E9EB2; /* Low-contrast captions and meta */
+  --color-text-inverse:        #FFFFFF; /* High-contrast against primary/dark */
+  --color-text-inverse-subtle: rgba(255, 255, 255, 0.72);
 
-  /* Typography & Inks */
-  --color-ink-pure:            #FFFFFF; /* Milk White (Headings, primary icons) */
-  --color-ink-subtle:          rgba(255, 255, 255, 0.72); /* Muted text / meta */
-  --color-ink-inverse:         #111827; /* Dark Graphite (Text on light cards) */
+  /* Grid & Construction */
+  --color-blueprint-line:      rgba(255, 255, 255, 0.35); /* White grid lines on purple */
+  --color-blueprint-light:     rgba(97, 77, 255, 0.15);   /* Purple grid lines on white */
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Stacks */
---font-family-display: "Cheee", "Recoleta", "Shrikhand", "Fraunces", cursive, serif;
---font-family-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
---font-family-mono:    "JetBrains Mono", ui-monospace, monospace;
+Primary Typeface:
+  --font-family:              "THICCCBOI", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif
+  --font-render:              antialiased; -webkit-font-smoothing: antialiased;
 
-/* Type Scale & Hierarchy */
---type-display:        clamp(3.5rem, 8vw, 7rem) / 0.95 var(--font-family-display); /* Weight: 900 / Heavy | Letter-spacing: -0.03em */
---type-h1:             1.75rem (28px)           / 1.15 var(--font-family-sans);    /* Weight: 800 (ExtraBold) | Letter-spacing: -0.02em */
---type-h2:             1.00rem (16px)           / 1.30 var(--font-family-sans);    /* Weight: 700 (Bold) | Letter-spacing: -0.01em */
---type-body:           0.9375rem (15px)         / 1.40 var(--font-family-sans);    /* Weight: 500 (Medium) | Letter-spacing: 0.0em */
---type-meta:           0.8125rem (13px)         / 1.20 var(--font-family-sans);    /* Weight: 600 (SemiBold) | Letter-spacing: 0.01em */
+Hierarchy Scale:
+  Display (Hero / Brand):
+    size: 64px (4.00rem)  | weight: 900 (Black)     | line-height: 1.05 | tracking: -0.04em
+  Heading 1 (Sections):
+    size: 40px (2.50rem)  | weight: 800 (ExtraBold) | line-height: 1.15 | tracking: -0.03em
+  Heading 2 (Card Titles):
+    size: 28px (1.75rem)  | weight: 700 (Bold)      | line-height: 1.20 | tracking: -0.02em
+  Heading 3 (Sub-sections):
+    size: 20px (1.25rem)  | weight: 600 (SemiBold)  | line-height: 1.30 | tracking: -0.01em
+  Body Large (Lead Copy):
+    size: 18px (1.125rem) | weight: 400 (Regular)   | line-height: 1.50 | tracking: 0.00em
+  Body Medium (Standard):
+    size: 15px (0.9375rem)| weight: 400 (Regular)   | line-height: 1.55 | tracking: 0.00em
+  Caption / Overline:
+    size: 12px (0.75rem)  | weight: 600 (SemiBold)  | line-height: 1.40 | tracking: +0.08em (Uppercase)
 
 /* -----------------------------------------------------------------------------
  * 4. CORNER GEOMETRY (BORDER RADII)
  * -------------------------------------------------------------------------- */
---radius-xs:           6px;    /* Tooltips, indicators */
---radius-sm:           12px;   /* Inner elements, chips */
---radius-md:           20px;   /* Nested modals, secondary containers */
---radius-lg:           32px;   /* Product cards, content tiles */
---radius-pill:         9999px; /* Buttons, navigation pills, floating tags, badges */
-
-/* Rule of Geometry */
-Outer container corners match inner card radius + padding (nested curvature).
-All interactive clickable buttons must default to --radius-pill.
+Rules: "Curved Squircle Continuous Flow"
+  --radius-xs:    6px     // Micro badges, tags, inner inputs
+  --radius-sm:   10px     // Buttons, utility controls
+  --radius-md:   16px     // Nested child elements, internal card sections
+  --radius-lg:   24px     // Standard content cards
+  --radius-xl:   32px     // Master layout containers & feature canvas blocks
+  --radius-pill: 9999px   // Action pills, round avatar nodes, floating indicators
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERING)
  * -------------------------------------------------------------------------- */
---z-canvas:            0;   /* Flat background */
---z-splatter:          1;   /* Background liquid textures & display graphics */
---z-content:           10;  /* Cards & primary text */
---z-floating:          20;  /* 3D Product renders, floating CTA */
---z-nav:               100; /* Fixed top bar */
+Surfaces: Crisp, flat color planes accented with soft, high-diffusion ambient glows.
 
-/* Shadow Tokens */
---shadow-cta:             0 12px 28px -6px rgba(255, 198, 0, 0.4), 0 4px 10px -2px rgba(0, 0, 0, 0.1);
---shadow-floating-object:  0 32px 64px -16px rgba(10, 20, 50, 0.45), 0 12px 24px -8px rgba(10, 20, 50, 0.25);
---shadow-card-subtle:     0 8px 24px -4px rgba(7, 20, 55, 0.2);
+  --elevation-low (Cards/Tiles):
+    box-shadow: 0 4px 12px -2px rgba(14, 14, 18, 0.04),
+                0 2px 6px -1px rgba(14, 14, 18, 0.02);
+
+  --elevation-medium (Hovered Cards / Popovers):
+    box-shadow: 0 12px 28px -6px rgba(14, 14, 18, 0.08),
+                0 4px 12px -2px rgba(14, 14, 18, 0.03);
+
+  --elevation-brand-glow (Primary CTA Hover):
+    box-shadow: 0 8px 24px -4px rgba(97, 77, 255, 0.40);
+
+  --elevation-floating-stack (Physical Depth / Mockups):
+    box-shadow: -10px 14px 32px -4px rgba(20, 15, 60, 0.18),
+                0 2px 4px 0 rgba(0, 0, 0, 0.04);
 
 /* -----------------------------------------------------------------------------
  * 6. SPACING & SPATIAL SCALE
  * -------------------------------------------------------------------------- */
-Base Unit: 4px grid (8pt system preferred)
---space-2xs:           4px;
---space-xs:            8px;
---space-sm:            16px;
---space-md:            24px;
---space-lg:            32px;
---space-xl:            48px;
---space-2xl:           64px;
---space-3xl:           96px;
+Grid Unit: 4px base / 8px progressive cadence
 
-/* Layout Density */
-- Navigation Item Gap:        28px
-- Card Interior Padding:      24px (Mobile: 18px)
-- Card Grid Column Gap:       20px
-- Hero Section Canvas Gutter: 48px to 64px
+  --space-2xs:    4px
+  --space-xs:     8px
+  --space-sm:    12px
+  --space-md:    16px     // Compact element gutters
+  --space-lg:    24px     // Standard card padding
+  --space-xl:    32px     // Outer card margins & section gutters
+  --space-2xl:   48px     // Layout gaps
+  --space-3xl:   64px     // Major section padding
+  --space-4xl:   96px     // Hero spacing
 
 /* -----------------------------------------------------------------------------
  * 7. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---border-pill-ghost:   1.5px solid rgba(255, 255, 255, 0.6);
---border-card-subtle:  1.0px solid rgba(255, 255, 255, 0.08);
---border-focus-ring:   3.0px solid #FFC600;
-
-/* Design Rules */
-- Card separations rely on high solid-color contrast rather than dividers.
-- Ghost navigation buttons use clean white outline strokes with no backdrop.
+Separators & Construction Frames:
+  --border-light:          1px solid rgba(14, 14, 18, 0.06)  // Muted light borders
+  --border-brand-tint:     1.5px solid rgba(97, 77, 255, 0.20) // Primary accent border
+  --border-inverse-grid:   1px solid rgba(255, 255, 255, 0.25) // Blueprint scaffolding lines
+  --border-focus-ring:     3px solid rgba(97, 77, 255, 0.35)  // Accessibility outline
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
+ * 8. ICONOGRAPHY & GRAPHIC MOTIF LANGUAGE
  * -------------------------------------------------------------------------- */
-- Weight: Stroke-based (1.75px to 2.0px stroke-width).
-- Terminals: Fully rounded ends (stroke-linecap: round; stroke-linejoin: round).
-- Aesthetic: Whimsical line-art / simplified botanical & minimal glyphs.
-- Framing: Encapsulated within dark midnight circles (--color-accent-badge: #0E265C).
-- Size: 18px glyph inside a 44px round container.
+Visual Motifs:
+  * Geometry: Pure rotational symmetry, segmented petals, and rounded triangles.
+  * Filleted Vertices: Inner and outer triangle apexes have rounded smooth caps.
+  * Line Construction: Technical "Blueprint" style framing with subtle alignment
+    crosshairs (✕) and bounding guides.
+  * Stroke Standards:
+      - Line Width: 2px uniform stroke (at 24x24 box)
+      - End Caps: Round (stroke-linecap: round)
+      - Joins: Round (stroke-linejoin: round)
+  * Solid Icons: Organic, silhouette fills using --color-primary-base or --color-surface-canvas.
 
 /* -----------------------------------------------------------------------------
  * 9. INTERACTION & FEEDBACK RULES
  * -------------------------------------------------------------------------- */
---ease-bounce:         cubic-bezier(0.34, 1.56, 0.64, 1); /* Neo-pop elastic curve */
---ease-smooth:         cubic-bezier(0.16, 1, 0.3, 1);      /* Decelerated fluid curve */
---duration-fast:       150ms;
---duration-base:       280ms;
+Transitions & Physics:
+  --ease-elastic:    cubic-bezier(0.16, 1, 0.3, 1)   // Smooth snappy response
+  --ease-out:        cubic-bezier(0, 0, 0.2, 1)
+  --duration-fast:   150ms
+  --duration-normal: 250ms
 
-- Primary CTA Button (Yellow):
-  Default:   Background #FFC600, Color #0E1A38, Shadow --shadow-cta
-  Hover:     Scale 1.05x, translateY(-2px), Brightness 1.05
-  Active:    Scale 0.96x, translateY(1px)
-  Transition: all 220ms var(--ease-bounce)
+States:
+  * Primary Button Hover:
+      transform: translateY(-2px);
+      background-color: var(--color-primary-hover);
+      box-shadow: var(--elevation-brand-glow);
 
-- Ghost Nav Button:
-  Default:   Border --border-pill-ghost, Color #FFFFFF, BG Transparent
-  Hover:     Background #FFFFFF, Color #154AE8
-  Active:    Scale 0.97x
+  * Card / Surface Hover:
+      transform: translateY(-4px);
+      box-shadow: var(--elevation-medium);
+      border-color: var(--color-primary-subtle);
 
-- Product Cards:
-  Default:   Smooth vertical alignment, static surface fill
-  Hover:     translateY(-6px), Shadow --shadow-floating-object
-  Transition: transform 300ms var(--ease-smooth), box-shadow 300ms var(--ease-smooth)
+  * Active / Tap Feedback:
+      transform: scale(0.98);
+      transition-duration: 80ms;
+
+  * Blueprint Grid Effects:
+      Subtle opacity pulsation (0.25 -> 0.45) on interactive hero containers.
 
 /* -----------------------------------------------------------------------------
  * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
  * -------------------------------------------------------------------------- */
-- No muddy, desaturated corporate grays or boring monochrome flat rectangles.
-- No tiny sharp 0px/2px brutalist corners (minimum radius for components is 12px/20px/32px/9999px).
-- No linear gradient keyword text fills on headlines.
-- No blurry glowing neon border halos.
-- No rigid boxy layouts without organic fluid curves or playful elastic micro-feedback.
+- NO muddy desaturated dull grays or murky gradients.
+- NO sharp unfilleted 0px brutalist corners (must use squircle continuous flow 6px/10px/16px/24px/32px/9999px).
+- NO chaotic icon-stuffed bento boxes without clear geometric alignment.
+- NO heavy skeuomorphic 3D bevels or black zero-blur drop shadows.
+- NO low-contrast illegible text on purple surfaces.
 ================================================================================`
   }
 ];
