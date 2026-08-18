@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber-Kinetic Motorsport & High-Performance Brutalism — Style Tile (TILE-037)</title>
+  <meta name="description" content="Cyber-Kinetic Motorsport & High-Performance Brutalism: Hyper-Volt Neon Green (#9AE600), Void Black (#070E07), Chakra Petch display type, Share Tech Mono HUD readouts, 45° chamfers, telemetry nodes, and glass modules.">
+
+  <!-- Google Fonts: Chakra Petch (Display), Share Tech Mono (HUD), Inter (UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       STYLE TILE // CYBER-KINETIC MOTORSPORT & HIGH-PERFORMANCE BRUTALISM
+       Tile Reference: TILE-037
+       ========================================================================== */
+
+    :root {
+      /* ------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * ------------------------------------------------------------------------ */
+      --color-brand-primary-electric:  #9AE600; /* Acid / Hyper-Volt Neon Green */
+      --color-brand-primary-glow:      #B8FF00; /* High-intensity luminescent highlight */
+      --color-brand-tint-olive:        #70821E; /* Deep racing chartreuse / Muted olive */
+
+      --color-surface-backdrop:        #070E07; /* Deep atmospheric void green-black */
+      --color-surface-card-tinted:      rgba(128, 148, 48, 0.72); /* Acid-filtered frosted glass */
+      --color-surface-card-frosted:    rgba(215, 222, 215, 0.58); /* Titanium frosted glass */
+      --color-surface-scrim-dark:      rgba(0, 0, 0, 0.65); /* High-contrast background dampener */
+      --color-surface-card-dark:       #0D140D; /* Elevated dark module */
+      --color-surface-card-darker:     #050905; /* Deep well container */
+
+      --color-text-primary-inverse:    #FFFFFF; /* High-impact display stark white */
+      --color-text-primary-dark:       #0A0F0A; /* Deep obsidian for high-contrast cards */
+      --color-text-secondary-neon:     #9AE600; /* Digital HUD accent text */
+      --color-text-muted:              rgba(255, 255, 255, 0.60); /* De-emphasized metadata */
+      --color-text-dim:                rgba(255, 255, 255, 0.35);
+
+      --color-border-hairline:         rgba(255, 255, 255, 0.12); /* Subtle structural trace */
+      --color-border-neon-active:      #9AE600; /* Dynamic focus/active outline */
+      --color-border-subtle-glow:      rgba(154, 230, 0, 0.35);
+
+      /* ------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * ------------------------------------------------------------------------ */
+      --font-display:   "Chakra Petch", "Nippo", "Druk Wide", sans-serif;
+      --font-tech-mono: "Share Tech Mono", "Oxanium", "Space Mono", monospace;
+      --font-ui:        "Inter", "Helvetica Neue", sans-serif;
+
+      /* ------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY & CHAMFERS
+       * ------------------------------------------------------------------------ */
+      --radius-none:     0px;
+      --radius-micro:    1px;
+      --radius-pill-btn: 2px;
+      --radius-sm:       4px;
+
+      /* ------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+       * ------------------------------------------------------------------------ */
+      --glow-neon-ambient: 0px 0px 32px rgba(154, 230, 0, 0.35);
+      --glow-neon-focused: 0px 0px 48px rgba(184, 255, 0, 0.65);
+      --shadow-hard-drop:  0 20px 40px rgba(0, 0, 0, 0.85);
+      --shadow-inset-rim:  inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+
+      /* ------------------------------------------------------------------------
+       * 5. SPACING SYSTEM
+       * ------------------------------------------------------------------------ */
+      --space-2xs: 4px;
+      --space-xs:  8px;
+      --space-sm:  16px;
+      --space-md:  24px;
+      --space-lg:  40px;
+      --space-xl:  64px;
+      --space-2xl: 120px;
+
+      /* Motion */
+      --ease-instant: cubic-bezier(0.16, 1, 0.3, 1);
+      --duration-rapid: 120ms;
+      --duration-standard: 240ms;
+      --duration-cinematic: 600ms;
+    }
+
+    /* ==========================================================================
+       RESET & BASE STYLING
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--color-surface-backdrop);
+      color: var(--color-text-primary-inverse);
+    }
+
+    body {
+      background-color: var(--color-surface-backdrop);
+      color: var(--color-text-primary-inverse);
+      font-family: var(--font-ui);
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Directional motorsport grid background & motion blur vignette */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(154, 230, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(154, 230, 0, 0.08) 0%, transparent 60%),
+                  radial-gradient(circle at 10% 80%, rgba(112, 130, 30, 0.12) 0%, transparent 50%),
+                  radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.85) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    ::selection {
+      background-color: var(--color-brand-primary-electric);
+      color: var(--color-text-primary-dark);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Chamfer clipping utilities */
+    .chamfer-tr {
+      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+    }
+    .chamfer-both {
+      clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+    }
+    .chamfer-btn {
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+    }
+
+    /* HUD Corner bracket accents */
+    .hud-bracket-box {
+      position: relative;
+    }
+    .hud-bracket-box::before, .hud-bracket-box::after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hud-bracket-box::before {
+      top: -1px;
+      left: -1px;
+      border-top: 2px solid var(--color-brand-primary-electric);
+      border-left: 2px solid var(--color-brand-primary-electric);
+    }
+    .hud-bracket-box::after {
+      bottom: -1px;
+      right: -1px;
+      border-bottom: 2px solid var(--color-brand-primary-electric);
+      border-right: 2px solid var(--color-brand-primary-electric);
+    }
+
+    /* ==========================================================================
+       MANDATORY HEADER COMPONENT
+       ========================================================================== */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(7, 14, 7, 0.90);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--color-border-hairline);
+      padding: var(--space-xs) var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-family: var(--font-tech-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-brand-primary-electric);
+      padding: 6px 14px;
+      border: 1px solid var(--color-border-subtle-glow);
+      background: rgba(154, 230, 0, 0.05);
+      clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+      transition: all var(--duration-rapid) var(--ease-instant);
+    }
+
+    .nav-back-link:hover {
+      background-color: var(--color-brand-primary-electric);
+      color: var(--color-text-primary-dark);
+      box-shadow: var(--glow-neon-ambient);
+      transform: translateX(-2px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-tech-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      background: var(--color-brand-primary-electric);
+      color: var(--color-text-primary-dark);
+      letter-spacing: 0.15em;
+      border-radius: var(--radius-micro);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-primary-inverse);
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-tech-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 3px 8px;
+      border: 1px solid rgba(154, 230, 0, 0.3);
+      color: var(--color-brand-primary-electric);
+      background: rgba(154, 230, 0, 0.08);
+      border-radius: var(--radius-micro);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      font-family: var(--font-tech-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border-radius: var(--radius-pill-btn);
+      cursor: pointer;
+      border: 1px solid var(--color-border-hairline);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--color-text-primary-inverse);
+      transition: all var(--duration-rapid) var(--ease-instant);
+    }
+
+    .btn-tile:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--color-brand-primary-electric);
+      color: var(--color-brand-primary-electric);
+    }
+
+    .btn-tile.btn-copy {
+      background: var(--color-brand-primary-electric);
+      color: var(--color-text-primary-dark);
+      border-color: var(--color-brand-primary-electric);
+      font-weight: 700;
+    }
+
+    .btn-tile.btn-copy:hover {
+      background: var(--color-brand-primary-glow);
+      box-shadow: var(--glow-neon-focused);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      padding: var(--space-xl) 0 var(--space-lg);
+      border-bottom: 1px solid var(--color-border-hairline);
+      position: relative;
+    }
+
+    .hero-telemetry-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+      font-family: var(--font-tech-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: var(--color-brand-primary-electric);
+      text-transform: uppercase;
+    }
+
+    .hero-telemetry-strip span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-pulse-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--color-brand-primary-electric);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--color-brand-primary-glow);
+      animation: pulse 1.4s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .hero-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 8vw, 6.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 0.88;
+      margin-bottom: var(--space-md);
+      color: var(--color-text-primary-inverse);
+      text-shadow: 0 0 30px rgba(154, 230, 0, 0.2);
+    }
+
+    .hero-heading .neon-accent {
+      color: var(--color-brand-primary-electric);
+      text-shadow: 0 0 30px rgba(154, 230, 0, 0.6);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+      margin-top: var(--space-md);
+    }
+
+    .hero-narrative {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--color-text-muted);
+      border-left: 2px solid var(--color-brand-primary-electric);
+      padding-left: var(--space-md);
+    }
+
+    .hero-narrative strong {
+      color: var(--color-text-primary-inverse);
+    }
+
+    .hero-meta-dock {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.4) 100%);
+      border: 1px solid var(--color-border-hairline);
+      backdrop-filter: blur(24px) saturate(180%);
+      padding: var(--space-md);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-sm);
+    }
+
+    .dock-stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .dock-stat-label {
+      font-family: var(--font-tech-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-text-muted);
+    }
+
+    .dock-stat-value {
+      font-family: var(--font-tech-mono);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-brand-primary-electric);
+      letter-spacing: 0.05em;
+    }
+
+    /* Quick Hero Action Buttons */
+    .hero-cta-bar {
+      display: flex;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .btn-cyber-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--color-brand-primary-electric);
+      color: var(--color-text-primary-dark);
+      font-family: var(--font-tech-mono);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      border: none;
+      cursor: pointer;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+      transition: all var(--duration-rapid) var(--ease-instant);
+    }
+
+    .btn-cyber-primary:hover {
+      background: var(--color-brand-primary-glow);
+      box-shadow: var(--glow-neon-focused);
+      transform: translateY(-2px);
+    }
+
+    .btn-cyber-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--color-text-primary-inverse);
+      font-family: var(--font-tech-mono);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      border: 1px solid var(--color-border-hairline);
+      cursor: pointer;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+      transition: all var(--duration-rapid) var(--ease-instant);
+    }
+
+    .btn-cyber-ghost:hover {
+      border-color: var(--color-brand-primary-electric);
+      color: var(--color-brand-primary-electric);
+      background: rgba(154, 230, 0, 0.05);
+    }
+
+    /* ==========================================================================
+       SECTION WRAPPER & SECTION HEADINGS
+       ========================================================================== */
+    .spec-section {
+      padding: var(--space-xl) 0;
+      border-bottom: 1px solid var(--color-border-hairline);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    .section-header::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: var(--color-brand-primary-electric);
+    }
+
+    .section-num {
+      font-family: var(--font-tech-mono);
+      font-size: 0.8125rem;
+      color: var(--color-brand-primary-electric);
+      letter-spacing: 0.2em;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-tech-mono);
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* ==========================================================================
+       1. COLOR PALETTE MATRIX
+       ========================================================================== */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .swatch-card {
+      background: var(--color-surface-card-dark);
+      border: 1px solid var(--color-border-hairline);
+      padding: var(--space-sm);
+      cursor: pointer;
+      position: relative;
+      transition: all var(--duration-rapid) var(--ease-instant);
+    }
+
+    .swatch-card:hover {
+      border-color: var(--color-brand-primary-electric);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 12px rgba(154, 230, 0, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .swatch-color-box {
+      height: 100px;
+      width: 100%;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      position: relative;
+      margin-bottom: var(--space-xs);
+    }
+
+    .swatch-color-box .swatch-corner-tag {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      font-family: var(--font-tech-mono);
+      font-size: 0.625rem;
+      padding: 2px 4px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .swatch-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .swatch-name {
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .swatch-role {
+      font-size: 0.6875rem;
+      color: var(--color-text-muted);
+    }
+
+    .swatch-hex-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: var(--space-2xs);
+      padding-top: var(--space-2xs);
+      border-top: 1px dashed var(--color-border-hairline);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-tech-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-brand-primary-electric);
+    }
+
+    .swatch-copy-hint {
+      font-family: var(--font-tech-mono);
+      font-size: 0.625rem;
+      color: var(--color-text-dim);
+      text-transform: uppercase;
+    }
+
+    /* ==========================================================================
+       2. TYPOGRAPHY SPECIMEN
+       ========================================================================== */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    .type-card {
+      background: var(--color-surface-card-dark);
+      border: 1px solid var(--color-border-hairline);
+      padding: var(--space-md);
+      position: relative;
+    }
+
+    .type-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--color-border-hairline);
+    }
+
+    .type-family-label {
+      font-family: var(--font-tech-mono);
+      font-size: 0.75rem;
+      color: var(--color-brand-primary-electric);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .type-scale-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .scale-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+    }
+
+    .scale-tag {
+      font-family: var(--font-tech-mono);
+      font-size: 0.6875rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.15em;
+    }
+
+    .scale-display {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 900;
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .scale-metric {
+      font-family: var(--font-tech-mono);
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.0;
+      color: var(--color-brand-primary-electric);
+      letter-spacing: 0.06em;
+    }
+
+    .scale-tech {
+      font-family: var(--font-tech-mono);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--color-text-primary-inverse);
+    }
+
+    .scale-nav {
+      font-family: var(--font-tech-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: var(--color-text-muted);
+    }
+
+    .scale-body {
+      font-family: var(--font-ui);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--color-text-muted);
+    }
+
+    /* Editable Pangram Sandbox */
+    .pangram-sandbox {
+      margin-top: var(--space-md);
+      background: #000;
+      border: 1px solid var(--color-border-hairline);
+      padding: var(--space-md);
+    }
+
+    .pangram-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--color-brand-primary-glow);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ==========================================================================
+       3. COMPONENT ARCHETYPES
+       ========================================================================== */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+
+    .component-panel {
+      background: var(--color-surface-card-dark);
+      border: 1px solid var(--color-border-hairline);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .panel-heading {
+      font-family: var(--font-tech-mono);
+      font-size: 0.75rem;
+      color: var(--color-brand-primary-electric);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--color-border-hairline);
+    }
+
+    .btn-group-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    /* Component Buttons */
+    .btn-racing-active {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: var(--color-brand-primary-electric);
+      color: var(--color-text-primary-dark);
+      font-family: var(--font-tech-mono);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      border: none;
+      cursor: pointer;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+      transition: all var(--duration-rapid) var(--ease-instant);
+    }
+
+    .btn-racing-active:hover {
+      background: var(--color-brand-primary-glow);
+      box-shadow: var(--glow-neon-focused);
+      transform: translateY(-2px) scale(1.01);
+    }
+
+    .btn-racing-active:active {
+      transform: scale(0.98);
+      filter: brightness(1.2);
+    }
+
+    .btn-racing-frosted {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: rgba(215, 222, 215, 0.12);
+      backdrop-filter: blur(24px) saturate(180%);
+      color: var(--color-text-primary-inverse);
+      font-family: var(--font-tech-mono);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      border: 1px solid var(--color-border-hairline);
+      cursor: pointer;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+      transition: all var(--duration-rapid) var(--ease-instant);
+    }
+
+    .btn-racing-frosted:hover {
+      border-color: var(--color-brand-primary-electric);
+      color: var(--color-brand-primary-electric);
+      background: rgba(154, 230, 0, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .btn-racing-danger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: rgba(255, 59, 48, 0.12);
+      color: #FF453A;
+      font-family: var(--font-tech-mono);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      border: 1px solid rgba(255, 59, 48, 0.3);
+      cursor: pointer;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+      transition: all var(--duration-rapid) var(--ease-instant);
+    }
+
+    .btn-racing-danger:hover {
+      background: #FF453A;
+      color: #000;
+      box-shadow: 0 0 24px rgba(255, 69, 58, 0.5);
+    }
+
+    /* HUD Form Controls */
+    .hud-input-field {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--color-border-hairline);
+      padding: 10px 14px;
+      font-family: var(--font-tech-mono);
+      font-size: 0.875rem;
+      color: var(--color-brand-primary-electric);
+      outline: none;
+      letter-spacing: 0.1em;
+      border-radius: var(--radius-micro);
+      transition: all var(--duration-rapid) var(--ease-instant);
+    }
+
+    .hud-input-field:focus {
+      border-color: var(--color-brand-primary-electric);
+      box-shadow: 0 0 16px rgba(154, 230, 0, 0.3);
+    }
+
+    .telemetry-toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-tech-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .switch-toggle {
+      width: 44px;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--color-border-hairline);
+      border-radius: var(--radius-micro);
+      position: relative;
+      cursor: pointer;
+      transition: all var(--duration-rapid) var(--ease-instant);
+    }
+
+    .switch-toggle.active {
+      background: rgba(154, 230, 0, 0.2);
+      border-color: var(--color-brand-primary-electric);
+    }
+
+    .switch-toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background: #888;
+      border-radius: var(--radius-micro);
+      transition: transform 0.18s var(--ease-instant), background 0.18s var(--ease-instant);
+    }
+
+    .switch-toggle.active::after {
+      transform: translateX(22px);
+      background: var(--color-brand-primary-electric);
+      box-shadow: 0 0 8px var(--color-brand-primary-glow);
+    }
+
+    /* Badges & Chips */
+    .chip-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    .hud-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      font-family: var(--font-tech-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border: 1px solid var(--color-border-hairline);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--color-text-muted);
+    }
+
+    .hud-chip.active {
+      border-color: var(--color-brand-primary-electric);
+      color: var(--color-brand-primary-electric);
+      background: rgba(154, 230, 0, 0.1);
+    }
+
+    /* Metric HUD Module */
+    .hud-metric-module {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(0, 0, 0, 0.4) 100%);
+      border: 1px solid var(--color-border-hairline);
+      padding: var(--space-sm);
+      position: relative;
+    }
+
+    .hud-metric-module:hover {
+      backdrop-filter: blur(32px) saturate(220%);
+      border-top: 2px solid var(--color-brand-primary-electric);
+      transition: all 180ms var(--ease-instant);
+    }
+
+    .hud-metric-label {
+      font-family: var(--font-tech-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--color-text-muted);
+    }
+
+    .hud-metric-val {
+      font-family: var(--font-tech-mono);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--color-brand-primary-electric);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      margin: 4px 0;
+    }
+
+    .hud-metric-bar {
+      height: 4px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      position: relative;
+      margin-top: 8px;
+    }
+
+    .hud-metric-progress {
+      height: 100%;
+      background: var(--color-brand-primary-electric);
+      box-shadow: 0 0 10px var(--color-brand-primary-glow);
+    }
+
+    /* ==========================================================================
+       4. LIVING MICRO-EXPERIENCE // TELEMETRY COCKPIT & HYPERCAR HUD
+       ========================================================================== */
+    .cockpit-wrapper {
+      background: #020502;
+      border: 1px solid var(--color-border-hairline);
+      padding: var(--space-md);
+      position: relative;
+      box-shadow: var(--shadow-hard-drop);
+      background-image: 
+        radial-gradient(ellipse at 50% 0%, rgba(154, 230, 0, 0.12) 0%, transparent 60%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, rgba(0, 0, 0, 0.6) 100%);
+    }
+
+    .cockpit-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--color-border-hairline);
+      margin-bottom: var(--space-md);
+    }
+
+    .cockpit-title-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .vehicle-badge {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: var(--color-text-primary-inverse);
+    }
+
+    .vehicle-status-tag {
+      font-family: var(--font-tech-mono);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      background: var(--color-brand-primary-electric);
+      color: var(--color-text-primary-dark);
+      letter-spacing: 0.18em;
+    }
+
+    .cockpit-telemetry-cluster {
+      display: grid;
+      grid-template-columns: 1.2fr 2fr 1.2fr;
+      gap: var(--space-md);
+      align-items: stretch;
+    }
+
+    /* G-Force & Sector Panel */
+    .hud-sub-panel {
+      background: rgba(10, 18, 10, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: var(--space-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .gforce-reticle-box {
+      width: 100%;
+      height: 120px;
+      border: 1px solid rgba(154, 230, 0, 0.2);
+      background: rgba(0, 0, 0, 0.4);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gforce-reticle-box::before, .gforce-reticle-box::after {
+      content: "";
+      position: absolute;
+      background: rgba(154, 230, 0, 0.3);
+    }
+    .gforce-reticle-box::before { width: 100%; height: 1px; }
+    .gforce-reticle-box::after { height: 100%; width: 1px; }
+
+    .gforce-node {
+      width: 14px;
+      height: 14px;
+      background: var(--color-brand-primary-electric);
+      box-shadow: var(--glow-neon-ambient);
+      border-radius: 50%;
+      position: absolute;
+      top: 38%;
+      left: 64%;
+      transform: translate(-50%, -50%);
+      animation: gNodeFloat 3s infinite ease-in-out alternate;
+    }
+
+    @keyframes gNodeFloat {
+      0% { top: 38%; left: 64%; }
+      50% { top: 45%; left: 58%; }
+      100% { top: 32%; left: 70%; }
+    }
+
+    /* Central Kinetic Speed & RPM Gauge */
+    .cockpit-center-gauge {
+      background: linear-gradient(180deg, rgba(128, 148, 48, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
+      border: 1px solid var(--color-brand-primary-electric);
+      box-shadow: inset 0 0 30px rgba(154, 230, 0, 0.15), var(--glow-neon-ambient);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+    }
+
+    .gear-indicator {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--color-brand-primary-electric);
+    }
+
+    .main-speed-val {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 8vw, 7rem);
+      font-weight: 900;
+      line-height: 0.85;
+      color: #fff;
+      text-shadow: 0 0 40px rgba(154, 230, 0, 0.4);
+      letter-spacing: -0.02em;
+    }
+
+    .speed-unit {
+      font-family: var(--font-tech-mono);
+      font-size: 0.875rem;
+      letter-spacing: 0.3em;
+      color: var(--color-brand-primary-electric);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .rpm-stepper-bar {
+      display: flex;
+      gap: 3px;
+      width: 100%;
+      margin-top: var(--space-md);
+    }
+
+    .rpm-segment {
+      flex: 1;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      clip-path: polygon(0 0, calc(100% - 3px) 0, 100% 100%, 3px 100%);
+    }
+
+    .rpm-segment.active {
+      background: var(--color-brand-primary-electric);
+      box-shadow: 0 0 8px var(--color-brand-primary-glow);
+    }
+
+    .rpm-segment.redline {
+      background: #FF3B30;
+      box-shadow: 0 0 10px rgba(255, 59, 48, 0.8);
+    }
+
+    /* Lap & Sector Rows */
+    .sector-timing-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sector-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-tech-mono);
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      background: rgba(0, 0, 0, 0.4);
+      border-left: 2px solid transparent;
+    }
+
+    .sector-row.fastest {
+      border-color: #AF52DE;
+      color: #E49BFF;
+    }
+
+    .sector-row.green {
+      border-color: var(--color-brand-primary-electric);
+      color: var(--color-brand-primary-electric);
+    }
+
+    /* Bottom Cockpit Controls Dock */
+    .cockpit-bottom-dock {
+      margin-top: var(--space-md);
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--color-border-hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .cockpit-mode-selector {
+      display: flex;
+      gap: var(--space-2xs);
+    }
+
+    .mode-btn {
+      font-family: var(--font-tech-mono);
+      font-size: 0.75rem;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--color-border-hairline);
+      color: var(--color-text-muted);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: all var(--duration-rapid) var(--ease-instant);
+    }
+
+    .mode-btn.active {
+      background: var(--color-brand-primary-electric);
+      color: var(--color-text-primary-dark);
+      border-color: var(--color-brand-primary-electric);
+      font-weight: 700;
+      box-shadow: var(--glow-neon-ambient);
+    }
+
+    /* ==========================================================================
+       5. SPECIFICATION DRAWER / ACCORDION
+       ========================================================================== */
+    .markdown-drawer {
+      background: #000;
+      border: 1px solid var(--color-border-hairline);
+      padding: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-sm);
+    }
+
+    .drawer-title {
+      font-family: var(--font-tech-mono);
+      font-size: 0.875rem;
+      color: var(--color-brand-primary-electric);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .markdown-code-block {
+      background: #050805;
+      border: 1px solid rgba(154, 230, 0, 0.2);
+      padding: var(--space-md);
+      font-family: var(--font-tech-mono);
+      font-size: 0.75rem;
+      line-height: 1.6;
+      color: #B8FF00;
+      overflow-x: auto;
+      white-space: pre;
+      max-height: 400px;
+    }
+
+    /* ==========================================================================
+       MODAL / SLIDE-OVER SPEC VIEWER
+       ========================================================================== */
+    .spec-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+
+    .spec-modal-overlay.active {
+      display: flex;
+    }
+
+    .spec-modal-dialog {
+      background: #070E07;
+      border: 2px solid var(--color-brand-primary-electric);
+      box-shadow: var(--glow-neon-focused), var(--shadow-hard-drop);
+      width: 100%;
+      max-width: 900px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+    }
+
+    .spec-modal-header {
+      padding: var(--space-sm) var(--space-md);
+      background: rgba(154, 230, 0, 0.1);
+      border-bottom: 1px solid var(--color-brand-primary-electric);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .spec-modal-body {
+      padding: var(--space-md);
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* Toast */
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--color-brand-primary-electric);
+      color: var(--color-text-primary-dark);
+      font-family: var(--font-tech-mono);
+      font-weight: 700;
+      font-size: 0.8125rem;
+      letter-spacing: 0.15em;
+      padding: 10px 20px;
+      box-shadow: var(--glow-neon-focused);
+      z-index: 2000;
+      display: none;
+      text-transform: uppercase;
+      clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+    }
+  </style>
+
+  <!-- Mobile Safety Stylesheet per agent.md -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+
+  <style>
+    /* Mobile Overrides at max-width: 768px per Section 6 of agent.md */
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+      .components-grid {
+        grid-template-columns: 1fr;
+      }
+      .cockpit-telemetry-cluster {
+        grid-template-columns: 1fr;
+      }
+      .cockpit-bottom-dock {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .cockpit-mode-selector {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .hud-input-field {
+        font-size: 16px; /* iOS zoom prevention */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MANDATORY TOP HEADER BAR -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span>←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-037</span>
+      <span class="design-title">Cyber-Kinetic Motorsport</span>
+      <span class="design-vibe-tag">Cyber &amp; Blueprint</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Preview</span>
+      </button>
+
+      <!-- Copy Raw Markdown Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span>Copy Style Tile</span>
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download cyber-kinetic-motorsport.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Download</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="hero-telemetry-strip">
+        <span><span class="status-pulse-dot"></span> TELEMETRY // SYS_ONLINE</span>
+        <span>LAT: 52.4862° N // LON: 1.8904° W</span>
+        <span>CHASSIS: KINETIC-EV 07</span>
+      </div>
+
+      <h1 class="hero-heading">
+        Cyber-Kinetic<br>
+        <span class="neon-accent">Motorsport</span> &amp; Brutalism
+      </h1>
+
+      <div class="hero-grid">
+        <div class="hero-narrative">
+          A high-velocity, high-contrast design system born from the apex of <strong>electric hypercar telemetry</strong>, <strong>cybernetic HUD instrumentation</strong>, and <strong>architectural brutalism</strong>. Driven by acid-voltage neon greens (<code style="color:var(--color-brand-primary-electric)">#9AE600</code>), void black atmospheres (<code style="color:var(--color-brand-primary-electric)">#070E07</code>), 45° chamfered corner cuts, and razor-sharp monospaced readouts.
+          
+          <div class="hero-cta-bar">
+            <button class="btn-cyber-primary" onclick="copyTilePromptDirect()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Prompt for Agent
+            </button>
+            <a href="#demo-cockpit" class="btn-cyber-ghost">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+              Inspect Live Cockpit
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-meta-dock hud-bracket-box">
+          <div class="dock-stat-item">
+            <span class="dock-stat-label">Telemetry Refresh</span>
+            <span class="dock-stat-value">120 Hz</span>
+          </div>
+          <div class="dock-stat-item">
+            <span class="dock-stat-label">Aero Drag Coeff</span>
+            <span class="dock-stat-value">0.198 Cd</span>
+          </div>
+          <div class="dock-stat-item">
+            <span class="dock-stat-label">Power Distribution</span>
+            <span class="dock-stat-value">38/62 RWD</span>
+          </div>
+          <div class="dock-stat-item">
+            <span class="dock-stat-label">Corner Geometry</span>
+            <span class="dock-stat-value">45° Chamfer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: COLOR PALETTE MATRIX -->
+    <section class="spec-section">
+      <div class="section-header">
+        <div>
+          <span class="section-num">[01] COLOR ROLES</span>
+          <h2 class="section-title">Palette Matrix &amp; Swatches</h2>
+        </div>
+        <span class="section-subtitle">Click any swatch to copy Hex code</span>
+      </div>
+
+      <div class="palette-grid">
+        <!-- Swatch 1: Hyper-Volt Electric Green -->
+        <div class="swatch-card" onclick="copyHex('#9AE600', 'Electric Hyper-Volt')">
+          <div class="swatch-color-box" style="background: #9AE600;">
+            <span class="swatch-corner-tag" style="color: #000; background: #fff;">PRIMARY ACCENT</span>
+          </div>
+          <div class="swatch-meta">
+            <span class="swatch-name">Hyper-Volt Electric</span>
+            <span class="swatch-role">Primary HUD &amp; Active Highlights</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#9AE600</span>
+              <span class="swatch-copy-hint">Click to Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 2: Luminescent Glow -->
+        <div class="swatch-card" onclick="copyHex('#B8FF00', 'Luminescent Glow')">
+          <div class="swatch-color-box" style="background: #B8FF00;">
+            <span class="swatch-corner-tag" style="color: #000; background: #fff;">GLOW / FOCUS</span>
+          </div>
+          <div class="swatch-meta">
+            <span class="swatch-name">Luminescent Glow</span>
+            <span class="swatch-role">High-Intensity Focus Outline</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#B8FF00</span>
+              <span class="swatch-copy-hint">Click to Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 3: Racing Olive -->
+        <div class="swatch-card" onclick="copyHex('#70821E', 'Racing Olive')">
+          <div class="swatch-color-box" style="background: #70821E;">
+            <span class="swatch-corner-tag">TINT / WELL</span>
+          </div>
+          <div class="swatch-meta">
+            <span class="swatch-name">Deep Racing Olive</span>
+            <span class="swatch-role">Muted Motorsport Chartreuse</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#70821E</span>
+              <span class="swatch-copy-hint">Click to Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 4: Atmospheric Void -->
+        <div class="swatch-card" onclick="copyHex('#070E07', 'Void Backdrop')">
+          <div class="swatch-color-box" style="background: #070E07; border: 1px solid rgba(154,230,0,0.3);">
+            <span class="swatch-corner-tag">CANVAS</span>
+          </div>
+          <div class="swatch-meta">
+            <span class="swatch-name">Atmospheric Void</span>
+            <span class="swatch-role">Deep Green-Black Canvas</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#070E07</span>
+              <span class="swatch-copy-hint">Click to Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 5: Frosted Acid Glass -->
+        <div class="swatch-card" onclick="copyHex('rgba(128,148,48,0.72)', 'Frosted Acid Glass')">
+          <div class="swatch-color-box" style="background: rgba(128, 148, 48, 0.72); backdrop-filter: blur(8px);">
+            <span class="swatch-corner-tag">GLASS SURFACE</span>
+          </div>
+          <div class="swatch-meta">
+            <span class="swatch-name">Acid-Filtered Glass</span>
+            <span class="swatch-role">Frosted Cockpit Containers</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">rgba(128,148,48,0.72)</span>
+              <span class="swatch-copy-hint">Click to Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 6: Titanium Frosted Glass -->
+        <div class="swatch-card" onclick="copyHex('rgba(215,222,215,0.58)', 'Titanium Frosted')">
+          <div class="swatch-color-box" style="background: rgba(215, 222, 215, 0.58);">
+            <span class="swatch-corner-tag" style="color: #000; background: #fff;">METALLIC GLASS</span>
+          </div>
+          <div class="swatch-meta">
+            <span class="swatch-name">Titanium Frosted</span>
+            <span class="swatch-role">Sub-surface Translucent Plates</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">rgba(215,222,215,0.58)</span>
+              <span class="swatch-copy-hint">Click to Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 7: Stark White Display -->
+        <div class="swatch-card" onclick="copyHex('#FFFFFF', 'Stark White')">
+          <div class="swatch-color-box" style="background: #FFFFFF;">
+            <span class="swatch-corner-tag" style="color: #000; background: #fff;">INK PRIMARY</span>
+          </div>
+          <div class="swatch-meta">
+            <span class="swatch-name">Stark White Display</span>
+            <span class="swatch-role">High-Impact Readouts &amp; Hero Headings</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#FFFFFF</span>
+              <span class="swatch-copy-hint">Click to Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Swatch 8: Obsidian Dark Ink -->
+        <div class="swatch-card" onclick="copyHex('#0A0F0A', 'Obsidian Dark')">
+          <div class="swatch-color-box" style="background: #0A0F0A; border: 1px solid rgba(255,255,255,0.2);">
+            <span class="swatch-corner-tag">INK INVERSE</span>
+          </div>
+          <div class="swatch-meta">
+            <span class="swatch-name">Obsidian Deep</span>
+            <span class="swatch-role">Contrast Ink for Neon Buttons</span>
+            <div class="swatch-hex-row">
+              <span class="swatch-hex">#0A0F0A</span>
+              <span class="swatch-copy-hint">Click to Copy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: TYPOGRAPHY SYSTEM -->
+    <section class="spec-section">
+      <div class="section-header">
+        <div>
+          <span class="section-num">[02] TYPOGRAPHY</span>
+          <h2 class="section-title">Type Specimen &amp; Scale</h2>
+        </div>
+        <span class="section-subtitle">Chakra Petch • Share Tech Mono • Inter</span>
+      </div>
+
+      <div class="type-specimen-grid">
+        <div class="type-card hud-bracket-box">
+          <div class="type-card-header">
+            <span class="type-family-label">Display &amp; HUD Readouts</span>
+            <span class="scale-tag">CHAKRA PETCH + SHARE TECH MONO</span>
+          </div>
+          <div class="type-scale-list">
+            <div class="scale-row">
+              <span class="scale-tag">DISPLAY HERO // 900 EXTRA-BOLD // CLAMP(3.5REM, 8VW, 6.5REM)</span>
+              <div class="scale-display">VELOCITY APEX 09</div>
+            </div>
+            <div class="scale-row">
+              <span class="scale-tag">METRIC NUMERICAL // 700 MONOSPACE // 2.5REM</span>
+              <div class="scale-metric">348.6 <span style="font-size: 1rem; color: #fff;">KM/H</span></div>
+            </div>
+            <div class="scale-row">
+              <span class="scale-tag">TECH SUB-HEADER // 600 UPPERCASE // 0.875REM // TRACKING: 0.22EM</span>
+              <div class="scale-tech">KINETIC ENERGY RECOVERY PROTOCOL</div>
+            </div>
+            <div class="scale-row">
+              <span class="scale-tag">MICRO NAV LINK // 500 MONO // 0.75REM // TRACKING: 0.28EM</span>
+              <div class="scale-nav">NAV.DIAGNOSTICS.SYSTEMS.EXE</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="type-card hud-bracket-box">
+          <div class="type-card-header">
+            <span class="type-family-label">UI Body &amp; Interactive Pangram</span>
+            <span class="scale-tag">INTER / HELVETICA NEUE</span>
+          </div>
+          <div class="type-scale-list">
+            <div class="scale-row">
+              <span class="scale-tag">BODY TEXT // 400 REGULAR // 0.9375REM</span>
+              <div class="scale-body">
+                Precision carbon weave aero panels actively tilt along high-speed corners. Electric dual-inverter torque vectoring redistributes 900kW instantaneous propulsion with zero latency slip.
+              </div>
+            </div>
+          </div>
+
+          <div class="pangram-sandbox hud-bracket-box">
+            <span class="scale-tag" style="display: block; margin-bottom: 6px;">LIVE TYPE TESTER (EDITABLE):</span>
+            <input type="text" class="pangram-input" value="THE QUICK KINETIC HYPERCAR JUMPS OVER 348 KM/H">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: COMPONENT ARCHETYPES -->
+    <section class="spec-section">
+      <div class="section-header">
+        <div>
+          <span class="section-num">[03] COMPONENTS</span>
+          <h2 class="section-title">Component Archetypes &amp; States</h2>
+        </div>
+        <span class="section-subtitle">Buttons • Inputs • Switches • Metrics</span>
+      </div>
+
+      <div class="components-grid">
+        <!-- Panel 1: Buttons -->
+        <div class="component-panel hud-bracket-box">
+          <span class="panel-heading">Kinetic Action Buttons</span>
+          <div class="btn-group-stack">
+            <button class="btn-racing-active">
+              <span>ENGAGE OVERBOOST</span>
+              <span>⚡</span>
+            </button>
+
+            <button class="btn-racing-frosted">
+              <span>AERODYNAMIC TELEMETRY</span>
+              <span>↗</span>
+            </button>
+
+            <button class="btn-racing-danger">
+              <span>ABORT EMERGENCY SYSTEM</span>
+              <span>✕</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Panel 2: Controls & HUD Inputs -->
+        <div class="component-panel hud-bracket-box">
+          <span class="panel-heading">Inputs &amp; Telemetry Switches</span>
+          <input type="text" class="hud-input-field" placeholder="ENTER TELEMETRY CHANNEL..." value="CH_94_KINETIC">
+          
+          <div class="telemetry-toggle-row">
+            <span>TORQUE VECTORING</span>
+            <div class="switch-toggle active" onclick="this.classList.toggle('active')"></div>
+          </div>
+
+          <div class="telemetry-toggle-row">
+            <span>ACTIVE REGEN (ERS)</span>
+            <div class="switch-toggle active" onclick="this.classList.toggle('active')"></div>
+          </div>
+
+          <div class="telemetry-toggle-row">
+            <span>TRACTION SLIP LIMIT</span>
+            <div class="switch-toggle" onclick="this.classList.toggle('active')"></div>
+          </div>
+        </div>
+
+        <!-- Panel 3: HUD Status Cards & Chips -->
+        <div class="component-panel hud-bracket-box">
+          <span class="panel-heading">HUD Metric Modules</span>
+          <div class="hud-metric-module chamfer-tr">
+            <div class="hud-metric-label">Inverter Temp</div>
+            <div class="hud-metric-val">68.4°C</div>
+            <div class="hud-metric-bar">
+              <div class="hud-metric-progress" style="width: 45%;"></div>
+            </div>
+          </div>
+
+          <div class="chip-cloud">
+            <span class="hud-chip active">AERO ACTIVE</span>
+            <span class="hud-chip active">ERS STAGE 2</span>
+            <span class="hud-chip">DRS READY</span>
+            <span class="hud-chip">PIT LINK</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: LIVING MICRO-EXPERIENCE // TELEMETRY COCKPIT -->
+    <section class="spec-section" id="demo-cockpit">
+      <div class="section-header">
+        <div>
+          <span class="section-num">[04] LIVING EXPERIENCE</span>
+          <h2 class="section-title">Hypercar Cockpit &amp; HUD</h2>
+        </div>
+        <span class="section-subtitle">Realtime Cyber-Kinetic Instrument Cluster</span>
+      </div>
+
+      <div class="cockpit-wrapper hud-bracket-box">
+        <!-- Top Cockpit Header -->
+        <div class="cockpit-top-bar">
+          <div class="cockpit-title-group">
+            <span class="vehicle-badge">APEX KINETIC // PROTOTYPE-07</span>
+            <span class="vehicle-status-tag">RACE MODE</span>
+          </div>
+          <div style="font-family: var(--font-tech-mono); font-size: 0.75rem; color: var(--color-brand-primary-electric);">
+            LAP 14 / 58 • SILVERSTONE GP
+          </div>
+        </div>
+
+        <!-- Telemetry Cluster -->
+        <div class="cockpit-telemetry-cluster">
+          <!-- Left Panel: G-Force & ERS -->
+          <div class="hud-sub-panel chamfer-both">
+            <div>
+              <span class="panel-heading" style="display: block; margin-bottom: 8px;">LATERAL G-FORCE</span>
+              <div class="gforce-reticle-box">
+                <div class="gforce-node"></div>
+              </div>
+            </div>
+            <div>
+              <span class="panel-heading" style="display: block; margin-bottom: 8px;">BATTERY STATE (SOC)</span>
+              <div class="hud-metric-val" style="font-size: 1.75rem;">89.2%</div>
+              <div class="hud-metric-bar">
+                <div class="hud-metric-progress" style="width: 89.2%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center Panel: Speed & RPM Gauge -->
+          <div class="cockpit-center-gauge">
+            <span class="gear-indicator">6</span>
+            <div class="main-speed-val" id="hud-live-speed">312</div>
+            <span class="speed-unit">KM / H</span>
+
+            <div class="rpm-stepper-bar">
+              <div class="rpm-segment active"></div>
+              <div class="rpm-segment active"></div>
+              <div class="rpm-segment active"></div>
+              <div class="rpm-segment active"></div>
+              <div class="rpm-segment active"></div>
+              <div class="rpm-segment active"></div>
+              <div class="rpm-segment active"></div>
+              <div class="rpm-segment active"></div>
+              <div class="rpm-segment active"></div>
+              <div class="rpm-segment redline"></div>
+              <div class="rpm-segment redline"></div>
+            </div>
+          </div>
+
+          <!-- Right Panel: Sector Timing & Delta -->
+          <div class="hud-sub-panel chamfer-both">
+            <div>
+              <span class="panel-heading" style="display: block; margin-bottom: 8px;">SECTOR TIMING</span>
+              <div class="sector-timing-list">
+                <div class="sector-row fastest">
+                  <span>S1 (MAGGOTTS)</span>
+                  <span>26.412s 🟣</span>
+                </div>
+                <div class="sector-row green">
+                  <span>S2 (HANGAR)</span>
+                  <span>34.180s 🟢</span>
+                </div>
+                <div class="sector-row">
+                  <span>S3 (STOWE)</span>
+                  <span>21.904s 🟡</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="panel-heading" style="display: block; margin-bottom: 8px;">DELTA TO LEADER</span>
+              <div class="hud-metric-val" style="font-size: 1.5rem; color: #50E3C2;">-0.342s</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cockpit Bottom Dock Controls -->
+        <div class="cockpit-bottom-dock">
+          <div class="cockpit-mode-selector">
+            <button class="mode-btn active" onclick="setCockpitMode(this, 'QUALIFY')">QUALIFY</button>
+            <button class="mode-btn" onclick="setCockpitMode(this, 'RACE')">RACE</button>
+            <button class="mode-btn" onclick="setCockpitMode(this, 'ENERGY SAVE')">ECO REGEN</button>
+            <button class="mode-btn" onclick="setCockpitMode(this, 'ATTACK')">ATTACK 900kW</button>
+          </div>
+
+          <div style="font-family: var(--font-tech-mono); font-size: 0.75rem; color: var(--color-text-muted);">
+            HYDRAULIC PRESSURE: <span style="color: var(--color-brand-primary-electric);">210 BAR</span> // DOWNFORCE: <span style="color: var(--color-brand-primary-electric);">1,450 KG</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: STYLE TILE PROMPT CODE DRAWER -->
+    <section class="spec-section">
+      <div class="section-header">
+        <div>
+          <span class="section-num">[05] SPECIFICATION</span>
+          <h2 class="section-title">Markdown Style Tile</h2>
+        </div>
+        <span class="section-subtitle">Machine-Readable AI Design Prompt</span>
+      </div>
+
+      <div class="markdown-drawer hud-bracket-box">
+        <div class="drawer-header">
+          <span class="drawer-title">style-tile-cyber-kinetic-motorsport.md</span>
+          <button class="btn-tile btn-copy" onclick="copyTilePromptDirect()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy Full Spec</span>
+          </button>
+        </div>
+        <pre class="markdown-code-block" id="rendered-spec-view"></pre>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL / SLIDE-OVER SPEC VIEWER -->
+  <div class="spec-modal-overlay" id="spec-modal" onclick="closeSpecModalOnOutside(event)">
+    <div class="spec-modal-dialog">
+      <div class="spec-modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="design-code">TILE-037</span>
+          <span style="font-family: var(--font-display); font-weight: 700; color: #fff; text-transform: uppercase;">Cyber-Kinetic Motorsport Spec</span>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-tile btn-copy" onclick="copyTilePromptDirect()">Copy Markdown</button>
+          <button class="btn-tile" onclick="closeSpecModal()">✕ Close</button>
+        </div>
+      </div>
+      <div class="spec-modal-body">
+        <pre class="markdown-code-block" id="modal-spec-view" style="max-height: none;"></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-popup" id="toast-popup">
+    ✓ Copied to Clipboard!
+  </div>
+
+  <!-- EMBEDDED MACHINE-READABLE MARKDOWN STYLE TILE -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Aesthetic: Cyber-Kinetic Motorsport • High-Performance Brutalism • Neon HUD
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Cyber-Kinetic Motorsport & High-Performance Brutalism fuses the visual adrenaline 
+of electric hypercar telemetry, high-density aerospace HUD instrumentation, and 
+stark architectural brutalism. Characterized by acid/hyper-volt neon green (#9AE600), 
+deep atmospheric void green-black (#070E07), 45-degree chamfered geometry, and 
+rapid telemetry feedback, it is tailored for telemetry dashboards, high-frequency 
+fintech terminals, automotive cockpits, and cutting-edge gaming interfaces.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Brand & Accent Voltage */
+  --color-brand-primary-electric:    #9AE600; /* Acid / Hyper-Volt Neon Green */
+  --color-brand-primary-glow:        #B8FF00; /* High-intensity luminescent highlight */
+  --color-brand-tint-olive:          #70821E; /* Deep racing chartreuse / Muted olive */
+
+  /* Surfaces & Backdrop */
+  --color-surface-backdrop:          #070E07; /* Deep atmospheric void green-black */
+  --color-surface-card-tinted:       rgba(128, 148, 48, 0.72); /* Acid-filtered frosted glass */
+  --color-surface-card-frosted:      rgba(215, 222, 215, 0.58); /* Titanium frosted glass */
+  --color-surface-scrim-dark:        rgba(0, 0, 0, 0.65); /* High-contrast background dampener */
+  --color-surface-card-dark:         #0D140D; /* Elevated dark card container */
+
+  /* Inks & Readout Typography */
+  --color-text-primary-inverse:      #FFFFFF; /* High-impact display stark white */
+  --color-text-primary-dark:         #0A0F0A; /* Deep obsidian for high-contrast cards */
+  --color-text-secondary-neon:       #9AE600; /* Digital HUD accent text */
+  --color-text-muted:                rgba(255, 255, 255, 0.60); /* De-emphasized metadata */
+
+  /* Borders & Dividers */
+  --color-border-hairline:           rgba(255, 255, 255, 0.12); /* Subtle structural trace */
+  --color-border-neon-active:        #9AE600; /* Dynamic focus/active outline */
+  --color-border-subtle-glow:        rgba(154, 230, 0, 0.35);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-family-display:   "Chakra Petch", "Nippo", "Druk Wide", sans-serif;
+--font-family-tech-mono: "Share Tech Mono", "Oxanium", "Space Mono", monospace;
+--font-family-ui:        "Inter", "Helvetica Neue", sans-serif;
+
+[ TYPOGRAPHY SCALE & ROLES ]
+• Display Hero (Headings)    : clamp(3.5rem, 10vw, 8rem) | 900 Weight | Line-height: 0.85 | Uppercase | Tracking: 0.04em
+• Metric Values (Readouts)   : clamp(2.5rem, 5vw, 4.5rem) | 700 Weight | Line-height: 1.00 | Lowercase/Mono | Tracking: 0.06em
+• Tech Sub-headers & Labels  : 0.875rem | 600 Weight | Line-height: 1.40 | Uppercase | Tracking: 0.22em
+• Navigation & Micro Actions : 0.75rem  | 500 Weight | Line-height: 1.20 | Uppercase | Tracking: 0.28em
+• Body Text                  : 0.9375rem | 400 Weight | Line-height: 1.60 | Standard Casing | Sans-serif
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-none:       0px;
+--radius-micro:      1px;
+--radius-chamfer:    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+--radius-pill-btn:   2px; /* Hard-edged industrial pill */
+
+/* Elevation & Shadows */
+--glow-neon-ambient: 0px 0px 32px rgba(154, 230, 0, 0.35);
+--glow-neon-focused: 0px 0px 48px rgba(184, 255, 0, 0.65);
+--shadow-hard-drop:  0 20px 40px rgba(0, 0, 0, 0.85);
+
+/* -----------------------------------------------------------------------------
+ * 5. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Strict chamfered corners, solid electric neon fill (#9AE600) with dark obsidian ink (#0A0F0A). Rapid 120ms snap transitions.
+- **HUD Metric Cards**: Frosted titanium backdrop (blur 24px saturate 180%), inset 1px highlight, hairline borders with HUD corner brackets.
+- **Inputs**: Dark well container (#000000 60%), neon focus glow ring, uppercase mono placeholders.
+- **Navigation**: Sticky frosted void header, monospaced tracking, tactile neon active indicators.
+
+/* -----------------------------------------------------------------------------
+ * 6. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO rounded bubbly organic corners (strict 0px to 2px or 45-degree chamfers only).
+- NO generic purple/cyan neon synthwave gradients; maintain electric acid volt green + deep void olive.
+- NO floating borderless cards; every module requires structural hairline borders or corner bracket traces.
+================================================================================
+  </script>
+
+  <!-- JAVASCRIPT LOGIC PER AGENT SPEC -->
+  <script>
+    const markdownContent = document.getElementById("style-tile-markdown").textContent.trim();
+
+    // Populate spec viewers on page
+    document.getElementById("rendered-spec-view").textContent = markdownContent;
+    document.getElementById("modal-spec-view").textContent = markdownContent;
+
+    function triggerToast(message = "✓ Copied to Clipboard!") {
+      const toast = document.getElementById("toast-popup");
+      toast.textContent = message;
+      toast.style.display = "block";
+      setTimeout(() => {
+        toast.style.display = "none";
+      }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(() => {
+        triggerToast("✓ Style Tile Copied!");
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const original = btn.innerHTML;
+          btn.innerHTML = `<span>✓ Copied!</span>`;
+          setTimeout(() => { btn.innerHTML = original; }, 2000);
+        }
+      });
+    }
+
+    // Header buttons bindings
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+
+    document.getElementById("btn-download-tile").addEventListener("click", () => {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-cyber-kinetic-motorsport.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading markdown...");
+    });
+
+    document.getElementById("btn-preview-tile").addEventListener("click", () => {
+      document.getElementById("spec-modal").classList.add("active");
+    });
+
+    function closeSpecModal() {
+      document.getElementById("spec-modal").classList.remove("active");
+    }
+
+    function closeSpecModalOnOutside(e) {
+      if (e.target.id === "spec-modal") {
+        closeSpecModal();
+      }
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast(`✓ Copied ${name} (${hex})`);
+      });
+    }
+
+    // Cockpit interactive simulation
+    function setCockpitMode(btn, modeName) {
+      document.querySelectorAll(".cockpit-mode-selector .mode-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const speedEl = document.getElementById("hud-live-speed");
+      if (modeName === "ATTACK") {
+        speedEl.textContent = "354";
+        triggerToast("⚡ ATTACK MODE: 900kW UNLOCKED");
+      } else if (modeName === "QUALIFY") {
+        speedEl.textContent = "332";
+      } else if (modeName === "RACE") {
+        speedEl.textContent = "312";
+      } else {
+        speedEl.textContent = "274";
+      }
+    }
+
+    // Speed fluctuation animation
+    setInterval(() => {
+      const speedEl = document.getElementById("hud-live-speed");
+      if (speedEl) {
+        let current = parseInt(speedEl.textContent, 10);
+        let delta = Math.floor(Math.random() * 5) - 2;
+        speedEl.textContent = Math.max(260, Math.min(360, current + delta));
+      }
+    }, 800);
+  </script>
+</body>
+</html>

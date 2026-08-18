@@ -5987,6 +5987,261 @@ Handcrafted Accent:            Doodle/Marker Highlights (Underlines, hand-drawn 
 - NO rigid sharp 0px corners on soft UI tiles (strictly adhere to 32px/24px/pill scale).
 - NO corporate stiff transitions; always retain bouncy spring feedback.
 ================================================================================`
+  },
+  {
+    id: "TILE-036",
+    slug: "earthen-minimalist-tactical-retro",
+    name: "Earthen Minimalist / Tactical Retro",
+    vibe: "Warm Bone Canvas • Military Olive • Electric Mustard • Flat Surface Nesting • Anton Condensed • Tactile Matte Micro-Depth",
+    vibeBadge: "Minimalist & Monastic",
+    categories: ["minimalist"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Anton",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Warm Bone Base", hex: "#F3EFE0" },
+      { name: "Soft Parchment Card", hex: "#FAF7EE" },
+      { name: "Olive Drab / Deep Moss", hex: "#4B4F36" },
+      { name: "Electric Mustard Accent", hex: "#EBE53B" },
+      { name: "Deep Forest Ink", hex: "#25281C" },
+      { name: "Lichen Gray Secondary", hex: "#666952" },
+      { name: "Parchment Stroke", hex: "#E4DEC9" }
+    ],
+    description: "Earthen Minimalist / Tactical Retro: High-contrast utilitarian design system founded on flat surface nesting, muted military olive (#4B4F36), warm bone parchment (#F3EFE0), electric mustard (#EBE53B), ultra-bold condensed Anton display type, and tactile matte micro-depth.",
+    markdownSpec: `================================================================================
+  STYLE TILE // "EARTHEN MINIMALIST / TACTICAL RETRO" (TILE-036)
+================================================================================
+
+1. COLOR ROLES & PALETTE
+--------------------------------------------------------------------------------
+Surface & Canvas:
+  • bg-canvas              : #F3EFE0  /* Warm Bone / Canvas Cream */
+  • bg-surface-light       : #FAF7EE  /* Elevated Card Light / Soft Parchment */
+  • bg-surface-contrast    : #4B4F36  /* Olive Drab / Deep Moss Card */
+  • bg-surface-badge       : #EBE53B  /* Electric Mustard / Highlighter Yellow */
+
+Brand & Accents:
+  • brand-primary          : #4B4F36  /* Muted Military Olive */
+  • brand-accent           : #EBE53B  /* Neon Acid Yellow */
+  • brand-accent-hover     : #DFD82E  /* Deep Acid Gold */
+
+Typography / Content:
+  • text-display           : #4B4F36  /* Headline Primary Olive */
+  • text-primary           : #25281C  /* Deep Forest / Near Black */
+  • text-secondary         : #666952  /* Desaturated Lichen Gray */
+  • text-inverse           : #FAF7EE  /* Crisp Parchment White */
+  • text-inverse-muted     : #B8BBA8  /* Chalk Moss */
+  • text-badge             : #25281C  /* Ink Black */
+
+Borders & Outlines:
+  • border-prominent       : #4B4F36  /* High-contrast solid stroke (2.5px / 2px) */
+  • border-subtle          : #E4DEC9  /* Low-contrast divider / card stroke (1px) */
+  • border-focus           : #EBE53B  /* Active accessibility focus ring */
+
+
+2. TYPOGRAPHY SYSTEM
+--------------------------------------------------------------------------------
+Primary Typeface   : "Plus Jakarta Sans" / "Satoshi" (Geometric Modern Sans)
+Display Typeface   : "Anton" / "Clash Display" / "Impact" (Ultra-Bold Condensed Sans)
+
+Scale & Hierarchy:
+  • Display Hero   : 72px / Line-height: 0.95 / Weight: 900 / Tracking: -0.03em / UPPERCASE
+  • Pricing Metric : 48px / Line-height: 1.00 / Weight: 800 / Tracking: -0.02em / Normal
+  • Metric Unit    : 14px / Line-height: 1.20 / Weight: 600 / Tracking:  0.00em / Lowercase
+  • Card Header    : 22px / Line-height: 1.20 / Weight: 800 / Tracking: -0.01em / Title Case
+  • Section Label  : 12px / Line-height: 1.30 / Weight: 800 / Tracking: +0.06em / UPPERCASE
+  • Body / Feature : 13px / Line-height: 1.45 / Weight: 500 / Tracking: -0.01em / Sentence
+  • Badge Label    : 10px / Line-height: 1.00 / Weight: 800 / Tracking: +0.08em / UPPERCASE
+  • Button Text    : 12px / Line-height: 1.00 / Weight: 800 / Tracking: +0.05em / UPPERCASE
+
+
+3. CORNER GEOMETRY (BORDER RADII)
+--------------------------------------------------------------------------------
+  • radius-sm      : 6px       /* Micro-elements, tooltips */
+  • radius-md      : 12px      /* Feature blocks, inner nested containers */
+  • radius-lg      : 20px      /* Main pricing cards, panel wrappers */
+  • radius-full    : 9999px    /* Buttons, badges, toggle switches, pills */
+
+
+4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+--------------------------------------------------------------------------------
+Philosophical Model: Flat Surface Nesting with Crisp Micro-Depth (Tactile Matte)
+
+  • shadow-flat-base   : none (pure flat background layering)
+  • shadow-card-hover  : 0px 12px 28px -6px rgba(75, 79, 54, 0.12)
+  • shadow-featured    : 0px 8px 24px -4px rgba(75, 79, 54, 0.18)
+  • shadow-pill-toggle : inset 0px 2px 4px rgba(0, 0, 0, 0.15)
+
+
+5. SPACING & SPATIAL SCALE (8pt Grid Base)
+--------------------------------------------------------------------------------
+  • space-2xs  : 4px   /* Tag internal padding, icon-to-text gap */
+  • space-xs   : 8px   /* Toggle paddings, badge gutters */
+  • space-sm   : 12px  /* List item vertical rhythm */
+  • space-md   : 16px  /* Internal content gap */
+  • space-lg   : 24px  /* Card body padding, horizontal gutters */
+  • space-xl   : 32px  /* Card-to-card gap, grid gap */
+  • space-2xl  : 48px  /* Header to component block distance */
+
+
+6. BORDERS & DIVIDERS
+--------------------------------------------------------------------------------
+  • Card Outlines      : 
+      - Standard Card  : 1px solid rgba(75, 79, 54, 0.15)
+      - Hero/Active    : 2.5px solid #4B4F36
+  • Section Splitting  : 
+      - Structural dual-tone split (Light Header Block ➔ Dark Content Bottom)
+  • Dividers           : 
+      - Borderless tonal shift or 1px dashed rgba(75, 79, 54, 0.20)
+
+
+7. ICONOGRAPHY LANGUAGE
+--------------------------------------------------------------------------------
+  • Family Style       : Solid Filled Circles with Knockout Center Icons
+  • Dimensions         : 16px × 16px container (10px icon mask)
+  • Standard State     : 
+      - Container: #4B4F36 (Deep Olive)
+      - Glyph    : #FAF7EE (Light Cream Check)
+  • Inverted State     : 
+      - Container: #FAF7EE (Light Cream)
+      - Glyph    : #4B4F36 (Deep Olive Check)
+  • Stroke Weight      : 2px bold, rounded caps, geometric symmetry
+
+
+8. INTERACTION & FEEDBACK RULES
+--------------------------------------------------------------------------------
+Primary Action Button (Standard):
+  • Default    : bg: #4B4F36 | text: #FAF7EE | scale: 1.0
+  • Hover      : bg: #3D402C | text: #FFFFFF | scale: 1.01 | cursor: pointer
+  • Active     : bg: #313423 | scale: 0.98
+
+Promoted Action Button (Accent):
+  • Default    : bg: #EBE53B | text: #25281C | scale: 1.0
+  • Hover      : bg: #DFD82E | text: #000000 | shadow: 0px 4px 12px rgba(235, 229, 59, 0.35)
+  • Active     : bg: #CFC724 | scale: 0.98
+
+Interactive Switch (Toggle):
+  • Track      : bg: #4B4F36 | height: 22px | width: 42px | radius: 9999px
+  • Thumb      : bg: #EBE53B | size: 16px circle | transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)
+
+Card Hover Dynamics:
+  • Transition : all 200ms cubic-bezier(0.16, 1, 0.3, 1)
+  • Transform  : translateY(-4px) on unselected cards
+================================================================================`
+  },
+  {
+    id: "TILE-037",
+    slug: "cyber-kinetic-motorsport",
+    name: "Cyber-Kinetic Motorsport",
+    vibe: "Hyper-Volt Neon Green • Atmospheric Void • 45° Chamfered Geometry • Electric Hypercar Telemetry • Chakra Petch Display • Share Tech Mono HUD • High-Performance Brutalism",
+    vibeBadge: "Cyber & Blueprint",
+    categories: ["cyber"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Chakra Petch",
+      sans: "Inter",
+      mono: "Share Tech Mono"
+    },
+    palette: [
+      { name: "Electric Hyper-Volt", hex: "#9AE600" },
+      { name: "Luminescent Glow", hex: "#B8FF00" },
+      { name: "Deep Racing Olive", hex: "#70821E" },
+      { name: "Atmospheric Void", hex: "#070E07" },
+      { name: "Frosted Acid Glass", hex: "#809430" },
+      { name: "Titanium Frosted", hex: "#D7DED7" },
+      { name: "Stark White", hex: "#FFFFFF" },
+      { name: "Obsidian Deep", hex: "#0A0F0A" }
+    ],
+    description: "Cyber-Kinetic Motorsport & High-Performance Brutalism: High-voltage electric hypercar telemetry HUD with acid-volt neon green (#9AE600), atmospheric void (#070E07), 45° chamfer geometry, Chakra Petch display type, and rapid cockpit telemetry feedback.",
+    markdownSpec: `================================================================================
+  Aesthetic: Cyber-Kinetic Motorsport • High-Performance Brutalism • Neon HUD
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Cyber-Kinetic Motorsport & High-Performance Brutalism fuses the visual adrenaline 
+of electric hypercar telemetry, high-density aerospace HUD instrumentation, and 
+stark architectural brutalism. Characterized by acid/hyper-volt neon green (#9AE600), 
+deep atmospheric void green-black (#070E07), 45-degree chamfered geometry, and 
+rapid telemetry feedback, it is tailored for telemetry dashboards, high-frequency 
+fintech terminals, automotive cockpits, and cutting-edge gaming interfaces.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Brand & Accent Voltage */
+  --color-brand-primary-electric:    #9AE600; /* Acid / Hyper-Volt Neon Green */
+  --color-brand-primary-glow:        #B8FF00; /* High-intensity luminescent highlight */
+  --color-brand-tint-olive:          #70821E; /* Deep racing chartreuse / Muted olive */
+
+  /* Surfaces & Backdrop */
+  --color-surface-backdrop:          #070E07; /* Deep atmospheric void green-black */
+  --color-surface-card-tinted:       rgba(128, 148, 48, 0.72); /* Acid-filtered frosted glass */
+  --color-surface-card-frosted:      rgba(215, 222, 215, 0.58); /* Titanium frosted glass */
+  --color-surface-scrim-dark:        rgba(0, 0, 0, 0.65); /* High-contrast background dampener */
+  --color-surface-card-dark:         #0D140D; /* Elevated dark card container */
+
+  /* Inks & Readout Typography */
+  --color-text-primary-inverse:      #FFFFFF; /* High-impact display stark white */
+  --color-text-primary-dark:         #0A0F0A; /* Deep obsidian for high-contrast cards */
+  --color-text-secondary-neon:       #9AE600; /* Digital HUD accent text */
+  --color-text-muted:                rgba(255, 255, 255, 0.60); /* De-emphasized metadata */
+
+  /* Borders & Dividers */
+  --color-border-hairline:           rgba(255, 255, 255, 0.12); /* Subtle structural trace */
+  --color-border-neon-active:        #9AE600; /* Dynamic focus/active outline */
+  --color-border-subtle-glow:        rgba(154, 230, 0, 0.35);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-family-display:   "Chakra Petch", "Nippo", "Druk Wide", sans-serif;
+--font-family-tech-mono: "Share Tech Mono", "Oxanium", "Space Mono", monospace;
+--font-family-ui:        "Inter", "Helvetica Neue", sans-serif;
+
+[ TYPOGRAPHY SCALE & ROLES ]
+• Display Hero (Headings)    : clamp(3.5rem, 10vw, 8rem) | 900 Weight | Line-height: 0.85 | Uppercase | Tracking: 0.04em
+• Metric Values (Readouts)   : clamp(2.5rem, 5vw, 4.5rem) | 700 Weight | Line-height: 1.00 | Lowercase/Mono | Tracking: 0.06em
+• Tech Sub-headers & Labels  : 0.875rem | 600 Weight | Line-height: 1.40 | Uppercase | Tracking: 0.22em
+• Navigation & Micro Actions : 0.75rem  | 500 Weight | Line-height: 1.20 | Uppercase | Tracking: 0.28em
+• Body Text                  : 0.9375rem | 400 Weight | Line-height: 1.60 | Standard Casing | Sans-serif
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-none:       0px;
+--radius-micro:      1px;
+--radius-chamfer:    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+--radius-pill-btn:   2px; /* Hard-edged industrial pill */
+
+/* Elevation & Shadows */
+--glow-neon-ambient: 0px 0px 32px rgba(154, 230, 0, 0.35);
+--glow-neon-focused: 0px 0px 48px rgba(184, 255, 0, 0.65);
+--shadow-hard-drop:  0 20px 40px rgba(0, 0, 0, 0.85);
+
+/* -----------------------------------------------------------------------------
+ * 5. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Strict chamfered corners, solid electric neon fill (#9AE600) with dark obsidian ink (#0A0F0A). Rapid 120ms snap transitions.
+- **HUD Metric Cards**: Frosted titanium backdrop (blur 24px saturate 180%), inset 1px highlight, hairline borders with HUD corner brackets.
+- **Inputs**: Dark well container (#000000 60%), neon focus glow ring, uppercase mono placeholders.
+- **Navigation**: Sticky frosted void header, monospaced tracking, tactile neon active indicators.
+
+/* -----------------------------------------------------------------------------
+ * 6. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO rounded bubbly organic corners (strict 0px to 2px or 45-degree chamfers only).
+- NO generic purple/cyan neon synthwave gradients; maintain electric acid volt green + deep void olive.
+- NO floating borderless cards; every module requires structural hairline borders or corner bracket traces.
+================================================================================`
   }
 ];
 
