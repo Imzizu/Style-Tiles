@@ -3538,6 +3538,101 @@ const isMobileViewport = () => typeof window !== "undefined" && window.matchMedi
 let isCompactMode = isMobileViewport(); // Default OFF on desktop (> 768px), default ON on mobile (<= 768px)
 const CATALOG_PAGE_SIZE = 15;
 let catalogVisibleCount = CATALOG_PAGE_SIZE;
+const CATALOG_STATE_KEY = "styleTiles.catalogState.v1";
+let persistCatalogScrollTimer = null;
+
+function getCatalogScrollY() {
+  return window.pageYOffset || document.documentElement.scrollTop || 0;
+}
+
+function readCatalogState() {
+  try {
+    const raw = sessionStorage.getItem(CATALOG_STATE_KEY);
+    if (!raw) return null;
+    const state = JSON.parse(raw);
+    return state && typeof state === "object" ? state : null;
+  } catch (err) {
+    return null;
+  }
+}
+
+function persistCatalogState() {
+  try {
+    sessionStorage.setItem(CATALOG_STATE_KEY, JSON.stringify({
+      category: currentCategory,
+      search: currentSearchQuery,
+      layout: currentLayoutMode,
+      compact: isCompactMode,
+      userToggledCompact,
+      visibleCount: catalogVisibleCount,
+      scrollY: getCatalogScrollY()
+    }));
+  } catch (err) {
+    // sessionStorage can be unavailable in private mode
+  }
+}
+
+function schedulePersistCatalogState() {
+  if (persistCatalogScrollTimer) return;
+  persistCatalogScrollTimer = window.setTimeout(() => {
+    persistCatalogScrollTimer = null;
+    persistCatalogState();
+  }, 150);
+}
+
+function applyRestoredCatalogState(state) {
+  if (!state) return false;
+
+  if (typeof state.category === "string" && state.category) {
+    currentCategory = state.category;
+  }
+  if (typeof state.search === "string") {
+    currentSearchQuery = state.search;
+  }
+  if (state.layout === "split" || state.layout === "grid") {
+    currentLayoutMode = state.layout;
+  }
+  if (typeof state.compact === "boolean") {
+    isCompactMode = state.compact;
+    userToggledCompact = !!state.userToggledCompact;
+  }
+  if (typeof state.visibleCount === "number" && Number.isFinite(state.visibleCount)) {
+    catalogVisibleCount = Math.max(CATALOG_PAGE_SIZE, Math.round(state.visibleCount));
+  }
+
+  const searchInput = document.getElementById("search-input");
+  if (searchInput) searchInput.value = currentSearchQuery;
+
+  document.querySelectorAll(".filter-chip").forEach(chip => {
+    chip.classList.toggle("active", chip.getAttribute("data-cat") === currentCategory);
+  });
+
+  return true;
+}
+
+function restoreCatalogScroll(scrollY) {
+  if (typeof scrollY !== "number" || !Number.isFinite(scrollY) || scrollY <= 0) return;
+
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  const root = document.documentElement;
+  const prevBehavior = root.style.scrollBehavior;
+  root.style.scrollBehavior = "auto";
+
+  const apply = () => window.scrollTo(0, scrollY);
+  apply();
+  requestAnimationFrame(() => {
+    apply();
+    requestAnimationFrame(() => {
+      apply();
+      root.style.scrollBehavior = prevBehavior;
+    });
+  });
+  setTimeout(apply, 60);
+  setTimeout(apply, 200);
+}
 
 // -----------------------------------------------------------------------------
 // TOAST SYSTEM
@@ -3750,12 +3845,17 @@ function updateShowMoreBar(totalFiltered) {
   `;
 }
 
-function renderCatalog() {
+function renderCatalog(options = {}) {
   const gridContainer = document.getElementById("catalog-grid");
   if (!gridContainer) return;
 
-  catalogVisibleCount = CATALOG_PAGE_SIZE;
   const filtered = getFilteredTiles();
+  if (!options.preserveVisibleCount) {
+    catalogVisibleCount = CATALOG_PAGE_SIZE;
+  }
+  catalogVisibleCount = filtered.length
+    ? Math.min(Math.max(catalogVisibleCount, 0), filtered.length)
+    : CATALOG_PAGE_SIZE;
 
   updateDisplayedCount(Math.min(catalogVisibleCount, filtered.length), filtered.length);
 
@@ -3768,6 +3868,7 @@ function renderCatalog() {
       </div>
     `;
     updateShowMoreBar(0);
+    if (!options.skipPersist) persistCatalogState();
     return;
   }
 
@@ -3777,6 +3878,7 @@ function renderCatalog() {
 
   requestAnimationFrame(resizeCardIframes);
   setTimeout(resizeCardIframes, 100);
+  if (!options.skipPersist) persistCatalogState();
 }
 
 function showMoreTiles() {
@@ -3792,6 +3894,7 @@ function showMoreTiles() {
     catalogVisibleCount = filtered.length;
     updateDisplayedCount(filtered.length, filtered.length);
     updateShowMoreBar(filtered.length);
+    persistCatalogState();
     return;
   }
 
@@ -3804,6 +3907,7 @@ function showMoreTiles() {
   catalogVisibleCount = nextVisible;
   updateDisplayedCount(catalogVisibleCount, filtered.length);
   updateShowMoreBar(filtered.length);
+  persistCatalogState();
 
   requestAnimationFrame(resizeCardIframes);
   setTimeout(resizeCardIframes, 100);
@@ -3992,6 +4096,7 @@ function setViewMode(mode) {
   if (anchor) {
     restoreFocalAnchor(anchor);
   }
+  persistCatalogState();
 }
 
 function toggleCompactMode() {
@@ -4002,6 +4107,7 @@ function toggleCompactMode() {
   if (anchor) {
     restoreFocalAnchor(anchor);
   }
+  persistCatalogState();
   showToast(
     isCompactMode ? "Compact Mode: ON (16:9 Previews Only)" : "Compact Mode: OFF (Full Specifications)",
     isCompactMode ? "⊞" : "⊟"
@@ -4152,11 +4258,28 @@ function updateFilterChipCounts() {
 // INITIALIZATION
 // -----------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
+  const savedCatalogState = readCatalogState();
+  const restoredCatalog = applyRestoredCatalogState(savedCatalogState);
+
   applyViewSettings();
-  renderCatalog();
+  renderCatalog({
+    preserveVisibleCount: restoredCatalog,
+    skipPersist: true
+  });
   updateFilterChipCounts();
   updateDraftingClock();
   setInterval(updateDraftingClock, 1000);
+
+  if (restoredCatalog && savedCatalogState && savedCatalogState.scrollY > 0) {
+    restoreCatalogScroll(savedCatalogState.scrollY);
+    requestAnimationFrame(() => {
+      persistCatalogState();
+      document.documentElement.classList.remove("catalog-restoring");
+    });
+  } else {
+    persistCatalogState();
+    document.documentElement.classList.remove("catalog-restoring");
+  }
 
   // Search input listener + viewport-aware placeholder
   const searchInput = document.getElementById("search-input");
@@ -4199,6 +4322,19 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       focusSearch();
     }
+  });
+
+  // Keep catalog place (scroll + expanded Show More batch) across design-page trips
+  window.addEventListener("scroll", schedulePersistCatalogState, { passive: true });
+  window.addEventListener("pagehide", persistCatalogState);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") persistCatalogState();
+  });
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href]");
+    if (!link) return;
+    const href = link.getAttribute("href") || "";
+    if (/Designs\/[^/]+\.html/i.test(href)) persistCatalogState();
   });
 
   // Window resize & ResizeObserver for dynamic 16:9 iframe scaling

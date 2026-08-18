@@ -3,6 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html.catalog-restoring { visibility: hidden; }
+  </style>
+  <script>
+    (function () {
+      try {
+        var raw = sessionStorage.getItem("styleTiles.catalogState.v1");
+        if (!raw) return;
+        var state = JSON.parse(raw);
+        if (!state || typeof state !== "object") return;
+        var shouldRestore = (typeof state.scrollY === "number" && state.scrollY > 0)
+          || (typeof state.visibleCount === "number" && state.visibleCount > 15);
+        if (!shouldRestore) return;
+        if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+        document.documentElement.classList.add("catalog-restoring");
+        window.setTimeout(function () {
+          document.documentElement.classList.remove("catalog-restoring");
+        }, 1200);
+      } catch (err) {}
+    })();
+  </script>
   <title>Style Tiles — Visual Design Systems for AI Agents & Vibe Coders</title>
   <meta name="description" content="A curated registry of aesthetic design systems and Style Tiles for AI agents and vibe coders. Browse 16:9 design previews, inspect tokens, and copy markdown prompts.">
   
