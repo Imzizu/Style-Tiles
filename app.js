@@ -3359,6 +3359,173 @@ Control Elements (Buttons & Inputs):
   - NO generic rainbow gradient keyword text fills.
   - NO textureless plastic flat surfaces without paper fiber or tactile depth.
 ================================================================================`
+  },
+  {
+    id: "TILE-021",
+    slug: "retro-pop-sunset",
+    name: "Retro-Pop Sunset",
+    vibe: "DTC High-Energy • 1970s Sunset Wave • Brand Crimson & Citrus Orange • Bubbly Display & Tactile Sticker Badges",
+    vibeBadge: "Playful & Pop",
+    categories: ["playful"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Shrikhand",
+      sans: "Cabinet Grotesk",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Peach Canvas", hex: "#FEE7DA" },
+      { name: "Cream Neutral", hex: "#FFF5ED" },
+      { name: "Brand Crimson", hex: "#E51928" },
+      { name: "Citrus Orange", hex: "#F77100" },
+      { name: "Bolt Yellow", hex: "#FFC820" },
+      { name: "Carbon Black", hex: "#141414" }
+    ],
+    description: "Retro-Pop Sunset: High-energy DTC design system featuring sun-drenched 1970s nostalgia, warm Peach Canvas (#FEE7DA), Brand Crimson (#E51928), Citrus Orange (#F77100), Bolt Yellow (#FFC820), bubbly display typography, and springy tactile physics.",
+    markdownSpec: `================================================================================
+  STYLE TILE: RETRO-POP SUNSET (DTC / PLAYFUL HIGH-ENERGY SYSTEM)
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Retro-Pop Sunset is a high-energy, direct-to-consumer visual system celebrating 
+sun-drenched 1970s pop nostalgia, playful tactile geometry, and modern kinetic DTC 
+commerce. Built on vibrant Brand Crimson (#E51928), Citrus Orange (#F77100), and Bolt 
+Yellow (#FFC820) set against warm Peach Canvas (#FEE7DA) and Cream surfaces (#FFF5ED), 
+it merges plump bubble display typography, pill-rounded geometry, organic wave dividers, 
+and springy tactile physics for an unforgettable, joyful brand presence.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --color-peach-canvas:     #FEE7DA; /* App/Page Background Canvas */
+  --color-cream-neutral:    #FFF5ED; /* Surface / Card Fill */
+  --color-cream-tint:       #FCE0D0; /* Recessed container / well */
+  --color-carbon-black:     #141414; /* Primary Text / Heavy UI */
+  --color-pure-white:       #FFFFFF; /* Sticker Strokes / Card Highlights */
+
+  /* Primary & Accents */
+  --color-brand-crimson:    #E51928; /* Primary CTA / Pop Action */
+  --color-brand-hover:      #C81422; /* Primary Pressed / Hover state */
+  --color-citrus-orange:    #F77100; /* Secondary Accent / Highlight */
+  --color-citrus-hover:     #DE6500; /* Citrus Hover state */
+  --color-bolt-yellow:      #FFC820; /* Highlight / Micro-badge / Spark */
+  --color-bolt-hover:       #E6B218; /* Bolt Hover state */
+
+  /* Typography & Inks */
+  --color-text-primary:     #141414; /* Carbon Black Primary Reading */
+  --color-text-secondary:   #5A453D; /* Warm graphite secondary */
+  --color-text-muted:       #8C7368; /* Low contrast captions & placeholders */
+  --color-text-inverse:     #FFFFFF; /* White on saturated buttons */
+  --color-text-highlight:   #F77100; /* Citrus Orange Highlight Text */
+
+  /* Semantic Status Tokens */
+  --status-success:         #00B67A; /* All-natural / Fresh Badge */
+  --status-warning:         #F77100; /* Low Stock / Fast Selling */
+  --status-danger:          #E51928; /* Sold Out / Urgent */
+  --status-info:            #FFC820; /* New Drop / Flavor Alert */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display-bubble: "Shrikhand", "Titan One", "Cooper Black Rounded", cursive, sans-serif;
+--font-display-sans:   "Cabinet Grotesk", "Plus Jakarta Sans", "Syne", sans-serif;
+--font-body:           "Plus Jakarta Sans", "DM Sans", -apple-system, sans-serif;
+--font-mono:           "JetBrains Mono", monospace;
+
+/* Type Scale */
+--text-display-01: clamp(4.5rem, 10vw, 10.5rem) / 0.90 var(--font-display-bubble); /* Tracking: -0.04em | Extra Bold */
+--text-display-02: clamp(2.75rem, 5.5vw, 4.25rem) / 0.95 var(--font-display-bubble); /* Tracking: -0.03em | Heavy / 900 */
+--text-heading-01: clamp(1.75rem, 3.5vw, 2.5rem) / 1.10 var(--font-display-sans);   /* Tracking: -0.02em | Bold / 800 */
+--text-heading-02: 1.5rem / 1.20 var(--font-display-sans);                          /* Tracking: -0.01em | Bold / 700 */
+--text-body:       1.0625rem / 1.40 var(--font-body);                               /* Tracking: 0.00em  | Medium / 500 */
+--text-body-sm:    0.9375rem / 1.45 var(--font-body);                               /* Tracking: 0.00em  | Regular / 400 */
+--text-badge:      0.75rem / 1.00 var(--font-body);                                 /* Tracking: +0.12em | Bold / 700 (UPPERCASE) */
+--text-kpi:        1.5rem / 1.00 var(--font-display-sans);                          /* Tracking: +0.08em | Heavy / 900 */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-pill: 9999px; /* Buttons, announcement badges, status tags, stickers */
+--radius-card: 24px;   /* Surface panels, media containers, modal dialogs */
+--radius-sm:   8px;    /* Inputs, tooltips, micro-interactions */
+--radius-wave: Bezier-curved masks (S-curve organic bottom section dividers)
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERING)
+ * -------------------------------------------------------------------------- */
+/* Layering Hierarchy */
+z-0:  Base Gradient Mesh (Peach to Light Melon Warmth)
+z-10: Background Graphic Typography (Oversized clipping elements)
+z-20: Hero Focal Product Object (Centralized floating layer)
+z-30: Sticker Badges & Floating Flavor Pills
+z-40: Sticky Header & Persistent CTA Navigation
+
+/* Shadow Tokens */
+--shadow-floating: 0px 28px 48px -12px rgba(229, 25, 40, 0.18), 0px 12px 24px -6px rgba(20, 20, 20, 0.08);
+--shadow-sticker:  0px 4px 0px rgba(20, 20, 20, 0.12); /* Hard retro drop */
+--shadow-btn-hover: 0px 8px 16px -4px rgba(229, 25, 40, 0.40);
+--shadow-card:     0px 16px 36px -8px rgba(229, 25, 40, 0.08), 0px 4px 12px 0px rgba(20, 20, 20, 0.04);
+--shadow-pressed:  0px 2px 4px rgba(20, 20, 20, 0.10);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (BASE: 8px)
+ * -------------------------------------------------------------------------- */
+--space-2xs: 4px;   /* Icon to label padding */
+--space-xs:  8px;   /* Tag internal vertical padding */
+--space-sm:  16px;  /* Button horizontal padding, inline gap */
+--space-md:  24px;  /* Card padding, element stacking */
+--space-lg:  32px;  /* Component rhythm */
+--space-xl:  48px;  /* Section internal gutter */
+--space-2xl: 64px;  /* Hero section margins, billboard spacing */
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-sticker:  2px solid #FFFFFF;              /* Applied to floating organic badges */
+--border-outline:  2px solid #141414;              /* Secondary Pill CTA outline */
+--border-micro:    1px solid rgba(20, 20, 20, 0.10);/* Recessed card dividers */
+--divider-wave:    Seamless S-curve wave boundary (mask-image / SVG wave)
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+- Style: Playful 70s Pop / Chunky Geometric Strokes (2.5px stroke weight)
+- Motifs:
+  • Retro Sparkle / Starburst: 4-point star (✦) for highlights and accents
+  • Bolt: Lightning glyph (⚡) for new drops and high-energy callouts
+  • Navigation Arrows: Monoline rounded directional arrows (→)
+  • Cart / Meta: Minimalist round-joint stroke glyphs
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+- Primary Button: Solid crimson fill (#E51928), white text, pill radius.
+  • Hover:  translateY(-2px) scale(1.02) with punchy shadow expansion.
+  • Active: translateY(1px) scale(0.98) with reduced shadow.
+- Secondary Button: 2px solid #141414 border, cream fill.
+  • Hover: Invert fill (#141414 fill, #FFF5ED text).
+- Motion Physics:
+  • Transition Timing: cubic-bezier(0.34, 1.56, 0.64, 1) (Bouncy spring)
+  • Transition Duration: 180ms – 240ms
+- Marquee Ticker: Infinite horizontal scroll @ 25s linear loop for bottom banner text.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic purple neon or violet accents on dark backgrounds.
+- NO cold corporate dashboard tables or monochrome sterile layouts.
+- NO untracked giant typefaces without optical leading and kerning.
+- NO textureless flat grey surfaces; embrace warm peach canvas and sun-drenched inks.
+- NO over-nested cards with 3+ inside layers.
+- NO headline biscuit pills with pulsing dots.
+================================================================================`
   }
 ];
 

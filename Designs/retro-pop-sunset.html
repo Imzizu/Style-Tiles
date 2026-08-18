@@ -1,0 +1,2889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retro-Pop Sunset // Design System Style Tile (TILE-021)</title>
+  <meta name="description" content="Retro-Pop Sunset (TILE-021): High-energy DTC design system featuring sun-drenched 1970s nostalgia, Brand Crimson (#E51928), Citrus Orange (#F77100), Bolt Yellow (#FFC820), Peach Canvas (#FEE7DA), bubbly display typography, and tactile spring physics.">
+
+  <!-- Google Fonts: Shrikhand, Titan One, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&family=Shrikhand&family=Titan+One&display=swap" rel="stylesheet">
+  <!-- Fontshare: Cabinet Grotesk -->
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800,900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       01. DESIGN SYSTEM TOKENS & ROLES (TILE-021: RETRO-POP SUNSET)
+       ========================================================================== */
+    :root {
+      /* Primary & Accents */
+      --color-brand-crimson:    #E51928; /* Primary CTA / Pop Action | rgb(229, 25, 40) */
+      --color-brand-hover:      #C81422; /* Primary CTA Hover State */
+      --color-brand-active:     #A50E1A; /* Primary CTA Active State */
+      --color-citrus-orange:    #F77100; /* Secondary Accent / Pop Highlight | rgb(247, 113, 0) */
+      --color-citrus-hover:     #DE6500; /* Citrus Hover */
+      --color-bolt-yellow:      #FFC820; /* Highlight / Micro-badge / Spark | rgb(255, 200, 32) */
+      --color-bolt-hover:       #E6B218; /* Bolt Hover */
+
+      /* Neutrals & Canvas */
+      --color-peach-canvas:     #FEE7DA; /* App/Page Background Canvas | rgb(254, 231, 218) */
+      --color-cream-neutral:    #FFF5ED; /* Surface / Card Fill | rgb(255, 245, 237) */
+      --color-cream-subtle:     #FDE0D0; /* Recessed container / input well */
+      --color-carbon-black:     #141414; /* Primary Text / Heavy UI | rgb(20, 20, 20) */
+      --color-pure-white:       #FFFFFF; /* Sticker Strokes / Card Highlights | rgb(255, 255, 255) */
+      
+      /* Typography & Reading Inks */
+      --color-text-primary:     #141414; /* Carbon Black Primary Reading Text */
+      --color-text-secondary:   #5A453D; /* Warm graphite for secondary body copy */
+      --color-text-muted:       #8C7368; /* Low contrast captions & placeholders */
+      --color-text-inverse:     #FFFFFF; /* White on saturated fills */
+      --color-text-highlight:   #F77100; /* Citrus Orange Highlight Text */
+
+      /* Semantic Status Tokens */
+      --status-success:         #00B67A; /* Fresh / All-Natural */
+      --status-warning:         #F77100; /* Low Stock / Popular */
+      --status-danger:          #E51928; /* Sold Out / Urgent */
+      --status-info:            #FFC820; /* New Drop / Flavor Alert */
+
+      /* Typography Stacks */
+      --font-display-bubble:    "Shrikhand", "Titan One", "Cooper Black Rounded", cursive, sans-serif;
+      --font-display-sans:      "Cabinet Grotesk", "Plus Jakarta Sans", sans-serif;
+      --font-body:              "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono:              "JetBrains Mono", ui-monospace, monospace;
+
+      /* Corner Geometry (Border Radii) */
+      --radius-pill:            9999px; /* Buttons, announcement badges, status tags, stickers */
+      --radius-card:            24px;   /* Surface panels, media containers, modal dialogs */
+      --radius-sm:              8px;    /* Inputs, tooltips, micro-interactions */
+
+      /* Elevation & Depth (Shadows) */
+      --shadow-floating:        0px 28px 48px -12px rgba(229, 25, 40, 0.18), 0px 12px 24px -6px rgba(20, 20, 20, 0.08);
+      --shadow-sticker:         0px 4px 0px rgba(20, 20, 20, 0.12); /* Hard retro drop */
+      --shadow-btn-hover:       0px 8px 16px -4px rgba(229, 25, 40, 0.40);
+      --shadow-card:            0px 16px 36px -8px rgba(229, 25, 40, 0.08), 0px 4px 12px 0px rgba(20, 20, 20, 0.04);
+      --shadow-pressed:         0px 2px 4px rgba(20, 20, 20, 0.10);
+      --shadow-hard-black:      3px 3px 0px #141414;
+
+      /* Spacing Scale (8px Cadence) */
+      --space-2xs:              4px;   /* Icon to label padding */
+      --space-xs:               8px;   /* Tag internal vertical padding */
+      --space-sm:               16px;  /* Button horizontal padding, inline gap */
+      --space-md:               24px;  /* Card padding, element stacking */
+      --space-lg:               32px;  /* Component rhythm */
+      --space-xl:               48px;  /* Section internal gutter */
+      --space-2xl:              64px;  /* Hero section margins, billboard spacing */
+
+      /* Borders & Dividers */
+      --border-sticker:         2px solid #FFFFFF;              /* Applied to floating organic badges */
+      --border-outline:         2px solid #141414;              /* Secondary Pill CTA outline */
+      --border-micro:           1px solid rgba(20, 20, 20, 0.10);/* Recessed card dividers */
+
+      /* Motion Physics */
+      --ease-spring:            cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy spring */
+      --duration-spring:        220ms;
+      --duration-fast:          160ms;
+
+      /* Dimensions */
+      --max-width:              1240px;
+    }
+
+    /* ==========================================================================
+       02. RESET & SUNSET CANVAS FOUNDATION
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--color-peach-canvas);
+      color: var(--color-text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--color-text-secondary);
+      background-color: var(--color-peach-canvas);
+      /* Base Gradient Mesh (Peach to Light Melon Warmth) */
+      background-image: 
+        radial-gradient(1200px 700px at 15% 10%, rgba(229, 25, 40, 0.08), transparent 75%),
+        radial-gradient(900px 600px at 85% 20%, rgba(247, 113, 0, 0.09), transparent 70%),
+        radial-gradient(800px 500px at 50% 80%, rgba(255, 200, 32, 0.10), transparent 65%),
+        radial-gradient(rgba(20, 20, 20, 0.025) 1px, transparent 0);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 28px 28px;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background-color: var(--color-brand-crimson);
+      color: var(--color-pure-white);
+    }
+
+    :focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px var(--color-peach-canvas), 0 0 0 5px var(--color-brand-crimson);
+    }
+
+    .layout-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       03. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ========================================================================== */
+    .style-tile-header {
+      background-color: var(--color-cream-neutral);
+      border-bottom: 2px solid var(--color-carbon-black);
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      padding: 12px var(--space-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      box-shadow: 0 4px 16px rgba(229, 25, 40, 0.06);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display-sans);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-carbon-black);
+      text-decoration: none;
+      padding: 8px 16px;
+      background: var(--color-pure-white);
+      border: 2px solid var(--color-carbon-black);
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-hard-black);
+      transition: all var(--duration-spring) var(--ease-spring);
+    }
+
+    .nav-back-link:hover {
+      background-color: var(--color-bolt-yellow);
+      color: var(--color-carbon-black);
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 var(--color-carbon-black);
+    }
+
+    .nav-back-link:active {
+      transform: translate(2px, 2px);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      background-color: var(--color-carbon-black);
+      color: var(--color-pure-white);
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .design-title {
+      font-family: var(--font-display-bubble);
+      font-size: 24px;
+      letter-spacing: -0.01em;
+      color: var(--color-carbon-black);
+      line-height: 1;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-display-sans);
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--color-brand-crimson);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background-color: rgba(229, 25, 40, 0.10);
+      border: 1.5px solid rgba(229, 25, 40, 0.30);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display-sans);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 8px 16px;
+      border: 2px solid var(--color-carbon-black);
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      background-color: var(--color-pure-white);
+      color: var(--color-carbon-black);
+      box-shadow: var(--shadow-hard-black);
+      transition: all var(--duration-spring) var(--ease-spring);
+    }
+
+    .btn-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 var(--color-carbon-black);
+    }
+
+    .btn-tile:active {
+      transform: translate(2px, 2px);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .btn-tile.btn-copy {
+      background-color: var(--color-brand-crimson);
+      color: var(--color-pure-white);
+      border-color: var(--color-carbon-black);
+    }
+
+    .btn-tile.btn-copy:hover {
+      background-color: var(--color-brand-hover);
+      box-shadow: 4px 4px 0 var(--color-carbon-black), var(--shadow-btn-hover);
+    }
+
+    .btn-tile.btn-download:hover {
+      background-color: var(--color-citrus-orange);
+      color: var(--color-pure-white);
+    }
+
+    .btn-tile.btn-preview:hover {
+      background-color: var(--color-bolt-yellow);
+    }
+
+    /* ==========================================================================
+       04. HERO DISPLAY BILLBOARD & VIBE NARRATIVE
+       ========================================================================== */
+    .hero-section {
+      padding: var(--space-2xl) 0 var(--space-xl);
+      position: relative;
+    }
+
+    .hero-billboard-card {
+      background-color: var(--color-cream-neutral);
+      border: 2px solid var(--color-carbon-black);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl) var(--space-lg);
+      box-shadow: 8px 8px 0 var(--color-carbon-black), var(--shadow-floating);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Oversized Background Watermark Typography */
+    .hero-watermark {
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      font-family: var(--font-display-bubble);
+      font-size: clamp(8rem, 20vw, 16rem);
+      line-height: 0.8;
+      color: rgba(229, 25, 40, 0.04);
+      user-select: none;
+      pointer-events: none;
+      z-index: 0;
+      white-space: nowrap;
+    }
+
+    .hero-sun-motif {
+      position: absolute;
+      top: -60px;
+      left: -60px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--color-bolt-yellow) 0%, rgba(247, 113, 0, 0.4) 60%, transparent 80%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 10;
+      max-width: 920px;
+    }
+
+    .hero-badge-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display-sans);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--color-carbon-black);
+      box-shadow: 2px 2px 0 var(--color-carbon-black);
+    }
+
+    .pill-badge.badge-crimson {
+      background-color: var(--color-brand-crimson);
+      color: var(--color-pure-white);
+    }
+
+    .pill-badge.badge-citrus {
+      background-color: var(--color-citrus-orange);
+      color: var(--color-pure-white);
+    }
+
+    .pill-badge.badge-bolt {
+      background-color: var(--color-bolt-yellow);
+      color: var(--color-carbon-black);
+    }
+
+    .hero-title {
+      font-family: var(--font-display-bubble);
+      font-size: clamp(3.25rem, 8vw, 6.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: var(--color-carbon-black);
+      margin-bottom: var(--space-sm);
+      text-shadow: 4px 4px 0 rgba(229, 25, 40, 0.20);
+    }
+
+    .hero-title .sunset-glow {
+      color: var(--color-brand-crimson);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-body);
+      font-size: clamp(1.125rem, 2.2vw, 1.35rem);
+      font-weight: 500;
+      line-height: 1.45;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-lg);
+      max-width: 820px;
+    }
+
+    .hero-subtitle strong {
+      color: var(--color-carbon-black);
+      font-weight: 700;
+    }
+
+    /* Floating Sticker Badges */
+    .stickers-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .sticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display-sans);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      border: var(--border-sticker);
+      box-shadow: var(--shadow-sticker), 3px 3px 0 var(--color-carbon-black);
+      cursor: default;
+      transition: transform var(--duration-spring) var(--ease-spring);
+    }
+
+    .sticker-item:hover {
+      transform: translateY(-4px) rotate(-2deg) scale(1.05);
+    }
+
+    .sticker-crimson {
+      background-color: var(--color-brand-crimson);
+      color: var(--color-pure-white);
+    }
+
+    .sticker-citrus {
+      background-color: var(--color-citrus-orange);
+      color: var(--color-pure-white);
+    }
+
+    .sticker-bolt {
+      background-color: var(--color-bolt-yellow);
+      color: var(--color-carbon-black);
+    }
+
+    .sticker-cream {
+      background-color: var(--color-pure-white);
+      color: var(--color-carbon-black);
+    }
+
+    /* Hero CTA Row */
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display-sans);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      background-color: var(--color-brand-crimson);
+      color: var(--color-pure-white);
+      border: 2.5px solid var(--color-carbon-black);
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--color-carbon-black), var(--shadow-btn-hover);
+      transition: all var(--duration-spring) var(--ease-spring);
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 6px 6px 0 var(--color-carbon-black), 0 12px 24px -4px rgba(229, 25, 40, 0.45);
+    }
+
+    .btn-hero-primary:active {
+      transform: translate(2px, 2px) scale(0.98);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display-sans);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 14px 24px;
+      background-color: var(--color-cream-neutral);
+      color: var(--color-carbon-black);
+      border: var(--border-outline);
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 3px 3px 0 var(--color-carbon-black);
+      transition: all var(--duration-spring) var(--ease-spring);
+    }
+
+    .btn-hero-secondary:hover {
+      background-color: var(--color-carbon-black);
+      color: var(--color-cream-neutral);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 5px 5px 0 rgba(229, 25, 40, 0.5);
+    }
+
+    .btn-hero-secondary:active {
+      transform: translate(2px, 2px) scale(0.98);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    /* KPI Quick Stats */
+    .hero-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-sm);
+      margin-top: var(--space-xl);
+      padding-top: var(--space-md);
+      border-top: var(--border-micro);
+    }
+
+    .kpi-stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .kpi-num {
+      font-family: var(--font-display-sans);
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--color-brand-crimson);
+      letter-spacing: 0.02em;
+    }
+
+    .kpi-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+    }
+
+    /* ==========================================================================
+       05. SECTION HEADERS & COMMON STYLES
+       ========================================================================== */
+    .section-wrap {
+      margin-bottom: var(--space-2xl);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: var(--space-lg);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .section-heading-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-brand-crimson);
+      background-color: rgba(229, 25, 40, 0.08);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: var(--font-display-bubble);
+      font-size: clamp(1.85rem, 4vw, 2.75rem);
+      line-height: 1.05;
+      color: var(--color-carbon-black);
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      max-width: 600px;
+    }
+
+    .card-panel {
+      background-color: var(--color-cream-neutral);
+      border: 2px solid var(--color-carbon-black);
+      border-radius: var(--radius-card);
+      padding: var(--space-lg);
+      box-shadow: 6px 6px 0 var(--color-carbon-black), var(--shadow-card);
+      position: relative;
+    }
+
+    /* ==========================================================================
+       06. COLOR ROLES & PALETTE MATRIX
+       ========================================================================== */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .swatch-card {
+      background-color: var(--color-pure-white);
+      border: 2px solid var(--color-carbon-black);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 3px 3px 0 var(--color-carbon-black);
+      transition: all var(--duration-spring) var(--ease-spring);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 6px 6px 0 var(--color-carbon-black), 0 12px 24px -6px rgba(229, 25, 40, 0.2);
+    }
+
+    .swatch-preview {
+      height: 130px;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 12px;
+      position: relative;
+    }
+
+    .swatch-chip-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.90);
+      color: var(--color-carbon-black);
+      border: 1px solid var(--color-carbon-black);
+      backdrop-filter: blur(4px);
+    }
+
+    .swatch-info {
+      padding: var(--space-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background-color: var(--color-pure-white);
+    }
+
+    .swatch-name {
+      font-family: var(--font-display-sans);
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--color-carbon-black);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .swatch-role {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+    }
+
+    .swatch-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: var(--border-micro);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-text-muted);
+    }
+
+    .swatch-copy-hint {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--color-brand-crimson);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Sunset Mesh Simulator Card */
+    .sunset-mesh-banner {
+      background: linear-gradient(135deg, #E51928 0%, #F77100 45%, #FFC820 100%);
+      border: 2px solid var(--color-carbon-black);
+      border-radius: var(--radius-card);
+      padding: var(--space-lg);
+      color: var(--color-pure-white);
+      box-shadow: 6px 6px 0 var(--color-carbon-black);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sunset-mesh-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+
+    .sunset-mesh-content h3 {
+      font-family: var(--font-display-bubble);
+      font-size: 28px;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      text-shadow: 2px 2px 0 var(--color-carbon-black);
+    }
+
+    .sunset-mesh-content p {
+      font-size: 14.5px;
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       07. TYPOGRAPHY SYSTEM & INTERACTIVE SPECIMEN LADDER
+       ========================================================================== */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .font-family-card {
+      background-color: var(--color-pure-white);
+      border: 2px solid var(--color-carbon-black);
+      border-radius: 16px;
+      padding: var(--space-md);
+      box-shadow: 3px 3px 0 var(--color-carbon-black);
+    }
+
+    .font-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: var(--border-micro);
+    }
+
+    .font-role-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      background-color: var(--color-cream-neutral);
+      border: 1px solid var(--color-carbon-black);
+    }
+
+    .font-preview-big {
+      font-size: 38px;
+      line-height: 1.05;
+      color: var(--color-carbon-black);
+      margin-bottom: 8px;
+    }
+
+    .font-alphabet {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+    }
+
+    /* Type Scale Ladder */
+    .scale-ladder-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .scale-ladder-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      align-items: baseline;
+      padding: 12px 16px;
+      background: var(--color-pure-white);
+      border: 1.5px solid var(--color-carbon-black);
+      border-radius: 12px;
+      box-shadow: 2px 2px 0 var(--color-carbon-black);
+      gap: var(--space-sm);
+    }
+
+    .scale-token-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .scale-token-name {
+      font-weight: 800;
+      color: var(--color-brand-crimson);
+      text-transform: uppercase;
+    }
+
+    .scale-sample-text {
+      color: var(--color-carbon-black);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Interactive Live Type Tester */
+    .type-tester-box {
+      margin-top: var(--space-lg);
+      background-color: var(--color-cream-subtle);
+      border: 2px solid var(--color-carbon-black);
+      border-radius: 16px;
+      padding: var(--space-md);
+    }
+
+    .tester-controls-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--border-micro);
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .control-label {
+      font-family: var(--font-display-sans);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--color-carbon-black);
+    }
+
+    .tester-font-select, .tester-slider {
+      font-family: var(--font-body);
+      font-size: 13px;
+      padding: 6px 12px;
+      border: 1.5px solid var(--color-carbon-black);
+      border-radius: var(--radius-sm);
+      background-color: var(--color-pure-white);
+      color: var(--color-carbon-black);
+      cursor: pointer;
+    }
+
+    .tester-input-field {
+      width: 100%;
+      border: 2px solid var(--color-carbon-black);
+      border-radius: 12px;
+      padding: 18px 24px;
+      background-color: var(--color-pure-white);
+      color: var(--color-carbon-black);
+      font-family: var(--font-display-bubble);
+      font-size: 42px;
+      line-height: 1.1;
+      resize: vertical;
+      min-height: 110px;
+      box-shadow: inset 2px 2px 4px rgba(20, 20, 20, 0.05);
+      transition: border-color var(--duration-fast);
+    }
+
+    .tester-input-field:focus {
+      outline: none;
+      border-color: var(--color-brand-crimson);
+    }
+
+    /* ==========================================================================
+       08. COMPONENT ARCHETYPE GALLERY
+       ========================================================================== */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .comp-block {
+      background-color: var(--color-pure-white);
+      border: 2px solid var(--color-carbon-black);
+      border-radius: 16px;
+      padding: var(--space-md);
+      box-shadow: 3px 3px 0 var(--color-carbon-black);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .comp-block-title {
+      font-family: var(--font-display-sans);
+      font-size: 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-carbon-black);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 6px;
+      border-bottom: var(--border-micro);
+    }
+
+    .buttons-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    /* Button Variants */
+    .btn-dtc {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--font-display-sans);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--duration-spring) var(--ease-spring);
+    }
+
+    .btn-dtc-crimson {
+      background-color: var(--color-brand-crimson);
+      color: var(--color-pure-white);
+      border: 2px solid var(--color-carbon-black);
+      box-shadow: 3px 3px 0 var(--color-carbon-black);
+    }
+
+    .btn-dtc-crimson:hover {
+      background-color: var(--color-brand-hover);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 5px 5px 0 var(--color-carbon-black), var(--shadow-btn-hover);
+    }
+
+    .btn-dtc-crimson:active {
+      transform: translate(2px, 2px) scale(0.98);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .btn-dtc-outline {
+      background-color: var(--color-cream-neutral);
+      color: var(--color-carbon-black);
+      border: var(--border-outline);
+      box-shadow: 3px 3px 0 var(--color-carbon-black);
+    }
+
+    .btn-dtc-outline:hover {
+      background-color: var(--color-carbon-black);
+      color: var(--color-cream-neutral);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 5px 5px 0 rgba(229, 25, 40, 0.4);
+    }
+
+    .btn-dtc-bolt {
+      background-color: var(--color-bolt-yellow);
+      color: var(--color-carbon-black);
+      border: 2px solid var(--color-carbon-black);
+      box-shadow: 3px 3px 0 var(--color-carbon-black);
+    }
+
+    .btn-dtc-bolt:hover {
+      background-color: var(--color-bolt-hover);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 5px 5px 0 var(--color-carbon-black);
+    }
+
+    .btn-dtc-citrus {
+      background-color: var(--color-citrus-orange);
+      color: var(--color-pure-white);
+      border: 2px solid var(--color-carbon-black);
+      box-shadow: 3px 3px 0 var(--color-carbon-black);
+    }
+
+    .btn-dtc-citrus:hover {
+      background-color: var(--color-citrus-hover);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 5px 5px 0 var(--color-carbon-black);
+    }
+
+    /* Form Fields */
+    .dtc-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .dtc-label {
+      font-family: var(--font-display-sans);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-carbon-black);
+    }
+
+    .dtc-input {
+      font-family: var(--font-body);
+      font-size: 15px;
+      padding: 10px 16px;
+      border: 2px solid var(--color-carbon-black);
+      border-radius: var(--radius-sm);
+      background-color: var(--color-pure-white);
+      color: var(--color-carbon-black);
+      box-shadow: 2px 2px 0 rgba(20, 20, 20, 0.1);
+      transition: all var(--duration-fast);
+    }
+
+    .dtc-input:focus {
+      outline: none;
+      border-color: var(--color-brand-crimson);
+      box-shadow: 0 0 0 3px rgba(229, 25, 40, 0.2);
+    }
+
+    .dtc-input-newsletter {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dtc-input-newsletter input {
+      flex: 1;
+    }
+
+    /* Interactive Checkbox & Toggles */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: var(--color-cream-subtle);
+      border: 1.5px solid var(--color-carbon-black);
+      border-radius: var(--radius-sm);
+    }
+
+    .dtc-switch {
+      position: relative;
+      display: inline-block;
+      width: 46px;
+      height: 26px;
+    }
+
+    .dtc-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .dtc-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #D6CCC2;
+      border: 2px solid var(--color-carbon-black);
+      transition: var(--duration-spring) var(--ease-spring);
+      border-radius: var(--radius-pill);
+    }
+
+    .dtc-slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 3px;
+      bottom: 3px;
+      background-color: var(--color-pure-white);
+      border: 1.5px solid var(--color-carbon-black);
+      border-radius: 50%;
+      transition: var(--duration-spring) var(--ease-spring);
+    }
+
+    .dtc-switch input:checked + .dtc-slider {
+      background-color: var(--color-brand-crimson);
+    }
+
+    .dtc-switch input:checked + .dtc-slider:before {
+      transform: translateX(20px);
+      background-color: var(--color-bolt-yellow);
+    }
+
+    /* ==========================================================================
+       09. LIVING MICRO-EXPERIENCE: "SUNSET FIZZ™" DTC SHOWCASE
+       ========================================================================== */
+    .dtc-showcase-card {
+      background-color: var(--color-cream-neutral);
+      border: 2.5px solid var(--color-carbon-black);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: 8px 8px 0 var(--color-carbon-black), var(--shadow-floating);
+      position: relative;
+    }
+
+    .dtc-banner-top {
+      background-color: var(--color-brand-crimson);
+      color: var(--color-pure-white);
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display-sans);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--color-carbon-black);
+    }
+
+    .dtc-showcase-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: var(--space-lg);
+      padding: var(--space-xl) var(--space-lg);
+      align-items: center;
+    }
+
+    /* Left: Product Can Art & Stage */
+    .dtc-product-stage {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 420px;
+      background: radial-gradient(circle, var(--color-peach-canvas) 0%, rgba(254, 231, 218, 0.4) 60%, transparent 80%);
+    }
+
+    .can-svg-wrapper {
+      width: 220px;
+      height: 360px;
+      position: relative;
+      z-index: 20;
+      filter: drop-shadow(0 20px 24px rgba(229, 25, 40, 0.25));
+      transition: transform var(--duration-spring) var(--ease-spring);
+      cursor: pointer;
+    }
+
+    .can-svg-wrapper:hover {
+      transform: translateY(-8px) rotate(-2deg) scale(1.03);
+    }
+
+    /* Floating Stickers on Stage */
+    .floating-stage-sticker {
+      position: absolute;
+      z-index: 30;
+      font-family: var(--font-display-sans);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: var(--border-sticker);
+      box-shadow: 2px 2px 0 var(--color-carbon-black);
+      pointer-events: none;
+      animation: floatBadge 3.5s ease-in-out infinite alternate;
+    }
+
+    .stage-badge-1 {
+      top: 15%;
+      left: 10%;
+      background-color: var(--color-bolt-yellow);
+      color: var(--color-carbon-black);
+      transform: rotate(-8deg);
+      animation-delay: 0s;
+    }
+
+    .stage-badge-2 {
+      bottom: 20%;
+      right: 8%;
+      background-color: var(--color-brand-crimson);
+      color: var(--color-pure-white);
+      transform: rotate(6deg);
+      animation-delay: 1.2s;
+    }
+
+    @keyframes floatBadge {
+      0% { transform: translateY(0px) rotate(-6deg); }
+      100% { transform: translateY(-8px) rotate(-2deg); }
+    }
+
+    /* Right: Interactive Flavor & Commerce Console */
+    .dtc-console {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .dtc-flavor-picker-label {
+      font-family: var(--font-display-sans);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-carbon-black);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .flavor-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .flavor-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display-sans);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      border: 2px solid var(--color-carbon-black);
+      border-radius: var(--radius-pill);
+      background-color: var(--color-pure-white);
+      color: var(--color-carbon-black);
+      cursor: pointer;
+      box-shadow: 2px 2px 0 var(--color-carbon-black);
+      transition: all var(--duration-spring) var(--ease-spring);
+    }
+
+    .flavor-btn.active {
+      background-color: var(--color-brand-crimson);
+      color: var(--color-pure-white);
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 var(--color-carbon-black);
+    }
+
+    .dtc-product-name {
+      font-family: var(--font-display-bubble);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      line-height: 1;
+      color: var(--color-carbon-black);
+    }
+
+    .dtc-product-tagline {
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      line-height: 1.45;
+    }
+
+    /* Pack Selection */
+    .pack-options-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .pack-card {
+      border: 2px solid var(--color-carbon-black);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: var(--color-pure-white);
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 2px 2px 0 var(--color-carbon-black);
+      transition: all var(--duration-spring) var(--ease-spring);
+    }
+
+    .pack-card.selected {
+      background-color: var(--color-bolt-yellow);
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 var(--color-carbon-black);
+    }
+
+    .pack-size {
+      font-family: var(--font-display-sans);
+      font-size: 14px;
+      font-weight: 900;
+      color: var(--color-carbon-black);
+    }
+
+    .pack-price {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-brand-crimson);
+    }
+
+    /* Cart Action Bar */
+    .dtc-purchase-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .stepper-box {
+      display: inline-flex;
+      align-items: center;
+      border: 2px solid var(--color-carbon-black);
+      border-radius: var(--radius-pill);
+      background-color: var(--color-pure-white);
+      box-shadow: 2px 2px 0 var(--color-carbon-black);
+      overflow: hidden;
+    }
+
+    .stepper-btn {
+      width: 38px;
+      height: 38px;
+      background: transparent;
+      border: none;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-carbon-black);
+      transition: background-color var(--duration-fast);
+    }
+
+    .stepper-btn:hover {
+      background-color: var(--color-cream-subtle);
+    }
+
+    .stepper-val {
+      width: 32px;
+      text-align: center;
+      font-family: var(--font-display-sans);
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--color-carbon-black);
+    }
+
+    .btn-add-cart {
+      flex: 1;
+      min-width: 180px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font-display-sans);
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 13px 24px;
+      background-color: var(--color-brand-crimson);
+      color: var(--color-pure-white);
+      border: 2.5px solid var(--color-carbon-black);
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--color-carbon-black), var(--shadow-btn-hover);
+      transition: all var(--duration-spring) var(--ease-spring);
+    }
+
+    .btn-add-cart:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 6px 6px 0 var(--color-carbon-black), 0 10px 20px -2px rgba(229, 25, 40, 0.45);
+    }
+
+    .btn-add-cart:active {
+      transform: translate(2px, 2px) scale(0.98);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    /* Nutritional KPI Dials */
+    .dtc-kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      padding-top: var(--space-sm);
+      border-top: var(--border-micro);
+    }
+
+    .dial-item {
+      text-align: center;
+      background: var(--color-pure-white);
+      border: 1.5px solid var(--color-carbon-black);
+      border-radius: 10px;
+      padding: 8px 4px;
+      box-shadow: 1px 1px 0 var(--color-carbon-black);
+    }
+
+    .dial-val {
+      font-family: var(--font-display-sans);
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--color-brand-crimson);
+      line-height: 1;
+    }
+
+    .dial-lbl {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    /* 25-Second Infinite Marquee Ticker with Wave Boundary */
+    .marquee-wrapper {
+      background-color: var(--color-carbon-black);
+      color: var(--color-bolt-yellow);
+      overflow: hidden;
+      position: relative;
+      padding: 14px 0;
+      border-top: 2px solid var(--color-carbon-black);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 25s linear infinite;
+    }
+
+    .marquee-content {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-family: var(--font-display-bubble);
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding-right: 28px;
+    }
+
+    .marquee-spark {
+      color: var(--color-brand-crimson);
+    }
+
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* S-Curve Wave SVG Boundary */
+    .wave-boundary-bottom {
+      width: 100%;
+      height: 48px;
+      background-color: var(--color-cream-neutral);
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .wave-boundary-bottom svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* ==========================================================================
+       10. STYLE TILE PROMPT CODE VAULT DRAWER
+       ========================================================================== */
+    .spec-vault-box {
+      background-color: #1A1412;
+      border: 2.5px solid var(--color-carbon-black);
+      border-radius: var(--radius-card);
+      padding: var(--space-lg);
+      color: #F8F0EC;
+      box-shadow: 6px 6px 0 var(--color-carbon-black);
+      position: relative;
+    }
+
+    .spec-vault-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .vault-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .vault-title {
+      font-family: var(--font-display-bubble);
+      font-size: 22px;
+      color: var(--color-bolt-yellow);
+    }
+
+    .raw-spec-pre {
+      background-color: #120D0B;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: var(--space-md);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.6;
+      color: #FED7C4;
+      overflow-x: auto;
+      max-height: 420px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* ==========================================================================
+       11. MODAL SPEC DRAWER & TOAST NOTIFICATIONS
+       ========================================================================== */
+    .spec-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(20, 20, 20, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+
+    .spec-modal-backdrop.active {
+      display: flex;
+    }
+
+    .spec-modal-content {
+      background-color: var(--color-cream-neutral);
+      border: 3px solid var(--color-carbon-black);
+      border-radius: var(--radius-card);
+      width: 100%;
+      max-width: 860px;
+      max-height: 88vh;
+      box-shadow: 12px 12px 0 var(--color-carbon-black);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modalPop 0.25s var(--ease-spring);
+    }
+
+    @keyframes modalPop {
+      0% { transform: scale(0.92) translateY(20px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    .spec-modal-header {
+      padding: var(--space-md);
+      background-color: var(--color-brand-crimson);
+      color: var(--color-pure-white);
+      border-bottom: 2px solid var(--color-carbon-black);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .spec-modal-header h3 {
+      font-family: var(--font-display-bubble);
+      font-size: 24px;
+    }
+
+    .modal-close-btn {
+      background: var(--color-carbon-black);
+      color: var(--color-pure-white);
+      border: 1.5px solid var(--color-pure-white);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform var(--duration-fast);
+    }
+
+    .modal-close-btn:hover {
+      transform: scale(1.1);
+      background-color: var(--color-bolt-yellow);
+      color: var(--color-carbon-black);
+    }
+
+    .spec-modal-body {
+      padding: var(--space-md);
+      overflow-y: auto;
+      flex: 1;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.55;
+      background: var(--color-pure-white);
+    }
+
+    .spec-modal-footer {
+      padding: var(--space-sm) var(--space-md);
+      background: var(--color-cream-subtle);
+      border-top: 2px solid var(--color-carbon-black);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* Toast Notification */
+    #toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast {
+      background-color: var(--color-carbon-black);
+      color: var(--color-pure-white);
+      border: 2px solid var(--color-bolt-yellow);
+      border-radius: var(--radius-pill);
+      padding: 10px 20px;
+      font-family: var(--font-display-sans);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      box-shadow: 4px 4px 0 rgba(229, 25, 40, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(12px) scale(0.95);
+      transition: all var(--duration-spring) var(--ease-spring);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* ==========================================================================
+       12. RESPONSIVE MOBILE TWEAKS (agent.md Section 6)
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: var(--space-lg) 0;
+      }
+      .hero-billboard-card {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .dtc-showcase-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+        padding: var(--space-md);
+      }
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+      .scale-ladder-row {
+        grid-template-columns: 1fr;
+      }
+      .pack-options-row {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: clamp(2.5rem, 11vw, 3.75rem);
+      }
+    }
+  </style>
+
+  <!-- Mandatory Shared Mobile Safety Sheet (agent.md Section 6) -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+</head>
+
+<body>
+  <!-- ========================================================================
+       01. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ======================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-021</span>
+      <span class="design-title">Retro-Pop Sunset</span>
+      <span class="design-vibe-tag">Playful & Pop</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download retro-pop-sunset.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       02. MAIN CONTENT LAYOUT
+       ======================================================================== -->
+  <div class="layout-wrapper">
+
+    <!-- HERO DISPLAY BILLBOARD SECTION -->
+    <section class="hero-section">
+      <div class="hero-billboard-card">
+        <!-- Oversized background watermark & sun motif -->
+        <div class="hero-watermark">RETRO POP</div>
+        <div class="hero-sun-motif"></div>
+
+        <div class="hero-inner">
+          <div class="hero-badge-strip">
+            <span class="pill-badge badge-crimson">✦ DTC HIGH-ENERGY</span>
+            <span class="pill-badge badge-citrus">⚡ 1970s SUNSET WAVE</span>
+            <span class="pill-badge badge-bolt">🌞 PLAYFUL & POP</span>
+          </div>
+
+          <h1 class="hero-title">Retro-Pop <span class="sunset-glow">Sunset</span></h1>
+
+          <p class="hero-subtitle">
+            A sun-drenched, high-octane design system built for playful direct-to-consumer lifestyle brands. 
+            Blending <strong>voluptuous bubble lettering</strong>, warm <strong>peach gradient canvases</strong>, punchy <strong>brand crimson CTAs</strong>, and organic sticker overlays with responsive spring physics.
+          </p>
+
+          <!-- Floating Sticker Badges -->
+          <div class="stickers-cloud">
+            <div class="sticker-item sticker-crimson">✦ 100% REAL JUICE</div>
+            <div class="sticker-item sticker-bolt">⚡ ZERO HIGH-FRUCTOSE CORN SYRUP</div>
+            <div class="sticker-item sticker-citrus">🌞 SUN-DRENCHED FLAVOR</div>
+            <div class="sticker-item sticker-cream">✦ BUBBLY TACTILE JOY</div>
+          </div>
+
+          <!-- Hero Action Triggers -->
+          <div class="hero-cta-row">
+            <button class="btn-hero-primary" onclick="copyMasterTileSpec()">
+              <span>Copy AI Design Prompt</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+            <a href="#living-demo" class="btn-hero-secondary">
+              <span>Test Living Demo ⚡</span>
+              <span>→</span>
+            </a>
+            <a href="#palette-section" class="btn-hero-secondary">
+              <span>Color Swatches ↓</span>
+            </a>
+          </div>
+
+          <!-- KPI Metric Tokens -->
+          <div class="hero-kpi-grid">
+            <div class="kpi-stat-item">
+              <span class="kpi-num">180px</span>
+              <span class="kpi-label">Hero Bubble Display Scale</span>
+            </div>
+            <div class="kpi-stat-item">
+              <span class="kpi-num">8px</span>
+              <span class="kpi-label">Spatial Base Cadence</span>
+            </div>
+            <div class="kpi-stat-item">
+              <span class="kpi-num">220ms</span>
+              <span class="kpi-label">Spring Motion Response</span>
+            </div>
+            <div class="kpi-stat-item">
+              <span class="kpi-num">100%</span>
+              <span class="kpi-label">Pure Saturated Chroma</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: COLOR ROLES & PALETTE MATRIX -->
+    <section id="palette-section" class="section-wrap">
+      <div class="section-header">
+        <div>
+          <span class="section-heading-tag">01 // COLOR ROLES & SWATCHES</span>
+          <h2 class="section-title">High-Chroma Sun-Drenched Palette</h2>
+        </div>
+        <p class="section-desc">
+          Rooted in a warm Peach Canvas and Cream Neutral surfaces, illuminated by Brand Crimson, Citrus Orange, and Bolt Yellow spot highlights. Click any swatch to copy its token.
+        </p>
+      </div>
+
+      <div class="palette-grid">
+        <!-- Brand Crimson -->
+        <div class="swatch-card" onclick="copyColorToken('#E51928', '--color-brand-crimson', 'Brand Crimson')">
+          <div class="swatch-preview" style="background-color: #E51928;">
+            <span class="swatch-chip-badge">AAA 5.2:1</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Brand Crimson</span>
+              <span style="color: #E51928;">●</span>
+            </div>
+            <span class="swatch-role">Primary Action / Pop CTA</span>
+            <div class="swatch-meta-row">
+              <code>#E51928</code>
+              <span class="swatch-copy-hint">Copy Token</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Citrus Orange -->
+        <div class="swatch-card" onclick="copyColorToken('#F77100', '--color-citrus-orange', 'Citrus Orange')">
+          <div class="swatch-preview" style="background-color: #F77100;">
+            <span class="swatch-chip-badge">AA 3.8:1</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Citrus Orange</span>
+              <span style="color: #F77100;">●</span>
+            </div>
+            <span class="swatch-role">Secondary Accent / Highlight</span>
+            <div class="swatch-meta-row">
+              <code>#F77100</code>
+              <span class="swatch-copy-hint">Copy Token</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bolt Yellow -->
+        <div class="swatch-card" onclick="copyColorToken('#FFC820', '--color-bolt-yellow', 'Bolt Yellow')">
+          <div class="swatch-preview" style="background-color: #FFC820;">
+            <span class="swatch-chip-badge" style="background: #141414; color: #FFF;">Dark Ink</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Bolt Yellow</span>
+              <span style="color: #FFC820;">●</span>
+            </div>
+            <span class="swatch-role">Micro-badge / Spark Accent</span>
+            <div class="swatch-meta-row">
+              <code>#FFC820</code>
+              <span class="swatch-copy-hint">Copy Token</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Peach Canvas -->
+        <div class="swatch-card" onclick="copyColorToken('#FEE7DA', '--color-peach-canvas', 'Peach Canvas')">
+          <div class="swatch-preview" style="background-color: #FEE7DA; border-bottom: 1px solid rgba(20,20,20,0.1);">
+            <span class="swatch-chip-badge" style="background: #141414; color: #FFF;">Canvas</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Peach Canvas</span>
+              <span style="color: #FEE7DA;">●</span>
+            </div>
+            <span class="swatch-role">App / Page Foundation Background</span>
+            <div class="swatch-meta-row">
+              <code>#FEE7DA</code>
+              <span class="swatch-copy-hint">Copy Token</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cream Neutral -->
+        <div class="swatch-card" onclick="copyColorToken('#FFF5ED', '--color-cream-neutral', 'Cream Neutral')">
+          <div class="swatch-preview" style="background-color: #FFF5ED; border-bottom: 1px solid rgba(20,20,20,0.1);">
+            <span class="swatch-chip-badge" style="background: #141414; color: #FFF;">Surface</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Cream Neutral</span>
+              <span style="color: #FFF5ED;">●</span>
+            </div>
+            <span class="swatch-role">Card Fill / Container Surface</span>
+            <div class="swatch-meta-row">
+              <code>#FFF5ED</code>
+              <span class="swatch-copy-hint">Copy Token</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carbon Black -->
+        <div class="swatch-card" onclick="copyColorToken('#141414', '--color-carbon-black', 'Carbon Black')">
+          <div class="swatch-preview" style="background-color: #141414;">
+            <span class="swatch-chip-badge">Primary Ink</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Carbon Black</span>
+              <span style="color: #141414;">●</span>
+            </div>
+            <span class="swatch-role">Primary Text / Heavy UI Outlines</span>
+            <div class="swatch-meta-row">
+              <code>#141414</code>
+              <span class="swatch-copy-hint">Copy Token</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pure White -->
+        <div class="swatch-card" onclick="copyColorToken('#FFFFFF', '--color-pure-white', 'Pure White')">
+          <div class="swatch-preview" style="background-color: #FFFFFF; border-bottom: 1px solid rgba(20,20,20,0.1);">
+            <span class="swatch-chip-badge" style="background: #141414; color: #FFF;">Sticker Stroke</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Pure White</span>
+              <span style="color: #FFFFFF; border: 1px solid #CCC; border-radius: 50%;">●</span>
+            </div>
+            <span class="swatch-role">Sticker Strokes & Card Well Fills</span>
+            <div class="swatch-meta-row">
+              <code>#FFFFFF</code>
+              <span class="swatch-copy-hint">Copy Token</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sunset Gradient Preview Banner -->
+      <div class="sunset-mesh-banner">
+        <div class="sunset-mesh-content">
+          <h3>Retro-Pop Sunset Gradient Mesh</h3>
+          <p>
+            The signature sunset gradient blends <code>#E51928</code> (Brand Crimson) → <code>#F77100</code> (Citrus Orange) → <code>#FFC820</code> (Bolt Yellow) over a gentle <code>#FEE7DA</code> foundation.
+          </p>
+        </div>
+        <button class="btn-tile" style="background: #FFF; color: #141414; font-weight: 800;" onclick="copyMeshCode()">
+          <span>Copy Gradient CSS</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 2: TYPOGRAPHY SYSTEM & INTERACTIVE SPECIMEN LADDER -->
+    <section class="section-wrap">
+      <div class="section-header">
+        <div>
+          <span class="section-heading-tag">02 // TYPOGRAPHY SYSTEM</span>
+          <h2 class="section-title">Voluptuous Bubble & Punchy Sans</h2>
+        </div>
+        <p class="section-desc">
+          Combining 1970s curvaceous bubbled display headlines with high-legibility bold geometric sans for UI metrics, body reading, and micro-labels.
+        </p>
+      </div>
+
+      <div class="type-specimen-grid">
+        <!-- Display Bubble Specimen -->
+        <div class="font-family-card">
+          <div class="font-card-header">
+            <div>
+              <span class="font-role-badge">Display Bubble</span>
+              <strong style="margin-left: 8px; font-size: 14px;">Shrikhand / Titan One</strong>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-text-muted);">Weight: 900</span>
+          </div>
+          <div class="font-preview-big" style="font-family: var(--font-display-bubble); color: var(--color-brand-crimson);">
+            Pop Juice 1974
+          </div>
+          <p class="font-alphabet" style="font-family: var(--font-display-bubble);">
+            A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br>
+            a b c d e f g h i j k l m n o p q r s t u v w x y z • 0 1 2 3 4 5 6 7 8 9
+          </p>
+        </div>
+
+        <!-- Display Bold Sans Specimen -->
+        <div class="font-family-card">
+          <div class="font-card-header">
+            <div>
+              <span class="font-role-badge">Display Bold Sans</span>
+              <strong style="margin-left: 8px; font-size: 14px;">Cabinet Grotesk / Plus Jakarta</strong>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-text-muted);">Weight: 800/900</span>
+          </div>
+          <div class="font-preview-big" style="font-family: var(--font-display-sans); font-weight: 900; color: var(--color-carbon-black); letter-spacing: -0.02em;">
+            SUNSET FIZZ CO.
+          </div>
+          <p class="font-alphabet" style="font-family: var(--font-display-sans); font-weight: 700;">
+            A B C D E F G H I J K L M N O P Q R S T U V W X Y Z<br>
+            a b c d e f g h i j k l m n o p q r s t u v w x y z • 0 1 2 3 4 5 6 7 8 9
+          </p>
+        </div>
+      </div>
+
+      <!-- Type Scale Hierarchy Ladder -->
+      <div class="card-panel">
+        <h3 style="font-family: var(--font-display-sans); font-size: 18px; font-weight: 800; text-transform: uppercase; margin-bottom: var(--space-md); color: var(--color-carbon-black);">
+          Type Scale Hierarchy Ladder
+        </h3>
+
+        <div class="scale-ladder-list">
+          <div class="scale-ladder-row">
+            <div class="scale-token-meta">
+              <span class="scale-token-name">Display 01 (Hero Bubble)</span>
+              <span>128px–180px / L:0.90 / T:-0.04em</span>
+            </div>
+            <div class="scale-sample-text" style="font-family: var(--font-display-bubble); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 0.95; color: var(--color-brand-crimson);">
+              Solar Pop Fizz
+            </div>
+          </div>
+
+          <div class="scale-ladder-row">
+            <div class="scale-token-meta">
+              <span class="scale-token-name">Display 02 (Punch Title)</span>
+              <span>56px–72px / L:0.95 / T:-0.03em</span>
+            </div>
+            <div class="scale-sample-text" style="font-family: var(--font-display-bubble); font-size: 32px; color: var(--color-carbon-black);">
+              Sun-Squeezed Good Vibes
+            </div>
+          </div>
+
+          <div class="scale-ladder-row">
+            <div class="scale-token-meta">
+              <span class="scale-token-name">Heading 01 (Section)</span>
+              <span>32px–40px / L:1.10 / T:-0.02em</span>
+            </div>
+            <div class="scale-sample-text" style="font-family: var(--font-display-sans); font-size: 24px; font-weight: 800; color: var(--color-carbon-black);">
+              Crafted With 100% Real California Fruit
+            </div>
+          </div>
+
+          <div class="scale-ladder-row">
+            <div class="scale-token-meta">
+              <span class="scale-token-name">Body / Subtitle</span>
+              <span>16px–18px / L:1.40 / T:0.00em</span>
+            </div>
+            <div class="scale-sample-text" style="font-family: var(--font-body); font-size: 16px; color: var(--color-text-secondary);">
+              Crisp sparkling water paired with vibrant blood orange, yuzu citrus, and golden passionfruit botanicals.
+            </div>
+          </div>
+
+          <div class="scale-ladder-row">
+            <div class="scale-token-meta">
+              <span class="scale-token-name">Badge / Label (Caps)</span>
+              <span>11px–13px / L:1.00 / T:+0.12em</span>
+            </div>
+            <div class="scale-sample-text" style="font-family: var(--font-display-sans); font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-citrus-orange);">
+              ✦ ALL-NATURAL BOTANICAL EXTRACTS ✦ LIMITED EDITION DROP
+            </div>
+          </div>
+
+          <div class="scale-ladder-row">
+            <div class="scale-token-meta">
+              <span class="scale-token-name">KPI / Micro-Stat</span>
+              <span>24px / 11px / L:1.00 / T:+0.08em</span>
+            </div>
+            <div class="scale-sample-text" style="font-family: var(--font-display-sans); font-size: 20px; font-weight: 900; color: var(--color-brand-crimson);">
+              99.8% TASTE SCORE <span style="font-size: 12px; color: var(--color-text-muted); font-weight: 700;">(4,280 VERIFIED REVIEWS)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Live Type Tester -->
+        <div class="type-tester-box">
+          <div class="tester-controls-bar">
+            <div class="control-group">
+              <span class="control-label">Font Family:</span>
+              <select id="tester-font-select" class="tester-font-select" onchange="updateTypeTesterFont()">
+                <option value="'Shrikhand', cursive">Shrikhand (Display Bubble)</option>
+                <option value="'Titan One', cursive">Titan One (Heavy Bubble)</option>
+                <option value="'Cabinet Grotesk', sans-serif">Cabinet Grotesk (Bold Sans)</option>
+                <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans (Body)</option>
+                <option value="'JetBrains Mono', monospace">JetBrains Mono (Technical)</option>
+              </select>
+            </div>
+
+            <div class="control-group">
+              <span class="control-label">Size: <span id="tester-size-val">42px</span></span>
+              <input type="range" id="tester-size-slider" class="tester-slider" min="18" max="72" value="42" oninput="updateTypeTesterSize(this.value)">
+            </div>
+
+            <div class="control-group">
+              <span class="control-label">Quick Preset:</span>
+              <button class="btn-tile" style="padding: 4px 10px; font-size: 11px;" onclick="setTypePreset('SUNSET POP FIZZ 1974')">Preset 1</button>
+              <button class="btn-tile" style="padding: 4px 10px; font-size: 11px;" onclick="setTypePreset('100% SQUEEZED CITRUS BOLT')">Preset 2</button>
+            </div>
+          </div>
+
+          <textarea id="tester-input" class="tester-input-field" spellcheck="false">SUNSET POP FIZZ 1974</textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: COMPONENT ARCHETYPE GALLERY -->
+    <section class="section-wrap">
+      <div class="section-header">
+        <div>
+          <span class="section-heading-tag">03 // COMPONENT ARCHETYPES</span>
+          <h2 class="section-title">Pills, Stickers & Spring Physics</h2>
+        </div>
+        <p class="section-desc">
+          Tactile 9999px pill action triggers, 2px white outline sticker badges with hard retro drop shadows, and 8px rounded form inputs.
+        </p>
+      </div>
+
+      <div class="components-grid">
+        <!-- Buttons & CTAs -->
+        <div class="comp-block">
+          <div class="comp-block-title">
+            <span>Button & CTA Hierarchy</span>
+            <span style="font-family: var(--font-mono); font-size: 11px;">radius-pill</span>
+          </div>
+          <div class="buttons-flow">
+            <button class="btn-dtc btn-dtc-crimson" onclick="showToast('Primary Crimson CTA Clicked!', '✦')">Primary Crimson</button>
+            <button class="btn-dtc btn-dtc-outline" onclick="showToast('Secondary Outline Triggered!', '→')">Secondary Outline</button>
+            <button class="btn-dtc btn-dtc-bolt" onclick="showToast('Bolt Yellow Micro-Action!', '⚡')">Bolt Action ⚡</button>
+            <button class="btn-dtc btn-dtc-citrus" onclick="showToast('Citrus Orange Accent!', '🌞')">Citrus Accent</button>
+          </div>
+          <p style="font-size: 13px; color: var(--color-text-muted); margin-top: 4px;">
+            Hover triggers <code>translateY(-2px) scale(1.02)</code> with spring curve <code>cubic-bezier(0.34, 1.56, 0.64, 1)</code>.
+          </p>
+        </div>
+
+        <!-- Sticker Badges & Glyphs -->
+        <div class="comp-block">
+          <div class="comp-block-title">
+            <span>Sticker Badges & Motifs</span>
+            <span style="font-family: var(--font-mono); font-size: 11px;">2px White Stroke</span>
+          </div>
+          <div class="buttons-flow">
+            <span class="sticker-item sticker-crimson">✦ 4-POINT STARBURST</span>
+            <span class="sticker-item sticker-bolt">⚡ BOLT ENERGY</span>
+            <span class="sticker-item sticker-citrus">🌞 70s SUN ICON</span>
+            <span class="sticker-item sticker-cream">→ ROUNDED ARROW</span>
+          </div>
+          <p style="font-size: 13px; color: var(--color-text-muted); margin-top: 4px;">
+            Stickers use <code>0px 4px 0px rgba(20, 20, 20, 0.12)</code> hard retro drop shadows and tilt on hover.
+          </p>
+        </div>
+
+        <!-- Form Controls & Inputs -->
+        <div class="comp-block">
+          <div class="comp-block-title">
+            <span>Form Controls & Toggles</span>
+            <span style="font-family: var(--font-mono); font-size: 11px;">radius-sm (8px)</span>
+          </div>
+          <div class="dtc-form-group">
+            <label class="dtc-label">Subscribe for New Drops</label>
+            <div class="dtc-input-newsletter">
+              <input type="email" class="dtc-input" placeholder="you@sunsetpop.com">
+              <button class="btn-dtc btn-dtc-crimson" style="padding: 8px 16px;" onclick="showToast('Subscribed to Sunset Club!', '⚡')">Join ⚡</button>
+            </div>
+          </div>
+          <div class="toggle-row" style="margin-top: 8px;">
+            <span style="font-family: var(--font-display-sans); font-size: 13px; font-weight: 800; color: var(--color-carbon-black);">
+              Enable Kinetic Spring Physics
+            </span>
+            <label class="dtc-switch">
+              <input type="checkbox" checked onchange="togglePhysics(this.checked)">
+              <span class="dtc-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: LIVING MICRO-EXPERIENCE (DTC BEVERAGE SHOWCASE) -->
+    <section id="living-demo" class="section-wrap">
+      <div class="section-header">
+        <div>
+          <span class="section-heading-tag">04 // LIVING DTC MICRO-EXPERIENCE</span>
+          <h2 class="section-title">"Sunset Fizz™" Interactive Showcase</h2>
+        </div>
+        <p class="section-desc">
+          A living, high-energy direct-to-consumer beverage showcase. Switch flavors, customize pack size, and inspect live nutrition dials in real time.
+        </p>
+      </div>
+
+      <div class="dtc-showcase-card">
+        <!-- Top Announcement Bar -->
+        <div class="dtc-banner-top">
+          <span>✦ FREE EXPRESS SHIPPING ON 12+ PACK ORDERS</span>
+          <span>CODE: SUNSET70</span>
+          <span>⚡ COLD SQUEEZED DAILY</span>
+        </div>
+
+        <div class="dtc-showcase-grid">
+          <!-- Left: Product Can Art & Stage -->
+          <div class="dtc-product-stage" id="dtc-stage">
+            <span class="floating-stage-sticker stage-badge-1" id="can-tag-1">✦ 100% SQUEEZED</span>
+            <span class="floating-stage-sticker stage-badge-2" id="can-tag-2">⚡ ZERO SUGAR</span>
+
+            <!-- SVG 3D Retro Can Illustration with Dynamic Flavor Artwork -->
+            <div class="can-svg-wrapper" id="can-graphic" onclick="triggerCanSpin()">
+              <svg id="can-svg-art" viewBox="0 0 240 380" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <!-- Can Body Base Gradient (Dynamic) -->
+                  <linearGradient id="canGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#C81422" id="grad-stop-0"/>
+                    <stop offset="30%" stop-color="#E51928" id="grad-stop-30"/>
+                    <stop offset="70%" stop-color="#F77100" id="grad-stop-70"/>
+                    <stop offset="100%" stop-color="#FFC820" id="grad-stop-100"/>
+                  </linearGradient>
+                  <!-- Metallic Rim Gradient -->
+                  <linearGradient id="metalRim" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#D6D6D6"/>
+                    <stop offset="50%" stop-color="#FFFFFF"/>
+                    <stop offset="100%" stop-color="#A8A8A8"/>
+                  </linearGradient>
+                  <!-- Inner Shadow Mask -->
+                  <linearGradient id="canShade" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#000000" stop-opacity="0.25"/>
+                    <stop offset="25%" stop-color="#000000" stop-opacity="0.0"/>
+                    <stop offset="85%" stop-color="#000000" stop-opacity="0.0"/>
+                    <stop offset="100%" stop-color="#000000" stop-opacity="0.30"/>
+                  </linearGradient>
+                </defs>
+
+                <!-- Can Top Rim -->
+                <ellipse cx="120" cy="30" rx="76" ry="18" fill="url(#metalRim)" stroke="#141414" stroke-width="3"/>
+                <ellipse cx="120" cy="28" rx="64" ry="12" fill="#E8E8E8" stroke="#141414" stroke-width="2"/>
+                <ellipse cx="120" cy="28" rx="20" ry="6" fill="#B0B0B0" stroke="#141414" stroke-width="1.5"/>
+
+                <!-- Can Main Body -->
+                <path d="M 44,30 L 44,330 C 44,352 196,352 196,330 L 196,30 Z" fill="url(#canGrad)" stroke="#141414" stroke-width="3.5"/>
+
+                <!-- 70s Sunset Waves Graphic on Can -->
+                <path d="M 44,140 Q 120,180 196,140 L 196,240 Q 120,280 44,240 Z" fill="#FFF5ED" opacity="0.95"/>
+                <path d="M 44,165 Q 120,205 196,165 L 196,215 Q 120,255 44,215 Z" fill="#FFC820" opacity="0.95"/>
+                <path d="M 44,185 Q 120,225 196,185 L 196,205 Q 120,245 44,205 Z" fill="#F77100" opacity="0.95"/>
+
+                <!-- Can Brand Text Typography -->
+                <text x="120" y="110" font-family="'Shrikhand', cursive" font-size="28" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="-1">SUNSET</text>
+                <text x="120" y="132" font-family="'Cabinet Grotesk', sans-serif" font-size="14" font-weight="900" fill="#FFC820" text-anchor="middle" letter-spacing="3">FIZZ CO.</text>
+                
+                <!-- Dynamic Flavor Label on Can -->
+                <text id="can-flavor-label" x="120" y="278" font-family="'Cabinet Grotesk', sans-serif" font-size="16" font-weight="900" fill="#141414" text-anchor="middle" letter-spacing="1">BLOOD ORANGE</text>
+                <text x="120" y="296" font-family="'Plus Jakarta Sans', sans-serif" font-size="10" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="2">SPARKLING TONIC</text>
+
+                <!-- Can Metallic Shading Overlay -->
+                <path d="M 44,30 L 44,330 C 44,352 196,352 196,330 L 196,30 Z" fill="url(#canShade)" pointer-events="none"/>
+
+                <!-- Can Bottom Rim -->
+                <ellipse cx="120" cy="330" rx="76" ry="18" fill="none" stroke="#141414" stroke-width="3"/>
+                <path d="M 52,336 C 52,356 188,356 188,336" fill="url(#metalRim)" stroke="#141414" stroke-width="2.5"/>
+              </svg>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-text-muted); margin-top: 12px;">
+              Click can to test spring bounce physics
+            </span>
+          </div>
+
+          <!-- Right: Interactive Commerce & Flavor Console -->
+          <div class="dtc-console">
+            <div>
+              <div class="dtc-flavor-picker-label">
+                <span>Select Signature Flavor:</span>
+                <span id="active-flavor-name" style="color: var(--color-brand-crimson);">Blood Orange Crimson</span>
+              </div>
+              <div class="flavor-tabs" style="margin-top: 8px;">
+                <button class="flavor-btn active" id="fbtn-blood" onclick="setFlavor('blood')">
+                  <span>🍊 Blood Orange</span>
+                </button>
+                <button class="flavor-btn" id="fbtn-yuzu" onclick="setFlavor('yuzu')">
+                  <span>🍋 Yuzu Bolt</span>
+                </button>
+                <button class="flavor-btn" id="fbtn-citrus" onclick="setFlavor('citrus')">
+                  <span>🍹 Wild Citrus</span>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="dtc-product-name" id="product-title">Blood Orange Sunset Fizz™</h3>
+              <p class="dtc-product-tagline" id="product-desc">
+                Crisp Mediterranean blood orange infused with California sunshine, botanicals, and effervescent spring bubbles.
+              </p>
+            </div>
+
+            <!-- Pack Size Selection -->
+            <div>
+              <div class="dtc-flavor-picker-label">
+                <span>Choose Pack Configuration:</span>
+                <span id="savings-badge" style="color: var(--color-citrus-orange); font-weight: 900;">Save $12 Today</span>
+              </div>
+              <div class="pack-options-row" style="margin-top: 8px;">
+                <div class="pack-card" id="pack-4" onclick="selectPack(4, 16)">
+                  <div class="pack-size">4-Can Sampler</div>
+                  <div class="pack-price">$16.00</div>
+                </div>
+                <div class="pack-card selected" id="pack-12" onclick="selectPack(12, 36)">
+                  <div class="pack-size">12-Pack Case</div>
+                  <div class="pack-price">$36.00</div>
+                </div>
+                <div class="pack-card" id="pack-24" onclick="selectPack(24, 64)">
+                  <div class="pack-size">24-Pack Party</div>
+                  <div class="pack-price">$64.00</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quantity & Add to Cart -->
+            <div class="dtc-purchase-bar">
+              <div class="stepper-box">
+                <button class="stepper-btn" onclick="stepQuantity(-1)">−</button>
+                <span class="stepper-val" id="qty-display">1</span>
+                <button class="stepper-btn" onclick="stepQuantity(1)">+</button>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart()">
+                <span>Add to Cart ⚡</span>
+                <span id="cart-price-total">$36.00</span>
+              </button>
+            </div>
+
+            <!-- Flavor & Nutritional Metric Dials -->
+            <div class="dtc-kpi-row">
+              <div class="dial-item">
+                <div class="dial-val" id="kpi-fruit">100%</div>
+                <div class="dial-lbl">Real Fruit</div>
+              </div>
+              <div class="dial-item">
+                <div class="dial-val" id="kpi-cal">25 kcal</div>
+                <div class="dial-lbl">Calories</div>
+              </div>
+              <div class="dial-item">
+                <div class="dial-val" id="kpi-sugar">3g</div>
+                <div class="dial-lbl">Natural Sugar</div>
+              </div>
+              <div class="dial-item">
+                <div class="dial-val" id="kpi-sparkle">High 98%</div>
+                <div class="dial-lbl">Sparkle Level</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 25s Infinite Marquee Ticker -->
+        <div class="marquee-wrapper">
+          <div class="marquee-track">
+            <div class="marquee-content">
+              <span>✦ 100% SQUEEZED SUNSHINE</span>
+              <span class="marquee-spark">⚡</span>
+              <span>ZERO HIGH-FRUCTOSE CORN SYRUP</span>
+              <span class="marquee-spark">✦</span>
+              <span>RECYCLABLE CANISTER</span>
+              <span class="marquee-spark">⚡</span>
+              <span>MEDITERRANEAN CITRUS BOTANICALS</span>
+              <span class="marquee-spark">✦</span>
+              <span>VINTAGE 1970s GOOD VIBES</span>
+              <span class="marquee-spark">⚡</span>
+            </div>
+            <div class="marquee-content">
+              <span>✦ 100% SQUEEZED SUNSHINE</span>
+              <span class="marquee-spark">⚡</span>
+              <span>ZERO HIGH-FRUCTOSE CORN SYRUP</span>
+              <span class="marquee-spark">✦</span>
+              <span>RECYCLABLE CANISTER</span>
+              <span class="marquee-spark">⚡</span>
+              <span>MEDITERRANEAN CITRUS BOTANICALS</span>
+              <span class="marquee-spark">✦</span>
+              <span>VINTAGE 1970s GOOD VIBES</span>
+              <span class="marquee-spark">⚡</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- S-Curve Wave Boundary -->
+        <div class="wave-boundary-bottom">
+          <svg viewBox="0 0 1200 48" preserveAspectRatio="none" fill="#141414">
+            <path d="M 0,0 C 300,48 600,0 900,48 C 1050,48 1200,20 1200,0 L 1200,48 L 0,48 Z" fill="#FEE7DA"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: STYLE TILE PROMPT CODE DRAWER -->
+    <section class="section-wrap">
+      <div class="spec-vault-box">
+        <div class="spec-vault-header">
+          <div class="vault-title-block">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFC820" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <h3 class="vault-title">Retro-Pop Sunset // Style Tile Machine Tokens</h3>
+          </div>
+          <div class="header-actions">
+            <button class="btn-tile btn-copy" onclick="copyMasterTileSpec()">
+              <span>Copy Full Markdown Prompt</span>
+            </button>
+            <button class="btn-tile btn-download" onclick="downloadMasterTileSpec()">
+              <span>Download .md</span>
+            </button>
+          </div>
+        </div>
+
+        <pre class="raw-spec-pre" id="raw-spec-display"></pre>
+      </div>
+    </section>
+
+  </div><!-- /layout-wrapper -->
+
+  <!-- ========================================================================
+       MODAL: FULL SPECIFICATION VIEWER (agent.md Section 2)
+       ======================================================================== -->
+  <div class="spec-modal-backdrop" id="spec-modal-backdrop">
+    <div class="spec-modal-content">
+      <div class="spec-modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="design-code" style="background: #141414; color: #FFF;">TILE-021</span>
+          <h3>Retro-Pop Sunset Style Tile Spec</h3>
+        </div>
+        <button class="modal-close-btn" onclick="closeSpecModal()" title="Close Modal">✕</button>
+      </div>
+      <div class="spec-modal-body">
+        <pre id="modal-spec-text" style="white-space: pre-wrap; word-break: break-word;"></pre>
+      </div>
+      <div class="spec-modal-footer">
+        <button class="btn-tile" onclick="closeSpecModal()">Close</button>
+        <button class="btn-tile btn-copy" onclick="copyMasterTileSpec()">Copy Specification</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- ========================================================================
+       EMBEDDED STYLE TILE MARKDOWN (agent.md Section 2)
+       ======================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  STYLE TILE: RETRO-POP SUNSET (DTC / PLAYFUL HIGH-ENERGY SYSTEM)
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Retro-Pop Sunset is a high-energy, direct-to-consumer visual system celebrating 
+sun-drenched 1970s pop nostalgia, playful tactile geometry, and modern kinetic DTC 
+commerce. Built on vibrant Brand Crimson (#E51928), Citrus Orange (#F77100), and Bolt 
+Yellow (#FFC820) set against warm Peach Canvas (#FEE7DA) and Cream surfaces (#FFF5ED), 
+it merges plump bubble display typography, pill-rounded geometry, organic wave dividers, 
+and springy tactile physics for an unforgettable, joyful brand presence.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --color-peach-canvas:     #FEE7DA; /* App/Page Background Canvas */
+  --color-cream-neutral:    #FFF5ED; /* Surface / Card Fill */
+  --color-cream-tint:       #FCE0D0; /* Recessed container / well */
+  --color-carbon-black:     #141414; /* Primary Text / Heavy UI */
+  --color-pure-white:       #FFFFFF; /* Sticker Strokes / Card Highlights */
+
+  /* Primary & Accents */
+  --color-brand-crimson:    #E51928; /* Primary CTA / Pop Action */
+  --color-brand-hover:      #C81422; /* Primary Pressed / Hover state */
+  --color-citrus-orange:    #F77100; /* Secondary Accent / Highlight */
+  --color-citrus-hover:     #DE6500; /* Citrus Hover state */
+  --color-bolt-yellow:      #FFC820; /* Highlight / Micro-badge / Spark */
+  --color-bolt-hover:       #E6B218; /* Bolt Hover state */
+
+  /* Typography & Inks */
+  --color-text-primary:     #141414; /* Carbon Black Primary Reading */
+  --color-text-secondary:   #5A453D; /* Warm graphite secondary */
+  --color-text-muted:       #8C7368; /* Low contrast captions & placeholders */
+  --color-text-inverse:     #FFFFFF; /* White on saturated buttons */
+  --color-text-highlight:   #F77100; /* Citrus Orange Highlight Text */
+
+  /* Semantic Status Tokens */
+  --status-success:         #00B67A; /* All-natural / Fresh Badge */
+  --status-warning:         #F77100; /* Low Stock / Fast Selling */
+  --status-danger:          #E51928; /* Sold Out / Urgent */
+  --status-info:            #FFC820; /* New Drop / Flavor Alert */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display-bubble: "Shrikhand", "Titan One", "Cooper Black Rounded", cursive, sans-serif;
+--font-display-sans:   "Cabinet Grotesk", "Plus Jakarta Sans", "Syne", sans-serif;
+--font-body:           "Plus Jakarta Sans", "DM Sans", -apple-system, sans-serif;
+--font-mono:           "JetBrains Mono", monospace;
+
+/* Type Scale */
+--text-display-01: clamp(4.5rem, 10vw, 10.5rem) / 0.90 var(--font-display-bubble); /* Tracking: -0.04em | Extra Bold */
+--text-display-02: clamp(2.75rem, 5.5vw, 4.25rem) / 0.95 var(--font-display-bubble); /* Tracking: -0.03em | Heavy / 900 */
+--text-heading-01: clamp(1.75rem, 3.5vw, 2.5rem) / 1.10 var(--font-display-sans);   /* Tracking: -0.02em | Bold / 800 */
+--text-heading-02: 1.5rem / 1.20 var(--font-display-sans);                          /* Tracking: -0.01em | Bold / 700 */
+--text-body:       1.0625rem / 1.40 var(--font-body);                               /* Tracking: 0.00em  | Medium / 500 */
+--text-body-sm:    0.9375rem / 1.45 var(--font-body);                               /* Tracking: 0.00em  | Regular / 400 */
+--text-badge:      0.75rem / 1.00 var(--font-body);                                 /* Tracking: +0.12em | Bold / 700 (UPPERCASE) */
+--text-kpi:        1.5rem / 1.00 var(--font-display-sans);                          /* Tracking: +0.08em | Heavy / 900 */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-pill: 9999px; /* Buttons, announcement badges, status tags, stickers */
+--radius-card: 24px;   /* Surface panels, media containers, modal dialogs */
+--radius-sm:   8px;    /* Inputs, tooltips, micro-interactions */
+--radius-wave: Bezier-curved masks (S-curve organic bottom section dividers)
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERING)
+ * -------------------------------------------------------------------------- */
+/* Layering Hierarchy */
+z-0:  Base Gradient Mesh (Peach to Light Melon Warmth)
+z-10: Background Graphic Typography (Oversized clipping elements)
+z-20: Hero Focal Product Object (Centralized floating layer)
+z-30: Sticker Badges & Floating Flavor Pills
+z-40: Sticky Header & Persistent CTA Navigation
+
+/* Shadow Tokens */
+--shadow-floating: 0px 28px 48px -12px rgba(229, 25, 40, 0.18), 0px 12px 24px -6px rgba(20, 20, 20, 0.08);
+--shadow-sticker:  0px 4px 0px rgba(20, 20, 20, 0.12); /* Hard retro drop */
+--shadow-btn-hover: 0px 8px 16px -4px rgba(229, 25, 40, 0.40);
+--shadow-card:     0px 16px 36px -8px rgba(229, 25, 40, 0.08), 0px 4px 12px 0px rgba(20, 20, 20, 0.04);
+--shadow-pressed:  0px 2px 4px rgba(20, 20, 20, 0.10);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (BASE: 8px)
+ * -------------------------------------------------------------------------- */
+--space-2xs: 4px;   /* Icon to label padding */
+--space-xs:  8px;   /* Tag internal vertical padding */
+--space-sm:  16px;  /* Button horizontal padding, inline gap */
+--space-md:  24px;  /* Card padding, element stacking */
+--space-lg:  32px;  /* Component rhythm */
+--space-xl:  48px;  /* Section internal gutter */
+--space-2xl: 64px;  /* Hero section margins, billboard spacing */
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-sticker:  2px solid #FFFFFF;              /* Applied to floating organic badges */
+--border-outline:  2px solid #141414;              /* Secondary Pill CTA outline */
+--border-micro:    1px solid rgba(20, 20, 20, 0.10);/* Recessed card dividers */
+--divider-wave:    Seamless S-curve wave boundary (mask-image / SVG wave)
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+- Style: Playful 70s Pop / Chunky Geometric Strokes (2.5px stroke weight)
+- Motifs:
+  • Retro Sparkle / Starburst: 4-point star (✦) for highlights and accents
+  • Bolt: Lightning glyph (⚡) for new drops and high-energy callouts
+  • Navigation Arrows: Monoline rounded directional arrows (→)
+  • Cart / Meta: Minimalist round-joint stroke glyphs
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+- Primary Button: Solid crimson fill (#E51928), white text, pill radius.
+  • Hover:  translateY(-2px) scale(1.02) with punchy shadow expansion.
+  • Active: translateY(1px) scale(0.98) with reduced shadow.
+- Secondary Button: 2px solid #141414 border, cream fill.
+  • Hover: Invert fill (#141414 fill, #FFF5ED text).
+- Motion Physics:
+  • Transition Timing: cubic-bezier(0.34, 1.56, 0.64, 1) (Bouncy spring)
+  • Transition Duration: 180ms – 240ms
+- Marquee Ticker: Infinite horizontal scroll @ 25s linear loop for bottom banner text.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic purple neon or violet accents on dark backgrounds.
+- NO cold corporate dashboard tables or monochrome sterile layouts.
+- NO untracked giant typefaces without optical leading and kerning.
+- NO textureless flat grey surfaces; embrace warm peach canvas and sun-drenched inks.
+- NO over-nested cards with 3+ inside layers.
+- NO headline biscuit pills with pulsing dots.
+================================================================================
+  </script>
+
+  <!-- ========================================================================
+       JAVASCRIPT LOGIC & INTERACTION ENGINE
+       ======================================================================== -->
+  <script>
+    // App & DTC Living Demo State
+    const demoState = {
+      activeFlavor: 'blood',
+      selectedPack: 12,
+      baseUnitPrice: 36,
+      quantity: 1,
+      physicsEnabled: true
+    };
+
+    const flavorProfiles = {
+      blood: {
+        name: 'Blood Orange Crimson',
+        title: 'Blood Orange Sunset Fizz™',
+        desc: 'Crisp Mediterranean blood orange infused with California sunshine, botanicals, and effervescent spring bubbles.',
+        canText: 'BLOOD ORANGE',
+        tag1: '✦ 100% SQUEEZED',
+        tag2: '⚡ ZERO SUGAR',
+        kpiFruit: '100%',
+        kpiCal: '25 kcal',
+        kpiSugar: '3g',
+        kpiSparkle: 'High 98%',
+        stop0: '#C81422',
+        stop30: '#E51928',
+        stop70: '#F77100',
+        stop100: '#FFC820'
+      },
+      yuzu: {
+        name: 'Yuzu Citrus Bolt',
+        title: 'Yuzu Citrus Bolt Fizz™',
+        desc: 'High-energy Japanese Yuzu paired with cold-pressed Meyer lemon, sparkling mountain water, and a touch of sea salt.',
+        canText: 'YUZU CITRUS',
+        tag1: '⚡ BOLT ENERGY',
+        tag2: '✦ CITRUS BURST',
+        kpiFruit: '96%',
+        kpiCal: '20 kcal',
+        kpiSugar: '2g',
+        kpiSparkle: 'Max 100%',
+        stop0: '#DE6500',
+        stop30: '#F77100',
+        stop70: '#FFC820',
+        stop100: '#FFE169'
+      },
+      citrus: {
+        name: 'Wild Citrus Sunrise',
+        title: 'Wild Citrus Sunrise Fizz™',
+        desc: 'Tangy pink grapefruit, sun-kissed passionfruit, and organic Valencia orange with sparkling crisp botanical fizz.',
+        canText: 'WILD CITRUS',
+        tag1: '🌞 SUNRISE VIBE',
+        tag2: '✦ FRESH PRESSED',
+        kpiFruit: '98%',
+        kpiCal: '28 kcal',
+        kpiSugar: '3.5g',
+        kpiSparkle: 'Bubbly 95%',
+        stop0: '#E51928',
+        stop30: '#F77100',
+        stop70: '#FFA07A',
+        stop100: '#FFC820'
+      }
+    };
+
+    // Helper: Get Raw Markdown
+    function getMarkdownText() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    // Toast Notification System
+    function showToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `<span>${icon}</span><span>${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 220);
+      }, 2400);
+    }
+
+    // 1. Copy Master Style Tile Prompt
+    function copyMasterTileSpec() {
+      const text = getMarkdownText();
+      navigator.clipboard.writeText(text).then(() => {
+        const btnCopy = document.getElementById("btn-copy-tile");
+        if (btnCopy) {
+          const origHtml = btnCopy.innerHTML;
+          btnCopy.innerHTML = `<span>✓ Copied to Clipboard!</span>`;
+          setTimeout(() => { btnCopy.innerHTML = origHtml; }, 2000);
+        }
+        showToast("Copied Retro-Pop Sunset Style Tile Markdown!", "✦");
+      }).catch(err => {
+        console.error("Clipboard error:", err);
+      });
+    }
+
+    // 2. Download Master Style Tile Markdown
+    function downloadMasterTileSpec() {
+      const text = getMarkdownText();
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "style-tile-retro-pop-sunset.md";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-retro-pop-sunset.md!", "⚡");
+    }
+
+    // 3. Open & Close Preview Modal
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      const textEl = document.getElementById("modal-spec-text");
+      if (modal && textEl) {
+        textEl.textContent = getMarkdownText();
+        modal.classList.add("active");
+      }
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      if (modal) modal.classList.remove("active");
+    }
+
+    // 4. Copy Swatch Color
+    function copyColorToken(hex, cssVar, name) {
+      navigator.clipboard.writeText(`${cssVar}: ${hex};`).then(() => {
+        showToast(`Copied ${name} (${hex}) to clipboard!`, "●");
+      });
+    }
+
+    function copyMeshCode() {
+      const code = "background: linear-gradient(135deg, #E51928 0%, #F77100 45%, #FFC820 100%);";
+      navigator.clipboard.writeText(code).then(() => {
+        showToast("Copied Sunset Gradient CSS!", "✦");
+      });
+    }
+
+    // 5. Interactive Type Tester
+    function updateTypeTesterFont() {
+      const select = document.getElementById("tester-font-select");
+      const input = document.getElementById("tester-input");
+      if (select && input) {
+        input.style.fontFamily = select.value;
+      }
+    }
+
+    function updateTypeTesterSize(val) {
+      const input = document.getElementById("tester-input");
+      const valLabel = document.getElementById("tester-size-val");
+      if (input && valLabel) {
+        input.style.fontSize = val + "px";
+        valLabel.textContent = val + "px";
+      }
+    }
+
+    function setTypePreset(text) {
+      const input = document.getElementById("tester-input");
+      if (input) input.value = text;
+      showToast("Preset Loaded!", "✦");
+    }
+
+    // 6. DTC Showcase Interactive Engine
+    function setFlavor(flavorKey) {
+      demoState.activeFlavor = flavorKey;
+      const data = flavorProfiles[flavorKey];
+      if (!data) return;
+
+      // Update button states
+      document.querySelectorAll(".flavor-btn").forEach(btn => btn.classList.remove("active"));
+      const activeBtn = document.getElementById(`fbtn-${flavorKey}`);
+      if (activeBtn) activeBtn.classList.add("active");
+
+      // Update text details
+      document.getElementById("active-flavor-name").textContent = data.name;
+      document.getElementById("product-title").textContent = data.title;
+      document.getElementById("product-desc").textContent = data.desc;
+      document.getElementById("can-flavor-label").textContent = data.canText;
+      document.getElementById("can-tag-1").textContent = data.tag1;
+      document.getElementById("can-tag-2").textContent = data.tag2;
+
+      // Update KPIs
+      document.getElementById("kpi-fruit").textContent = data.kpiFruit;
+      document.getElementById("kpi-cal").textContent = data.kpiCal;
+      document.getElementById("kpi-sugar").textContent = data.kpiSugar;
+      document.getElementById("kpi-sparkle").textContent = data.kpiSparkle;
+
+      // Update Can SVG Gradients
+      document.getElementById("grad-stop-0").setAttribute("stop-color", data.stop0);
+      document.getElementById("grad-stop-30").setAttribute("stop-color", data.stop30);
+      document.getElementById("grad-stop-70").setAttribute("stop-color", data.stop70);
+      document.getElementById("grad-stop-100").setAttribute("stop-color", data.stop100);
+
+      // Trigger bounce
+      triggerCanSpin();
+      showToast(`Switched to ${data.name}!`, "🍊");
+    }
+
+    function selectPack(count, price) {
+      demoState.selectedPack = count;
+      demoState.baseUnitPrice = price;
+
+      document.querySelectorAll(".pack-card").forEach(c => c.classList.remove("selected"));
+      const packCard = document.getElementById(`pack-${count}`);
+      if (packCard) packCard.classList.add("selected");
+
+      updatePriceDisplay();
+      showToast(`Selected ${count}-Pack Case!`, "📦");
+    }
+
+    function stepQuantity(delta) {
+      demoState.quantity = Math.max(1, demoState.quantity + delta);
+      document.getElementById("qty-display").textContent = demoState.quantity;
+      updatePriceDisplay();
+    }
+
+    function updatePriceDisplay() {
+      const total = demoState.baseUnitPrice * demoState.quantity;
+      document.getElementById("cart-price-total").textContent = `$${total.toFixed(2)}`;
+    }
+
+    function addToCart() {
+      const data = flavorProfiles[demoState.activeFlavor];
+      const total = demoState.baseUnitPrice * demoState.quantity;
+      showToast(`Added ${demoState.quantity}x ${data.title} (${demoState.selectedPack}-Pack) for $${total.toFixed(2)}! ⚡`, "🛒");
+      triggerCanSpin();
+    }
+
+    function triggerCanSpin() {
+      const can = document.getElementById("can-graphic");
+      if (!can) return;
+      can.style.transform = "translateY(-14px) rotate(4deg) scale(1.08)";
+      setTimeout(() => {
+        can.style.transform = "translateY(0) rotate(0deg) scale(1)";
+      }, 260);
+    }
+
+    function togglePhysics(enabled) {
+      demoState.physicsEnabled = enabled;
+      showToast(`Kinetic spring physics ${enabled ? 'enabled' : 'relaxed'}!`, "⚡");
+    }
+
+    // --------------------------------------------------------------------------
+    // INITIALIZATION & EVENT BINDINGS
+    // --------------------------------------------------------------------------
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Populate Code Drawers
+      const markdown = getMarkdownText();
+      const rawDisplay = document.getElementById("raw-spec-display");
+      if (rawDisplay) rawDisplay.textContent = markdown;
+
+      // 2. Bind Header Action Buttons
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyMasterTileSpec);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadMasterTileSpec);
+
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      // 3. Modal Backdrop Click & Escape Key
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+    });
+  </script>
+</body>
+</html>
