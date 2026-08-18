@@ -4022,6 +4022,529 @@ Base Multiplier: 4px | Core Scale: 8pt Grid
 - NO headline biscuit pills with pulsing dots right above the main headline.
 - NO 3D cartoon/vector illustrations (prefer authentic organic botanical vectors).
 ================================================================================`
+  },
+  {
+    id: "TILE-025",
+    slug: "organic-luxe",
+    name: "Organic Luxe",
+    vibe: "Deep Roasted Cacao • Soft Oat Milk • Caramel Gold • Molten Fluid Geometry • Artisanal Confectionery",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Bebas Neue",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Deep Espresso Cacao", hex: "#2B1810" },
+      { name: "Bittersweet Chocolate", hex: "#3D2318" },
+      { name: "Soft Oat Milk / Bone", hex: "#F8F5F0" },
+      { name: "Cloud Mist Slate", hex: "#E6ECF0" },
+      { name: "Caramel Gold", hex: "#D9822B" },
+      { name: "Warm Ochre", hex: "#B8621B" },
+      { name: "Metallic Gold Leaf", hex: "#ECC880" },
+      { name: "Pure Floating White", hex: "#FFFFFF" }
+    ],
+    description: "Organic Luxe: An opulent, sensory-driven design system uniting deep roasted cacao (#2B1810) and soft oat milk (#F8F5F0) surfaces with liquid caramel-gold accents (#D9822B), fluid molten bezier contours, condensed monolithic display typography ('Bebas Neue'), and handwritten expressive accents ('Caveat Brush').",
+    markdownSpec: `================================================================================
+  DESIGN SYSTEM STYLE TILE // "ORGANIC LUXE" (TILE-025)
+  A decadent, tactile design system uniting rich roasted cacao and soft oat milk 
+  surfaces with liquid caramel-gold accents, organic fluid contours, and luxury typography.
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Organic Luxe is an opulent, sensory-driven design system engineered for artisanal 
+gastronomy, luxury botanicals, single-origin cacao wellness, and sustainable prestige goods. 
+It balances heavy espresso and warm bittersweet chocolate surfaces with velvety oat-milk 
+canvases, fluid molten caramel-gold interactions, handwritten organic script annotations, 
+and condensed monolithic display headlines.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Brand & Surfaces */
+  --surface-dark-primary:     #2B1810; /* Deep Espresso / Rich Roasted Cacao */
+  --surface-dark-secondary:   #3D2318; /* Warm Bittersweet Chocolate */
+  --surface-light-primary:    #F8F5F0; /* Soft Oat Milk / Warm Bone */
+  --surface-light-cool:       #E6ECF0; /* Cloud Mist / Slate Accent Canvas */
+  --surface-overlay-card:     #FFFFFF; /* Pure Floating White */
+
+  /* Accents & Energetics */
+  --accent-caramel-gold:      #D9822B; /* Roasted Toffee / Dynamic Accent */
+  --accent-warm-ochre:        #B8621B; /* Deep Amber / Interactive Active */
+  --accent-metallic-foil:     linear-gradient(135deg, #ECC880 0%, #A86B24 50%, #F5DEAA 100%);
+
+  /* Content & Readability */
+  --text-light-high:          #FFFFFF; /* Primary text on dark surfaces */
+  --text-light-muted:         #D1C5BD; /* Secondary metadata on dark */
+  --text-dark-high:           #1F120B; /* Primary typography on light */
+  --text-dark-muted:          #786D66; /* Secondary labels / nutritional specs */
+  --border-subtle-dark:       rgba(255, 255, 255, 0.18);
+  --border-subtle-light:      rgba(43, 24, 16, 0.15);
+
+  /* Status Tokens */
+  --status-success:           #4A7C59; /* Botanical Herb */
+  --status-warning:           #D9822B; /* Warm Caramel */
+  --status-danger:            #A8382B; /* Roasted Hibiscus */
+  --status-info:              #5C788D; /* Slate Mist */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display-condensed:     'Bebas Neue', 'Druk Wide', sans-serif;
+--font-accent-hand:           'Caveat Brush', 'Permanent Marker', cursive;
+--font-body-ui:               'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+
+/* Type Hierarchy Tokens */
+--type-display-mega:          72px / 0.95 / 0.04em / All-Caps (Bebas Neue);
+--type-display-section:       44px / 1.05 / 0.02em / All-Caps (Bebas Neue);
+--type-accent-hand:           28px / 1.10 / 0.00em / Organic Tilt -4deg (Caveat Brush);
+--type-stat-numeric:          36px / 1.00 / -0.01em / Heavy Condensed (Bebas Neue);
+--type-data-label:            11px / 1.40 / 0.12em / Bold Monospaced Uppercase (Plus Jakarta Sans);
+--type-body-regular:          14px / 1.55 / -0.01em / Regular 400 (Plus Jakarta Sans);
+--type-button-label:          13px / 1.00 / 0.08em / Bold Uppercase (Plus Jakarta Sans);
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-pill:                9999px;              /* Navigation chips, Action buttons, Badges */
+--radius-card-sm:             12px;                /* Micro-containers, Steppers, Modals */
+--radius-card-lg:             24px;                /* Floating product plates, Info panels */
+--radius-diagram-node:        100px;               /* Interactive cluster badges & pills */
+
+/* Organic Contours */
+--mask-organic-drip:          path("M0,0 C150,90 350,-40 500,60 C650,160 900,20 1200,80 L1200,0 Z");
+--divider-fluid-wave:         Continuous 2-phase S-curve separating espresso and oat-milk zones
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+/* Spatial Layer Stacking */
+Layer 0 (Base Canvas)   : Solid or dual-tone organic split background
+Layer 1 (Surface UI)    : Flat pill containers, data tables, line vectors
+Layer 2 (Elevated UI)   : Floating navigation bars, active drop-downs
+Layer 3 (Hero Heroics)  : Suspended packshots & dynamic debris
+
+/* Shadow Profiles */
+--shadow-card-subtle:         0px 4px 16px rgba(43, 24, 16, 0.06);
+--shadow-floating-asset:      0px 24px 48px -12px rgba(35, 18, 11, 0.45),
+                              0px 8px 16px -4px rgba(35, 18, 11, 0.25);
+--shadow-action-pressed:      0px 2px 6px rgba(43, 24, 16, 0.20);
+--text-shadow-metallic:       0px 1px 2px rgba(0, 0, 0, 0.35);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (4px / 8px Grid Engine)
+ * -------------------------------------------------------------------------- */
+--space-xxs: 4px;   --space-sm: 12px;  --space-xl: 32px;  --space-3xl: 64px;
+--space-xs:  8px;   --space-md: 16px;  --space-2xl: 48px; --space-4xl: 96px;
+
+Content Max-Width       : 1240px
+Mobile Padding Inset    : 20px
+Desktop Section Gaps    : 80px – 120px
+Component Stack Gap     : 8px (Tight data), 24px (Cards), 40px (Hero groups)
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-hairline-table  : 1px solid rgba(43, 24, 16, 0.12); /* Clean data row lines */
+--border-interactive-pill: 1px solid rgba(255, 255, 255, 0.35);
+--border-diagram-link   : 1px solid #786D66 with 4px circular junction nodes;
+--divider-fluid-edge    : Smooth vector masks blending dark espresso into warm cream;
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+* Geometry              : Minimalist, clean geometric wireframe
+* Stroke Weight         : 1.5px consistent stroke (Round cap, Round join)
+* Grid Canvas           : 20x20px viewport with 2px internal safe padding
+* Optical Alignment     : Center-aligned within pill/circle badges
+* Rating Glyphs         : Filled 5-point star micro-cluster (10px size)
+* Dynamic Accents       : Asymmetric splatter dots, splash arcs, fluid drop decals
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+--easing-spring         : cubic-bezier(0.34, 1.56, 0.64, 1);
+--transition-speed-fast : 220ms (Hover states);
+--transition-speed-slow : 450ms (Layer reveals);
+
+* Primary Button (Drip)  : Normal: Caramel-Gold fill -> Hover: translateY(-2px) + Expand Drop
+* Secondary Button (Pill): Normal: Transparent + Border -> Hover: Invert fill to White/Dark
+* Interactive Nodes      : Normal: Neutral outline -> Hover: Gold fill + Scale(1.08)
+* Hero Asset Parallax    : Mouse-aware inertia tilt (-3deg to +3deg) with floating debris
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO purple or neon violet accents on dark cacao backgrounds.
+- NO cold corporate SaaS gradients or sterile grey dashboards.
+- NO untracked giant headers or generic sans-serif placeholders.
+- NO rigid 90-degree square boxes everywhere without organic curve balancing.
+- NO generic stock 3D cartoon icons or bloated icon-stuffed bento grids.
+- NO headline biscuit pills with pulsing dots right above the main headline.
+================================================================================`
+  },
+  {
+    id: "TILE-026",
+    slug: "crimson-radiance",
+    name: "Crimson Radiance / Lumina Tech",
+    vibe: "Ultra-Deep Obsidian Canvas • Kinetic Crimson & Solar Orange Glows • Specular Glassmorphism • Multi-Strand Telemetry Waveforms",
+    vibeBadge: "Cyber & Blueprint",
+    categories: ["cyber"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Syne",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Obsidian Canvas", hex: "#080202" },
+      { name: "Kinetic Crimson", hex: "#B50D00" },
+      { name: "Solar Orange", hex: "#FF6B00" },
+      { name: "Electric Amber", hex: "#FFAE00" },
+      { name: "Pure White CTA", hex: "#FFFFFF" },
+      { name: "Luminous Accent", hex: "#FF4D00" },
+      { name: "Text Gold", hex: "#FFB800" },
+      { name: "Emerald Lock", hex: "#00E599" }
+    ],
+    description: "Crimson Radiance / Lumina Tech: A hyper-saturated, luminescent dark design system uniting ultra-deep obsidian black (#080202) with kinetic red (#B50D00), solar orange (#FF6B00), and electric amber glows (#FFAE00), multi-tiered glass surfaces, and multi-strand telemetry waveforms.",
+    markdownSpec: `================================================================================
+  DESIGN SYSTEM STYLE TILE // "CRIMSON RADIANCE / LUMINA TECH" (TILE-026)
+  Aesthetic: Hyper-saturated editorial glassmorphism & luminescent dark UI
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Crimson Radiance / Lumina Tech is a hyper-saturated, luminescent dark design system
+engineered for telemetry synthesizers, high-frequency kinetic media, photonics computing,
+and futuristic editorial technology platforms. It pairs an ultra-deep obsidian black canvas
+(#080202) with kinetic crimson (#B50D00), solar orange (#FF6B00), and electric amber (#FFAE00)
+atmospheric underglows, hyper-refined glassmorphism, monoline iconography with 3x3 dot matrix
+accents, and heavy tracking typography.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Background & Canvas */
+  --canvas-base:             #080202; /* Ultra-deep obsidian black */
+  --canvas-glow-crimson:     #B50D00; /* Deep kinetic red */
+  --canvas-glow-amber:       #FF6B00; /* Vibrant solar orange */
+  --canvas-glow-gold:        #FFAE00; /* Bright electric amber */
+
+  /* Glass Surfaces */
+  --surface-glass-low:       rgba(255, 255, 255, 0.04); /* Subtle floating panels */
+  --surface-glass-med:       rgba(255, 255, 255, 0.08); /* Active interactive cards */
+  --surface-glass-high:      rgba(255, 255, 255, 0.14); /* Hover states / Nav pills */
+  --surface-dark-tint:       rgba(18, 5, 4, 0.55);      /* Grounded data modules */
+
+  /* Typography & Foreground */
+  --text-primary:            #FFFFFF; /* 100% pure white */
+  --text-secondary:          rgba(255, 255, 255, 0.72); /* Muted body copy */
+  --text-tertiary:           rgba(255, 255, 255, 0.44); /* Metadata, captions */
+  --text-accent-gold:        #FFB800; /* Data callouts & indicators */
+
+  /* Brand Accent & Accents */
+  --accent-primary:          #FFFFFF; /* High-contrast solid action CTA */
+  --accent-luminous:         #FF4D00; /* Energy lines / waveforms / glows */
+  --accent-ring:             rgba(255, 255, 255, 0.85); /* Specular focus rings */
+
+  /* Status Tokens */
+  --status-success:          #00E599; /* Radiant Emerald */
+  --status-warning:          #FFAE00; /* Solar Amber */
+  --status-danger:           #FF2A1A; /* Laser Crimson */
+  --status-info:             #FF6B00; /* Plasma Orange */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display:              "Syne", "Clash Display", "Plus Jakarta Sans", sans-serif;
+--font-sans:                 "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:                 "JetBrains Mono", ui-monospace, monospace;
+
+/* Scale & Hierarchy */
+--type-display-mega:         font-size: 76px | line-height: 0.92 | tracking: -0.04em | weight: 700 | uppercase;
+--type-heading-xl:           font-size: 28px | line-height: 1.15 | tracking: -0.02em | weight: 600;
+--type-heading-sm:           font-size: 16px | line-height: 1.30 | tracking: -0.01em | weight: 600;
+--type-body-regular:         font-size: 13px | line-height: 1.50 | tracking:  0.00em | weight: 400;
+--type-caption-meta:         font-size: 11px | line-height: 1.40 | tracking: +0.02em | weight: 500;
+--type-nav-pill:             font-size: 12px | line-height: 1.00 | tracking: +0.03em | weight: 500;
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-full:               9999px; /* Floating navbars, pill buttons, micro-badges */
+--radius-xl:                 24px;   /* Main modular data cards, content containers */
+--radius-lg:                 16px;   /* Nested sub-cards, status containers */
+--radius-md:                 10px;   /* Input fields, embedded media windows */
+--radius-circle:             50%;    /* Concentric play/trigger controls */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION, DEPTH & BLURS
+ * -------------------------------------------------------------------------- */
+/* Backdrop Filter Blurs */
+--blur-subtle:               backdrop-filter: blur(8px) saturate(140%);
+--blur-glass:                backdrop-filter: blur(24px) saturate(180%);
+--blur-heavy:                backdrop-filter: blur(40px) saturate(200%);
+
+/* Shadows & Specular Highlights */
+--elevation-card:
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 20px 0 rgba(255, 255, 255, 0.03),
+    0 24px 48px -12px rgba(0, 0, 0, 0.45);
+
+--elevation-glow-cta:
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.6),
+    0 0 35px 4px rgba(255, 110, 0, 0.45);
+
+--elevation-play-disc:
+  box-shadow:
+    0 0 0 8px rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.4),
+    0 10px 30px rgba(0, 0, 0, 0.5);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (8pt Base Grid)
+ * -------------------------------------------------------------------------- */
+--space-2xs: 4px;   --space-xs:  8px;   --space-sm: 12px;
+--space-md:  16px;  --space-lg:  24px;  --space-xl: 32px;
+--space-2xl: 48px;  --space-3xl: 64px;  --space-4xl: 96px;
+
+/* Card Internal Padding */
+--pad-compact:               12px 16px; /* Navbars, pill tags */
+--pad-standard:              20px 24px; /* Data panels, metric widgets */
+--pad-hero:                  48px 64px; /* Major responsive gutters */
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & STROKES
+ * -------------------------------------------------------------------------- */
+--border-glass-subtle:       1px solid rgba(255, 255, 255, 0.10);
+--border-glass-focus:        1px solid rgba(255, 255, 255, 0.25);
+--border-gradient-edge:      linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.02) 100%);
+--divider-translucent:       1px solid rgba(255, 255, 255, 0.06);
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY & DATA VISUALIZATION LANGUAGE
+ * -------------------------------------------------------------------------- */
+- Stroke-width:              1.5px / Monoline
+- Corner caps:               Round / Semi-sharp aesthetic
+- Color:                     rgba(255, 255, 255, 0.85) default, #FF6B00 accent
+- Micro-accents:             3x3 dot matrix grid patterns, diagonal link arrows (↗)
+- Ambient Waveforms:         Multi-strand overlapping sine waves with gradient fills
+- Glow Ratios:               Luminous scalar rings (40% to 100% opacity gradient arcs)
+- Status Nodes:              Glowing pill badges containing centered micro-text
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & MOTION DYNAMICS
+ * -------------------------------------------------------------------------- */
+--transition-snap:           150ms cubic-bezier(0.4, 0.0, 0.2, 1);
+--transition-smooth:         300ms cubic-bezier(0.16, 1, 0.3, 1);
+--transition-elastic:        500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+- Primary Button Hover:
+    scale: 1.02; filter: brightness(1.1); box-shadow: 0 0 25px rgba(255,255,255,0.4);
+- Glass Card Hover:
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.10);
+    transform: translateY(-2px);
+- Play / Action Trigger Hover:
+    concentric halo pulse expansion: scale(1.08) with 0.8s looping breathe.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic purple on dark violet neon gradients.
+- NO untracked massive headlines.
+- NO flat textureless surfaces without specular inset highlights or saturated backdrop blurs.
+- NO generic 0px brutalist sharp harsh blocks without glass refraction.
+- NO icon-stuffed bento boxes or generic corporate stock illustrations.
+- NO headline biscuit pills with pulsing dots right above the main headline.
+================================================================================`
+  },
+  {
+    id: "TILE-027",
+    slug: "industrial-ghost-system",
+    name: "Lab-01 / Industrial Ghost System",
+    vibe: "Swiss Lab Metrology • Achromatic 90/10 Ratio • Ghost Blueprint Coordinate Frames • Tactile Floating Hardware Instruments",
+    vibeBadge: "Cyber & Blueprint",
+    categories: ["cyber"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Instrument Sans",
+      sans: "Inter",
+      mono: "Geist Mono"
+    },
+    palette: [
+      { name: "Cool Lab Gray", hex: "#E8EBEF" },
+      { name: "Secondary Wash", hex: "#F2F3F5" },
+      { name: "Solid UI White", hex: "#FFFFFF" },
+      { name: "Metallic Highlight", hex: "#DDE0E4" },
+      { name: "Primary Ink", hex: "#0E0F10" },
+      { name: "Secondary Ink", hex: "#7C8088" },
+      { name: "Ghost Blueprint", hex: "#A9ADB4" }
+    ],
+    description: "Lab-01 / Industrial Ghost System: An ultra-refined achromatic design architecture synthesized from Swiss laboratory precision, future instrumentation telemetry, and soft brutalist geometry. Grounded in a cool lab gray canvas (#E8EBEF), ghost washes, hairline blueprint coordinate frames, and tactile floating brushed-aluminum hardware modules.",
+    markdownSpec: `================================================================================
+  DESIGN SYSTEM STYLE TILE // "LAB-01 / INDUSTRIAL GHOST SYSTEM" (TILE-027)
+  Aesthetic: Swiss Lab • Future Instrument • Soft Brutalism • Achromatic Ghost
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Lab-01 / Industrial Ghost System is an ultra-refined, achromatic design architecture
+synthesized from Swiss laboratory instrumentation, future metrology consoles, and soft
+brutalist geometry. Grounded in a cool lab gray canvas (#E8EBEF), secondary ghost washes,
+hairline blueprint coordinate frames, and floating brushed-aluminum hardware modules, it
+delivers extreme clarity and tactile precision. Contrast is generated purely through
+scale, shadow, and negative space rather than saturated hue.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #E8EBEF; /* Main page, cool lab gray */
+  --bg-wash:                #F2F3F5; /* Secondary wash, ghost blocks */
+  --surface-0:              #FFFFFF; /* Solid UI, buttons, cards */
+  --surface-1:              #DDE0E4; /* Metallic highlight */
+  --surface-metal:          linear-gradient(180deg, #F6F7F8 0%, #C8CDD3 100%); /* Brushed aluminum */
+
+  /* Inks & Typography */
+  --ink-primary:            #0E0F10; /* Headlines, primary reading text (16:1) */
+  --ink-secondary:          #7C8088; /* Nav, captions, inactive states */
+  --ink-tertiary:           #A9ADB4; /* Ghost blueprint vector lines */
+  --ink-inverted:           #FFFFFF; /* Inverted text on dark active states */
+
+  /* Lines & Specular Glows */
+  --line-hairline:          rgba(14, 15, 16, 0.10); /* Hairline coordinate grid */
+  --line-strong:            rgba(14, 15, 16, 0.18); /* Structural borders */
+  --accent-glow:            rgba(255, 255, 255, 0.90); /* Knob ring / focus halo */
+
+  /* Status Tokens (Monochrome / High Contrast) */
+  --status-active:          #0E0F10;
+  --status-muted:           #7C8088;
+  --status-blueprint:       #A9ADB4;
+}
+
+/* Palette Ratio: 90% Achromatic (grays + white + black) | 10% Material (brushed aluminum) */
+/* No saturated color. Contrast comes from scale & shadow, not hue. */
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display:             "Instrument Sans", "Neue Haas Grotesk Display", "PP Neue Montreal", sans-serif;
+--font-mono:                "Geist Mono", "Suisse Int'l Mono", monospace;
+--font-sans:                "Inter", "Suisse Int'l", -apple-system, sans-serif;
+--font-jp:                  "IBM Plex Sans JP", sans-serif;
+
+/* Type Scale & Hierarchy */
+--type-display-mega:        font-size: clamp(4.5rem, 9vw, 8rem) | line-height: 0.88 | tracking: -0.04em | weight: 800 | uppercase;
+--type-display-hero:        font-size: clamp(3.0rem, 6vw, 5.5rem) | line-height: 0.90 | tracking: -0.04em | weight: 700 | uppercase;
+--type-heading-xl:          font-size: 28px | line-height: 1.15 | tracking: -0.02em | weight: 700 | uppercase;
+--type-heading-sm:          font-size: 16px | line-height: 1.30 | tracking: -0.01em | weight: 600;
+--type-ui-mono:             font-size: 11px | line-height: 1.20 | tracking: +0.08em | weight: 500 | uppercase;
+--type-body-regular:        font-size: 12px | line-height: 1.60 | tracking: +0.01em | weight: 400 | max-width: 32ch;
+--type-secondary-jp:        font-size: 18px | line-height: 1.40 | tracking:  0.00em | weight: 400 | opacity: 0.8;
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--r-none:                   0px;    /* Hero headlines, blueprint frames - brutalist cut */
+--r-xs:                     4px;    /* Small tags, TRY NOW / EXPLORE GEAR */
+--r-sm:                     8px;    /* Inputs, secondary buttons */
+--r-md:                     16px;   /* Product cards, image wells */
+--r-lg:                     24px;   /* Large floating hardware container */
+--r-pill:                   999px;  /* Shop Now, navigation pills (01, 05) */
+
+/* Strict Rule: Hardware = r-lg, UI = r-xs, Navigation = r-pill. Never mix. */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+--layer-0:                  0 0 0 1px var(--line-hairline) inset; /* Ghost blueprint strokes */
+--layer-1:                  0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+--layer-float:              0 20px 50px rgba(14,15,16,0.10), 0 2px 8px rgba(14,15,16,0.06);
+--layer-float-soft:         0 40px 80px -20px rgba(14,15,16,0.18);
+--glow-ring:                0 0 0 1px rgba(255,255,255,0.8), 0 0 24px rgba(255,255,255,0.6);
+
+/* Depth Stack:
+ * Background: ghost outline shapes (20% opacity, no shadow)
+ * Mid: canvas + hairline grid
+ * Fore: floating object with layer-float + glow-ring on active edge
+ */
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (4px Base Grid)
+ * -------------------------------------------------------------------------- */
+Base: 4px | Scale: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192
+--space-page-gutter:        32px (desktop) / 16px (mobile);
+--space-section:            96px;
+--space-cluster:            24px;
+--space-stack:              16px;
+
+/* Layout Logic: Extreme air. Hero type bleeds left gutter, product floats right with 40% overlap. Negative space as a shape. */
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-hairline:          1px solid var(--line-hairline);
+--border-blueprint:         1px dashed rgba(14, 15, 16, 0.12); /* Ghost guides */
+--border-focus:             1px solid var(--ink-primary);
+--divider-L:                L-shaped corner mark (12px x 12px, 1px stroke);
+
+/* Optical anchors: Use L-corners, not full heavy boxes. Keep dividers low contrast. */
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+- Style:                    Dot-matrix + Minimal line
+- Grid Logo:                3x3 dots, 4px dot, 3px gap, rounded 50%
+- Stroke:                   1.25px, rounded cap, 90deg corners
+- Arrows:                   ↗ (North-East) 11px, no circle, appears on hover
+- Rule:                     Monochrome only. Never filled. Built from dots, lines, and tiny rectangles.
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+--ease-lab:                 cubic-bezier(0.16, 1, 0.3, 1); /* Smooth industrial */
+--duration-fast:            150ms;
+--duration-med:             350ms;
+--duration-slow:            700ms; /* Floating product parallax */
+
+- Button Hover:             surface-0 -> ink-primary, text inverts, ↗ shifts 2px up-right
+- Product Hover:            lift 8px, shadow layer-float-soft, glow-ring intensity +20%
+- Nav Link Hover:           opacity 0.4 -> 1.0 + underline hairline grows left -> right
+- Focus State:              1px solid ink + 8px outer glow-ring, 2px offset
+- Active / Pressed:         Scale 0.98, shadow collapses to layer-1
+- Motion Principle:         Objects float slowly (700ms). UI controls snap instantly (150ms).
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO saturated colors or chromatic gradients (strictly 90% achromatic + 10% metal).
+- NO purple on dark backgrounds or neon glow tropes.
+- NO drop shadows with hard black edges or high-opacity blurs.
+- NO rounded hero typography (must be strict brutalist condensed uppercase).
+- NO mixing radii rules (Hardware = 24px, UI = 4px, Navigation = 999px).
+- NO icon-stuffed bento boxes or generic stock 3D illustrations.
+- NO headline biscuit pills with pulsing dots placed above the main headline.
+================================================================================`
   }
 ];
 

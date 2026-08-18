@@ -1,0 +1,2507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crimson Radiance / Lumina Tech // Design System Style Tile (TILE-026)</title>
+  <meta name="description" content="Production-ready design system specification for Crimson Radiance / Lumina Tech: Hyper-saturated editorial glassmorphism, luminescent dark UI, ultra-deep obsidian black #080202, kinetic red #B50D00, solar orange #FF6B00, electric amber, multi-strand waveforms, and specular glass elevation.">
+
+  <!-- Google Fonts: Syne (Display), Plus Jakarta Sans (UI & Body), JetBrains Mono (Telemetry & Monospace) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       DESIGN SYSTEM STYLE TILE // "CRIMSON RADIANCE / LUMINA TECH" (TILE-026)
+       Aesthetic: Hyper-saturated editorial glassmorphism & luminescent dark UI
+       ============================================================================= */
+
+    :root {
+      /* ---------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * ------------------------------------------------------------------------ */
+      /* Background & Canvas */
+      --canvas-base:             #080202; /* Ultra-deep obsidian black */
+      --canvas-glow-crimson:     #B50D00; /* Deep kinetic red */
+      --canvas-glow-amber:       #FF6B00; /* Vibrant solar orange */
+      --canvas-glow-gold:        #FFAE00; /* Bright electric amber */
+
+      /* Glass Surfaces */
+      --surface-glass-low:       rgba(255, 255, 255, 0.04); /* Subtle floating panels */
+      --surface-glass-med:       rgba(255, 255, 255, 0.08); /* Active interactive cards */
+      --surface-glass-high:      rgba(255, 255, 255, 0.14); /* Hover states / Nav pills */
+      --surface-dark-tint:       rgba(18, 5, 4, 0.55);      /* Grounded data modules */
+
+      /* Typography & Foreground */
+      --text-primary:            #FFFFFF; /* 100% pure white */
+      --text-secondary:          rgba(255, 255, 255, 0.72); /* Muted body copy */
+      --text-tertiary:           rgba(255, 255, 255, 0.44); /* Metadata, captions */
+      --text-accent-gold:        #FFB800; /* Data callouts & indicators */
+
+      /* Brand Accent & Accents */
+      --accent-primary:          #FFFFFF; /* High-contrast solid action CTA */
+      --accent-luminous:         #FF4D00; /* Energy lines / waveforms / glows */
+      --accent-ring:             rgba(255, 255, 255, 0.85); /* Specular focus rings */
+
+      /* Status Tokens */
+      --status-success:          #00E599; /* Radiant Emerald */
+      --status-warning:          #FFAE00; /* Solar Amber */
+      --status-danger:           #FF2A1A; /* Laser Crimson */
+      --status-info:             #FF6B00; /* Plasma Orange */
+
+      /* ---------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * ------------------------------------------------------------------------ */
+      --font-display:            "Syne", "Clash Display", "Plus Jakarta Sans", sans-serif;
+      --font-sans:               "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+      --font-mono:               "JetBrains Mono", ui-monospace, monospace;
+
+      /* Scale & Hierarchy */
+      --type-display-mega:       700 clamp(2.4rem, 6.5vw, 4.75rem) / 0.92 var(--font-display);
+      --type-heading-xl:         600 1.75rem / 1.15 var(--font-sans);
+      --type-heading-sm:         600 1.00rem / 1.30 var(--font-sans);
+      --type-body-regular:       400 0.8125rem / 1.50 var(--font-sans);
+      --type-caption-meta:       500 0.6875rem / 1.40 var(--font-mono);
+      --type-nav-pill:           500 0.75rem / 1.00 var(--font-sans);
+
+      /* ---------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * ------------------------------------------------------------------------ */
+      --radius-full:             9999px; /* Floating navbars, pill buttons, micro-badges */
+      --radius-xl:               24px;   /* Main modular data cards, content containers */
+      --radius-lg:               16px;   /* Nested sub-cards, status containers */
+      --radius-md:               10px;   /* Input fields, embedded media windows */
+      --radius-circle:             50%;    /* Concentric play/trigger controls */
+
+      /* ---------------------------------------------------------------------------
+       * 4. ELEVATION, DEPTH & BLURS
+       * ------------------------------------------------------------------------ */
+      --blur-subtle:             blur(8px) saturate(140%);
+      --blur-glass:              blur(24px) saturate(180%);
+      --blur-heavy:              blur(40px) saturate(200%);
+
+      --elevation-card:
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.22),
+        inset 0 0 20px 0 rgba(255, 255, 255, 0.03),
+        0 24px 48px -12px rgba(0, 0, 0, 0.45);
+
+      --elevation-glow-cta:
+        0 0 0 1px rgba(255, 255, 255, 0.6),
+        0 0 35px 4px rgba(255, 110, 0, 0.45);
+
+      --elevation-play-disc:
+        0 0 0 8px rgba(255, 255, 255, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.4),
+        0 10px 30px rgba(0, 0, 0, 0.5);
+
+      /* ---------------------------------------------------------------------------
+       * 5. SPACING & SPATIAL SCALE (8pt Base Grid)
+       * ------------------------------------------------------------------------ */
+      --space-2xs:               4px;
+      --space-xs:                8px;
+      --space-sm:                12px;
+      --space-md:                16px;
+      --space-lg:                24px;
+      --space-xl:                32px;
+      --space-2xl:               48px;
+      --space-3xl:               64px;
+      --space-4xl:               96px;
+
+      /* Card Internal Padding */
+      --pad-compact:             12px 16px;
+      --pad-standard:            20px 24px;
+      --pad-hero:                48px 64px;
+
+      /* ---------------------------------------------------------------------------
+       * 6. BORDERS & STROKES
+       * ------------------------------------------------------------------------ */
+      --border-glass-subtle:     1px solid rgba(255, 255, 255, 0.10);
+      --border-glass-focus:      1px solid rgba(255, 255, 255, 0.25);
+      --border-gradient-edge:    linear-gradient(135deg, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.02) 100%);
+      --divider-translucent:     1px solid rgba(255, 255, 255, 0.06);
+
+      /* ---------------------------------------------------------------------------
+       * 7. MOTION & INTERACTION TIMING
+       * ------------------------------------------------------------------------ */
+      --transition-snap:         150ms cubic-bezier(0.4, 0.0, 0.2, 1);
+      --transition-smooth:       300ms cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-elastic:      500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      --max-width:               1320px;
+    }
+
+    /* =============================================================================
+       02. BASE RESET & CANVAS FOUNDATION
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--canvas-base);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.50;
+      font-weight: 400;
+      color: var(--text-primary);
+      background-color: var(--canvas-base);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      /* Static Micro Dot-Matrix Texture */
+      background-image: 
+        radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.06) 1px, transparent 0);
+      background-size: 28px 28px;
+    }
+
+    ::selection {
+      background-color: var(--canvas-glow-amber);
+      color: #FFFFFF;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--text-accent-gold);
+      outline-offset: 3px;
+    }
+
+    /* Kinetic Radiant Canvas Lighting (Atmospheric Auras) */
+    .radiance-canvas-auras {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .aura-crimson-core {
+      position: absolute;
+      top: -160px;
+      left: 20%;
+      width: 850px;
+      height: 650px;
+      background: radial-gradient(circle at 50% 50%, rgba(181, 13, 0, 0.38) 0%, rgba(255, 107, 0, 0.12) 50%, transparent 75%);
+      filter: blur(100px);
+      border-radius: 50%;
+      animation: auraFloatCrimson 18s ease-in-out infinite alternate;
+    }
+
+    .aura-amber-flare {
+      position: absolute;
+      top: 35%;
+      right: -120px;
+      width: 720px;
+      height: 720px;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 107, 0, 0.28) 0%, rgba(255, 174, 0, 0.08) 60%, transparent 80%);
+      filter: blur(120px);
+      border-radius: 50%;
+      animation: auraFloatAmber 22s ease-in-out infinite alternate-reverse;
+    }
+
+    .aura-bottom-dark-glow {
+      position: absolute;
+      bottom: -150px;
+      left: 5%;
+      width: 900px;
+      height: 600px;
+      background: radial-gradient(circle at 50% 50%, rgba(181, 13, 0, 0.24) 0%, rgba(255, 77, 0, 0.08) 60%, transparent 80%);
+      filter: blur(140px);
+      border-radius: 50%;
+    }
+
+    @keyframes auraFloatCrimson {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(60px, 40px) scale(1.08); }
+      100% { transform: translate(-40px, 70px) scale(0.95); }
+    }
+
+    @keyframes auraFloatAmber {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-50px, -40px) scale(1.1); }
+      100% { transform: translate(40px, 30px) scale(0.92); }
+    }
+
+    .layout-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =============================================================================
+       03. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ============================================================================= */
+    .style-tile-header {
+      background-color: rgba(8, 2, 2, 0.72);
+      backdrop-filter: var(--blur-glass);
+      -webkit-backdrop-filter: var(--blur-glass);
+      border-bottom: var(--border-glass-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      padding: 12px var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      color: var(--text-primary);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 8px 16px;
+      background: var(--surface-glass-low);
+      border: var(--border-glass-subtle);
+      border-radius: var(--radius-full);
+      transition: all var(--transition-snap);
+      box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .nav-back-link:hover {
+      color: var(--text-primary);
+      background: var(--surface-glass-high);
+      border-color: var(--border-glass-focus);
+      transform: translateX(-2px);
+      box-shadow: 0 0 16px rgba(255, 107, 0, 0.25);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      background: linear-gradient(135deg, rgba(255, 107, 0, 0.20) 0%, rgba(181, 13, 0, 0.15) 100%);
+      color: var(--text-accent-gold);
+      border: 1px solid rgba(255, 174, 0, 0.35);
+      border-radius: var(--radius-md);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.18);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      text-transform: uppercase;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.65);
+      background: var(--surface-glass-low);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      border: var(--border-glass-subtle);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .design-vibe-tag .tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--canvas-glow-amber);
+      box-shadow: 0 0 8px var(--canvas-glow-amber);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--transition-snap);
+      border: var(--border-glass-subtle);
+      background: var(--surface-glass-low);
+      color: var(--text-primary);
+      backdrop-filter: var(--blur-subtle);
+      -webkit-backdrop-filter: var(--blur-subtle);
+      box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-tile:hover {
+      background: var(--surface-glass-high);
+      border-color: var(--border-glass-focus);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-tile:active {
+      transform: scale(0.97);
+    }
+
+    .btn-copy {
+      background: #FFFFFF;
+      color: #080202;
+      border-color: #FFFFFF;
+      font-weight: 700;
+      box-shadow: var(--elevation-glow-cta);
+    }
+
+    .btn-copy:hover {
+      background: #FFFFFF;
+      color: #080202;
+      transform: scale(1.02);
+      filter: brightness(1.08);
+      box-shadow: 0 0 0 1px #FFFFFF, 0 0 40px 6px rgba(255, 110, 0, 0.6);
+    }
+
+    /* =============================================================================
+       04. HERO DISPLAY BANNER (SECTION 1)
+       ============================================================================= */
+    .hero-section {
+      padding: var(--space-4xl) 0 var(--space-3xl);
+      position: relative;
+    }
+
+    .hero-glass-plate {
+      background: var(--surface-glass-low);
+      backdrop-filter: var(--blur-glass);
+      -webkit-backdrop-filter: var(--blur-glass);
+      border: var(--border-glass-subtle);
+      border-radius: var(--radius-xl);
+      padding: var(--pad-hero);
+      box-shadow: var(--elevation-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glass-plate::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 30%, rgba(255, 107, 0, 0.6) 70%, transparent 100%);
+    }
+
+    .hero-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-lg);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .matrix-dot-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-accent-gold);
+      background: var(--surface-dark-tint);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 174, 0, 0.25);
+    }
+
+    .dot-matrix-glyph {
+      display: grid;
+      grid-template-columns: repeat(3, 3px);
+      gap: 2px;
+    }
+
+    .dot-matrix-glyph span {
+      width: 3px;
+      height: 3px;
+      background: var(--canvas-glow-amber);
+      border-radius: 50%;
+      box-shadow: 0 0 4px var(--canvas-glow-amber);
+    }
+
+    .hero-spec-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .spec-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-tertiary);
+      background: var(--surface-glass-low);
+      border: var(--border-glass-subtle);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+    }
+
+    .hero-h1-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 7vw, 4.75rem);
+      line-height: 0.92;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: var(--space-md);
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-h1-display .accent-glow-text {
+      color: #FFFFFF;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFAE00 45%, #FF4D00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 25px rgba(255, 107, 0, 0.45));
+    }
+
+    .hero-lead-text {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 820px;
+      margin-bottom: var(--space-xl);
+      letter-spacing: -0.01em;
+    }
+
+    .hero-action-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    /* Concentric Play / Trigger Disc */
+    .concentric-play-disc {
+      width: 54px;
+      height: 54px;
+      border-radius: var(--radius-circle);
+      background: radial-gradient(circle at 35% 35%, #FF6B00 0%, #B50D00 100%);
+      border: none;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--elevation-play-disc);
+      position: relative;
+      transition: all var(--transition-smooth);
+      flex-shrink: 0;
+    }
+
+    .concentric-play-disc::before {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: var(--radius-circle);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      animation: concentricBreathe 2.4s ease-in-out infinite;
+    }
+
+    .concentric-play-disc:hover {
+      transform: scale(1.08);
+      box-shadow: 
+        0 0 0 12px rgba(255, 107, 0, 0.20),
+        0 0 0 1px rgba(255, 255, 255, 0.6),
+        0 0 35px 8px rgba(255, 77, 0, 0.6);
+    }
+
+    @keyframes concentricBreathe {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.12); opacity: 0.15; }
+    }
+
+    .btn-hero-solid {
+      background: #FFFFFF;
+      color: #080202;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 14px 28px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: var(--elevation-glow-cta);
+      transition: all var(--transition-snap);
+      text-decoration: none;
+    }
+
+    .btn-hero-solid:hover {
+      transform: scale(1.02);
+      filter: brightness(1.1);
+      box-shadow: 0 0 0 1px #FFFFFF, 0 0 45px 8px rgba(255, 110, 0, 0.65);
+    }
+
+    .btn-hero-glass {
+      background: var(--surface-glass-med);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 14px 24px;
+      border-radius: var(--radius-full);
+      border: var(--border-glass-subtle);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: var(--blur-subtle);
+      -webkit-backdrop-filter: var(--blur-subtle);
+      box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.18);
+      transition: all var(--transition-snap);
+    }
+
+    .btn-hero-glass:hover {
+      background: var(--surface-glass-high);
+      border-color: var(--border-glass-focus);
+      transform: translateY(-2px);
+      box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.3), 0 12px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    /* =============================================================================
+       05. SECTION HEADERS & SHARED GLASS PANEL MATRIX
+       ============================================================================= */
+    .section-container {
+      margin-bottom: var(--space-4xl);
+    }
+
+    .section-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--divider-translucent);
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .section-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .section-indexer {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--canvas-glow-amber);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      text-transform: uppercase;
+    }
+
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      max-width: 580px;
+    }
+
+    /* Glass Cards */
+    .glass-card {
+      background: var(--surface-glass-low);
+      backdrop-filter: var(--blur-glass);
+      -webkit-backdrop-filter: var(--blur-glass);
+      border: var(--border-glass-subtle);
+      border-radius: var(--radius-xl);
+      padding: var(--pad-standard);
+      box-shadow: var(--elevation-card);
+      transition: all var(--transition-smooth);
+      position: relative;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(255, 255, 255, 0.22);
+      background: var(--surface-glass-med);
+      transform: translateY(-2px);
+      box-shadow: 
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 0 25px 0 rgba(255, 107, 0, 0.05),
+        0 28px 56px -12px rgba(0, 0, 0, 0.55);
+    }
+
+    /* =============================================================================
+       06. COLOR SWATCHES & PALETTE MATRIX (SECTION 2)
+       ============================================================================= */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .swatch-card {
+      background: var(--surface-glass-low);
+      backdrop-filter: var(--blur-subtle);
+      -webkit-backdrop-filter: var(--blur-subtle);
+      border: var(--border-glass-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      cursor: pointer;
+      transition: all var(--transition-snap);
+      box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
+      position: relative;
+    }
+
+    .swatch-card:hover {
+      border-color: var(--border-glass-focus);
+      background: var(--surface-glass-high);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+    }
+
+    .swatch-color-box {
+      height: 90px;
+      border-radius: var(--radius-md);
+      position: relative;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25), 0 4px 12px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 8px;
+    }
+
+    .swatch-color-box .copy-hint {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      background: rgba(0, 0, 0, 0.6);
+      padding: 2px 6px;
+      border-radius: var(--radius-full);
+      opacity: 0;
+      transition: opacity var(--transition-snap);
+    }
+
+    .swatch-card:hover .copy-hint {
+      opacity: 1;
+    }
+
+    .swatch-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .swatch-name {
+      font-weight: 600;
+      font-size: 13px;
+      color: var(--text-primary);
+    }
+
+    .swatch-token {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-accent-gold);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+
+    /* =============================================================================
+       07. TYPOGRAPHY SYSTEM SPECIMEN (SECTION 3)
+       ============================================================================= */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    @media (max-width: 960px) {
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .type-scale-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .ladder-row {
+      padding-bottom: var(--space-md);
+      border-bottom: var(--divider-translucent);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ladder-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+
+    .ladder-label .ladder-tag {
+      color: var(--canvas-glow-amber);
+    }
+
+    .specimen-display-mega {
+      font-family: var(--font-display);
+      font-size: 48px;
+      line-height: 0.92;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .specimen-heading-xl {
+      font-family: var(--font-sans);
+      font-size: 28px;
+      line-height: 1.15;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .specimen-heading-sm {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.30;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    .specimen-body-reg {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.50;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    .specimen-caption-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.40;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--text-tertiary);
+    }
+
+    /* Pangram Tester */
+    .pangram-interactive-box {
+      background: var(--surface-dark-tint);
+      border: var(--border-glass-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .pangram-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .pangram-slider-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .range-input {
+      accent-color: var(--canvas-glow-amber);
+      cursor: pointer;
+    }
+
+    .pangram-output-text {
+      font-family: var(--font-display);
+      font-size: 38px;
+      line-height: 1.1;
+      font-weight: 700;
+      color: #FFFFFF;
+      background: transparent;
+      border: none;
+      outline: none;
+      resize: none;
+      width: 100%;
+      min-height: 140px;
+    }
+
+    /* =============================================================================
+       08. COMPONENT ARCHETYPE GALLERY (SECTION 4)
+       ============================================================================= */
+    .component-archetypes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .archetype-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .archetype-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--canvas-glow-gold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Action CTA Suite */
+    .buttons-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-solid-cta {
+      background: #FFFFFF;
+      color: #080202;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 10px 20px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      cursor: pointer;
+      box-shadow: var(--elevation-glow-cta);
+      transition: all var(--transition-snap);
+    }
+
+    .btn-solid-cta:hover {
+      transform: scale(1.02);
+      filter: brightness(1.1);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.4), 0 0 35px 4px rgba(255, 110, 0, 0.5);
+    }
+
+    .btn-luminous-energy {
+      background: linear-gradient(135deg, #FF6B00 0%, #B50D00 100%);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 10px 20px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 174, 0, 0.4);
+      cursor: pointer;
+      box-shadow: 0 0 24px rgba(255, 77, 0, 0.4);
+      transition: all var(--transition-snap);
+    }
+
+    .btn-luminous-energy:hover {
+      transform: scale(1.02);
+      filter: brightness(1.15);
+      box-shadow: 0 0 32px rgba(255, 107, 0, 0.6);
+    }
+
+    .btn-glass-ghost {
+      background: var(--surface-glass-low);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: var(--radius-full);
+      border: var(--border-glass-subtle);
+      cursor: pointer;
+      backdrop-filter: var(--blur-subtle);
+      -webkit-backdrop-filter: var(--blur-subtle);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      transition: all var(--transition-snap);
+    }
+
+    .btn-glass-ghost:hover {
+      background: var(--surface-glass-high);
+      border-color: var(--border-glass-focus);
+      transform: translateY(-1px);
+    }
+
+    /* Form Controls & Inputs */
+    .input-control-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .glass-input {
+      width: 100%;
+      background: var(--surface-dark-tint);
+      border: var(--border-glass-subtle);
+      border-radius: var(--radius-md);
+      padding: 12px 16px 12px 40px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-primary);
+      outline: none;
+      transition: all var(--transition-snap);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .glass-input:focus {
+      border-color: var(--canvas-glow-amber);
+      background: rgba(24, 7, 6, 0.75);
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.25), inset 0 1px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .input-icon-prefix {
+      position: absolute;
+      left: 14px;
+      pointer-events: none;
+      color: var(--text-tertiary);
+      display: flex;
+      align-items: center;
+    }
+
+    /* Segmented Selector & Badges */
+    .segmented-glass-bar {
+      display: inline-flex;
+      background: var(--surface-dark-tint);
+      border: var(--border-glass-subtle);
+      border-radius: var(--radius-full);
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .segment-tab {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all var(--transition-snap);
+    }
+
+    .segment-tab.active {
+      background: var(--surface-glass-high);
+      color: #FFFFFF;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Status Node Badges */
+    .status-nodes-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .status-node {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .status-node.active-flux {
+      background: rgba(255, 107, 0, 0.15);
+      color: #FFAE00;
+      border: 1px solid rgba(255, 174, 0, 0.35);
+      box-shadow: 0 0 12px rgba(255, 107, 0, 0.2);
+    }
+
+    .status-node.stable {
+      background: rgba(0, 229, 153, 0.15);
+      color: #00E599;
+      border: 1px solid rgba(0, 229, 153, 0.35);
+      box-shadow: 0 0 12px rgba(0, 229, 153, 0.2);
+    }
+
+    .status-node.critical {
+      background: rgba(255, 42, 26, 0.15);
+      color: #FF2A1A;
+      border: 1px solid rgba(255, 42, 26, 0.35);
+      box-shadow: 0 0 12px rgba(255, 42, 26, 0.2);
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 6px currentColor;
+    }
+
+    /* =============================================================================
+       09. LIVING MICRO-EXPERIENCE (SECTION 5)
+       "Lumina Core Telemetry & Multi-Strand Waveform Synthesizer"
+       ============================================================================= */
+    .micro-experience-plate {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(18, 5, 4, 0.75) 100%);
+      backdrop-filter: var(--blur-glass);
+      -webkit-backdrop-filter: var(--blur-glass);
+      border: var(--border-glass-subtle);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      box-shadow: var(--elevation-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .experience-header-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--divider-translucent);
+      padding-bottom: var(--space-md);
+      margin-bottom: var(--space-lg);
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .experience-title-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .experience-h3 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+
+    /* Multi-strand Waveform Display */
+    .waveform-stage {
+      background: rgba(8, 2, 2, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .waveform-svg {
+      width: 100%;
+      height: 180px;
+      display: block;
+    }
+
+    .waveform-grid-lines line {
+      stroke: rgba(255, 255, 255, 0.04);
+      stroke-width: 1;
+      stroke-dasharray: 4 4;
+    }
+
+    .wave-path-1 {
+      fill: none;
+      stroke: url(#waveGradCrimson);
+      stroke-width: 2.5;
+      filter: drop-shadow(0 0 10px rgba(181, 13, 0, 0.7));
+    }
+
+    .wave-path-2 {
+      fill: none;
+      stroke: url(#waveGradAmber);
+      stroke-width: 2.5;
+      filter: drop-shadow(0 0 12px rgba(255, 107, 0, 0.8));
+    }
+
+    .wave-path-3 {
+      fill: none;
+      stroke: url(#waveGradGold);
+      stroke-width: 1.5;
+      opacity: 0.85;
+    }
+
+    .telemetry-dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    @media (max-width: 860px) {
+      .telemetry-dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .telemetry-node-card {
+      background: var(--surface-glass-low);
+      border: var(--border-glass-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .node-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+
+    .node-metric-val {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+    }
+
+    .node-scalar-bar {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .node-scalar-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      background: linear-gradient(90deg, #B50D00 0%, #FF6B00 60%, #FFAE00 100%);
+      box-shadow: 0 0 8px #FF6B00;
+      transition: width 400ms var(--transition-smooth);
+    }
+
+    /* Live Oscillator Synthesizer Controls */
+    .synthesizer-controls-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface-dark-tint);
+      border: var(--border-glass-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md) var(--space-lg);
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .synth-sliders-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+    }
+
+    .synth-control-unit {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .synth-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* =============================================================================
+       10. STYLE TILE PROMPT CODE DRAWER (SECTION 6)
+       ============================================================================= */
+    .spec-code-box {
+      background: rgba(8, 2, 2, 0.95);
+      border: var(--border-glass-subtle);
+      border-radius: var(--radius-xl);
+      padding: var(--space-lg);
+      box-shadow: var(--elevation-card);
+      position: relative;
+    }
+
+    .spec-code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: var(--space-md);
+      margin-bottom: var(--space-md);
+      border-bottom: var(--divider-translucent);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .spec-code-pre {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.85);
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      overflow-x: auto;
+      max-height: 380px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* =============================================================================
+       11. MODAL SPEC PREVIEW DRAWER & TOAST NOTIFICATION
+       ============================================================================= */
+    .modal-spec-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 2, 2, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-smooth);
+    }
+
+    .modal-spec-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-spec-dialog {
+      background: rgba(14, 4, 4, 0.98);
+      border: var(--border-glass-focus);
+      border-radius: var(--radius-xl);
+      width: 100%;
+      max-width: 900px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 32px 64px rgba(0, 0, 0, 0.8), 0 0 60px rgba(255, 107, 0, 0.2);
+      overflow: hidden;
+      transform: scale(0.96);
+      transition: transform var(--transition-smooth);
+    }
+
+    .modal-spec-backdrop.open .modal-spec-dialog {
+      transform: scale(1);
+    }
+
+    .modal-dialog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: var(--divider-translucent);
+    }
+
+    .modal-dialog-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-code-text {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.9);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .modal-dialog-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: var(--space-md) var(--space-lg);
+      border-top: var(--divider-translucent);
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    /* Floating Toast System */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: rgba(20, 6, 5, 0.95);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 174, 0, 0.4);
+      border-radius: var(--radius-full);
+      padding: 10px 18px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 107, 0, 0.3);
+      backdrop-filter: var(--blur-glass);
+      -webkit-backdrop-filter: var(--blur-glass);
+      opacity: 0;
+      transform: translateY(12px) scale(0.95);
+      transition: all var(--transition-smooth);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .toast-icon {
+      color: var(--canvas-glow-amber);
+    }
+
+    /* Footer Meta */
+    .page-footer {
+      padding: var(--space-2xl) 0 var(--space-3xl);
+      border-top: var(--divider-translucent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-tertiary);
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .page-footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color var(--transition-snap);
+    }
+
+    .page-footer a:hover {
+      color: var(--text-accent-gold);
+    }
+  </style>
+
+  <!-- Shared Mobile Safety Sheet -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+</head>
+
+<body>
+  <!-- Kinetic Radiant Canvas Lighting (Atmospheric Auras) -->
+  <div class="radiance-canvas-auras" aria-hidden="true">
+    <div class="aura-crimson-core"></div>
+    <div class="aura-amber-flare"></div>
+    <div class="aura-bottom-dark-glow"></div>
+  </div>
+
+  <!-- ===========================================================================
+       01. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       =========================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-026</span>
+      <span class="design-title">Crimson Radiance / Lumina Tech</span>
+      <span class="design-vibe-tag">
+        <span class="tag-dot"></span>
+        Cyber & Blueprint
+      </span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-crimson-radiance.md">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <!-- ===========================================================================
+       02. PAGE MAIN CONTENT LAYOUT
+       =========================================================================== -->
+  <main class="layout-wrapper">
+    <!-- SECTION 1: HERO DISPLAY BANNER -->
+    <section class="hero-section">
+      <div class="hero-glass-plate">
+        <div class="hero-meta-row">
+          <div class="matrix-dot-badge">
+            <div class="dot-matrix-glyph">
+              <span></span><span></span><span></span>
+              <span></span><span></span><span></span>
+              <span></span><span></span><span></span>
+            </div>
+            Lumina Engine v4.8 // Active Flux
+          </div>
+          <div class="hero-spec-pills">
+            <span class="spec-pill">Refraction: 1.84 Specular</span>
+            <span class="spec-pill">Canvas: #080202</span>
+            <span class="spec-pill">Aura: Solar Orange & Crimson</span>
+          </div>
+        </div>
+
+        <h1 class="hero-h1-display">
+          CRIMSON RADIANCE<br>
+          <span class="accent-glow-text">LUMINA TECH</span>
+        </h1>
+
+        <p class="hero-lead-text">
+          A hyper-saturated, luminescent dark design system engineered for photonics computing, telemetry synthesis, and next-generation editorial technology. Uniting ultra-deep obsidian black canvases with deep kinetic red (#B50D00), vibrant solar orange (#FF6B00), and electric amber glows with multi-tiered glassmorphism.
+        </p>
+
+        <div class="hero-action-bar">
+          <!-- Concentric Play Trigger Disc -->
+          <button class="concentric-play-disc" id="hero-trigger-disc" onclick="triggerAudioSimulation()" title="Initialize Telemetry Pulse">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          </button>
+
+          <!-- High-Contrast Solid Action CTA -->
+          <button class="btn-hero-solid" onclick="copyPromptForAgent()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Deploy Lumina Design Prompt
+          </button>
+
+          <!-- Glass Pill Secondary Action -->
+          <button class="btn-hero-glass" onclick="scrollToDemo()">
+            Explore Waveform Synthesizer ↘
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: COLOR SWATCHES & PALETTE MATRIX -->
+    <section class="section-container" id="section-palette">
+      <div class="section-header-bar">
+        <div class="section-title-wrap">
+          <span class="section-indexer">01 // Color Roles</span>
+          <h2 class="section-title">Color Palette Matrix</h2>
+        </div>
+        <p class="section-desc">
+          Curated dark-spectrum palette featuring ultra-deep obsidian, radiant kinetic crimson, solar orange, electric amber, and multi-tiered glass refractions. Click any card to copy hex value.
+        </p>
+      </div>
+
+      <div class="swatches-grid">
+        <!-- Canvas Base -->
+        <div class="swatch-card" onclick="copySwatchHex('#080202', 'canvas-base')">
+          <div class="swatch-color-box" style="background-color: #080202; border: 1px solid rgba(255,255,255,0.15);">
+            <span class="copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Obsidian Canvas</span>
+            <span class="swatch-token">--canvas-base</span>
+            <span class="swatch-hex">#080202</span>
+          </div>
+        </div>
+
+        <!-- Kinetic Red -->
+        <div class="swatch-card" onclick="copySwatchHex('#B50D00', 'canvas-glow-crimson')">
+          <div class="swatch-color-box" style="background-color: #B50D00; box-shadow: 0 0 20px rgba(181, 13, 0, 0.5);">
+            <span class="copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Kinetic Crimson</span>
+            <span class="swatch-token">--canvas-glow-crimson</span>
+            <span class="swatch-hex">#B50D00</span>
+          </div>
+        </div>
+
+        <!-- Solar Orange -->
+        <div class="swatch-card" onclick="copySwatchHex('#FF6B00', 'canvas-glow-amber')">
+          <div class="swatch-color-box" style="background-color: #FF6B00; box-shadow: 0 0 22px rgba(255, 107, 0, 0.55);">
+            <span class="copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Solar Orange</span>
+            <span class="swatch-token">--canvas-glow-amber</span>
+            <span class="swatch-hex">#FF6B00</span>
+          </div>
+        </div>
+
+        <!-- Electric Amber -->
+        <div class="swatch-card" onclick="copySwatchHex('#FFAE00', 'canvas-glow-gold')">
+          <div class="swatch-color-box" style="background-color: #FFAE00; box-shadow: 0 0 24px rgba(255, 174, 0, 0.5);">
+            <span class="copy-hint">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Electric Amber</span>
+            <span class="swatch-token">--canvas-glow-gold</span>
+            <span class="swatch-hex">#FFAE00</span>
+          </div>
+        </div>
+
+        <!-- Surface Glass Low -->
+        <div class="swatch-card" onclick="copySwatchHex('rgba(255, 255, 255, 0.04)', 'surface-glass-low')">
+          <div class="swatch-color-box" style="background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1);">
+            <span class="copy-hint">Copy Token</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Glass Surface (Low)</span>
+            <span class="swatch-token">--surface-glass-low</span>
+            <span class="swatch-hex">rgba(255,255,255,0.04)</span>
+          </div>
+        </div>
+
+        <!-- Surface Glass Med -->
+        <div class="swatch-card" onclick="copySwatchHex('rgba(255, 255, 255, 0.08)', 'surface-glass-med')">
+          <div class="swatch-color-box" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.18);">
+            <span class="copy-hint">Copy Token</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Glass Surface (Med)</span>
+            <span class="swatch-token">--surface-glass-med</span>
+            <span class="swatch-hex">rgba(255,255,255,0.08)</span>
+          </div>
+        </div>
+
+        <!-- Surface Glass High -->
+        <div class="swatch-card" onclick="copySwatchHex('rgba(255, 255, 255, 0.14)', 'surface-glass-high')">
+          <div class="swatch-color-box" style="background: rgba(255, 255, 255, 0.14); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.25);">
+            <span class="copy-hint">Copy Token</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Glass Surface (High)</span>
+            <span class="swatch-token">--surface-glass-high</span>
+            <span class="swatch-hex">rgba(255,255,255,0.14)</span>
+          </div>
+        </div>
+
+        <!-- Surface Dark Tint -->
+        <div class="swatch-card" onclick="copySwatchHex('rgba(18, 5, 4, 0.55)', 'surface-dark-tint')">
+          <div class="swatch-color-box" style="background: rgba(18, 5, 4, 0.55); border: 1px solid rgba(255, 107, 0, 0.2);">
+            <span class="copy-hint">Copy Token</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Dark Module Tint</span>
+            <span class="swatch-token">--surface-dark-tint</span>
+            <span class="swatch-hex">rgba(18,5,4,0.55)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: TYPOGRAPHY SYSTEM SPECIMEN -->
+    <section class="section-container" id="section-typography">
+      <div class="section-header-bar">
+        <div class="section-title-wrap">
+          <span class="section-indexer">02 // Typeface System</span>
+          <h2 class="section-title">Typography Hierarchy</h2>
+        </div>
+        <p class="section-desc">
+          Display headlines powered by Syne & Clash Display, paired with ultra-legible Plus Jakarta Sans for UI controls and JetBrains Mono for monospaced telemetry feeds.
+        </p>
+      </div>
+
+      <div class="type-specimen-grid">
+        <!-- Scale Ladder -->
+        <div class="glass-card type-scale-ladder">
+          <div class="ladder-row">
+            <div class="ladder-label">
+              <span>Display Mega // 76px • 0.92 • -0.04em • Uppercase</span>
+              <span class="ladder-tag">Syne 700</span>
+            </div>
+            <div class="specimen-display-mega">SPECTRAL FLUX</div>
+          </div>
+
+          <div class="ladder-row">
+            <div class="ladder-label">
+              <span>Heading XL // 28px • 1.15 • -0.02em</span>
+              <span class="ladder-tag">Plus Jakarta Sans 600</span>
+            </div>
+            <div class="specimen-heading-xl">Kinetic Photon Core Telemetry</div>
+          </div>
+
+          <div class="ladder-row">
+            <div class="ladder-label">
+              <span>Heading SM // 16px • 1.30 • -0.01em</span>
+              <span class="ladder-tag">Plus Jakarta Sans 600</span>
+            </div>
+            <div class="specimen-heading-sm">Harmonic Resonant Frequency Modulation</div>
+          </div>
+
+          <div class="ladder-row">
+            <div class="ladder-label">
+              <span>Body Regular // 13px • 1.50 • 0.00em</span>
+              <span class="ladder-tag">Plus Jakarta Sans 400</span>
+            </div>
+            <div class="specimen-body-reg">
+              Continuous multi-strand spectral synthesis maintaining specular refraction across multi-tiered glassmorphism containers and luminescent dark user interfaces.
+            </div>
+          </div>
+
+          <div class="ladder-row" style="border-bottom: none; padding-bottom: 0;">
+            <div class="ladder-label">
+              <span>Caption / Meta // 11px • 1.40 • +0.02em</span>
+              <span class="ladder-tag">JetBrains Mono 500</span>
+            </div>
+            <div class="specimen-caption-meta">
+              COORD [48.8566° N, 2.3522° E] • EMISSION: 842.6 THz • STATUS: ACTIVE_LOCK
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Interactive Pangram Box -->
+        <div class="glass-card pangram-interactive-box">
+          <div class="pangram-controls">
+            <span class="archetype-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+              Live Specimen Sandbox
+            </span>
+            <div class="pangram-slider-group">
+              <span>Size:</span>
+              <input type="range" class="range-input" id="type-size-slider" min="16" max="76" value="38" oninput="updatePangramSize(this.value)">
+              <span id="pangram-size-label" style="color: var(--text-accent-gold); width: 34px;">38px</span>
+            </div>
+          </div>
+
+          <textarea class="pangram-output-text" id="pangram-output" placeholder="Type custom specimen text here...">HYPER-SATURATED RADIANCE IN MOTION</textarea>
+
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: var(--space-md); border-top: var(--divider-translucent);">
+            <button class="btn-tile" onclick="setPangramSample('CRIMSON RADIANCE')">Sample A</button>
+            <button class="btn-tile" onclick="setPangramSample('QUANTUM FLUX 98.4%')">Sample B</button>
+            <button class="btn-tile" onclick="setPangramSample('PHOTONIC TELEMETRY MATRIX')">Sample C</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: COMPONENT ARCHETYPE GALLERY -->
+    <section class="section-container" id="section-components">
+      <div class="section-header-bar">
+        <div class="section-title-wrap">
+          <span class="section-indexer">03 // Component Archetypes</span>
+          <h2 class="section-title">Design Component Gallery</h2>
+        </div>
+        <p class="section-desc">
+          Modular component library including specular glass buttons, concentric play triggers with halo expansion, glass search inputs, and glowing status nodes.
+        </p>
+      </div>
+
+      <div class="component-archetypes-grid">
+        <!-- Card 1: Action Controls & Buttons -->
+        <div class="glass-card archetype-group">
+          <span class="archetype-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            Button Suite & Triggers
+          </span>
+
+          <div class="buttons-stack">
+            <button class="btn-solid-cta" onclick="triggerToast('Executed High-Contrast Primary CTA', '⚡')">Primary CTA</button>
+            <button class="btn-luminous-energy" onclick="triggerToast('Activated Solar Energy Line', '🔥')">Energy Action</button>
+            <button class="btn-glass-ghost" onclick="triggerToast('Selected Specular Ghost Pill', '✦')">Ghost Glass</button>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 16px; margin-top: 8px;">
+            <button class="concentric-play-disc" onclick="triggerToast('Engaged Concentric Halo Pulse', '◉')">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </button>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary);">
+              Concentric Play Disc with Specular Focus Halo
+            </span>
+          </div>
+        </div>
+
+        <!-- Card 2: Form Controls & Inputs -->
+        <div class="glass-card archetype-group">
+          <span class="archetype-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>
+            Telemetry Input & Search
+          </span>
+
+          <div class="input-control-wrap">
+            <span class="input-icon-prefix">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </span>
+            <input type="text" class="glass-input" placeholder="Search carrier frequencies..." value="FLUX-842.6">
+          </div>
+
+          <div class="segmented-glass-bar">
+            <button class="segment-tab active" onclick="switchTab(this, 'Channel Alpha')">CH-Alpha</button>
+            <button class="segment-tab" onclick="switchTab(this, 'Channel Beta')">CH-Beta</button>
+            <button class="segment-tab" onclick="switchTab(this, 'Channel Gamma')">CH-Gamma</button>
+          </div>
+        </div>
+
+        <!-- Card 3: Status Nodes & Indicators -->
+        <div class="glass-card archetype-group">
+          <span class="archetype-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            Status Nodes & Scalar Bar
+          </span>
+
+          <div class="status-nodes-row">
+            <span class="status-node active-flux"><span class="pulse-dot"></span> Active Flux</span>
+            <span class="status-node stable"><span class="pulse-dot"></span> Lock 99.8%</span>
+            <span class="status-node critical"><span class="pulse-dot"></span> Exceedance</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 6px;">
+            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">
+              <span>Luminescence Ratio</span>
+              <span style="color: var(--text-accent-gold);">88.4%</span>
+            </div>
+            <div class="node-scalar-bar">
+              <div class="node-scalar-fill" style="width: 88.4%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: LIVING MICRO-EXPERIENCE -->
+    <!-- "Lumina Core Telemetry & Multi-Strand Waveform Synthesizer" -->
+    <section class="section-container" id="section-micro-experience">
+      <div class="section-header-bar">
+        <div class="section-title-wrap">
+          <span class="section-indexer">04 // Living Micro-Experience</span>
+          <h2 class="section-title">Lumina Waveform Synthesizer</h2>
+        </div>
+        <p class="section-desc">
+          Live harmonic oscillator synthesizing multi-strand sine waves with kinetic gradients, specular glass meters, and dynamic frequency modulation.
+        </p>
+      </div>
+
+      <div class="micro-experience-plate">
+        <div class="experience-header-grid">
+          <div class="experience-title-box">
+            <button class="concentric-play-disc" id="synth-play-toggle" onclick="toggleWaveformOscillator()" title="Toggle Waveform Oscillator">
+              <svg id="synth-play-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </button>
+            <div>
+              <h3 class="experience-h3">Lumina Quantum Flux Synthesizer</h3>
+              <p style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">
+                MODE: TRI-HARMONIC KINETIC OSCILLATION • RECTIFICATION: ACTIVE
+              </p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-tile" onclick="randomizeHarmonics()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+              Randomize Flux
+            </button>
+            <button class="btn-tile btn-copy" onclick="triggerToast('Synthesized Frequency Stream Captured!', '⚡')">
+              Capture Stream
+            </button>
+          </div>
+        </div>
+
+        <!-- Real-time SVG Multi-strand Waveform -->
+        <div class="waveform-stage">
+          <svg class="waveform-svg" viewBox="0 0 1000 200" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="waveGradCrimson" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#B50D00" stop-opacity="0.3"/>
+                <stop offset="50%" stop-color="#FF4D00" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#FFAE00" stop-opacity="0.8"/>
+              </linearGradient>
+              <linearGradient id="waveGradAmber" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#FFAE00" stop-opacity="0.4"/>
+                <stop offset="50%" stop-color="#FF6B00" stop-opacity="1"/>
+                <stop offset="100%" stop-color="#B50D00" stop-opacity="0.7"/>
+              </linearGradient>
+              <linearGradient id="waveGradGold" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#FFB800" stop-opacity="0.9"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Background Grid Lines -->
+            <g class="waveform-grid-lines">
+              <line x1="0" y1="50" x2="1000" y2="50"/>
+              <line x1="0" y1="100" x2="1000" y2="100"/>
+              <line x1="0" y1="150" x2="1000" y2="150"/>
+              <line x1="250" y1="0" x2="250" y2="200"/>
+              <line x1="500" y1="0" x2="500" y2="200"/>
+              <line x1="750" y1="0" x2="750" y2="200"/>
+            </g>
+
+            <!-- Multi-strand Sine Waves -->
+            <path id="wave-strand-1" class="wave-path-1" d="M0,100 Q250,20 500,100 T1000,100"/>
+            <path id="wave-strand-2" class="wave-path-2" d="M0,100 Q250,180 500,100 T1000,100"/>
+            <path id="wave-strand-3" class="wave-path-3" d="M0,100 Q125,50 250,100 T500,100 T750,100 T1000,100"/>
+          </svg>
+        </div>
+
+        <!-- Telemetry Gauges Matrix -->
+        <div class="telemetry-dashboard-grid">
+          <div class="telemetry-node-card">
+            <div class="node-header">
+              <span>CARRIER FREQUENCY</span>
+              <span id="metric-carrier-tag" style="color: var(--canvas-glow-amber);">842.6 THz</span>
+            </div>
+            <div class="node-metric-val" id="metric-carrier-val">842.60</div>
+            <div class="node-scalar-bar">
+              <div class="node-scalar-fill" id="metric-carrier-bar" style="width: 84%;"></div>
+            </div>
+          </div>
+
+          <div class="telemetry-node-card">
+            <div class="node-header">
+              <span>CORE FLUX EFFICIENCY</span>
+              <span id="metric-flux-tag" style="color: #00E599;">OPTIMAL</span>
+            </div>
+            <div class="node-metric-val" id="metric-flux-val">98.4%</div>
+            <div class="node-scalar-bar">
+              <div class="node-scalar-fill" id="metric-flux-bar" style="width: 98%;"></div>
+            </div>
+          </div>
+
+          <div class="telemetry-node-card">
+            <div class="node-header">
+              <span>SPECTRAL VARIANCE</span>
+              <span id="metric-var-tag" style="color: var(--text-accent-gold);">±0.014</span>
+            </div>
+            <div class="node-metric-val" id="metric-var-val">0.014 Δ</div>
+            <div class="node-scalar-bar">
+              <div class="node-scalar-fill" id="metric-var-bar" style="width: 62%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Synthesizer Sliders -->
+        <div class="synthesizer-controls-bar">
+          <div class="synth-sliders-row">
+            <div class="synth-control-unit">
+              <span class="synth-label">Frequency Multiplier (<span id="label-freq">1.0x</span>)</span>
+              <input type="range" class="range-input" id="slider-freq" min="0.5" max="3.0" step="0.1" value="1.0" oninput="updateFrequencyMultiplier(this.value)">
+            </div>
+
+            <div class="synth-control-unit">
+              <span class="synth-label">Resonant Amplitude (<span id="label-amp">65%</span>)</span>
+              <input type="range" class="range-input" id="slider-amp" min="20" max="95" value="65" oninput="updateAmplitude(this.value)">
+            </div>
+
+            <div class="synth-control-unit">
+              <span class="synth-label">Spectral Damping (<span id="label-damp">0.12</span>)</span>
+              <input type="range" class="range-input" id="slider-damp" min="0" max="50" value="12" oninput="updateDamping(this.value)">
+            </div>
+          </div>
+
+          <button class="btn-solid-cta" onclick="resetSynthesizer()">
+            Reset Carrier
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: STYLE TILE PROMPT CODE DRAWER -->
+    <section class="section-container" id="section-spec-drawer">
+      <div class="section-header-bar">
+        <div class="section-title-wrap">
+          <span class="section-indexer">05 // Machine-Readable Token Vault</span>
+          <h2 class="section-title">Style Tile Specification Code</h2>
+        </div>
+        <p class="section-desc">
+          Exact, copyable Markdown prompt for AI coding agents and design system token distribution.
+        </p>
+      </div>
+
+      <div class="spec-code-box">
+        <div class="spec-code-header">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="matrix-dot-badge">
+              <span style="color: var(--canvas-glow-amber);">TILE-026</span> // CRIMSON RADIANCE
+            </span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">Markdown Specification</span>
+          </div>
+
+          <div style="display: flex; gap: 8px;">
+            <button class="btn-tile" onclick="openSpecModal()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+              Expand Full Modal
+            </button>
+            <button class="btn-tile btn-copy" onclick="copyMasterTilePrompt()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Prompt for Agent
+            </button>
+          </div>
+        </div>
+
+        <pre class="spec-code-pre" id="visible-spec-code">Loading Style Tile Markdown Specification...</pre>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="page-footer">
+      <div>
+        <span>STYLE TILES // DESIGN SYSTEM CATALOG • </span>
+        <span style="color: var(--canvas-glow-amber);">TILE-026 (CRIMSON RADIANCE / LUMINA TECH)</span>
+      </div>
+      <div>
+        <a href="../index.html">← Back to Main Catalog Grid</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ===========================================================================
+       03. MODAL PREVIEW DRAWER
+       =========================================================================== -->
+  <div class="modal-spec-backdrop" id="modal-spec-backdrop">
+    <div class="modal-spec-dialog">
+      <div class="modal-dialog-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="design-code">TILE-026</span>
+          <span style="font-family: var(--font-display); font-size: 15px; font-weight: 700; color: #FFFFFF;">
+            CRIMSON RADIANCE / LUMINA TECH
+          </span>
+        </div>
+        <button class="btn-tile" onclick="closeSpecModal()" style="padding: 6px 12px;">✕ Close</button>
+      </div>
+      <div class="modal-dialog-body">
+        <pre class="modal-code-text" id="modal-spec-code-text"></pre>
+      </div>
+      <div class="modal-dialog-footer">
+        <button class="btn-tile" onclick="downloadStyleTileFile()">
+          Download .md File
+        </button>
+        <button class="btn-tile btn-copy" onclick="copyMasterTilePrompt()">
+          Copy Raw Style Tile Markdown
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ===========================================================================
+       04. MACHINE-READABLE STYLE TILE MARKDOWN BLOCK
+       =========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  DESIGN SYSTEM STYLE TILE // "CRIMSON RADIANCE / LUMINA TECH" (TILE-026)
+  Aesthetic: Hyper-saturated editorial glassmorphism & luminescent dark UI
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Crimson Radiance / Lumina Tech is a hyper-saturated, luminescent dark design system
+engineered for telemetry synthesizers, high-frequency kinetic media, photonics computing,
+and futuristic editorial technology platforms. It pairs an ultra-deep obsidian black canvas
+(#080202) with kinetic crimson (#B50D00), solar orange (#FF6B00), and electric amber (#FFAE00)
+atmospheric underglows, hyper-refined glassmorphism, monoline iconography with 3x3 dot matrix
+accents, and heavy tracking typography.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Background & Canvas */
+  --canvas-base:             #080202; /* Ultra-deep obsidian black */
+  --canvas-glow-crimson:     #B50D00; /* Deep kinetic red */
+  --canvas-glow-amber:       #FF6B00; /* Vibrant solar orange */
+  --canvas-glow-gold:        #FFAE00; /* Bright electric amber */
+
+  /* Glass Surfaces */
+  --surface-glass-low:       rgba(255, 255, 255, 0.04); /* Subtle floating panels */
+  --surface-glass-med:       rgba(255, 255, 255, 0.08); /* Active interactive cards */
+  --surface-glass-high:      rgba(255, 255, 255, 0.14); /* Hover states / Nav pills */
+  --surface-dark-tint:       rgba(18, 5, 4, 0.55);      /* Grounded data modules */
+
+  /* Typography & Foreground */
+  --text-primary:            #FFFFFF; /* 100% pure white */
+  --text-secondary:          rgba(255, 255, 255, 0.72); /* Muted body copy */
+  --text-tertiary:           rgba(255, 255, 255, 0.44); /* Metadata, captions */
+  --text-accent-gold:        #FFB800; /* Data callouts & indicators */
+
+  /* Brand Accent & Accents */
+  --accent-primary:          #FFFFFF; /* High-contrast solid action CTA */
+  --accent-luminous:         #FF4D00; /* Energy lines / waveforms / glows */
+  --accent-ring:             rgba(255, 255, 255, 0.85); /* Specular focus rings */
+
+  /* Status Tokens */
+  --status-success:          #00E599; /* Radiant Emerald */
+  --status-warning:          #FFAE00; /* Solar Amber */
+  --status-danger:           #FF2A1A; /* Laser Crimson */
+  --status-info:             #FF6B00; /* Plasma Orange */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display:              "Syne", "Clash Display", "Plus Jakarta Sans", sans-serif;
+--font-sans:                 "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:                 "JetBrains Mono", ui-monospace, monospace;
+
+/* Scale & Hierarchy */
+--type-display-mega:         font-size: 76px | line-height: 0.92 | tracking: -0.04em | weight: 700 | uppercase;
+--type-heading-xl:           font-size: 28px | line-height: 1.15 | tracking: -0.02em | weight: 600;
+--type-heading-sm:           font-size: 16px | line-height: 1.30 | tracking: -0.01em | weight: 600;
+--type-body-regular:         font-size: 13px | line-height: 1.50 | tracking:  0.00em | weight: 400;
+--type-caption-meta:         font-size: 11px | line-height: 1.40 | tracking: +0.02em | weight: 500;
+--type-nav-pill:             font-size: 12px | line-height: 1.00 | tracking: +0.03em | weight: 500;
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-full:               9999px; /* Floating navbars, pill buttons, micro-badges */
+--radius-xl:                 24px;   /* Main modular data cards, content containers */
+--radius-lg:                 16px;   /* Nested sub-cards, status containers */
+--radius-md:                 10px;   /* Input fields, embedded media windows */
+--radius-circle:             50%;    /* Concentric play/trigger controls */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION, DEPTH & BLURS
+ * -------------------------------------------------------------------------- */
+/* Backdrop Filter Blurs */
+--blur-subtle:               backdrop-filter: blur(8px) saturate(140%);
+--blur-glass:                backdrop-filter: blur(24px) saturate(180%);
+--blur-heavy:                backdrop-filter: blur(40px) saturate(200%);
+
+/* Shadows & Specular Highlights */
+--elevation-card:
+  box-shadow:
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 0 20px 0 rgba(255, 255, 255, 0.03),
+    0 24px 48px -12px rgba(0, 0, 0, 0.45);
+
+--elevation-glow-cta:
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.6),
+    0 0 35px 4px rgba(255, 110, 0, 0.45);
+
+--elevation-play-disc:
+  box-shadow:
+    0 0 0 8px rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.4),
+    0 10px 30px rgba(0, 0, 0, 0.5);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (8pt Base Grid)
+ * -------------------------------------------------------------------------- */
+--space-2xs: 4px;   --space-xs:  8px;   --space-sm: 12px;
+--space-md:  16px;  --space-lg:  24px;  --space-xl: 32px;
+--space-2xl: 48px;  --space-3xl: 64px;  --space-4xl: 96px;
+
+/* Card Internal Padding */
+--pad-compact:               12px 16px; /* Navbars, pill tags */
+--pad-standard:              20px 24px; /* Data panels, metric widgets */
+--pad-hero:                  48px 64px; /* Major responsive gutters */
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & STROKES
+ * -------------------------------------------------------------------------- */
+--border-glass-subtle:       1px solid rgba(255, 255, 255, 0.10);
+--border-glass-focus:        1px solid rgba(255, 255, 255, 0.25);
+--border-gradient-edge:      linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.02) 100%);
+--divider-translucent:       1px solid rgba(255, 255, 255, 0.06);
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY & DATA VISUALIZATION LANGUAGE
+ * -------------------------------------------------------------------------- */
+- Stroke-width:              1.5px / Monoline
+- Corner caps:               Round / Semi-sharp aesthetic
+- Color:                     rgba(255, 255, 255, 0.85) default, #FF6B00 accent
+- Micro-accents:             3x3 dot matrix grid patterns, diagonal link arrows (↗)
+- Ambient Waveforms:         Multi-strand overlapping sine waves with gradient fills
+- Glow Ratios:               Luminous scalar rings (40% to 100% opacity gradient arcs)
+- Status Nodes:              Glowing pill badges containing centered micro-text
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & MOTION DYNAMICS
+ * -------------------------------------------------------------------------- */
+--transition-snap:           150ms cubic-bezier(0.4, 0.0, 0.2, 1);
+--transition-smooth:         300ms cubic-bezier(0.16, 1, 0.3, 1);
+--transition-elastic:        500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+- Primary Button Hover:
+    scale: 1.02; filter: brightness(1.1); box-shadow: 0 0 25px rgba(255,255,255,0.4);
+- Glass Card Hover:
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.10);
+    transform: translateY(-2px);
+- Play / Action Trigger Hover:
+    concentric halo pulse expansion: scale(1.08) with 0.8s looping breathe.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic purple on dark violet neon gradients.
+- NO untracked massive headlines.
+- NO flat textureless surfaces without specular inset highlights or saturated backdrop blurs.
+- NO generic 0px brutalist sharp harsh blocks without glass refraction.
+- NO icon-stuffed bento boxes or generic corporate stock illustrations.
+- NO headline biscuit pills with pulsing dots right above the main headline.
+================================================================================
+  </script>
+
+  <!-- ===========================================================================
+       05. CLIENT JAVASCRIPT ENGINE
+       =========================================================================== -->
+  <script>
+    // --- 1. TOAST NOTIFICATION SYSTEM ---
+    function triggerToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `<span class="toast-icon">${icon}</span><span>${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 300);
+      }, 2600);
+    }
+
+    // --- 2. MARKDOWN EXTRACTION & HEADER ACTION BINDINGS ---
+    function getRawMarkdown() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    function copyMasterTilePrompt() {
+      const md = getRawMarkdown();
+      const prompt = `Implement this interface using the following Design System Style Tile:\n\n${md}`;
+      
+      navigator.clipboard.writeText(prompt).then(() => {
+        triggerToast("Copied Crimson Radiance Style Tile to clipboard!", "⚡");
+        
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const orig = btn.innerHTML;
+          btn.innerHTML = `✓ Copied Prompt!`;
+          btn.style.background = "#FFFFFF";
+          btn.style.color = "#080202";
+          setTimeout(() => {
+            btn.innerHTML = orig;
+            btn.style.background = "";
+            btn.style.color = "";
+          }, 2000);
+        }
+      }).catch(err => {
+        console.error("Clipboard error:", err);
+      });
+    }
+
+    function copyPromptForAgent() {
+      copyMasterTilePrompt();
+    }
+
+    function downloadStyleTileFile() {
+      const md = getRawMarkdown();
+      const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-crimson-radiance.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("Downloaded style-tile-crimson-radiance.md!", "📥");
+    }
+
+    function copySwatchHex(hex, tokenName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast(`Copied ${tokenName} (${hex}) to clipboard!`, "🎨");
+      });
+    }
+
+    // --- 3. MODAL CONTROLS ---
+    function openSpecModal() {
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      const codeEl = document.getElementById("modal-spec-code-text");
+      if (codeEl) codeEl.textContent = getRawMarkdown();
+      if (backdrop) backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    // --- 4. INTERACTIVE SPECIMEN SANDBOX ---
+    function updatePangramSize(val) {
+      const output = document.getElementById("pangram-output");
+      const label = document.getElementById("pangram-size-label");
+      if (output) output.style.fontSize = `${val}px`;
+      if (label) label.textContent = `${val}px`;
+    }
+
+    function setPangramSample(text) {
+      const output = document.getElementById("pangram-output");
+      if (output) output.value = text;
+      triggerToast("Updated specimen text sample", "✦");
+    }
+
+    function switchTab(btn, name) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll(".segment-tab").forEach(tab => tab.classList.remove("active"));
+      btn.classList.add("active");
+      triggerToast(`Switched channel to: ${name}`, "📡");
+    }
+
+    function scrollToDemo() {
+      const el = document.getElementById("section-micro-experience");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+
+    // --- 5. LIVING MICRO-EXPERIENCE: WAVEFORM SYNTHESIZER ---
+    let isOscillating = true;
+    let waveTime = 0;
+    let freqMultiplier = 1.0;
+    let amplitude = 65;
+    let damping = 12;
+    let animFrameId = null;
+
+    function renderWaveformFrame() {
+      if (!isOscillating) return;
+      waveTime += 0.04 * freqMultiplier;
+
+      const w1 = document.getElementById("wave-strand-1");
+      const w2 = document.getElementById("wave-strand-2");
+      const w3 = document.getElementById("wave-strand-3");
+
+      if (w1 && w2 && w3) {
+        const h1 = Math.sin(waveTime) * amplitude;
+        const h2 = Math.cos(waveTime * 1.2) * (amplitude * 0.85);
+        const h3 = Math.sin(waveTime * 1.8 + Math.PI / 4) * (amplitude * 0.5);
+
+        const mid = 100;
+        w1.setAttribute("d", `M0,${mid} Q250,${mid - h1} 500,${mid} T1000,${mid}`);
+        w2.setAttribute("d", `M0,${mid} Q250,${mid + h2} 500,${mid} T1000,${mid}`);
+        w3.setAttribute("d", `M0,${mid} Q125,${mid - h3} 250,${mid} T500,${mid} T750,${mid} T1000,${mid}`);
+      }
+
+      animFrameId = requestAnimationFrame(renderWaveformFrame);
+    }
+
+    function toggleWaveformOscillator() {
+      isOscillating = !isOscillating;
+      const playIcon = document.getElementById("synth-play-icon");
+      if (isOscillating) {
+        if (playIcon) playIcon.innerHTML = `<polygon points="5 3 19 12 5 21 5 3"></polygon>`;
+        renderWaveformFrame();
+        triggerToast("Waveform Oscillator: ACTIVE", "〰️");
+      } else {
+        if (playIcon) playIcon.innerHTML = `<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>`;
+        if (animFrameId) cancelAnimationFrame(animFrameId);
+        triggerToast("Waveform Oscillator: PAUSED", "⏸");
+      }
+    }
+
+    function triggerAudioSimulation() {
+      triggerToast("Initialized Lumina Photon Flux Matrix at 842.6 THz!", "⚡");
+      randomizeHarmonics();
+    }
+
+    function updateFrequencyMultiplier(val) {
+      freqMultiplier = parseFloat(val);
+      const label = document.getElementById("label-freq");
+      if (label) label.textContent = `${freqMultiplier.toFixed(1)}x`;
+      
+      const carrierVal = (842.6 * freqMultiplier).toFixed(2);
+      const metricEl = document.getElementById("metric-carrier-val");
+      const metricTag = document.getElementById("metric-carrier-tag");
+      const metricBar = document.getElementById("metric-carrier-bar");
+      if (metricEl) metricEl.textContent = `${carrierVal}`;
+      if (metricTag) metricTag.textContent = `${carrierVal} THz`;
+      if (metricBar) metricBar.style.width = `${Math.min(100, Math.max(10, freqMultiplier * 33))}%`;
+    }
+
+    function updateAmplitude(val) {
+      amplitude = parseInt(val, 10);
+      const label = document.getElementById("label-amp");
+      if (label) label.textContent = `${amplitude}%`;
+
+      const fluxVal = (90 + (amplitude / 95) * 9.8).toFixed(1);
+      const metricFlux = document.getElementById("metric-flux-val");
+      const metricFluxBar = document.getElementById("metric-flux-bar");
+      if (metricFlux) metricFlux.textContent = `${fluxVal}%`;
+      if (metricFluxBar) metricFluxBar.style.width = `${fluxVal}%`;
+    }
+
+    function updateDamping(val) {
+      damping = parseInt(val, 10);
+      const label = document.getElementById("label-damp");
+      const dampVal = (damping / 100).toFixed(2);
+      if (label) label.textContent = dampVal;
+
+      const varVal = (0.005 + (damping / 50) * 0.02).toFixed(3);
+      const metricVar = document.getElementById("metric-var-val");
+      const metricVarTag = document.getElementById("metric-var-tag");
+      if (metricVar) metricVar.textContent = `${varVal} Δ`;
+      if (metricVarTag) metricVarTag.textContent = `±${varVal}`;
+    }
+
+    function randomizeHarmonics() {
+      const randFreq = (Math.random() * 2.2 + 0.6).toFixed(1);
+      const randAmp = Math.floor(Math.random() * 60) + 30;
+      const randDamp = Math.floor(Math.random() * 40) + 5;
+
+      const sliderFreq = document.getElementById("slider-freq");
+      const sliderAmp = document.getElementById("slider-amp");
+      const sliderDamp = document.getElementById("slider-damp");
+
+      if (sliderFreq) sliderFreq.value = randFreq;
+      if (sliderAmp) sliderAmp.value = randAmp;
+      if (sliderDamp) sliderDamp.value = randDamp;
+
+      updateFrequencyMultiplier(randFreq);
+      updateAmplitude(randAmp);
+      updateDamping(randDamp);
+
+      triggerToast("Synthesizer Harmonic Parameters Modulated", "🎛️");
+    }
+
+    function resetSynthesizer() {
+      const sliderFreq = document.getElementById("slider-freq");
+      const sliderAmp = document.getElementById("slider-amp");
+      const sliderDamp = document.getElementById("slider-damp");
+
+      if (sliderFreq) sliderFreq.value = 1.0;
+      if (sliderAmp) sliderAmp.value = 65;
+      if (sliderDamp) sliderDamp.value = 12;
+
+      updateFrequencyMultiplier(1.0);
+      updateAmplitude(65);
+      updateDamping(12);
+
+      triggerToast("Synthesizer Reset to Baseline Calibration", "↺");
+    }
+
+    // --- 6. INITIALIZATION & EVENT LISTENERS ---
+    document.addEventListener("DOMContentLoaded", () => {
+      // Bind Header Action Buttons
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyMasterTilePrompt);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadStyleTileFile);
+
+      // Populate Visible Spec Code Container
+      const visibleSpec = document.getElementById("visible-spec-code");
+      if (visibleSpec) visibleSpec.textContent = getRawMarkdown();
+
+      // Modal Backdrop Click Dismissal
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      // Escape Key Dismissal
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+
+      // Start Waveform Oscillator
+      renderWaveformFrame();
+    });
+  </script>
+</body>
+</html>
