@@ -1,0 +1,3077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nordic Botanical Tech — Design System Style Tile (TILE-024)</title>
+  <meta name="description" content="Nordic Botanical Tech (TILE-024): A high-contrast, editorial aesthetic pairing deep organic tones with hyper-modern acid chartreuse accents, asymmetric geometric surface layouts, and bio-tech telemetry.">
+
+  <!-- Google Fonts: Plus Jakarta Sans (400, 500, 600, 700, 800) & JetBrains Mono (400, 500, 600, 700) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       01. DESIGN SYSTEM SPECIFICATION & TOKENS (TILE-024: NORDIC BOTANICAL TECH)
+       ============================================================================= */
+    :root {
+      /* 1. Color Roles & Palette */
+      --color-canvas-base:       #0F3B32; /* Deep Alpine Pine (Primary Dark Surface) */
+      --color-canvas-subtle:     #164E43; /* Muted Evergreen (Depth / Container base) */
+      --color-surface-warm:      #F8F3E8; /* Warm Linen / Ecru (High-contrast Card) */
+      --color-surface-dark:      #0B2B24; /* Midnight Pine (Recessed areas) */
+
+      --color-accent-electric:   #D4E825; /* Acid Chartreuse / High-voltage Highlight */
+      --color-accent-mint:       #74A99C; /* Desaturated Sage (Secondary indicator) */
+
+      --color-text-on-dark:      #FFFFFF; /* Pure White (High-emphasis Dark Mode) */
+      --color-text-on-dark-sub:  #A4C3BA; /* Sage Gray (Medium-emphasis Dark Mode) */
+      --color-text-on-light:     #0F3830; /* Forest Ink (High-emphasis Light Surface) */
+      --color-text-on-light-sub: #5C7871; /* Olive Smoke (Medium-emphasis Light) */
+
+      --color-badge-black:       #111614; /* Pitch Onyx (Floating Starburst Badges) */
+
+      /* 2. Typography System */
+      --font-primary:            "Plus Jakarta Sans", "Satoshi", system-ui, -apple-system, sans-serif;
+      --font-mono:               "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+      /* 3. Corner Geometry (Border Radii) */
+      --radius-pill:             9999px;              /* CTA buttons, pills, search bars */
+      --radius-circle:           50%;                 /* Floating media triggers & icons */
+      --radius-surface-lg:       28px;                /* Floating high-contrast cards */
+      --radius-surface-md:       16px;                /* Inner modules, small media slots */
+      --radius-asymmetric:       28px 28px 0px 28px;  /* Stylized structural anchor cards */
+      --radius-sharp:            0px;                 /* Pixel-grid accents & mosaic cuts */
+
+      /* 4. Elevation & Depth (Shadows & Layers) */
+      --shadow-glow-accent:      0 12px 32px -8px rgba(212, 232, 37, 0.35);
+      --shadow-card-ambient:     0 20px 48px -12px rgba(0, 0, 0, 0.35);
+      --shadow-pill-float:       0 8px 20px -4px rgba(0, 0, 0, 0.20);
+      --shadow-inset-bevel:      inset 0 1px 1px rgba(255, 255, 255, 0.15);
+
+      /* 5. Spacing & Spatial Scale (8pt Base Grid) */
+      --space-xxs:               4px;
+      --space-xs:                8px;
+      --space-sm:                16px;
+      --space-md:                24px;
+      --space-lg:                32px;
+      --space-xl:                48px;
+      --space-2xl:               64px;
+      --space-3xl:               96px;
+
+      /* 6. Borders & Dividers */
+      --border-subtle-dark:      1px solid rgba(255, 255, 255, 0.12);
+      --border-hairline:         1px solid rgba(15, 56, 48, 0.15);
+      --border-active-pill:      2px solid rgba(255, 255, 255, 0.90);
+      --border-chartreuse:       1px solid rgba(212, 232, 37, 0.4);
+
+      /* 7. Transitions & Motion */
+      --transition-snappy:       180ms cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-smooth:       320ms cubic-bezier(0.25, 0.8, 0.25, 1);
+      --transition-slow:         500ms cubic-bezier(0.16, 1, 0.3, 1);
+
+      /* Max Container Width */
+      --max-width:               1280px;
+    }
+
+    /* =============================================================================
+       02. RESET & BASE FOUNDATION
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--color-canvas-base);
+      color: var(--color-text-on-dark);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      font-size: 0.95rem;
+      line-height: 1.55;
+      letter-spacing: 0.00em;
+      color: var(--color-text-on-dark);
+      background-color: var(--color-canvas-base);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Botanical Vector Canopy Backdrop */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(22, 78, 67, 0.45) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(11, 43, 36, 0.6) 0%, transparent 50%),
+        radial-gradient(circle at 50% 90%, rgba(212, 232, 37, 0.04) 0%, transparent 35%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Subtle Botanical Cellular Noise */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.6;
+    }
+
+    ::selection {
+      background-color: var(--color-accent-electric);
+      color: var(--color-surface-dark);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--color-accent-electric);
+      outline-offset: 3px;
+    }
+
+    .layout-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* =============================================================================
+       03. MANDATORY HEADER COMPONENT (TILE-024)
+       ============================================================================= */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding: var(--space-sm) var(--space-lg);
+      background-color: rgba(15, 59, 50, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: var(--border-subtle-dark);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--color-text-on-dark-sub);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      background-color: rgba(255, 255, 255, 0.06);
+      border: var(--border-subtle-dark);
+      transition: all var(--transition-snappy);
+    }
+
+    .nav-back-link:hover {
+      color: var(--color-surface-dark);
+      background-color: var(--color-accent-electric);
+      border-color: var(--color-accent-electric);
+      box-shadow: var(--shadow-glow-accent);
+      transform: translateY(-1px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-surface-dark);
+      background-color: var(--color-accent-electric);
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.05em;
+    }
+
+    .design-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--color-text-on-dark);
+    }
+
+    .design-vibe-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-text-on-dark-sub);
+      background-color: rgba(116, 169, 156, 0.15);
+      border: 1px solid rgba(116, 169, 156, 0.3);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      font-family: var(--font-primary);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition-snappy);
+    }
+
+    .btn-preview {
+      background-color: rgba(255, 255, 255, 0.08);
+      color: var(--color-text-on-dark);
+      border: var(--border-subtle-dark);
+    }
+
+    .btn-preview:hover {
+      background-color: rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-pill-float);
+    }
+
+    .btn-copy {
+      background-color: #FFFFFF;
+      color: var(--color-text-on-light);
+    }
+
+    .btn-copy:hover {
+      background-color: var(--color-accent-electric);
+      color: var(--color-surface-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow-accent);
+    }
+
+    .btn-download {
+      background-color: var(--color-canvas-subtle);
+      color: var(--color-text-on-dark);
+      border: var(--border-subtle-dark);
+    }
+
+    .btn-download:hover {
+      background-color: var(--color-accent-mint);
+      color: var(--color-surface-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(116, 169, 156, 0.4);
+    }
+
+    /* =============================================================================
+       04. SHARED DESIGN ACCENTS & GEOMETRIC MOTIFS
+       ============================================================================= */
+    /* Scalloped 12-point starburst seal in Pitch Onyx */
+    .starburst-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-badge-black);
+      color: var(--color-accent-electric);
+      width: 72px;
+      height: 72px;
+      clip-path: polygon(
+        50% 0%, 63% 10%, 79% 7%, 85% 23%, 98% 30%, 95% 47%,
+        100% 63%, 89% 77%, 85% 94%, 69% 93%, 58% 100%, 42% 95%,
+        31% 100%, 19% 90%, 15% 75%, 2% 64%, 5% 47%, 2% 31%,
+        15% 23%, 21% 7%, 37% 10%
+      );
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+      animation: sealPulse 8s ease-in-out infinite alternate;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .starburst-badge-sm {
+      width: 48px;
+      height: 48px;
+      font-size: 0.65rem;
+    }
+
+    @keyframes sealPulse {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(6deg) scale(1.03); }
+      100% { transform: rotate(-4deg) scale(1); }
+    }
+
+    /* 12px Step-Down Pixel Mosaic Corner Motif */
+    .pixel-mosaic-dock {
+      display: grid;
+      grid-template-columns: repeat(3, 10px);
+      grid-template-rows: repeat(3, 10px);
+      gap: 2px;
+      pointer-events: none;
+    }
+
+    .pixel-dot {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-sharp);
+      transition: background-color var(--transition-snappy);
+    }
+
+    .pixel-dot.active {
+      background-color: var(--color-accent-electric);
+      box-shadow: 0 0 8px var(--color-accent-electric);
+    }
+
+    .pixel-dot.mint {
+      background-color: var(--color-accent-mint);
+    }
+
+    /* Underscore Accent Pill */
+    .underscore-accent {
+      width: 16px;
+      height: 3px;
+      background-color: var(--color-accent-electric);
+      border-radius: var(--radius-pill);
+      box-shadow: 0 0 10px rgba(212, 232, 37, 0.6);
+      display: inline-block;
+    }
+
+    /* Section Framing */
+    .tile-section {
+      padding: var(--space-3xl) 0;
+      border-bottom: var(--border-subtle-dark);
+      position: relative;
+    }
+
+    .section-header {
+      margin-bottom: var(--space-xl);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-accent-electric);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-circle);
+      background-color: var(--color-accent-electric);
+      box-shadow: 0 0 8px var(--color-accent-electric);
+    }
+
+    .section-title {
+      font-size: 2.0rem;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--color-text-on-dark);
+    }
+
+    .section-desc {
+      font-size: 0.95rem;
+      color: var(--color-text-on-dark-sub);
+      max-width: 540px;
+      line-height: 1.55;
+    }
+
+    /* =============================================================================
+       05. SECTION 1: HERO DISPLAY BANNER & ASYMMETRIC SURFACE
+       ============================================================================= */
+    .hero-container {
+      padding-top: var(--space-2xl);
+      padding-bottom: var(--space-3xl);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .hero-text-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .hero-badge-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .hero-h1 {
+      font-size: clamp(3.25rem, 5.5vw, 5.25rem);
+      font-weight: 800;
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+      color: var(--color-text-on-dark);
+      text-transform: uppercase;
+    }
+
+    .hero-h1 .highlight-lime {
+      color: var(--color-accent-electric);
+      display: inline-block;
+    }
+
+    .hero-narrative {
+      font-size: 1.15rem;
+      line-height: 1.5;
+      color: var(--color-text-on-dark-sub);
+      max-width: 580px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background-color: #FFFFFF;
+      color: var(--color-text-on-light);
+      font-family: var(--font-primary);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      box-shadow: var(--shadow-pill-float);
+      transition: all var(--transition-snappy);
+    }
+
+    .btn-hero-primary:hover {
+      background-color: var(--color-accent-electric);
+      color: var(--color-surface-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow-accent);
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      background-color: rgba(255, 255, 255, 0.08);
+      color: var(--color-text-on-dark);
+      font-family: var(--font-primary);
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      border: var(--border-subtle-dark);
+      cursor: pointer;
+      transition: all var(--transition-snappy);
+    }
+
+    .btn-hero-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.16);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+
+    /* Asymmetric Structural Anchor Hero Card (Warm Linen) */
+    .hero-asymmetric-card {
+      position: relative;
+      background-color: var(--color-surface-warm);
+      color: var(--color-text-on-light);
+      border-radius: var(--radius-asymmetric);
+      padding: 36px;
+      box-shadow: var(--shadow-card-ambient);
+      perspective: 1000px;
+      transform-style: preserve-3d;
+      transition: transform var(--transition-snappy);
+    }
+
+    .hero-card-inner {
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-card-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-text-on-light-sub);
+      background-color: rgba(15, 56, 48, 0.08);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-card-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--color-text-on-light);
+      margin-bottom: 8px;
+    }
+
+    .hero-card-body {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--color-text-on-light-sub);
+      margin-bottom: var(--space-md);
+    }
+
+    /* Overhang / Bleed Botanical Visual Element */
+    .hero-overhang-visual {
+      position: relative;
+      background: linear-gradient(135deg, #164E43 0%, #0B2B24 100%);
+      border-radius: var(--radius-surface-md);
+      padding: 24px;
+      color: var(--color-text-on-dark);
+      margin-bottom: var(--space-md);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .visual-cellular-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(rgba(212, 232, 37, 0.25) 1.5px, transparent 1.5px),
+        radial-gradient(rgba(116, 169, 156, 0.15) 1px, transparent 1px);
+      background-size: 24px 24px, 12px 12px;
+      background-position: 0 0, 12px 12px;
+      opacity: 0.7;
+    }
+
+    .visual-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-huge {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.00;
+      letter-spacing: -0.03em;
+      color: var(--color-accent-electric);
+      font-family: var(--font-primary);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--color-text-on-dark-sub);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Floating Media Trigger Circle */
+    .floating-media-trigger {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-circle);
+      background-color: var(--color-surface-warm);
+      color: var(--color-text-on-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      border: 2px solid #FFFFFF;
+      transition: transform var(--transition-snappy), background-color var(--transition-snappy);
+    }
+
+    .floating-media-trigger:hover {
+      transform: scale(1.08);
+      background-color: var(--color-accent-electric);
+      color: var(--color-surface-dark);
+    }
+
+    .floating-starburst-dock {
+      position: absolute;
+      top: -24px;
+      right: -20px;
+      z-index: 30;
+    }
+
+    /* =============================================================================
+       06. SECTION 2: COLOR PALETTE & TOKEN MATRIX
+       ============================================================================= */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .swatch-card {
+      background-color: var(--color-canvas-subtle);
+      border-radius: var(--radius-surface-md);
+      padding: var(--space-md);
+      border: var(--border-subtle-dark);
+      cursor: pointer;
+      transition: transform var(--transition-snappy), box-shadow var(--transition-snappy), border-color var(--transition-snappy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-card-ambient);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .swatch-preview {
+      height: 90px;
+      border-radius: 12px;
+      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .swatch-chip-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      background-color: rgba(0, 0, 0, 0.65);
+      color: #FFFFFF;
+      backdrop-filter: blur(4px);
+      letter-spacing: 0.05em;
+    }
+
+    .swatch-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .swatch-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--color-text-on-dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .swatch-role {
+      font-size: 0.75rem;
+      color: var(--color-text-on-dark-sub);
+    }
+
+    .swatch-token {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--color-accent-electric);
+      background-color: rgba(15, 43, 36, 0.6);
+      padding: 4px 8px;
+      border-radius: 6px;
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .swatch-copy-hint {
+      font-size: 0.65rem;
+      opacity: 0.8;
+    }
+
+    /* =============================================================================
+       07. SECTION 3: TYPOGRAPHY SYSTEM SPECIMEN
+       ============================================================================= */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+    }
+
+    .font-family-card {
+      background-color: var(--color-canvas-subtle);
+      border-radius: var(--radius-surface-lg);
+      padding: 32px;
+      border: var(--border-subtle-dark);
+    }
+
+    .font-meta-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-accent-electric);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .font-sample-display {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-md);
+      color: var(--color-text-on-dark);
+    }
+
+    .font-alphabet-strip {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--color-text-on-dark-sub);
+      word-break: break-all;
+      padding: var(--space-sm);
+      background-color: rgba(11, 43, 36, 0.5);
+      border-radius: 12px;
+      border: var(--border-subtle-dark);
+    }
+
+    /* Type Scale Ladder */
+    .type-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+
+    .type-ladder-row {
+      background-color: rgba(22, 78, 67, 0.4);
+      border-radius: var(--radius-surface-md);
+      padding: 20px 24px;
+      border: var(--border-subtle-dark);
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      align-items: center;
+      gap: var(--space-md);
+      transition: background-color var(--transition-snappy);
+    }
+
+    .type-ladder-row:hover {
+      background-color: rgba(22, 78, 67, 0.8);
+      border-color: rgba(212, 232, 37, 0.3);
+    }
+
+    .type-ladder-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .ladder-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-accent-electric);
+    }
+
+    .ladder-specs {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--color-text-on-dark-sub);
+    }
+
+    .sample-hero-display {
+      font-size: 3.25rem;
+      font-weight: 800;
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+    }
+
+    .sample-stat-lg {
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.00;
+      letter-spacing: -0.03em;
+      color: var(--color-accent-electric);
+    }
+
+    .sample-h2 {
+      font-size: 2.0rem;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .sample-h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.30;
+      letter-spacing: -0.01em;
+    }
+
+    .sample-body {
+      font-size: 0.95rem;
+      font-weight: 400;
+      line-height: 1.55;
+    }
+
+    .sample-button {
+      font-size: 0.875rem;
+      font-weight: 600;
+      line-height: 1.00;
+      letter-spacing: 0.01em;
+    }
+
+    .sample-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      line-height: 1.40;
+      letter-spacing: 0.02em;
+      color: var(--color-accent-mint);
+    }
+
+    /* Live Pangram Tester */
+    .pangram-tester-box {
+      margin-top: var(--space-xl);
+      background-color: var(--color-surface-warm);
+      color: var(--color-text-on-light);
+      border-radius: var(--radius-surface-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-card-ambient);
+    }
+
+    .pangram-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .pangram-input-field {
+      width: 100%;
+      border: 1px solid rgba(15, 56, 48, 0.2);
+      border-radius: 14px;
+      padding: 16px;
+      font-family: var(--font-primary);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-text-on-light);
+      background-color: #FFFFFF;
+      outline: none;
+      resize: none;
+      line-height: 1.3;
+      transition: border-color var(--transition-snappy), box-shadow var(--transition-snappy);
+    }
+
+    .pangram-input-field:focus {
+      border-color: var(--color-canvas-base);
+      box-shadow: 0 0 0 3px rgba(15, 59, 50, 0.15);
+    }
+
+    .pangram-controls {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    /* =============================================================================
+       08. SECTION 4: CORNER GEOMETRY & ELEVATION SPECIMENS
+       ============================================================================= */
+    .geometry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .geometry-card {
+      background-color: var(--color-canvas-subtle);
+      border-radius: var(--radius-surface-md);
+      padding: var(--space-lg);
+      border: var(--border-subtle-dark);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .geometry-shape-preview {
+      height: 120px;
+      background-color: var(--color-surface-warm);
+      color: var(--color-text-on-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+      border: 2px solid #FFFFFF;
+      box-shadow: var(--shadow-card-ambient);
+      position: relative;
+    }
+
+    .shape-pill {
+      border-radius: var(--radius-pill);
+      height: 54px;
+    }
+
+    .shape-circle {
+      border-radius: var(--radius-circle);
+      width: 90px;
+      height: 90px;
+      margin: 0 auto;
+    }
+
+    .shape-surface-lg {
+      border-radius: var(--radius-surface-lg);
+    }
+
+    .shape-asymmetric {
+      border-radius: var(--radius-asymmetric);
+    }
+
+    .shape-sharp {
+      border-radius: var(--radius-sharp);
+    }
+
+    /* =============================================================================
+       09. SECTION 5: COMPONENT ARCHETYPE GALLERY
+       ============================================================================= */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .component-panel {
+      background-color: var(--color-canvas-subtle);
+      border-radius: var(--radius-surface-lg);
+      padding: 32px;
+      border: var(--border-subtle-dark);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .component-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--border-subtle-dark);
+    }
+
+    .component-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-text-on-dark);
+    }
+
+    /* Button Showcase */
+    .button-group-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .btn-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .btn-nordic-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-primary);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      background-color: #FFFFFF;
+      color: var(--color-text-on-light);
+      transform: translateY(0);
+      transition: all var(--transition-snappy);
+    }
+
+    .btn-nordic-pill:hover {
+      background-color: var(--color-accent-electric);
+      color: var(--color-surface-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow-accent);
+    }
+
+    .btn-nordic-electric {
+      background-color: var(--color-accent-electric);
+      color: var(--color-surface-dark);
+    }
+
+    .btn-nordic-electric:hover {
+      background-color: #FFFFFF;
+      color: var(--color-text-on-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-pill-float);
+    }
+
+    .btn-nordic-outline {
+      background-color: transparent;
+      color: var(--color-text-on-dark);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-nordic-outline:hover {
+      border-color: var(--color-accent-electric);
+      color: var(--color-accent-electric);
+      background-color: rgba(212, 232, 37, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Form Controls */
+    .form-group-botanical {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-label-botanical {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-text-on-dark-sub);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .input-field-botanical {
+      background-color: rgba(11, 43, 36, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-pill);
+      padding: 12px 20px;
+      color: var(--color-text-on-dark);
+      font-family: var(--font-primary);
+      font-size: 0.9rem;
+      outline: none;
+      transition: all var(--transition-snappy);
+    }
+
+    .input-field-botanical:focus {
+      border-color: var(--color-accent-electric);
+      background-color: rgba(11, 43, 36, 0.9);
+      box-shadow: 0 0 0 3px rgba(212, 232, 37, 0.2);
+    }
+
+    /* Botanical Checkbox & Switch */
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .custom-switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 26px;
+    }
+
+    .custom-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .switch-slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-pill);
+      transition: all var(--transition-snappy);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .switch-slider::before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: #FFFFFF;
+      border-radius: var(--radius-circle);
+      transition: all var(--transition-snappy);
+    }
+
+    input:checked + .switch-slider {
+      background-color: var(--color-accent-electric);
+      border-color: var(--color-accent-electric);
+    }
+
+    input:checked + .switch-slider::before {
+      transform: translateX(22px);
+      background-color: var(--color-surface-dark);
+    }
+
+    /* Nav Tabs with Sliding Underscore Bar */
+    .nav-tabs-container {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding-bottom: 8px;
+    }
+
+    .nav-tab-item {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-text-on-dark-sub);
+      cursor: pointer;
+      padding: 6px 4px;
+      position: relative;
+      transition: color var(--transition-snappy);
+    }
+
+    .nav-tab-item:hover, .nav-tab-item.active {
+      color: var(--color-text-on-dark);
+    }
+
+    .nav-tab-item.active::after {
+      content: "";
+      position: absolute;
+      bottom: -9px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--color-accent-electric);
+      border-radius: var(--radius-pill);
+      box-shadow: 0 0 10px rgba(212, 232, 37, 0.6);
+    }
+
+    /* =============================================================================
+       10. SECTION 6: LIVING MICRO-EXPERIENCE (ARBORIS TELEMETRY STATION)
+       ============================================================================= */
+    .telemetry-station-container {
+      background-color: var(--color-surface-dark);
+      border-radius: var(--radius-surface-lg);
+      border: var(--border-subtle-dark);
+      overflow: hidden;
+      box-shadow: var(--shadow-card-ambient);
+      position: relative;
+    }
+
+    .telemetry-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 28px;
+      background-color: rgba(22, 78, 67, 0.4);
+      border-bottom: var(--border-subtle-dark);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .telemetry-station-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .live-status-pulse {
+      width: 10px;
+      height: 10px;
+      background-color: var(--color-accent-electric);
+      border-radius: var(--radius-circle);
+      box-shadow: 0 0 10px var(--color-accent-electric);
+      animation: pulseBlink 2s infinite;
+    }
+
+    @keyframes pulseBlink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .telemetry-main-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      min-height: 480px;
+    }
+
+    /* Left Console: Phyto-Visualizer & Canvas */
+    .telemetry-console-left {
+      padding: 32px;
+      border-right: var(--border-subtle-dark);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      background: radial-gradient(circle at top left, rgba(22, 78, 67, 0.3) 0%, transparent 60%);
+    }
+
+    .species-selector-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .species-chip {
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 0.8rem;
+      font-weight: 600;
+      background-color: rgba(255, 255, 255, 0.06);
+      color: var(--color-text-on-dark-sub);
+      border: var(--border-subtle-dark);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--transition-snappy);
+    }
+
+    .species-chip:hover {
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+    }
+
+    .species-chip.active {
+      background-color: var(--color-accent-electric);
+      color: var(--color-surface-dark);
+      border-color: var(--color-accent-electric);
+      box-shadow: var(--shadow-glow-accent);
+    }
+
+    .canvas-visualizer-box {
+      background-color: #061914;
+      border-radius: var(--radius-surface-md);
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(212, 232, 37, 0.2);
+    }
+
+    #botanical-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .canvas-overlay-hud {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      right: 14px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--color-accent-mint);
+    }
+
+    /* Soundscape Synth Bar */
+    .soundscape-player-card {
+      background-color: var(--color-canvas-subtle);
+      border-radius: var(--radius-surface-md);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: var(--border-subtle-dark);
+      gap: 12px;
+    }
+
+    .sound-info-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-audio-toggle {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-circle);
+      background-color: var(--color-surface-warm);
+      color: var(--color-text-on-light);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-snappy);
+      box-shadow: var(--shadow-pill-float);
+    }
+
+    .btn-audio-toggle:hover {
+      background-color: var(--color-accent-electric);
+      color: var(--color-surface-dark);
+      transform: scale(1.08);
+      box-shadow: var(--shadow-glow-accent);
+    }
+
+    /* Right Console: Live Phyto-Metrics & Sliders */
+    .telemetry-console-right {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      background-color: rgba(11, 43, 36, 0.4);
+    }
+
+    .metric-gauge-card {
+      background-color: rgba(22, 78, 67, 0.35);
+      border-radius: var(--radius-surface-md);
+      padding: 16px 20px;
+      border: var(--border-subtle-dark);
+    }
+
+    .metric-gauge-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .metric-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-text-on-dark-sub);
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-accent-electric);
+    }
+
+    .range-slider-botanical {
+      width: 100%;
+      height: 6px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.12);
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .range-slider-botanical::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: var(--radius-circle);
+      background: var(--color-accent-electric);
+      cursor: pointer;
+      box-shadow: 0 0 10px var(--color-accent-electric);
+      transition: transform var(--transition-snappy);
+    }
+
+    .range-slider-botanical::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    /* 3D Parallax Tilt Anchor Card */
+    .tilt-card-demo {
+      background-color: var(--color-surface-warm);
+      color: var(--color-text-on-light);
+      border-radius: var(--radius-asymmetric);
+      padding: 24px;
+      margin-top: var(--space-xs);
+      box-shadow: var(--shadow-card-ambient);
+      transition: transform var(--transition-snappy);
+    }
+
+    /* =============================================================================
+       11. SECTION 7: STYLE TILE PROMPT CODE DRAWER
+       ============================================================================= */
+    .code-spec-container {
+      background-color: #061914;
+      border-radius: var(--radius-surface-lg);
+      border: var(--border-subtle-dark);
+      overflow: hidden;
+    }
+
+    .code-spec-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      background-color: var(--color-canvas-subtle);
+      border-bottom: var(--border-subtle-dark);
+    }
+
+    .code-spec-title {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-accent-electric);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .raw-spec-pre {
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: var(--color-text-on-dark-sub);
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    /* =============================================================================
+       12. MODAL DIALOG & TOAST NOTIFICATION
+       ============================================================================= */
+    .spec-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(11, 43, 36, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity var(--transition-smooth), visibility var(--transition-smooth);
+    }
+
+    .spec-modal-backdrop.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .spec-modal-dialog {
+      background-color: #061914;
+      border: 1px solid rgba(212, 232, 37, 0.3);
+      border-radius: var(--radius-surface-lg);
+      max-width: 900px;
+      width: 100%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+      transform: scale(0.94);
+      transition: transform var(--transition-snappy);
+      overflow: hidden;
+    }
+
+    .spec-modal-backdrop.show .spec-modal-dialog {
+      transform: scale(1);
+    }
+
+    .spec-modal-header {
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: var(--border-subtle-dark);
+      background-color: var(--color-canvas-subtle);
+    }
+
+    .spec-modal-body {
+      padding: 24px 28px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .btn-modal-close {
+      background: none;
+      border: none;
+      color: var(--color-text-on-dark-sub);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+      border-radius: 6px;
+      transition: color var(--transition-snappy);
+    }
+
+    .btn-modal-close:hover {
+      color: #FFFFFF;
+    }
+
+    /* Floating Toast */
+    .toast-notification {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 2000;
+      background-color: var(--color-badge-black);
+      color: #FFFFFF;
+      border: 1px solid var(--color-accent-electric);
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-glow-accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: all var(--transition-snappy);
+      pointer-events: none;
+    }
+
+    .toast-notification.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =============================================================================
+       13. RESPONSIVE BREAKPOINTS (DESKTOP / TABLET / MOBILE)
+       ============================================================================= */
+    @media (max-width: 960px) {
+      .hero-grid,
+      .telemetry-main-layout,
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .telemetry-console-left {
+        border-right: none;
+        border-bottom: var(--border-subtle-dark);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .type-ladder-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+
+  <!-- Mandatory Mobile Safety Sheet from agent.md -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+</head>
+<body>
+
+  <!-- ===========================================================================
+       01. MANDATORY TOP NAVIGATION HEADER BAR
+       =========================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-024</span>
+      <span class="design-title">Nordic Botanical Tech</span>
+      <span class="design-vibe-tag">Quiet Luxury</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-nordic-botanical-tech.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <!-- ===========================================================================
+       MAIN CONTENT CONTAINER
+       =========================================================================== -->
+  <main class="layout-wrapper">
+
+    <!-- =========================================================================
+         SECTION 1: HERO DISPLAY BANNER & ASYMMETRIC SURFACE
+         ========================================================================= -->
+    <section class="hero-container">
+      <div class="hero-grid">
+        <!-- Left: Headline & Manifesto -->
+        <div class="hero-text-block">
+          <div class="hero-badge-row">
+            <span class="design-code">TILE-024</span>
+            <span class="design-vibe-tag">Quiet Luxury</span>
+            <span class="section-eyebrow" style="margin-bottom:0;">Phyto-Genomics &amp; Alpine Tech</span>
+          </div>
+
+          <h1 class="hero-h1">
+            Nordic <br>
+            Botanical <br>
+            <span class="highlight-lime">Tech.</span>
+          </h1>
+
+          <p class="hero-narrative">
+            A high-contrast, editorial aesthetic pairing deep organic tones with hyper-modern acid chartreuse accents and asymmetric geometric surface layouts. Engineered for sustainable luxury, phyto-biotech telemetry, and precision bio-canopy systems.
+          </p>
+
+          <div class="hero-cta-group">
+            <button class="btn-hero-primary" onclick="copyMasterTileSpec()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Prompt for AI Agent
+            </button>
+            <a href="#living-demo" class="btn-hero-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg>
+              Explore Living Demo
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Asymmetric Warm Linen Card with Extruded Element & Starburst Seal -->
+        <div class="hero-asymmetric-card" id="hero-tilt-card">
+          <!-- Floating 12-point Scalloped Starburst Seal -->
+          <div class="floating-starburst-dock">
+            <div class="starburst-badge" title="Bio-Engineered Alpine Seal">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="hero-card-inner">
+            <div class="hero-card-header">
+              <span class="hero-card-tag">CANOPY MATRIX // V3.8</span>
+              <div class="pixel-mosaic-dock">
+                <div class="pixel-dot active"></div>
+                <div class="pixel-dot"></div>
+                <div class="pixel-dot active"></div>
+                <div class="pixel-dot mint"></div>
+                <div class="pixel-dot active"></div>
+                <div class="pixel-dot"></div>
+                <div class="pixel-dot"></div>
+                <div class="pixel-dot active"></div>
+                <div class="pixel-dot mint"></div>
+              </div>
+            </div>
+
+            <h2 class="hero-card-title">Alpine Chlorophyll Synthesis</h2>
+            <p class="hero-card-body">
+              Real-time cellular bio-voltage exchange captured across high-altitude sub-arctic pine needle matrices.
+            </p>
+
+            <!-- Overhang Bleed Visual Box -->
+            <div class="hero-overhang-visual">
+              <div class="visual-cellular-grid"></div>
+              <div class="visual-content">
+                <div>
+                  <div class="stat-huge" id="hero-stat-counter">94.8%</div>
+                  <div class="stat-label">Photosynthetic Yield Index</div>
+                </div>
+                <div class="floating-media-trigger" title="Trigger Bio-Acoustic Resonance" onclick="triggerAudioPulse()">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="6 4 20 12 6 20 6 4"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Footer Pills -->
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-on-light-sub);">
+                LAT: 68°21'N • ELEV: 1,420M
+              </span>
+              <span style="font-size:0.75rem; font-weight:700; color:var(--color-text-on-light); background:#FFFFFF; padding:4px 12px; border-radius:var(--radius-pill); border:1px solid rgba(15,56,48,0.15);">
+                ECO-CERTIFIED ↗
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 2: COLOR ROLES & PALETTE TOKENS MATRIX
+         ========================================================================= -->
+    <section class="tile-section" id="palette-matrix">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Token Architecture</div>
+          <h2 class="section-title">Color Roles &amp; Palette Matrix</h2>
+        </div>
+        <p class="section-desc">
+          Click any swatch to copy its Hex code and CSS variable token. Formulated in HSL-balanced organic deep pine, warm linen, and high-voltage acid chartreuse.
+        </p>
+      </div>
+
+      <div class="palette-grid">
+        <!-- 1. Deep Alpine Pine -->
+        <div class="swatch-card" onclick="copySwatchHex('#0F3B32', '--color-canvas-base')">
+          <div class="swatch-preview" style="background-color: #0F3B32;">
+            <span class="swatch-chip-badge">#0F3B32</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Deep Alpine Pine</span>
+              <span style="color:var(--color-accent-electric);">●</span>
+            </div>
+            <span class="swatch-role">Primary Dark Canvas Surface</span>
+            <div class="swatch-token">
+              <code>--color-canvas-base</code>
+              <span class="swatch-copy-hint">Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Muted Evergreen -->
+        <div class="swatch-card" onclick="copySwatchHex('#164E43', '--color-canvas-subtle')">
+          <div class="swatch-preview" style="background-color: #164E43;">
+            <span class="swatch-chip-badge">#164E43</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Muted Evergreen</span>
+              <span style="color:var(--color-accent-mint);">●</span>
+            </div>
+            <span class="swatch-role">Container Base &amp; Depth Wells</span>
+            <div class="swatch-token">
+              <code>--color-canvas-subtle</code>
+              <span class="swatch-copy-hint">Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Warm Linen / Ecru -->
+        <div class="swatch-card" onclick="copySwatchHex('#F8F3E8', '--color-surface-warm')">
+          <div class="swatch-preview" style="background-color: #F8F3E8;">
+            <span class="swatch-chip-badge" style="background-color:#0F3830; color:#F8F3E8;">#F8F3E8</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Warm Linen / Ecru</span>
+              <span style="color:#F8F3E8;">●</span>
+            </div>
+            <span class="swatch-role">High-contrast Floating Cards</span>
+            <div class="swatch-token">
+              <code>--color-surface-warm</code>
+              <span class="swatch-copy-hint">Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Midnight Pine -->
+        <div class="swatch-card" onclick="copySwatchHex('#0B2B24', '--color-surface-dark')">
+          <div class="swatch-preview" style="background-color: #0B2B24;">
+            <span class="swatch-chip-badge">#0B2B24</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Midnight Pine</span>
+              <span style="color:#0B2B24;">●</span>
+            </div>
+            <span class="swatch-role">Recessed Console &amp; Shaded Wells</span>
+            <div class="swatch-token">
+              <code>--color-surface-dark</code>
+              <span class="swatch-copy-hint">Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Acid Chartreuse -->
+        <div class="swatch-card" onclick="copySwatchHex('#D4E825', '--color-accent-electric')">
+          <div class="swatch-preview" style="background-color: #D4E825;">
+            <span class="swatch-chip-badge" style="background-color:#0B2B24; color:#D4E825;">#D4E825</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Acid Chartreuse</span>
+              <span style="color:var(--color-accent-electric);">⚡</span>
+            </div>
+            <span class="swatch-role">High-Voltage Highlight &amp; Focus</span>
+            <div class="swatch-token">
+              <code>--color-accent-electric</code>
+              <span class="swatch-copy-hint">Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Desaturated Sage -->
+        <div class="swatch-card" onclick="copySwatchHex('#74A99C', '--color-accent-mint')">
+          <div class="swatch-preview" style="background-color: #74A99C;">
+            <span class="swatch-chip-badge">#74A99C</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Desaturated Sage</span>
+              <span style="color:var(--color-accent-mint);">●</span>
+            </div>
+            <span class="swatch-role">Secondary Metric Indicator</span>
+            <div class="swatch-token">
+              <code>--color-accent-mint</code>
+              <span class="swatch-copy-hint">Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Pure White (Text on Dark) -->
+        <div class="swatch-card" onclick="copySwatchHex('#FFFFFF', '--color-text-on-dark')">
+          <div class="swatch-preview" style="background-color: #FFFFFF;">
+            <span class="swatch-chip-badge" style="background-color:#0F3830; color:#FFFFFF;">#FFFFFF</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Pure White</span>
+              <span style="color:#FFFFFF;">●</span>
+            </div>
+            <span class="swatch-role">High-emphasis Dark Mode Text</span>
+            <div class="swatch-token">
+              <code>--color-text-on-dark</code>
+              <span class="swatch-copy-hint">Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Sage Gray -->
+        <div class="swatch-card" onclick="copySwatchHex('#A4C3BA', '--color-text-on-dark-sub')">
+          <div class="swatch-preview" style="background-color: #A4C3BA;">
+            <span class="swatch-chip-badge" style="background-color:#0F3830; color:#A4C3BA;">#A4C3BA</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Sage Gray</span>
+              <span style="color:#A4C3BA;">●</span>
+            </div>
+            <span class="swatch-role">Medium-emphasis Dark Mode Text</span>
+            <div class="swatch-token">
+              <code>--color-text-on-dark-sub</code>
+              <span class="swatch-copy-hint">Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Forest Ink -->
+        <div class="swatch-card" onclick="copySwatchHex('#0F3830', '--color-text-on-light')">
+          <div class="swatch-preview" style="background-color: #0F3830;">
+            <span class="swatch-chip-badge">#0F3830</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Forest Ink</span>
+              <span style="color:#0F3830;">●</span>
+            </div>
+            <span class="swatch-role">High-emphasis Light Card Text</span>
+            <div class="swatch-token">
+              <code>--color-text-on-light</code>
+              <span class="swatch-copy-hint">Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Olive Smoke -->
+        <div class="swatch-card" onclick="copySwatchHex('#5C7871', '--color-text-on-light-sub')">
+          <div class="swatch-preview" style="background-color: #5C7871;">
+            <span class="swatch-chip-badge">#5C7871</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Olive Smoke</span>
+              <span style="color:#5C7871;">●</span>
+            </div>
+            <span class="swatch-role">Medium-emphasis Light Card Sub</span>
+            <div class="swatch-token">
+              <code>--color-text-on-light-sub</code>
+              <span class="swatch-copy-hint">Copy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. Pitch Onyx Badge -->
+        <div class="swatch-card" onclick="copySwatchHex('#111614', '--color-badge-black')">
+          <div class="swatch-preview" style="background-color: #111614;">
+            <span class="swatch-chip-badge" style="color:var(--color-accent-electric);">#111614</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">
+              <span>Pitch Onyx</span>
+              <span style="color:var(--color-accent-electric);">★</span>
+            </div>
+            <span class="swatch-role">Floating Starburst Seals</span>
+            <div class="swatch-token">
+              <code>--color-badge-black</code>
+              <span class="swatch-copy-hint">Copy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 3: TYPOGRAPHY SYSTEM SPECIMEN
+         ========================================================================= -->
+    <section class="tile-section" id="typography-system">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Typographic Hierarchy</div>
+          <h2 class="section-title">Typography &amp; Typeface Stacks</h2>
+        </div>
+        <p class="section-desc">
+          Dual pairing of <strong>Plus Jakarta Sans</strong> for geometric neo-editorial authority and <strong>JetBrains Mono</strong> for precision botanical metrics and telemetry readings.
+        </p>
+      </div>
+
+      <!-- Typeface Showcase Cards -->
+      <div class="type-specimen-grid">
+        <!-- Primary Sans -->
+        <div class="font-family-card">
+          <div class="font-meta-tag">Primary Family // Display &amp; Sans</div>
+          <div class="font-sample-display">Plus Jakarta Sans</div>
+          <p style="color:var(--color-text-on-dark-sub); margin-bottom:var(--space-md);">
+            Geometrically constructed grotesque with refined humanist apertures, calibrated letter-spacing, and bold modern authority.
+          </p>
+          <div class="font-alphabet-strip">
+            ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+            abcdefghijklmnopqrstuvwxyz 0123456789 (.,;:!?@#$&amp;*)
+          </div>
+        </div>
+
+        <!-- Mono -->
+        <div class="font-family-card">
+          <div class="font-meta-tag">Secondary Family // Technical &amp; Mono</div>
+          <div class="font-sample-display" style="font-family:var(--font-mono); font-size:2.1rem;">JetBrains Mono</div>
+          <p style="color:var(--color-text-on-dark-sub); margin-bottom:var(--space-md);">
+            Technical monospaced typeface crafted for code readability, microscopic coordinates, telemetry ratios, and bio-sensors.
+          </p>
+          <div class="font-alphabet-strip" style="font-family:var(--font-mono);">
+            ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+            abcdefghijklmnopqrstuvwxyz 0123456789 [&lt;&gt;{}=/\|~%^]
+          </div>
+        </div>
+      </div>
+
+      <!-- Type Scale Hierarchy Ladder -->
+      <div class="type-ladder">
+        <!-- 1. Hero Display -->
+        <div class="type-ladder-row">
+          <div class="type-ladder-meta">
+            <span class="ladder-label">Hero Display</span>
+            <span class="ladder-specs">clamp(3.25rem, 6vw, 5.5rem) / 0.96 / W800</span>
+          </div>
+          <div class="sample-hero-display">BOTANICAL TECH</div>
+        </div>
+
+        <!-- 2. Display Stat Lg -->
+        <div class="type-ladder-row">
+          <div class="type-ladder-meta">
+            <span class="ladder-label">Display Stat Lg</span>
+            <span class="ladder-specs">3.5rem / 1.00 / W800 / -0.03em</span>
+          </div>
+          <div class="sample-stat-lg">98.4% FLUX</div>
+        </div>
+
+        <!-- 3. Section Title / H2 -->
+        <div class="type-ladder-row">
+          <div class="type-ladder-meta">
+            <span class="ladder-label">Section Title (H2)</span>
+            <span class="ladder-specs">2.0rem / 1.15 / W700 / -0.02em</span>
+          </div>
+          <div class="sample-h2">High-Altitude Cellular Synthesis</div>
+        </div>
+
+        <!-- 4. Subheading / H3 -->
+        <div class="type-ladder-row">
+          <div class="type-ladder-meta">
+            <span class="ladder-label">Subheading (H3)</span>
+            <span class="ladder-specs">1.25rem / 1.30 / W600 / -0.01em</span>
+          </div>
+          <div class="sample-h3">Sub-Arctic Evergreen Photosynthetic Yield</div>
+        </div>
+
+        <!-- 5. Body Text -->
+        <div class="type-ladder-row">
+          <div class="type-ladder-meta">
+            <span class="ladder-label">Body Text</span>
+            <span class="ladder-specs">0.95rem / 1.55 / W400 / 0.00em</span>
+          </div>
+          <div class="sample-body">
+            Deep alpine ecosystems operate under stringent thermal constraints, yielding resilient aromatic compounds and high bio-voltage potential.
+          </div>
+        </div>
+
+        <!-- 6. Button / Nav Action -->
+        <div class="type-ladder-row">
+          <div class="type-ladder-meta">
+            <span class="ladder-label">Button / Action</span>
+            <span class="ladder-specs">0.875rem / 1.00 / W600 / +0.01em</span>
+          </div>
+          <div class="sample-button">
+            <span style="background:var(--color-accent-electric); color:var(--color-surface-dark); padding:8px 18px; border-radius:var(--radius-pill);">INITIALIZE TELEMETRY ↗</span>
+          </div>
+        </div>
+
+        <!-- 7. Micro / Metadata -->
+        <div class="type-ladder-row">
+          <div class="type-ladder-meta">
+            <span class="ladder-label">Micro / Metadata</span>
+            <span class="ladder-specs">0.75rem / 1.40 / W500 / +0.02em</span>
+          </div>
+          <div class="sample-meta">CHL_A: 412.8 µg/cm² • BIO_VOLT: +0.482V • TEMP: -4.2°C</div>
+        </div>
+      </div>
+
+      <!-- Interactive Pangram Tester -->
+      <div class="pangram-tester-box">
+        <div class="pangram-header">
+          <div>
+            <span style="font-family:var(--font-mono); font-size:0.75rem; font-weight:700; color:var(--color-text-on-light-sub); text-transform:uppercase;">Interactive Typography Tester</span>
+            <h3 style="font-size:1.35rem; font-weight:800; color:var(--color-text-on-light);">Live Specimen Editor</h3>
+          </div>
+          <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-on-light-sub);" id="pangram-size-readout">Size: 24px | Weight: 700</span>
+        </div>
+
+        <textarea id="pangram-input" class="pangram-input-field" rows="2">Nordic alpine pines synthesize rich terpene matrices under sub-zero canopy light.</textarea>
+
+        <div class="pangram-controls">
+          <button class="btn-nordic-pill" style="padding:6px 14px; font-size:0.8rem;" onclick="setPangramSample(1)">Sample 1</button>
+          <button class="btn-nordic-pill" style="padding:6px 14px; font-size:0.8rem;" onclick="setPangramSample(2)">Sample 2</button>
+          <button class="btn-nordic-pill" style="padding:6px 14px; font-size:0.8rem;" onclick="setPangramSample(3)">Mono Telemetry</button>
+          <button class="btn-nordic-pill" style="padding:6px 14px; font-size:0.8rem;" onclick="togglePangramFont()">Toggle Sans/Mono</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 4: CORNER GEOMETRY & ELEVATION SPECIMENS
+         ========================================================================= -->
+    <section class="tile-section" id="corner-geometry">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Spatial Geometry &amp; Radii</div>
+          <h2 class="section-title">Corner Geometry &amp; Structural Elevation</h2>
+        </div>
+        <p class="section-desc">
+          Nordic Botanical Tech pairs fluid pill buttons with asymmetric structural anchor radii (28px 28px 0px 28px), 12-point scalloped seal geometries, and pixel-mosaic step-down docks.
+        </p>
+      </div>
+
+      <div class="geometry-grid">
+        <!-- 1. Pill Radius -->
+        <div class="geometry-card">
+          <div class="geometry-shape-preview shape-pill">
+            <span>--radius-pill (9999px)</span>
+          </div>
+          <div>
+            <h4 style="font-size:0.95rem; font-weight:700;">Fluid Pill Geometry</h4>
+            <p style="font-size:0.8rem; color:var(--color-text-on-dark-sub);">CTA buttons, search capsules, and species filter chips.</p>
+          </div>
+        </div>
+
+        <!-- 2. Asymmetric Radius -->
+        <div class="geometry-card">
+          <div class="geometry-shape-preview shape-asymmetric">
+            <span>--radius-asymmetric (28px 28px 0px 28px)</span>
+          </div>
+          <div>
+            <h4 style="font-size:0.95rem; font-weight:700;">Asymmetric Structural Anchor</h4>
+            <p style="font-size:0.8rem; color:var(--color-text-on-dark-sub);">High-contrast anchor cards anchored to corner grids.</p>
+          </div>
+        </div>
+
+        <!-- 3. Surface Large Radius -->
+        <div class="geometry-card">
+          <div class="geometry-shape-preview shape-surface-lg">
+            <span>--radius-surface-lg (28px)</span>
+          </div>
+          <div>
+            <h4 style="font-size:0.95rem; font-weight:700;">Large Surface Container</h4>
+            <p style="font-size:0.8rem; color:var(--color-text-on-dark-sub);">Floating linen sheets and console dialog frames.</p>
+          </div>
+        </div>
+
+        <!-- 4. Circle Radius -->
+        <div class="geometry-card">
+          <div class="geometry-shape-preview shape-circle">
+            <span>50% Circle</span>
+          </div>
+          <div>
+            <h4 style="font-size:0.95rem; font-weight:700;">Floating Media Triggers</h4>
+            <p style="font-size:0.8rem; color:var(--color-text-on-dark-sub);">Audio playheads, quick triggers, and focal avatars.</p>
+          </div>
+        </div>
+
+        <!-- 5. 12-Point Scalloped Seal Badge -->
+        <div class="geometry-card">
+          <div style="height:120px; display:flex; align-items:center; justify-content:center;">
+            <div class="starburst-badge">
+              <span style="font-family:var(--font-mono); font-size:0.75rem; font-weight:800;">12-PT</span>
+            </div>
+          </div>
+          <div>
+            <h4 style="font-size:0.95rem; font-weight:700;">Scalloped Starburst Seal</h4>
+            <p style="font-size:0.8rem; color:var(--color-text-on-dark-sub);">Floating Pitch Onyx (#111614) certification seal.</p>
+          </div>
+        </div>
+
+        <!-- 6. Pixel Mosaic Motif -->
+        <div class="geometry-card">
+          <div style="height:120px; display:flex; align-items:center; justify-content:center; background:#0B2B24; border-radius:16px;">
+            <div class="pixel-mosaic-dock" style="transform:scale(1.4);">
+              <div class="pixel-dot active"></div>
+              <div class="pixel-dot active"></div>
+              <div class="pixel-dot"></div>
+              <div class="pixel-dot mint"></div>
+              <div class="pixel-dot active"></div>
+              <div class="pixel-dot mint"></div>
+              <div class="pixel-dot"></div>
+              <div class="pixel-dot active"></div>
+              <div class="pixel-dot active"></div>
+            </div>
+          </div>
+          <div>
+            <h4 style="font-size:0.95rem; font-weight:700;">Pixel Mosaic Step-Down</h4>
+            <p style="font-size:0.8rem; color:var(--color-text-on-dark-sub);">12px geometric grid tiles placed in corner docks.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 5: COMPONENT ARCHETYPE GALLERY
+         ========================================================================= -->
+    <section class="tile-section" id="components-gallery">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Component Archetypes</div>
+          <h2 class="section-title">Interactive UI Elements &amp; Controls</h2>
+        </div>
+        <p class="section-desc">
+          Designed with fluid hover physics, tactile active states, high-contrast focus rings, and crisp neo-lineal iconography.
+        </p>
+      </div>
+
+      <div class="components-grid">
+        <!-- 1. Buttons & CTA Suite -->
+        <div class="component-panel">
+          <div class="component-panel-header">
+            <span class="component-title">Pill Button Variants</span>
+            <span class="underscore-accent"></span>
+          </div>
+
+          <div class="button-group-showcase">
+            <div class="btn-row">
+              <button class="btn-nordic-pill" onclick="showToast('Primary Pill Action Triggered', '✓')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                Primary Pill (White)
+              </button>
+              <button class="btn-nordic-pill btn-nordic-electric" onclick="showToast('Electric Acid Highlight Clicked', '⚡')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Electric Acid
+              </button>
+            </div>
+
+            <div class="btn-row">
+              <button class="btn-nordic-pill btn-nordic-outline" onclick="showToast('Ghost Outline Pressed', '○')">
+                Ghost Outline Action
+              </button>
+              <div class="floating-media-trigger" title="Floating Action Head" onclick="showToast('Play Head Triggered', '▶')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Inputs & Search Controls -->
+        <div class="component-panel">
+          <div class="component-panel-header">
+            <span class="component-title">Inputs &amp; Search Field</span>
+            <span class="underscore-accent"></span>
+          </div>
+
+          <div class="form-group-botanical">
+            <label class="input-label-botanical">
+              <span>CANOPY TELEMETRY QUERY</span>
+              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-accent-electric);">LIVE</span>
+            </label>
+            <input type="text" class="input-field-botanical" placeholder="Search phytoculture species..." value="Pinus sylvestris L.">
+          </div>
+
+          <div class="form-group-botanical">
+            <label class="input-label-botanical">
+              <span>ALTITUDE RANGE (METERS)</span>
+              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-accent-mint);" id="elev-readout">1,420 m</span>
+            </label>
+            <input type="range" class="range-slider-botanical" min="400" max="2800" value="1420" oninput="document.getElementById('elev-readout').textContent = this.value + ' m'">
+          </div>
+        </div>
+
+        <!-- 3. Switches, Checkboxes & Navigation Tabs -->
+        <div class="component-panel">
+          <div class="component-panel-header">
+            <span class="component-title">Switches &amp; Tab Indicators</span>
+            <span class="underscore-accent"></span>
+          </div>
+
+          <div class="nav-tabs-container">
+            <div class="nav-tab-item active" onclick="switchNavTab(this)">Overview</div>
+            <div class="nav-tab-item" onclick="switchNavTab(this)">Phyto-Genomics</div>
+            <div class="nav-tab-item" onclick="switchNavTab(this)">Telemetry</div>
+          </div>
+
+          <div class="control-row">
+            <div>
+              <div style="font-size:0.85rem; font-weight:600;">Automated Transpiration Sync</div>
+              <div style="font-size:0.75rem; color:var(--color-text-on-dark-sub);">Dynamic canopy pore modulation</div>
+            </div>
+            <label class="custom-switch">
+              <input type="checkbox" checked onchange="showToast(this.checked ? 'Transpiration Sync Activated' : 'Transpiration Sync Paused', '⚡')">
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+
+          <div class="control-row" style="border-bottom:none;">
+            <div>
+              <div style="font-size:0.85rem; font-weight:600;">Bio-Acoustic Synthesizer</div>
+              <div style="font-size:0.75rem; color:var(--color-text-on-dark-sub);">Alpine harmonics &amp; pine resonance</div>
+            </div>
+            <label class="custom-switch">
+              <input type="checkbox" checked onchange="showToast(this.checked ? 'Bio-Acoustics Online' : 'Bio-Acoustics Muted', '♪')">
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 6: LIVING MICRO-EXPERIENCE (ARBORIS TELEMETRY STATION)
+         ========================================================================= -->
+    <section class="tile-section" id="living-demo">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Living Micro-Experience</div>
+          <h2 class="section-title">ARBORIS // Alpine Phyto-Genomics Station</h2>
+        </div>
+        <p class="section-desc">
+          An interactive Nordic botanical tech console demonstrating live photosynthetic waveform simulation, species bio-parameter controls, and ambient acoustic synthesis.
+        </p>
+      </div>
+
+      <div class="telemetry-station-container">
+        <!-- Station Top Bar -->
+        <div class="telemetry-topbar">
+          <div class="telemetry-station-brand">
+            <div class="live-status-pulse"></div>
+            <div>
+              <div style="font-weight:800; font-size:0.95rem; letter-spacing:0.04em;">ARBORIS // BOTANICAL BIO-STATION</div>
+              <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-on-dark-sub);">
+                NODE: ARCTIC-68N • SENSOR HARMONICS: ONLINE
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="design-code" style="font-size:0.7rem;">LIVE TELEMETRY</span>
+            <button class="btn-nordic-pill" style="padding:6px 14px; font-size:0.75rem;" onclick="randomizeStationTelemetry()">
+              ↻ Re-Calibrate Sensors
+            </button>
+          </div>
+        </div>
+
+        <!-- Main Station Console -->
+        <div class="telemetry-main-layout">
+          <!-- Left Console: Phyto-Visualizer & Canvas -->
+          <div class="telemetry-console-left">
+            <div>
+              <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--color-accent-mint); margin-bottom:8px;">
+                SELECT PHYTO-SPECIES PRESET
+              </div>
+              <div class="species-selector-row">
+                <div class="species-chip active" onclick="selectSpecies(this, 'Pinus Sylvestris (Scots Pine)', 94.8, 412, -4.2)">
+                  🌲 Pinus Sylvestris
+                </div>
+                <div class="species-chip" onclick="selectSpecies(this, 'Betula Nana (Arctic Birch)', 88.2, 345, -2.1)">
+                  🌿 Betula Nana
+                </div>
+                <div class="species-chip" onclick="selectSpecies(this, 'Cladonia Stellaris (Reindeer Moss)', 96.5, 520, -7.8)">
+                  🌱 Cladonia Stellaris
+                </div>
+                <div class="species-chip" onclick="selectSpecies(this, 'Salix Herbacea (Snow Willow)', 91.4, 388, -5.0)">
+                  🍂 Salix Herbacea
+                </div>
+              </div>
+            </div>
+
+            <!-- Canvas Phyto-Visualizer -->
+            <div class="canvas-visualizer-box">
+              <div class="canvas-overlay-hud">
+                <span id="hud-species-name">SPECIMEN: Pinus Sylvestris</span>
+                <span id="hud-frequency-readout">BIO-WAVE: 432 Hz</span>
+              </div>
+              <canvas id="botanical-canvas" width="600" height="220"></canvas>
+            </div>
+
+            <!-- Soundscape Synthesizer Player -->
+            <div class="soundscape-player-card">
+              <div class="sound-info-block">
+                <button class="btn-audio-toggle" id="btn-sound-play" onclick="toggleBioAudio()" title="Toggle Alpine Acoustic Synthesizer">
+                  <svg id="audio-icon-play" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="6 4 20 12 6 20 6 4"/>
+                  </svg>
+                  <svg id="audio-icon-pause" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+                    <rect x="6" y="4" width="4" height="16"/>
+                    <rect x="14" y="4" width="4" height="16"/>
+                  </svg>
+                </button>
+                <div>
+                  <div style="font-size:0.85rem; font-weight:700; color:var(--color-text-on-dark);" id="soundscape-title">Alpine Canopy Synthesizer</div>
+                  <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--color-text-on-dark-sub);">Web Audio API • 432Hz Bio-Resonance Generator</div>
+                </div>
+              </div>
+              <span class="underscore-accent"></span>
+            </div>
+          </div>
+
+          <!-- Right Console: Live Phyto-Metrics & Sliders -->
+          <div class="telemetry-console-right">
+            <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--color-accent-electric); text-transform:uppercase; letter-spacing:0.06em;">
+              // BIOME TELEMETRY CHANNELS
+            </div>
+
+            <!-- Metric 1: Chlorophyll Density -->
+            <div class="metric-gauge-card">
+              <div class="metric-gauge-header">
+                <span class="metric-name">Chlorophyll Index (Chl-A)</span>
+                <span class="metric-val" id="metric-chl">412.8 µg</span>
+              </div>
+              <input type="range" class="range-slider-botanical" min="150" max="650" value="412" id="slider-chl" oninput="updateChl(this.value)">
+            </div>
+
+            <!-- Metric 2: Atmospheric CO2 Exchange -->
+            <div class="metric-gauge-card">
+              <div class="metric-gauge-header">
+                <span class="metric-name">Carbon Exchange Rate</span>
+                <span class="metric-val" id="metric-carbon">38.4 µmol/s</span>
+              </div>
+              <input type="range" class="range-slider-botanical" min="10" max="80" value="38" id="slider-carbon" oninput="updateCarbon(this.value)">
+            </div>
+
+            <!-- Metric 3: Bio-Voltage Differential -->
+            <div class="metric-gauge-card">
+              <div class="metric-gauge-header">
+                <span class="metric-name">Canopy Bio-Voltage</span>
+                <span class="metric-val" id="metric-voltage">+0.482 V</span>
+              </div>
+              <input type="range" class="range-slider-botanical" min="100" max="900" value="482" id="slider-voltage" oninput="updateVoltage(this.value)">
+            </div>
+
+            <!-- Interactive Asymmetric Action Card -->
+            <div class="tilt-card-demo" id="station-sub-card">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:700; color:var(--color-text-on-light-sub);">SUB-SURFACE ROOT GRID</span>
+                <span style="font-size:0.7rem; font-weight:700; color:var(--color-text-on-light); background:#FFFFFF; padding:2px 8px; border-radius:var(--radius-pill);">OPTIMAL</span>
+              </div>
+              <div style="font-size:1.05rem; font-weight:800; color:var(--color-text-on-light); line-height:1.2;">
+                Mycorrhizal Fungal Network Active
+              </div>
+              <p style="font-size:0.8rem; color:var(--color-text-on-light-sub); margin-top:4px;">
+                Nutrient conductivity measured across 4.8 km² sub-alpine rhizosphere.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECTION 7: STYLE TILE PROMPT CODE DRAWER
+         ========================================================================= -->
+    <section class="tile-section" id="spec-code-drawer">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Agent Token Vault</div>
+          <h2 class="section-title">Markdown Style Tile Specification</h2>
+        </div>
+        <button class="btn-nordic-pill btn-nordic-electric" onclick="copyMasterTileSpec()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Raw Prompt
+        </button>
+      </div>
+
+      <div class="code-spec-container">
+        <div class="code-spec-header">
+          <span class="code-spec-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            STYLE-TILE-NORDIC-BOTANICAL-TECH.md
+          </span>
+          <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-on-dark-sub);">
+            UTF-8 Markdown Spec
+          </span>
+        </div>
+        <pre class="raw-spec-pre" id="raw-spec-display"></pre>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===========================================================================
+       MODAL DIALOG: PREVIEW STYLE TILE SPECIFICATION
+       =========================================================================== -->
+  <div class="spec-modal-backdrop" id="spec-modal-backdrop">
+    <div class="spec-modal-dialog">
+      <div class="spec-modal-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="design-code">TILE-024</span>
+          <h3 style="font-size:1.15rem; font-weight:700; color:#FFFFFF;">Nordic Botanical Tech — Style Tile</h3>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <button class="btn-nordic-pill btn-nordic-electric" style="padding:6px 14px; font-size:0.8rem;" onclick="copyMasterTileSpec()">
+            Copy Markdown
+          </button>
+          <button class="btn-modal-close" onclick="closeSpecModal()" title="Close dialog">✕</button>
+        </div>
+      </div>
+      <div class="spec-modal-body">
+        <pre class="raw-spec-pre" id="modal-spec-display" style="padding:0;"></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notification" id="toast-notification">
+    <span id="toast-icon">✓</span>
+    <span id="toast-text">Copied to Clipboard!</span>
+  </div>
+
+  <!-- ===========================================================================
+       EMBEDDED RAW MARKDOWN STYLE TILE (FOR AI AGENTS & TOOLS)
+       =========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  DESIGN SYSTEM STYLE TILE // "NORDIC BOTANICAL TECH" (TILE-024)
+  A high-contrast, editorial aesthetic pairing deep organic tones with 
+  hyper-modern acid accents and asymmetric geometric surface layouts.
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Nordic Botanical Tech is a high-contrast, editorial design language uniting the 
+pristine serenity of sub-arctic evergreen flora with high-voltage acid chartreuse 
+telemetry and asymmetric geometric surface architecture. Developed for sustainable 
+luxury, phyto-biotech telemetry, precision ecological instrumentation, and modern 
+canopy science platforms.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --color-canvas-base:       #0F3B32; /* Deep Alpine Pine (Primary Dark Surface) */
+  --color-canvas-subtle:     #164E43; /* Muted Evergreen (Depth / Container base) */
+  --color-surface-warm:      #F8F3E8; /* Warm Linen / Ecru (High-contrast Card) */
+  --color-surface-dark:      #0B2B24; /* Midnight Pine (Recessed areas) */
+
+  /* Signature Accents */
+  --color-accent-electric:   #D4E825; /* Acid Chartreuse / High-voltage Highlight */
+  --color-accent-mint:       #74A99C; /* Desaturated Sage (Secondary indicator) */
+
+  /* Inks & Typography */
+  --color-text-on-dark:      #FFFFFF; /* Pure White (High-emphasis Dark Mode) */
+  --color-text-on-dark-sub:  #A4C3BA; /* Sage Gray (Medium-emphasis Dark Mode) */
+  --color-text-on-light:     #0F3830; /* Forest Ink (High-emphasis Light Surface) */
+  --color-text-on-light-sub: #5C7871; /* Olive Smoke (Medium-emphasis Light) */
+
+  /* Special Seals */
+  --color-badge-black:       #111614; /* Pitch Onyx (Floating Starburst Badges) */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+Primary Font Family:   "Plus Jakarta Sans", "Satoshi", system-ui, sans-serif
+Secondary / Mono:      "JetBrains Mono", monospace (Micro-specs & Metrics)
+
+[Type Hierarchy]
+* Hero Display:        font-size: clamp(3.25rem, 6vw, 5.5rem) | weight: 800
+                       line-height: 0.96                      | tracking: -0.035em
+* Display Stat Lg:     font-size: 3.5rem                      | weight: 800
+                       line-height: 1.00                      | tracking: -0.03em
+* Section Title / H2:  font-size: 2.0rem                      | weight: 700
+                       line-height: 1.15                      | tracking: -0.02em
+* Subheading / H3:     font-size: 1.25rem                     | weight: 600
+                       line-height: 1.30                      | tracking: -0.01em
+* Body Text:           font-size: 0.95rem                     | weight: 400
+                       line-height: 1.55                      | tracking: 0.00em
+* Button / Nav Action: font-size: 0.875rem                    | weight: 600
+                       line-height: 1.00                      | tracking: 0.01em
+* Micro / Metadata:    font-size: 0.75rem                     | weight: 500
+                       line-height: 1.40                      | tracking: 0.02em
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-pill:         9999px;              /* CTA buttons, pills, search bars */
+--radius-circle:       50%;                 /* Floating media triggers & icons */
+--radius-surface-lg:   28px;                /* Floating high-contrast cards */
+--radius-surface-md:   16px;                /* Inner modules, small media slots */
+--radius-asymmetric:   28px 28px 0px 28px;  /* Stylized structural anchor cards */
+--radius-sharp:        0px;                 /* Pixel-grid accents & mosaic cuts */
+--shape-badge-badge:   polygon(scalloped 12-point starburst / organic seal)
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+[Z-Index Architecture]
+* Base Plane (z-0):    Deep alpine green canvas with flat lighting
+* Structural (z-10):   Solid flat cards (Warm Linen & Acid Yellow)
+* Overlay Cut (z-20):  Extruded subjects breaking boundary boxes (3D cutouts)
+* Interaction (z-30):  Floating pill controls, play heads, and dynamic badges
+
+[Shadow System]
+--shadow-glow-accent:  0 12px 32px -8px rgba(212, 232, 37, 0.35);
+--shadow-card-ambient: 0 20px 48px -12px rgba(0, 0, 0, 0.35);
+--shadow-pill-float:   0 8px 20px -4px rgba(0, 0, 0, 0.20);
+--shadow-inset-bevel:  inset 0 1px 1px rgba(255, 255, 255, 0.15);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE
+ * -------------------------------------------------------------------------- */
+Base Multiplier: 4px | Core Scale: 8pt Grid
+
+--space-xxs:           4px;
+--space-xs:            8px;
+--space-sm:            16px;
+--space-md:            24px;
+--space-lg:            32px;
+--space-xl:            48px;
+--space-2xl:           64px;
+--space-3xl:           96px;
+
+[Compositional Rules]
+* Card Inner Padding:  28px to 36px (Generous breathing room)
+* Grid Gap:            32px horizontal / 40px vertical
+* Overhang / Bleed:    -24px to -48px (Hero assets break past container bounds)
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & ACCENT DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-subtle-dark:  1px solid rgba(255, 255, 255, 0.12);
+--border-hairline:     1px solid rgba(15, 56, 48, 0.15);
+--border-active-pill:  2px solid rgba(255, 255, 255, 0.90);
+
+[Graphic Accent Motifs]
+* Pixel Mosaic Motif:  12px geometric step-down grid tiles placed in corner docks
+* Underscore Accents:  3px high by 16px wide pill bars beneath active nav tabs
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+* Style:               Minimal, geometric, neo-lineal
+* Stroke Weight:       1.75px uniform outline with rounded joins and terminals
+* Sizing Scale:        16px (Inline/Action), 24px (Navigation), 40px (Hero trigger)
+* Containers:          Inverted circular buttons (--color-surface-warm fill with
+                       centered solid geometric glyphs)
+* Play Indicators:     Crisp solid triangle glyph enclosed in floating 50% circle
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+--transition-snappy:   180ms cubic-bezier(0.16, 1, 0.3, 1);
+--transition-smooth:   320ms cubic-bezier(0.25, 0.8, 0.25, 1);
+
+[Interactive States]
+* Pill Button (Default): 
+  - Background: #FFFFFF | Color: #0F3830 | Transform: translateY(0)
+* Pill Button (Hover):   
+  - Background: #D4E825 | Color: #0B2B24 | Transform: translateY(-2px)
+  - Box Shadow: var(--shadow-glow-accent)
+* Floating Media Trigger (Hover):
+  - Scale: 1.08 | Opacity: 1.0 | Transition: var(--transition-snappy)
+* Card Image Cutouts (Scroll/Hover):
+  - Subtle parallax micro-tilt (±3deg 3D perspective shift)
+* Active Nav Indicator:
+  - Slide-in underline bar in --color-accent-electric with subtle glow
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic purple neon or violet accents on dark backgrounds.
+- NO cluttered dashboard widget spam without clear editorial whitespace.
+- NO unanchored cards without precise radii or borders.
+- NO bloated gradient text fills across headline keywords.
+- NO headline biscuit pills with pulsing dots right above the main headline.
+- NO 3D cartoon/vector illustrations (prefer authentic organic botanical vectors).
+================================================================================
+  </script>
+
+  <!-- ===========================================================================
+       JAVASCRIPT LOGIC & INTERACTION ENGINE
+       =========================================================================== -->
+  <script>
+    // 1. Helper: Get Master Markdown Spec
+    function getMarkdownText() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    // 2. Toast System
+    let toastTimer = null;
+    function showToast(msg, icon = "✓") {
+      const toast = document.getElementById("toast-notification");
+      const iconEl = document.getElementById("toast-icon");
+      const textEl = document.getElementById("toast-text");
+      if (!toast || !textEl) return;
+
+      iconEl.textContent = icon;
+      textEl.textContent = msg;
+      toast.classList.add("show");
+
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2400);
+    }
+
+    // 3. Copy Master Tile Spec
+    function copyMasterTileSpec() {
+      const text = getMarkdownText();
+      if (!text) return;
+
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("Style Tile Copied to Clipboard!", "✓");
+
+        // Temporary feedback on copy button
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const originalHTML = btn.innerHTML;
+          btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+          btn.style.backgroundColor = "var(--color-accent-electric)";
+          btn.style.color = "var(--color-surface-dark)";
+
+          setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.style.backgroundColor = "";
+            btn.style.color = "";
+          }, 2000);
+        }
+      }).catch(err => {
+        console.error("Clipboard copy failed:", err);
+      });
+    }
+
+    // 4. Download Master Tile Spec
+    function downloadMasterTileSpec() {
+      const text = getMarkdownText();
+      if (!text) return;
+
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-nordic-botanical-tech.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showToast("Downloaded style-tile-nordic-botanical-tech.md", "↓");
+    }
+
+    // 5. Copy Swatch Hex Token
+    function copySwatchHex(hex, token) {
+      navigator.clipboard.writeText(`${token}: ${hex};`).then(() => {
+        showToast(`Copied ${token} (${hex})`, "●");
+      });
+    }
+
+    // 6. Modal Dialog Handlers
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      const modalDisplay = document.getElementById("modal-spec-display");
+      if (modal && modalDisplay) {
+        modalDisplay.textContent = getMarkdownText();
+        modal.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      if (modal) {
+        modal.classList.remove("show");
+        document.body.style.overflow = "";
+      }
+    }
+
+    // 7. Interactive Pangram Specimen Controls
+    function setPangramSample(index) {
+      const input = document.getElementById("pangram-input");
+      if (!input) return;
+
+      if (index === 1) {
+        input.value = "Nordic alpine pines synthesize rich terpene matrices under sub-zero canopy light.";
+        input.style.fontFamily = "var(--font-primary)";
+      } else if (index === 2) {
+        input.value = "High-voltage chlorophyll bio-circuits modulate cellular water potentials.";
+        input.style.fontFamily = "var(--font-primary)";
+      } else if (index === 3) {
+        input.value = "CHL_FLUX: 94.8% // LAT: 68°21'N // CO2_DELTA: -42.8 ppm // BIO_RES: 432 Hz";
+        input.style.fontFamily = "var(--font-mono)";
+      }
+    }
+
+    function togglePangramFont() {
+      const input = document.getElementById("pangram-input");
+      if (!input) return;
+
+      if (input.style.fontFamily === "var(--font-mono)") {
+        input.style.fontFamily = "var(--font-primary)";
+        showToast("Switched to Plus Jakarta Sans", "Aa");
+      } else {
+        input.style.fontFamily = "var(--font-mono)";
+        showToast("Switched to JetBrains Mono", "01");
+      }
+    }
+
+    // 8. Navigation Tab Switcher
+    function switchNavTab(el) {
+      document.querySelectorAll(".nav-tab-item").forEach(item => item.classList.remove("active"));
+      el.classList.add("active");
+      showToast(`Switched view to ${el.textContent}`, "⚡");
+    }
+
+    // 9. 3D Parallax Tilt Physics on Hero Cards
+    function setupParallaxTilt() {
+      const cards = [document.getElementById("hero-tilt-card"), document.getElementById("station-sub-card")];
+
+      cards.forEach(card => {
+        if (!card) return;
+
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+
+          const rotateX = -(y / (rect.height / 2)) * 3.5;
+          const rotateY = (x / (rect.width / 2)) * 3.5;
+
+          card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-2px)`;
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)";
+        });
+      });
+    }
+
+    // 10. Living Phyto-Visualizer Canvas Simulation
+    let canvas, ctx;
+    let animFrame;
+    let wavePhase = 0;
+    let waveSpeed = 0.035;
+    let waveAmplitude = 32;
+    let waveFrequency = 0.02;
+
+    function initBotanicalCanvas() {
+      canvas = document.getElementById("botanical-canvas");
+      if (!canvas) return;
+      ctx = canvas.getContext("2d");
+
+      function renderWave() {
+        const w = canvas.width;
+        const h = canvas.height;
+
+        ctx.fillStyle = "#061914";
+        ctx.fillRect(0, 0, w, h);
+
+        // Draw Ambient Botanical Gridlines
+        ctx.strokeStyle = "rgba(116, 169, 156, 0.08)";
+        ctx.lineWidth = 1;
+        for (let x = 0; x < w; x += 28) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, h);
+          ctx.stroke();
+        }
+        for (let y = 0; y < h; y += 28) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(w, y);
+          ctx.stroke();
+        }
+
+        // Draw Secondary Desaturated Sage Harmonics
+        ctx.strokeStyle = "rgba(116, 169, 156, 0.4)";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        for (let x = 0; x < w; x++) {
+          const y = h / 2 + Math.sin(x * (waveFrequency * 0.7) + wavePhase * 0.8) * (waveAmplitude * 0.6) + Math.cos(x * 0.01 + wavePhase * 0.4) * 8;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        // Draw Primary Acid Chartreuse Bio-Current Wave
+        ctx.strokeStyle = "#D4E825";
+        ctx.lineWidth = 2.5;
+        ctx.shadowColor = "rgba(212, 232, 37, 0.5)";
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+
+        for (let x = 0; x < w; x++) {
+          const y = h / 2 + Math.sin(x * waveFrequency + wavePhase) * waveAmplitude + Math.sin(x * 0.04 - wavePhase * 1.2) * 6;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+        ctx.shadowBlur = 0; // Reset shadow
+
+        // Render Floating Chloroplast Node Points
+        const nodeX = (Math.sin(wavePhase * 0.5) * 0.4 + 0.5) * w;
+        const nodeY = h / 2 + Math.sin(nodeX * waveFrequency + wavePhase) * waveAmplitude;
+
+        ctx.fillStyle = "#FFFFFF";
+        ctx.beginPath();
+        ctx.arc(nodeX, nodeY, 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        wavePhase += waveSpeed;
+        animFrame = requestAnimationFrame(renderWave);
+      }
+
+      renderWave();
+    }
+
+    // 11. Species Preset Switcher
+    function selectSpecies(el, name, flux, chl, temp) {
+      document.querySelectorAll(".species-chip").forEach(chip => chip.classList.remove("active"));
+      el.classList.add("active");
+
+      document.getElementById("hud-species-name").textContent = `SPECIMEN: ${name}`;
+      document.getElementById("hero-stat-counter").textContent = `${flux}%`;
+      document.getElementById("metric-chl").textContent = `${chl}.0 µg`;
+      document.getElementById("slider-chl").value = chl;
+
+      waveFrequency = (chl / 10000) + 0.012;
+      waveAmplitude = (flux / 3);
+
+      showToast(`Selected ${name} // Telemetry Calibrated`, "🌲");
+    }
+
+    function updateChl(val) {
+      document.getElementById("metric-chl").textContent = `${val}.0 µg`;
+      waveFrequency = (val / 12000) + 0.01;
+    }
+
+    function updateCarbon(val) {
+      document.getElementById("metric-carbon").textContent = `${val}.4 µmol/s`;
+      waveSpeed = (val / 800) + 0.015;
+    }
+
+    function updateVoltage(val) {
+      const v = (val / 1000).toFixed(3);
+      document.getElementById("metric-voltage").textContent = `+${v} V`;
+      waveAmplitude = (val / 16);
+    }
+
+    function randomizeStationTelemetry() {
+      const randomChl = Math.floor(Math.random() * 300 + 250);
+      const randomCarbon = Math.floor(Math.random() * 40 + 20);
+      const randomVoltage = Math.floor(Math.random() * 400 + 300);
+
+      document.getElementById("slider-chl").value = randomChl;
+      document.getElementById("slider-carbon").value = randomCarbon;
+      document.getElementById("slider-voltage").value = randomVoltage;
+
+      updateChl(randomChl);
+      updateCarbon(randomCarbon);
+      updateVoltage(randomVoltage);
+
+      showToast("Sensors Re-Calibrated to Ambient Biome", "⚡");
+    }
+
+    // 12. Web Audio API Bio-Synthesizer
+    let audioCtx = null;
+    let isAudioPlaying = false;
+    let osc1 = null, osc2 = null, gainNode = null;
+
+    function initAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function toggleBioAudio() {
+      initAudioContext();
+      if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+      }
+
+      const iconPlay = document.getElementById("audio-icon-play");
+      const iconPause = document.getElementById("audio-icon-pause");
+      const titleEl = document.getElementById("soundscape-title");
+
+      if (isAudioPlaying) {
+        // Stop audio
+        if (gainNode) {
+          gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.5);
+          setTimeout(() => {
+            if (osc1) { osc1.stop(); osc1.disconnect(); }
+            if (osc2) { osc2.stop(); osc2.disconnect(); }
+            isAudioPlaying = false;
+          }, 500);
+        }
+        iconPlay.style.display = "block";
+        iconPause.style.display = "none";
+        titleEl.textContent = "Alpine Canopy Synthesizer (Paused)";
+        showToast("Bio-Acoustics Paused", "■");
+      } else {
+        // Start audio: 432 Hz organic harmonic sine generator
+        const now = audioCtx.currentTime;
+        osc1 = audioCtx.createOscillator();
+        osc2 = audioCtx.createOscillator();
+        gainNode = audioCtx.createGain();
+
+        // 432Hz fundamental & 216Hz sub-harmonic
+        osc1.type = "sine";
+        osc1.frequency.setValueAtTime(432, now);
+
+        osc2.type = "triangle";
+        osc2.frequency.setValueAtTime(216, now);
+
+        gainNode.gain.setValueAtTime(0.001, now);
+        gainNode.gain.exponentialRampToValueAtTime(0.08, now + 0.8);
+
+        osc1.connect(gainNode);
+        osc2.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        osc1.start(now);
+        osc2.start(now);
+        isAudioPlaying = true;
+
+        iconPlay.style.display = "none";
+        iconPause.style.display = "block";
+        titleEl.textContent = "Bio-Harmonic Resonance (432 Hz)";
+        showToast("Playing 432 Hz Alpine Bio-Resonance", "♪");
+      }
+    }
+
+    function triggerAudioPulse() {
+      initAudioContext();
+      if (audioCtx.state === "suspended") audioCtx.resume();
+
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(864, now);
+      osc.frequency.exponentialRampToValueAtTime(432, now + 0.25);
+
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.25);
+
+      showToast("Bio-Acoustic Trigger Pulsed", "⚡");
+    }
+
+    // 13. Initialization & Keyboard Shortcuts
+    document.addEventListener("DOMContentLoaded", () => {
+      // Populate Raw Code Display
+      const rawDisplay = document.getElementById("raw-spec-display");
+      if (rawDisplay) rawDisplay.textContent = getMarkdownText();
+
+      // Bind Header Buttons
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyMasterTileSpec);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadMasterTileSpec);
+
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      // Close modal on backdrop click
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      // Initialize Parallax & Visualizer
+      setupParallaxTilt();
+      initBotanicalCanvas();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeSpecModal();
+    });
+  </script>
+</body>
+</html>

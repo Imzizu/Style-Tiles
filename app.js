@@ -3685,6 +3685,343 @@ Graphic Typographic Dividers:
 - NO cluttered dashboard widgets or unrelated bento icon spam.
 - NO headline biscuit pills with pulsing dots.
 ================================================================================`
+  },
+  {
+    id: "TILE-023",
+    slug: "industrial-acid-neo-grunge",
+    name: "Industrial Acid // Neo-Grunge",
+    vibe: "Acid Industrialism • Neo-Grunge Glitch • Redaction Tape • 8-Bit Checkerboards • High-Voltage Brutalism",
+    vibeBadge: "Neo-Brutalism",
+    categories: ["brutalist"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Syne",
+      sans: "Space Grotesk",
+      mono: "Space Mono"
+    },
+    palette: [
+      { name: "Void Base", hex: "#080808" },
+      { name: "Surface Panel", hex: "#121212" },
+      { name: "Neon Accent", hex: "#FF2A85" },
+      { name: "Hot Accent", hex: "#E60067" },
+      { name: "Pure Ink Text", hex: "#FFFFFF" },
+      { name: "Muted Text", hex: "#8F8F8F" },
+      { name: "Subtle Border", hex: "#242424" }
+    ],
+    description: "Industrial Acid // Neo-Grunge: High-voltage underground brutalist design system combining pitch-black void canvases (#080808), electric neon magenta (#FF2A85), dense redaction tape blocks, distorted glitch typography, 8-bit checkerboard pixel dividers, zero-radius geometry, and 0ms instant 1-to-1 inversion hover physics.",
+    markdownSpec: `================================================================================
+                    STYLE TILE // SPECIFICATION MATRIX
+                   THEME: INDUSTRIAL ACID / NEO-GRUNGE
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Industrial Acid / Neo-Grunge is a high-voltage brutalist design language engineered 
+for underground audio engines, counter-culture subversion, and uncompromising digital 
+hardware interfaces. It pairs an absolute pitch-black void (#080808) with high-octane 
+electric neon magenta (#FF2A85), dense redaction tape blocks, distorted glitch typography, 
+8-bit checkerboard pixel dividers, zero-radius geometry, and 0ms instant 1-to-1 inversion hover physics.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE TOKENS
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Canvas & Base Surfaces */
+  --color-bg-base:              #080808; /* Primary canvas & void backdrops */
+  --color-bg-surface:           #121212; /* Card containers & sub-modules */
+  --color-bg-surface-alt:       #181818; /* Secondary panels, wells, sidebars */
+  --color-bg-surface-elevated:  #202020; /* High-contrast module layers */
+
+  /* Signature Electric Accents */
+  --color-accent-neon:          #FF2A85; /* Primary electric highlight & duotone tint */
+  --color-accent-hot:           #E60067; /* Pressed states, dense tape fills */
+  --color-tape-fill:            #FF2A85; /* Solid high-contrast text blocks */
+
+  /* Inks & Typography */
+  --color-text-primary:         #FFFFFF; /* High-legibility technical text */
+  --color-text-muted:           #8F8F8F; /* Metadata, footnotes, labels */
+  --color-text-inverted:        #080808; /* Contrast ink on neon tape fills */
+
+  /* Borders & Gridlines */
+  --color-border-subtle:        #242424; /* Structural gridlines & framing */
+  --color-border-accent:        #FF2A85; /* Active states / focal cards */
+
+  /* Semantic Status Signals */
+  --status-success:             #00FF66; /* Acid terminal green */
+  --status-warning:             #FFE600; /* Hazard yellow */
+  --status-danger:              #FF2A85; /* High-voltage neon magenta */
+  --status-info:                #00F0FF; /* Electric cyan */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Syne", "Rubik Glitch", "Barlow Condensed", sans-serif;
+--font-glitch:  "Rubik Glitch", "Syne", sans-serif;
+--font-header:  "Barlow Condensed", "Syne", sans-serif;
+--font-mono:    "Space Mono", "VT323", "Courier Prime", monospace;
+--font-sans:    "Space Grotesk", "Inter", -apple-system, sans-serif;
+
+/* Type Scale Hierarchy */
+--text-display:       4.0rem – 6.0rem / 0.90 var(--font-display); /* Weight: 800-900 | Letter-spacing: -0.03em | UPPERCASE */
+--text-section-head:  1.75rem – 2.5rem / 1.10 var(--font-header);  /* Weight: 700-800 | Letter-spacing: +0.05em | UPPERCASE */
+--text-tape-label:    1.125rem – 1.5rem / 1.00 var(--font-header);  /* Weight: 900 Black | Letter-spacing: +0.02em | UPPERCASE */
+--text-body:          0.9375rem – 1.0rem / 1.50 var(--font-sans);   /* Weight: 400 | Letter-spacing: Normal | Sentence */
+--text-body-sm:       0.875rem / 1.45 var(--font-sans);             /* Weight: 400 | Letter-spacing: Normal */
+--text-meta-mono:     0.75rem – 0.8125rem / 1.40 var(--font-mono);  /* Weight: 500 Med | Letter-spacing: +0.12em | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-none:        0px; /* All cards, interactive buttons, modal frames, inputs */
+--radius-tape:        0px; /* Blocky redaction tape backgrounds & imagery */
+* Strict Brutalist Rule: Complete absence of rounded corners (0px universally).
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+Level 0 (Canvas):   background: #080808; Pitch-black void layer
+Level 1 (Textures): mix-blend-mode: screen; opacity: 0.18 Duotone grain / dither noise
+Level 2 (Panels):   border: 1px solid var(--color-border-subtle); Zero-blur flat graphic depth
+Level 3 (Pop/Hero): box-shadow: 4px 4px 0px #FF2A85; Hard offset brutalist shadow
+Overlays:           filter: grayscale(100%) contrast(180%); mix-blend-mode: screen (#FF2A85 base) High-contrast bitmapped two-tone photo threshold
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (4px GRID)
+ * -------------------------------------------------------------------------- */
+--space-2xs:  4px;   /* Tight metadata tags, badge padding */
+--space-xs:   8px;   /* Inline tag gaps, icon-to-text spacing */
+--space-sm:  12px;   /* Tape label internal padding */
+--space-md:  16px;   /* Standard cell padding, field gaps */
+--space-lg:  24px;   /* Component margins, structural gutters */
+--space-xl:  48px;   /* Section breaks, layout spacing */
+--space-2xl: 80px;   /* Hero viewport margins */
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & PATTERN DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-hairline:    1px solid var(--color-border-subtle); /* #242424 Wireframe matrix */
+--border-accent:      1px solid var(--color-accent-neon);   /* #FF2A85 Active states / focal cards */
+--border-thick:       2px solid var(--color-accent-neon);
+Pattern Dividers:     8px checkerboard pixel stripe (8-bit alternating neon #FF2A85 / black #080808 tiles)
+Redaction Tape:       Solid fill blocks (#FF2A85) wrapped tightly around text elements
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE & KEY MOTIFS
+ * -------------------------------------------------------------------------- */
+- Aesthetic Style: Pixelated 8-bit glyphs, alchemical/runic markers, industrial vectors
+- Checkerboard Micro-Grids (2x4, 3x3 pixel block matrices)
+- Distorted Crosshairs & Reticles (+, [ + ], ✕, [ ✕ ])
+- Directional Technical Arrows (->, ↳, ■, ➔, ▲, ▼)
+- Solid Geometric Glyphs (Diamond ◆, Solid Square ■, Slash //, Triple Bar ≡)
+- Stroke Weight: 1.5px hard geometric or raw 1-bit pixel scale
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+- Default: Black canvas / muted border / Neon typography & tape accents
+- Hover: Instant 1-to-1 Color Inversion (0ms / step-end transition)
+  • Background: Inverts from #080808 -> #FF2A85
+  • Typography: Inverts from #FF2A85 / #FFFFFF -> #080808
+- Active / Press: Transform: translate(2px, 2px); hard shadow collapses to 0px (or 2px 2px).
+- Focus (Keyboard): 2px solid #FFFFFF with 2px offset; high-contrast accessibility outline.
+- Image Hover: CSS Filter Shift: Duotone Neon -> High-Contrast Inverted Glitch Flash.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO rounded corners anywhere (0px strictly enforced).
+- NO soft blur drop shadows or ambient glow halos.
+- NO pastel or low-contrast washed-out tones.
+- NO slow easing curves (interactions must be instant 0ms or snap snappy).
+- NO generic corporate SaaS illustration fluff or happy vector characters.
+- NO bloated gradient text fills across headline keywords.
+================================================================================`
+  },
+  {
+    id: "TILE-024",
+    slug: "nordic-botanical-tech",
+    name: "Nordic Botanical Tech",
+    vibe: "Deep Alpine Pine • Warm Linen • Acid Chartreuse • Asymmetric Geometry • Phyto-Genomic Telemetry",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Deep Alpine Pine", hex: "#0F3B32" },
+      { name: "Muted Evergreen", hex: "#164E43" },
+      { name: "Warm Linen / Ecru", hex: "#F8F3E8" },
+      { name: "Midnight Pine", hex: "#0B2B24" },
+      { name: "Acid Chartreuse", hex: "#D4E825" },
+      { name: "Desaturated Sage", hex: "#74A99C" },
+      { name: "Pitch Onyx", hex: "#111614" }
+    ],
+    description: "Nordic Botanical Tech: A high-contrast, editorial aesthetic pairing deep organic alpine pine (#0F3B32) and warm linen cards (#F8F3E8) with high-voltage acid chartreuse accents (#D4E825), asymmetric geometric surface layouts (28px 28px 0px 28px), 12-point scalloped seal badges, and precision bio-canopy telemetry.",
+    markdownSpec: `================================================================================
+  DESIGN SYSTEM STYLE TILE // "NORDIC BOTANICAL TECH" (TILE-024)
+  A high-contrast, editorial aesthetic pairing deep organic tones with 
+  hyper-modern acid accents and asymmetric geometric surface layouts.
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Nordic Botanical Tech is a high-contrast, editorial design language uniting the 
+pristine serenity of sub-arctic evergreen flora with high-voltage acid chartreuse 
+telemetry and asymmetric geometric surface architecture. Developed for sustainable 
+luxury, phyto-biotech telemetry, precision ecological instrumentation, and modern 
+canopy science platforms.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --color-canvas-base:       #0F3B32; /* Deep Alpine Pine (Primary Dark Surface) */
+  --color-canvas-subtle:     #164E43; /* Muted Evergreen (Depth / Container base) */
+  --color-surface-warm:      #F8F3E8; /* Warm Linen / Ecru (High-contrast Card) */
+  --color-surface-dark:      #0B2B24; /* Midnight Pine (Recessed areas) */
+
+  /* Signature Accents */
+  --color-accent-electric:   #D4E825; /* Acid Chartreuse / High-voltage Highlight */
+  --color-accent-mint:       #74A99C; /* Desaturated Sage (Secondary indicator) */
+
+  /* Inks & Typography */
+  --color-text-on-dark:      #FFFFFF; /* Pure White (High-emphasis Dark Mode) */
+  --color-text-on-dark-sub:  #A4C3BA; /* Sage Gray (Medium-emphasis Dark Mode) */
+  --color-text-on-light:     #0F3830; /* Forest Ink (High-emphasis Light Surface) */
+  --color-text-on-light-sub: #5C7871; /* Olive Smoke (Medium-emphasis Light) */
+
+  /* Special Seals */
+  --color-badge-black:       #111614; /* Pitch Onyx (Floating Starburst Badges) */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+Primary Font Family:   "Plus Jakarta Sans", "Satoshi", system-ui, sans-serif
+Secondary / Mono:      "JetBrains Mono", monospace (Micro-specs & Metrics)
+
+[Type Hierarchy]
+* Hero Display:        font-size: clamp(3.25rem, 6vw, 5.5rem) | weight: 800
+                       line-height: 0.96                      | tracking: -0.035em
+* Display Stat Lg:     font-size: 3.5rem                      | weight: 800
+                       line-height: 1.00                      | tracking: -0.03em
+* Section Title / H2:  font-size: 2.0rem                      | weight: 700
+                       line-height: 1.15                      | tracking: -0.02em
+* Subheading / H3:     font-size: 1.25rem                     | weight: 600
+                       line-height: 1.30                      | tracking: -0.01em
+* Body Text:           font-size: 0.95rem                     | weight: 400
+                       line-height: 1.55                      | tracking: 0.00em
+* Button / Nav Action: font-size: 0.875rem                    | weight: 600
+                       line-height: 1.00                      | tracking: 0.01em
+* Micro / Metadata:    font-size: 0.75rem                     | weight: 500
+                       line-height: 1.40                      | tracking: 0.02em
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-pill:         9999px;              /* CTA buttons, pills, search bars */
+--radius-circle:       50%;                 /* Floating media triggers & icons */
+--radius-surface-lg:   28px;                /* Floating high-contrast cards */
+--radius-surface-md:   16px;                /* Inner modules, small media slots */
+--radius-asymmetric:   28px 28px 0px 28px;  /* Stylized structural anchor cards */
+--radius-sharp:        0px;                 /* Pixel-grid accents & mosaic cuts */
+--shape-badge-badge:   polygon(scalloped 12-point starburst / organic seal)
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+[Z-Index Architecture]
+* Base Plane (z-0):    Deep alpine green canvas with flat lighting
+* Structural (z-10):   Solid flat cards (Warm Linen & Acid Yellow)
+* Overlay Cut (z-20):  Extruded subjects breaking boundary boxes (3D cutouts)
+* Interaction (z-30):  Floating pill controls, play heads, and dynamic badges
+
+[Shadow System]
+--shadow-glow-accent:  0 12px 32px -8px rgba(212, 232, 37, 0.35);
+--shadow-card-ambient: 0 20px 48px -12px rgba(0, 0, 0, 0.35);
+--shadow-pill-float:   0 8px 20px -4px rgba(0, 0, 0, 0.20);
+--shadow-inset-bevel:  inset 0 1px 1px rgba(255, 255, 255, 0.15);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE
+ * -------------------------------------------------------------------------- */
+Base Multiplier: 4px | Core Scale: 8pt Grid
+
+--space-xxs:           4px;
+--space-xs:            8px;
+--space-sm:            16px;
+--space-md:            24px;
+--space-lg:            32px;
+--space-xl:            48px;
+--space-2xl:           64px;
+--space-3xl:           96px;
+
+[Compositional Rules]
+* Card Inner Padding:  28px to 36px (Generous breathing room)
+* Grid Gap:            32px horizontal / 40px vertical
+* Overhang / Bleed:    -24px to -48px (Hero assets break past container bounds)
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & ACCENT DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-subtle-dark:  1px solid rgba(255, 255, 255, 0.12);
+--border-hairline:     1px solid rgba(15, 56, 48, 0.15);
+--border-active-pill:  2px solid rgba(255, 255, 255, 0.90);
+
+[Graphic Accent Motifs]
+* Pixel Mosaic Motif:  12px geometric step-down grid tiles placed in corner docks
+* Underscore Accents:  3px high by 16px wide pill bars beneath active nav tabs
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+* Style:               Minimal, geometric, neo-lineal
+* Stroke Weight:       1.75px uniform outline with rounded joins and terminals
+* Sizing Scale:        16px (Inline/Action), 24px (Navigation), 40px (Hero trigger)
+* Containers:          Inverted circular buttons (--color-surface-warm fill with
+                       centered solid geometric glyphs)
+* Play Indicators:     Crisp solid triangle glyph enclosed in floating 50% circle
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+--transition-snappy:   180ms cubic-bezier(0.16, 1, 0.3, 1);
+--transition-smooth:   320ms cubic-bezier(0.25, 0.8, 0.25, 1);
+
+[Interactive States]
+* Pill Button (Default): 
+  - Background: #FFFFFF | Color: #0F3830 | Transform: translateY(0)
+* Pill Button (Hover):   
+  - Background: #D4E825 | Color: #0B2B24 | Transform: translateY(-2px)
+  - Box Shadow: var(--shadow-glow-accent)
+* Floating Media Trigger (Hover):
+  - Scale: 1.08 | Opacity: 1.0 | Transition: var(--transition-snappy)
+* Card Image Cutouts (Scroll/Hover):
+  - Subtle parallax micro-tilt (±3deg 3D perspective shift)
+* Active Nav Indicator:
+  - Slide-in underline bar in --color-accent-electric with subtle glow
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic purple neon or violet accents on dark backgrounds.
+- NO cluttered dashboard widget spam without clear editorial whitespace.
+- NO unanchored cards without precise radii or borders.
+- NO bloated gradient text fills across headline keywords.
+- NO headline biscuit pills with pulsing dots right above the main headline.
+- NO 3D cartoon/vector illustrations (prefer authentic organic botanical vectors).
+================================================================================`
   }
 ];
 
