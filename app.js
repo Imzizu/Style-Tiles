@@ -3209,6 +3209,156 @@ Micro / Meta:   11px (0.6875rem)| Line-height: 1.40 | Tracking: +0.020em | Weigh
         - Cursor Drag/Hover:  Interactive rotational displacement with friction
     • Focus Visibility:
         - Box-Shadow:         0 0 0 3px var(--palette-indigo-deep), 0 0 0 5px #FFD027`
+  },
+  {
+    id: "TILE-020",
+    slug: "retro-postal-modernist",
+    name: "Retro-Postal Modernist",
+    vibe: "Philatelic Editorial • Scallop Punch-Out Perforations • Cobalt & Bubblegum Airmail Duotones • Condensed Poster Display & Grotesque Body",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Bebas Neue",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Parchment Bg", hex: "#F5ECE1" },
+      { name: "Paper White", hex: "#FFFFFF" },
+      { name: "Electric Blue", hex: "#0062FF" },
+      { name: "Bubblegum Pink", hex: "#FF66B2" },
+      { name: "Cyan Sky", hex: "#38BDF8" },
+      { name: "Carbon Black", hex: "#0A0A0C" }
+    ],
+    description: "Retro-Postal Modernist: Tactile philatelic design system featuring unbleached newsprint parchment (#F5ECE1), high-chroma electric cobalt (#0062FF) and bubblegum rose (#FF66B2), scalloped stamp perforations, airmail duotones, and condensed headline typography.",
+    markdownSpec: `# ==============================================================================
+# DESIGN SYSTEM STYLE TILE: RETRO-POSTAL MODERNIST (PHILATELIC EDITORIAL)
+# ==============================================================================
+
+01. COLOR ROLES & PALETTE
+────────────────────────────────────────────────────────────────────────────────
+Canvas & Surfaces:
+  • canvas-bg-parchment   : #F5ECE1  /* Warm newsprint / unbleached ecru */
+  • surface-card-white    : #FFFFFF  /* Pure paper white (stamps & inputs) */
+  • surface-subtle-tint   : #EDE3D5  /* Recessed container fill */
+
+Brand & Accents:
+  • accent-electric-blue  : #0062FF  /* High-chroma postal cobalt */
+  • accent-bubblegum-pink : #FF66B2  /* Vibrant stamp magenta / rose */
+  • accent-cyan-sky       : #38BDF8  /* Airmail gradient highlight */
+
+Typography & Inks:
+  • text-primary          : #0A0A0C  /* Deep carbon black (high contrast) */
+  • text-secondary        : #4A4844  /* Warm graphite for body copy */
+  • text-subtle           : #8A857D  /* Muted captions, placeholders */
+  • text-inverse          : #FFFFFF  /* Crisp white on saturated fills */
+
+Illustrative Duotones (Gradient Scales):
+  • gradient-blue-dusk    : linear-gradient(180deg, #0045B5 0%, #0077FF 60%, #60A5FA 100%)
+  • gradient-pink-dawn    : linear-gradient(180deg, #FF458F 0%, #FF6FB5 55%, #FDE2ED 100%)
+
+
+02. TYPOGRAPHY SYSTEM
+────────────────────────────────────────────────────────────────────────────────
+Font Families:
+  • $font-display : 'Bebas Neue', 'Druk Wide', 'Impact', sans-serif-condensed
+  • $font-body    : 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif
+
+Type Scale & Hierarchy:
+  • Display Hero  : 64px–88px | Condensed Bold (700) | Line-Height: 0.92  | Tracking: -0.01em | UPPERCASE
+  • Display Sub   : 28px–36px | Condensed Bold (700) | Line-Height: 1.05  | Tracking: 0.00em  | UPPERCASE
+  • Title / Label : 14px–16px | Condensed Semi (600) | Line-Height: 1.20  | Tracking: +0.06em | UPPERCASE
+  • Body Regular  : 14px–15px | Grotesque Regular(400)| Line-Height: 1.55  | Tracking: -0.01em | Sentence
+  • Stat Number   : 36px–44px | Condensed Bold (700) | Line-Height: 1.00  | Tracking: 0.00em  | Normal
+  • Micro Metric  : 11px–12px | Grotesque Medium(500)| Line-Height: 1.30  | Tracking: +0.02em | Title Case
+
+
+03. CORNER GEOMETRY (BORDER RADII)
+────────────────────────────────────────────────────────────────────────────────
+  • radius-sharp   : 2px   /* Stamp inner frame corners, stamp outer substrate */
+  • radius-input   : 6px   /* UI search modules, input containers */
+  • radius-button  : 8px   /* Action triggers, standalone buttons */
+  • radius-pill    : 999px /* Inline graphic pills, floating decorative shapes */
+  • radius-cross   : 4px   /* Inline plus (+) and asterisk glyph rounded caps */
+
+
+04. ELEVATION & DEPTH (SHADOWS & LAYERS)
+────────────────────────────────────────────────────────────────────────────────
+Tactile Paper Aesthetic:
+  • shadow-flat    : none
+  • shadow-input   : 0px 1px 3px rgba(10, 10, 12, 0.05)
+  • shadow-stamp   : 0px 10px 24px -4px rgba(45, 35, 20, 0.14),
+                     0px 2px 6px -1px rgba(45, 35, 20, 0.08)
+  • shadow-lifted  : 0px 18px 36px -6px rgba(45, 35, 20, 0.22),
+                     0px 4px 10px -2px rgba(45, 35, 20, 0.10)
+
+Layering & Transforms:
+  • Stack Tiers    : Canvas (z:0) -> Accents (z:1) -> Cards/Stamps (z:10) -> Overlays (z:50)
+  • Postal Angles  : Randomized tilt on interactive items (e.g., -3deg, +3.5deg, +1.5deg)
+
+
+05. SPACING & SPATIAL SCALE
+────────────────────────────────────────────────────────────────────────────────
+Base Unit: 4px Grid
+  • space-2xs : 4px    /* Inner badge padding, tight icon margins */
+  • space-xs  : 8px    /* Stamp inner image padding */
+  • space-sm  : 12px   /* Input internal padding, card gap minimal */
+  • space-md  : 16px   /* Standard component padding */
+  • space-lg  : 24px   /* Inter-card spacing in perforated series */
+  • space-xl  : 40px   /* Sectional row gaps */
+  • space-2xl : 64px+  /* Hero margin and macro layouts */
+
+
+06. BORDERS, DIVIDERS & PERFORATIONS
+────────────────────────────────────────────────────────────────────────────────
+Perforation Rules:
+  • Scallop Punch-Out:
+    Mask / CSS Radial: 6px circular cutout repeating every 14px on outer stamp margins.
+  • Sheet Tears (Dividers):
+    Dotted hairline rule: 2px dots, 6px pitch, Color: rgba(0, 0, 0, 0.25).
+
+Structural Dividers:
+  • border-hairline   : 1px solid rgba(10, 10, 12, 0.08) (Input internal dividers)
+  • border-contrast   : 1.5px solid #0A0A0C (High-contrast graphic badges)
+  • border-stamp-rim  : 8px solid #FFFFFF (White paper margin framing stamp art)
+
+
+07. ICONOGRAPHY & GRAPHIC LANGUAGE
+────────────────────────────────────────────────────────────────────────────────
+Visual Motifs:
+  • Inline Editorial Accents: Bold geometric shapes inserted directly within typography 
+    (solid blue pills, fuchsia plus signs, 8-point heavy asterisks ✱).
+  • Stamp Perforation Dots  : Vertical/horizontal connector rows between linked cards.
+  • Graphic Coinage/Badges  : Floating circular micro-stamps with currency symbols (£, $, ¥).
+  • Stroke Weight           : Consistent 1.75px–2px uniform line width for UI icons.
+  • Icon Style              : Minimalist, clean geometric line art paired with solid fills.
+
+
+08. INTERACTION & FEEDBACK RULES
+────────────────────────────────────────────────────────────────────────────────
+Card & Stamp Interactions:
+  • Default State  : Natural rotational tilt (-3deg to +4deg), shadow-stamp.
+  • Hover State    : Transform to \`translateY(-8px) rotate(0deg) scale(1.02)\`, transition
+                     to \`shadow-lifted\` (Duration: 220ms, Timing: cubic-bezier(0.34, 1.56, 0.64, 1)).
+  • Active / Press : \`scale(0.98)\`, shadow resets to base.
+
+Control Elements (Buttons & Inputs):
+  • Primary Button : Background \`#0062FF\` -> Hover: \`#004EDB\` (Brightness: 95%), Active: \`scale(0.96)\`.
+  • Form Fields    : Clean white pill containers with crisp slate input text, no drop-shadow glow;
+                     uses internal border shift on focus (\`1.5px solid #0062FF\`).
+  • Transitions    : All micro-interactions use \`180ms ease-out\` for snappy editorial feel.
+
+09. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+────────────────────────────────────────────────────────────────────────────────
+  - NO purple neon on dark backgrounds.
+  - NO untracked giant typefaces without optical balance.
+  - NO 32px over-nested rounded bubble cards.
+  - NO headline biscuit pills with pulsating dots.
+  - NO generic rainbow gradient keyword text fills.
+  - NO textureless plastic flat surfaces without paper fiber or tactile depth.
+================================================================================`
   }
 ];
 
