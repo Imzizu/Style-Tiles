@@ -2221,6 +2221,144 @@ Neo-Brutalist Tech is a high-density, hyper-tactile design system engineered for
 - STRICTLY PROHIBITED: Pastel or low-contrast borders (all primary borders are 2px solid #09090B).
 - STRICTLY PROHIBITED: Gradient text fills or purple/violet dark-mode tropes.
 - STRICTLY PROHIBITED: Textureless surfaces or generic dashboard placeholder fluff.`
+  },
+  {
+    id: "TILE-014",
+    slug: "editorial-letterpress",
+    name: "The Editorial Letterpress // Neo-Brutalist Craft Print",
+    vibe: "Letterpress Craft • Historical Serif • High-Tactility Mechanical Depress",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Fraunces",
+      sans: "Plus Jakarta Sans",
+      mono: "IBM Plex Mono"
+    },
+    palette: [
+      { name: "Paper Base", hex: "#F0E2C4" },
+      { name: "Cream Surface", hex: "#FBF4E3" },
+      { name: "Prime Ink", hex: "#1A140E" },
+      { name: "Oxblood Prime", hex: "#8E2A1B" },
+      { name: "Mustard Gold", hex: "#C9A227" },
+      { name: "Forest Press", hex: "#1F3D32" }
+    ],
+    description: "High-tactility print-shop aesthetic blending historical editorial typography (Fraunces & IBM Plex Mono) with neo-brutalist structure, fibrous paper washes, and mechanical depress states.",
+    markdownSpec: `================================================================================
+  Aesthetic: The Editorial Letterpress • Neo-Brutalist Craft Print • Archival Inks
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+The Editorial Letterpress is a high-tactility, print-shop aesthetic blending historical editorial typography (Fraunces & IBM Plex Mono) with bold neo-brutalist structure. High-contrast inked linework (#1A140E), warm fibrous paper textures (#F0E2C4, #FBF4E3), tactile mechanical depress states, and offset flat-drop shadow geometry create a physical, artisanal artifact feel for editorial platforms, publishing tools, design archives, and craft computing tools.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Paper Base */
+  --paper-base:             #F0E2C4; /* Primary body canvas background */
+  --paper-deep:             #E3CF9F; /* Hover states, secondary backdrop fills */
+  --cream-surface:          #FBF4E3; /* Elevated card, modal, and panel canvas */
+  --warm-field:             #F8EFD8; /* Inset inputs, code containers, text areas */
+  --ink-plate:              #1A140E; /* Inverted contrast containers */
+
+  /* Ink & Contrast */
+  --ink-prime:              #1A140E; /* High-contrast structural borders, deep headings, shadows */
+  --ink-soft:               #3D3428; /* Primary reading body text, secondary headings */
+  --lead-muted:             #6B5D4A; /* Captions, folios, counters, placeholder hints */
+  --ink-inverted:           #FBF4E3; /* Contrast text on prime ink containers */
+
+  /* Accents & Functional Semantics */
+  --oxblood-prime:          #8E2A1B; /* Primary actions, brand marks, destructive/error highlights */
+  --oxblood-deep:           #6C1D12; /* Primary button active/hover state */
+  --mustard-gold:           #C9A227; /* Focus rings, status badges, text selection highlight */
+  --terracotta:             #C45C26; /* Secondary warm accents, alert notes */
+  --forest-press:           #1F3D32; /* Success states, active toggles, completed steps */
+
+  /* Atmospheric Textures */
+  --paper-wash: radial-gradient(1200px 700px at 8% -10%, rgba(201,162,39,0.28), transparent 55%), radial-gradient(900px 600px at 110% 8%, rgba(142,42,27,0.16), transparent 50%), linear-gradient(180deg, #F6EAD0 0%, #F0E2C4 38%, #E8D4A6 100%);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+--font-sans:    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+--font-mono:    "IBM Plex Mono", "Consolas", monospace;
+
+/* Type Scale */
+--text-display: clamp(48px, 6vw, 86px) / 1.10 var(--font-display); /* Weight: 800 | Tracking: -0.03em */
+--text-h1:      clamp(34px, 4vw, 48px) / 1.12 var(--font-display); /* Weight: 800 | Tracking: -0.03em */
+--text-h2:      clamp(26px, 3vw, 34px) / 1.15 var(--font-display); /* Weight: 700 | Tracking: -0.02em */
+--text-h3:      20px                   / 1.25 var(--font-display); /* Weight: 700 | Tracking: -0.01em */
+--text-lede:    17px – 18px            / 1.55 var(--font-sans);    /* Weight: 400 | Tracking: normal */
+--text-body:    15px – 17px            / 1.55 var(--font-sans);    /* Weight: 400 | Tracking: normal */
+--text-body-em: 15px – 17px            / 1.55 var(--font-sans);    /* Weight: 600 | Tracking: normal */
+--text-cta:     12px – 13px            / 1.00 var(--font-sans);    /* Weight: 700 | Tracking: +0.05em | UPPERCASE */
+--text-folio:   11px – 13px            / 1.00 var(--font-mono);    /* Weight: 600 | Tracking: +0.15em | UPPERCASE */
+--text-code:    13px – 14px            / 1.50 var(--font-mono);    /* Weight: 400 | Tracking: normal */
+--text-stamp:   10px – 11px            / 1.00 var(--font-mono);    /* Weight: 600 | Tracking: +0.12em | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-sharp:       0px;      /* Panels, modals, headers, floating dock */
+--radius-default:     2px;      /* Standard cards, inputs, buttons, badge stamps */
+--radius-pill:        50%;      /* Radio buttons, round indices, indicator dots */
+
+/* Elevation & Shadows (Hard Flat-Offset Shadows, Pure #1A140E, No Blur) */
+--shadow-base:        0px 0px 0 #1A140E;                /* Flat inline fields */
+--shadow-sm:          4px 4px 0 #1A140E;                /* Buttons, interactive cards, pills */
+--shadow-panel:       6px 6px 0 #1A140E;                /* Content cards, main panels, hero items */
+--shadow-modal:       10px 10px 0 #1A140E;              /* Floating dialogs, elevated modals */
+--shadow-status:      5px 5px 0 #C9A227;                /* Toast popups (Mustard accent shadow) */
+--shadow-error:       6px 6px 0 #8E2A1B;                /* Card error state offset */
+--shadow-inset:       inset 4px 4px 0 rgba(26,20,14,0.06); /* Textareas, text inputs */
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-heavy:       3px solid #1A140E; /* Outer frame boundaries, modal borders, dock rules */
+--border-sub:         2px solid #1A140E; /* Inner sub-components, choice tiles, badge chips */
+--border-hairline:    1px solid #1A140E; /* Monospace table lines, subtle dividers */
+--border-focus:       3px solid #C9A227; /* Mustard focus enclosure with 2px offset */
+
+/* Corner Registration Marks */
+12px × 12px exposed registration bracket overlays on structural card perimeters.
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Buttons (Tactile Mechanical Depress)**:
+  Idle: transform: translate(0, 0); box-shadow: 4px 4px 0 #1A140E;
+  Hover: background: #E3CF9F; (or #6C1D12 for oxblood);
+  Active: transform: translate(4px, 4px); box-shadow: 0px 0px 0 transparent;
+  Focus: outline: 3px solid #C9A227; outline-offset: 2px;
+- **Choice Cards & Radios**:
+  Default: Background #F8EFD8, border 2px solid #1A140E.
+  Checked: Inverted high-contrast canvas (Background #1A140E, Text #FBF4E3).
+- **Floating Labels & Inputs**:
+  Idle: Label sits inside field at font-size 15px, color #6B5D4A.
+  Filled/Focused: Label elevates to top: 4px; font-size: 11px; uppercase monospace, color #8E2A1B.
+- **Error & Validation States**:
+  Card Error: Border & shadow flip to Oxblood (#8E2A1B) with 6px 6px 0 #8E2A1B offset.
+  Error Text: IBM Plex Mono, bold, 14px, #8E2A1B with [!] ERROR: kicker prefix.
+- **System Motion (Print-Press Strip Loader)**:
+  Rolling press sweep animation across progress bars; snappy mechanical cuts on user trigger.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- No soft blurry box shadows or glowing colored neon halos.
+- No rounded pill-shaped bento containers (only 0px or 2px micro-radii).
+- No gradient text fills on display headlines.
+- No cold blue-gray or dark-mode OLED cyber backdrops.
+- No unbordered floating cards without tactile ink linework.
+================================================================================`
   }
 ];
 
