@@ -6837,6 +6837,148 @@ and pure white micro-sans typography command absolute authority.
 - NO saturated neon blue/purple synthetic cyber gradients (maintain Parisian crimson and oxblood).
 - NO thick 2px+ structural borders; maintain 1px hairline delicacy.
 ================================================================================`
+  },
+  {
+    id: "TILE-042",
+    slug: "editorial-vintage-chic",
+    name: "Editorial Vintage Chic",
+    vibe: "Warm Alabaster Linen • Deep Carbon Ink • Vivid Terracotta • Dusty Salmon Ribbon • Playfair Display Serif • Tilted Marquee Tape • 0px Editorial Discipline",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Playfair Display",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Warm Alabaster Linen", hex: "#FBF9F6" },
+      { name: "Deep Carbon Ink Black", hex: "#141312" },
+      { name: "Vivid Terracotta Badge", hex: "#EE582B" },
+      { name: "Dusty Salmon Ribbon", hex: "#F5BAA7" },
+      { name: "Diffused Peach Glow", hex: "#F5DDD2" },
+      { name: "Warm Beige Secondary", hex: "#F3EFEA" },
+      { name: "Muted Warm Slate Body", hex: "#6B6661" },
+      { name: "Faded Clay Overlay", hex: "#EAD6CD" }
+    ],
+    description: "Editorial Vintage Chic: Warm alabaster linen background (#FBF9F6), deep carbon ink black (#141312), vivid terracotta accents (#EE582B), and dusty salmon tilted marquee tape (-3.2deg), framed by high-contrast Didone serifs and strict 0px rectangular geometry.",
+    markdownSpec: `================================================================================
+  Aesthetic: Editorial Vintage Chic • Alabaster Linen & Vivid Terracotta
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Editorial Vintage Chic captures the timeless sophistication of high-fashion magazine 
+layouts with warm alabaster linen (#FBF9F6), deep carbon ink black (#141312), and 
+vivid terracotta accents (#EE582B). Defined by light Didone typography (300 weight), 
+tilted rotational ticker ribbons (-3.2deg), continuously rotating provenance seals, 
+and disciplined 0px rectangular geometry, it delivers pure French editorial chic.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Canvas & Surfaces */
+  --surface-canvas:         #FBF9F6; /* Warm alabaster / editorial linen */
+  --surface-canvas-subtle:  #F3EFEA; /* Warm beige secondary background */
+  --surface-glow-ambient:   #F5DDD2; /* Soft diffused peach underglow */
+  --surface-card:           #FFFFFF; /* Clean white for embedded assets */
+
+  /* Text & Inks */
+  --text-primary:           #141312; /* Deep carbon ink black */
+  --text-secondary:         #6B6661; /* Muted warm slate / taupe body */
+  --text-tertiary:          #9C958E; /* Faint caption / micro-copy grey */
+  --text-inverse:           #FFFFFF; /* Pure white on dark surfaces */
+
+  /* Accents & Tickers */
+  --accent-primary:         #EE582B; /* Vivid terracotta / warm tangerine */
+  --accent-primary-hover:   #D6451B; /* Deep burnt orange */
+  --accent-tint-peach:      #F5BAA7; /* Dusty salmon / peach ticker ribbon */
+  --accent-tint-muted:      #EAD6CD; /* Faded clay overlay */
+
+  /* Borders */
+  --border-hairline:        rgba(20, 19, 18, 0.08); /* Whisper-thin boundary */
+  --border-strong:          #141312; /* Sharp contrast divider */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display-serif:     "Playfair Display", "Didot", serif;
+--font-decorative-script: "UnifrakturMaguntia", "Cinzel Decorative", serif;
+--font-body-sans:         "Inter", "Helvetica Neue", sans-serif;
+--font-mono:              "JetBrains Mono", monospace;
+
+/* Scale & Hierarchy */
+--type-display-hero:    300 clamp(3.5rem, 7vw, 6.5rem) / 0.95 var(--font-display-serif); /* +0.04em Tracking, UPPERCASE */
+--type-display-section: 400 clamp(2.25rem, 4vw, 3.75rem) / 1.05 var(--font-display-serif); /* +0.02em Tracking, UPPERCASE */
+--type-ticker-text:     400 1.125rem / 1.0 var(--font-decorative-script);                 /* +0.05em Tracking */
+--type-body-standard:   400 0.875rem (14px) / 1.6 var(--font-body-sans);                  /* -0.01em Tracking */
+--type-meta-utility:    500 0.6875rem (11px) / 1.2 var(--font-body-sans);                 /* +0.12em Tracking, UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-sharp:   0px;    /* Primary aesthetic: strict rectangular cards, CTAs, banners */
+--radius-subtle:  2px;    /* Input fields / micro containers */
+--radius-full:    50%;    /* Reserved strictly for circular floating stamps & logo marks */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERING)
+ * -------------------------------------------------------------------------- */
+--shadow-default: none;   /* Flat magazine print philosophy */
+--shadow-subtle:  0 20px 40px -15px rgba(20, 19, 18, 0.05);
+
+- Layer 0 (Canvas):     Warm alabaster canvas + radial peach blur (#F5DDD2)
+- Layer 10 (Media):     Photographic editorial cards
+- Layer 20 (Type):      High-contrast serif overlapping imagery
+- Layer 30 (Ribbon):    Tilted marquee banners (-3.2deg rotation)
+- Layer 40 (Stamp):     Circular decorative floating stamps (18s linear infinite rotation)
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (4px Base Unit)
+ * -------------------------------------------------------------------------- */
+--space-2xs: 4px;
+--space-xs:  8px;
+--space-sm:  16px;
+--space-md:  24px;
+--space-lg:  40px;
+--space-xl:  64px;
+--space-2xl: 120px;
+
+- Gutter: 32px | Margin: clamp(1.5rem, 5vw, 4rem) | Asymmetric multi-column offset
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-hairline-divider: 1px solid rgba(20, 19, 18, 0.08);
+--border-solid-frame:      1px solid #141312;
+--rotational-ribbon:       height 36px, angle -3.2deg, offset 2px;
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY & GRAPHIC MOTIFS
+ * -------------------------------------------------------------------------- */
+- Ultra-thin 1.0px–1.25px line weight, minimal geometric wireframe
+- Glyphs: ✦ (Four-point editorial sparkle), ✻ (Asterisk star), ➔ (Hairline rule arrow)
+- Badge System: Curved text on circular SVG path with centered sparkle
+
+/* -----------------------------------------------------------------------------
+ * 9. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Primary CTA Button**: #141312 background, 0px radius, shifts to #EE582B with translateY(-1px) on hover.
+- **Tilted Marquee Ribbon**: -3.2deg tilt with continuous linear X-axis infinite scrolling.
+- **Rotating Stamp Badge**: Continuous 18s linear infinite 360-degree rotation.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- NO rounded bento cards (maintain strict 0px rectangular discipline).
+- NO saturated neon cyber blue/purple gradients (maintain alabaster, carbon, and terracotta).
+- NO heavy unsoftened box shadows; prioritize flat magazine print layouts.
+================================================================================`
   }
 ];
 

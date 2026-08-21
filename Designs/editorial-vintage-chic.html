@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editorial Vintage Chic — Style Tile & Design System (TILE-042)</title>
+  <meta name="description" content="Production design system and Style Tile for Editorial Vintage Chic (TILE-042): Warm alabaster linen #FBF9F6, deep carbon ink #141312, vivid terracotta #EE582B, dusty salmon #F5BAA7, Playfair Display serif, tilted marquee ribbons, and 0px rectangular editorial geometry.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon/favicon.ico">
+
+  <!-- Google Fonts: Playfair Display, UnifrakturMaguntia, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,600&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       STYLE TILE: EDITORIAL VINTAGE CHIC // TILE-042
+       ========================================================================== */
+
+    :root {
+      /* ------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * ------------------------------------------------------------------------ */
+      --surface-canvas:         #FBF9F6; /* Warm alabaster / editorial linen */
+      --surface-canvas-subtle:  #F3EFEA; /* Warm beige secondary background */
+      --surface-glow-ambient:   #F5DDD2; /* Soft diffused peach underglow */
+      --surface-card:           #FFFFFF; /* Clean white for embedded assets */
+
+      --text-primary:           #141312; /* Deep carbon ink black */
+      --text-secondary:         #6B6661; /* Muted warm slate / taupe body */
+      --text-tertiary:          #9C958E; /* Faint caption / micro-copy grey */
+      --text-inverse:           #FFFFFF; /* Pure white on dark surfaces */
+
+      --accent-primary:         #EE582B; /* Vivid terracotta / warm tangerine */
+      --accent-primary-hover:   #D6451B; /* Deep burnt orange */
+      --accent-tint-peach:      #F5BAA7; /* Dusty salmon / peach ticker ribbon */
+      --accent-tint-muted:      #EAD6CD; /* Faded clay overlay */
+
+      --border-hairline:        rgba(20, 19, 18, 0.08); /* Whisper-thin boundary */
+      --border-strong:          #141312; /* Sharp contrast divider */
+
+      /* ------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * ------------------------------------------------------------------------ */
+      --font-display-serif:     "Playfair Display", "Didot", Georgia, serif;
+      --font-decorative-script: "UnifrakturMaguntia", "Cinzel Decorative", serif;
+      --font-body-sans:         "Inter", "Helvetica Neue", sans-serif;
+      --font-mono:              "JetBrains Mono", "SF Mono", monospace;
+
+      /* Type Scales */
+      --type-display-hero:      300 clamp(3.2rem, 6.5vw, 6.25rem) / 0.95 var(--font-display-serif);
+      --type-display-section:   400 clamp(2.0rem, 3.8vw, 3.5rem) / 1.05 var(--font-display-serif);
+      --type-ticker-text:       400 1.125rem / 1.0 var(--font-decorative-script);
+      --type-body-standard:     400 0.875rem / 1.6 var(--font-body-sans);
+      --type-meta-utility:      500 0.6875rem / 1.2 var(--font-body-sans);
+
+      /* ------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * ------------------------------------------------------------------------ */
+      --radius-sharp:           0px;    /* Strict rectangular cards, CTAs, banners */
+      --radius-subtle:          2px;    /* Input fields / micro containers */
+      --radius-full:            50%;    /* Circular floating stamps & logo marks */
+
+      /* ------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (SHADOWS & LAYERING)
+       * ------------------------------------------------------------------------ */
+      --shadow-default:         none;
+      --shadow-subtle:          0 20px 40px -15px rgba(20, 19, 18, 0.05);
+
+      /* ------------------------------------------------------------------------
+       * 5. SPACING & SPATIAL SCALE (4px Base Unit)
+       * ------------------------------------------------------------------------ */
+      --space-2xs:              4px;
+      --space-xs:               8px;
+      --space-sm:               16px;
+      --space-md:               24px;
+      --space-lg:               40px;
+      --space-xl:               64px;
+      --space-2xl:              120px;
+
+      /* ------------------------------------------------------------------------
+       * 6. TRANSITIONS & TIMING
+       * ------------------------------------------------------------------------ */
+      --standard-ease:          all 300ms cubic-bezier(0.25, 1, 0.5, 1);
+      --smooth-slow:            all 600ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ==========================================================================
+       RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--surface-canvas);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--surface-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-body-sans);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Soft Diffused Peach Ambient Underglow */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -100px;
+      right: 5%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--surface-glow-ambient) 0%, rgba(251, 249, 246, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.7;
+    }
+
+    ::selection {
+      background-color: var(--accent-primary);
+      color: #FFFFFF;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ==========================================================================
+       ROTATIONAL MARQUEE RIBBON (-3.2 DEG TILT)
+       ========================================================================== */
+    .tilted-marquee-wrapper {
+      position: relative;
+      width: 105%;
+      left: -2.5%;
+      overflow: hidden;
+      background: var(--accent-tint-peach);
+      color: var(--text-primary);
+      border-top: 1px solid rgba(20, 19, 18, 0.15);
+      border-bottom: 1px solid rgba(20, 19, 18, 0.15);
+      transform: rotate(-3.2deg);
+      transform-origin: center;
+      margin-top: 24px;
+      margin-bottom: 32px;
+      z-index: 20;
+      box-shadow: 0 4px 12px rgba(20, 19, 18, 0.04);
+      transition: transform 300ms ease;
+    }
+
+    .tilted-marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeContinuous 24s linear infinite;
+      padding: 8px 0;
+    }
+
+    .tilted-marquee-item {
+      font-family: var(--font-decorative-script);
+      font-size: 1.125rem;
+      letter-spacing: 0.05em;
+      padding: 0 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      white-space: nowrap;
+    }
+
+    @keyframes marqueeContinuous {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ==========================================================================
+       MANDATORY HEADER BAR (agent.md Section 2)
+       ========================================================================== */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: rgba(251, 249, 246, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-hairline);
+      padding: 12px var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      transition: var(--standard-ease);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      background: var(--surface-canvas-subtle);
+      padding: 8px 18px;
+      border-radius: var(--radius-sharp);
+      border: 1px solid var(--border-hairline);
+      transition: var(--standard-ease);
+    }
+
+    .nav-back-link:hover {
+      background: var(--text-primary);
+      color: var(--text-inverse);
+      transform: translateX(-2px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      background: var(--text-primary);
+      color: var(--text-inverse);
+      border-radius: var(--radius-sharp);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .design-title {
+      font-family: var(--font-display-serif);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .design-vibe-tag {
+      font-size: 10px;
+      font-weight: 600;
+      color: #FFFFFF;
+      background: var(--accent-primary);
+      padding: 4px 10px;
+      border-radius: var(--radius-sharp);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      font-family: var(--font-body-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sharp);
+      cursor: pointer;
+      border: none;
+      transition: var(--standard-ease);
+    }
+
+    .btn-preview {
+      background: var(--surface-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-hairline);
+    }
+
+    .btn-preview:hover {
+      background: var(--surface-canvas-subtle);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy {
+      background: var(--text-primary);
+      color: var(--text-inverse);
+    }
+
+    .btn-copy:hover {
+      background: var(--accent-primary);
+      transform: translateY(-1px);
+    }
+
+    .btn-download {
+      background: var(--accent-primary);
+      color: var(--text-inverse);
+    }
+
+    .btn-download:hover {
+      background: var(--accent-primary-hover);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       HERO DISPLAY BANNER (ASYMMETRIC EDITORIAL SPREAD WITH ROTATING STAMP)
+       ========================================================================== */
+    .hero-section {
+      padding: var(--space-lg) 0 var(--space-xl);
+      position: relative;
+    }
+
+    .hero-editorial-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .hero-meta-overline {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-headline {
+      font-family: var(--font-display-serif);
+      font-size: clamp(2.8rem, 6.0vw, 68px);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent-primary);
+    }
+
+    .hero-lead-text {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-btn-cluster {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .btn-editorial-primary {
+      padding: 12px 28px;
+      background: var(--text-primary);
+      color: var(--text-inverse);
+      font-family: var(--font-body-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sharp);
+      border: none;
+      cursor: pointer;
+      transition: var(--standard-ease);
+    }
+
+    .btn-editorial-primary:hover {
+      background: var(--accent-primary);
+      transform: translateY(-1px);
+    }
+
+    .btn-editorial-ghost {
+      padding: 12px 26px;
+      background: transparent;
+      color: var(--text-primary);
+      font-family: var(--font-body-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sharp);
+      border: 1px solid var(--text-primary);
+      cursor: pointer;
+      transition: var(--standard-ease);
+    }
+
+    .btn-editorial-ghost:hover {
+      background: var(--surface-canvas-subtle);
+    }
+
+    /* Hero Right: Rotating Circular Stamp & Photographic Card */
+    .hero-visual-card {
+      position: relative;
+      background: var(--surface-canvas-subtle);
+      border: 1px solid var(--border-hairline);
+      padding: var(--space-xl) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 340px;
+    }
+
+    /* Continuous Rotating Circular Stamp Badge */
+    .rotating-stamp-badge {
+      width: 140px;
+      height: 140px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .stamp-svg-rotate {
+      width: 100%;
+      height: 100%;
+      animation: stampSpin 18s linear infinite;
+    }
+
+    @keyframes stampSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .stamp-center-glyph {
+      position: absolute;
+      font-size: 24px;
+      color: var(--accent-primary);
+    }
+
+    .hero-card-meta {
+      margin-top: var(--space-md);
+      text-align: center;
+    }
+
+    .hero-card-title {
+      font-family: var(--font-display-serif);
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-card-sub {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-top: 4px;
+    }
+
+    /* ==========================================================================
+       SECTION HEADERS
+       ========================================================================== */
+    .section-block {
+      margin-bottom: var(--space-xl);
+    }
+
+    .section-header-bar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--border-strong);
+      margin-bottom: var(--space-lg);
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    .section-title {
+      font-family: var(--font-display-serif);
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--accent-primary);
+    }
+
+    .section-subtitle {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    /* ==========================================================================
+       COLOR ROLES & PALETTE MATRIX
+       ========================================================================== */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-sm);
+    }
+
+    .swatch-card-sharp {
+      background: var(--surface-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sharp);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      cursor: pointer;
+      transition: var(--standard-ease);
+    }
+
+    .swatch-card-sharp:hover {
+      border-color: var(--text-primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .swatch-visual-block {
+      height: 72px;
+      border: 1px solid rgba(20, 19, 18, 0.08);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 8px;
+      position: relative;
+    }
+
+    .swatch-copy-pill {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--text-primary);
+      color: var(--text-inverse);
+      padding: 3px 8px;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: var(--standard-ease);
+    }
+
+    .swatch-card-sharp:hover .swatch-copy-pill {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .swatch-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .swatch-token {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+
+    .swatch-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* ==========================================================================
+       TYPOGRAPHY SPECIMEN SYSTEM
+       ========================================================================== */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-lg);
+    }
+
+    .type-ladder-box {
+      background: var(--surface-card);
+      border: 1px solid var(--border-hairline);
+      padding: var(--space-lg);
+    }
+
+    .type-ladder-row {
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .type-ladder-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .type-row-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+
+    .sample-display-hero {
+      font-family: var(--font-display-serif);
+      font-size: clamp(2.4rem, 4.5vw, 54px);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .sample-display-section {
+      font-family: var(--font-display-serif);
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .sample-ticker-text {
+      font-family: var(--font-decorative-script);
+      font-size: 22px;
+      line-height: 1.0;
+      color: var(--accent-primary);
+      letter-spacing: 0.05em;
+    }
+
+    .sample-body-standard {
+      font-family: var(--font-body-sans);
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .sample-meta-utility {
+      font-family: var(--font-body-sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    /* Type Playground */
+    .type-playground-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border-hairline);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .playground-controls {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .playground-pill-btn {
+      padding: 6px 14px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--surface-canvas-subtle);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-primary);
+      border-radius: var(--radius-sharp);
+      cursor: pointer;
+      transition: var(--standard-ease);
+    }
+
+    .playground-pill-btn.active {
+      background: var(--text-primary);
+      color: var(--text-inverse);
+    }
+
+    .playground-textarea {
+      width: 100%;
+      min-height: 140px;
+      padding: var(--space-md);
+      background: var(--surface-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sharp);
+      font-family: var(--font-display-serif);
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--text-primary);
+      line-height: 1.2;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      resize: vertical;
+      outline: none;
+      transition: var(--standard-ease);
+    }
+
+    .playground-textarea:focus {
+      border-color: var(--text-primary);
+    }
+
+    /* ==========================================================================
+       COMPONENT ARCHETYPE GALLERY
+       ========================================================================== */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .component-tile-sharp {
+      background: var(--surface-card);
+      border: 1px solid var(--border-hairline);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .component-tile-title {
+      font-family: var(--font-display-serif);
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .button-stack-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    /* ==========================================================================
+       LIVING MICRO-EXPERIENCE: THE CHIC ARCHIVE LOOKBOOK
+       ========================================================================== */
+    .demo-lookbook-container {
+      background: var(--surface-card);
+      border: 1px solid var(--border-strong);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-subtle);
+      position: relative;
+    }
+
+    .lookbook-header-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--border-hairline);
+      margin-bottom: var(--space-lg);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .lookbook-spread-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .lookbook-editorial-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .lookbook-issue-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+    }
+
+    .lookbook-spread-title {
+      font-family: var(--font-display-serif);
+      font-size: clamp(1.8rem, 3.2vw, 36px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .lookbook-spread-title em {
+      font-style: italic;
+      color: var(--accent-primary);
+    }
+
+    .lookbook-spread-body {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    .edition-switcher-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-top: var(--space-sm);
+    }
+
+    .edition-btn {
+      padding: 8px 16px;
+      background: var(--surface-canvas-subtle);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-primary);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sharp);
+      cursor: pointer;
+      transition: var(--standard-ease);
+    }
+
+    .edition-btn.active {
+      background: var(--text-primary);
+      color: var(--text-inverse);
+    }
+
+    /* Right Preview Box */
+    .lookbook-preview-box {
+      background: var(--surface-canvas-subtle);
+      border: 1px solid var(--border-hairline);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      position: relative;
+    }
+
+    .ribbon-slider-block {
+      margin-top: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--border-hairline);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ribbon-slider-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .editorial-range-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      background: #D9D2C7;
+      outline: none;
+    }
+
+    .editorial-range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      background: var(--text-primary);
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       STYLE TILE PROMPT CODE DRAWER & PREVIEW MODAL
+       ========================================================================== */
+    .spec-drawer-card {
+      background: var(--text-primary);
+      color: var(--text-inverse);
+      border: 1px solid var(--border-strong);
+      padding: var(--space-xl);
+      border-radius: var(--radius-sharp);
+    }
+
+    .spec-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .spec-code-pre {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #EAD6CD;
+      background: #0C0B0A;
+      padding: var(--space-lg);
+      overflow-x: auto;
+      max-height: 440px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 19, 18, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-window {
+      background: #141312;
+      color: #FFFFFF;
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      border-radius: var(--radius-sharp);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-close-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border: none;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: var(--standard-ease);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--accent-primary);
+    }
+
+    /* Toast Popup */
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--text-primary);
+      color: var(--text-inverse);
+      padding: 12px 24px;
+      border-radius: var(--radius-sharp);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      display: none;
+      animation: toastSlideUp 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes toastSlideUp {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Responsive Mobile Overrides */
+    @media (max-width: 768px) {
+      .page-container {
+        padding: 0 var(--space-md);
+      }
+      .hero-editorial-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+      .lookbook-spread-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-headline {
+        font-size: clamp(2.2rem, 8.5vw, 3.4rem);
+      }
+    }
+  </style>
+
+  <!-- Shared Mobile Safety Sheet -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. MANDATORY TOP NAVIGATION HEADER
+       ========================================================================== -->
+  <header class="style-tile-header">
+    <!-- Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-042</span>
+      <span class="design-title">Editorial Vintage Chic</span>
+      <span class="design-vibe-tag">Editorial & Archival</span>
+    </div>
+
+    <!-- Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download editorial-vintage-chic.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Tile
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       TILTED ROTATIONAL MARQUEE RIBBON (-3.2 DEG TILT)
+       ========================================================================== -->
+  <div class="tilted-marquee-wrapper" id="main-tilted-ribbon">
+    <div class="tilted-marquee-track">
+      <span class="tilted-marquee-item">✻ VINTAGE EDITORIAL ARCHIVE ✻ AUTUMN/WINTER CHIC ✻ N° 42 ✻ HAUTE COUTURE ✻ PARIS / LONDRES ✻ VINTAGE EDITORIAL ARCHIVE ✻ AUTUMN/WINTER CHIC ✻ N° 42 ✻ HAUTE COUTURE ✻ PARIS / LONDRES ✻</span>
+      <span class="tilted-marquee-item">✻ VINTAGE EDITORIAL ARCHIVE ✻ AUTUMN/WINTER CHIC ✻ N° 42 ✻ HAUTE COUTURE ✻ PARIS / LONDRES ✻ VINTAGE EDITORIAL ARCHIVE ✻ AUTUMN/WINTER CHIC ✻ N° 42 ✻ HAUTE COUTURE ✻ PARIS / LONDRES ✻</span>
+    </div>
+  </div>
+
+  <div class="page-container">
+
+    <!-- ==========================================================================
+         2. HERO DISPLAY BANNER & ROTATING STAMP
+         ========================================================================== -->
+    <section class="hero-section">
+      <div class="hero-editorial-layout">
+        
+        <!-- Left: Text & CTAs -->
+        <div class="hero-text-col">
+          <div class="hero-meta-overline">
+            <span>✦ REVUE OFFICIELLE N° 42</span>
+            <span>•</span>
+            <span>ALABASTER & TERRACOTTA</span>
+          </div>
+
+          <h1 class="hero-headline">
+            Editorial<br>
+            Vintage <em>Chic</em>
+          </h1>
+
+          <p class="hero-lead-text">
+            Warm alabaster linen background (#FBF9F6), deep carbon ink black (#141312), vivid terracotta accents (#EE582B), and dusty salmon tilted marquee ribbons. High-contrast Didone serifs combined with 0px architectural geometry.
+          </p>
+
+          <div class="hero-btn-cluster">
+            <button class="btn-editorial-primary" onclick="copyTilePromptDirect()">
+              <span>Copy Style Tile For AI Agent</span>
+              <span>➔</span>
+            </button>
+            <a href="#demo-section" class="btn-editorial-ghost">
+              <span>Inspect Chic Archive</span>
+              <span>↓</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Rotating Circular Stamp Badge -->
+        <div class="hero-visual-card">
+          <div class="rotating-stamp-badge" title="Continuous rotating editorial seal" onclick="triggerToast('Official Vintage Seal Verified')">
+            <svg class="stamp-svg-rotate" viewBox="0 0 140 140">
+              <path id="stamp-curve" d="M 70, 70 m -50, 0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0" fill="transparent"/>
+              <text font-family="'Inter', sans-serif" font-size="10" font-weight="600" letter-spacing="0.18em" fill="#141312">
+                <textPath href="#stamp-curve" startOffset="0%">
+                  • VINTAGE CHIC • EDITORIAL ARCHIVE • EST. 1994
+                </textPath>
+              </text>
+            </svg>
+            <span class="stamp-center-glyph">✦</span>
+          </div>
+
+          <div class="hero-card-meta">
+            <div class="hero-card-title">Atelier Revue Vintage</div>
+            <div class="hero-card-sub">PARIS // EDITION LIMITEE N° 42</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. COLOR ROLES & PALETTE MATRIX
+         ========================================================================== -->
+    <section class="section-block" id="palette-section">
+      <div class="section-header-bar">
+        <div>
+          <h2 class="section-title">01 / Color Roles & <em>Palette Matrix</em></h2>
+          <p class="section-subtitle">Click any swatch to copy its Hex token to your clipboard.</p>
+        </div>
+        <span class="sample-meta-utility">8 System Tokens</span>
+      </div>
+
+      <div class="palette-grid">
+        <!-- 1. Warm Alabaster Canvas -->
+        <div class="swatch-card-sharp" onclick="copyHex('#FBF9F6', '--surface-canvas')">
+          <div class="swatch-visual-block" style="background-color: #FBF9F6;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">Warm Alabaster Linen</div>
+            <div class="swatch-token">--surface-canvas</div>
+            <div class="swatch-hex">#FBF9F6</div>
+          </div>
+          <p class="swatch-desc">Warm editorial linen canvas background evoking high-fashion magazine pages.</p>
+        </div>
+
+        <!-- 2. Warm Beige Subtle -->
+        <div class="swatch-card-sharp" onclick="copyHex('#F3EFEA', '--surface-canvas-subtle')">
+          <div class="swatch-visual-block" style="background-color: #F3EFEA;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">Warm Beige Secondary</div>
+            <div class="swatch-token">--surface-canvas-subtle</div>
+            <div class="swatch-hex">#F3EFEA</div>
+          </div>
+          <p class="swatch-desc">Secondary card well providing soft structural contrast against primary canvas.</p>
+        </div>
+
+        <!-- 3. Soft Diffused Peach Glow -->
+        <div class="swatch-card-sharp" onclick="copyHex('#F5DDD2', '--surface-glow-ambient')">
+          <div class="swatch-visual-block" style="background-color: #F5DDD2;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">Diffused Peach Glow</div>
+            <div class="swatch-token">--surface-glow-ambient</div>
+            <div class="swatch-hex">#F5DDD2</div>
+          </div>
+          <p class="swatch-desc">Soft ambient radial underglow creating atmospheric vintage warmth.</p>
+        </div>
+
+        <!-- 4. Deep Carbon Ink -->
+        <div class="swatch-card-sharp" onclick="copyHex('#141312', '--text-primary')">
+          <div class="swatch-visual-block" style="background-color: #141312;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">Deep Carbon Ink Black</div>
+            <div class="swatch-token">--text-primary</div>
+            <div class="swatch-hex">#141312</div>
+          </div>
+          <p class="swatch-desc">High-contrast black ink for headlines, primary buttons, and solid borders.</p>
+        </div>
+
+        <!-- 5. Vivid Terracotta Accent -->
+        <div class="swatch-card-sharp" onclick="copyHex('#EE582B', '--accent-primary')">
+          <div class="swatch-visual-block" style="background-color: #EE582B;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">Vivid Terracotta Badge</div>
+            <div class="swatch-token">--accent-primary</div>
+            <div class="swatch-hex">#EE582B</div>
+          </div>
+          <p class="swatch-desc">Primary CTA hover state, focal badge highlights, and editorial sparkles.</p>
+        </div>
+
+        <!-- 6. Dusty Salmon Ribbon -->
+        <div class="swatch-card-sharp" onclick="copyHex('#F5BAA7', '--accent-tint-peach')">
+          <div class="swatch-visual-block" style="background-color: #F5BAA7;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">Dusty Salmon Ribbon</div>
+            <div class="swatch-token">--accent-tint-peach</div>
+            <div class="swatch-hex">#F5BAA7</div>
+          </div>
+          <p class="swatch-desc">Tilted ticker marquee tape background with blackletter typography.</p>
+        </div>
+
+        <!-- 7. Muted Warm Slate -->
+        <div class="swatch-card-sharp" onclick="copyHex('#6B6661', '--text-secondary')">
+          <div class="swatch-visual-block" style="background-color: #6B6661;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">Muted Warm Slate Body</div>
+            <div class="swatch-token">--text-secondary</div>
+            <div class="swatch-hex">#6B6661</div>
+          </div>
+          <p class="swatch-desc">Comfortable editorial body copy and paragraph reading text.</p>
+        </div>
+
+        <!-- 8. Faded Clay Overlay -->
+        <div class="swatch-card-sharp" onclick="copyHex('#EAD6CD', '--accent-tint-muted')">
+          <div class="swatch-visual-block" style="background-color: #EAD6CD;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">Faded Clay Overlay</div>
+            <div class="swatch-token">--accent-tint-muted</div>
+            <div class="swatch-hex">#EAD6CD</div>
+          </div>
+          <p class="swatch-desc">Subtle tinted container surfaces and decorative tape accents.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. TYPOGRAPHY SPECIMEN SYSTEM
+         ========================================================================== -->
+    <section class="section-block" id="typography-section">
+      <div class="section-header-bar">
+        <div>
+          <h2 class="section-title">02 / Typography & <em>Editorial Scales</em></h2>
+          <p class="section-subtitle">Playfair Display Serif paired with UnifrakturMaguntia script.</p>
+        </div>
+        <span class="sample-meta-utility">High-Contrast Hierarchy</span>
+      </div>
+
+      <div class="type-specimen-grid">
+        
+        <!-- Left: Hierarchy Ladder -->
+        <div class="type-ladder-box">
+          <div class="type-ladder-row">
+            <div class="type-row-header">
+              <span>Display Hero</span>
+              <span>Playfair 300 Light | clamp(3.5rem, 7vw, 6.5rem) | 0.95 | +0.04em</span>
+            </div>
+            <div class="sample-display-hero">CHIC VINTAGE</div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-row-header">
+              <span>Display Section</span>
+              <span>Playfair 400 Regular | clamp(2.25rem, 4vw, 3.75rem) | 1.05</span>
+            </div>
+            <div class="sample-display-section">L'ALLURE INTEMPORELLE</div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-row-header">
+              <span>Decorative Script Ticker</span>
+              <span>UnifrakturMaguntia | 1.125rem | +0.05em</span>
+            </div>
+            <div class="sample-ticker-text">✻ Haute Couture Parisienne ✻ Collection Automne ✻</div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-row-header">
+              <span>Body Standard</span>
+              <span>Inter | 400 Regular | 14px | 1.60</span>
+            </div>
+            <div class="sample-body-standard">
+              The architectural silhouette of Paris in the nineties, captured through linen paper grain, tilted ribbons, and rigorous rectangular geometry.
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-row-header">
+              <span>Meta Utility</span>
+              <span>Inter | 500 Medium | 11px | +0.12em Uppercase</span>
+            </div>
+            <div class="sample-meta-utility">✦ ISSUE N° 42 • ARCHIVE OFFICIELLE DU STYLE</div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Type Playground -->
+        <div class="type-playground-card">
+          <div class="playground-controls">
+            <button class="playground-pill-btn active" onclick="setPlaygroundType(this, 'Playfair Display', '300', '0.04em', 'uppercase')">Playfair 300</button>
+            <button class="playground-pill-btn" onclick="setPlaygroundType(this, 'UnifrakturMaguntia', '400', '0.05em', 'none')">Blackletter Script</button>
+            <button class="playground-pill-btn" onclick="setPlaygroundType(this, 'Inter', '500', '0.12em', 'uppercase')">Inter +0.12em</button>
+            <button class="playground-pill-btn" onclick="setPlaygroundType(this, 'Playfair Display', '400', '0.02em', 'italic')">Playfair Italic</button>
+          </div>
+
+          <textarea id="live-type-box" class="playground-textarea">EDITORIAL VINTAGE CHIC. PARIS 1994.</textarea>
+
+          <div style="font-size: 12px; color: var(--text-secondary); line-height: 1.5;">
+            <strong>Typographic Rule:</strong> Headlines strictly enforce light weights (300) with wide uppercase tracking (+0.04em) to preserve French fashion magazine air.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. COMPONENT ARCHETYPE GALLERY
+         ========================================================================== -->
+    <section class="section-block" id="components-section">
+      <div class="section-header-bar">
+        <div>
+          <h2 class="section-title">03 / Component Archetypes & <em>0px Geometry</em></h2>
+          <p class="section-subtitle">Strict rectangular buttons, floating stamps, and sharp hairline dividers.</p>
+        </div>
+        <span class="sample-meta-utility">Rectangular Discipline</span>
+      </div>
+
+      <div class="components-grid">
+
+        <!-- 1. Buttons Suite -->
+        <div class="component-tile-sharp">
+          <div class="component-tile-title">
+            <span>Button Archetypes</span>
+            <span style="font-size: 10px; color: var(--accent-primary);">0PX RADIUS</span>
+          </div>
+
+          <div class="button-stack-row">
+            <button class="btn-editorial-primary" onclick="triggerToast('Primary Carbon Button Pressed')">
+              <span>Primary CTA</span>
+              <span>➔</span>
+            </button>
+            <button class="btn-editorial-ghost" onclick="triggerToast('Ghost Button Pressed')">
+              <span>Secondary</span>
+            </button>
+            <button class="btn-tile btn-download" onclick="triggerToast('Terracotta Button Pressed')">
+              <span>Terracotta</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Badges & Glyphs -->
+        <div class="component-tile-sharp">
+          <div class="component-tile-title">
+            <span>Accent Glyphs</span>
+            <span style="font-size: 10px; color: var(--text-secondary);">1PX STROKE</span>
+          </div>
+
+          <div style="display: flex; gap: var(--space-xs); align-items: center; flex-wrap: wrap;">
+            <span style="padding: 4px 10px; background: var(--accent-primary); color: #fff; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;">✦ SPARKLE</span>
+            <span style="padding: 4px 10px; background: var(--accent-tint-peach); color: #141312; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;">✻ ASTERISK</span>
+            <span style="padding: 4px 10px; background: var(--text-primary); color: #fff; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;">➔ ARROW</span>
+          </div>
+        </div>
+
+        <!-- 3. Hairline Containers -->
+        <div class="component-tile-sharp">
+          <div class="component-tile-title">
+            <span>Solid Frame</span>
+            <span style="font-size: 10px; color: var(--text-secondary);">1PX CARBON</span>
+          </div>
+
+          <div style="padding: 12px 16px; border: 1px solid var(--text-primary); background: var(--surface-canvas);">
+            <div style="font-family: var(--font-display-serif); font-size: 14px; text-transform: uppercase; font-weight: 600;">Architectural Frame Box</div>
+            <div style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">Zero curvature across all container boundaries.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       6. LIVING MICRO-EXPERIENCE: THE CHIC ARCHIVE SPREAD
+       ========================================================================== -->
+    <section class="section-block" id="demo-section">
+      <div class="section-header-bar">
+        <div>
+          <h2 class="section-title">04 / Living Micro-Experience — <em>Chic Archive</em></h2>
+          <p class="section-subtitle">Interactive fashion lookbook demonstrating tilted ribbons and rotating provenance seals.</p>
+        </div>
+        <span class="sample-meta-utility">✦ Interactive Magazine Spread</span>
+      </div>
+
+      <div class="demo-lookbook-container">
+        
+        <!-- Spread Header -->
+        <div class="lookbook-header-strip">
+          <div>REVUE EDITORIALE // THE CHIC ARCHIVE</div>
+          <div>VOL. 42 • AUTOMNE-HIVER</div>
+          <div>PARIS / MILAN</div>
+        </div>
+
+        <div class="lookbook-spread-grid">
+          
+          <!-- Left Editorial Column -->
+          <div class="lookbook-editorial-col">
+            <div class="lookbook-issue-tag" id="lookbook-tag-val">✦ EDITION 01 // ARCHIVE 1994</div>
+
+            <h3 class="lookbook-spread-title" id="lookbook-title-val">
+              Velvet &amp; <em>Silk Brocade</em> Tailored Jacket
+            </h3>
+
+            <p class="lookbook-spread-body" id="lookbook-desc-val">
+              A study in dramatic restraint: structured shoulders in deep carbon velvet with hand-stitched terracotta silk lining and brass monogrammed buttons.
+            </p>
+
+            <!-- Edition Switcher -->
+            <div class="edition-switcher-strip">
+              <button class="edition-btn active" onclick="selectEdition(this, '01', 'Velvet & Silk Brocade Tailored Jacket', 'A study in dramatic restraint: structured shoulders in deep carbon velvet with hand-stitched terracotta silk lining and brass monogrammed buttons.', '€2,850', 'VELVET')">Edition 01</button>
+              <button class="edition-btn" onclick="selectEdition(this, '02', 'Terracotta Linen Double-Breasted Suit', 'Woven in heavy Italian flax linen with wide notched lapels and horn buttons. Relaxed yet razor-sharp.', '€3,200', 'LINEN')">Edition 02</button>
+              <button class="edition-btn" onclick="selectEdition(this, '03', 'Alabaster Wool Structured Trench', 'Full-length double-faced wool coat in warm alabaster linen hue with deep storm flap and belt cinch.', '€3,900', 'WOOL')">Edition 03</button>
+              <button class="edition-btn" onclick="selectEdition(this, '04', 'Dusty Salmon Silk Evening Slip', 'Fluid bias-cut silk charmeuse with delicate French lace trim and open back drape.', '€1,950', 'SILK')">Edition 04</button>
+            </div>
+          </div>
+
+          <!-- Right Preview & Ribbon Angle Controller -->
+          <div class="lookbook-preview-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-hairline); padding-bottom: 8px;">
+              <span style="font-size: 10px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;">ESTIMATE / ACQUISITION</span>
+              <span id="lookbook-price-val" style="font-family: var(--font-display-serif); font-size: 24px; font-weight: 600; color: var(--accent-primary);">€2,850</span>
+            </div>
+
+            <div style="text-align: center; padding: 12px 0;">
+              <span class="sample-ticker-text" style="font-size: 18px;" id="lookbook-ticker-phrase">✻ Vintage Chic Haute Couture ✻</span>
+            </div>
+
+            <!-- Tilted Ribbon Angle Controller -->
+            <div class="ribbon-slider-block">
+              <div class="ribbon-slider-header">
+                <span>Marquee Ribbon Tilt Angle</span>
+                <span id="ribbon-angle-val" style="font-family: var(--font-mono); color: var(--accent-primary); font-weight: 600;">-3.2°</span>
+              </div>
+              <input type="range" min="-10" max="10" step="0.2" value="-3.2" class="editorial-range-slider" oninput="handleRibbonAngle(this.value)">
+            </div>
+
+            <div style="display: flex; gap: var(--space-xs); margin-top: 8px;">
+              <button class="btn-editorial-primary" style="flex: 1;" onclick="triggerToast('Edition Inquired at Atelier')">Acquire Piece ➔</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. STYLE TILE PROMPT CODE DRAWER (Bottom Ingestion)
+         ========================================================================== -->
+    <section class="section-block" id="spec-section">
+      <div class="spec-drawer-card">
+        <div class="spec-drawer-header">
+          <div>
+            <div style="font-family: var(--font-display-serif); font-size: 20px; font-weight: 400; text-transform: uppercase;">Markdown Style Tile Specification</div>
+            <div style="font-size: 11px; color: #EAD6CD; letter-spacing: 0.12em; text-transform: uppercase;">Copy directly into Cursor, Claude, Antigravity, or Copilot prompts.</div>
+          </div>
+
+          <div style="display: flex; gap: var(--space-xs);">
+            <button class="btn-tile btn-copy" style="background: var(--accent-primary);" onclick="copyTilePromptDirect()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Prompt
+            </button>
+          </div>
+        </div>
+
+        <pre class="spec-code-pre" id="spec-code-display"></pre>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==========================================================================
+       MODAL INSPECT DRAWER
+       ========================================================================== -->
+  <div class="modal-overlay" id="spec-modal" onclick="closeSpecModalOnOutside(event)">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <div style="font-family: var(--font-display-serif); font-size: 18px; font-weight: 400; text-transform: uppercase;">TILE-042 // Editorial Vintage Chic</div>
+          <div style="font-size: 11px; color: #EAD6CD; letter-spacing: 0.12em; text-transform: uppercase;">Official Style Tile Token Specification</div>
+        </div>
+        <button class="modal-close-btn" onclick="closeSpecModal()">✕</button>
+      </div>
+      <pre class="spec-code-pre" id="modal-spec-display" style="max-height: 60vh;"></pre>
+      <div style="display: flex; justify-content: flex-end; gap: var(--space-xs);">
+        <button class="btn-tile btn-copy" style="background: var(--accent-primary);" onclick="copyTilePromptDirect()">Copy Markdown</button>
+        <button class="btn-tile btn-preview" onclick="closeSpecModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Popup -->
+  <div class="toast-popup" id="toast-popup">✓ Copied to Clipboard!</div>
+
+  <!-- ==========================================================================
+       EMBEDDED STYLE TILE MARKDOWN SCRIPT BLOCK (agent.md Section 2 & 4)
+       ========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Aesthetic: Editorial Vintage Chic • Alabaster Linen & Vivid Terracotta
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Editorial Vintage Chic captures the timeless sophistication of high-fashion magazine 
+layouts with warm alabaster linen (#FBF9F6), deep carbon ink black (#141312), and 
+vivid terracotta accents (#EE582B). Defined by light Didone typography (300 weight), 
+tilted rotational ticker ribbons (-3.2deg), continuously rotating provenance seals, 
+and disciplined 0px rectangular geometry, it delivers pure French editorial chic.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Canvas & Surfaces */
+  --surface-canvas:         #FBF9F6; /* Warm alabaster / editorial linen */
+  --surface-canvas-subtle:  #F3EFEA; /* Warm beige secondary background */
+  --surface-glow-ambient:   #F5DDD2; /* Soft diffused peach underglow */
+  --surface-card:           #FFFFFF; /* Clean white for embedded assets */
+
+  /* Text & Inks */
+  --text-primary:           #141312; /* Deep carbon ink black */
+  --text-secondary:         #6B6661; /* Muted warm slate / taupe body */
+  --text-tertiary:          #9C958E; /* Faint caption / micro-copy grey */
+  --text-inverse:           #FFFFFF; /* Pure white on dark surfaces */
+
+  /* Accents & Tickers */
+  --accent-primary:         #EE582B; /* Vivid terracotta / warm tangerine */
+  --accent-primary-hover:   #D6451B; /* Deep burnt orange */
+  --accent-tint-peach:      #F5BAA7; /* Dusty salmon / peach ticker ribbon */
+  --accent-tint-muted:      #EAD6CD; /* Faded clay overlay */
+
+  /* Borders */
+  --border-hairline:        rgba(20, 19, 18, 0.08); /* Whisper-thin boundary */
+  --border-strong:          #141312; /* Sharp contrast divider */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display-serif:     "Playfair Display", "Didot", serif;
+--font-decorative-script: "UnifrakturMaguntia", "Cinzel Decorative", serif;
+--font-body-sans:         "Inter", "Helvetica Neue", sans-serif;
+--font-mono:              "JetBrains Mono", monospace;
+
+/* Scale & Hierarchy */
+--type-display-hero:    300 clamp(3.5rem, 7vw, 6.5rem) / 0.95 var(--font-display-serif); /* +0.04em Tracking, UPPERCASE */
+--type-display-section: 400 clamp(2.25rem, 4vw, 3.75rem) / 1.05 var(--font-display-serif); /* +0.02em Tracking, UPPERCASE */
+--type-ticker-text:     400 1.125rem / 1.0 var(--font-decorative-script);                 /* +0.05em Tracking */
+--type-body-standard:   400 0.875rem (14px) / 1.6 var(--font-body-sans);                  /* -0.01em Tracking */
+--type-meta-utility:    500 0.6875rem (11px) / 1.2 var(--font-body-sans);                 /* +0.12em Tracking, UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-sharp:   0px;    /* Primary aesthetic: strict rectangular cards, CTAs, banners */
+--radius-subtle:  2px;    /* Input fields / micro containers */
+--radius-full:    50%;    /* Reserved strictly for circular floating stamps & logo marks */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERING)
+ * -------------------------------------------------------------------------- */
+--shadow-default: none;   /* Flat magazine print philosophy */
+--shadow-subtle:  0 20px 40px -15px rgba(20, 19, 18, 0.05);
+
+- Layer 0 (Canvas):     Warm alabaster canvas + radial peach blur (#F5DDD2)
+- Layer 10 (Media):     Photographic editorial cards
+- Layer 20 (Type):      High-contrast serif overlapping imagery
+- Layer 30 (Ribbon):    Tilted marquee banners (-3.2deg rotation)
+- Layer 40 (Stamp):     Circular decorative floating stamps (18s linear infinite rotation)
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (4px Base Unit)
+ * -------------------------------------------------------------------------- */
+--space-2xs: 4px;
+--space-xs:  8px;
+--space-sm:  16px;
+--space-md:  24px;
+--space-lg:  40px;
+--space-xl:  64px;
+--space-2xl: 120px;
+
+- Gutter: 32px | Margin: clamp(1.5rem, 5vw, 4rem) | Asymmetric multi-column offset
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-hairline-divider: 1px solid rgba(20, 19, 18, 0.08);
+--border-solid-frame:      1px solid #141312;
+--rotational-ribbon:       height 36px, angle -3.2deg, offset 2px;
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY & GRAPHIC MOTIFS
+ * -------------------------------------------------------------------------- */
+- Ultra-thin 1.0px–1.25px line weight, minimal geometric wireframe
+- Glyphs: ✦ (Four-point editorial sparkle), ✻ (Asterisk star), ➔ (Hairline rule arrow)
+- Badge System: Curved text on circular SVG path with centered sparkle
+
+/* -----------------------------------------------------------------------------
+ * 9. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Primary CTA Button**: #141312 background, 0px radius, shifts to #EE582B with translateY(-1px) on hover.
+- **Tilted Marquee Ribbon**: -3.2deg tilt with continuous linear X-axis infinite scrolling.
+- **Rotating Stamp Badge**: Continuous 18s linear infinite 360-degree rotation.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- NO rounded bento cards (maintain strict 0px rectangular discipline).
+- NO saturated neon cyber blue/purple gradients (maintain alabaster, carbon, and terracotta).
+- NO heavy unsoftened box shadows; prioritize flat magazine print layouts.
+================================================================================
+  </script>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    const markdownContent = document.getElementById("style-tile-markdown").textContent.trim();
+
+    // Populate code viewer displays
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    // Toast notification
+    function triggerToast(message = "✓ Copied to Clipboard!") {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      setTimeout(() => {
+        toast.style.display = "none";
+      }, 2200);
+    }
+
+    // Direct Copy Action
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(() => {
+        triggerToast("✓ Style Tile Copied for Agent!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.innerHTML = `<span>✓ Copied!</span>`;
+          setTimeout(() => { copyBtn.innerHTML = original; }, 2000);
+        }
+      });
+    }
+
+    // Copy Swatch Hex
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast(`✓ Copied ${name}: ${hex}`);
+      });
+    }
+
+    // Event Listeners for Header Actions
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+
+    document.getElementById("btn-download-tile").addEventListener("click", () => {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-editorial-vintage-chic.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-editorial-vintage-chic.md");
+    });
+
+    document.getElementById("btn-preview-tile").addEventListener("click", () => {
+      document.getElementById("spec-modal").classList.add("active");
+    });
+
+    function closeSpecModal() {
+      document.getElementById("spec-modal").classList.remove("active");
+    }
+
+    function closeSpecModalOnOutside(e) {
+      if (e.target.id === "spec-modal") {
+        closeSpecModal();
+      }
+    }
+
+    // Typeface Switcher
+    function setPlaygroundType(btn, family, weight, letterSpacing, textTransform) {
+      document.querySelectorAll(".playground-controls .playground-pill-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const textarea = document.getElementById("live-type-box");
+      if (textarea) {
+        textarea.style.fontFamily = family;
+        textarea.style.fontWeight = weight;
+        textarea.style.letterSpacing = letterSpacing;
+        textarea.style.textTransform = textTransform;
+        textarea.style.fontStyle = (textTransform === 'italic') ? 'italic' : 'normal';
+      }
+    }
+
+    // Edition Switcher
+    function selectEdition(btn, num, title, desc, price, tickerWord) {
+      document.querySelectorAll(".edition-switcher-strip .edition-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      document.getElementById("lookbook-tag-val").textContent = `✦ EDITION ${num} // ARCHIVE 1994`;
+      document.getElementById("lookbook-title-val").innerHTML = title;
+      document.getElementById("lookbook-desc-val").textContent = desc;
+      document.getElementById("lookbook-price-val").textContent = price;
+      document.getElementById("lookbook-ticker-phrase").textContent = `✻ Vintage Chic ${tickerWord} ✻`;
+
+      triggerToast(`Loaded Edition ${num}`);
+    }
+
+    // Tilted Ribbon Angle Handler
+    function handleRibbonAngle(deg) {
+      const ribbon = document.getElementById("main-tilted-ribbon");
+      if (ribbon) {
+        ribbon.style.transform = `rotate(${deg}deg)`;
+      }
+      const label = document.getElementById("ribbon-angle-val");
+      if (label) label.textContent = `${deg}°`;
+    }
+  </script>
+</body>
+</html>
