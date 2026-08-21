@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editorial Noir / Monochrome Neo-Agency — Style Tile & Design System (TILE-044)</title>
+  <meta name="description" content="Production design system and Style Tile for Editorial Noir / Monochrome Neo-Agency (TILE-044): Deep obsidian backdrop #080808, high-voltage electric vermilion #FF3823, Plus Jakarta Sans & Instrument Serif typography, 28px card framing, and white disc CTA icons.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon/favicon.ico">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Instrument Serif, JetBrains Mono, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       STYLE TILE: EDITORIAL NOIR / MONOCHROME NEO-AGENCY // TILE-044
+       ========================================================================== */
+
+    :root {
+      /* ------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * ------------------------------------------------------------------------ */
+      --color-bg-canvas:          #080808; /* Deep obsidian backdrop */
+      --color-bg-surface-ambient: #121214; /* Fluid wave/silk dimensional shadow */
+      --color-bg-surface-card:    #18181B; /* Elevated container fill */
+
+      --color-text-primary:       #FFFFFF; /* 100% Crisp white */
+      --color-text-secondary:     #A1A1AA; /* Muted zinc for body & descriptive text */
+      --color-text-tertiary:      #52525B; /* Low-emphasis metadata / brackets */
+
+      --color-accent-primary:     #FF3823; /* High-voltage electric vermilion / red-orange */
+      --color-accent-on-primary:  #FFFFFF; /* Text on accent background */
+      --color-accent-contrast-bg: #FFFFFF; /* High-contrast white disc for CTA icon */
+      --color-accent-contrast-fg: #080808; /* Icon glyph color inside white disc */
+
+      --color-nav-bg:             rgba(255, 255, 255, 0.04);
+      --color-nav-border:         rgba(255, 255, 255, 0.12);
+
+      /* ------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * ------------------------------------------------------------------------ */
+      --font-sans-display:        "Plus Jakarta Sans", "Inter", sans-serif;
+      --font-serif-editorial:     "Instrument Serif", Georgia, serif;
+      --font-mono-meta:           "JetBrains Mono", monospace;
+
+      /* Type Scales */
+      --type-hero-sans:           800 clamp(2.8rem, 5.6vw, 5.0rem) / 1.05 var(--font-sans-display);
+      --type-hero-serif:          400 clamp(3.0rem, 6.0vw, 5.25rem) / 1.05 var(--font-serif-editorial);
+      --type-nav-link:            500 0.875rem / 1.2 var(--font-sans-display);
+      --type-body-lead:           400 1.00rem / 1.60 var(--font-sans-display);
+      --type-meta-tag:            400 0.8125rem / 1.0 var(--font-mono-meta);
+      --type-button:              600 0.875rem / 1.0 var(--font-sans-display);
+
+      /* ------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * ------------------------------------------------------------------------ */
+      --radius-pill:              9999px; /* CTAs, floating nav, badges, avatar circles */
+      --radius-card:              28px;   /* Media framing & product showcase containers */
+      --radius-card-inner:        20px;   /* Sub-elements, secondary nested cards */
+      --radius-avatar:            50%;    /* Overlapping team circles */
+
+      /* ------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+       * ------------------------------------------------------------------------ */
+      --layer-1-cards:            0 24px 48px -12px rgba(0, 0, 0, 0.7), 
+                                  0 4px 12px rgba(0, 0, 0, 0.4);
+      --layer-2-pill-cta:         0 12px 24px -6px rgba(255, 56, 35, 0.35);
+      --layer-glass-nav:          backdrop-filter: blur(16px);
+
+      /* ------------------------------------------------------------------------
+       * 5. SPACING & SPATIAL SCALE
+       * ------------------------------------------------------------------------ */
+      --space-unit:               4px;
+      --space-xs:                 8px;
+      --space-sm:                 12px;
+      --space-md:                 24px;
+      --space-lg:                 48px;
+      --space-xl:                 80px;
+      --avatar-overlap:           -10px;
+
+      /* ------------------------------------------------------------------------
+       * 6. BORDERS & DIVIDERS
+       * ------------------------------------------------------------------------ */
+      --stroke-hairline:          1px solid rgba(255, 255, 255, 0.08);
+      --stroke-interactive:       1px solid rgba(255, 255, 255, 0.18);
+      --stroke-avatar-ring:       2px solid #080808;
+
+      /* ------------------------------------------------------------------------
+       * 7. TRANSITIONS & TIMING
+       * ------------------------------------------------------------------------ */
+      --transition-easing:        cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast:          150ms var(--transition-easing);
+      --transition-smooth:        300ms var(--transition-easing);
+    }
+
+    /* ==========================================================================
+       RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--color-bg-canvas);
+      color: var(--color-text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--color-bg-canvas);
+      color: var(--color-text-primary);
+      font-family: var(--font-sans-display);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Radial Soft Lighting over Liquid Charcoal Mesh */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 10%, rgba(255, 56, 35, 0.06) 0%, transparent 50%),
+                  radial-gradient(circle at 85% 80%, rgba(18, 18, 20, 0.8) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    ::selection {
+      background-color: var(--color-accent-primary);
+      color: #FFFFFF;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ==========================================================================
+       MANDATORY HEADER BAR (agent.md Section 2)
+       ========================================================================== */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: rgba(8, 8, 8, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: var(--stroke-hairline);
+      padding: 12px var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      transition: all var(--transition-smooth);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      background: var(--color-nav-bg);
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      border: var(--stroke-hairline);
+      transition: all var(--transition-smooth);
+    }
+
+    .nav-back-link:hover {
+      color: #FFFFFF;
+      border-color: var(--stroke-interactive);
+      transform: translateX(-2px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono-meta);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      background: var(--color-accent-primary);
+      color: #FFFFFF;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 0 12px rgba(255, 56, 35, 0.4);
+    }
+
+    .design-title {
+      font-family: var(--font-sans-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .design-vibe-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      background: rgba(255, 255, 255, 0.06);
+      border: var(--stroke-hairline);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      font-family: var(--font-sans-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition-smooth);
+    }
+
+    .btn-preview {
+      background: var(--color-nav-bg);
+      color: var(--color-text-primary);
+      border: var(--stroke-hairline);
+    }
+
+    .btn-preview:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--stroke-interactive);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy {
+      background: var(--color-text-primary);
+      color: #080808;
+    }
+
+    .btn-copy:hover {
+      background: #E4E4E7;
+      transform: translateY(-1px);
+    }
+
+    .btn-download {
+      background: var(--color-accent-primary);
+      color: #FFFFFF;
+      box-shadow: var(--layer-2-pill-cta);
+    }
+
+    .btn-download:hover {
+      background: #E52E1B;
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       HERO DISPLAY BANNER & DUAL TYPOGRAPHY ARCHITECTURE
+       ========================================================================== */
+    .hero-section {
+      padding: var(--space-xl) 0 var(--space-lg);
+    }
+
+    .hero-container-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .hero-eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(255, 56, 35, 0.1);
+      border: 1px solid rgba(255, 56, 35, 0.25);
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-accent-primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-headline-dual {
+      font-family: var(--font-sans-display);
+      font-size: clamp(2.8rem, 5.8vw, 64px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-headline-dual .serif-italic-accent {
+      font-family: var(--font-serif-editorial);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--color-accent-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .hero-lead-text {
+      font-size: 16px;
+      line-height: 1.60;
+      color: var(--color-text-secondary);
+      max-width: 520px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-cta-cluster {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    /* Signature Electric Vermilion CTA with White Icon Disc */
+    .btn-vermilion-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 10px 8px 24px;
+      background: var(--color-accent-primary);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      border-radius: var(--radius-pill);
+      box-shadow: var(--layer-2-pill-cta);
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition-smooth);
+    }
+
+    .btn-vermilion-action:hover {
+      transform: scale(1.02) translateY(-1px);
+      box-shadow: 0 16px 32px -6px rgba(255, 56, 35, 0.5);
+    }
+
+    .cta-white-disc {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      color: #080808;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform var(--transition-fast);
+    }
+
+    .btn-vermilion-action:hover .cta-white-disc {
+      transform: translateX(3px);
+    }
+
+    .btn-glass-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 26px;
+      background: var(--color-nav-bg);
+      color: var(--color-text-primary);
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: var(--radius-pill);
+      border: var(--stroke-hairline);
+      backdrop-filter: blur(12px);
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+    }
+
+    .btn-glass-ghost:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--stroke-interactive);
+      transform: translateY(-1px);
+    }
+
+    /* Hero Right: 28px Elevated Bento Card Showcase */
+    .hero-bento-showcase {
+      background: var(--color-bg-surface-card);
+      border-radius: var(--radius-card);
+      padding: var(--space-lg);
+      border: var(--stroke-hairline);
+      box-shadow: var(--layer-1-cards);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      position: relative;
+    }
+
+    .bento-nested-inner {
+      background: var(--color-bg-surface-ambient);
+      border-radius: var(--radius-card-inner);
+      padding: var(--space-md);
+      border: var(--stroke-hairline);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .avatar-stack-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .avatar-item {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-avatar);
+      border: var(--stroke-avatar-ring);
+      margin-left: var(--avatar-overlap);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .avatar-item:first-child { margin-left: 0; }
+    .avatar-1 { background: #27272A; }
+    .avatar-2 { background: #3F3F46; }
+    .avatar-3 { background: var(--color-accent-primary); }
+
+    /* ==========================================================================
+       SECTION HEADERS
+       ========================================================================== */
+    .section-block {
+      margin-bottom: var(--space-xl);
+    }
+
+    .section-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--stroke-hairline);
+      margin-bottom: var(--space-lg);
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    .section-title {
+      font-family: var(--font-sans-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .section-title em {
+      font-family: var(--font-serif-editorial);
+      font-style: italic;
+      color: var(--color-accent-primary);
+      font-weight: 400;
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+    }
+
+    /* ==========================================================================
+       COLOR ROLES & PALETTE MATRIX
+       ========================================================================== */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-sm);
+    }
+
+    .swatch-card-noir {
+      background: var(--color-bg-surface-card);
+      border-radius: var(--radius-card-inner);
+      padding: var(--space-md);
+      border: var(--stroke-hairline);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+    }
+
+    .swatch-card-noir:hover {
+      border-color: var(--stroke-interactive);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+    }
+
+    .swatch-visual {
+      height: 72px;
+      border-radius: 12px;
+      border: var(--stroke-hairline);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 8px;
+      position: relative;
+    }
+
+    .swatch-copy-pill {
+      font-size: 10px;
+      font-weight: 600;
+      background: rgba(8, 8, 8, 0.9);
+      color: #FFFFFF;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: all var(--transition-smooth);
+    }
+
+    .swatch-card-noir:hover .swatch-copy-pill {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .swatch-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+
+    .swatch-token {
+      font-family: var(--font-mono-meta);
+      font-size: 11px;
+      color: var(--color-text-secondary);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono-meta);
+      font-size: 11px;
+      color: var(--color-accent-primary);
+      font-weight: 600;
+    }
+
+    .swatch-desc {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      line-height: 1.45;
+    }
+
+    /* ==========================================================================
+       TYPOGRAPHY SPECIMEN SYSTEM
+       ========================================================================== */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-lg);
+    }
+
+    .type-ladder-box {
+      background: var(--color-bg-surface-card);
+      border-radius: var(--radius-card);
+      padding: var(--space-lg);
+      border: var(--stroke-hairline);
+    }
+
+    .type-ladder-row {
+      padding: var(--space-sm) 0;
+      border-bottom: var(--stroke-hairline);
+    }
+
+    .type-ladder-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .type-row-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-family: var(--font-mono-meta);
+      font-size: 11px;
+      color: var(--color-text-tertiary);
+    }
+
+    .sample-hero-sans {
+      font-family: var(--font-sans-display);
+      font-size: clamp(2.4rem, 4.8vw, 52px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--color-text-primary);
+    }
+
+    .sample-hero-serif {
+      font-family: var(--font-serif-editorial);
+      font-size: clamp(2.6rem, 5.0vw, 56px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--color-accent-primary);
+    }
+
+    .sample-body-lead {
+      font-family: var(--font-sans-display);
+      font-size: 16px;
+      line-height: 1.60;
+      color: var(--color-text-secondary);
+    }
+
+    .sample-meta-tag {
+      font-family: var(--font-mono-meta);
+      font-size: 13px;
+      color: var(--color-text-primary);
+      letter-spacing: +0.02em;
+    }
+
+    /* Type Playground */
+    .type-playground-card {
+      background: var(--color-bg-surface-card);
+      border-radius: var(--radius-card);
+      padding: var(--space-lg);
+      border: var(--stroke-hairline);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .playground-controls {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .playground-pill-btn {
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      background: var(--color-bg-surface-ambient);
+      border: var(--stroke-hairline);
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+    }
+
+    .playground-pill-btn.active {
+      background: var(--color-accent-primary);
+      color: #FFFFFF;
+      border-color: var(--color-accent-primary);
+    }
+
+    .playground-textarea {
+      width: 100%;
+      min-height: 140px;
+      padding: var(--space-md);
+      background: var(--color-bg-canvas);
+      border-radius: var(--radius-card-inner);
+      border: var(--stroke-hairline);
+      font-family: var(--font-sans-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      line-height: 1.3;
+      resize: vertical;
+      outline: none;
+      transition: border-color var(--transition-smooth);
+    }
+
+    .playground-textarea:focus {
+      border-color: var(--color-accent-primary);
+    }
+
+    /* ==========================================================================
+       COMPONENT ARCHETYPE GALLERY
+       ========================================================================== */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .component-tile-card {
+      background: var(--color-bg-surface-card);
+      border-radius: var(--radius-card);
+      padding: var(--space-lg);
+      border: var(--stroke-hairline);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .component-tile-title {
+      font-family: var(--font-sans-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .button-group-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    /* ==========================================================================
+       LIVING MICRO-EXPERIENCE: NOIR STUDIO EDITORIAL RUNTIME
+       ========================================================================== */
+    .demo-noir-container {
+      background: var(--color-bg-surface-card);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      border: var(--stroke-hairline);
+      box-shadow: var(--layer-1-cards);
+      position: relative;
+    }
+
+    .demo-top-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--stroke-hairline);
+      margin-bottom: var(--space-lg);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+
+    .demo-grid-showcase {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+
+    .demo-project-details {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .project-tag-badge {
+      font-family: var(--font-mono-meta);
+      font-size: 11px;
+      color: var(--color-accent-primary);
+      letter-spacing: 0.04em;
+    }
+
+    .project-headline-title {
+      font-family: var(--font-sans-display);
+      font-size: clamp(1.8rem, 3.2vw, 36px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--color-text-primary);
+    }
+
+    .project-headline-title .serif-accent {
+      font-family: var(--font-serif-editorial);
+      font-style: italic;
+      color: var(--color-accent-primary);
+      font-weight: 400;
+    }
+
+    .project-desc-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--color-text-secondary);
+    }
+
+    .project-switcher-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-top: var(--space-sm);
+    }
+
+    .proj-btn {
+      padding: 8px 16px;
+      background: var(--color-bg-surface-ambient);
+      border: var(--stroke-hairline);
+      color: var(--color-text-secondary);
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all var(--transition-smooth);
+    }
+
+    .proj-btn.active {
+      background: var(--color-accent-primary);
+      color: #FFFFFF;
+      border-color: var(--color-accent-primary);
+    }
+
+    /* Right Preview Stage */
+    .demo-preview-stage {
+      background: var(--color-bg-surface-ambient);
+      border-radius: var(--radius-card-inner);
+      border: var(--stroke-hairline);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .stage-metric-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--stroke-hairline);
+      padding-bottom: 8px;
+    }
+
+    /* Vermilion Glow Controller */
+    .glow-slider-block {
+      margin-top: var(--space-sm);
+      padding-top: var(--space-sm);
+      border-top: var(--stroke-hairline);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .glow-slider-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+    }
+
+    .vermilion-range-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: #27272A;
+      border-radius: var(--radius-pill);
+      outline: none;
+    }
+
+    .vermilion-range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--color-accent-primary);
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(255, 56, 35, 0.7);
+    }
+
+    /* ==========================================================================
+       STYLE TILE PROMPT CODE DRAWER & PREVIEW MODAL
+       ========================================================================== */
+    .spec-drawer-card {
+      background: #111113;
+      color: #FFFFFF;
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      border: var(--stroke-hairline);
+    }
+
+    .spec-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .spec-code-pre {
+      font-family: var(--font-mono-meta);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #D4D4D8;
+      background: #0A0A0C;
+      padding: var(--space-lg);
+      border-radius: var(--radius-card-inner);
+      overflow-x: auto;
+      max-height: 440px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 8, 8, 0.88);
+      backdrop-filter: blur(16px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-window {
+      background: #141417;
+      color: #FFFFFF;
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      border: var(--stroke-hairline);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-close-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all var(--transition-smooth);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--color-accent-primary);
+    }
+
+    /* Toast Popup */
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #18181B;
+      color: var(--color-accent-primary);
+      border: 1px solid rgba(255, 56, 35, 0.4);
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 600;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: none;
+      animation: toastSlideUp 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes toastSlideUp {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Responsive Mobile Overrides */
+    @media (max-width: 768px) {
+      .page-container {
+        padding: 0 var(--space-md);
+      }
+      .hero-container-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+      .demo-grid-showcase {
+        grid-template-columns: 1fr;
+      }
+      .hero-headline-dual {
+        font-size: clamp(2.2rem, 8.5vw, 3.4rem);
+      }
+    }
+  </style>
+
+  <!-- Shared Mobile Safety Sheet -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. MANDATORY TOP NAVIGATION HEADER
+       ========================================================================== -->
+  <header class="style-tile-header">
+    <!-- Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-044</span>
+      <span class="design-title">Editorial Noir</span>
+      <span class="design-vibe-tag">Editorial & Archival</span>
+    </div>
+
+    <!-- Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download editorial-noir.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Tile
+      </button>
+    </div>
+  </header>
+
+  <div class="page-container">
+
+    <!-- ==========================================================================
+         2. HERO DISPLAY BANNER & VERMILION CTA WITH WHITE DISC
+         ========================================================================== -->
+    <section class="hero-section">
+      <div class="hero-container-grid">
+        
+        <!-- Left: Statement & CTAs -->
+        <div class="hero-text-col">
+          <div class="hero-eyebrow-pill">
+            <span>✦ NOIR CREATIVE DIRECTION</span>
+            <span>•</span>
+            <span>EDITION 2026</span>
+          </div>
+
+          <h1 class="hero-headline-dual">
+            We architect digital narratives with <span class="serif-italic-accent">editorial precision</span>
+          </h1>
+
+          <p class="hero-lead-text">
+            Deep obsidian backdrop (#080808), liquid charcoal surfaces, and high-voltage electric vermilion accents (#FF3823). High-contrast Didone serifs combined with 28px bento container framing.
+          </p>
+
+          <div class="hero-cta-cluster">
+            <!-- Signature CTA with White Disc Icon -->
+            <button class="btn-vermilion-action" onclick="copyTilePromptDirect()">
+              <span>Copy Style Tile For AI Agent</span>
+              <span class="cta-white-disc">➔</span>
+            </button>
+
+            <a href="#demo-section" class="btn-glass-ghost">
+              <span>Explore Agency Folio</span>
+              <span>↓</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: 28px Bento Card with Avatar Stack -->
+        <div class="hero-bento-showcase">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-family: var(--font-mono-meta); font-size: 11px; color: var(--color-accent-primary);">[ AGENCY RUNTIME ]</span>
+            <div class="avatar-stack-group">
+              <div class="avatar-item avatar-1">NR</div>
+              <div class="avatar-item avatar-2">ED</div>
+              <div class="avatar-item avatar-3">✦</div>
+            </div>
+          </div>
+
+          <div class="bento-nested-inner">
+            <div style="font-size: 11px; font-weight: 600; color: var(--color-text-secondary); text-transform: uppercase;">ACTIVE SPECIFICATION</div>
+            <div style="font-family: var(--font-sans-display); font-size: 20px; font-weight: 700; color: #FFFFFF;">Monochrome Neo-Agency</div>
+            <div style="font-size: 13px; color: var(--color-text-secondary); margin-top: 4px;">High-voltage vermilion highlights with fluid silk dimensional shadow.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. COLOR ROLES & PALETTE MATRIX
+         ========================================================================== -->
+    <section class="section-block" id="palette-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title">01 / Color Roles & <em>Palette Matrix</em></h2>
+          <p class="section-subtitle">Click any swatch to copy its Hex token to your clipboard.</p>
+        </div>
+        <span style="font-family: var(--font-mono-meta); font-size: 11px; color: var(--color-accent-primary);">8 NOIR TOKENS</span>
+      </div>
+
+      <div class="palette-grid">
+        <!-- 1. Deep Obsidian Canvas -->
+        <div class="swatch-card-noir" onclick="copyHex('#080808', '--color-bg-canvas')">
+          <div class="swatch-visual" style="background-color: #080808;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">Deep Obsidian Canvas</div>
+            <div class="swatch-token">--color-bg-canvas</div>
+            <div class="swatch-hex">#080808</div>
+          </div>
+          <p class="swatch-desc">Deep obsidian base backdrop delivering absolute contrast for white typography.</p>
+        </div>
+
+        <!-- 2. Electric Vermilion -->
+        <div class="swatch-card-noir" onclick="copyHex('#FF3823', '--color-accent-primary')">
+          <div class="swatch-visual" style="background-color: #FF3823;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">High-Voltage Vermilion</div>
+            <div class="swatch-token">--color-accent-primary</div>
+            <div class="swatch-hex">#FF3823</div>
+          </div>
+          <p class="swatch-desc">Primary interactive CTA fill, glowing accents, and editorial italic highlights.</p>
+        </div>
+
+        <!-- 3. Elevated Surface Card -->
+        <div class="swatch-card-noir" onclick="copyHex('#18181B', '--color-bg-surface-card')">
+          <div class="swatch-visual" style="background-color: #18181B;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">Elevated Card Fill</div>
+            <div class="swatch-token">--color-bg-surface-card</div>
+            <div class="swatch-hex">#18181B</div>
+          </div>
+          <p class="swatch-desc">Elevated container fill for 28px bento cards and interactive modules.</p>
+        </div>
+
+        <!-- 4. Fluid Silk Ambient Surface -->
+        <div class="swatch-card-noir" onclick="copyHex('#121214', '--color-bg-surface-ambient')">
+          <div class="swatch-visual" style="background-color: #121214;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">Fluid Silk Ambient</div>
+            <div class="swatch-token">--color-bg-surface-ambient</div>
+            <div class="swatch-hex">#121214</div>
+          </div>
+          <p class="swatch-desc">Sub-surface dimensional shadow and 20px inner card wells.</p>
+        </div>
+
+        <!-- 5. Crisp Pure White -->
+        <div class="swatch-card-noir" onclick="copyHex('#FFFFFF', '--color-text-primary')">
+          <div class="swatch-visual" style="background-color: #FFFFFF;">
+            <span class="swatch-copy-pill" style="background: #080808; color: #fff;">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">Crisp Pure White</div>
+            <div class="swatch-token">--color-text-primary</div>
+            <div class="swatch-hex">#FFFFFF</div>
+          </div>
+          <p class="swatch-desc">High-contrast primary display titles, white CTA icon discs, and button text.</p>
+        </div>
+
+        <!-- 6. Muted Zinc Body -->
+        <div class="swatch-card-noir" onclick="copyHex('#A1A1AA', '--color-text-secondary')">
+          <div class="swatch-visual" style="background-color: #A1A1AA;">
+            <span class="swatch-copy-pill" style="background: #080808; color: #fff;">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">Muted Zinc Body</div>
+            <div class="swatch-token">--color-text-secondary</div>
+            <div class="swatch-hex">#A1A1AA</div>
+          </div>
+          <p class="swatch-desc">Refined editorial body paragraphs and descriptive UI copy.</p>
+        </div>
+
+        <!-- 7. Low-Emphasis Zinc Tertiary -->
+        <div class="swatch-card-noir" onclick="copyHex('#52525B', '--color-text-tertiary')">
+          <div class="swatch-visual" style="background-color: #52525B;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-name">Low-Emphasis Zinc</div>
+            <div class="swatch-token">--color-text-tertiary</div>
+            <div class="swatch-hex">#52525B</div>
+          </div>
+          <p class="swatch-desc">Metadata brackets, hairline dividers, and muted utility labels.</p>
+        </div>
+
+        <!-- 8. Frosted Nav Glass Overlay -->
+        <div class="swatch-card-noir" onclick="copyHex('rgba(255,255,255,0.04)', '--color-nav-bg')">
+          <div class="swatch-visual" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(12px);">
+            <span class="swatch-copy-pill">Copy RGBA</span>
+          </div>
+          <div>
+            <div class="swatch-name">Frosted Glass Overlay</div>
+            <div class="swatch-token">--color-nav-bg</div>
+            <div class="swatch-hex">rgba(255, 255, 255, 0.04)</div>
+          </div>
+          <p class="swatch-desc">Translucent floating pill capsules and navigation pill backdrops.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. TYPOGRAPHY SPECIMEN SYSTEM
+         ========================================================================== -->
+    <section class="section-block" id="typography-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title">02 / Typography & <em>Dual Voice</em></h2>
+          <p class="section-subtitle">Plus Jakarta Sans 800 bold paired with Instrument Serif italic flourishes.</p>
+        </div>
+        <span style="font-family: var(--font-mono-meta); font-size: 11px; color: var(--color-accent-primary);">HYBRID TYPE SYSTEM</span>
+      </div>
+
+      <div class="type-specimen-grid">
+        
+        <!-- Left: Hierarchy Ladder -->
+        <div class="type-ladder-box">
+          <div class="type-ladder-row">
+            <div class="type-row-header">
+              <span>Hero Sans Display</span>
+              <span>Plus Jakarta Sans 800 Bold | 5.00rem | -0.03em</span>
+            </div>
+            <div class="sample-hero-sans">EDITORIAL NOIR</div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-row-header">
+              <span>Hero Serif Accent</span>
+              <span>Instrument Serif 400 Italic | 5.25rem | -0.01em</span>
+            </div>
+            <div class="sample-hero-serif">Creative Direction</div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-row-header">
+              <span>Body Lead</span>
+              <span>Plus Jakarta Sans | 400 Regular | 16px | 1.60</span>
+            </div>
+            <div class="sample-body-lead">
+              A bespoke aesthetic designed for high-caliber creative agencies, fusing stark monochrome restraint with high-voltage vermilion energy.
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-row-header">
+              <span>Meta Tag</span>
+              <span>JetBrains Mono | 400 Regular | 13px | +0.02em</span>
+            </div>
+            <div class="sample-meta-tag">[ NOIR_RUNTIME // VIBE_CODE: 044 ]</div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Type Playground -->
+        <div class="type-playground-card">
+          <div class="playground-controls">
+            <button class="playground-pill-btn active" onclick="setNoirFont(this, 'Plus Jakarta Sans', '800', '-0.03em', 'normal')">Sans 800</button>
+            <button class="playground-pill-btn" onclick="setNoirFont(this, 'Instrument Serif', '400', '-0.01em', 'italic')">Serif Italic</button>
+            <button class="playground-pill-btn" onclick="setNoirFont(this, 'JetBrains Mono', '400', '0.02em', 'normal')">Mono Meta</button>
+            <button class="playground-pill-btn" onclick="setNoirFont(this, 'Plus Jakarta Sans', '500', '-0.01em', 'normal')">Sans 500</button>
+          </div>
+
+          <textarea id="live-type-box" class="playground-textarea">Editorial Noir. High-voltage vermilion on obsidian.</textarea>
+
+          <div style="font-size: 12px; color: var(--color-text-secondary); line-height: 1.5;">
+            <strong>Typographic Rule:</strong> Headlines effortlessly weave ultra-heavy geometric sans (800) with expressive Didone serif italics (400).
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. COMPONENT ARCHETYPE GALLERY
+         ========================================================================== -->
+    <section class="section-block" id="components-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title">03 / Component Archetypes & <em>Pill CTAs</em></h2>
+          <p class="section-subtitle">Vermilion CTAs with white arrow discs, avatar clusters, and 28px bento cards.</p>
+        </div>
+        <span style="font-family: var(--font-mono-meta); font-size: 11px; color: var(--color-accent-primary);">28PX / 9999PX GEOMETRY</span>
+      </div>
+
+      <div class="components-grid">
+
+        <!-- 1. Vermilion & Ghost Buttons -->
+        <div class="component-tile-card">
+          <div class="component-tile-title">
+            <span>Action Buttons</span>
+            <span style="font-size: 10px; color: var(--color-accent-primary);">HIGH-VOLTAGE</span>
+          </div>
+
+          <div class="button-group-row">
+            <button class="btn-vermilion-action" onclick="triggerToast('Vermilion CTA Fired')">
+              <span>Explore Work</span>
+              <span class="cta-white-disc">➔</span>
+            </button>
+
+            <button class="btn-glass-ghost" onclick="triggerToast('Glass Ghost Pressed')">
+              <span>Contact Studio</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Team Avatar Stacks -->
+        <div class="component-tile-card">
+          <div class="component-tile-title">
+            <span>Team Avatar Stacks</span>
+            <span style="font-size: 10px; color: var(--color-text-secondary);">-10PX OVERLAP</span>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--color-bg-surface-ambient); border-radius: var(--radius-card-inner); border: var(--stroke-hairline);">
+            <div class="avatar-stack-group">
+              <div class="avatar-item avatar-1">AK</div>
+              <div class="avatar-item avatar-2">ML</div>
+              <div class="avatar-item avatar-3">ST</div>
+              <div class="avatar-item" style="background: #52525B;">VR</div>
+              <span style="font-size: 12px; font-weight: 600; color: #FFFFFF; margin-left: 10px;">+18 Creatives</span>
+            </div>
+
+            <span style="font-family: var(--font-mono-meta); font-size: 11px; color: var(--color-accent-primary);">[ VERIFIED ]</span>
+          </div>
+        </div>
+
+        <!-- 3. 28px Bento Container -->
+        <div class="component-tile-card">
+          <div class="component-tile-title">
+            <span>28px Bento Card</span>
+            <span style="font-size: 10px; color: var(--color-text-secondary);">28PX / 20PX NESTED</span>
+          </div>
+
+          <div class="bento-nested-inner">
+            <div style="font-size: 11px; font-weight: 600; color: var(--color-accent-primary); text-transform: uppercase;">MICRO SHOWCASE</div>
+            <div style="font-size: 13px; color: var(--color-text-secondary);">Nested 20px radius cards inside 28px parent containers.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       6. LIVING MICRO-EXPERIENCE: NOIR STUDIO SHOWCASE
+       ========================================================================== -->
+    <section class="section-block" id="demo-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title">04 / Living Micro-Experience — <em>Noir Studio</em></h2>
+          <p class="section-subtitle">Interactive creative agency showcase demonstrating dual typography and vermilion glow.</p>
+        </div>
+        <span style="font-family: var(--font-mono-meta); font-size: 11px; color: var(--color-accent-primary);">✦ LIVE SHOWCASE</span>
+      </div>
+
+      <div class="demo-noir-container">
+        
+        <!-- Top Strip -->
+        <div class="demo-top-strip">
+          <div>NOIR CREATIVE // EDITORIAL RUNTIME</div>
+          <div>FOLIO N° 44 • MONOCHROME NEO-AGENCY</div>
+          <div>PARIS / NEW YORK</div>
+        </div>
+
+        <div class="demo-grid-showcase">
+          
+          <!-- Left Details -->
+          <div class="demo-project-details">
+            <div class="project-tag-badge" id="proj-badge-val">[ CASE STUDY 01 // DIGITAL EDITORIAL ]</div>
+
+            <h3 class="project-headline-title" id="proj-title-val">
+              Vogue Haute <span class="serif-accent">Digital Experience</span>
+            </h3>
+
+            <p class="project-desc-text" id="proj-desc-val">
+              An immersive digital lookbook engineered with high-contrast Didone serifs, real-time silk physics, and high-voltage vermilion micro-interactions.
+            </p>
+
+            <!-- Project Switcher Buttons -->
+            <div class="project-switcher-strip">
+              <button class="proj-btn active" onclick="selectNoirProject(this, '01', 'Vogue Haute <span class=\'serif-accent\'>Digital Experience</span>', 'An immersive digital lookbook engineered with high-contrast Didone serifs, real-time silk physics, and high-voltage vermilion micro-interactions.', 'AWARD OF THE YEAR', 'PARIS')">01 / Vogue</button>
+              <button class="proj-btn" onclick="selectNoirProject(this, '02', 'Kinetic <span class=\'serif-accent\'>Architectural Archive</span>', 'Spatial web architecture for a brutalist Paris atelier, blending 28px bento geometry with fluid obsidian transitions.', 'SITE OF THE DAY', 'TOKYO')">02 / Kinetic</button>
+              <button class="proj-btn" onclick="selectNoirProject(this, '03', 'Monochrome <span class=\'serif-accent\'>SaaS Intelligence</span>', 'Ultra-fast developer workspace featuring deep obsidian backdrops and instantaneous spring physics.', 'DESIGN EXCELLENCE', 'NEW YORK')">03 / SaaS</button>
+              <button class="proj-btn" onclick="selectNoirProject(this, '04', 'Hyper-Object <span class=\'serif-accent\'>Creative Revue</span>', 'Limited edition digital magazine published quarterly with blackletter scripts and high-voltage vermilion accents.', 'INDEPENDENT FOLIO', 'BERLIN')">04 / Revue</button>
+            </div>
+          </div>
+
+          <!-- Right Stage Box -->
+          <div class="demo-preview-stage">
+            <div class="stage-metric-header">
+              <span style="font-family: var(--font-mono-meta); font-size: 10px; color: var(--color-text-secondary);">ACCOLADE</span>
+              <span id="proj-award-val" style="font-size: 11px; font-weight: 700; color: var(--color-accent-primary);">AWARD OF THE YEAR</span>
+            </div>
+
+            <div style="margin-top: 8px;">
+              <div style="font-family: var(--font-mono-meta); font-size: 10px; color: var(--color-text-secondary);">LOCATION</div>
+              <div style="font-family: var(--font-sans-display); font-size: 20px; font-weight: 700; color: #FFFFFF; margin-top: 2px;" id="proj-loc-val">PARIS, FRANCE</div>
+            </div>
+
+            <!-- Vermilion Glow Controller -->
+            <div class="glow-slider-block">
+              <div class="glow-slider-header">
+                <span>Vermilion Glow Intensity</span>
+                <span id="glow-val-display" style="font-family: var(--font-mono-meta); color: var(--color-accent-primary);">35%</span>
+              </div>
+              <input type="range" min="10" max="80" value="35" class="vermilion-range-slider" oninput="handleVermilionGlow(this.value)">
+            </div>
+
+            <div style="margin-top: 8px;">
+              <button class="btn-vermilion-action" style="width: 100%; justify-content: space-between;" onclick="triggerToast('Project Case Study Opened')">
+                <span>View Full Case Study</span>
+                <span class="cta-white-disc">➔</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. STYLE TILE PROMPT CODE DRAWER (Bottom Ingestion)
+         ========================================================================== -->
+    <section class="section-block" id="spec-section">
+      <div class="spec-drawer-card">
+        <div class="spec-drawer-header">
+          <div>
+            <div style="font-family: var(--font-sans-display); font-size: 20px; font-weight: 700;">Markdown Style Tile Specification</div>
+            <div style="font-size: 11px; color: var(--color-text-secondary); font-family: var(--font-mono-meta); margin-top: 2px;">Copy directly into Cursor, Claude, Antigravity, or Copilot prompts.</div>
+          </div>
+
+          <div style="display: flex; gap: var(--space-xs);">
+            <button class="btn-tile btn-copy" style="background: var(--color-accent-primary); color: #FFFFFF;" onclick="copyTilePromptDirect()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Prompt
+            </button>
+          </div>
+        </div>
+
+        <pre class="spec-code-pre" id="spec-code-display"></pre>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==========================================================================
+       MODAL INSPECT DRAWER
+       ========================================================================== -->
+  <div class="modal-overlay" id="spec-modal" onclick="closeSpecModalOnOutside(event)">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <div style="font-family: var(--font-sans-display); font-size: 18px; font-weight: 700;">TILE-044 // Editorial Noir / Monochrome Neo-Agency</div>
+          <div style="font-size: 11px; color: var(--color-text-secondary); font-family: var(--font-mono-meta);">Official Style Tile Token Specification</div>
+        </div>
+        <button class="modal-close-btn" onclick="closeSpecModal()">✕</button>
+      </div>
+      <pre class="spec-code-pre" id="modal-spec-display" style="max-height: 60vh;"></pre>
+      <div style="display: flex; justify-content: flex-end; gap: var(--space-xs);">
+        <button class="btn-tile btn-copy" style="background: var(--color-accent-primary); color: #FFFFFF;" onclick="copyTilePromptDirect()">Copy Markdown</button>
+        <button class="btn-tile btn-preview" onclick="closeSpecModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Popup -->
+  <div class="toast-popup" id="toast-popup">✓ Copied to Clipboard!</div>
+
+  <!-- ==========================================================================
+       EMBEDDED STYLE TILE MARKDOWN SCRIPT BLOCK (agent.md Section 2 & 4)
+       ========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Aesthetic: Editorial Noir • Monochrome Neo-Agency • Electric Vermilion
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Editorial Noir / Monochrome Neo-Agency fuses a deep obsidian canvas (#080808) 
+with liquid charcoal dimensional shadows and high-voltage electric vermilion accents 
+(#FF3823). Characterized by dual typography (heavy 800 sans paired with Didone serif italics), 
+28px bento cards, and high-contrast white circular CTA discs, it creates an authoritative, 
+high-energy creative direction presence.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  --color-bg-canvas:          #080808; /* Deep obsidian backdrop */
+  --color-bg-surface-ambient: #121214; /* Fluid wave/silk dimensional shadow */
+  --color-bg-surface-card:    #18181B; /* Elevated container fill */
+
+  --color-text-primary:       #FFFFFF; /* 100% Crisp white */
+  --color-text-secondary:     #A1A1AA; /* Muted zinc for body & descriptive text */
+  --color-text-tertiary:      #52525B; /* Low-emphasis metadata / brackets */
+
+  --color-accent-primary:     #FF3823; /* High-voltage electric vermilion / red-orange */
+  --color-accent-on-primary:  #FFFFFF; /* Text on accent background */
+  --color-accent-contrast-bg: #FFFFFF; /* High-contrast white disc for CTA icon */
+  --color-accent-contrast-fg: #080808; /* Icon glyph color inside white disc */
+
+  --color-nav-bg:             rgba(255, 255, 255, 0.04);
+  --color-nav-border:         rgba(255, 255, 255, 0.12);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-sans-display:    "Plus Jakarta Sans", "Inter Display", sans-serif;
+--font-serif-editorial: "Instrument Serif", "Editorial New", serif;
+--font-mono-meta:       "JetBrains Mono", "Space Mono", monospace;
+
+/* Scale & Hierarchy */
+--type-hero-sans:    800 5.00rem / 1.05 var(--font-sans-display);    /* Tracking: -0.03em */
+--type-hero-serif:   400 5.25rem / 1.05 var(--font-serif-editorial); /* Font-style: italic; Tracking: -0.01em */
+--type-nav-link:     500 0.875rem / 1.2 var(--font-sans-display);    /* Tracking: -0.01em */
+--type-body-lead:    400 1.00rem / 1.60 var(--font-sans-display);    /* Tracking: -0.01em */
+--type-meta-tag:     400 0.8125rem / 1.0 var(--font-mono-meta);      /* Tracking: +0.02em */
+--type-button:       600 0.875rem / 1.0 var(--font-sans-display);    /* Tracking: -0.01em */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-pill:       9999px; /* CTAs, floating nav, badges, avatar circles */
+--radius-card:       28px;   /* Media framing & product showcase containers */
+--radius-card-inner: 20px;   /* Sub-elements, secondary nested cards */
+--radius-avatar:     50%;    /* Overlapping team circles */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+--layer-0-canvas:   Radial soft lighting over liquid charcoal waves
+--layer-1-cards:    0 24px 48px -12px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(0, 0, 0, 0.4);
+--layer-2-pill-cta: 0 12px 24px -6px rgba(255, 56, 35, 0.35);
+--layer-glass-nav:  backdrop-filter: blur(16px);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (4px Base Unit)
+ * -------------------------------------------------------------------------- */
+--space-unit:       4px;
+--space-xs:         8px;    /* Icon inside button gap */
+--space-sm:         12px;   /* Badge internal padding */
+--space-md:         24px;   /* Text block separation */
+--space-lg:         48px;   /* Hero element vertical spacing */
+--space-xl:         80px;   /* Section margins */
+--avatar-overlap:   -10px;  /* Negative horizontal margin for avatar stacks */
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--stroke-hairline:    1px solid rgba(255, 255, 255, 0.08);
+--stroke-interactive: 1px solid rgba(255, 255, 255, 0.18);
+--stroke-avatar-ring: 2px solid #080808; /* Mask cutout for stacked avatars */
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+--icon-style:        Geometric, minimal line weight (1.5px - 1.75px)
+--icon-glyph-action: ArrowRight / ArrowUpRight inside 32px circular white disc
+--icon-presentation: High-contrast circular capsule buttons
+
+/* -----------------------------------------------------------------------------
+ * 9. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+--transition-easing: cubic-bezier(0.16, 1, 0.3, 1) (Expressive spring ease).
+- **CTA Button**: Scales (1.02x) with translateY(-1px); internal white arrow disc translates (+3px X).
+- **Nav Links**: Color shifts to #FFFFFF at 100% opacity on hover.
+- **Bento Media**: Scales (1.03x) with smooth cubic zoom.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- NO muddy gray low-contrast backgrounds (strict #080808 obsidian).
+- NO generic 8px or 12px card radii (strictly maintain 28px card and 9999px pill geometry).
+- NO purple/blue synthetic cyber neon glows (maintain pure high-voltage vermilion #FF3823).
+================================================================================
+  </script>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    const markdownContent = document.getElementById("style-tile-markdown").textContent.trim();
+
+    // Populate code viewer displays
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    // Toast notification
+    function triggerToast(message = "✓ Copied to Clipboard!") {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      setTimeout(() => {
+        toast.style.display = "none";
+      }, 2200);
+    }
+
+    // Direct Copy Action
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(() => {
+        triggerToast("✓ Style Tile Copied for Agent!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.innerHTML = `<span>✓ Copied!</span>`;
+          setTimeout(() => { copyBtn.innerHTML = original; }, 2000);
+        }
+      });
+    }
+
+    // Copy Swatch Hex
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast(`✓ Copied ${name}: ${hex}`);
+      });
+    }
+
+    // Event Listeners for Header Actions
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+
+    document.getElementById("btn-download-tile").addEventListener("click", () => {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-editorial-noir.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-editorial-noir.md");
+    });
+
+    document.getElementById("btn-preview-tile").addEventListener("click", () => {
+      document.getElementById("spec-modal").classList.add("active");
+    });
+
+    function closeSpecModal() {
+      document.getElementById("spec-modal").classList.remove("active");
+    }
+
+    function closeSpecModalOnOutside(e) {
+      if (e.target.id === "spec-modal") {
+        closeSpecModal();
+      }
+    }
+
+    // Typeface Switcher
+    function setNoirFont(btn, family, weight, letterSpacing, style) {
+      document.querySelectorAll(".playground-controls .playground-pill-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const textarea = document.getElementById("live-type-box");
+      if (textarea) {
+        textarea.style.fontFamily = family;
+        textarea.style.fontWeight = weight;
+        textarea.style.letterSpacing = letterSpacing;
+        textarea.style.fontStyle = style;
+      }
+    }
+
+    // Project Switcher
+    function selectNoirProject(btn, num, title, desc, award, loc) {
+      document.querySelectorAll(".project-switcher-strip .proj-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      document.getElementById("proj-badge-val").textContent = `[ CASE STUDY ${num} // DIGITAL EDITORIAL ]`;
+      document.getElementById("proj-title-val").innerHTML = title;
+      document.getElementById("proj-desc-val").textContent = desc;
+      document.getElementById("proj-award-val").textContent = award;
+      document.getElementById("proj-loc-val").textContent = `${loc}, STUDIO`;
+
+      triggerToast(`Loaded Case Study ${num}`);
+    }
+
+    // Vermilion Glow Slider Controller
+    function handleVermilionGlow(val) {
+      const alpha = val / 100;
+      const ctaBtn = document.querySelector(".btn-vermilion-action");
+      if (ctaBtn) {
+        ctaBtn.style.boxShadow = `0 12px 24px -6px rgba(255, 56, 35, ${alpha})`;
+      }
+      const label = document.getElementById("glow-val-display");
+      if (label) label.textContent = `${val}%`;
+    }
+  </script>
+</body>
+</html>

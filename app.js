@@ -7110,6 +7110,138 @@ bento mosaic grids separated by 1px sandstone hairline borders and circular meda
 - NO saturated neon blue/purple cyber gradients (maintain sartorial oxblood burgundy and warm bone).
 - NO thick 2px+ structural borders; maintain 1px sandstone hairline discipline.
 ================================================================================`
+  },
+  {
+    id: "TILE-044",
+    slug: "editorial-noir",
+    name: "Editorial Noir",
+    vibe: "Deep Obsidian Backdrop • High-Voltage Electric Vermilion • Dual Sans & Serif Italic • 28px Bento Geometry • White Disc CTA Icon • Monochrome Neo-Agency",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Deep Obsidian Backdrop", hex: "#080808" },
+      { name: "High-Voltage Electric Vermilion", hex: "#FF3823" },
+      { name: "Elevated Card Fill", hex: "#18181B" },
+      { name: "Fluid Silk Ambient", hex: "#121214" },
+      { name: "Crisp Pure White", hex: "#FFFFFF" },
+      { name: "Muted Zinc Body", hex: "#A1A1AA" },
+      { name: "Low-Emphasis Zinc", hex: "#52525B" },
+      { name: "Frosted Glass Overlay", hex: "rgba(255, 255, 255, 0.04)" }
+    ],
+    description: "Editorial Noir / Monochrome Neo-Agency: Deep obsidian canvas (#080808) with high-voltage electric vermilion (#FF3823), dual typography (heavy 800 sans paired with Instrument Serif italics), 28px bento cards, and high-contrast white circular CTA discs.",
+    markdownSpec: `================================================================================
+  Aesthetic: Editorial Noir • Monochrome Neo-Agency • Electric Vermilion
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Editorial Noir / Monochrome Neo-Agency fuses a deep obsidian canvas (#080808) 
+with liquid charcoal dimensional shadows and high-voltage electric vermilion accents 
+(#FF3823). Characterized by dual typography (heavy 800 sans paired with Didone serif italics), 
+28px bento cards, and high-contrast white circular CTA discs, it creates an authoritative, 
+high-energy creative direction presence.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  --color-bg-canvas:          #080808; /* Deep obsidian backdrop */
+  --color-bg-surface-ambient: #121214; /* Fluid wave/silk dimensional shadow */
+  --color-bg-surface-card:    #18181B; /* Elevated container fill */
+
+  --color-text-primary:       #FFFFFF; /* 100% Crisp white */
+  --color-text-secondary:     #A1A1AA; /* Muted zinc for body & descriptive text */
+  --color-text-tertiary:      #52525B; /* Low-emphasis metadata / brackets */
+
+  --color-accent-primary:     #FF3823; /* High-voltage electric vermilion / red-orange */
+  --color-accent-on-primary:  #FFFFFF; /* Text on accent background */
+  --color-accent-contrast-bg: #FFFFFF; /* High-contrast white disc for CTA icon */
+  --color-accent-contrast-fg: #080808; /* Icon glyph color inside white disc */
+
+  --color-nav-bg:             rgba(255, 255, 255, 0.04);
+  --color-nav-border:         rgba(255, 255, 255, 0.12);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-sans-display:    "Plus Jakarta Sans", "Inter Display", sans-serif;
+--font-serif-editorial: "Instrument Serif", "Editorial New", serif;
+--font-mono-meta:       "JetBrains Mono", "Space Mono", monospace;
+
+/* Scale & Hierarchy */
+--type-hero-sans:    800 5.00rem / 1.05 var(--font-sans-display);    /* Tracking: -0.03em */
+--type-hero-serif:   400 5.25rem / 1.05 var(--font-serif-editorial); /* Font-style: italic; Tracking: -0.01em */
+--type-nav-link:     500 0.875rem / 1.2 var(--font-sans-display);    /* Tracking: -0.01em */
+--type-body-lead:    400 1.00rem / 1.60 var(--font-sans-display);    /* Tracking: -0.01em */
+--type-meta-tag:     400 0.8125rem / 1.0 var(--font-mono-meta);      /* Tracking: +0.02em */
+--type-button:       600 0.875rem / 1.0 var(--font-sans-display);    /* Tracking: -0.01em */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-pill:       9999px; /* CTAs, floating nav, badges, avatar circles */
+--radius-card:       28px;   /* Media framing & product showcase containers */
+--radius-card-inner: 20px;   /* Sub-elements, secondary nested cards */
+--radius-avatar:     50%;    /* Overlapping team circles */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+--layer-0-canvas:   Radial soft lighting over liquid charcoal waves
+--layer-1-cards:    0 24px 48px -12px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(0, 0, 0, 0.4);
+--layer-2-pill-cta: 0 12px 24px -6px rgba(255, 56, 35, 0.35);
+--layer-glass-nav:  backdrop-filter: blur(16px);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (4px Base Unit)
+ * -------------------------------------------------------------------------- */
+--space-unit:       4px;
+--space-xs:         8px;    /* Icon inside button gap */
+--space-sm:         12px;   /* Badge internal padding */
+--space-md:         24px;   /* Text block separation */
+--space-lg:         48px;   /* Hero element vertical spacing */
+--space-xl:         80px;   /* Section margins */
+--avatar-overlap:   -10px;  /* Negative horizontal margin for avatar stacks */
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--stroke-hairline:    1px solid rgba(255, 255, 255, 0.08);
+--stroke-interactive: 1px solid rgba(255, 255, 255, 0.18);
+--stroke-avatar-ring: 2px solid #080808; /* Mask cutout for stacked avatars */
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+--icon-style:        Geometric, minimal line weight (1.5px - 1.75px)
+--icon-glyph-action: ArrowRight / ArrowUpRight inside 32px circular white disc
+--icon-presentation: High-contrast circular capsule buttons
+
+/* -----------------------------------------------------------------------------
+ * 9. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+--transition-easing: cubic-bezier(0.16, 1, 0.3, 1) (Expressive spring ease).
+- **CTA Button**: Scales (1.02x) with translateY(-1px); internal white arrow disc translates (+3px X).
+- **Nav Links**: Color shifts to #FFFFFF at 100% opacity on hover.
+- **Bento Media**: Scales (1.03x) with smooth cubic zoom.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- NO muddy gray low-contrast backgrounds (strict #080808 obsidian).
+- NO generic 8px or 12px card radii (strictly maintain 28px card and 9999px pill geometry).
+- NO purple/blue synthetic cyber neon glows (maintain pure high-voltage vermilion #FF3823).
+================================================================================`
   }
 ];
 
