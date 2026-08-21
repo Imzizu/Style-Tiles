@@ -193,12 +193,25 @@
         <!-- Controls & Filters Panel -->
         <div class="controls-panel" id="catalog-controls">
           <div class="controls-top-row">
-            <!-- Search bar -->
-            <div class="search-box">
-              <span class="search-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              </span>
-              <input type="text" id="search-input" class="search-input" placeholder="Search by vibe, type, or tag..." autocomplete="off" data-placeholder-desktop="Search by vibe, typography, tag, or aesthetic... [ / ]" data-placeholder-mobile="Search vibes, type, tags...">
+            <!-- Search bar & Quick Actions -->
+            <div class="controls-search-group">
+              <div class="search-box">
+                <span class="search-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </span>
+                <input type="text" id="search-input" class="search-input" placeholder="Search by vibe, type, or tag..." autocomplete="off" data-placeholder-desktop="Search by vibe, typography, tag, or aesthetic... [ / ]" data-placeholder-mobile="Search vibes, type, tags...">
+              </div>
+
+              <div class="search-quick-actions">
+                <button id="lucky-btn" class="btn btn-mustard btn-sm lucky-btn" onclick="triggerFeelingLucky()" title="I'm Feeling Lucky (Show 2 random designs in Split View)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <span>I'm Feeling Lucky</span>
+                </button>
+                <button id="reset-catalog-btn" class="btn btn-sm reset-catalog-btn" onclick="resetCatalog()" title="Reset Catalog (Clear filters & lucky view)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                  <span>Reset</span>
+                </button>
+              </div>
             </div>
 
             <!-- View mode toggles & Stats -->

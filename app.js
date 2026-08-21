@@ -6252,6 +6252,8 @@ let currentLayoutMode = "grid"; // 'grid' or 'split'
 let userToggledCompact = false;
 const isMobileViewport = () => typeof window !== "undefined" && window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
 let isCompactMode = isMobileViewport(); // Default OFF on desktop (> 768px), default ON on mobile (<= 768px)
+let isLuckyMode = false;
+let luckyTiles = [];
 const CATALOG_PAGE_SIZE = 15;
 let catalogVisibleCount = CATALOG_PAGE_SIZE;
 const CATALOG_STATE_KEY = "styleTiles.catalogState.v1";
@@ -6531,7 +6533,9 @@ function renderTileCard(tile) {
 function updateDisplayedCount(visibleCount, totalFiltered) {
   const totalCountEl = document.getElementById("displayed-count");
   if (!totalCountEl) return;
-  if (visibleCount < totalFiltered) {
+  if (isLuckyMode) {
+    totalCountEl.textContent = `2 LUCKY SPECS`;
+  } else if (visibleCount < totalFiltered) {
     totalCountEl.textContent = `${visibleCount} / ${totalFiltered} SPECS`;
   } else {
     totalCountEl.textContent = `${totalFiltered} SPECS`;
@@ -6565,6 +6569,16 @@ function renderCatalog(options = {}) {
   const gridContainer = document.getElementById("catalog-grid");
   if (!gridContainer) return;
 
+  if (isLuckyMode && luckyTiles && luckyTiles.length === 2) {
+    gridContainer.innerHTML = luckyTiles.map(renderTileCard).join("");
+    updateDisplayedCount(2, 2);
+    updateShowMoreBar(0);
+    requestAnimationFrame(resizeCardIframes);
+    setTimeout(resizeCardIframes, 100);
+    if (!options.skipPersist) persistCatalogState();
+    return;
+  }
+
   const filtered = getFilteredTiles();
   if (!options.preserveVisibleCount) {
     catalogVisibleCount = CATALOG_PAGE_SIZE;
@@ -6580,7 +6594,7 @@ function renderCatalog(options = {}) {
       <div style="grid-column: 1 / -1; padding: 48px; text-align: center; background: var(--surface-sheet); border: var(--border-core); box-shadow: var(--shadow-base);">
         <p class="font-mono text-h3" style="margin-bottom: 8px;">NO DRAFT SPECIFICATIONS FOUND</p>
         <p class="text-body-sm" style="color: var(--ink-muted);">No Style Tiles match "${currentSearchQuery}". Try clearing search query or filter tags.</p>
-        <button class="btn btn-mustard btn-sm" style="margin-top: 16px;" onclick="resetFilters()">Reset All Filters</button>
+        <button class="btn btn-mustard btn-sm" style="margin-top: 16px;" onclick="resetCatalog()">Reset All Filters</button>
       </div>
     `;
     updateShowMoreBar(0);
@@ -6633,6 +6647,8 @@ function showMoreTiles() {
 // FILTER & SEARCH ACTIONS
 // -----------------------------------------------------------------------------
 function setCategory(category) {
+  isLuckyMode = false;
+  luckyTiles = [];
   currentCategory = category;
 
   document.querySelectorAll(".filter-chip").forEach(chip => {
@@ -6643,11 +6659,15 @@ function setCategory(category) {
     }
   });
 
+  applyViewSettings();
   renderCatalog();
 }
 
 function handleSearchInput(e) {
+  isLuckyMode = false;
+  luckyTiles = [];
   currentSearchQuery = e.target.value;
+  applyViewSettings();
   renderCatalog();
 }
 
@@ -6780,13 +6800,15 @@ function restoreFocalAnchor(anchor) {
 function applyViewSettings() {
   const grid = document.getElementById("catalog-grid");
   if (grid) {
-    grid.classList.toggle("view-split", currentLayoutMode === "split");
-    grid.classList.toggle("view-editorial", currentLayoutMode === "split");
+    const isSplit = isLuckyMode || (currentLayoutMode === "split");
+    grid.classList.toggle("view-split", isSplit);
+    grid.classList.toggle("view-editorial", isSplit);
     grid.classList.toggle("is-compact", isCompactMode);
     grid.classList.toggle("view-compact", isCompactMode);
   }
 
   // Update layout mode buttons in catalog controls (Grid / Split)
+  // Note: Lucky mode renders in split view without toggling the split mode button active state
   document.querySelectorAll(".view-options .view-btn").forEach(btn => {
     const view = btn.getAttribute("data-view");
     const isActive = (view === currentLayoutMode) || (currentLayoutMode === "split" && view === "editorial");
@@ -6807,8 +6829,11 @@ function applyViewSettings() {
 
 function setViewMode(mode) {
   const anchor = getFocalCardAnchor();
+  isLuckyMode = false;
+  luckyTiles = [];
   currentLayoutMode = (mode === "split" || mode === "editorial") ? "split" : "grid";
   applyViewSettings();
+  renderCatalog();
   if (anchor) {
     restoreFocalAnchor(anchor);
   }
@@ -6830,12 +6855,71 @@ function toggleCompactMode() {
   );
 }
 
-function resetFilters() {
-  currentCategory = "all";
+function triggerFeelingLucky() {
+  if (!STYLE_TILES_DATA || STYLE_TILES_DATA.length < 2) return;
+
+  isLuckyMode = true;
+
+  // Pick 2 distinct random tiles
+  const idx1 = Math.floor(Math.random() * STYLE_TILES_DATA.length);
+  let idx2 = Math.floor(Math.random() * (STYLE_TILES_DATA.length - 1));
+  if (idx2 >= idx1) idx2++;
+  luckyTiles = [STYLE_TILES_DATA[idx1], STYLE_TILES_DATA[idx2]];
+
+  // Clear search input text
   currentSearchQuery = "";
   const searchInput = document.getElementById("search-input");
   if (searchInput) searchInput.value = "";
-  setCategory("all");
+
+  // Reset category filter chip active state to All Specs
+  currentCategory = "all";
+  document.querySelectorAll(".filter-chip").forEach(chip => {
+    chip.classList.toggle("active", chip.getAttribute("data-cat") === "all");
+  });
+
+  // Apply view settings (forces split 2-col presentation on grid container without toggling active layout mode button)
+  applyViewSettings();
+  renderCatalog();
+
+  // Smoothly scroll to catalog controls if out of view
+  const controls = document.getElementById("catalog-controls");
+  if (controls) {
+    const header = document.querySelector(".site-header");
+    const headerHeight = header ? header.getBoundingClientRect().height : 78;
+    const rect = controls.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const targetY = Math.max(0, rect.top + scrollTop - headerHeight - 16);
+
+    window.scrollTo({
+      top: targetY,
+      behavior: "smooth"
+    });
+  }
+
+  showToast(`Feeling Lucky: ${luckyTiles[0].name} & ${luckyTiles[1].name}`, "✦");
+}
+
+function resetCatalog() {
+  isLuckyMode = false;
+  luckyTiles = [];
+  currentCategory = "all";
+  currentSearchQuery = "";
+  catalogVisibleCount = CATALOG_PAGE_SIZE;
+
+  const searchInput = document.getElementById("search-input");
+  if (searchInput) searchInput.value = "";
+
+  document.querySelectorAll(".filter-chip").forEach(chip => {
+    chip.classList.toggle("active", chip.getAttribute("data-cat") === "all");
+  });
+
+  applyViewSettings();
+  renderCatalog();
+  showToast("Catalog reset", "↺");
+}
+
+function resetFilters() {
+  resetCatalog();
 }
 
 function focusSearch(event) {
