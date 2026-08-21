@@ -6399,6 +6399,159 @@ Contextual Roles:
 - NO sharp 0px corners or generic boxed cards (adhere strictly to 28px card and 9999px pill geometry).
 - NO cramped, noisy layouts without generous negative space.
 ================================================================================`
+  },
+  {
+    id: "TILE-039",
+    slug: "warm-botanical-solar-terracotta",
+    name: "Warm Botanical & Solar Terracotta",
+    vibe: "Sun-Baked Terracotta • Radiant Marigold Gold • Frosted Ambient Glass • Deep Carbon Black • Sunlit Linen Cream • 36px Geometry • Plus Jakarta Sans & Inter • Solar Maceration HUD",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Sun-Baked Terracotta", hex: "#B84E29" },
+      { name: "Radiant Marigold Gold", hex: "#FAB833" },
+      { name: "Deep Carbon Black", hex: "#141414" },
+      { name: "Sunlit Linen Cream", hex: "#EEDCB9" },
+      { name: "Apricot Sunburst", hex: "#F58A42" },
+      { name: "Frosted Ambient Glass", hex: "rgba(255, 255, 255, 0.12)" },
+      { name: "Espresso Dark Ink", hex: "#1F1A17" },
+      { name: "Muted Olive Bark", hex: "#5C5346" }
+    ],
+    description: "Warm Botanical & Solar Terracotta: Grounded sun-baked terracotta (#B84E29), radiant marigold gold (#FAB833), frosted ambient glass overlays, 36px container geometry, 45° leader wire diagram nodes, and a luminous restorative apothecary aesthetic.",
+    markdownSpec: `================================================================================
+  Aesthetic: Warm Botanical & Solar Terracotta • Sun-Baked Earth • Radiant Marigold
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Warm Botanical & Solar Terracotta blends the grounded, tactile warmth of sun-baked 
+terracotta clay (#B84E29) and sunlit linen cream (#EEDCB9) with radiant marigold gold 
+(#FAB833) and frosted ambient glass overlays. It creates a serene, restorative, and 
+intellectually refined atmosphere tailored for botanical apothecaries, sustainable 
+luxury, wellness technology, and human-centered editorial experiences.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Canvas & Ambient */
+  --bg-canvas-primary:       #B84E29; /* Sun-baked terracotta base */
+  --bg-canvas-gradient:      radial-gradient(circle at 50% 30%, #C95A32 0%, #A43F1C 100%);
+  --bg-surface-dark:         #141414; /* Deep carbon black for high-contrast anchors */
+  --bg-surface-cream:        #EEDCB9; /* Warm sunlit linen / soft oat */
+  --bg-surface-glass:        rgba(255, 255, 255, 0.12); /* Frosted ambient glass overlay */
+
+  /* Accents & Interactive */
+  --accent-gold-primary:     #FAB833; /* Radiant marigold / warm amber yellow */
+  --accent-gold-hover:       #E5A424;
+  --accent-sunburst:         #F58A42; /* Supporting warm apricot */
+
+  /* Typography & Icon Contrast */
+  --text-primary-light:      #FFFFFF; /* Crisp contrast against terracotta/dark */
+  --text-secondary-light:    rgba(255, 240, 230, 0.75); /* Soft peach-tinted neutral */
+  --text-primary-dark:       #1F1A17; /* Espresso-tinted near-black on light panels */
+  --text-secondary-dark:     #5C5346; /* Muted olive-bark for secondary card copy */
+  --text-accent-gold:        #FAB833;
+
+  /* Overlays & Strokes */
+  --stroke-subtle-white:     rgba(255, 255, 255, 0.22);
+  --stroke-hairline-wire:    rgba(255, 255, 255, 0.40);
+  --stroke-dark:             rgba(20, 20, 20, 0.08);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Families */
+--font-display: "Plus Jakarta Sans", "Outfit", sans-serif;
+--font-body:    "Inter", "DM Sans", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", "SF Mono", monospace;
+
+/* Scale & Hierarchy */
+--text-display-xl:   font-size: 52px; line-height: 1.08; weight: 700; tracking: -0.02em;
+--text-heading-lg:   font-size: 28px; line-height: 1.20; weight: 600; tracking: -0.01em;
+--text-heading-md:   font-size: 20px; line-height: 1.30; weight: 600; tracking: 0;
+--text-body-regular: font-size: 14px; line-height: 1.50; weight: 400; tracking: 0;
+--text-body-compact: font-size: 12px; line-height: 1.45; weight: 400; tracking: 0.01em;
+--text-nav-link:     font-size: 13px; line-height: 1.00; weight: 500; tracking: 0.02em;
+--text-rating-num:   font-size: 32px; line-height: 1.00; weight: 600; tracking: -0.02em;
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-pill:       9999px; /* Nav CTA, pill buttons, icon badges */
+--radius-container:  36px;   /* Outer screen wrapper */
+--radius-card-lg:    24px;   /* Main feature/hero split banners */
+--radius-card-sm:    18px;   /* Floating interactive media cards */
+--radius-control:    10px;   /* Standard compact buttons & tags */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+--glass-blur-sm:          backdrop-filter: blur(8px);
+--glass-blur-lg:          backdrop-filter: blur(20px);
+
+--shadow-floating-card:   0 16px 36px -8px rgba(70, 20, 5, 0.28);
+--shadow-button-glow:     0 8px 20px -4px rgba(250, 184, 51, 0.45);
+--shadow-dark-card:       0 20px 40px -12px rgba(0, 0, 0, 0.35);
+--shadow-node-dot:        0 0 12px 2px rgba(255, 255, 255, 0.80);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE
+ * -------------------------------------------------------------------------- */
+--space-2xs: 4px;
+--space-xs:  8px;
+--space-sm:  12px;
+--space-md:  16px;
+--space-lg:  24px;
+--space-xl:  32px;
+--space-2xl: 48px;
+
+- Canvas Margins:        40px horizontal padding within main viewport frame
+- Content Flow:          Asymmetric product staging centered with floating offset chips
+- Internal Card Padding: 20px 24px (compact), 28px 32px (large banner cards)
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-glass-card:     1px solid rgba(255, 255, 255, 0.20);
+--border-opaque-card:    1px solid rgba(255, 255, 255, 0.08);
+--border-technical-line: 1px solid rgba(255, 255, 255, 0.35); /* Product callout wires */
+
+- Diagram Node:          6px circular white indicator node with semi-transparent outer ring
+- Hairline Leader Wire:  45-degree angled polyline pointing from subject to copy metadata
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+- Minimal geometric, single-weight linear (1.5px stroke) & solid accents
+- Circular badges centered inside high-contrast solid color disks
+- Symbols: Solar / sunburst radial line spokes, 5-point filled stars in gold (#FAB833), 
+  geometric play triangle (solid carbon on gold), diagonal directional launch arrows (↗)
+
+/* -----------------------------------------------------------------------------
+ * 9. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Primary CTA (Gold)**: Slight upward lift (translateY(-2px)) with expanded gold glow.
+- **Dark Pill Buttons**: Background shifts to #262626 with border lightened to 30% opacity.
+- **Floating Cards**: Subtle scale (1.02x) with ambient elevation drop-shadow deepening.
+- **Nav Links**: Opacity shifts from 0.70 to 1.00 with subtle warm glow underline.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- NO cold synthetic neon blue/purple cyber gradients; maintain organic solar terracotta warmth.
+- NO harsh, unsoftened drop shadows (use diffused terracotta/carbon ambient occlusion).
+- NO rigid brutalist zero-radius borders (strictly adhere to 18-36px and 9999px pill geometry).
+================================================================================`
   }
 ];
 
