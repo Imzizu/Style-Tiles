@@ -6979,6 +6979,137 @@ and disciplined 0px rectangular geometry, it delivers pure French editorial chic
 - NO saturated neon cyber blue/purple gradients (maintain alabaster, carbon, and terracotta).
 - NO heavy unsoftened box shadows; prioritize flat magazine print layouts.
 ================================================================================`
+  },
+  {
+    id: "TILE-043",
+    slug: "sartorial-editorial-modernism",
+    name: "Sartorial Editorial Modernism",
+    vibe: "Warm Bone & Antique Ivory • Deep Oxblood Burgundy • Charcoal Noir • Editorial Serif Display • Deconstructed Bento Mosaic • Sandstone Hairline Grid",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Fraunces",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Warm Bone Antique Ivory", hex: "#F5EFEB" },
+      { name: "Deep Oxblood Burgundy", hex: "#5C1013" },
+      { name: "Charcoal Noir", hex: "#12100E" },
+      { name: "Neutral Stone Parchment", hex: "#EBE4DC" },
+      { name: "Vibrant Carmine Crimson", hex: "#7A161A" },
+      { name: "High-Contrast Espresso", hex: "#1F1A17" },
+      { name: "Muted Camel-Taupe", hex: "#7D756D" },
+      { name: "Sandstone Grid Border", hex: "#DFD7CE" }
+    ],
+    description: "Sartorial Editorial Modernism: High-fashion atelier precision blending warm bone antique ivory (#F5EFEB), deep oxblood burgundy (#5C1013), charcoal noir pill buttons (#12100E), deconstructed bento mosaic tiles, and 1px sandstone hairline dividers.",
+    markdownSpec: `================================================================================
+  Aesthetic: Sartorial Editorial Modernism • Warm Bone & Oxblood Burgundy
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Sartorial Editorial Modernism merges high-fashion atelier luxury with architectural 
+precision. Featuring warm bone antique ivory (#F5EFEB), deep oxblood burgundy typography 
+(#5C1013), and floating charcoal noir pills (#12100E), the design relies on deconstructed 
+bento mosaic grids separated by 1px sandstone hairline borders and circular medallion crests.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  --color-canvas-base:       #F5EFEB; /* Warm bone / antique ivory background */
+  --color-canvas-subtle:     #EBE4DC; /* Neutral stone parchment secondary */
+  --color-surface-dark:      #12100E; /* Charcoal noir (pill buttons & dark tiles) */
+
+  --color-primary-burgundy:  #5C1013; /* Deep oxblood / Sartorial wine red */
+  --color-primary-crimson:   #7A161A; /* Vibrant carmine highlight */
+
+  --color-text-headline:     #5C1013; /* Dominant burgundy editorial typography */
+  --color-text-body-dark:    #1F1A17; /* High-contrast espresso body text */
+  --color-text-body-muted:   #7D756D; /* Muted camel-taupe for metadata/labels */
+  --color-text-on-dark:      #F8F5F0; /* Soft chalk white for dark surfaces */
+
+  --color-border-hairline:   #DFD7CE; /* Subtle sandstone grid borders */
+  --color-border-on-dark:    rgba(255, 255, 255, 0.18); /* Architectural tile split */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-editorial-serif: "Fraunces", "Newsreader", "Playfair Display", serif;
+--font-modern-sans:     "Inter", "DM Sans", -apple-system, sans-serif;
+--font-mono:            "JetBrains Mono", monospace;
+
+/* Scale & Hierarchy */
+--type-display-brand:   400 clamp(3.5rem, 7vw, 6.5rem) / 0.92 var(--font-editorial-serif); /* -0.03em Tracking */
+--type-headline-caps:   700 clamp(1.5rem, 2.8vw, 2.75rem) / 1.08 var(--font-modern-sans);   /* UPPERCASE, -0.01em */
+--type-nav-utility:     600 0.6875rem (11px) / 1.2 var(--font-modern-sans);                 /* UPPERCASE, +0.08em */
+--type-body-caption:    400 0.8125rem (13px) / 1.45 var(--font-modern-sans);                /* +0.01em Tracking */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-none:    0px;    /* Architectural layout tiles & imagery */
+--radius-sharp:   2px;    /* Crisp card edges */
+--radius-micro:   4px;    /* Dropdowns & contextual popovers */
+--radius-pill:    9999px; /* Primary CTA buttons & nav badges */
+--radius-circle:  50%;    /* Icon anchors, crest emblems & toggles */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERING)
+ * -------------------------------------------------------------------------- */
+--shadow-none:          none;
+--shadow-pill-floating: 0 12px 28px -4px rgba(18, 16, 14, 0.45);
+--shadow-soft-crest:    0 4px 14px rgba(92, 16, 19, 0.22);
+--backdrop-blur-overlay: blur(8px);
+--surface-tint-overlay:  rgba(18, 16, 14, 0.4);
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (4px Base Unit)
+ * -------------------------------------------------------------------------- */
+--space-unit:        4px;
+--space-tile-gap:    1px;        /* Hairline deconstructed grid spacing */
+--space-inset-pill:  10px 22px;  /* Button padding */
+--space-section-pad: clamp(2rem, 5vw, 5rem);
+
+- Grid Architecture: Deconstructed Bento Mosaic (1:1 and 2:3 aspect crops)
+- Layout Max Width:  1560px
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-grid-hairline: 1px solid #DFD7CE;
+--border-image-split:   1px solid rgba(245, 239, 235, 0.2);
+--border-pill-focus:    1px solid rgba(255, 255, 255, 0.35);
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+--icon-stroke-weight: 1.25px (micro-fine architectural weight)
+- Style:              Minimal, geometric, hairline, monoline
+- Container:          Circular medallion (24px - 32px diameter)
+- Accent Badge:       Filled oxblood circle with chalk-white symbol
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+- Duration & Ease: 350ms cubic-bezier(0.19, 1, 0.22, 1) (Slow luxury ease).
+- Hover Pill: Background shifts to #5C1013, color #F5EFEB, scale(1.03).
+- Hover Tile: Filter brightness(1.05) contrast(1.02), cursor crosshair.
+- Hover Link: Opacity 0.65.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- NO rounded 16px bento cards (maintain strict 0px architectural tiles with 9999px floating pills).
+- NO saturated neon blue/purple cyber gradients (maintain sartorial oxblood burgundy and warm bone).
+- NO thick 2px+ structural borders; maintain 1px sandstone hairline discipline.
+================================================================================`
   }
 ];
 
