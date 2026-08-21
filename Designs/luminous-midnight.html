@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luminous Midnight / Editorial SaaS — Style Tile & Design System (TILE-040)</title>
+  <meta name="description" content="Production design system and Style Tile for Luminous Midnight / Editorial SaaS (TILE-040): Deep obsidian void #06060C, electric indigo #4A21E8, royal violet #7434F8, frosted floating glass, Plus Jakarta Sans & Instrument Serif typography, and ambient mesh lighting.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon/favicon.ico">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Instrument Serif, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       STYLE TILE: LUMINOUS MIDNIGHT / EDITORIAL SAAS // TILE-040
+       ========================================================================== */
+
+    :root {
+      /* ------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * ------------------------------------------------------------------------ */
+      /* Canvas & Backgrounds */
+      --bg-base:                 #06060C;          /* Deep obsidian void */
+      --bg-surface-glass:        rgba(255, 255, 255, 0.04); /* Frosted floating surfaces */
+      --bg-surface-glass-hover:  rgba(255, 255, 255, 0.08);
+      --bg-surface-active:       rgba(255, 255, 255, 0.12);
+      --bg-surface-card:         rgba(15, 15, 26, 0.75);
+
+      /* Atmospheric & Ambient Glow */
+      --ambient-glow-primary:    #4A21E8;          /* Intense electric indigo */
+      --ambient-glow-secondary:  #7434F8;          /* Vibrant royal violet */
+      --ambient-glow-tertiary:   #2D1577;          /* Deep purple base bloom */
+      --ambient-mesh-gradient:   radial-gradient(ellipse 120% 60% at 50% 100%, 
+                                   rgba(116, 52, 248, 0.45) 0%, 
+                                   rgba(74, 33, 232, 0.25) 45%, 
+                                   rgba(6, 6, 12, 0) 80%);
+
+      /* Brand & Accents */
+      --accent-primary:          #4B32DF;          /* Primary CTA fill */
+      --accent-primary-hover:    #5940EC;          /* Elevated hover state */
+      --accent-primary-pressed:  #3E25C7;
+      --accent-glow:             rgba(75, 50, 223, 0.45);
+      --accent-glow-lg:          rgba(116, 52, 248, 0.60);
+
+      /* Typography & Foreground */
+      --text-primary:            #FFFFFF;          /* 100% Crisp solid white */
+      --text-secondary:          rgba(255, 255, 255, 0.72); /* Muted body copy */
+      --text-tertiary:           rgba(255, 255, 255, 0.42); /* Captions, subtle labels */
+      --text-brand:              #8F7CFF;          /* Light violet highlight */
+
+      /* ------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * ------------------------------------------------------------------------ */
+      --font-sans:               "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+      --font-serif-display:      "Instrument Serif", "Newsreader", Georgia, serif;
+      --font-mono:               "JetBrains Mono", "SF Mono", monospace;
+
+      /* Type Scale Hierarchy Tokens */
+      --display-hero:            700 clamp(2.5rem, 6.0vw, 64px) / 1.08 var(--font-sans);
+      --heading-section:         600 clamp(1.75rem, 3.2vw, 32px) / 1.20 var(--font-sans);
+      --heading-eyebrow:         500 13px / 1.00 var(--font-sans);
+      --body-lead:               400 17px / 1.60 var(--font-sans);
+      --label-nav:               500 13px / 1.00 var(--font-sans);
+      --label-badge:             500 12px / 1.00 var(--font-sans);
+
+      /* ------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * ------------------------------------------------------------------------ */
+      --radius-full:             9999px;           /* Pill capsules: Nav bars, CTA buttons, badges */
+      --radius-pill:             28px;             /* Outer container bars */
+      --radius-card:             16px;             /* Brand partner chips, media tiles */
+      --radius-nested-avatar:    50%;              /* Overlapping circular social proof avatars */
+      --radius-sm:               10px;
+
+      /* ------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+       * ------------------------------------------------------------------------ */
+      --glass-blur-nav:          blur(16px) saturate(180%);
+      --glass-blur-card:         blur(12px);
+      --ambient-blur-glow:       blur(120px);
+
+      --shadow-button-primary:   0 0 20px -2px rgba(75, 50, 223, 0.5), 
+                                 inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+      --shadow-button-hover:     0 0 30px 2px rgba(89, 64, 236, 0.7),
+                                 inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
+      --shadow-glass-pill:       0 8px 32px 0 rgba(0, 0, 0, 0.37), 
+                                 inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+      --shadow-avatar-overlap:   0 0 0 2px #06060C;
+
+      /* ------------------------------------------------------------------------
+       * 5. SPACING & SPATIAL SCALE
+       * ------------------------------------------------------------------------ */
+      --space-2xs:               4px;
+      --space-xs:                8px;
+      --space-sm:                12px;
+      --space-md:                16px;
+      --space-lg:                24px;
+      --space-xl:                32px;
+      --space-2xl:               48px;
+      --space-section:           96px;
+
+      /* ------------------------------------------------------------------------
+       * 6. BORDERS & DIVIDERS
+       * ------------------------------------------------------------------------ */
+      --border-width:            1px;
+      --border-glass-subtle:     1px solid rgba(255, 255, 255, 0.08);
+      --border-glass-hover:      1px solid rgba(255, 255, 255, 0.18);
+      --border-glass-highlight:  1px solid rgba(255, 255, 255, 0.28);
+      --border-violet-glow:      1px solid rgba(143, 124, 255, 0.35);
+
+      /* ------------------------------------------------------------------------
+       * 7. TRANSITIONS & TIMING
+       * ------------------------------------------------------------------------ */
+      --transition-smooth:       all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast:         all 150ms ease-out;
+      --transition-spring:       all 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* ==========================================================================
+       RESET & BASE RESETS
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Violet Mesh Backdrop */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: var(--ambient-mesh-gradient);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.85;
+    }
+
+    /* Secondary Top Ambient Orb */
+    body::after {
+      content: "";
+      position: fixed;
+      top: -120px;
+      right: 15%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(74, 33, 232, 0.18) 0%, rgba(6, 6, 12, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+      filter: var(--ambient-blur-glow);
+    }
+
+    ::selection {
+      background-color: var(--accent-primary);
+      color: #FFFFFF;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       MANDATORY HEADER BAR (agent.md Section 2)
+       ========================================================================== */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: rgba(6, 6, 12, 0.82);
+      backdrop-filter: var(--glass-blur-nav);
+      -webkit-backdrop-filter: var(--glass-blur-nav);
+      border-bottom: var(--border-glass-subtle);
+      padding: 12px var(--space-xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      background: var(--bg-surface-glass);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      border: var(--border-glass-subtle);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-back-link:hover {
+      background: var(--bg-surface-glass-hover);
+      border-color: var(--border-glass-hover);
+      transform: translateX(-2px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 0 12px rgba(75, 50, 223, 0.4);
+    }
+
+    .design-title {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .design-vibe-tag {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-brand);
+      background: rgba(143, 124, 255, 0.12);
+      border: 1px solid rgba(143, 124, 255, 0.25);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      border: none;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-preview {
+      background: var(--bg-surface-glass);
+      color: var(--text-primary);
+      border: var(--border-glass-subtle);
+      backdrop-filter: var(--glass-blur-card);
+    }
+
+    .btn-preview:hover {
+      background: var(--bg-surface-glass-hover);
+      border-color: var(--border-glass-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-primary);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: var(--shadow-glass-pill);
+    }
+
+    .btn-copy:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: var(--border-glass-highlight);
+      transform: translateY(-1px);
+    }
+
+    .btn-download {
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      box-shadow: var(--shadow-button-primary);
+    }
+
+    .btn-download:hover {
+      background: var(--accent-primary-hover);
+      box-shadow: var(--shadow-button-hover);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       HERO DISPLAY BANNER
+       ========================================================================== */
+    .hero-section {
+      padding: var(--space-section) 0 var(--space-2xl);
+    }
+
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+
+    .hero-badge-strip {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+    }
+
+    .badge-pill-glass {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface-glass);
+      border: var(--border-glass-subtle);
+      color: var(--text-secondary);
+      backdrop-filter: var(--glass-blur-card);
+    }
+
+    .badge-pill-violet {
+      background: rgba(116, 52, 248, 0.15);
+      border: 1px solid rgba(143, 124, 255, 0.35);
+      color: var(--text-brand);
+      font-weight: 600;
+    }
+
+    .hero-title {
+      font-family: var(--font-sans);
+      font-size: clamp(2.6rem, 5.8vw, 64px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-title .serif-italic-accent {
+      font-family: var(--font-serif-display);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text-brand);
+      letter-spacing: 0;
+    }
+
+    .hero-narrative {
+      font-size: 17px;
+      line-height: 1.60;
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin-bottom: var(--space-xl);
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-cta-cluster-gap);
+      flex-wrap: wrap;
+    }
+
+    .cta-primary-indigo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-button-primary);
+      cursor: pointer;
+      border: none;
+      transition: var(--transition-smooth);
+    }
+
+    .cta-primary-indigo:hover {
+      background: var(--accent-primary-hover);
+      box-shadow: var(--shadow-button-hover);
+      transform: translateY(-2px);
+    }
+
+    .cta-secondary-glass {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      background: var(--bg-surface-glass);
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: var(--radius-full);
+      border: var(--border-glass-subtle);
+      backdrop-filter: var(--glass-blur-card);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .cta-secondary-glass:hover {
+      background: var(--bg-surface-glass-hover);
+      border-color: var(--border-glass-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Right: Floating Frosted Bento Glass Capsule */
+    .hero-glass-bento {
+      background: rgba(15, 15, 26, 0.65);
+      border-radius: var(--radius-pill);
+      padding: var(--space-xl);
+      border: var(--border-glass-subtle);
+      box-shadow: var(--shadow-glass-pill);
+      backdrop-filter: var(--glass-blur-nav);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      position: relative;
+    }
+
+    .hero-glass-bento::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    }
+
+    .bento-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .bento-heading-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-brand);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .avatar-cluster-row {
+      display: flex;
+      align-items: center;
+    }
+
+    .overlap-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-nested-avatar);
+      box-shadow: var(--shadow-avatar-overlap);
+      margin-left: -8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .overlap-avatar:first-child { margin-left: 0; }
+    .avatar-violet-1 { background: #4B32DF; }
+    .avatar-violet-2 { background: #7434F8; }
+    .avatar-violet-3 { background: #8F7CFF; }
+
+    /* Bento Mini Metrics Cards */
+    .bento-mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .bento-card-mini {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-card);
+      padding: var(--space-md);
+      border: var(--border-glass-subtle);
+      transition: var(--transition-smooth);
+    }
+
+    .bento-card-mini:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--border-glass-hover);
+      transform: translateY(-2px);
+    }
+
+    .bento-metric-title {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      margin-bottom: 4px;
+    }
+
+    .bento-metric-val {
+      font-family: var(--font-sans);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .bento-metric-delta {
+      font-size: 11px;
+      font-weight: 600;
+      color: #38EF7D;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      margin-top: 4px;
+    }
+
+    /* Partner Chip Strip */
+    .partner-chips-strip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding-top: var(--space-xs);
+      border-top: var(--border-glass-subtle);
+    }
+
+    .partner-chip {
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: var(--radius-card);
+      border: var(--border-glass-subtle);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: var(--transition-smooth);
+      cursor: pointer;
+    }
+
+    .partner-chip:hover {
+      transform: scale(1.02);
+      border-color: var(--border-glass-hover);
+      color: var(--text-primary);
+    }
+
+    /* ==========================================================================
+       SECTION HEADERS
+       ========================================================================== */
+    .section-block {
+      margin-bottom: var(--space-section);
+    }
+
+    .section-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: var(--space-xl);
+      border-bottom: var(--border-glass-subtle);
+      padding-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .section-header-title {
+      font-family: var(--font-sans);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .section-header-title .serif-accent {
+      font-family: var(--font-serif-display);
+      font-style: italic;
+      color: var(--text-brand);
+      font-weight: 400;
+    }
+
+    .section-header-sub {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* ==========================================================================
+       COLOR PALETTE & TOKEN MATRIX
+       ========================================================================== */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .swatch-card {
+      background: var(--bg-surface-glass);
+      border-radius: var(--radius-card);
+      padding: var(--space-md);
+      border: var(--border-glass-subtle);
+      backdrop-filter: var(--glass-blur-card);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-3px) scale(1.01);
+      background: var(--bg-surface-glass-hover);
+      border-color: var(--border-glass-hover);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+    }
+
+    .swatch-preview {
+      height: 74px;
+      border-radius: 10px;
+      border: var(--border-glass-subtle);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 8px;
+      position: relative;
+    }
+
+    .swatch-copy-hint {
+      font-size: 10px;
+      font-weight: 700;
+      background: rgba(6, 6, 12, 0.85);
+      color: #FFFFFF;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: var(--transition-smooth);
+    }
+
+    .swatch-card:hover .swatch-copy-hint {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .swatch-meta-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .swatch-meta-token {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-brand);
+      font-weight: 500;
+    }
+
+    .swatch-meta-hex {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+
+    .swatch-meta-role {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* ==========================================================================
+       TYPOGRAPHY SPECIMEN SYSTEM
+       ========================================================================== */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-xl);
+    }
+
+    .type-ladder-card {
+      background: var(--bg-surface-glass);
+      border-radius: var(--radius-pill);
+      padding: var(--space-xl);
+      border: var(--border-glass-subtle);
+      backdrop-filter: var(--glass-blur-nav);
+    }
+
+    .type-ladder-item {
+      padding: var(--space-md) 0;
+      border-bottom: var(--border-glass-subtle);
+    }
+
+    .type-ladder-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .type-ladder-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+
+    .type-ladder-name {
+      font-weight: 700;
+      color: var(--text-brand);
+    }
+
+    .sample-display-hero {
+      font-family: var(--font-sans);
+      font-size: clamp(2.2rem, 4.5vw, 48px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+    }
+
+    .sample-display-hero .serif-italic {
+      font-family: var(--font-serif-display);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text-brand);
+    }
+
+    .sample-heading-section {
+      font-family: var(--font-sans);
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.20;
+      color: var(--text-primary);
+    }
+
+    .sample-body-lead {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.60;
+      color: var(--text-secondary);
+    }
+
+    .sample-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--text-brand);
+    }
+
+    /* Type Playground */
+    .type-playground-card {
+      background: var(--bg-surface-glass);
+      border-radius: var(--radius-pill);
+      padding: var(--space-xl);
+      border: var(--border-glass-subtle);
+      backdrop-filter: var(--glass-blur-nav);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .playground-controls {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .playground-pill-btn {
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.05);
+      border: var(--border-glass-subtle);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .playground-pill-btn.active {
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      border-color: var(--accent-primary);
+    }
+
+    .playground-textarea {
+      width: 100%;
+      min-height: 140px;
+      padding: var(--space-md);
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-card);
+      border: var(--border-glass-subtle);
+      font-family: var(--font-sans);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+      resize: vertical;
+      outline: none;
+      transition: var(--transition-smooth);
+    }
+
+    .playground-textarea:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(75, 50, 223, 0.35);
+    }
+
+    /* ==========================================================================
+       COMPONENT ARCHETYPE GALLERY
+       ========================================================================== */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .component-tile {
+      background: var(--bg-surface-glass);
+      border-radius: var(--radius-pill);
+      padding: var(--space-xl);
+      border: var(--border-glass-subtle);
+      backdrop-filter: var(--glass-blur-nav);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .component-tile-title {
+      font-family: var(--font-sans);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .component-tile-sub {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Buttons Stack */
+    .button-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .btn-indigo-glow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-button-primary);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-indigo-glow:hover {
+      background: var(--accent-primary-hover);
+      box-shadow: var(--shadow-button-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-frosted-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      background: var(--bg-surface-glass);
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: var(--radius-full);
+      border: var(--border-glass-subtle);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-frosted-pill:hover {
+      background: var(--bg-surface-glass-hover);
+      border-color: var(--border-glass-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Inputs */
+    .glass-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .glass-input {
+      width: 100%;
+      padding: 12px 18px;
+      padding-right: 42px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: var(--radius-full);
+      border: var(--border-glass-subtle);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--text-primary);
+      outline: none;
+      backdrop-filter: var(--glass-blur-card);
+      transition: var(--transition-smooth);
+    }
+
+    .glass-input::placeholder {
+      color: var(--text-tertiary);
+    }
+
+    .glass-input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(75, 50, 223, 0.3);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .input-glass-icon-btn {
+      position: absolute;
+      right: 6px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .input-glass-icon-btn:hover {
+      background: var(--accent-primary-hover);
+      transform: scale(1.05);
+    }
+
+    /* Toggle Switch */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .toggle-switch {
+      width: 46px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-full);
+      padding: 2px;
+      cursor: pointer;
+      border: var(--border-glass-subtle);
+      transition: var(--transition-smooth);
+      position: relative;
+    }
+
+    .toggle-switch.active {
+      background: var(--accent-primary);
+      box-shadow: 0 0 12px rgba(75, 50, 223, 0.5);
+    }
+
+    .toggle-knob {
+      width: 18px;
+      height: 18px;
+      background: #FFFFFF;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      transition: var(--transition-smooth);
+      transform: translateX(0);
+    }
+
+    .toggle-switch.active .toggle-knob {
+      transform: translateX(22px);
+    }
+
+    /* ==========================================================================
+       LIVING MICRO-EXPERIENCE: AETHER EDITORIAL SAAS PLATFORM
+       ========================================================================== */
+    .demo-showcase-container {
+      background: rgba(15, 15, 26, 0.75);
+      border-radius: var(--radius-pill);
+      padding: var(--space-2xl);
+      border: var(--border-glass-subtle);
+      box-shadow: var(--shadow-glass-pill);
+      backdrop-filter: var(--glass-blur-nav);
+      position: relative;
+    }
+
+    .demo-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--border-glass-subtle);
+    }
+
+    .demo-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .demo-logo-orb {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #7434F8 0%, #4A21E8 100%);
+      box-shadow: 0 0 16px rgba(116, 52, 248, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .demo-brand-text {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .demo-brand-text .serif-accent {
+      font-family: var(--font-serif-display);
+      font-style: italic;
+      color: var(--text-brand);
+      font-weight: 400;
+    }
+
+    .demo-nav-tabs {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-full);
+      padding: 4px;
+      border: var(--border-glass-subtle);
+    }
+
+    .demo-tab-btn {
+      padding: 8px 18px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      transition: var(--transition-smooth);
+    }
+
+    .demo-tab-btn.active {
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      box-shadow: var(--shadow-button-primary);
+      font-weight: 600;
+    }
+
+    .demo-grid-layout {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: var(--space-xl);
+    }
+
+    /* Telemetry Mesh Graph */
+    .telemetry-mesh-card {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      border: var(--border-glass-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .telemetry-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .telemetry-metric-title {
+      font-family: var(--font-sans);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .telemetry-svg-box {
+      height: 180px;
+      width: 100%;
+      position: relative;
+    }
+
+    .telemetry-svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    /* Ambient Intensity Slider */
+    .ambient-slider-block {
+      margin-top: var(--space-sm);
+      padding-top: var(--space-md);
+      border-top: var(--border-glass-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .slider-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .violet-range-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-full);
+      outline: none;
+    }
+
+    .violet-range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(75, 50, 223, 0.8);
+      transition: var(--transition-smooth);
+    }
+
+    .violet-range-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+      background: var(--accent-primary-hover);
+    }
+
+    /* Right Editorial Dispatch Card */
+    .editorial-dispatch-card {
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      border: var(--border-glass-subtle);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .dispatch-meta-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dispatch-title {
+      font-family: var(--font-sans);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.25;
+    }
+
+    .dispatch-title .serif-accent {
+      font-family: var(--font-serif-display);
+      font-style: italic;
+      color: var(--text-brand);
+      font-weight: 400;
+    }
+
+    .dispatch-body {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .dispatch-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: var(--space-sm);
+      border-top: var(--border-glass-subtle);
+    }
+
+    /* ==========================================================================
+       STYLE TILE PROMPT CODE DRAWER & PREVIEW MODAL
+       ========================================================================== */
+    .spec-drawer-card {
+      background: rgba(10, 10, 18, 0.85);
+      border-radius: var(--radius-pill);
+      padding: var(--space-xl);
+      border: var(--border-glass-subtle);
+      box-shadow: var(--shadow-glass-pill);
+    }
+
+    .spec-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .spec-code-pre {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #DFD8CD;
+      background: #0E0E18;
+      padding: var(--space-lg);
+      border-radius: var(--radius-card);
+      overflow-x: auto;
+      max-height: 440px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 6, 12, 0.85);
+      backdrop-filter: var(--glass-blur-nav);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-window {
+      background: #0D0D18;
+      color: #FFFFFF;
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      border-radius: var(--radius-pill);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      border: var(--border-glass-subtle);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-close-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: var(--transition-smooth);
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Toast Popup */
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: rgba(20, 18, 38, 0.95);
+      color: var(--text-brand);
+      border: 1px solid rgba(143, 124, 255, 0.4);
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: none;
+      animation: toastSlideUp 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes toastSlideUp {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Responsive Mobile Overrides */
+    @media (max-width: 768px) {
+      .page-container {
+        padding: 0 var(--space-md);
+      }
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+      .demo-grid-layout {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: clamp(2.2rem, 8.5vw, 3.4rem);
+      }
+      .glass-input {
+        font-size: 16px !important;
+      }
+    }
+  </style>
+
+  <!-- Shared Mobile Safety Sheet -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. MANDATORY TOP NAVIGATION HEADER
+       ========================================================================== -->
+  <header class="style-tile-header">
+    <!-- Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code">TILE-040</span>
+      <span class="design-title">Luminous Midnight</span>
+      <span class="design-vibe-tag">Quiet Luxury</span>
+    </div>
+
+    <!-- Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download luminous-midnight.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <div class="page-container">
+
+    <!-- ==========================================================================
+         2. HERO DISPLAY BANNER
+         ========================================================================== -->
+    <section class="hero-section">
+      <div class="hero-container">
+        
+        <!-- Left: Statement & Primary Actions -->
+        <div class="hero-content-col">
+          <div class="hero-badge-strip">
+            <span class="badge-pill-glass badge-pill-violet">✦ Editorial SaaS</span>
+            <span class="badge-pill-glass">Obsidian Void #06060C</span>
+            <span class="badge-pill-glass">Electric Violet Glow</span>
+          </div>
+
+          <h1 class="hero-title">
+            Luminous Midnight<br>
+            <span class="serif-italic-accent">& Editorial Intelligence</span>
+          </h1>
+
+          <p class="hero-narrative">
+            Deep obsidian void canvas, vibrant electric indigo ambient lighting, and subtle serif typography accents. Built for next-generation AI platforms and high-trust editorial SaaS products.
+          </p>
+
+          <div class="hero-cta-group">
+            <button class="cta-primary-indigo" onclick="copyTilePromptDirect()">
+              <span>Copy Style Tile for AI Agent</span>
+              <span>↗</span>
+            </button>
+            <a href="#demo-section" class="cta-secondary-glass">
+              <span>Explore Workspace Suite</span>
+              <span>↓</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Floating Frosted Bento Glass Capsule -->
+        <div class="hero-glass-bento">
+          <div class="bento-top-row">
+            <span class="bento-heading-tag">✦ Intelligence Telemetry</span>
+            <div class="avatar-cluster-row">
+              <div class="overlap-avatar avatar-violet-1">AI</div>
+              <div class="overlap-avatar avatar-violet-2">ED</div>
+              <div class="overlap-avatar avatar-violet-3">ST</div>
+              <span style="font-size: 11px; font-weight: 600; color: var(--text-brand); margin-left: 8px;">+42 Active</span>
+            </div>
+          </div>
+
+          <div class="bento-mini-grid">
+            <div class="bento-card-mini">
+              <div class="bento-metric-title">Ingestion Velocity</div>
+              <div class="bento-metric-val">1.48 GB/s</div>
+              <div class="bento-metric-delta">▲ +38.4%</div>
+            </div>
+            <div class="bento-card-mini">
+              <div class="bento-metric-title">Model Coherence</div>
+              <div class="bento-metric-val">99.82%</div>
+              <div class="bento-metric-delta" style="color: var(--text-brand);">✦ Optimized</div>
+            </div>
+          </div>
+
+          <!-- Partner Chips -->
+          <div class="partner-chips-strip">
+            <div class="partner-chip" onclick="triggerToast('Copilot Synced')">✦ Claude 3.7</div>
+            <div class="partner-chip" onclick="triggerToast('Cursor Synced')">✦ Antigravity</div>
+            <div class="partner-chip" onclick="triggerToast('Vibe Code Verified')">✦ Linear Sync</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. COLOR ROLES & PALETTE MATRIX
+         ========================================================================== -->
+    <section class="section-block" id="palette-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-header-title">01 / Color Roles & <span class="serif-accent">Palette Matrix</span></h2>
+          <p class="section-header-sub">Click any swatch card to copy its Hex code to your clipboard.</p>
+        </div>
+        <span class="badge-pill-glass">8 System Tokens</span>
+      </div>
+
+      <div class="palette-grid">
+        <!-- 1. Obsidian Void -->
+        <div class="swatch-card" onclick="copyHex('#06060C', '--bg-base')">
+          <div class="swatch-preview" style="background-color: #06060C;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Deep Obsidian Void</div>
+            <div class="swatch-meta-token">--bg-base</div>
+            <div class="swatch-meta-hex">#06060C</div>
+          </div>
+          <p class="swatch-meta-role">Pitch-black midnight canvas providing infinite contrast for glowing elements.</p>
+        </div>
+
+        <!-- 2. Electric Indigo -->
+        <div class="swatch-card" onclick="copyHex('#4A21E8', '--ambient-glow-primary')">
+          <div class="swatch-preview" style="background-color: #4A21E8;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Electric Indigo Glow</div>
+            <div class="swatch-meta-token">--ambient-glow-primary</div>
+            <div class="swatch-meta-hex">#4A21E8</div>
+          </div>
+          <p class="swatch-meta-role">Intense ambient illumination and active focal highlights.</p>
+        </div>
+
+        <!-- 3. Royal Violet -->
+        <div class="swatch-card" onclick="copyHex('#7434F8', '--ambient-glow-secondary')">
+          <div class="swatch-preview" style="background-color: #7434F8;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Royal Violet Ambient</div>
+            <div class="swatch-meta-token">--ambient-glow-secondary</div>
+            <div class="swatch-meta-hex">#7434F8</div>
+          </div>
+          <p class="swatch-meta-role">Vibrant radial mesh layer creating atmospheric midnight depth.</p>
+        </div>
+
+        <!-- 4. Primary CTA Fill -->
+        <div class="swatch-card" onclick="copyHex('#4B32DF', '--accent-primary')">
+          <div class="swatch-preview" style="background-color: #4B32DF;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Primary CTA Fill</div>
+            <div class="swatch-meta-token">--accent-primary</div>
+            <div class="swatch-meta-hex">#4B32DF</div>
+          </div>
+          <p class="swatch-meta-role">Primary interactive button background with inset top highlight.</p>
+        </div>
+
+        <!-- 5. Light Violet Text -->
+        <div class="swatch-card" onclick="copyHex('#8F7CFF', '--text-brand')">
+          <div class="swatch-preview" style="background-color: #8F7CFF;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Light Violet Text</div>
+            <div class="swatch-meta-token">--text-brand</div>
+            <div class="swatch-meta-hex">#8F7CFF</div>
+          </div>
+          <p class="swatch-meta-role">Eyebrow tags, editorial serif accents, and active link states.</p>
+        </div>
+
+        <!-- 6. Frosted Glass Surface -->
+        <div class="swatch-card" onclick="copyHex('rgba(255,255,255,0.04)', '--bg-surface-glass')">
+          <div class="swatch-preview" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(12px);">
+            <span class="swatch-copy-hint">Copy RGBA</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Frosted Glass Surface</div>
+            <div class="swatch-meta-token">--bg-surface-glass</div>
+            <div class="swatch-meta-hex">rgba(255, 255, 255, 0.04)</div>
+          </div>
+          <p class="swatch-meta-role">Translucent floating cards and interactive navigation pills.</p>
+        </div>
+
+        <!-- 7. Crisp White Foreground -->
+        <div class="swatch-card" onclick="copyHex('#FFFFFF', '--text-primary')">
+          <div class="swatch-preview" style="background-color: #FFFFFF;">
+            <span class="swatch-copy-hint" style="background: #111; color: #fff;">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Crisp Solid White</div>
+            <div class="swatch-meta-token">--text-primary</div>
+            <div class="swatch-meta-hex">#FFFFFF</div>
+          </div>
+          <p class="swatch-meta-role">Maximum clarity display headlines and primary UI copy.</p>
+        </div>
+
+        <!-- 8. Deep Base Purple -->
+        <div class="swatch-card" onclick="copyHex('#2D1577', '--ambient-glow-tertiary')">
+          <div class="swatch-preview" style="background-color: #2D1577;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Deep Purple Bloom</div>
+            <div class="swatch-meta-token">--ambient-glow-tertiary</div>
+            <div class="swatch-meta-hex">#2D1577</div>
+          </div>
+          <p class="swatch-meta-role">Sub-surface glow base preventing banding across dark gradient meshes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. TYPOGRAPHY & TYPE SPECIMEN SYSTEM
+         ========================================================================== -->
+    <section class="section-block" id="typography-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-header-title">02 / Typography & <span class="serif-accent">Editorial Pairing</span></h2>
+          <p class="section-header-sub">Plus Jakarta Sans paired with Instrument Serif italic flourishes.</p>
+        </div>
+        <span class="badge-pill-glass">Hybrid Type Architecture</span>
+      </div>
+
+      <div class="type-specimen-grid">
+        
+        <!-- Left: Hierarchy Ladder -->
+        <div class="type-ladder-card">
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">Display Hero</span>
+              <span>Sans (700 Bold) + Serif (400 Italic) | 56px-72px | 1.08</span>
+            </div>
+            <div class="sample-display-hero">
+              Luminous <span class="serif-italic">Midnight</span>
+            </div>
+          </div>
+
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">Section Heading</span>
+              <span>Sans | 600 SemiBold | 28px-36px | 1.20</span>
+            </div>
+            <div class="sample-heading-section">Autonomous Workspace Synthesis</div>
+          </div>
+
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">Eyebrow Label</span>
+              <span>Sans | 500 Medium | 13px-14px | +0.02em</span>
+            </div>
+            <div class="sample-eyebrow">✦ AGENTIC WORKSPACE RUNTIME</div>
+          </div>
+
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">Body Lead</span>
+              <span>Sans | 400 Regular | 16px-18px | 1.60</span>
+            </div>
+            <div class="sample-body-lead">
+              Every boundary is shaped through translucent alpha strokes and ambient mesh glows, leaving solid borders behind.
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Type Playground -->
+        <div class="type-playground-card">
+          <div class="playground-controls">
+            <button class="playground-pill-btn active" onclick="setFontWeight(this, '700')">700 Bold</button>
+            <button class="playground-pill-btn" onclick="setFontWeight(this, '600')">600 SemiBold</button>
+            <button class="playground-pill-btn" onclick="setFontWeight(this, '500')">500 Medium</button>
+            <button class="playground-pill-btn" onclick="setFontWeight(this, '400')">400 Regular</button>
+          </div>
+
+          <textarea id="live-type-box" class="playground-textarea">Luminous Midnight. Electric violet glow meets editorial clarity.</textarea>
+
+          <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
+            <strong>Type Characteristics:</strong> High-impact Plus Jakarta Sans provides clean modern SaaS structure, while Instrument Serif introduces refined editorial warmth.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. COMPONENT ARCHETYPE GALLERY
+         ========================================================================== -->
+    <section class="section-block" id="components-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-header-title">03 / Component Archetypes & <span class="serif-accent">Interactions</span></h2>
+          <p class="section-header-sub">Glowing indigo buttons, frosted glass pills, and partner badge chips.</p>
+        </div>
+        <span class="badge-pill-glass">Interactive Elements</span>
+      </div>
+
+      <div class="components-grid">
+
+        <!-- 1. Buttons & CTA States -->
+        <div class="component-tile">
+          <div>
+            <div class="component-tile-title">Buttons & CTAs</div>
+            <div class="component-tile-sub">Electric Glow Expansion & Lift</div>
+          </div>
+
+          <div class="button-stack">
+            <button class="btn-indigo-glow" onclick="triggerToast('Primary Indigo CTA Fired')">
+              <span>Primary CTA</span>
+              <span>↗</span>
+            </button>
+            <button class="btn-frosted-pill" onclick="triggerToast('Frosted Glass Pill Clicked')">
+              <span>Frosted Glass</span>
+            </button>
+            <button class="partner-chip" onclick="triggerToast('Partner Badge Pressed')">
+              <span>✦ Partner Chip</span>
+            </button>
+          </div>
+
+          <div class="partner-chips-strip">
+            <span class="partner-chip">✦ Linear</span>
+            <span class="partner-chip">✦ Raycast</span>
+            <span class="partner-chip">✦ Supabase</span>
+          </div>
+        </div>
+
+        <!-- 2. Inputs & Search Pills -->
+        <div class="component-tile">
+          <div>
+            <div class="component-tile-title">Inputs & Controls</div>
+            <div class="component-tile-sub">Frosted Capsule with Violet Focus</div>
+          </div>
+
+          <div class="glass-input-wrapper">
+            <input type="text" class="glass-input" placeholder="Search autonomous logs...">
+            <button class="input-glass-icon-btn" title="Search" onclick="triggerToast('Search Query Executed')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
+          </div>
+
+          <div class="toggle-row">
+            <div>
+              <div style="font-size: 13px; font-weight: 600;">Ambient Glow Mesh</div>
+              <div style="font-size: 11px; color: var(--text-tertiary);">Violet bottom ambient bloom</div>
+            </div>
+            <div class="toggle-switch active" onclick="this.classList.toggle('active'); triggerToast('Ambient Lighting Toggled');">
+              <div class="toggle-knob"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Social Proof Avatar Stacks -->
+        <div class="component-tile">
+          <div>
+            <div class="component-tile-title">Social Proof Stacks</div>
+            <div class="component-tile-sub">Overlapping Circular Mask Rings</div>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: rgba(255,255,255,0.03); border-radius: var(--radius-card); border: var(--border-glass-subtle);">
+            <div class="avatar-cluster-row">
+              <div class="overlap-avatar avatar-violet-1">AK</div>
+              <div class="overlap-avatar avatar-violet-2">MZ</div>
+              <div class="overlap-avatar avatar-violet-3">ST</div>
+              <div class="overlap-avatar" style="background: #5940EC;">VR</div>
+              <span style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin-left: 10px;">+184 Engineers</span>
+            </div>
+
+            <span class="badge-pill-glass badge-pill-violet">✦ Verified</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. LIVING MICRO-EXPERIENCE: AETHER PLATFORM DEMO
+         ========================================================================== -->
+    <section class="section-block" id="demo-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-header-title">04 / Living Micro-Experience — <span class="serif-accent">Aether Workspace</span></h2>
+          <p class="section-header-sub">Interactive product showcase demonstrating all tokens operating in concert.</p>
+        </div>
+        <span class="badge-pill-glass badge-pill-violet">✦ Live SaaS Demo</span>
+      </div>
+
+      <div class="demo-showcase-container">
+        
+        <!-- Top Bar inside Demo -->
+        <div class="demo-top-bar">
+          <div class="demo-brand">
+            <div class="demo-logo-orb">Æ</div>
+            <div>
+              <div class="demo-brand-text">AETHER // <span class="serif-accent">Intelligence</span></div>
+              <div style="font-size: 11px; color: var(--text-tertiary);">Autonomous Editorial Engine</div>
+            </div>
+          </div>
+
+          <!-- Nav Tabs -->
+          <div class="demo-nav-tabs">
+            <button class="demo-tab-btn active" onclick="setDemoTab(this, 'telemetry')">Telemetry</button>
+            <button class="demo-tab-btn" onclick="setDemoTab(this, 'dispatch')">Dispatch</button>
+            <button class="demo-tab-btn" onclick="setDemoTab(this, 'models')">Models</button>
+          </div>
+
+          <!-- Quick Action -->
+          <button class="btn-tile btn-download" onclick="triggerToast('Workflow Stream Synchronized')">
+            <span>Execute Sync</span>
+          </button>
+        </div>
+
+        <!-- Demo Grid -->
+        <div class="demo-grid-layout">
+          
+          <!-- Telemetry Mesh Graph Card -->
+          <div class="telemetry-mesh-card">
+            <div class="telemetry-header">
+              <div>
+                <span style="font-size: 11px; font-weight: 600; color: var(--text-brand); text-transform: uppercase;">Autonomous Ingestion Rate</span>
+                <div class="telemetry-metric-title" id="telemetry-throughput-val">4.82M Tokens / min</div>
+              </div>
+              <span class="badge-pill-glass badge-pill-violet" id="ambient-status-badge">
+                ● Electric Violet 85%
+              </span>
+            </div>
+
+            <!-- SVG Spline with Violet Gradient -->
+            <div class="telemetry-svg-box">
+              <svg class="telemetry-svg" viewBox="0 0 400 160" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="violetGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#7434F8" stop-opacity="0.55"/>
+                    <stop offset="60%" stop-color="#4A21E8" stop-opacity="0.15"/>
+                    <stop offset="100%" stop-color="#4A21E8" stop-opacity="0.0"/>
+                  </linearGradient>
+                </defs>
+
+                <!-- Grid lines -->
+                <line x1="0" y1="40" x2="400" y2="40" stroke="rgba(255,255,255,0.06)" stroke-dasharray="4 4" stroke-width="1"/>
+                <line x1="0" y1="90" x2="400" y2="90" stroke="rgba(255,255,255,0.06)" stroke-dasharray="4 4" stroke-width="1"/>
+                <line x1="0" y1="140" x2="400" y2="140" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+                <!-- Area Fill -->
+                <path d="M 0 120 Q 80 90, 140 50 T 260 30 T 400 10 L 400 160 L 0 160 Z" fill="url(#violetGrad)"/>
+
+                <!-- Stroke Line -->
+                <path d="M 0 120 Q 80 90, 140 50 T 260 30 T 400 10" fill="none" stroke="#8F7CFF" stroke-width="3" stroke-linecap="round"/>
+
+                <!-- Datapoints -->
+                <circle cx="140" cy="50" r="5" fill="#4B32DF" stroke="#FFFFFF" stroke-width="2"/>
+                <circle cx="260" cy="30" r="5" fill="#7434F8" stroke="#FFFFFF" stroke-width="2"/>
+                <circle cx="400" cy="10" r="6" fill="#8F7CFF" stroke="#FFFFFF" stroke-width="2.5"/>
+              </svg>
+            </div>
+
+            <!-- Ambient Mesh Slider -->
+            <div class="ambient-slider-block">
+              <div class="slider-row">
+                <span>Ambient Violet Mesh Bloom</span>
+                <span id="slider-readout-val" style="color: var(--text-brand); font-family: var(--font-mono);">85%</span>
+              </div>
+              <input type="range" min="10" max="100" value="85" class="violet-range-slider" oninput="handleAmbientChange(this.value)">
+            </div>
+          </div>
+
+          <!-- Right Editorial Dispatch Card -->
+          <div class="editorial-dispatch-card">
+            <div class="dispatch-meta-strip">
+              <span class="badge-pill-glass badge-pill-violet">✦ Editorial Dispatch</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">0.12ms LATENCY</span>
+            </div>
+
+            <div>
+              <h3 class="dispatch-title">The Beauty of <span class="serif-accent">Midnight</span> in Agentic Systems</h3>
+              <p class="dispatch-body" style="margin-top: 8px;">
+                Translucent frosted capsules and radiant electric violet ambient meshes elevate human-in-the-loop interfaces into quiet luxury.
+              </p>
+            </div>
+
+            <div class="dispatch-footer">
+              <div class="avatar-cluster-row">
+                <div class="overlap-avatar avatar-violet-1">Æ</div>
+                <div class="overlap-avatar avatar-violet-2">AI</div>
+                <span style="font-size: 12px; font-weight: 600; color: var(--text-primary); margin-left: 8px;">Aether Core</span>
+              </div>
+
+              <button class="btn-tile btn-preview" style="font-size: 11px; padding: 6px 14px;" onclick="triggerToast('Dispatch Expanded')">
+                <span>Inspect ↗</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. STYLE TILE PROMPT CODE DRAWER (Bottom Ingestion)
+         ========================================================================== -->
+    <section class="section-block" id="spec-section">
+      <div class="spec-drawer-card">
+        <div class="spec-drawer-header">
+          <div>
+            <div style="font-family: var(--font-sans); font-size: 20px; font-weight: 700; color: var(--text-primary);">Markdown Style Tile Specification</div>
+            <div style="font-size: 12px; color: var(--text-secondary);">Copy directly into Cursor, Claude, Antigravity, or Copilot prompts.</div>
+          </div>
+
+          <div style="display: flex; gap: var(--space-xs);">
+            <button class="btn-tile btn-download" onclick="copyTilePromptDirect()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Prompt
+            </button>
+          </div>
+        </div>
+
+        <pre class="spec-code-pre" id="spec-code-display"></pre>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==========================================================================
+       MODAL INSPECT DRAWER
+       ========================================================================== -->
+  <div class="modal-overlay" id="spec-modal" onclick="closeSpecModalOnOutside(event)">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <div style="font-family: var(--font-sans); font-size: 18px; font-weight: 700; color: var(--text-primary);">TILE-040 // Luminous Midnight / Editorial SaaS</div>
+          <div style="font-size: 11px; color: var(--text-secondary);">Official Style Tile Token Specification</div>
+        </div>
+        <button class="modal-close-btn" onclick="closeSpecModal()">✕</button>
+      </div>
+      <pre class="spec-code-pre" id="modal-spec-display" style="max-height: 60vh;"></pre>
+      <div style="display: flex; justify-content: flex-end; gap: var(--space-xs);">
+        <button class="btn-tile btn-download" onclick="copyTilePromptDirect()">Copy Markdown</button>
+        <button class="btn-tile btn-preview" style="background: rgba(255,255,255,0.08); color: #fff; border: none;" onclick="closeSpecModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Popup -->
+  <div class="toast-popup" id="toast-popup">✓ Copied to Clipboard!</div>
+
+  <!-- ==========================================================================
+       EMBEDDED STYLE TILE MARKDOWN SCRIPT BLOCK (agent.md Section 2 & 4)
+       ========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Aesthetic: Luminous Midnight • Editorial SaaS • Obsidian Void & Electric Violet
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Luminous Midnight / Editorial SaaS fuses a pitch obsidian void backdrop (#06060C) 
+with intense electric indigo (#4A21E8) and royal violet ambient mesh lighting. 
+Paired with sleek frosted glass pills and refined editorial serif accents, it creates 
+a high-trust, immersive, and luxurious visual presence ideal for modern AI software, 
+developer tools, and high-throughput SaaS platforms.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Canvas & Backgrounds */
+  --bg-base:                 #06060C;          /* Deep obsidian void */
+  --bg-surface-glass:        rgba(255, 255, 255, 0.04); /* Frosted floating surfaces */
+  --bg-surface-glass-hover:  rgba(255, 255, 255, 0.08);
+  --bg-surface-active:       rgba(255, 255, 255, 0.12);
+
+  /* Atmospheric & Ambient Glow */
+  --ambient-glow-primary:    #4A21E8;          /* Intense electric indigo */
+  --ambient-glow-secondary:  #7434F8;          /* Vibrant royal violet */
+  --ambient-glow-tertiary:   #2D1577;          /* Deep purple base bloom */
+  --ambient-mesh-gradient:   radial-gradient(ellipse 120% 60% at 50% 100%, 
+                               rgba(116, 52, 248, 0.45) 0%, 
+                               rgba(74, 33, 232, 0.25) 45%, 
+                               rgba(6, 6, 12, 0) 80%);
+
+  /* Brand & Accents */
+  --accent-primary:          #4B32DF;          /* Primary CTA fill */
+  --accent-primary-hover:    #5940EC;          /* Elevated hover state */
+  --accent-primary-pressed:  #3E25C7;
+  --accent-glow:             rgba(75, 50, 223, 0.45);
+
+  /* Typography & Foreground */
+  --text-primary:            #FFFFFF;          /* 100% Crisp solid white */
+  --text-secondary:          rgba(255, 255, 255, 0.72); /* Muted body copy */
+  --text-tertiary:           rgba(255, 255, 255, 0.42); /* Captions, subtle labels */
+  --text-brand:              #8F7CFF;          /* Light violet highlight */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Families */
+--font-sans:          "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-serif-display: "Instrument Serif", "Newsreader", Georgia, serif;
+--font-mono:          "JetBrains Mono", "SF Mono", monospace;
+
+/* Scale & Hierarchy */
+--display-hero:      700 clamp(2.5rem, 6.0vw, 64px) / 1.08 var(--font-sans); /* Accent: Italic Serif 400 */
+--heading-section:   600 32px / 1.20 var(--font-sans);
+--heading-eyebrow:   500 13px / 1.00 var(--font-sans);                       /* Letter-Spacing: +0.02em */
+--body-lead:         400 17px / 1.60 var(--font-sans);
+--label-nav:         500 13px / 1.00 var(--font-sans);                       /* Letter-Spacing: -0.01em */
+--label-badge:       500 12px / 1.00 var(--font-sans);
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-full:           9999px;      /* Pill capsules: Nav bars, CTA buttons, badges */
+--radius-pill:           28px;        /* Outer container bars */
+--radius-card:           16px;        /* Brand partner chips, media tiles */
+--radius-nested-avatar:  50%;         /* Overlapping circular social proof avatars */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+--glass-blur-nav:        blur(16px) saturate(180%);
+--glass-blur-card:       blur(12px);
+--ambient-blur-glow:     blur(120px);
+
+--shadow-button-primary: 0 0 20px -2px rgba(75, 50, 223, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+--shadow-glass-pill:     0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+--shadow-avatar-overlap: 0 0 0 2px #06060C;
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (4px / 8px Grid)
+ * -------------------------------------------------------------------------- */
+--space-hero-stack-gap:   28px;
+--space-cta-cluster-gap:  14px;
+--space-pill-padding-x:   22px;
+--space-pill-padding-y:   12px;
+--space-partner-grid-gap: 18px;
+--space-section-padding-y: 96px;
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-glass-subtle:    1px solid rgba(255, 255, 255, 0.08);
+--border-glass-hover:     1px solid rgba(255, 255, 255, 0.18);
+--border-glass-highlight: 1px solid rgba(255, 255, 255, 0.28);
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+--icon-stroke-width:   1.85px;
+--icon-treatment:      Monochrome translucent (rgba(255, 255, 255, 0.7)) to pure white;
+--icon-corner-radius:  Smooth rounded joins and terminal caps;
+
+/* -----------------------------------------------------------------------------
+ * 9. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Primary CTA**: Background lightens to #5940EC with expanded 28px glow and subtle upward lift.
+- **Secondary Glass Pill**: Translucent hover shift rgba(255,255,255,0.05) -> rgba(255,255,255,0.12).
+- **Social Proof Avatars**: Circular (50%) with 2px obsidian knockout mask and negative overlap (-8px).
+- **Partner Chips**: Micro scale (1.02x) on hover with fractional border brighten.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- NO solid opaque white or gray borders; all boundaries must use alpha strokes.
+- NO muddy gray or pure black #000 backgrounds without electric violet ambient glow.
+- NO harsh unsoftened drop shadows; all elevation relies on frosted backdrop blurs and subtle glows.
+================================================================================
+  </script>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    const markdownContent = document.getElementById("style-tile-markdown").textContent.trim();
+
+    // Populate code viewer displays
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    // Toast notification
+    function triggerToast(message = "✓ Copied to Clipboard!") {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      setTimeout(() => {
+        toast.style.display = "none";
+      }, 2200);
+    }
+
+    // Direct Copy Action
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(() => {
+        triggerToast("✓ Style Tile Copied for Agent!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.innerHTML = `<span>✓ Copied!</span>`;
+          setTimeout(() => { copyBtn.innerHTML = original; }, 2000);
+        }
+      });
+    }
+
+    // Copy Swatch Hex
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast(`✓ Copied ${name}: ${hex}`);
+      });
+    }
+
+    // Event Listeners for Header Actions
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+
+    document.getElementById("btn-download-tile").addEventListener("click", () => {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-luminous-midnight.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-luminous-midnight.md");
+    });
+
+    document.getElementById("btn-preview-tile").addEventListener("click", () => {
+      document.getElementById("spec-modal").classList.add("active");
+    });
+
+    function closeSpecModal() {
+      document.getElementById("spec-modal").classList.remove("active");
+    }
+
+    function closeSpecModalOnOutside(e) {
+      if (e.target.id === "spec-modal") {
+        closeSpecModal();
+      }
+    }
+
+    // Typeface Weight Switcher
+    function setFontWeight(btn, weight) {
+      document.querySelectorAll(".playground-controls .playground-pill-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const textarea = document.getElementById("live-type-box");
+      if (textarea) {
+        textarea.style.fontWeight = weight;
+      }
+    }
+
+    // Demo Tab Switcher
+    function setDemoTab(btn, tabKey) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll(".demo-tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      triggerToast(`View Mode: ${btn.textContent}`);
+    }
+
+    // Ambient Mesh Slider Interaction
+    function handleAmbientChange(val) {
+      const readout = document.getElementById("slider-readout-val");
+      if (readout) readout.textContent = `${val}%`;
+
+      const badge = document.getElementById("ambient-status-badge");
+      if (badge) badge.textContent = `● Electric Violet ${val}%`;
+
+      const numEl = document.getElementById("telemetry-throughput-val");
+      if (numEl) {
+        const calculated = (val * 0.056).toFixed(2);
+        numEl.textContent = `${calculated}M Tokens / min`;
+      }
+    }
+  </script>
+</body>
+</html>

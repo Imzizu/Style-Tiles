@@ -6552,6 +6552,151 @@ luxury, wellness technology, and human-centered editorial experiences.
 - NO harsh, unsoftened drop shadows (use diffused terracotta/carbon ambient occlusion).
 - NO rigid brutalist zero-radius borders (strictly adhere to 18-36px and 9999px pill geometry).
 ================================================================================`
+  },
+  {
+    id: "TILE-040",
+    slug: "luminous-midnight",
+    name: "Luminous Midnight",
+    vibe: "Deep Obsidian Void • Electric Indigo & Royal Violet Mesh • Frosted Glass Capsules • Plus Jakarta Sans & Instrument Serif • Editorial SaaS • Ambient Depth",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Deep Obsidian Void", hex: "#06060C" },
+      { name: "Electric Indigo Glow", hex: "#4A21E8" },
+      { name: "Royal Violet Ambient", hex: "#7434F8" },
+      { name: "Primary CTA Fill", hex: "#4B32DF" },
+      { name: "Light Violet Text", hex: "#8F7CFF" },
+      { name: "Frosted Glass Surface", hex: "rgba(255, 255, 255, 0.04)" },
+      { name: "Crisp Solid White", hex: "#FFFFFF" },
+      { name: "Deep Purple Bloom", hex: "#2D1577" }
+    ],
+    description: "Luminous Midnight / Editorial SaaS: Pitch obsidian void (#06060C) paired with intense electric indigo (#4A21E8) and royal violet ambient mesh gradients, frosted floating glass capsules, and refined Instrument Serif italic accents.",
+    markdownSpec: `================================================================================
+  Aesthetic: Luminous Midnight • Editorial SaaS • Obsidian Void & Electric Violet
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Luminous Midnight / Editorial SaaS fuses a pitch obsidian void backdrop (#06060C) 
+with intense electric indigo (#4A21E8) and royal violet ambient mesh lighting. 
+Paired with sleek frosted glass pills and refined editorial serif accents, it creates 
+a high-trust, immersive, and luxurious visual presence ideal for modern AI software, 
+developer tools, and high-throughput SaaS platforms.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Canvas & Backgrounds */
+  --bg-base:                 #06060C;          /* Deep obsidian void */
+  --bg-surface-glass:        rgba(255, 255, 255, 0.04); /* Frosted floating surfaces */
+  --bg-surface-glass-hover:  rgba(255, 255, 255, 0.08);
+  --bg-surface-active:       rgba(255, 255, 255, 0.12);
+
+  /* Atmospheric & Ambient Glow */
+  --ambient-glow-primary:    #4A21E8;          /* Intense electric indigo */
+  --ambient-glow-secondary:  #7434F8;          /* Vibrant royal violet */
+  --ambient-glow-tertiary:   #2D1577;          /* Deep purple base bloom */
+  --ambient-mesh-gradient:   radial-gradient(ellipse 120% 60% at 50% 100%, 
+                               rgba(116, 52, 248, 0.45) 0%, 
+                               rgba(74, 33, 232, 0.25) 45%, 
+                               rgba(6, 6, 12, 0) 80%);
+
+  /* Brand & Accents */
+  --accent-primary:          #4B32DF;          /* Primary CTA fill */
+  --accent-primary-hover:    #5940EC;          /* Elevated hover state */
+  --accent-primary-pressed:  #3E25C7;
+  --accent-glow:             rgba(75, 50, 223, 0.45);
+
+  /* Typography & Foreground */
+  --text-primary:            #FFFFFF;          /* 100% Crisp solid white */
+  --text-secondary:          rgba(255, 255, 255, 0.72); /* Muted body copy */
+  --text-tertiary:           rgba(255, 255, 255, 0.42); /* Captions, subtle labels */
+  --text-brand:              #8F7CFF;          /* Light violet highlight */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Families */
+--font-sans:          "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-serif-display: "Instrument Serif", "Newsreader", Georgia, serif;
+--font-mono:          "JetBrains Mono", "SF Mono", monospace;
+
+/* Scale & Hierarchy */
+--display-hero:      700 clamp(2.5rem, 6.0vw, 64px) / 1.08 var(--font-sans); /* Accent: Italic Serif 400 */
+--heading-section:   600 32px / 1.20 var(--font-sans);
+--heading-eyebrow:   500 13px / 1.00 var(--font-sans);                       /* Letter-Spacing: +0.02em */
+--body-lead:         400 17px / 1.60 var(--font-sans);
+--label-nav:         500 13px / 1.00 var(--font-sans);                       /* Letter-Spacing: -0.01em */
+--label-badge:       500 12px / 1.00 var(--font-sans);
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-full:           9999px;      /* Pill capsules: Nav bars, CTA buttons, badges */
+--radius-pill:           28px;        /* Outer container bars */
+--radius-card:           16px;        /* Brand partner chips, media tiles */
+--radius-nested-avatar:  50%;         /* Overlapping circular social proof avatars */
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * -------------------------------------------------------------------------- */
+--glass-blur-nav:        blur(16px) saturate(180%);
+--glass-blur-card:       blur(12px);
+--ambient-blur-glow:     blur(120px);
+
+--shadow-button-primary: 0 0 20px -2px rgba(75, 50, 223, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+--shadow-glass-pill:     0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+--shadow-avatar-overlap: 0 0 0 2px #06060C;
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (4px / 8px Grid)
+ * -------------------------------------------------------------------------- */
+--space-hero-stack-gap:   28px;
+--space-cta-cluster-gap:  14px;
+--space-pill-padding-x:   22px;
+--space-pill-padding-y:   12px;
+--space-partner-grid-gap: 18px;
+--space-section-padding-y: 96px;
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-glass-subtle:    1px solid rgba(255, 255, 255, 0.08);
+--border-glass-hover:     1px solid rgba(255, 255, 255, 0.18);
+--border-glass-highlight: 1px solid rgba(255, 255, 255, 0.28);
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+--icon-stroke-width:   1.85px;
+--icon-treatment:      Monochrome translucent (rgba(255, 255, 255, 0.7)) to pure white;
+--icon-corner-radius:  Smooth rounded joins and terminal caps;
+
+/* -----------------------------------------------------------------------------
+ * 9. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Primary CTA**: Background lightens to #5940EC with expanded 28px glow and subtle upward lift.
+- **Secondary Glass Pill**: Translucent hover shift rgba(255,255,255,0.05) -> rgba(255,255,255,0.12).
+- **Social Proof Avatars**: Circular (50%) with 2px obsidian knockout mask and negative overlap (-8px).
+- **Partner Chips**: Micro scale (1.02x) on hover with fractional border brighten.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- NO solid opaque white or gray borders; all boundaries must use alpha strokes.
+- NO muddy gray or pure black #000 backgrounds without electric violet ambient glow.
+- NO harsh unsoftened drop shadows; all elevation relies on frosted backdrop blurs and subtle glows.
+================================================================================`
   }
 ];
 
