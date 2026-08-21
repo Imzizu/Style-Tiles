@@ -6697,6 +6697,146 @@ developer tools, and high-throughput SaaS platforms.
 - NO muddy gray or pure black #000 backgrounds without electric violet ambient glow.
 - NO harsh unsoftened drop shadows; all elevation relies on frosted backdrop blurs and subtle glows.
 ================================================================================`
+  },
+  {
+    id: "TILE-041",
+    slug: "dramatic-chromatic-editorial",
+    name: "Dramatic Chromatic Editorial",
+    vibe: "Parisian Crimson • Deep Wine • Dark Oxblood Silhouette • High-Contrast Didone Display • Bleeding Typographic Layers • Strict 0px Parisian Fashion Tension",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Playfair Display",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Parisian Crimson / Carmine", hex: "#9E0D12" },
+      { name: "Deep Wine Vignette", hex: "#7D080C" },
+      { name: "Dark Oxblood Silhouette", hex: "#1E0204" },
+      { name: "Pure Editorial White", hex: "#FFFFFF" },
+      { name: "Soft Alabaster", hex: "#F5E8E8" },
+      { name: "Vibrant Scarlet Vermilion", hex: "#D81B24" },
+      { name: "Dark Oxblood Overlay", hex: "rgba(30, 2, 4, 0.65)" },
+      { name: "Light Hairline Overlay", hex: "rgba(255, 255, 255, 0.08)" }
+    ],
+    description: "Luxury Editorial / Dramatic Chromatic Minimalism: Saturated Parisian crimson (#9E0D12), deep wine (#7D080C), dark oxblood Didone watermark letterforms bleeding off-screen, pure white micro-metadata, and razor-sharp architectural 0-2px geometry.",
+    markdownSpec: `================================================================================
+  Aesthetic: Luxury Editorial • Dramatic Chromatic Minimalism • Parisian Crimson
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Luxury Editorial / Dramatic Chromatic Minimalism is inspired by high-contrast 
+Parisian fashion canvases, saturated carmine fields (#9E0D12), deep wine vignettes 
+(#7D080C), and massive dark oxblood Didone letterforms bleeding off-screen. 
+It establishes an austere, hyper-luxurious visual tension where 0px geometric angularity 
+and pure white micro-sans typography command absolute authority.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  --color-canvas-primary:    #9E0D12; /* Saturated Parisian Crimson / Carmine */
+  --color-canvas-subtle:     #7D080C; /* Deep Wine (Gradient base / Vignette) */
+  --color-watermark-glyph:   #1E0204; /* Dark Oxblood / Deep Espresso Silhouette */
+  --color-text-primary:      #FFFFFF; /* Pure Editorial White (High contrast) */
+  --color-text-muted:        #F5E8E8; /* Soft Alabaster (Opacity: 70%) */
+  --color-accent-vermilion:  #D81B24; /* Vibrant Scarlet highlight */
+  --color-overlay-dark:      rgba(30, 2, 4, 0.65);
+  --color-overlay-light:     rgba(255, 255, 255, 0.08);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Display Giant / Background Watermark */
+--font-display-watermark: "Playfair Display", "Didot", serif;
+- Weight:                 900 Black / 600 SemiBold (High-contrast Didone)
+- Scale:                  240px - 480px (Bleeding past viewport boundaries)
+- Tracking:               -0.04em (Tight interlocking curves)
+- Line Height:            0.85
+
+/* Editorial Section Titles */
+--font-display-editorial: "Cinzel", "Playfair Display", serif;
+- Weight:                 400 Regular / 600 SemiBold
+- Scale:                  32px - 48px
+- Tracking:               -0.02em
+- Line Height:            1.15
+
+/* Category Labels & Micro-Metadata */
+--font-sans-meta:         "Inter", "Helvetica Neue", sans-serif;
+- Weight:                 700 Bold / 600 SemiBold
+- Scale:                  10px - 11px
+- Tracking:               +0.18em (Generously spaced)
+- Line Height:            1.20
+- Text Transform:         Uppercase
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY (BORDER RADII)
+ * -------------------------------------------------------------------------- */
+--radius-sharp:   0px;    /* Canvas edge, raw editorial containers */
+--radius-subtle:  2px;    /* Hairline tags, minimalist buttons */
+--radius-pill:    9999px; /* Floating micro-badges / luxury capsules */
+* Philosophy: Strict geometric angularity; zero curvature on primary layouts.
+
+/* -----------------------------------------------------------------------------
+ * 5. ELEVATION & DEPTH (Z-INDEX ARCHITECTURE)
+ * -------------------------------------------------------------------------- */
+- Z-0 (Base Canvas):        Solid Crimson Background Canvas (#9E0D12)
+- Z-1 (Graphic Watermark):  Massive Cut-off Serif Letterforms (Oxblood #1E0204)
+- Z-2 (Spatial Backdrop):   Soft radial ambient wash (Dark red depth #7D080C)
+- Z-3 (Foreground Content): Pure white micro-sans and editorial titles
+- Z-4 (Floating Overlay):   Frosted luxury capsules and modal drawers
+
+--depth-ambient:        0px 30px 60px -12px rgba(18, 1, 2, 0.45);
+--depth-floating-card:  0px 20px 40px -8px rgba(0, 0, 0, 0.38), 0px 1px 3px 0px rgba(255, 255, 255, 0.12) inset;
+
+/* -----------------------------------------------------------------------------
+ * 6. SPACING & SPATIAL SCALE (4px Base Unit)
+ * -------------------------------------------------------------------------- */
+--space-2xs:    4px;    /* Micro tracking gaps */
+--space-xs:     8px;    /* Label-to-Title lockup */
+--space-sm:     16px;   /* Inline metadata gutter */
+--space-md:     24px;   /* Standard padding */
+--space-lg:     48px;   /* Asymmetric negative space */
+--space-xl:     80px;   /* Viewport border gutters */
+--space-bleed:  -10vw;  /* Watermark typographic overlap */
+
+/* -----------------------------------------------------------------------------
+ * 7. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-hairline-light: 1px solid rgba(255, 255, 255, 0.18);
+--border-hairline-dark:  1px solid rgba(30, 2, 4, 0.35);
+--border-active:         1px solid var(--color-text-primary);
+* Rule: Never exceed 1px stroke weight; boundaries are defined by tonal contrast.
+
+/* -----------------------------------------------------------------------------
+ * 8. ICONOGRAPHY LANGUAGE
+ * -------------------------------------------------------------------------- */
+- Style:         Ultra-thin, refined, optical-weight matching
+- Stroke Weight: 1.2px constant
+- Cap & Join:    Mitered / Square joins, open geometry
+- Grid:          24x24px fixed bounding box
+
+/* -----------------------------------------------------------------------------
+ * 9. INTERACTION & FEEDBACK RULES
+ * -------------------------------------------------------------------------- */
+- Duration: 400ms cubic-bezier(0.16, 1, 0.3, 1) (Deliberate luxury deceleration).
+- Text Links: Letter-spacing expands (+0.02em) with subtle 75% opacity shift.
+- Minimal Buttons: Background shifts smoothly from transparent to rgba(255,255,255,0.08).
+- Kinetic Layering: Watermark text translates at 0.25x scroll speed; foreground moves at 1.0x.
+
+/* -----------------------------------------------------------------------------
+ * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- NO rounded bento cards (strict 0-2px angular geometry).
+- NO saturated neon blue/purple synthetic cyber gradients (maintain Parisian crimson and oxblood).
+- NO thick 2px+ structural borders; maintain 1px hairline delicacy.
+================================================================================`
   }
 ];
 
