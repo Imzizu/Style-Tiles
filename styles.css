@@ -97,7 +97,7 @@ body {
   background-color: var(--surface-canvas);
   min-height: 100vh;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -1071,6 +1071,20 @@ a {
   transition: opacity 180ms ease;
 }
 
+/* 2:3 Mobile Preview Mode Modifier */
+.catalog-grid.is-mobile-preview .card-preview-live,
+.catalog-grid.is-mobile-preview .skeleton-screen-wrapper,
+.catalog-grid.preview-mobile .card-preview-live,
+.catalog-grid.preview-mobile .skeleton-screen-wrapper {
+  aspect-ratio: 2 / 3;
+}
+
+.catalog-grid.is-mobile-preview .card-preview-iframe,
+.catalog-grid.preview-mobile .card-preview-iframe {
+  width: 390px;
+  height: 585px;
+}
+
 .preview-overlay {
   position: absolute;
   top: 0;
@@ -1664,12 +1678,9 @@ a {
  * 12. MOBILE LAYOUT — DESIGN-FIRST CATALOG
  * -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
-  html {
-    overflow-x: hidden;
-  }
-
+  html,
   body {
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   .layout-wrapper {
@@ -1684,10 +1695,11 @@ a {
     display: none;
   }
 
-  /* Compact, single-row header */
+  /* Compact, single-row sticky header */
   .site-header {
     position: sticky;
     top: 0;
+    z-index: 100;
   }
 
   .header-inner {
@@ -1734,9 +1746,16 @@ a {
   }
 
   .header-link,
-  .btn-copy-master,
-  #header-compact-toggle {
+  .btn-copy-master {
     display: none;
+  }
+
+  #header-compact-toggle,
+  #header-mobile-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
   }
 
   /* Simplified hero: headline + browse, no card */
@@ -1938,15 +1957,9 @@ a {
     min-height: 0;
   }
 
+  /* Hide card action buttons below tags on mobile for a more compact expanded preview */
   .card-actions-bar {
-    flex-wrap: wrap;
-    justify-content: stretch;
-  }
-
-  .card-actions-bar .btn {
-    flex: 1 1 auto;
-    min-width: 0;
-    white-space: nowrap;
+    display: none;
   }
 
   /* Modal */
@@ -2019,6 +2032,17 @@ a {
 @media (max-width: 380px) {
   .layout-wrapper {
     padding: 0 12px;
+  }
+
+  .brand-title {
+    font-size: 1.05rem;
+  }
+
+  #header-compact-toggle,
+  #header-mobile-toggle {
+    padding: 5px 8px;
+    font-size: 0.7rem;
+    gap: 4px;
   }
 
   .hero-mobile .text-display {

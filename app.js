@@ -7252,6 +7252,7 @@ let currentLayoutMode = "grid"; // 'grid' or 'split'
 let userToggledCompact = false;
 const isMobileViewport = () => typeof window !== "undefined" && window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
 let isCompactMode = isMobileViewport(); // Default OFF on desktop (> 768px), default ON on mobile (<= 768px)
+let isMobilePreviewMode = false; // Toggle for 2:3 mobile viewport preview (OFF by default)
 let isLuckyMode = false;
 let luckyTiles = [];
 const CATALOG_PAGE_SIZE = 15;
@@ -7282,6 +7283,7 @@ function persistCatalogState() {
       layout: currentLayoutMode,
       compact: isCompactMode,
       userToggledCompact,
+      mobilePreview: isMobilePreviewMode,
       visibleCount: catalogVisibleCount,
       scrollY: getCatalogScrollY()
     }));
@@ -7313,6 +7315,9 @@ function applyRestoredCatalogState(state) {
   if (typeof state.compact === "boolean") {
     isCompactMode = state.compact;
     userToggledCompact = !!state.userToggledCompact;
+  }
+  if (typeof state.mobilePreview === "boolean") {
+    isMobilePreviewMode = state.mobilePreview;
   }
   if (typeof state.visibleCount === "number" && Number.isFinite(state.visibleCount)) {
     catalogVisibleCount = Math.max(CATALOG_PAGE_SIZE, Math.round(state.visibleCount));
@@ -7382,11 +7387,44 @@ function showToast(message, icon = "✓") {
 // -----------------------------------------------------------------------------
 // RENDER CARD PREVIEWS (16:9 Live Preview or Draft Skeleton)
 // -----------------------------------------------------------------------------
+function hideIframeHeader(iframe) {
+  if (!iframe) return;
+  try {
+    const doc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (!doc) return;
+    if (doc.documentElement) doc.documentElement.classList.add("is-preview");
+    if (doc.body) doc.body.classList.add("is-preview");
+
+    const header = doc.querySelector(".style-tile-header");
+    if (header) {
+      header.style.setProperty("display", "none", "important");
+    }
+
+    if (!doc.getElementById("style-tile-preview-hide-header")) {
+      const styleEl = doc.createElement("style");
+      styleEl.id = "style-tile-preview-hide-header";
+      styleEl.textContent = `
+        .style-tile-header { display: none !important; }
+        body { padding-top: 0 !important; margin-top: 0 !important; }
+      `;
+      (doc.head || doc.documentElement).appendChild(styleEl);
+    }
+  } catch (err) {
+    // Handled gracefully for restricted environments
+  }
+}
+
+function sweepIframeHeaders() {
+  document.querySelectorAll(".card-preview-iframe").forEach(iframe => {
+    hideIframeHeader(iframe);
+  });
+}
+
 function renderCardPreview(tile) {
   if (tile.hasPage) {
     return `
-      <div class="card-preview-live" data-slug="${tile.slug}" title="${tile.name} (Live 16:9 Design Preview)">
-        <iframe src="Designs/${tile.slug}.html" class="card-preview-iframe" title="${tile.name} Live Preview" loading="lazy" tabindex="-1" scrolling="no"></iframe>
+      <div class="card-preview-live" data-slug="${tile.slug}" title="${tile.name} (Live Design Preview)">
+        <iframe src="Designs/${tile.slug}.html?preview=1" class="card-preview-iframe" title="${tile.name} Live Preview" loading="lazy" tabindex="-1" scrolling="no" onload="hideIframeHeader(this)"></iframe>
         <a href="Designs/${tile.slug}.html" class="preview-overlay" title="Open ${tile.name}">
           <span class="preview-open-badge">Open Design Page ↗</span>
         </a>
@@ -7436,12 +7474,14 @@ function renderCardPreview(tile) {
 }
 
 function resizeCardIframes() {
+  const baseWidth = isMobilePreviewMode ? 390 : 1280;
   document.querySelectorAll(".card-preview-live").forEach(container => {
     const iframe = container.querySelector(".card-preview-iframe");
     if (!iframe) return;
+    hideIframeHeader(iframe);
     const width = container.offsetWidth;
     if (width > 0) {
-      const scale = width / 1280;
+      const scale = width / baseWidth;
       iframe.style.transform = `scale(${scale})`;
     }
   });
@@ -7805,6 +7845,8 @@ function applyViewSettings() {
     grid.classList.toggle("view-editorial", isSplit);
     grid.classList.toggle("is-compact", isCompactMode);
     grid.classList.toggle("view-compact", isCompactMode);
+    grid.classList.toggle("is-mobile-preview", isMobilePreviewMode);
+    grid.classList.toggle("preview-mobile", isMobilePreviewMode);
   }
 
   // Update layout mode buttons in catalog controls (Grid / Split)
@@ -7821,6 +7863,13 @@ function applyViewSettings() {
   if (compactBtn) {
     compactBtn.classList.toggle("active", isCompactMode);
     compactBtn.setAttribute("aria-pressed", isCompactMode ? "true" : "false");
+  }
+
+  // Update header mobile preview toggle button
+  const mobileBtn = document.getElementById("header-mobile-toggle");
+  if (mobileBtn) {
+    mobileBtn.classList.toggle("active", isMobilePreviewMode);
+    mobileBtn.setAttribute("aria-pressed", isMobilePreviewMode ? "true" : "false");
   }
 
   requestAnimationFrame(resizeCardIframes);
@@ -7852,6 +7901,20 @@ function toggleCompactMode() {
   showToast(
     isCompactMode ? "Compact Mode: ON (16:9 Previews Only)" : "Compact Mode: OFF (Full Specifications)",
     isCompactMode ? "⊞" : "⊟"
+  );
+}
+
+function toggleMobilePreviewMode() {
+  const anchor = getFocalCardAnchor();
+  isMobilePreviewMode = !isMobilePreviewMode;
+  applyViewSettings();
+  if (anchor) {
+    restoreFocalAnchor(anchor);
+  }
+  persistCatalogState();
+  showToast(
+    isMobilePreviewMode ? "Mobile Viewport Preview: ON (2:3 Ratio)" : "Mobile Viewport Preview: OFF (16:9 Ratio)",
+    isMobilePreviewMode ? "📱" : "💻"
   );
 }
 

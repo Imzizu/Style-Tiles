@@ -73,9 +73,13 @@
       <nav class="header-nav" aria-label="Main Navigation">
         <a href="#catalog" class="header-link">Catalog</a>
         <a href="#catalog-controls" class="header-link" onclick="focusSearch(event)">Search</a>
-        <button id="header-compact-toggle" class="view-btn" onclick="toggleCompactMode()" title="Toggle Compact Mode (Hide details, show 16:9 previews only)" aria-pressed="false">
+        <button id="header-compact-toggle" class="view-btn" onclick="toggleCompactMode()" title="Toggle Compact Mode (Hide details, show preview only)" aria-pressed="false">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18"/><line x1="3" y1="8" x2="21" y2="8"/></svg>
           <span class="compact-label">Compact</span>
+        </button>
+        <button id="header-mobile-toggle" class="view-btn" onclick="toggleMobilePreviewMode()" title="Toggle Mobile Preview Mode (2:3 mobile viewport)" aria-pressed="false">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          <span class="mobile-label">Mobile</span>
         </button>
         <button class="btn btn-primary btn-sm btn-copy-master" onclick="copyMasterPrompt()" title="Copy the universal vibe-coding agent prompt">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>

@@ -319,6 +319,7 @@ Every new design page **MUST** be usable on a phone. Desktop-only layouts are no
 
 ```html
 <link rel="stylesheet" href="design-page-mobile.css">
+<script src="design-page-mobile.js"></script>
 ```
 
    This file stacks the mandatory header, keeps the Catalog / Preview / Copy / Download controls on-screen, and prevents the page from spilling sideways. It is a floor, not the whole job — each page must still write its own mobile rules for its unique hero, grids, specimens, and demo.
