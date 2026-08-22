@@ -1939,139 +1939,144 @@
        ========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  STYLE TILE: EDITORIAL HIGH-CONTRAST MINIMALIST / MODERN COMMERCE (TILE-022)
+  Visual language: Editorial High-Contrast Minimalist
+  Construction: white & jet split • safety orange • hairline 200 vs black 900 • 0px cards • pills
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Editorial High-Contrast Minimalist is a razor-sharp modern commerce design language 
-combining pure white gallery canvases, soft studio off-white section rhythms, jet pitch 
-black split panels, and international safety orange (#FF4800) call-to-action triggers. 
-It merges ultra-light 200 hairline sans typography with heavy 900 black headers and fluid 
-expressive script accents, creating an unforgettable tension between editorial sophistication 
-and functional industrial precision.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A razor split of gallery white (#FFFFFF), studio off-white (#F6F6F6), and jet (#0A0A0A), punctuated by international safety orange (#FF4800). Cards and modules stay 0px sharp; interactive controls are pills (9999px). Type tension is the system: Inter Ultra Light 200 at massive scale against Inter Black 900, with Reenie Beanie script as a fluid accent on existing emphasis only. UI casts no drop shadow; depth comes from black/white geometric splits. Hairline #E2E2E2 rules and optional light "///" or orange "*" marks are silent separators -- omit if they would need extra words.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Canvas & Surfaces */
-  --color-canvas-primary:       #FFFFFF; /* Pure White background / Card canvas */
-  --color-canvas-secondary:     #F6F6F6; /* Soft Studio Off-White for section contrast */
-  --color-surface-dark:         #0A0A0A; /* Jet Pitch Black for bold panels & split backdrops */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FFFFFF; /* Pure white gallery */
+  --bg-surface:             #FFFFFF; /* Card canvas */
+  --bg-surface-alt:         #F6F6F6; /* Studio off-white */
+  --bg-surface-dark:        #0A0A0A; /* Jet pitch panels */
 
-  /* Inks & Reading Typography */
-  --color-text-primary:         #111111; /* Deep Onyx for ultra-high legibility */
-  --color-text-secondary:       #707070; /* Cool Mid-Gray for secondary labels & metadata */
-  --color-text-inverted:        #FFFFFF; /* Inverted white text on dark/colored surfaces */
+  /* Inks & Typography */
+  --ink-primary:            #111111; /* Deep onyx */
+  --ink-secondary:          #707070; /* Cool mid-gray */
+  --ink-muted:              #707070;
+  --ink-inverted:           #FFFFFF;
 
-  /* Signature Brand Accents */
-  --color-brand-accent:         #FF4800; /* International Safety Orange (vivid call-to-action) */
-  --color-brand-accent-hover:   #E03E00; /* Deep vermilion for interaction feedback */
+  /* Signature Accents */
+  --accent-primary:         #FF4800; /* Safety orange */
+  --accent-primary-hover:   #E03E00; /* Deep vermilion press */
+  --accent-secondary:       #111111; /* Onyx counter */
+  --accent-tertiary:        #E2E2E2; /* Hairline stroke */
 
-  /* Hairlines & Boundaries */
-  --color-stroke-subtle:        #E2E2E2; /* Hairline divider / pill border */
-  --color-stroke-dark:          #111111; /* Hard contrast borders & active outlines */
-  --grid-split-divider:         #ECECEC; /* Modular section separators */
+  /* Status Tokens */
+  --status-success:         #00875A;
+  --status-warning:         #FF4800;
+  --status-danger:          #D93800;
+  --status-info:            #111111;
 
-  /* Semantic Status Tokens */
-  --status-success:             #00875A;
-  --status-warning:             #FF4800;
-  --status-danger:              #D93800;
-  --status-info:                #111111;
+  /* Extra original tokens */
+  --color-canvas-primary:     #FFFFFF;
+  --color-canvas-secondary:   #F6F6F6;
+  --color-surface-dark:       #0A0A0A;
+  --color-text-primary:       #111111;
+  --color-text-secondary:     #707070;
+  --color-brand-accent:       #FF4800;
+  --color-brand-accent-hover: #E03E00;
+  --color-stroke-subtle:      #E2E2E2;
+  --color-stroke-dark:        #111111;
+  --grid-split-divider:       #ECECEC;
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Stacks */
+--font-display: "Inter", "PP Neue Montreal", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 --font-sans:    "Inter", "PP Neue Montreal", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
---font-script:  "Reenie Beanie", "Caveat", cursive;
 --font-mono:    "JetBrains Mono", "Space Mono", monospace;
+--font-script:  "Reenie Beanie", "Caveat", cursive;
 
-/* Type Scale Hierarchy */
---text-display-massive: 4.5rem – 6.0rem / 0.95 var(--font-sans); /* Weight: 200 (Ultra Light) | Letter-spacing: -0.04em */
---text-headline-sans:   2.75rem – 3.5rem / 1.05 var(--font-sans); /* Primary Term 200 Hairline / Impact Term 900 Black */
---text-headline-script: 3.0rem – 3.75rem / 1.00 var(--font-script); /* Emotive Term 400 Fluid Script */
---text-h2:              1.75rem / 1.20 var(--font-sans); /* Weight: 800 | Letter-spacing: -0.03em */
---text-body-regular:    0.9375rem – 1.0rem / 1.50 var(--font-sans); /* Weight: 400 | Color: #707070 */
---text-capsule-tag:     0.75rem – 0.8125rem / 1.20 var(--font-sans); /* Weight: 500 | sentence-case */
---text-micro-counter:   1.125rem – 1.375rem / 1.00 var(--font-mono); /* Weight: 300 | Letter-spacing: +0.05em */
+--text-display: 4.5rem-6.0rem / 0.95 var(--font-sans); /* Weight: 200 | Tracking: -0.04em */
+--text-h1:      2.75rem-3.5rem / 1.05 var(--font-sans); /* Weight: 200 hairline or 900 black, paired */
+--text-h2:      1.75rem / 1.20 var(--font-sans); /* Weight: 800 | Tracking: -0.03em */
+--text-h3:      3.0rem-3.75rem / 1.00 var(--font-script); /* Weight: 400 | script accent on existing emphasis */
+--text-body:    0.9375rem-1.0rem / 1.50 var(--font-sans); /* Weight: 400 | #707070 allowed for secondary */
+--text-body-sm: 0.75rem-0.8125rem / 1.20 var(--font-sans); /* Weight: 500 | sentence-case chips */
+--text-meta:    1.125rem-1.375rem / 1.00 var(--font-mono); /* Weight: 300 | Tracking: +0.05em */
 
-/* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
- * -------------------------------------------------------------------------- */
---radius-pill:        9999px; /* Primary rule for interactive buttons, nav pills, tags, & icon badges */
---radius-card:           0px; /* Editorial grid cards & module containers remain starkly sharp */
---radius-floating:       4px; /* Micro-radius reserved exclusively for floating utility badges */
+Hairline 200 and black 900 may lock in a single existing heading. Script is an accent cut, not a body face. Do not invent commerce slogans or specimen phrases.
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SPATIAL ARCHITECTURE)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
-/* UI Surface Elevation:
- * 2D Flat Construction: Zero drop-shadows on core UI components (buttons, cards, banners).
- * Spatial depth is established strictly through stark black/white geometric split backgrounds.
- */
---shadow-ui:          none;
+--radius-pill:     9999px;
+--radius-card:     0px;
+--radius-default:  0px;
+--radius-subtle:   0px;
+--radius-floating: 4px;
 
-/* Product / Visual Asset Elevation: */
---shadow-ambient:     0 24px 48px -12px rgba(0, 0, 0, 0.28);
---shadow-contact:     0 4px 8px 0 rgba(0, 0, 0, 0.40);
+--shadow-ui:      none;
+--shadow-base:    none;
+--shadow-hover:   none;
+--shadow-active:  none;
+--shadow-ambient: 0 24px 48px -12px rgba(0, 0, 0, 0.28);
+--shadow-contact: 0 4px 8px 0 rgba(0, 0, 0, 0.40);
+
+UI components (buttons, cards, banners) have zero drop-shadow. Ambient/contact shadows apply only to existing photography or product imagery.
+
+Spacing: 4 / 8 / 12 / 16 / 24 / 40 / 64px+. Asymmetric editorial margins allowed.
+
+If the host already splits a region, map white left / jet right (or the reverse). Do not force a two-column split the host lacks.
+
+Hover: 150ms ease-out, `scale(1.02)` on pills.
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (BASE GRID: 8px)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---space-xxs:   4px;
---space-xs:    8px;   /* Inner button padding (vertical) */
---space-sm:   12px;   /* Inner tag padding (horizontal) */
---space-md:   16px;   /* Nav pill padding / icon offsets */
---space-lg:   24px;   /* Internal grid gutters */
---space-xl:   40px;   /* Section gaps */
---space-2xl:  64px+;  /* Editorial whitespace & asymmetric margins */
+--border-core:        1px solid #111111;
+--border-hairline:    1px solid #E2E2E2;
+--border-dark:        1px solid #111111;
+--grid-split-divider: 1px solid #ECECEC;
+--divider-style:      1px solid #ECECEC;
+
+Optional typographic separators: light-weight "///" or a superscript "*" in #FF4800. Use only as graphic marks, never as new copy blocks.
+
+Icons: 1.25-1.5px monoline, geometric, hosted in 36/44px circles or pills. Thin arrows inside circular pills. Do not add tote or commerce glyphs the host lacks.
 
 /* -----------------------------------------------------------------------------
- * 7. BORDERS & GRAPHIC DIVIDERS
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
---border-hairline:    1px solid var(--color-stroke-subtle); /* Outlined pill tabs & nav wrappers */
---border-dark:        1px solid var(--color-stroke-dark);   /* Active pill filters & button frames */
---grid-split-divider: 1px solid #ECECEC;                   /* Modular section separators */
-
-Graphic Typographic Dividers:
-- Triple Forward Slash: "///" rendered in light weight for rhythmic separation
-- Superscript Accent:   "*" rendered in Brand Orange (#FF4800) as a visual anchor
+- **Buttons**: Pills. Primary: #FF4800 fill, white type/icon; hover #E03E00; icon may `translate(2px, -2px)` on a 45-degree axis. Ghost/capsule: transparent or white, 1px #E2E2E2 stroke, #111111 type; hover 1px #111111 stroke + `scale(1.02)` in 150ms ease-out. Active capsule: #FF4800 fill, no stroke, white type. Keep host labels.
+- **Cards**: 0px, white or #F6F6F6, hairline #ECECEC, no UI shadow. Jet panels invert type to white. Do not round cards 12-24px. Do not add counters or editorial folios.
+- **Inputs**: Pill or 0px field, white well, hairline stroke. Font-size at least 16px. Focus: 1px #111111 or orange. Placeholder #707070. Checkboxes: sharp 0px or circular; checked orange or onyx.
+- **Navigation**: Restyle existing items as hairline pills on white. Active: orange fill or 1px onyx frame. Jet bars use white type. No catalog codes or fake clocks.
+- **Badges / chips / toggles**: Pills, 4px max on tiny utility marks. Orange, onyx, or hairline. Mono counters at 300 weight if the host already shows counts.
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- Stroke Weight: 1.25px – 1.5px (Hairline/Linear)
-- Style: Geometric, minimalist, monoline
-- Enclosure: Always hosted inside circular (36px/44px) or pill-shaped containers
-- Core Glyphs:
-  • Navigation: ← / → (Thin monoline arrows inside circular pills)
-  • Action Trigger: ↗ (Diagonal external arrow in circular button)
-  • Utility: Shopping tote outline, micro +, numeric fractional indicators (1/3)
-
-/* -----------------------------------------------------------------------------
- * 9. COMPONENT ARCHETYPES & INTERACTION RULES
- * -------------------------------------------------------------------------- */
-- Capsule Pill: Transparent or White background + 1px subtle gray stroke + black text.
-  • Hover: 1px dark stroke border transition (#111111) + scale(1.02) micro-spring transform (150ms ease-out).
-  • Active: Background fills with #FF4800, border transparent, text #FFFFFF.
-- Accent CTA Button: Circular or pill container filled with #FF4800 containing white text/icon.
-  • Hover: Background #E03E00, icon translates 2px on 45° axis (translate(2px, -2px)).
-- Editorial Split Panels: Stark 2-column layout (Pure White studio left, Jet Pitch Black right).
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
- * -------------------------------------------------------------------------- */
-- NO generic purple neon or violet accents on dark backgrounds.
-- NO soft multi-layered drop shadows on standard UI cards or buttons.
-- NO 12px – 24px rounded card corners (cards must remain strictly 0px sharp).
-- NO bloated gradient text fills across headline keywords.
-- NO cluttered dashboard widgets or unrelated bento icon spam.
-- NO headline biscuit pills with pulsing dots.
-================================================================================
+- No purple neon or violet on dark.
+- No soft multi-layer drop shadows on UI cards or buttons.
+- No 12-24px rounded cards; modules stay 0px.
+- No gradient fills on headline keywords.
+- No cluttered dashboard widget spam.
+- No biscuit headline pills with pulsing dots.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ==========================================================================

@@ -2064,141 +2064,147 @@
           </div>
         </div>
 
-        <pre class="code-snippet-box" id="onscreen-code-snippet"><code>================================================================================
-  STYLE TILE: GREENWRAP DESIGN SYSTEM
-  Vibe: Modern Eco-Brutalist • Neo-Editorial • Organic Dark Mode
+        <pre class="code-snippet-box" id="onscreen-code-snippet"><code>
+================================================================================
+  Visual language: Pine & Sage Dark Luxury
+  Construction: charcoal canvas • pine and sage slabs • 32px bento radii • frosted glass • pill chrome • leaf-mint ink
 ================================================================================
 
-1. COLOR ROLES & PALETTE
---------------------------------------------------------------------------------
-  Core Canvas:
-    --surface-canvas:        #121414 (Deep Charcoal / Black Canvas)
-    --surface-card-dark:     #063826 (Deep Pine / Forest Green)
-    --surface-card-light:    #9BC89E (Fresh Sage / Muted Mint)
-    --surface-card-neutral:  #1E2121 (Subdued Container Dark)
-    --surface-pill-gray:     #C4C8C5 (Light Muted Fog)
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
 
-  Text & Content:
-    --text-primary:          #FFFFFF (Pure White / Maximum Contrast)
-    --text-on-light:         #0B2E1E (Deep Botanical Green)
-    --text-muted:            #8B938E (Medium Mineral Grey)
-    --text-accent:           #A8E0AF (Vibrant Leaf Mint)
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
-  Accents & Functional:
-    --accent-primary:        #A3D9A5 (Sage Tint - Highlights & Pill Accents)
-    --accent-emerald:        #0A5C3C (Mid-tone Botanical)
-    --accent-overlay:        rgba(255, 255, 255, 0.08) (Glass / Sheen)
-    --border-subtle:         rgba(255, 255, 255, 0.12) (Translucent White Stroke)
-    --border-accent:         #1A5038 (Deep Green Outline)
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A dark luxury field of charcoal canvas with deep-pine and fresh-sage planes stacked as large-radius bento. Light sage slabs invert the ink to botanical green; dark pine slabs carry white and leaf-mint type. Chrome is pill-shaped: buttons, tags, avatars, and nav pods. Elevation is a soft black float plus a faint sage glow, with optional frosted glass at blur(16px). Display is a calm sans with occasional italic serif emphasis inside existing phrases, housed in pill highlights - never new slogans.
 
---------------------------------------------------------------------------------
-2. TYPOGRAPHY SYSTEM
---------------------------------------------------------------------------------
-  Font Families:
-    Primary Sans:   "Plus Jakarta Sans", "Satoshi", sans-serif
-    Display Serif:  "Instrument Serif", "Playfair Display", serif (Editorial Accents)
-    Utility / Mono: "JetBrains Mono", monospace (Labels & Metrics)
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #121414; /* Deep charcoal canvas */
+  --bg-surface:             #063826; /* Deep pine slab */
+  --bg-surface-alt:         #1E2121; /* Neutral dark container */
+  --bg-surface-dark:        #121414; /* Charcoal recess */
 
-  Type Hierarchy:
-    Display H1 (Hero):
-      Font: Primary Sans | Size: 48px – 64px | Weight: 400 (Regular) | Line-height: 1.15
-      Feature: Inline highlighted keywords switch to Display Serif (Italic/Regular) 
-               housed in custom pill badges.
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF; /* Pure white on dark planes */
+  --ink-secondary:          #A8E0AF; /* Vibrant leaf mint */
+  --ink-muted:              #8B938E; /* Mineral grey */
+  --ink-inverted:           #0B2E1E; /* Deep botanical green on sage planes */
 
-    H2 (Card Headers & Highlights):
-      Font: Primary Sans | Size: 22px – 26px | Weight: 500 (Medium) | Line-height: 1.3
+  /* Signature Accents */
+  --accent-primary:         #A3D9A5; /* Sage tint */
+  --accent-primary-hover:   #FFFFFF; /* Invert-to-white hover */
+  --accent-secondary:       #9BC89E; /* Fresh sage slab */
+  --accent-tertiary:        #0A5C3C; /* Mid-tone botanical */
 
-    Body Large (Mission Statements / Summaries):
-      Font: Primary Sans | Size: 18px – 20px | Weight: 400 | Line-height: 1.4
+  /* Status Tokens */
+  --status-success:         #A8E0AF; /* Leaf mint confirm */
+  --status-warning:         #C4C8C5; /* Muted fog caution */
+  --status-danger:          #FFFFFF; /* High-contrast interrupt on pine */
+  --status-info:            #A3D9A5; /* Sage info */
 
-    UI & Microcopy (Nav, Badges, Metrics):
-      Font: Primary Sans / Utility | Size: 11px – 13px | Weight: 600 | Tracking: +0.06em
-      Transform: Uppercase for status tags; Title Case for actions.
+  /* Extra material tokens */
+  --surface-canvas:         #121414;
+  --surface-card-dark:      #063826;
+  --surface-card-light:     #9BC89E;
+  --surface-card-neutral:   #1E2121;
+  --surface-pill-gray:      #C4C8C5;
+  --text-on-light:          #0B2E1E;
+  --text-accent:            #A8E0AF;
+  --accent-emerald:         #0A5C3C;
+  --accent-overlay:         rgba(255, 255, 255, 0.08);
+  --nav-idle:               #222626;
+  --border-accent:          #1A5038;
+  --border-ring:            #1E533B;
+  --glow-sage:              0 0 24px -4px rgba(163, 217, 165, 0.2);
+  --glass-surface:          rgba(30, 33, 33, 0.75);
+  --glass-blur:             blur(16px);
+}
 
---------------------------------------------------------------------------------
-3. CORNER GEOMETRY (BORDER RADII)
---------------------------------------------------------------------------------
-  --radius-pill:     9999px   (Buttons, Badges, Avatars, Nav Pods, Delivery Tags)
-  --radius-card-lg:  32px     (Bento Grid Containers, Media Cards)
-  --radius-card-sm:  20px     (Nested Cards, Metric Pods)
-  --radius-control:  12px     (Input Fields, Utility Tooltips)
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Instrument Serif", "Playfair Display", Georgia, serif;
+--font-sans:    "Plus Jakarta Sans", "Satoshi", system-ui, -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
---------------------------------------------------------------------------------
-4. ELEVATION & DEPTH (SHADOWS & LAYERS)
---------------------------------------------------------------------------------
-  Layering Strategy:
-    • Multi-plane dark layering: Near-black canvas base with layered sage/forest surfaces.
-    • Translucent Frosted Glass:
-        backdrop-filter: blur(16px);
-        background: rgba(30, 33, 33, 0.75);
-    • Linear Guilloche Wireframes:
-        Vector geometric overlapping circles/curves rendered with 0.15–0.3 opacity.
+--text-display: 400 clamp(42px, 5.5vw, 64px) / 1.15 var(--font-sans); /* Hero size 48px-64px */
+--text-h1:      400 clamp(42px, 5.5vw, 64px) / 1.15 var(--font-sans);
+--text-h2:      500 22px-26px / 1.3 var(--font-sans);
+--text-h3:      500 18px / 1.35 var(--font-sans);
+--text-body:    400 18px-20px / 1.4 var(--font-sans);
+--text-body-sm: 400 13px-15px / 1.5 var(--font-sans);
+--text-meta:    600 11px-13px / 1.2 var(--font-sans); /* Tracking: +0.06em | uppercase for compact tags */
 
-  Shadows:
-    --shadow-floating:  0 12px 32px -8px rgba(0, 0, 0, 0.45)
-    --shadow-subtle:    0 4px 16px -2px rgba(0, 0, 0, 0.25)
-    --glow-sage:        0 0 24px -4px rgba(163, 217, 165, 0.2)
+/* Body voice is Plus Jakarta Sans. Instrument Serif is an italic/regular emphasis cut for
+   words that already exist in the host copy, optionally wrapped in a sage pill.
+   Mono is for compact metrics the host already shows. Do not invent headlines. */
 
---------------------------------------------------------------------------------
-5. SPACING & SPATIAL SCALE
---------------------------------------------------------------------------------
-  Base Unit: 4px Grid System
-  
-  Tokens:
-    --space-xxs:  4px
-    --space-xs:   8px
-    --space-sm:   12px
-    --space-md:   16px
-    --space-lg:   24px
-    --space-xl:   32px
-    --space-2xl:  48px
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 32px;   /* Outer bento and media cards */
+--radius-subtle:  12px;   /* Inputs and tooltips */
+--radius-card-lg: 32px;
+--radius-card-sm: 20px;   /* Nested cards */
+--radius-control: 12px;
+--radius-pill:    9999px; /* Buttons, badges, avatars, nav pods */
 
-  Layout Dimensions:
-    • Bento Grid Gap: 16px – 20px
-    • Hero Card Padding: 28px – 36px
-    • Pill Badge Internal Padding: 8px 18px (H), 6px 12px (V)
-    • Nav Bar Inset: 16px Top/Sides
+--shadow-base:      0 4px 16px -2px rgba(0, 0, 0, 0.25);
+--shadow-hover:     0 12px 32px -8px rgba(0, 0, 0, 0.45);
+--shadow-active:    0 4px 16px -2px rgba(0, 0, 0, 0.25);
+--shadow-floating:  0 12px 32px -8px rgba(0, 0, 0, 0.45);
+--shadow-subtle:    0 4px 16px -2px rgba(0, 0, 0, 0.25);
 
---------------------------------------------------------------------------------
-6. BORDERS & DIVIDERS
---------------------------------------------------------------------------------
-  • Card Outlines: 1px solid rgba(255, 255, 255, 0.08) (Subtle contrast isolation)
-  • Highlight Rings: 1.5px solid #1E533B (Botanical pill ring)
-  • Dark Inset Divider: 1px solid rgba(0, 0, 0, 0.15) (For light-card sub-elements)
-  • Metric Level Indicators: Vertical rounded capsule bars with dynamic fill heights.
+/* Optional overlay: low-opacity overlapping circle/curve wireframes (0.15-0.3).
+   Motion: 250ms cubic-bezier(0.4, 0, 0.2, 1) standard; 450ms cubic-bezier(0.16, 1, 0.3, 1) spatial;
+   media 400ms cubic-bezier(0.2, 0.8, 0.2, 1). Press scale 0.97. Media hover scale 1.03, brightness 1.05. */
 
---------------------------------------------------------------------------------
-7. ICONOGRAPHY LANGUAGE
---------------------------------------------------------------------------------
-  Style & Weight:
-    • Fine stroke outline (1.5px – 1.75px uniform weight)
-    • Rounded caps and joins (`stroke-linecap: round; stroke-linejoin: round`)
-    • Size bounding box: 18x18px (Micro UI) | 24x24px (Standard Actions) | 48x48px (Hero Highlights)
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid rgba(255, 255, 255, 0.08);
+--border-hairline:    1px solid rgba(255, 255, 255, 0.12);
+--border-accent:      1px solid #1A5038;
+--border-ring:        1.5px solid #1E533B;
+--divider-style:      1px solid rgba(0, 0, 0, 0.15);
+--border-subtle:      rgba(255, 255, 255, 0.12);
 
-  Motifs & Symbolism:
-    • Circular-bound symbols: Sun, Globe/Latitude grid, Infinite Recycling arrows.
-    • Geometric stamps: Rotated flower/quad-leaf logo icon, tilted paper airplane.
-    • Circular avatar groups overlapping with a +2px dark canvas border mask.
+/* Icons: 1.5px-1.75px rounded monoline; 18 / 24 / 48px. Circular overlapping avatars get a +2px charcoal mask.
+   Do not add recycling, globe, or airplane motifs unless the host already uses those icons. */
 
---------------------------------------------------------------------------------
-8. INTERACTION & FEEDBACK RULES
---------------------------------------------------------------------------------
-  Hover States:
-    • Nav Pills & Action Tags:
-        Background shifts from neutral dark (#222626) to pure white (#FFFFFF); 
-        text transitions from white to canvas black (#121414).
-    • Bento Media Cards:
-        Image scale: transform: scale(1.03); filter: brightness(1.05);
-        Duration: 400ms cubic-bezier(0.2, 0.8, 0.2, 1).
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Pill geometry. Idle nav/action: dark well #222626, white label. Hover: fill #FFFFFF, ink #121414. Press: scale 0.97. Sage pills may bloom with --glow-sage. Use the host's existing labels.
+- **Cards**: Mix pine (#063826), sage (#9BC89E), and neutral dark (#1E2121) slabs at 32px outer / 20px nested radii. 1px white-alpha outlines. Sage slabs use botanical-green ink. Do not add eco stamps, recycling marks, or delivery tags the host lacks.
+- **Inputs**: 12px radius wells on dark or sage, 1.5px botanical ring on focus. Input font-size >= 16px.
+- **Navigation**: Restyle existing items as pill pods in a frosted or charcoal bar (blur 16px, rgba(30,33,33,0.75)). Active pill inverts to white. Do not add catalog names or decorative status lines.
+- **Badges / chips / toggles**: Pills, 8px 18px padding, sage or fog fills. Vertical capsule meters only if the host already has progress or level indicators.
 
-  Active & Press Feedback:
-    • Scale down on press: transform: scale(0.97).
-    • Tactile pill badges pop with subtle `--glow-sage` bloom.
-
-  Transitions:
-    • Standard: 250ms cubic-bezier(0.4, 0, 0.2, 1)
-    • Spatial/Movement: 450ms cubic-bezier(0.16, 1, 0.3, 1)
-================================================================================</code></pre>
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No neon lime cyber palettes or purple glassmorphism.
+- No 0px brutalist cards; keep large soft radii.
+- No hard zero-blur comic shadows.
+- No recycling-symbol, leaf-logo, or eco-stamp mandates.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+        </code></pre>
       </div>
     </section>
 
@@ -2245,140 +2251,144 @@
        ============================================================================= -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  STYLE TILE: GREENWRAP DESIGN SYSTEM
-  Vibe: Modern Eco-Brutalist • Neo-Editorial • Organic Dark Mode
+  Visual language: Pine & Sage Dark Luxury
+  Construction: charcoal canvas • pine and sage slabs • 32px bento radii • frosted glass • pill chrome • leaf-mint ink
 ================================================================================
 
-1. COLOR ROLES & PALETTE
---------------------------------------------------------------------------------
-  Core Canvas:
-    --surface-canvas:        #121414 (Deep Charcoal / Black Canvas)
-    --surface-card-dark:     #063826 (Deep Pine / Forest Green)
-    --surface-card-light:    #9BC89E (Fresh Sage / Muted Mint)
-    --surface-card-neutral:  #1E2121 (Subdued Container Dark)
-    --surface-pill-gray:     #C4C8C5 (Light Muted Fog)
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
 
-  Text & Content:
-    --text-primary:          #FFFFFF (Pure White / Maximum Contrast)
-    --text-on-light:         #0B2E1E (Deep Botanical Green)
-    --text-muted:            #8B938E (Medium Mineral Grey)
-    --text-accent:           #A8E0AF (Vibrant Leaf Mint)
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
-  Accents & Functional:
-    --accent-primary:        #A3D9A5 (Sage Tint - Highlights & Pill Accents)
-    --accent-emerald:        #0A5C3C (Mid-tone Botanical)
-    --accent-overlay:        rgba(255, 255, 255, 0.08) (Glass / Sheen)
-    --border-subtle:         rgba(255, 255, 255, 0.12) (Translucent White Stroke)
-    --border-accent:         #1A5038 (Deep Green Outline)
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A dark luxury field of charcoal canvas with deep-pine and fresh-sage planes stacked as large-radius bento. Light sage slabs invert the ink to botanical green; dark pine slabs carry white and leaf-mint type. Chrome is pill-shaped: buttons, tags, avatars, and nav pods. Elevation is a soft black float plus a faint sage glow, with optional frosted glass at blur(16px). Display is a calm sans with occasional italic serif emphasis inside existing phrases, housed in pill highlights - never new slogans.
 
---------------------------------------------------------------------------------
-2. TYPOGRAPHY SYSTEM
---------------------------------------------------------------------------------
-  Font Families:
-    Primary Sans:   "Plus Jakarta Sans", "Satoshi", sans-serif
-    Display Serif:  "Instrument Serif", "Playfair Display", serif (Editorial Accents)
-    Utility / Mono: "JetBrains Mono", monospace (Labels & Metrics)
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #121414; /* Deep charcoal canvas */
+  --bg-surface:             #063826; /* Deep pine slab */
+  --bg-surface-alt:         #1E2121; /* Neutral dark container */
+  --bg-surface-dark:        #121414; /* Charcoal recess */
 
-  Type Hierarchy:
-    Display H1 (Hero):
-      Font: Primary Sans | Size: 48px – 64px | Weight: 400 (Regular) | Line-height: 1.15
-      Feature: Inline highlighted keywords switch to Display Serif (Italic/Regular) 
-               housed in custom pill badges.
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF; /* Pure white on dark planes */
+  --ink-secondary:          #A8E0AF; /* Vibrant leaf mint */
+  --ink-muted:              #8B938E; /* Mineral grey */
+  --ink-inverted:           #0B2E1E; /* Deep botanical green on sage planes */
 
-    H2 (Card Headers & Highlights):
-      Font: Primary Sans | Size: 22px – 26px | Weight: 500 (Medium) | Line-height: 1.3
+  /* Signature Accents */
+  --accent-primary:         #A3D9A5; /* Sage tint */
+  --accent-primary-hover:   #FFFFFF; /* Invert-to-white hover */
+  --accent-secondary:       #9BC89E; /* Fresh sage slab */
+  --accent-tertiary:        #0A5C3C; /* Mid-tone botanical */
 
-    Body Large (Mission Statements / Summaries):
-      Font: Primary Sans | Size: 18px – 20px | Weight: 400 | Line-height: 1.4
+  /* Status Tokens */
+  --status-success:         #A8E0AF; /* Leaf mint confirm */
+  --status-warning:         #C4C8C5; /* Muted fog caution */
+  --status-danger:          #FFFFFF; /* High-contrast interrupt on pine */
+  --status-info:            #A3D9A5; /* Sage info */
 
-    UI & Microcopy (Nav, Badges, Metrics):
-      Font: Primary Sans / Utility | Size: 11px – 13px | Weight: 600 | Tracking: +0.06em
-      Transform: Uppercase for status tags; Title Case for actions.
+  /* Extra material tokens */
+  --surface-canvas:         #121414;
+  --surface-card-dark:      #063826;
+  --surface-card-light:     #9BC89E;
+  --surface-card-neutral:   #1E2121;
+  --surface-pill-gray:      #C4C8C5;
+  --text-on-light:          #0B2E1E;
+  --text-accent:            #A8E0AF;
+  --accent-emerald:         #0A5C3C;
+  --accent-overlay:         rgba(255, 255, 255, 0.08);
+  --nav-idle:               #222626;
+  --border-accent:          #1A5038;
+  --border-ring:            #1E533B;
+  --glow-sage:              0 0 24px -4px rgba(163, 217, 165, 0.2);
+  --glass-surface:          rgba(30, 33, 33, 0.75);
+  --glass-blur:             blur(16px);
+}
 
---------------------------------------------------------------------------------
-3. CORNER GEOMETRY (BORDER RADII)
---------------------------------------------------------------------------------
-  --radius-pill:     9999px   (Buttons, Badges, Avatars, Nav Pods, Delivery Tags)
-  --radius-card-lg:  32px     (Bento Grid Containers, Media Cards)
-  --radius-card-sm:  20px     (Nested Cards, Metric Pods)
-  --radius-control:  12px     (Input Fields, Utility Tooltips)
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Instrument Serif", "Playfair Display", Georgia, serif;
+--font-sans:    "Plus Jakarta Sans", "Satoshi", system-ui, -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
---------------------------------------------------------------------------------
-4. ELEVATION & DEPTH (SHADOWS & LAYERS)
---------------------------------------------------------------------------------
-  Layering Strategy:
-    • Multi-plane dark layering: Near-black canvas base with layered sage/forest surfaces.
-    • Translucent Frosted Glass:
-        backdrop-filter: blur(16px);
-        background: rgba(30, 33, 33, 0.75);
-    • Linear Guilloche Wireframes:
-        Vector geometric overlapping circles/curves rendered with 0.15–0.3 opacity.
+--text-display: 400 clamp(42px, 5.5vw, 64px) / 1.15 var(--font-sans); /* Hero size 48px-64px */
+--text-h1:      400 clamp(42px, 5.5vw, 64px) / 1.15 var(--font-sans);
+--text-h2:      500 22px-26px / 1.3 var(--font-sans);
+--text-h3:      500 18px / 1.35 var(--font-sans);
+--text-body:    400 18px-20px / 1.4 var(--font-sans);
+--text-body-sm: 400 13px-15px / 1.5 var(--font-sans);
+--text-meta:    600 11px-13px / 1.2 var(--font-sans); /* Tracking: +0.06em | uppercase for compact tags */
 
-  Shadows:
-    --shadow-floating:  0 12px 32px -8px rgba(0, 0, 0, 0.45)
-    --shadow-subtle:    0 4px 16px -2px rgba(0, 0, 0, 0.25)
-    --glow-sage:        0 0 24px -4px rgba(163, 217, 165, 0.2)
+/* Body voice is Plus Jakarta Sans. Instrument Serif is an italic/regular emphasis cut for
+   words that already exist in the host copy, optionally wrapped in a sage pill.
+   Mono is for compact metrics the host already shows. Do not invent headlines. */
 
---------------------------------------------------------------------------------
-5. SPACING & SPATIAL SCALE
---------------------------------------------------------------------------------
-  Base Unit: 4px Grid System
-  
-  Tokens:
-    --space-xxs:  4px
-    --space-xs:   8px
-    --space-sm:   12px
-    --space-md:   16px
-    --space-lg:   24px
-    --space-xl:   32px
-    --space-2xl:  48px
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 32px;   /* Outer bento and media cards */
+--radius-subtle:  12px;   /* Inputs and tooltips */
+--radius-card-lg: 32px;
+--radius-card-sm: 20px;   /* Nested cards */
+--radius-control: 12px;
+--radius-pill:    9999px; /* Buttons, badges, avatars, nav pods */
 
-  Layout Dimensions:
-    • Bento Grid Gap: 16px – 20px
-    • Hero Card Padding: 28px – 36px
-    • Pill Badge Internal Padding: 8px 18px (H), 6px 12px (V)
-    • Nav Bar Inset: 16px Top/Sides
+--shadow-base:      0 4px 16px -2px rgba(0, 0, 0, 0.25);
+--shadow-hover:     0 12px 32px -8px rgba(0, 0, 0, 0.45);
+--shadow-active:    0 4px 16px -2px rgba(0, 0, 0, 0.25);
+--shadow-floating:  0 12px 32px -8px rgba(0, 0, 0, 0.45);
+--shadow-subtle:    0 4px 16px -2px rgba(0, 0, 0, 0.25);
 
---------------------------------------------------------------------------------
-6. BORDERS & DIVIDERS
---------------------------------------------------------------------------------
-  • Card Outlines: 1px solid rgba(255, 255, 255, 0.08) (Subtle contrast isolation)
-  • Highlight Rings: 1.5px solid #1E533B (Botanical pill ring)
-  • Dark Inset Divider: 1px solid rgba(0, 0, 0, 0.15) (For light-card sub-elements)
-  • Metric Level Indicators: Vertical rounded capsule bars with dynamic fill heights.
+/* Optional overlay: low-opacity overlapping circle/curve wireframes (0.15-0.3).
+   Motion: 250ms cubic-bezier(0.4, 0, 0.2, 1) standard; 450ms cubic-bezier(0.16, 1, 0.3, 1) spatial;
+   media 400ms cubic-bezier(0.2, 0.8, 0.2, 1). Press scale 0.97. Media hover scale 1.03, brightness 1.05. */
 
---------------------------------------------------------------------------------
-7. ICONOGRAPHY LANGUAGE
---------------------------------------------------------------------------------
-  Style & Weight:
-    • Fine stroke outline (1.5px – 1.75px uniform weight)
-    • Rounded caps and joins (`stroke-linecap: round; stroke-linejoin: round`)
-    • Size bounding box: 18x18px (Micro UI) | 24x24px (Standard Actions) | 48x48px (Hero Highlights)
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid rgba(255, 255, 255, 0.08);
+--border-hairline:    1px solid rgba(255, 255, 255, 0.12);
+--border-accent:      1px solid #1A5038;
+--border-ring:        1.5px solid #1E533B;
+--divider-style:      1px solid rgba(0, 0, 0, 0.15);
+--border-subtle:      rgba(255, 255, 255, 0.12);
 
-  Motifs & Symbolism:
-    • Circular-bound symbols: Sun, Globe/Latitude grid, Infinite Recycling arrows.
-    • Geometric stamps: Rotated flower/quad-leaf logo icon, tilted paper airplane.
-    • Circular avatar groups overlapping with a +2px dark canvas border mask.
+/* Icons: 1.5px-1.75px rounded monoline; 18 / 24 / 48px. Circular overlapping avatars get a +2px charcoal mask.
+   Do not add recycling, globe, or airplane motifs unless the host already uses those icons. */
 
---------------------------------------------------------------------------------
-8. INTERACTION & FEEDBACK RULES
---------------------------------------------------------------------------------
-  Hover States:
-    • Nav Pills & Action Tags:
-        Background shifts from neutral dark (#222626) to pure white (#FFFFFF); 
-        text transitions from white to canvas black (#121414).
-    • Bento Media Cards:
-        Image scale: transform: scale(1.03); filter: brightness(1.05);
-        Duration: 400ms cubic-bezier(0.2, 0.8, 0.2, 1).
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Pill geometry. Idle nav/action: dark well #222626, white label. Hover: fill #FFFFFF, ink #121414. Press: scale 0.97. Sage pills may bloom with --glow-sage. Use the host's existing labels.
+- **Cards**: Mix pine (#063826), sage (#9BC89E), and neutral dark (#1E2121) slabs at 32px outer / 20px nested radii. 1px white-alpha outlines. Sage slabs use botanical-green ink. Do not add eco stamps, recycling marks, or delivery tags the host lacks.
+- **Inputs**: 12px radius wells on dark or sage, 1.5px botanical ring on focus. Input font-size >= 16px.
+- **Navigation**: Restyle existing items as pill pods in a frosted or charcoal bar (blur 16px, rgba(30,33,33,0.75)). Active pill inverts to white. Do not add catalog names or decorative status lines.
+- **Badges / chips / toggles**: Pills, 8px 18px padding, sage or fog fills. Vertical capsule meters only if the host already has progress or level indicators.
 
-  Active & Press Feedback:
-    • Scale down on press: transform: scale(0.97).
-    • Tactile pill badges pop with subtle `--glow-sage` bloom.
-
-  Transitions:
-    • Standard: 250ms cubic-bezier(0.4, 0, 0.2, 1)
-    • Spatial/Movement: 450ms cubic-bezier(0.16, 1, 0.3, 1)
-================================================================================
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No neon lime cyber palettes or purple glassmorphism.
+- No 0px brutalist cards; keep large soft radii.
+- No hard zero-blur comic shadows.
+- No recycling-symbol, leaf-logo, or eco-stamp mandates.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- =============================================================================

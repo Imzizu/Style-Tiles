@@ -1564,121 +1564,133 @@
        ========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Editorial Vintage Chic • Alabaster Linen & Vivid Terracotta
+  Visual language: Editorial Vintage Chic
+  Construction: alabaster linen • light Didone • vivid terracotta • 0px rectangles
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Editorial Vintage Chic captures the timeless sophistication of high-fashion magazine 
-layouts with warm alabaster linen (#FBF9F6), deep carbon ink black (#141312), and 
-vivid terracotta accents (#EE582B). Defined by light Didone typography (300 weight), 
-tilted rotational ticker ribbons (-3.2deg), continuously rotating provenance seals, 
-and disciplined 0px rectangular geometry, it delivers pure French editorial chic.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Warm alabaster linen (#FBF9F6) with a peach underglow (#F5DDD2) is the paper.
+Ink is deep carbon (#141312). Display is Playfair Display at 300 weight,
+uppercase, with open tracking. The only saturated mark is vivid terracotta
+(#EE582B). Geometry is strict 0px rectangles. Optional motifs: a -3.2deg
+marquee ribbon in dusty salmon, and circular stamps that rotate 360deg over
+18s linear infinite. Elevation is flat print, not drop shadow.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Canvas & Surfaces */
-  --surface-canvas:         #FBF9F6; /* Warm alabaster / editorial linen */
-  --surface-canvas-subtle:  #F3EFEA; /* Warm beige secondary background */
-  --surface-glow-ambient:   #F5DDD2; /* Soft diffused peach underglow */
-  --surface-card:           #FFFFFF; /* Clean white for embedded assets */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FBF9F6; /* Warm alabaster / editorial linen */
+  --bg-surface:             #FFFFFF; /* Clean white for elevated assets */
+  --bg-surface-alt:         #F3EFEA; /* Warm beige secondary */
+  --bg-surface-dark:        #141312; /* Carbon inverted containers */
 
-  /* Text & Inks */
-  --text-primary:           #141312; /* Deep carbon ink black */
-  --text-secondary:         #6B6661; /* Muted warm slate / taupe body */
-  --text-tertiary:          #9C958E; /* Faint caption / micro-copy grey */
-  --text-inverse:           #FFFFFF; /* Pure white on dark surfaces */
+  /* Inks & Typography */
+  --ink-primary:            #141312; /* Deep carbon ink */
+  --ink-secondary:          #6B6661; /* Muted warm slate / taupe */
+  --ink-muted:              #9C958E; /* Faint caption grey */
+  --ink-inverted:           #FFFFFF; /* Inverse on dark surfaces */
 
-  /* Accents & Tickers */
-  --accent-primary:         #EE582B; /* Vivid terracotta / warm tangerine */
+  /* Signature Accents */
+  --accent-primary:         #EE582B; /* Vivid terracotta */
   --accent-primary-hover:   #D6451B; /* Deep burnt orange */
-  --accent-tint-peach:      #F5BAA7; /* Dusty salmon / peach ticker ribbon */
-  --accent-tint-muted:      #EAD6CD; /* Faded clay overlay */
+  --accent-secondary:       #F5BAA7; /* Dusty salmon ribbon */
+  --accent-tertiary:        #EAD6CD; /* Faded clay overlay */
 
-  /* Borders */
-  --border-hairline:        rgba(20, 19, 18, 0.08); /* Whisper-thin boundary */
-  --border-strong:          #141312; /* Sharp contrast divider */
+  /* Status Tokens (in-family) */
+  --status-success:         #EE582B;
+  --status-warning:         #D6451B;
+  --status-danger:          #D6451B;
+  --status-info:            #6B6661;
+
+  /* Extra original tokens */
+  --surface-glow-ambient:   #F5DDD2; /* Soft diffused peach underglow */
+  --accent-tint-peach:      #F5BAA7;
+  --accent-tint-muted:      #EAD6CD;
+  --border-strong:          #141312;
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
 /* Font Stacks */
---font-display-serif:     "Playfair Display", "Didot", serif;
+--font-display: "Playfair Display", "Didot", serif;
+--font-sans:    "Inter", "Helvetica Neue", sans-serif;
+--font-mono:    "JetBrains Mono", monospace;
 --font-decorative-script: "UnifrakturMaguntia", "Cinzel Decorative", serif;
---font-body-sans:         "Inter", "Helvetica Neue", sans-serif;
---font-mono:              "JetBrains Mono", monospace;
 
-/* Scale & Hierarchy */
---type-display-hero:    300 clamp(3.5rem, 7vw, 6.5rem) / 0.95 var(--font-display-serif); /* +0.04em Tracking, UPPERCASE */
---type-display-section: 400 clamp(2.25rem, 4vw, 3.75rem) / 1.05 var(--font-display-serif); /* +0.02em Tracking, UPPERCASE */
---type-ticker-text:     400 1.125rem / 1.0 var(--font-decorative-script);                 /* +0.05em Tracking */
---type-body-standard:   400 0.875rem (14px) / 1.6 var(--font-body-sans);                  /* -0.01em Tracking */
---type-meta-utility:    500 0.6875rem (11px) / 1.2 var(--font-body-sans);                 /* +0.12em Tracking, UPPERCASE */
-
-/* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
- * -------------------------------------------------------------------------- */
---radius-sharp:   0px;    /* Primary aesthetic: strict rectangular cards, CTAs, banners */
---radius-subtle:  2px;    /* Input fields / micro containers */
---radius-full:    50%;    /* Reserved strictly for circular floating stamps & logo marks */
+/* Type Scale */
+--text-display: 300 clamp(3.5rem, 7vw, 6.5rem) / 0.95 var(--font-display); /* Tracking: +0.04em | UPPERCASE | Weight: 300 */
+--text-h1:      300 clamp(3.5rem, 7vw, 6.5rem) / 0.95 var(--font-display); /* Tracking: +0.04em | UPPERCASE */
+--text-h2:      400 clamp(2.25rem, 4vw, 3.75rem) / 1.05 var(--font-display); /* Tracking: +0.02em | UPPERCASE */
+--text-h3:      400 1.125rem / 1.0 var(--font-decorative-script); /* Tracking: +0.05em | ribbon / decorative */
+--text-body:    400 0.875rem / 1.6 var(--font-sans); /* Tracking: -0.01em | 14px */
+--text-body-sm: 400 0.875rem / 1.6 var(--font-sans);
+--text-meta:    500 0.6875rem / 1.2 var(--font-sans); /* Tracking: +0.12em | UPPERCASE | 11px */
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SHADOWS & LAYERING)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
---shadow-default: none;   /* Flat magazine print philosophy */
+--radius-default: 0px;  /* Strict rectangular cards, CTAs, banners */
+--radius-subtle:  2px;  /* Input fields / micro containers */
+--radius-pill:    0px;  /* Pills are not the system default */
+--radius-full:    50%;  /* Circular stamps and marks only */
+
+/* Elevation & Shadows */
+--shadow-base:    none;
+--shadow-hover:   0 20px 40px -15px rgba(20, 19, 18, 0.05);
+--shadow-active:  none;
 --shadow-subtle:  0 20px 40px -15px rgba(20, 19, 18, 0.05);
 
-- Layer 0 (Canvas):     Warm alabaster canvas + radial peach blur (#F5DDD2)
-- Layer 10 (Media):     Photographic editorial cards
-- Layer 20 (Type):      High-contrast serif overlapping imagery
-- Layer 30 (Ribbon):    Tilted marquee banners (-3.2deg rotation)
-- Layer 40 (Stamp):     Circular decorative floating stamps (18s linear infinite rotation)
+/* Optional motifs */
+--ribbon-angle:   -3.2deg;
+--ribbon-height:  36px;
+--stamp-spin:     18s linear infinite;
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (4px Base Unit)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---space-2xs: 4px;
---space-xs:  8px;
---space-sm:  16px;
---space-md:  24px;
---space-lg:  40px;
---space-xl:  64px;
---space-2xl: 120px;
-
-- Gutter: 32px | Margin: clamp(1.5rem, 5vw, 4rem) | Asymmetric multi-column offset
-
-/* -----------------------------------------------------------------------------
- * 7. BORDERS & DIVIDERS
- * -------------------------------------------------------------------------- */
+--border-core:             1px solid #141312;
+--border-hairline:         1px solid rgba(20, 19, 18, 0.08);
 --border-hairline-divider: 1px solid rgba(20, 19, 18, 0.08);
 --border-solid-frame:      1px solid #141312;
---rotational-ribbon:       height 36px, angle -3.2deg, offset 2px;
+--divider-style:           1px solid rgba(20, 19, 18, 0.08);
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY & GRAPHIC MOTIFS
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-- Ultra-thin 1.0px–1.25px line weight, minimal geometric wireframe
-- Glyphs: ✦ (Four-point editorial sparkle), ✻ (Asterisk star), ➔ (Hairline rule arrow)
-- Badge System: Curved text on circular SVG path with centered sparkle
+- **Buttons**: 0px radius. Primary fill is #141312 with inverted white ink. Hover shifts fill to #EE582B and translateY(-1px). Use the host's existing labels.
+- **Cards**: Rectangular 0px frames on linen or white. Optional 1px carbon frame. No bento rounding. Do not add index codes or fake meta.
+- **Inputs**: 2px micro-radius, hairline rgba(20,19,18,0.08), font-size at least 16px. Focus uses the 1px #141312 frame.
+- **Navigation**: Restyle existing items in Inter 11px uppercase +0.12em. Do not add catalog codes, fake clocks, or status readouts.
+- **Ribbon / stamp**: If the host already has a marquee or seal, tilt the ribbon -3.2deg at 36px height in #F5BAA7, and allow circular stamps to rotate 18s linear infinite. Omit either motif if it would require new copy.
+- **Icons**: Ultra-thin 1.0px-1.25px wireframe strokes. Sparkle or asterisk marks are graphic, not required labels.
 
 /* -----------------------------------------------------------------------------
- * 9. COMPONENT ARCHETYPES & INTERACTION RULES
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- **Primary CTA Button**: #141312 background, 0px radius, shifts to #EE582B with translateY(-1px) on hover.
-- **Tilted Marquee Ribbon**: -3.2deg tilt with continuous linear X-axis infinite scrolling.
-- **Rotating Stamp Badge**: Continuous 18s linear infinite 360-degree rotation.
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
- * -------------------------------------------------------------------------- */
-- NO rounded bento cards (maintain strict 0px rectangular discipline).
-- NO saturated neon cyber blue/purple gradients (maintain alabaster, carbon, and terracotta).
-- NO heavy unsoftened box shadows; prioritize flat magazine print layouts.
-================================================================================
+- NO rounded bento cards; keep 0px rectangular discipline.
+- NO saturated neon cyber blue/purple gradients.
+- NO heavy unsoftened box shadows; prioritize flat print elevation.
+- NO 9999px pill CTAs as the default control shape.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ==========================================================================

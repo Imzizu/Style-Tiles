@@ -2040,32 +2040,46 @@
 
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Warm Earth Wellness • Quiet Luxury Hospitality • Sandstone, Ceramic & Espresso
+  Visual language: Warm Earth
+  Construction: sandstone canvas • ceramic white • espresso ink • 9999px pills
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Warm Earth Wellness is a composed hospitality design language: warm sandstone
-canvas, ceramic-white navigation and cards, and espresso ink. White pill CTAs
-carry a 1.5px espresso stroke and invert to espresso fill on hover. Botanical
-circular seals and editorial negative space give modern spa, residence, and
-wellness-maison products a fashion-house calm — expensive, ritual-led, never
-rustic and never confectionery.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Sandstone (#C5A58E) is the canvas. Ceramic white (#FFFFFF) floats as navigation
+and cards. Ink is espresso (#32231D). White pill CTAs carry a 1.5px espresso
+stroke and invert to espresso fill on hover. Structural bands stay 0px; images
+and wells use 4px. Sage (#5A7A5E) is a sparse botanical accent, never a second
+brand. Motion is 200ms cubic-bezier(0.16, 1, 0.3, 1).
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
   /* Surfaces & Backgrounds */
-  --bg-canvas:              #C5A58E; /* Primary sandstone application canvas */
-  --bg-surface:             #FFFFFF; /* Ceramic white — nav, cards, CTA fill */
+  --bg-canvas:              #C5A58E; /* Sandstone application canvas */
+  --bg-surface:             #FFFFFF; /* Ceramic white - nav, cards, CTA fill */
   --bg-surface-alt:         #F5EEE8; /* Warm oat wells, sidebars, subtle panels */
   --bg-surface-dark:        #32231D; /* Espresso inverted containers */
 
   /* Inks & Typography */
   --ink-primary:            #32231D; /* High-contrast espresso reading text */
-  --ink-secondary:          #614D43; /* Subtitles, hospitality body */
+  --ink-secondary:          #614D43; /* Subtitles, secondary body */
   --ink-muted:              #8C776C; /* Captions, disabled text, quiet labels */
   --ink-inverted:           #FFFFFF; /* Inverse contrast on espresso fills */
 
@@ -2086,19 +2100,19 @@ rustic and never confectionery.
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
 /* Font Stacks */
---font-display: "Syne", "Plus Jakarta Sans", sans-serif; /* Cabinet Grotesk / Clash Display stand-in */
+--font-display: "Syne", "Plus Jakarta Sans", sans-serif;
 --font-sans:    "Plus Jakarta Sans", -apple-system, sans-serif;
 --font-mono:    "Plus Jakarta Sans", ui-monospace, monospace;
 
 /* Type Scale */
---text-display: 3.5rem   / 0.95  var(--font-display); /* Letter-spacing: -0.02em | Weight: 700 | UPPERCASE | Hero clamp ~4.5rem */
---text-h1:      2.5rem   / 1.15  var(--font-display); /* Letter-spacing: -0.02em | Weight: 700 | UPPERCASE */
---text-h2:      2.25rem  / 1.1   var(--font-display); /* Letter-spacing: -0.01em | Weight: 700 | UPPERCASE */
---text-h3:      1.25rem  / 1.35  var(--font-sans);    /* Letter-spacing: -0.01em | Weight: 700 */
---text-body:     0.9375rem / 1.55 var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
---text-body-sm:  0.875rem / 1.50  var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
---text-meta:     0.75rem  / 1.40  var(--font-sans);    /* Letter-spacing: 0.18em | Weight: 600 | UPPERCASE */
-/* Nav: 600 0.75rem uppercase 0.12em · Buttons: 700 0.75rem uppercase 0.15em */
+--text-display: 3.5rem     / 0.95  var(--font-display); /* Letter-spacing: -0.02em | Weight: 700 | UPPERCASE | Hero clamp ~4.5rem */
+--text-h1:      2.5rem     / 1.15  var(--font-display); /* Letter-spacing: -0.02em | Weight: 700 | UPPERCASE */
+--text-h2:      2.25rem    / 1.1   var(--font-display); /* Letter-spacing: -0.01em | Weight: 700 | UPPERCASE */
+--text-h3:      1.25rem    / 1.35  var(--font-sans);    /* Letter-spacing: -0.01em | Weight: 700 */
+--text-body:    0.9375rem  / 1.55  var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
+--text-body-sm: 0.875rem   / 1.50  var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
+--text-meta:    0.75rem    / 1.40  var(--font-sans);    /* Letter-spacing: 0.18em | Weight: 600 | UPPERCASE */
+/* Nav: 600 0.75rem uppercase 0.12em. Buttons: 700 0.75rem uppercase 0.15em */
 
 /* -----------------------------------------------------------------------------
  * 4. CORNER GEOMETRY & ELEVATION
@@ -2108,38 +2122,42 @@ rustic and never confectionery.
 --radius-pill:    9999px;  /* Buttons, badges, floating nav cluster */
 
 /* Elevation & Shadows */
---shadow-base:    0 18px 40px -10px rgba(50, 35, 29, 0.18); /* Floating ceramic nav / cards */
---shadow-hover:   0 6px 16px -2px rgba(50, 35, 29, 0.12);   /* Hover lift */
+--shadow-base:    0 18px 40px -10px rgba(50, 35, 29, 0.18);
+--shadow-hover:   0 6px 16px -2px rgba(50, 35, 29, 0.12);
 --shadow-active:  0 2px 8px -2px rgba(50, 35, 29, 0.10);
+
+/* Motion */
+--ease-earth: cubic-bezier(0.16, 1, 0.3, 1);
+--duration:   200ms;
 
 /* -----------------------------------------------------------------------------
  * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---border-core:        1.5px solid #32231D;                 /* Interactive espresso stroke */
---border-hairline:    1px solid rgba(50, 35, 29, 0.10);    /* Quiet structure */
+--border-core:        1.5px solid #32231D;
+--border-hairline:    1px solid rgba(50, 35, 29, 0.10);
 --divider-style:      1px solid rgba(50, 35, 29, 0.10);
---border-badge:       1px solid rgba(255, 255, 255, 0.40); /* Overlay badges on sandstone */
+--border-badge:       1px solid rgba(255, 255, 255, 0.40);
 
 /* -----------------------------------------------------------------------------
- * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-- **Buttons**: Pill 9999px. Default ceramic white fill, espresso text, 1.5px espresso border. Hover: espresso fill, white text, translateY(-1px). Active: translateY(0) scale(0.98). Transition all 200ms cubic-bezier(0.16, 1, 0.3, 1). Outlined CTAs share the stroke on a transparent/sandstone ground and invert the same way. Ghost links only change opacity and tracking. Danger uses terracotta stroke/fill. Accent is the espresso-filled invert, used as a committed state.
-- **Cards**: Ceramic white or oat #F5EEE8, 4px radius, hairline border, optional floating shadow. Structural bands and section shells remain 0px radius.
-- **Inputs**: 4px wells on oat, 16px type to prevent iOS zoom, espresso 1.5px focus stroke. Placeholders in muted #8C776C.
-- **Navigation**: Ceramic-white floating cluster (pill) over sandstone. Links 600 / 0.75rem / uppercase / 0.12em. Hover: opacity 0.65 and letter-spacing 0.14em. Optional espresso-stroke Reserve pill on the right.
-- **Seals & icons**: Monoline organic geometry, 1.25–1.5px stroke, circular botanical stamps. No drop-shadowed brutalist chops.
+- **Buttons**: Pill 9999px. Default ceramic white fill, espresso text, 1.5px espresso border. Hover: espresso fill, white text, translateY(-1px). Active: translateY(0) scale(0.98). Transition all 200ms cubic-bezier(0.16, 1, 0.3, 1). Outlined controls share the stroke on a transparent/sandstone ground and invert the same way. Ghost links only change opacity and tracking. Danger uses terracotta stroke/fill. Use the host's existing labels.
+- **Cards**: Ceramic white or oat #F5EEE8, 4px radius, hairline border, optional floating shadow. Structural bands and section shells remain 0px radius. Do not add index codes or fake meta.
+- **Inputs**: 4px wells on oat, font-size at least 16px, espresso 1.5px focus stroke. Placeholders in muted #8C776C.
+- **Navigation**: Ceramic-white floating cluster (pill) over sandstone. Links 600 / 0.75rem / uppercase / 0.12em. Hover: opacity 0.65 and letter-spacing 0.14em. Do not add catalog codes, fake clocks, or status readouts.
+- **Seals & icons**: Monoline organic geometry, 1.25-1.5px stroke, circular stamps if the host already has a mark. No drop-shadowed brutalist chops. Omit botanical seals if they would require new motto copy.
 - **Badges**: Pills with espresso stroke, oat fill, espresso fill, or white 40% overlay stroke on sandstone.
 
 /* -----------------------------------------------------------------------------
- * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- No rustic wabi-sabi clutter, frayed craft textures, or irregular handmade stamps — this is polished wellness luxury.
+- No rustic wabi-sabi clutter, frayed craft textures, or irregular handmade stamps.
 - No neon, cyan HUD, or generic purple gradients.
-- No 20–32px bento SaaS dashboards, chunky soft shadows, or product-analytics chrome.
-- No chocolate, cacao, caramel-gold, or foil confectionery palettes (that is a different house).
+- No 20-32px bento SaaS modules, chunky soft shadows, or product-analytics chrome.
+- No chocolate, cacao, caramel-gold, or foil confectionery palettes.
 - No hard zero-blur brutalist offset shadows on seals or cards.
 - No hover-only actions; every control must work on touch.
-================================================================================
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <script>

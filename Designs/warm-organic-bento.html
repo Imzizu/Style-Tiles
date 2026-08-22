@@ -2555,56 +2555,74 @@
 
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Warm Organic Bento • Tactile Soft SaaS • Oat Canvas & Sunburst Orange
+  Visual language: Warm Organic Bento
+  Construction: oat canvas • 24px white modules • sunburst orange • 4px dot-matrix
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Warm Organic Bento is a tactile, pastel-infused, high-clarity SaaS language.
-It sits on a warm oat canvas (#F7F5EE) with 24px white bento modules, a single
-sunburst-orange CTA (#F38D3C), and ultra-soft categorical chips. Data is plotted
-as vertical 4px dot-matrix columns — never crude solid bars. Ideal for hospitality
-ops, residency networks, craft commerce, wellness studios, and calm people-tools
-that must feel handmade without losing product precision.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Warm oat canvas (#F7F5EE) holds 24px white modules with dual whisper shadows.
+A single sunburst orange (#F38D3C) is the CTA and matrix ink. Nested wells sit
+at 18px on #FAF9F5. Categorical chips are ultra-soft pastels with deep inks.
+If charts exist, plot them as vertical 4px dot-matrix columns with a 3px gap
+and opacity ramping from 30% to 100% - never crude solid bars.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
   /* Surfaces & Backgrounds */
-  --bg-canvas:              #F7F5EE; /* Primary application canvas — warm oat */
+  --bg-canvas:              #F7F5EE; /* Warm oat */
   --bg-surface:             #FFFFFF; /* Elevated 24px bento cards */
   --bg-surface-alt:         #FAF9F5; /* Nested wells, sidebar, input fills */
-  --bg-surface-dark:        #18181B; /* Inverted containers & selected nav */
+  --bg-surface-dark:        #18181B; /* Inverted containers and selected nav */
 
   /* Inks & Typography */
-  --ink-primary:            #18181B; /* High-contrast headlines & selected pills */
+  --ink-primary:            #18181B; /* High-contrast headlines and selected pills */
   --ink-secondary:          #3F3F46; /* Body copy */
   --ink-muted:              #71717A; /* Captions, table headers, unused nav */
   --ink-inverted:           #FFFFFF; /* Text on black / orange */
 
   /* Signature Accents */
-  --accent-primary:         #F38D3C; /* Sunburst CTA, New action, matrix ink */
+  --accent-primary:         #F38D3C; /* Sunburst CTA, matrix ink */
   --accent-primary-hover:   #E07B2B; /* Hover / pressed orange */
-  --accent-secondary:       #FDF1E6; /* Peach tint — secondary button fill */
+  --accent-secondary:       #FDF1E6; /* Peach tint - secondary button fill */
   --accent-tertiary:        #F97316; /* Supporting orange chip */
 
   /* Status Tokens */
-  --status-success:         #10B981; /* Emerald — pair with #D1FAE5 / #065F46 */
-  --status-warning:         #F59E0B; /* Amber — pair with #FEF3C7 / #92400E */
-  --status-danger:          #C2410C; /* Terracotta — pair with #FFEDD5 / #9A3412 */
-  --status-info:            #3B82F6; /* Blue — pair with #DBEAFE / #1E40AF */
+  --status-success:         #10B981; /* Pair with #D1FAE5 / #065F46 */
+  --status-warning:         #F59E0B; /* Pair with #FEF3C7 / #92400E */
+  --status-danger:          #C2410C; /* Pair with #FFEDD5 / #9A3412 */
+  --status-info:            #3B82F6; /* Pair with #DBEAFE / #1E40AF */
+
+  /* Extra original tokens */
+  --ink-secondary-btn:      #4A2800; /* Secondary button label on peach tint */
+  --data-amber-bg:          #FEF3C7;
+  --data-amber-ink:         #92400E;
+  --data-blue-bg:           #DBEAFE;
+  --data-blue-ink:          #1E40AF;
+  --data-orange-bg:         #FFEDD5;
+  --data-orange-ink:        #9A3412;
+  --data-purple-bg:         #F3E8FF;
+  --data-purple-ink:        #6B21A8;
+  --data-emerald-bg:        #D1FAE5;
+  --data-emerald-ink:       #065F46;
 }
-
-/* Categorical pastel chips (bg / ink) */
---data-amber:    #F59E0B / #FEF3C7 / #92400E;
---data-blue:     #3B82F6 / #DBEAFE / #1E40AF;
---data-orange:   #F97316 / #FFEDD5 / #9A3412;
---data-purple:   #A855F7 / #F3E8FF / #6B21A8;
---data-emerald:  #10B981 / #D1FAE5 / #065F46;
-
---ink-secondary-btn: #4A2800; /* Secondary button label on peach tint */
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
@@ -2616,12 +2634,12 @@ that must feel handmade without losing product precision.
 
 /* Type Scale */
 --text-display: 1.5rem    / 1.333 var(--font-display); /* 24/32 | Weight: 700 | Tracking: -0.02em */
---text-h1:      1.75rem   / 1.214 var(--font-display); /* 28/34 | Weight: 700 | Tracking: -0.03em — metrics */
---text-h2:      1.125rem  / 1.444 var(--font-display); /* 18/26 | Weight: 600 | Tracking: -0.01em — card heading */
+--text-h1:      1.75rem   / 1.214 var(--font-display); /* 28/34 | Weight: 700 | Tracking: -0.03em */
+--text-h2:      1.125rem  / 1.444 var(--font-display); /* 18/26 | Weight: 600 | Tracking: -0.01em */
 --text-h3:      0.875rem  / 1.40  var(--font-display); /* 14/20 | Weight: 600 */
 --text-body:    0.8125rem / 1.538 var(--font-sans);    /* 13/20 | Weight: 500 */
 --text-body-sm: 0.6875rem / 1.455 var(--font-sans);    /* 11/16 | Weight: 400 | muted captions */
---text-meta:    0.6875rem / 1.455 var(--font-mono);    /* 11/600 | UPPERCASE | Letter-spacing: 0.06em — table headers */
+--text-meta:    0.6875rem / 1.455 var(--font-mono);    /* 11/600 | UPPERCASE | Letter-spacing: 0.06em */
 
 /* -----------------------------------------------------------------------------
  * 4. CORNER GEOMETRY & ELEVATION
@@ -2631,41 +2649,41 @@ that must feel handmade without losing product precision.
 --radius-pill:    9999px; /* Nav pills, CTAs, avatars, badges */
 
 /* Elevation & Shadows */
---shadow-base:    0 1px 3px rgba(0,0,0,0.02), 0 8px 24px -4px rgba(28,25,23,0.04); /* Cards */
+--shadow-base:    0 1px 3px rgba(0,0,0,0.02), 0 8px 24px -4px rgba(28,25,23,0.04);
 --shadow-hover:   0 2px 6px rgba(0,0,0,0.03), 0 14px 32px -6px rgba(28,25,23,0.08);
---shadow-active:  0 2px 6px -1px rgba(0,0,0,0.05); /* Pills */
+--shadow-active:  0 2px 6px -1px rgba(0,0,0,0.05);
 
 /* -----------------------------------------------------------------------------
  * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---border-core:        1px solid #E7E5DE; /* Ghost nav / default pill outline */
---border-hairline:    1px solid #F0EFEA; /* Card edges */
---divider-style:      1px solid #F5F4EE; /* Table row dividers */
---border-pill-alt:    1px solid #ECEAE2; /* Secondary / progress track */
+--border-core:        1px solid #E7E5DE;
+--border-hairline:    1px solid #F0EFEA;
+--divider-style:      1px solid #F5F4EE;
+--border-pill-alt:    1px solid #ECEAE2;
 
 /* -----------------------------------------------------------------------------
- * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-- **Buttons**: Primary is solid #F38D3C (hover #E07B2B) with a soft orange glow. Secondary is #FDF1E6 fill with #4A2800 text. Ghost is transparent + 1px #E7E5DE. Danger is terracotta wash, never berry pink. All pills 9999px.
-- **Navigation**: Selected item is a solid #18181B pill with white text. Default is ghost + 1px #E7E5DE. Orange is not used for selection.
-- **Cards**: White #FFFFFF on oat, 24px radius, dual whisper shadow. Nested wells #FAF9F5 at 18px. No hard offset shadows.
-- **Inputs**: 18px radius, #FAF9F5 fill, #E7E5DE border. Focus ring is 3px sunburst at 16% alpha. Mobile font-size ≥ 16px.
-- **Badges**: Ultra-soft pastel background + deep hue text (e.g. #D1FAE5 / #065F46). 6px status dots.
-- **Tables**: Header 11/600 uppercase 0.06em muted. Divider 1px #F5F4EE. Row hover #FDFCF9 at 150ms. Generous cell padding — never cramped.
-- **Progress**: Segmented flat pill. Solid #F38D3C fill + 45° hatched/muted remainder (#EEEDE6).
-- **Data viz (signature)**: Vertical Dot-Matrix Bar Chart. 4px circles, 3px gap, opacity ramps from 30% at the bottom to 100% at the peak. Do not substitute standard bars.
-- **Icons**: Linear 1.5px stroke, rounded caps, 16–18px.
+- **Buttons**: Primary is solid #F38D3C (hover #E07B2B) with a soft orange glow. Secondary is #FDF1E6 fill with #4A2800 text. Ghost is transparent + 1px #E7E5DE. Danger is terracotta wash, never berry pink. All pills 9999px. Use the host's existing labels.
+- **Cards**: White #FFFFFF on oat, 24px radius, dual whisper shadow. Nested wells #FAF9F5 at 18px. No hard offset shadows. Do not add index codes or fake meta.
+- **Inputs**: 18px radius, #FAF9F5 fill, #E7E5DE border. Focus ring is 3px sunburst at 16% alpha. Font-size at least 16px.
+- **Navigation**: Selected item is a solid #18181B pill with white text. Default is ghost + 1px #E7E5DE. Orange is not used for selection. Do not add catalog codes, fake clocks, or status readouts.
+- **Badges**: Ultra-soft pastel background + deep hue text (#D1FAE5 / #065F46). 6px status dots. Use the host's existing labels.
+- **Tables** (if present): Header 11/600 uppercase 0.06em muted. Divider 1px #F5F4EE. Row hover #FDFCF9 at 150ms. Generous cell padding.
+- **Progress** (if present): Segmented flat pill. Solid #F38D3C fill + 45deg hatched/muted remainder (#EEEDE6).
+- **Charts** (if present): Vertical dot-matrix. 4px circles, 3px gap, opacity ramps from 30% at the bottom to 100% at the peak. Do not substitute standard bars.
+- **Icons**: Linear 1.5px stroke, rounded caps, 16-18px.
 
 /* -----------------------------------------------------------------------------
- * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- No hard 0px brutalist shadows or 2–3px offset black stamps.
-- No berry-pink SaaS clone (#DE2454) and no cyan neon HUD.
-- No caramel #CC7827 and no 28px sibling radii — this tile is #F38D3C / 24px.
-- No standard solid bar charts; the matrix of 4px circular dots is mandatory.
+- No hard 0px brutalist shadows or 2-3px offset black stamps.
+- No berry-pink SaaS clone and no cyan neon HUD.
+- No caramel #CC7827 and no 28px sibling radii - this tile is #F38D3C / 24px.
+- No standard solid bar charts; the matrix of 4px circular dots is the chart language.
 - No cramped tables, gradient text, generic purple glow, or floating unbordered cards.
-- Do not use orange for selected navigation — selected is always solid #18181B.
-================================================================================
+- Do not use orange for selected navigation - selected is always solid #18181B.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <script>

@@ -1730,156 +1730,156 @@
   <!-- RAW EMBEDDED MARKDOWN SPECIFICATION -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  STYLE TILE // SPECIFICATION SYSTEM: "ELENRN DESIGN SYSTEM" (TILE-031)
-  Aesthetic: Sophisticated Heritage meets Modern Clarity • Quiet Luxury
+  Visual language: Heritage Emerald & Terracotta
+  Construction: off-white cream • forest emerald • terracotta rust • 30px cards • 5000px pills • display serif
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-The ELEnRN Design System embodies a serene, composed luxury where sophisticated archival heritage
-meets contemporary geometric clarity. Rooted in an Off-White Cream foundation (#FDFBF6) and Deep Forest
-Emerald anchors (#1A4F4F), it uses Warm Terracotta-Rust (#C86B39) as a warm tactile accent.
-With 30px soft-radii card geometry, full 5000px pill buttons and input containers, monoline 1.5pt
-iconography, and calligraphic Avenir Display serifs, it establishes an unhurried, tactile editorial presence.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Off-white cream canvas with deep forest-emerald anchors and a single warm
+terracotta-rust accent. Headlines are calligraphic display serif, sentence case;
+body and UI are a geometric humanist sans. Cards use a generous 30px radius;
+buttons, tags, and inputs are full 5000px pills. Elevation is almost flat —
+a quiet blue-green glow on focus, never a noisy drop shadow.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Core Foundation */
-  --bg-canvas:              #FDFBF6; /* Off-White Cream (Primary Application Canvas) */
-  --bg-secondary:           #1A4F4F; /* Deep Forest Emerald (Secondary Background) */
-  --bg-alt:                 #C86B39; /* Warm Terracotta-Rust (Alternative Accent Background) */
-  --bg-surface-white:       #FFFFFF; /* Pure White Container Highlight */
-  --bg-surface-card:        #FAF6EE; /* Elevated Parchment Surface */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FDFBF6; /* Off-white cream */
+  --bg-surface:             #FAF6EE; /* Elevated parchment */
+  --bg-surface-alt:         #FFFFFF; /* Pure white highlight */
+  --bg-surface-dark:        #1A4F4F; /* Deep forest emerald */
 
-  /* Primary & Accents */
-  --color-primary:          #1A4F4F; /* Deep Forest Emerald */
-  --color-secondary:        #C86B39; /* Warm Terracotta-Rust */
-  --color-interactive:      #1A4F4F; /* Deep Forest Emerald */
-  --color-interactive-hover:#143F3F; /* Darkened Emerald */
-  --color-accent-line:      #C86B39; /* Terracotta-Rust Line Accent */
+  --bg-secondary:           #1A4F4F;
+  --bg-alt:                 #C86B39; /* Terracotta as inverted field */
+  --bg-surface-white:       #FFFFFF;
+  --bg-surface-card:        #FAF6EE;
 
-  /* Text & Text-On-Color */
-  --text-body-primary:      #2A2A2A; /* Off-Black (Body Copy) */
-  --text-body-secondary:    #5A5A5A; /* Mid-Gray (Subtitles & Meta) */
-  --text-header:            #1A4F4F; /* Deep Forest Emerald (Headlines) */
-  --text-on-primary:        #FDFBF6; /* Off-White Cream */
-  --text-on-terracotta:     #FDFBF6; /* Off-White Cream */
+  /* Inks & Typography */
+  --ink-primary:            #2A2A2A; /* Off-black body */
+  --ink-secondary:          #5A5A5A; /* Mid-gray subtitles */
+  --ink-muted:              #5A5A5A;
+  --ink-inverted:           #FDFBF6;
+
+  --text-header:            #1A4F4F; /* Emerald headlines */
+  --text-on-primary:        #FDFBF6;
+  --text-on-terracotta:     #FDFBF6;
+
+  /* Signature Accents */
+  --accent-primary:         #1A4F4F; /* Forest emerald */
+  --accent-primary-hover:   #143F3F; /* Darkened emerald */
+  --accent-secondary:       #C86B39; /* Warm terracotta-rust */
+  --accent-tertiary:        #C86B39;
+
+  --color-primary:          #1A4F4F;
+  --color-secondary:        #C86B39;
+  --color-interactive:      #1A4F4F;
+  --color-interactive-hover:#143F3F;
+  --color-accent-line:      #C86B39;
+
+  /* Status Tokens (mapped from emerald / terracotta) */
+  --status-success:         #1A4F4F;
+  --status-warning:         #C86B39;
+  --status-danger:          #C86B39;
+  --status-info:            #1A4F4F;
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Family Pairing */
---font-serif:               "Avenir Serif Display", "Cormorant Garamond", "Playfair Display", Georgia, serif;
---font-sans:                "Poppins Sans", "Poppins", -apple-system, sans-serif;
---font-mono:                "JetBrains Mono", monospace;
+--font-display: "Avenir Serif Display", "Cormorant Garamond", "Playfair Display", Georgia, serif;
+--font-sans:    "Poppins Sans", "Poppins", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", monospace;
+--font-serif:   "Avenir Serif Display", "Cormorant Garamond", "Playfair Display", Georgia, serif;
 
-/* Scale & Specifications */
-• H1: HEADLINE 1 (Serif)
-    - Family:               Avenir Serif Display
-    - Size:                 4.8rem (76.8px)
-    - Weight:               600 (Semibold)
-    - Line-Height:          1.1
-    - Case:                 Sentence case
-    - Feature:              Calligraphic flourish on key letters (e.g., 'f', 'e')
-
-• H2: SUB-HEADLINE (Sans)
-    - Family:               Poppins Sans
-    - Size:                 1.5rem (24px)
-    - Weight:               500 (Medium)
-    - Line-Height:          1.4
-    - Color:                #C86B39 (Warm Terracotta-Rust)
-
-• BODY-PRIMARY (Sans)
-    - Family:               Poppins Sans
-    - Size:                 1.1rem (17.6px)
-    - Weight:               400 (Regular)
-    - Line-Height:          1.7
-    - Color:                #2A2A2A
-
-• NAV-ITEM (Sans)
-    - Family:               Poppins Sans
-    - Size:                 0.95rem (15.2px)
-    - Weight:               500 (Medium)
-    - Text-Transform:       Sentence case
+--text-display: 4.8rem / 1.1 var(--font-display); /* Weight 600 | sentence case | 76.8px | calligraphic terminals on f/e */
+--text-h1:      4.8rem / 1.1 var(--font-display); /* Weight 600 | sentence case */
+--text-h2:      1.5rem / 1.4 var(--font-sans);    /* Weight 500 | color #C86B39 | 24px */
+--text-h3:      1.5rem / 1.4 var(--font-sans);    /* Weight 500 */
+--text-body:    1.1rem / 1.7 var(--font-sans);    /* Weight 400 | #2A2A2A | 17.6px */
+--text-body-sm: 0.95rem / 1.4 var(--font-sans);   /* Weight 500 | sentence case | 15.2px nav */
+--text-meta:    0.75rem / 1.40 var(--font-mono);
 
 /* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
-• radius-pill:              5000px  /* Full pill shape for all tags, select fields, and main buttons */
-• radius-card:              30px    /* Soft, generous radius for all image tiles, community blocks */
-• radius-input:             radius-pill
+--radius-default: 30px;
+--radius-subtle:  30px;
+--radius-pill:    5000px;
+
+--radius-card:  30px;
+--radius-input: 5000px;
+
+--shadow-base:   none;
+--shadow-hover:  0 0 15px rgba(26, 79, 79, 0.15);
+--shadow-active: 0 0 15px rgba(26, 79, 79, 0.15);
+
+--elevation-none:  none;
+--elevation-focus: 0 0 15px rgba(26, 79, 79, 0.15);
+
+--space-xs:  4px;
+--space-s:   8px;
+--space-m:   16px;
+--space-l:   24px;
+--space-xl:  32px;
+--space-xxl: 64px;
+--space-section-gap: 128px;
+
+--transition-ui: 150ms ease-in-out;
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
-/* Layer Stacking Order */
-1. [ BACK ]  Canvas background (#FDFBF6)
-2. [ MID ]   Serif Text Headlines (Layer 1 text)
-3. [ FRONT ] Cards and Content Tiles (Layer 2)
-4. [ TOP ]   Floating Navigation, Modal Dialogs
+--border-core:     1px solid #C86B39;
+--border-hairline: 1px solid #EAEAEA;
+--divider-style:   1px solid #EAEAEA;
 
-/* Elevation Tokens */
-• elevation-none:           Box-shadow: none (Used for default content cards)
-• elevation-focus:          Box-shadow: 0 0 15px rgba(26, 79, 79, 0.15) (Subtle blue-green glow)
+--border-default: none;
+--border-accent:  1px solid #C86B39;
+--divider-line:   1px solid #EAEAEA;
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (Base 8px)
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-• space-xs:                 4px
-• space-s:                  8px
-• space-m:                  16px
-• space-l:                  24px
-• space-xl:                 32px
-• space-xxl:                64px
-• space-section-gap:        128px (space-xxl * 2)
+- **Buttons**: Full 5000px pills. Primary fill #1A4F4F, text #FDFBF6. Hover: fill #143F3F
+  over 150ms ease-in-out, scale(1.02). Secondary/tags: terracotta hairline; hover fills
+  #C86B39 with text #FDFBF6. Use the host's existing labels. Sentence case, never shouting caps.
+- **Cards**: 30px radius, #FAF6EE or #FFFFFF on #FDFBF6, default shadow none. Hover:
+  0 0 15px rgba(26, 79, 79, 0.15). Appear with a short slide-up or scale-in if motion exists.
+  Do not add index codes or fake meta.
+- **Inputs**: Pill 5000px, cream or white well, font-size >= 16px. Focus: accessible ring
+  plus the emerald glow. Same radius on select fields.
+- **Navigation**: Existing items in Poppins 0.95rem / 500, sentence case, ink #2A2A2A.
+  Hover may underline or shift toward #1A4F4F. Do not add catalog codes or clocks.
+- **Badges / chips**: Pill; 1px solid #C86B39 on cream, or solid terracotta.
+- **Icons**: Monoline, ~1.5pt, rounded caps and joins. Ink #2A2A2A with occasional
+  terracotta stroke. No new mascots.
 
 /* -----------------------------------------------------------------------------
- * 7. BORDERS & DIVIDERS
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-• border-default:           none
-• border-accent:            1px solid #C86B39 (Thin terracotta line for tags)
-• divider-line:             1px solid #EAEAEA (Very subtle light gray line)
-
-/* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
- * -------------------------------------------------------------------------- */
-• Type:                     Monoline, minimalist
-• Weight:                   Thin, approx 1.5pt
-• Cap Style:                Rounded, for all stroke ends
-• Corner Style:             Soft, rounded, non-angular
-• Color:                    Primarily primary text color, with occasional secondary line accents
-• Examples:                 Search magnifying glass, user-group avatar shapes, directional arrows
-
-/* -----------------------------------------------------------------------------
- * 9. INTERACTION & FEEDBACK RULES
- * -------------------------------------------------------------------------- */
-• Hover Primary Button:
-    - Fill transitions to #143F3F (Darker Emerald) over 150ms.
-    - Scale up by 1.02x (subtle focus).
-• Hover Secondary Tag:
-    - Background-color transitions to #C86B39 (solid terracotta) over 150ms.
-    - Text-color transitions to #FDFBF6 over 150ms.
-• Hover Card Item:
-    - Elevation-focus shadow applied (0 0 15px rgba(26, 79, 79, 0.15)).
-    - Subtle text color shift or underline appearance.
-• Focus States:
-    - Clear, accessible focus-ring around form elements.
-• Micro-Animations:
-    - All state transitions (hover, active, focus) are smooth with an ease-in-out curve over 150ms.
-    - Section loading and card appearances are triggered by subtle slide-up or scale-in effects.
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
- * -------------------------------------------------------------------------- */
-- NO harsh, sharp 0px brutalist corners on cards (strictly 30px soft radius).
-- NO noisy high-contrast drop shadows; rely on subtle blue-green glow focus or flat layering.
-- NO bright neon or synthetic acid accents; strictly deep emerald and terracotta.
-- NO uppercase shouting on navigation items (strictly sentence case).
-================================================================================
+- No harsh 0px brutalist corners on cards (strictly 30px).
+- No noisy high-contrast drop shadows; only the blue-green focus glow or flat layering.
+- No bright neon or synthetic acid accents; keep deep emerald and terracotta.
+- No uppercase shouting on navigation items (sentence case).
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- JAVASCRIPT LOGIC -->

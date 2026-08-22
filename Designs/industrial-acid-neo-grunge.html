@@ -2395,135 +2395,146 @@
        ========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-                    STYLE TILE // SPECIFICATION MATRIX
-                   THEME: INDUSTRIAL ACID / NEO-GRUNGE
+  Visual language: Industrial Acid Neo-Grunge
+  Construction: pitch void • neon magenta • 0px geometry • redaction tape • instant invert
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Industrial Acid / Neo-Grunge is a high-voltage brutalist design language engineered 
-for underground audio engines, counter-culture subversion, and uncompromising digital 
-hardware interfaces. It pairs an absolute pitch-black void (#080808) with high-octane 
-electric neon magenta (#FF2A85), dense redaction tape blocks, distorted glitch typography, 
-8-bit checkerboard pixel dividers, zero-radius geometry, and 0ms instant 1-to-1 inversion hover physics.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
 /* -----------------------------------------------------------------------------
- * 2. COLOR ROLES & PALETTE TOKENS
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Pitch-black void (#080808) with charcoal modules (#121212, #181818, #202020) and one electric magenta (#FF2A85). Geometry is strictly 0px. Depth is a hard 4px 4px 0 magenta stamp, never blur. Display is Syne / Barlow Condensed, 800-900, uppercase, compressed to 0.90 line-height; optional Rubik Glitch distortion on existing display only. Solid magenta rectangles may wrap host words as redaction-tape emphasis -- they must not introduce new slogans. 8px checkerboard stripes (magenta / black) may divide sections. Hover is instant 1-to-1 inversion (0ms, step-end).
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Canvas & Base Surfaces */
-  --color-bg-base:              #080808; /* Primary canvas & void backdrops */
-  --color-bg-surface:           #121212; /* Card containers & sub-modules */
-  --color-bg-surface-alt:       #181818; /* Secondary panels, wells, sidebars */
-  --color-bg-surface-elevated:  #202020; /* High-contrast module layers */
-
-  /* Signature Electric Accents */
-  --color-accent-neon:          #FF2A85; /* Primary electric highlight & duotone tint */
-  --color-accent-hot:           #E60067; /* Pressed states, dense tape fills */
-  --color-tape-fill:            #FF2A85; /* Solid high-contrast text blocks */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #080808; /* Pitch void */
+  --bg-surface:             #121212; /* Modules */
+  --bg-surface-alt:         #181818; /* Secondary wells */
+  --bg-surface-dark:        #080808; /* Void */
 
   /* Inks & Typography */
-  --color-text-primary:         #FFFFFF; /* High-legibility technical text */
-  --color-text-muted:           #8F8F8F; /* Metadata, footnotes, labels */
-  --color-text-inverted:        #080808; /* Contrast ink on neon tape fills */
+  --ink-primary:            #FFFFFF;
+  --ink-secondary:          #8F8F8F;
+  --ink-muted:              #8F8F8F;
+  --ink-inverted:           #080808; /* On magenta tape */
 
-  /* Borders & Gridlines */
-  --color-border-subtle:        #242424; /* Structural gridlines & framing */
-  --color-border-accent:        #FF2A85; /* Active states / focal cards */
+  /* Signature Accents */
+  --accent-primary:         #FF2A85; /* Electric magenta */
+  --accent-primary-hover:   #E60067; /* Hot press / dense tape */
+  --accent-secondary:       #E60067;
+  --accent-tertiary:        #00F0FF; /* Electric cyan */
 
-  /* Semantic Status Signals */
-  --status-success:             #00FF66; /* Acid terminal green */
-  --status-warning:             #FFE600; /* Hazard yellow */
-  --status-danger:              #FF2A85; /* High-voltage neon magenta */
-  --status-info:                #00F0FF; /* Electric cyan */
+  /* Status Tokens */
+  --status-success:         #00FF66;
+  --status-warning:         #FFE600;
+  --status-danger:          #FF2A85;
+  --status-info:            #00F0FF;
+
+  /* Extra original tokens */
+  --color-bg-base:             #080808;
+  --color-bg-surface:          #121212;
+  --color-bg-surface-alt:      #181818;
+  --color-bg-surface-elevated: #202020;
+  --color-accent-neon:         #FF2A85;
+  --color-accent-hot:          #E60067;
+  --color-tape-fill:           #FF2A85;
+  --color-text-primary:        #FFFFFF;
+  --color-text-muted:          #8F8F8F;
+  --color-text-inverted:       #080808;
+  --color-border-subtle:       #242424;
+  --color-border-accent:       #FF2A85;
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Stacks */
 --font-display: "Syne", "Rubik Glitch", "Barlow Condensed", sans-serif;
+--font-sans:    "Space Grotesk", "Inter", -apple-system, sans-serif;
+--font-mono:    "Space Mono", "VT323", "Courier Prime", monospace;
 --font-glitch:  "Rubik Glitch", "Syne", sans-serif;
 --font-header:  "Barlow Condensed", "Syne", sans-serif;
---font-mono:    "Space Mono", "VT323", "Courier Prime", monospace;
---font-sans:    "Space Grotesk", "Inter", -apple-system, sans-serif;
 
-/* Type Scale Hierarchy */
---text-display:       4.0rem – 6.0rem / 0.90 var(--font-display); /* Weight: 800-900 | Letter-spacing: -0.03em | UPPERCASE */
---text-section-head:  1.75rem – 2.5rem / 1.10 var(--font-header);  /* Weight: 700-800 | Letter-spacing: +0.05em | UPPERCASE */
---text-tape-label:    1.125rem – 1.5rem / 1.00 var(--font-header);  /* Weight: 900 Black | Letter-spacing: +0.02em | UPPERCASE */
---text-body:          0.9375rem – 1.0rem / 1.50 var(--font-sans);   /* Weight: 400 | Letter-spacing: Normal | Sentence */
---text-body-sm:       0.875rem / 1.45 var(--font-sans);             /* Weight: 400 | Letter-spacing: Normal */
---text-meta-mono:     0.75rem – 0.8125rem / 1.40 var(--font-mono);  /* Weight: 500 Med | Letter-spacing: +0.12em | UPPERCASE */
+--text-display: 4.0rem-6.0rem / 0.90 var(--font-display); /* Weight: 800-900 | Tracking: -0.03em | UPPERCASE */
+--text-h1:      1.75rem-2.5rem / 1.10 var(--font-header); /* Weight: 700-800 | Tracking: +0.05em | UPPERCASE */
+--text-h2:      1.125rem-1.5rem / 1.00 var(--font-header); /* Weight: 900 | Tracking: +0.02em | UPPERCASE tape cut */
+--text-h3:      1.125rem-1.5rem / 1.00 var(--font-header); /* Weight: 900 | UPPERCASE */
+--text-body:    0.9375rem-1.0rem / 1.50 var(--font-sans); /* Weight: 400 */
+--text-body-sm: 0.875rem / 1.45 var(--font-sans); /* Weight: 400 */
+--text-meta:    0.75rem-0.8125rem / 1.40 var(--font-mono); /* Weight: 500 | Tracking: +0.12em | UPPERCASE */
 
-/* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
- * -------------------------------------------------------------------------- */
---radius-none:        0px; /* All cards, interactive buttons, modal frames, inputs */
---radius-tape:        0px; /* Blocky redaction tape backgrounds & imagery */
-* Strict Brutalist Rule: Complete absence of rounded corners (0px universally).
+Glitch face is optional on a host heading that already wants distortion -- do not add glitch captions. Tape labels wrap existing words in magenta blocks; they do not invent redaction copy.
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
-Level 0 (Canvas):   background: #080808; Pitch-black void layer
-Level 1 (Textures): mix-blend-mode: screen; opacity: 0.18 Duotone grain / dither noise
-Level 2 (Panels):   border: 1px solid var(--color-border-subtle); Zero-blur flat graphic depth
-Level 3 (Pop/Hero): box-shadow: 4px 4px 0px #FF2A85; Hard offset brutalist shadow
-Overlays:           filter: grayscale(100%) contrast(180%); mix-blend-mode: screen (#FF2A85 base) High-contrast bitmapped two-tone photo threshold
+--radius-none:    0px;
+--radius-tape:    0px;
+--radius-default: 0px;
+--radius-subtle:  0px;
+--radius-pill:    0px;
+
+--shadow-base:    none;
+--shadow-hover:   4px 4px 0px #FF2A85;
+--shadow-active:  0px 0px 0px transparent;
+
+Level 0: #080808 void.
+Level 1: grain / dither at mix-blend-mode screen, opacity 0.18.
+Level 2: 1px #242424 wireframe, no blur.
+Level 3: 4px 4px 0px #FF2A85 hard offset.
+Imagery may use grayscale(100%) contrast(180%) with screen-blend magenta. Hover may flash inverted high-contrast.
+
+Spacing: 4 / 8 / 12 / 16 / 24 / 48 / 80px.
+
+Hover physics: 0ms / step-end inversion. Press: `translate(2px, 2px)` collapsing the hard shadow.
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (4px GRID)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---space-2xs:  4px;   /* Tight metadata tags, badge padding */
---space-xs:   8px;   /* Inline tag gaps, icon-to-text spacing */
---space-sm:  12px;   /* Tape label internal padding */
---space-md:  16px;   /* Standard cell padding, field gaps */
---space-lg:  24px;   /* Component margins, structural gutters */
---space-xl:  48px;   /* Section breaks, layout spacing */
---space-2xl: 80px;   /* Hero viewport margins */
+--border-core:      1px solid #FF2A85;
+--border-hairline:  1px solid #242424;
+--border-accent:    1px solid #FF2A85;
+--border-thick:     2px solid #FF2A85;
+--divider-style:    8px checkerboard stripe, alternating #FF2A85 and #080808;
+
+Focus: 2px solid #FFFFFF, 2px offset.
+
+Icons: 1.5px hard geometric or 1-bit pixel. Checker micro-grids, crosshairs, and solid squares are silent marks -- no coordinate labels.
 
 /* -----------------------------------------------------------------------------
- * 7. BORDERS & PATTERN DIVIDERS
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
---border-hairline:    1px solid var(--color-border-subtle); /* #242424 Wireframe matrix */
---border-accent:      1px solid var(--color-accent-neon);   /* #FF2A85 Active states / focal cards */
---border-thick:       2px solid var(--color-accent-neon);
-Pattern Dividers:     8px checkerboard pixel stripe (8-bit alternating neon #FF2A85 / black #080808 tiles)
-Redaction Tape:       Solid fill blocks (#FF2A85) wrapped tightly around text elements
+- **Buttons**: 0px. Default: void or #121212, 1px #242424, magenta or white type. Hover: instant invert -- background #FF2A85, type #080808 (0ms step-end). Active: `translate(2px, 2px)` with shadow collapse. Primary may idle as magenta tape fill with void type. Keep host labels.
+- **Cards**: 0px, #121212 or #181818, 1px #242424. Focal cards 1-2px magenta. Optional 4px 4px 0 magenta stamp. Hover inverts 1-to-1. Do not add tracklists, serials, or redaction slogans.
+- **Inputs**: 0px, #181818 well, 1px #242424. Font-size at least 16px. Focus: 2px white offset ring. Placeholder #8F8F8F. Checkboxes are squares; checked magenta fill, void mark.
+- **Navigation**: Restyle existing items as 0px magenta or hairline cells. Active: magenta fill, void type. No catalog codes, clocks, or fake frequencies.
+- **Badges / chips / toggles**: 0px tape blocks, magenta wrap on existing text. Success #00FF66, warning #FFE600, danger magenta, info #00F0FF -- all flat, no glow.
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE & KEY MOTIFS
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- Aesthetic Style: Pixelated 8-bit glyphs, alchemical/runic markers, industrial vectors
-- Checkerboard Micro-Grids (2x4, 3x3 pixel block matrices)
-- Distorted Crosshairs & Reticles (+, [ + ], ✕, [ ✕ ])
-- Directional Technical Arrows (->, ↳, ■, ➔, ▲, ▼)
-- Solid Geometric Glyphs (Diamond ◆, Solid Square ■, Slash //, Triple Bar ≡)
-- Stroke Weight: 1.5px hard geometric or raw 1-bit pixel scale
-
-/* -----------------------------------------------------------------------------
- * 9. INTERACTION & FEEDBACK RULES
- * -------------------------------------------------------------------------- */
-- Default: Black canvas / muted border / Neon typography & tape accents
-- Hover: Instant 1-to-1 Color Inversion (0ms / step-end transition)
-  • Background: Inverts from #080808 -> #FF2A85
-  • Typography: Inverts from #FF2A85 / #FFFFFF -> #080808
-- Active / Press: Transform: translate(2px, 2px); hard shadow collapses to 0px (or 2px 2px).
-- Focus (Keyboard): 2px solid #FFFFFF with 2px offset; high-contrast accessibility outline.
-- Image Hover: CSS Filter Shift: Duotone Neon -> High-Contrast Inverted Glitch Flash.
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
- * -------------------------------------------------------------------------- */
-- NO rounded corners anywhere (0px strictly enforced).
-- NO soft blur drop shadows or ambient glow halos.
-- NO pastel or low-contrast washed-out tones.
-- NO slow easing curves (interactions must be instant 0ms or snap snappy).
-- NO generic corporate SaaS illustration fluff or happy vector characters.
-- NO bloated gradient text fills across headline keywords.
-================================================================================
+- No rounded corners anywhere (0px strictly).
+- No soft blur shadows or ambient glow halos.
+- No pastel or washed-out low contrast.
+- No slow easing; hover is 0ms or a hard snap.
+- No corporate illustration fluff or cartoon mascots.
+- No gradient fills on headline keywords.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ==========================================================================

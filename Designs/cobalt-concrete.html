@@ -2282,40 +2282,54 @@
 
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Cobalt & Concrete • Digital Editorial Modernism • Industrial Slab / Electric Current
+  Visual language: Cobalt & Concrete
+  Construction: industrial concrete • electric cobalt • 0px slabs • optical duotone
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Cobalt & Concrete is Digital Editorial Modernism built as hard geometry: an industrial
-concrete canvas (#D8D8D8), mid-gray modular tiles (#C2C2C2), and a single electric
-cobalt current (#0022FF). Depth is optical — overlapping midnight (#030519) and cobalt
-(#0033FF) planes — never drop shadows. Inter stands in for Neue Haas Grotesk with
-tight negative tracking and structural periods on stacked headlines. Ideal for
-architecture studios, cultural infrastructure, editorial platforms, and any product
-that should feel like a Swiss-modular slab charged with voltage.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Industrial concrete (#D8D8D8) and mid-gray stone tiles (#C2C2C2) form a hard
+modular field. A single electric cobalt current (#0022FF) charges CTAs, links,
+and punctuation. Depth is optical - overlapping midnight (#030519) and cobalt
+(#0033FF) planes - never drop shadows. Inter stands in for Neue Haas Grotesk
+with tight negative tracking. Geometry is 0px. Motion paints the plane in
+180-220ms; it never lifts it.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
   /* Surfaces & Backgrounds */
-  --bg-canvas:              #D8D8D8; /* Industrial concrete — primary application canvas */
-  --bg-surface:             #C2C2C2; /* Mid-gray stone tiles, secondary CTAs, inset planes */
+  --bg-canvas:              #D8D8D8; /* Industrial concrete */
+  --bg-surface:             #C2C2C2; /* Mid-gray stone tiles, secondary CTAs */
   --bg-surface-alt:         #CECECE; /* Secondary panels, wells */
-  --bg-surface-dark:        #030519; /* Midnight ink inverted containers / duotone shadow */
+  --bg-surface-dark:        #030519; /* Midnight inverted containers / duotone shadow */
   --bg-glass:               rgba(216, 216, 216, 0.75); /* Frosted nav bar only */
 
   /* Inks & Typography */
-  --ink-primary:            #0A0A0A; /* Carbon — high-contrast reading text */
+  --ink-primary:            #0A0A0A; /* Carbon reading text */
   --ink-secondary:          #444444; /* Subtitles, secondary copy */
   --ink-muted:              rgba(10, 10, 10, 0.48); /* Captions, disabled */
   --ink-inverted:           #FFFFFF; /* Text on cobalt / midnight */
   --ink-link:               #0022FF; /* Links = primary cobalt */
 
   /* Signature Accents */
-  --accent-primary:         #0022FF; /* Electric cobalt — CTA, nav snap, punctuation */
+  --accent-primary:         #0022FF; /* Electric cobalt */
   --accent-primary-hover:   #0A0A0A; /* Primary CTA hover inverts to carbon */
   --accent-secondary:       #0033FF; /* Duotone highlight plane */
   --accent-tertiary:        #C2C2C2; /* Stone supporting tile */
@@ -2338,21 +2352,21 @@ that should feel like a Swiss-modular slab charged with voltage.
 /* Font Stacks */
 --font-display: "Inter", "Neue Haas Grotesk", "Helvetica Neue", sans-serif;
 --font-sans:    "Inter", "Helvetica Neue", sans-serif;
---font-metric:  "Archivo", "Inter", sans-serif;
 --font-mono:    "JetBrains Mono", ui-monospace, monospace;
+--font-metric:  "Archivo", "Inter", sans-serif;
 
 /* Type Scale */
---text-display: 3.5–6.25rem / 1.05  var(--font-display); /* Weight 700 | Tracking -0.04em | clamp(3.5rem, 6vw, 6.25rem) */
+--text-display: clamp(3.5rem, 6vw, 6.25rem) / 1.05 var(--font-display); /* Weight 700 | Tracking -0.04em */
 --text-h1:      2.5rem   / 1.15  var(--font-display); /* Weight 700 | Tracking -0.03em */
 --text-h2:      1.75rem  / 1.25  var(--font-sans);    /* Weight 600 | Tracking -0.025em */
 --text-h3:      1.25rem  / 1.35  var(--font-sans);    /* Weight 600 */
---text-metric:  3.0rem   / 1.00  var(--font-metric);  /* Weight 700 | Tracking -0.03em */
 --text-body:    18px     / 1.45  var(--font-sans);    /* Weight 400 | Tracking -0.01em */
 --text-body-sm: 0.875rem / 1.50  var(--font-sans);
+--text-meta:    0.75rem  / 1.40  var(--font-mono);    /* UPPERCASE | 0.08-0.12em */
+--text-metric:  3.0rem   / 1.00  var(--font-metric);  /* Weight 700 | Tracking -0.03em */
 --text-sub:     13px     / 1.40  var(--font-sans);    /* Weight 400 */
 --text-nav:     13px     / 1.20  var(--font-sans);    /* Weight 500 */
 --text-cta:     14px     / 1.20  var(--font-sans);    /* Weight 500 */
---text-meta:    0.75rem  / 1.40  var(--font-mono);    /* UPPERCASE | 0.08–0.12em */
 
 /* Structural periods on multi-line stacked headlines. Tight negative kerning throughout. */
 
@@ -2362,13 +2376,17 @@ that should feel like a Swiss-modular slab charged with voltage.
 --radius-default: 0px;   /* Layout tiles, cards, buttons, badges, inputs */
 --radius-subtle:  0px;
 --radius-pill:    0px;   /* Forbidden as a system default */
---radius-nav-float: 3px; /* ONLY isolated floating mini-nav pills (2–4px) */
+--radius-nav-float: 3px; /* ONLY isolated floating mini-nav (2-4px) */
 
 /* Elevation & Shadows */
 --shadow-base:    none;
 --shadow-hover:   none;
 --shadow-active:  none;
 /* Depth via duotone contrast and overlapping planes. Nav: backdrop-filter blur(12px). */
+
+/* Motion */
+--ease-plane: cubic-bezier(0.16, 1, 0.3, 1);
+--duration:   180ms; /* Range 180-220ms */
 
 /* -----------------------------------------------------------------------------
  * 5. BORDERS & DIVIDERS
@@ -2377,30 +2395,28 @@ that should feel like a Swiss-modular slab charged with voltage.
 --border-hairline:    1px solid rgba(10, 10, 10, 0.15);
 --border-accent:      1px solid #0022FF;
 --divider-style:      1px solid rgba(10, 10, 10, 0.08);
-Background: radial 1.5px dots at 24px intervals, color rgba(10,10,10,0.22).
-Page margin: clamp(24px, 4.5vw, 64px). Spacing on an 8px scale.
-Left column ~40–45% text; right column monumental visual.
-Modular action strip: 64px height, 50/50 contiguous tiles.
-Metric strip: 48px height.
+/* Background field: radial 1.5px dots at 24px intervals, color rgba(10,10,10,0.22). */
+/* Page margin: clamp(24px, 4.5vw, 64px). Spacing on an 8px scale. */
+/* Modular action strip: 64px height, 50/50 contiguous tiles. Metric strip: 48px height. */
 
 /* -----------------------------------------------------------------------------
- * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-- **Buttons / CTA tiles**: 0px. Primary: bg #0022FF, white text; hover bg #0A0A0A; arrow translateX(4px). Secondary stone: bg #C2C2C2; hover bg #0022FF white; active #001ACC. Ghost: 1px carbon outline, hover fills cobalt. Icons: monoline 1.25px, sharp 90°/45° terminals, → and ↗ right-aligned.
-- **Cards / tiles**: Flush modular slabs. No gap (or hairline divider only). Background #C2C2C2 or transparent over dotted canvas. Zero shadow.
-- **Inputs**: 0 radius, 16px type (iOS), hairline border, focus 1px solid #0022FF. Checkboxes and radios are squares. Toggles are rectangles.
-- **Navigation**: Frosted bar rgba(216,216,216,0.75) + backdrop-filter blur(12px). Isolated floating mini-nav may use 2–4px radius. Hover snaps immediately to #0022FF.
-- **Motion**: cubic-bezier(0.16, 1, 0.3, 1), 180–220ms. Paint the plane; never lift it.
+- **Buttons**: 0px. Primary: bg #0022FF, white text; hover bg #0A0A0A; arrow translateX(4px). Secondary stone: bg #C2C2C2; hover bg #0022FF white; active #001ACC. Ghost: 1px carbon outline, hover fills cobalt. Icons: monoline 1.25px, sharp 90deg/45deg terminals, right-aligned arrows. Use the host's existing labels.
+- **Cards**: Flush modular slabs. No gap (or hairline divider only). Background #C2C2C2 or transparent over the dotted canvas. Zero shadow. Do not add index codes or fake meta.
+- **Inputs**: 0 radius, font-size at least 16px, hairline border, focus 1px solid #0022FF. Checkboxes and radios are squares. Toggles are rectangles.
+- **Navigation**: Frosted bar rgba(216,216,216,0.75) + backdrop-filter blur(12px). Isolated floating mini-nav may use 2-4px radius. Hover snaps immediately to #0022FF. Do not add catalog codes, fake clocks, or status readouts.
+- **Motion**: cubic-bezier(0.16, 1, 0.3, 1), 180-220ms. Paint the plane; never lift it.
 
 /* -----------------------------------------------------------------------------
- * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- NO drop shadows of any kind — not soft, not hard-offset 4px 4px 0. Optical flatness only.
-- NO 16–32px bento radii, pills as the default, or glassmorphism except the frosted nav bar.
+- NO drop shadows of any kind - not soft, not hard-offset 4px 4px 0. Optical flatness only.
+- NO 16-32px bento radii, pills as the default, or glassmorphism except the frosted nav bar.
 - NO serif display as the hero voice. Inter / grotesk only.
 - NO purple neon gradients, generic SaaS indigo, or candy palettes.
 - NO floating unbordered cards. Tiles abut. Hairlines describe joints.
-================================================================================
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <script>

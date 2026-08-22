@@ -2346,131 +2346,142 @@
   <!-- 9. EMBEDDED MACHINE-READABLE STYLE TILE MARKDOWN (agent.md Specification) -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  STYLE TILE: HEALTHY PETS, HAPPY HEARTS DESIGN SYSTEM
-  Theme: Playful Neo-Retro / Organic Warmth / High-Contrast Editorial
-  Code: TILE-006
+  Visual language: Warm Terracotta Editorial Pop
+  Construction: terracotta and espresso blocks • butterscotch display • organic waves • pill CTAs • flat high-contrast overlap
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. COLOR ROLES & PALETTE
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
---color-brand-primary:       #E05333; /* Vivid Terracotta / Warm Vermilion */
---color-brand-secondary:     #FED0A7; /* Warm Butterscotch / Peachy Cream (Display Type) */
---color-surface-dark:        #230C07; /* Deep Espresso Brown / Midnight Cocoa */
---color-surface-light:       #FFFFFF; /* Pure Snow White */
---color-surface-subtle:      #F7F3EE; /* Warm Off-White / Light Oatmeal */
---color-accent-amber:        #F4B258; /* Muted Gold / Highlight Accent */
---color-neutral-border:      #E8E1DA; /* Soft Sand Border */
---color-text-muted:          #7D716A; /* Warm Charcoal Subtitle */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
 
-Semantic Token Mapping:
-  • Canvas Main:             var(--color-brand-primary)
-  • Canvas Section Alt:      var(--color-surface-dark)
-  • Surface Interactive:     var(--color-surface-light)
-  • Typography Display:      var(--color-brand-secondary) on Primary; var(--color-surface-light) on Dark
-  • Typography Body Dark:    var(--color-surface-dark) on Light
-  • Typography Body Light:   var(--color-surface-subtle) on Primary/Dark
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
 /* -----------------------------------------------------------------------------
- * 2. TYPOGRAPHY SYSTEM
+ * 1. VISUAL STATEMENT
  * -------------------------------------------------------------------------- */
-Font Families:
-  • Display / Headers:  "Bebas Neue", "Druk Wide Bold", "Anton", sans-serif
-  • Body & Interface:   "Plus Jakarta Sans", "Inter", sans-serif
-
-Type Scale & Hierarchy:
-  • Hero Display (H1):  96px / Line-height: 0.9  / Letter-spacing: 0.02em / ALL CAPS
-  • Section Title (H2): 44px / Line-height: 1.05 / Letter-spacing: 0.03em / ALL CAPS
-  • Category Title (H3):28px / Line-height: 1.1  / Letter-spacing: 0.02em / ALL CAPS
-  • Accordion Label:    22px / Line-height: 1.2  / Weight: 700            / ALL CAPS
-  • Body Regular:       14px / Line-height: 1.5  / Weight: 400
-  • Body Small / Meta:  12px / Line-height: 1.4  / Weight: 500
-  • Interactive / Pill: 13px / Line-height: 1.0  / Weight: 600-700
+Large flat color fields of vivid terracotta and deep espresso, interrupted by snow-white cards and oatmeal wells. Display type is ultra-condensed all-caps grotesque in butterscotch on terracotta, or white on espresso. Body is a warm humanist sans. Geometry is organic: 18-28px panel radii, full-pill actions, and scalloped or wave masks between color blocks. Elevation is contrast and 1.5-2px borders - no blurry drop shadows.
 
 /* -----------------------------------------------------------------------------
- * 3. CORNER GEOMETRY (BORDER RADII)
+ * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
---radius-xs:    6px;   /* Small badges & tooltips */
---radius-sm:    12px;  /* Text inputs & form fields */
---radius-md:    18px;  /* Compact content panels */
---radius-lg:    28px;  /* Feature category cards & doctor profile portraits */
---radius-full:  9999px;/* Buttons, date/time chips, segmented toggles */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #E05333; /* Vivid terracotta field */
+  --bg-surface:             #FFFFFF; /* Snow white cards */
+  --bg-surface-alt:         #F7F3EE; /* Warm oatmeal wells */
+  --bg-surface-dark:        #230C07; /* Deep espresso */
 
-Organic Shapes:
-  • Speech Bubbles: Asymmetrical curved blobs (e.g., border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%)
-  • Section Dividers: Fluid, organic wave / scallop mask SVG curves separating rust & espresso blocks.
+  /* Inks & Typography */
+  --ink-primary:            #230C07; /* Espresso ink on light */
+  --ink-secondary:          #7D716A; /* Warm charcoal */
+  --ink-muted:              #7D716A; /* Subtitle charcoal */
+  --ink-inverted:           #FFFFFF; /* Snow ink on terracotta/espresso */
+
+  /* Signature Accents */
+  --accent-primary:         #E05333; /* Terracotta */
+  --accent-primary-hover:   #FED0A7; /* Butterscotch hover fill */
+  --accent-secondary:       #FED0A7; /* Butterscotch display ink */
+  --accent-tertiary:        #F4B258; /* Muted gold */
+
+  /* Status Tokens */
+  --status-success:         #2E7D32; /* Quiet green */
+  --status-warning:         #F4B258; /* Gold caution */
+  --status-danger:          #C62828; /* Deep red */
+  --status-info:            #E05333; /* Terracotta info */
+
+  /* Extra material tokens */
+  --color-brand-primary:    #E05333;
+  --color-brand-secondary:  #FED0A7;
+  --color-surface-dark:     #230C07;
+  --color-surface-light:    #FFFFFF;
+  --color-surface-subtle:   #F7F3EE;
+  --color-accent-amber:     #F4B258;
+  --color-neutral-border:   #E8E1DA;
+  --color-press:            #c84325;
+  --color-espresso-deep:    #150603;
+  --color-espresso-mid:     #38150d;
+}
 
 /* -----------------------------------------------------------------------------
- * 4. ELEVATION & DEPTH (SHADOWS & LAYERING)
+ * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-Depth Philosophy: Flat Neo-Editorial / 2.5D Layer Overlap (No blurry drop shadows).
+--font-display: "Bebas Neue", "Druk Wide Bold", "Anton", sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-Layering Rules:
-  • Layer 0 (Base Canvas):   Solid brand background (Terracotta or Espresso)
-  • Layer 1 (Masks):         Organic SVG wavy sections
-  • Layer 2 (Cards):         High-contrast solid White or Espresso containers
-  • Layer 3 (Foreground):    Character illustrations overflowing container bounds
-  • Elevation Shadow:        none | 0 0 0 transparent (relies strictly on 1px-2px borders & contrast)
+--text-display: 96px / 0.9 var(--font-display);  /* Letter-spacing: 0.02em | ALL CAPS */
+--text-h1:      96px / 0.9 var(--font-display);  /* Letter-spacing: 0.02em | ALL CAPS */
+--text-h2:      44px / 1.05 var(--font-display); /* Letter-spacing: 0.03em | ALL CAPS */
+--text-h3:      28px / 1.1 var(--font-display);  /* Letter-spacing: 0.02em | ALL CAPS */
+--text-body:    14px / 1.5 var(--font-sans);     /* Weight: 400 */
+--text-body-sm: 12px / 1.4 var(--font-sans);     /* Weight: 500 */
+--text-meta:    13px / 1.0 var(--font-sans);     /* Weight: 600-700 | compact UI */
+
+/* Display is condensed all-caps with slight positive tracking. On terracotta, display ink is
+   butterscotch; on espresso, display ink is white; on white, display ink is espresso.
+   Do not invent headlines or call-to-action slogans. */
 
 /* -----------------------------------------------------------------------------
- * 5. SPACING & SPATIAL SCALE
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
-Base Unit: 4px / 8px Grid Scale
-  • space-2xs: 4px
-  • space-xs:  8px
-  • space-sm:  12px
-  • space-md:  16px
-  • space-lg:  24px
-  • space-xl:  32px
-  • space-2xl: 48px
-  • space-3xl: 64px
+--radius-default: 18px;
+--radius-subtle:  6px;
+--radius-xs:      6px;
+--radius-sm:      12px;
+--radius-md:      18px;
+--radius-lg:      28px;
+--radius-pill:    9999px;
+--radius-bubble:  40% 60% 70% 30% / 40% 50% 60% 50%;
 
-Layout Specs:
-  • Content Container Max-Width: 1200px
-  • Grid Columns: 12-column desktop / 4-column mobile
-  • Card Internal Padding: 24px (compact) to 32px (spacious)
-  • Section Gutter: 24px
+--shadow-base:    none;
+--shadow-hover:   none;
+--shadow-active:  none;
+--shadow-elevation: none;
+
+/* Depth is stacked solid planes plus 1px-2px borders. Section breaks may use a fluid wave or
+   scallop mask between terracotta and espresso. Motion: 200ms ease-out; optional 250ms cubic-bezier(0.34, 1.56, 0.64, 1) on scale. */
 
 /* -----------------------------------------------------------------------------
- * 6. BORDERS & DIVIDERS
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---border-subtle:     1px solid rgba(255, 255, 255, 0.15); /* Accordion row dividers */
---border-input:      1px solid #E8E1DA;                    /* Form inputs inactive */
---border-active:     2px solid #230C07;                    /* Active selections */
---border-card-white: 1.5px solid #FFFFFF;                  /* Inset card borders */
+--border-core:        1.5px solid #FFFFFF;
+--border-hairline:    1px solid #E8E1DA;
+--border-subtle:      1px solid rgba(255, 255, 255, 0.15);
+--border-input:       1px solid #E8E1DA;
+--border-active:      2px solid #230C07;
+--border-card-white:  1.5px solid #FFFFFF;
+--border-card-dark:   1.5px solid #230C07;
+--divider-style:      1px solid rgba(255, 255, 255, 0.15);
+
+/* Icons: 1.5px-2px rounded monoline. Social/quick actions sit in 36px circular discs.
+   Accordion toggles sit in circular +/- or chevron badges. */
 
 /* -----------------------------------------------------------------------------
- * 7. ICONOGRAPHY LANGUAGE
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-Style: Minimalist, clean-line glyphs with rounded terminals (1.5px to 2px stroke).
-Treatment:
-  • Social / Quick Links: Enclosed within solid dark/white circular badges (36px x 36px).
-  • Pet Selector Icons:   Monoline glyphs enclosed in pill/card slots with radio indicators.
-  • Accordion Toggles:    Crisp circular icon badges (+ / x or chevron up/down).
+- **Buttons**: Full pill. Default: white fill, espresso ink. Hover: butterscotch fill, scale 1.02, 200ms ease-out. Press may darken terracotta to #c84325. Use the host's existing labels.
+- **Cards**: White or espresso containers, 18-28px radii, 1.5px white or espresso edges, 24-32px padding. No drop shadows. Do not add mascots, portrait frames, or decorative captions the host lacks.
+- **Inputs**: 12px radius, oatmeal or white wells, 1px sand border. Active/focus: 2px espresso border. Input font-size >= 16px.
+- **Navigation**: Restyle existing items as pills or condensed caps. Active: espresso fill with white ink, or white on terracotta. Do not add catalog names.
+- **Badges / chips / toggles**: Pills. Idle: white fill, charcoal ink, 1px sand border. Active: espresso fill, white ink, filled radio disc. Accordions: collapsed terracotta with white type; expanded white with espresso type and 18px radius.
 
 /* -----------------------------------------------------------------------------
- * 8. INTERACTION & FEEDBACK RULES
- * -------------------------------------------------------------------------- */
-Hover & Focus States:
-  • CTA Buttons (e.g., "Book Now"):
-      Default:  Background: #FFFFFF | Text: #230C07
-      Hover:    Background: #FED0A7 | Scale: 1.02 | Transition: 200ms ease-out
-  • Accordion Row:
-      Collapsed: Background: #E05333 | Text: #FFFFFF
-      Expanded:  Background: #FFFFFF | Text: #230C07 | Border-radius: 18px
-  • Selection Chips (Date/Time/Pet Type):
-      Inactive: Background: #FFFFFF | Text: #7D716A | Border: 1px solid #E8E1DA
-      Active:   Background: #230C07 | Text: #FFFFFF | Radio Dot: Filled White
-
-/* -----------------------------------------------------------------------------
- * 9. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
 - No blurry drop shadows or fuzzy box-shadows.
-- No purple or neon gradient fills on buttons or typography.
-- No generic rectangular stock containers lacking organic corner treatments.
-- No tiny untracked uppercase headers.
+- No purple or neon gradient fills on buttons or type.
+- No generic sharp rectangles when the system calls for 18-28px organic radii.
+- No tiny untracked uppercase headers (display stays large, tracked, condensed).
 - No grid particle mesh backgrounds.
-================================================================================
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- 10. JAVASCRIPT CONTROLLERS -->

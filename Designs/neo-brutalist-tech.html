@@ -2734,128 +2734,142 @@
        ======================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Neo-Brutalist Tech • Developer Tooling • Web3 Infrastructure
+  Visual language: Neo-Brutalist Tech
+  Construction: starch white • 0px geometry • 2px carbon borders • hyper-volt lime • ultramarine • zero-blur ink shadows
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Neo-Brutalist Tech is a high-density, hyper-tactile design system engineered for developer platforms, Web3 infrastructure, and modern fintech architecture. It fuses architectural monochrome surfaces (Starch White #FAFAFA, Clean Slate #F4F4F5, Concrete 200 #E4E4E7) with high-voltage kinetic accents (Hyper-Volt Lime #CCFF00, Ultramarine Blue #1D4ED8) and rigid 0px brutalist geometry. Hardball zero-blur ink drop shadows create physical mechanical elevation, while monoline technical glyphs and strict typographical hierarchy provide unmatched clarity for complex telemetry and cryptographic workflows.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
 /* -----------------------------------------------------------------------------
- * 2. COLOR ROLES & TOKEN PALETTE
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A light starch-white canvas of clean-slate cards and concrete wells, ruled by 2px carbon ink borders and 0px corners. Elevation is a hard 3-8px offset block of 100% opaque ink, never blur. Primary actuation is hyper-volt lime on carbon; secondary is ultramarine. Display and titles are Space Grotesk, tight and heavy; body is Plus Jakarta Sans; compact meta is JetBrains Mono, uppercase and wide. Click physics is a short mechanical press: the object slides onto its own shadow.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Surface & Canvas Tokens */
-  --bg-canvas:              #FAFAFA; /* Starch White - Global viewport root & base canvas */
-  --bg-card:                #F4F4F5; /* Clean Slate - Modular panels, tables, card bodies */
-  --bg-inset:               #E4E4E7; /* Concrete 200 - Code wells, search bars, nested trays */
-  --bg-dark:                #09090B; /* Carbon Heavy - Inverted terminal and command surfaces */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FAFAFA; /* Starch white */
+  --bg-surface:             #F4F4F5; /* Clean slate cards */
+  --bg-surface-alt:         #E4E4E7; /* Concrete inset wells */
+  --bg-surface-dark:        #09090B; /* Carbon inverted */
 
-  /* Inks & Monochromes */
-  --ink-primary:            #09090B; /* Carbon Heavy - 100% text, 2px structural borders, shadows */
-  --ink-muted:              #52525B; /* Zinc 600 - Secondary labels, timestamps, metadata */
-  --ink-inverse:            #FAFAFA; /* Starch White - High-contrast text on dark badges/buttons */
+  /* Inks & Typography */
+  --ink-primary:            #09090B; /* Carbon heavy */
+  --ink-secondary:          #52525B; /* Zinc secondary */
+  --ink-muted:              #52525B; /* Quiet labels */
+  --ink-inverted:           #FAFAFA; /* Starch on carbon */
 
-  /* Kinetic Accents */
-  --accent-volt:            #CCFF00; /* Hyper-Volt Lime - Primary CTA, active build, main trigger */
-  --accent-volt-hover:      #B8E600; /* Deep Lime - Focus-visible states, subtle hover wash */
-  --accent-ultramarine:     #1D4ED8; /* Ultramarine Blue - RPC nodes, cryptographic data, links */
+  /* Signature Accents */
+  --accent-primary:         #CCFF00; /* Hyper-volt lime */
+  --accent-primary-hover:   #B8E600; /* Deep lime */
+  --accent-secondary:       #1D4ED8; /* Ultramarine */
+  --accent-tertiary:        #1E40AF; /* Deep ultramarine */
 
-  /* Semantic Signal Matrix */
-  --signal-ok:              #CCFF00; /* Hyper-Volt Lime - Mainnet Live, Validated Block, Tests 100% */
-  --signal-warn:            #FACC15; /* Hazard Ochre - Gas Spike, Rate-Limit Warning, Mempool Lag */
-  --signal-crit:            #FF334B; /* Radical Vermilion - Reverted Tx, Compile Failure, Auth Error */
-  --signal-exec:            #1D4ED8; /* Ultramarine Blue - Mining, Query Executing, Syncing Shard */
+  /* Status Tokens */
+  --status-success:         #CCFF00; /* Volt confirm */
+  --status-warning:         #FACC15; /* Hazard ochre */
+  --status-danger:          #FF334B; /* Radical vermilion */
+  --status-info:            #1D4ED8; /* Ultramarine info */
+
+  /* Extra material aliases */
+  --bg-card:                #F4F4F5;
+  --bg-inset:               #E4E4E7;
+  --bg-dark:                #09090B;
+  --accent-volt:            #CCFF00;
+  --accent-volt-hover:      #B8E600;
+  --accent-ultramarine:     #1D4ED8;
+  --signal-ok:              #CCFF00;
+  --signal-warn:            #FACC15;
+  --signal-crit:            #FF334B;
+  --signal-exec:            #1D4ED8;
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Stacks */
 --font-display: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
---font-body:    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+--font-sans:    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 --font-mono:    "JetBrains Mono", SFMono-Regular, Menlo, monospace;
 
-/* Type Scale Hierarchy */
---text-display: 32px     / 1.15  var(--font-display); /* Weight: 700 | Tracking: -0.04em | Hero metrics, product heads */
---text-h1:      32px     / 1.15  var(--font-display); /* Weight: 700 | Tracking: -0.04em | Hero metrics, main titles */
---text-h2:      22px     / 1.25  var(--font-display); /* Weight: 700 | Tracking: -0.03em | Card headers, modal titles */
---text-h3:      16px     / 1.35  var(--font-display); /* Weight: 700 | Tracking: -0.02em | Sub-panels, drawer titles */
---text-body-lg: 15px     / 1.50  var(--font-body);    /* Weight: 500 | Tracking: -0.01em | Primary narrative & prompts */
---text-body:    14px     / 1.50  var(--font-body);    /* Weight: 500 | Tracking:  0.00em | Form inputs, table cells */
---text-code:    12px     / 1.60  var(--font-mono);    /* Weight: 400 | Tracking: +0.04em | Logs, payloads, byte code */
---text-meta:    11px     / 1.20  var(--font-mono);    /* Weight: 600 | Tracking: +0.08em | UPPERCASE status chips, KPIs */
+--text-display: 32px / 1.15 var(--font-display); /* Weight: 700 | Tracking: -0.04em */
+--text-h1:      32px / 1.15 var(--font-display); /* Weight: 700 | Tracking: -0.04em */
+--text-h2:      22px / 1.25 var(--font-display); /* Weight: 700 | Tracking: -0.03em */
+--text-h3:      16px / 1.35 var(--font-display); /* Weight: 700 | Tracking: -0.02em */
+--text-body:    14px / 1.50 var(--font-sans);    /* Weight: 500 */
+--text-body-sm: 12px / 1.60 var(--font-mono);    /* Weight: 400 | Tracking: +0.04em | compact data */
+--text-meta:    11px / 1.20 var(--font-mono);    /* Weight: 600 | Tracking: +0.08em | UPPERCASE */
+--text-body-lg: 15px / 1.50 var(--font-sans);    /* Weight: 500 | Tracking: -0.01em */
+
+/* Compact data uses mono at 12px. Do not invent terminal prompts, node labels, or hash prefixes. */
 
 /* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
---radius-sharp:   0px;    /* Universal default for tables, structural frames, code blocks, cards */
---radius-subtle:  2px;    /* Permitted exclusively on interactive elements (buttons, inputs, status tags) */
---radius-pill:    0px;    /* STRICTLY PROHIBITED (No pill badges, no rounded modals) */
+--radius-default: 0px;
+--radius-subtle:  2px; /* Interactive controls only */
+--radius-sharp:   0px;
+--radius-pill:    0px; /* Prohibited on badges, cards, and modals */
 
-/* -----------------------------------------------------------------------------
- * 5. ELEVATION, HARDBALL SHADOWS & PROJECTION LAYERS
- * -------------------------------------------------------------------------- */
-/* Principle: Pure offset, 0% blur, 100% opacity ink shadows */
+--shadow-base:        5px 5px 0px #09090B;
+--shadow-hover:       4px 4px 0px #09090B;
+--shadow-active:      none;
 --shadow-none:        none;
---shadow-interactive: 3px 3px 0px #09090B; /* Standard buttons, actionable cards, input fields */
---shadow-card:        5px 5px 0px #09090B; /* KPI stat cards, hovering inspector panels */
---shadow-modal:       8px 8px 0px #09090B; /* Dialogue modals, command palettes (Cmd+K) */
---shadow-accent-blue: 3px 3px 0px #1D4ED8; /* Ultramarine blue focus/active secondary elements */
+--shadow-interactive: 3px 3px 0px #09090B;
+--shadow-card:        5px 5px 0px #09090B;
+--shadow-modal:       8px 8px 0px #09090B;
+--shadow-accent-blue: 3px 3px 0px #1D4ED8;
+
+/* Click-down physics (80ms cubic-bezier(0, 0, 0.2, 1)):
+   Rest: translate(0,0) + 3px 3px 0 #09090B
+   Hover: translate(-1px,-1px) + 4px 4px 0 #09090B
+   Active: translate(3px,3px) + no shadow
+   Focus-visible: 2px solid #1D4ED8 */
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING SCALE (4PX / 8PX RIGID BASE)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---space-1:  4px;  /* Micro-offsets, tight tag paddings, icon-text gap */
---space-2:  8px;  /* Badge paddings, input internal Y-padding, sub-grid gaps */
---space-3: 12px;  /* Compact button Y-padding, table cell padding */
---space-4: 16px;  /* Button X-padding, standard panel padding, container gap */
---space-6: 24px;  /* Card internal padding, desktop dashboard grid gap */
---space-8: 32px;  /* Section vertical rhythm, header margins */
---space-12:48px;  /* Page container separation */
+--border-core:          2px solid #09090B;
+--border-hairline:      1px solid #09090B;
+--border-blueprint-sub: 1px dashed #D4D4D8;
+--divider-style:        1px solid #09090B;
+
+/* Optional 16px-dot or 32px-square background grid in quiet regions.
+   Optional "+" ticks at existing card corners - graphic only, no labels. */
+
+/* Icons: 2.0px, square caps, miter joins. Do not add ASCII operator prefixes to labels. */
 
 /* -----------------------------------------------------------------------------
- * 7. BORDERS, DIVIDERS & TECHNICAL GRIDLINES
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
---border-core:          2px solid #09090B; /* Primary structural boundary for buttons, cards, modals */
---border-hairline:      1px solid #09090B; /* Internal table cell dividers, secondary nested grids */
---border-blueprint-sub: 1px dashed #D4D4D8; /* Background monoline coordinate grids */
---decorative-crosshair: "+" markers positioned at intersecting card corners [ top-left / bottom-right ]
---grid-background:      High-contrast monochrome background grid (16px x 16px dots or 32px square vector grid)
+- **Buttons**: 0-2px radius, 2px carbon border, 3px hard shadow. Primary: lime fill, carbon ink, Space Grotesk 700 ~14px. Ghost: starch fill, carbon ink, optional mono 600 12px. Hover/press uses the click-down physics above. Use the host's existing labels.
+- **Cards**: Clean slate #F4F4F5, 2px carbon border, 5px hard shadow, 0px radius. Inverted wells: carbon fill with lime or starch ink. Do not add KPI chrome, CLI headers, or hash tags the host lacks.
+- **Inputs**: Concrete well #E4E4E7, 2px carbon border, 3px hard shadow, 2px radius max. Focus: 2px ultramarine outline. Input font-size >= 16px.
+- **Navigation**: Restyle existing items as heavy grotesque or uppercase mono. Active: lime fill or ultramarine underline. Do not add catalog names or fake command palettes.
+- **Badges / chips / toggles**: 0-2px, 2px carbon border, lime/ochre/vermilion/ultramarine fills. No pills.
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE & TECHNICAL GLYPHS
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
---icon-stroke-width: 2.0px;
---icon-line-cap:     square;
---icon-line-join:    miter;
-
-/* Direct ASCII/Unicode technical glyphs for UI metadata:
-   [+] NEW NODE    [>] EXEC    [#] HASH    [*] SYNC    [!] WARN    [//] COMMENT    [x] TERMINATE */
-
-/* -----------------------------------------------------------------------------
- * 9. COMPONENT ARCHETYPES & INTERACTION PHYSICS
- * -------------------------------------------------------------------------- */
-- **Tactile Click-Down Physics**: Buttons and actionable cards exist on a physical 45° plane.
-  - Resting: translate(0px, 0px) with 3px 3px 0px #09090B shadow
-  - Hover: translate(-1px, -1px) with 4px 4px 0px #09090B shadow + subtle luminance boost
-  - Active (Pressed): translate(3px, 3px) with 0px 0px 0px #09090B (None)
-  - Focus-Visible: outline: 2px solid #1D4ED8
-  - Transition: 80ms cubic-bezier(0, 0, 0.2, 1)
-- **Primary Volt Button**: bg: #CCFF00 | color: #09090B | border: 2px solid #09090B | font: Space Grotesk 700 14px | shadow: 3px 3px 0px #09090B
-- **Ghost-Invert Button**: bg: #FAFAFA | color: #09090B | border: 2px solid #09090B | font: JetBrains Mono 600 12px | shadow: 3px 3px 0px #09090B
-- **KPI Telemetry Cards**: bg: #F4F4F5 | border: 2px solid #09090B | shadow: 5px 5px 0px #09090B | Header: Space Grotesk 700 | Stat: Space Grotesk 700 28px | Meta: JetBrains Mono 11px
-- **Terminal Prompt**: bg: #09090B | color: #CCFF00 | border: 2px solid #09090B | font: JetBrains Mono 12px | Header: [CLI // zsh] ... [SH]
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
- * -------------------------------------------------------------------------- */
-- STRICTLY PROHIBITED: Soft, diffuse, or blurred drop shadows (only 0% blur, 100% opacity hardball ink shadows).
-- STRICTLY PROHIBITED: Pill radii or rounded modals/cards (>2px radius is prohibited; default is 0px).
-- STRICTLY PROHIBITED: Pastel or low-contrast borders (all primary borders are 2px solid #09090B).
-- STRICTLY PROHIBITED: Gradient text fills or purple/violet dark-mode tropes.
-- STRICTLY PROHIBITED: Textureless surfaces or generic dashboard placeholder fluff.
+- No soft, diffuse, or blurred drop shadows (0% blur, 100% opacity ink only).
+- No pill radii or rounded modals/cards (default 0px; 2px max on controls).
+- No pastel or low-contrast structural borders (2px solid #09090B).
+- No gradient text or purple dark-mode tropes.
+- No Web3, CLI, or developer-tooling copy mandates.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ========================================================================

@@ -2533,124 +2533,151 @@
         </div>
 
         <div class="spec-drawer-card">
-          <pre class="spec-code-block"><code id="spec-code-display">================================================================================
-                      SKYBOUND DESIGN SYSTEM // STYLE TILE                      
+          <pre class="spec-code-block"><code id="spec-code-display">
+================================================================================
+  Visual language: Alabaster & Electric Lime
+  Construction: cool alabaster • 24-36px radii • frosted glass • pill chrome • onyx ink • electric lime
 ================================================================================
 
-[ 01. COLOR ROLES & PALETTE ]
---------------------------------------------------------------------------------
-• Primary & Accents:
-  - Brand Dark (Primary Text / Base CTA) : #0E0F12  (Deep Onyx Black)
-  - Brand Accent (Interactive Highlight) : #EDF947  (Electric Lemon Lime)
-  - Brand Accent Active / Press          : #D8E534  (Deep Lime)
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
 
-• Surfaces & Backgrounds:
-  - Canvas / Page Background             : #F5F6F8  (Cool Alabaster)
-  - Surface Pure (Cards / Floating Bars) : #FFFFFF  (Pure White)
-  - Glass Surface (Frosted Overlays)     : rgba(255, 255, 255, 0.72)
-  - Glass Border                         : rgba(255, 255, 255, 0.40)
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
-• Neutrals & Grayscale:
-  - Text Primary                         : #0E0F12  (Onyx)
-  - Text Secondary / Subtitles           : #6C727F  (Slate Gray)
-  - Text Muted / Placeholders            : #9CA3AF  (Cool Gray)
-  - Border Subdued / Divider             : #EAECEF  (Soft Gray)
-  - Border Medium                        : #DDE1E6  (Outline Gray)
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A cool daylight field of alabaster canvas and pure-white floating cards, inked in deep onyx. Accents are a single electric lemon-lime used as a fill on active pills and circular controls. Geometry is generous: 36px hero frames, 24px cards, full-pill buttons and search bars. Frosted glass (blur 20px, saturate 180%) sits over the canvas. Shadows are wide and faint. Motion is a short spring ease-out.
 
-• Micro-Badge & Tag Tints (Pastels):
-  - Tag Gold (Top Rated)                 : BG: #FEF3C7 | Text: #78350F
-  - Tag Pink (Trending)                  : BG: #FFE4E6 | Text: #9F1239
-  - Tag Mint (Guest Favorite)            : BG: #D1FAE5 | Text: #065F46
-  - Tag Sky (Location / Info)            : BG: #E0F2FE | Text: #0369A1
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F5F6F8; /* Cool alabaster */
+  --bg-surface:             #FFFFFF; /* Pure white cards */
+  --bg-surface-alt:         #FFFFFF; /* Floating bars */
+  --bg-surface-dark:        #0E0F12; /* Deep onyx inverted */
 
+  /* Inks & Typography */
+  --ink-primary:            #0E0F12; /* Onyx */
+  --ink-secondary:          #6C727F; /* Slate gray */
+  --ink-muted:              #9CA3AF; /* Cool gray */
+  --ink-inverted:           #FFFFFF; /* White on onyx or lime-on-dark */
 
-[ 02. TYPOGRAPHY SYSTEM ]
---------------------------------------------------------------------------------
-• Font Families:
-  - Primary / Headings : "Plus Jakarta Sans", "Satoshi", system-ui, sans-serif
-  - Body / Functional  : "Inter", "Plus Jakarta Sans", system-ui, sans-serif
+  /* Signature Accents */
+  --accent-primary:         #EDF947; /* Electric lemon lime */
+  --accent-primary-hover:   #D8E534; /* Deep lime press */
+  --accent-secondary:       #FEF3C7; /* Gold chip fill */
+  --accent-tertiary:        #E0F2FE; /* Sky chip fill */
 
-• Hierarchy Scale:
-  - Display Hero     : 56px / 1.1 / 800 (ExtraBold)  - Tracking: -0.03em
-  - Section Heading  : 28px / 1.2 / 700 (Bold)       - Tracking: -0.02em
-  - Card Title       : 16px / 1.3 / 600 (SemiBold)   - Tracking: -0.01em
-  - Subtitle / Hero  : 16px / 1.5 / 400 (Regular)    - Tracking:  0.00em
-  - Body / Input     : 14px / 1.4 / 500 (Medium)     - Tracking:  0.00em
-  - Micro / Meta     : 12px / 1.3 / 400 (Regular)    - Tracking: +0.01em
-  - Tag Pill Label   : 11px / 1.0 / 600 (SemiBold)   - Tracking: +0.02em
+  /* Status Tokens */
+  --status-success:         #D1FAE5; /* Mint chip fill */
+  --status-warning:         #FEF3C7; /* Gold chip fill */
+  --status-danger:          #FFE4E6; /* Pink chip fill */
+  --status-info:            #E0F2FE; /* Sky chip fill */
 
+  /* Extra material tokens */
+  --brand-dark:             #0E0F12;
+  --brand-accent:           #EDF947;
+  --brand-accent-active:    #D8E534;
+  --glass-surface:          rgba(255, 255, 255, 0.72);
+  --glass-surface-dense:    rgba(255, 255, 255, 0.85);
+  --glass-border:           rgba(255, 255, 255, 0.40);
+  --glass-border-dense:     rgba(255, 255, 255, 0.60);
+  --border-subdued:         #EAECEF;
+  --border-medium:          #DDE1E6;
+  --tag-gold-bg:            #FEF3C7;
+  --tag-gold-text:          #78350F;
+  --tag-pink-bg:            #FFE4E6;
+  --tag-pink-text:          #9F1239;
+  --tag-mint-bg:            #D1FAE5;
+  --tag-mint-text:          #065F46;
+  --tag-sky-bg:             #E0F2FE;
+  --tag-sky-text:           #0369A1;
+}
 
-[ 03. CORNER GEOMETRY (BORDER RADII) ]
---------------------------------------------------------------------------------
-• radius-pill  (Full Round) : 9999px  -> Buttons, Badges, Search Bar, Nav Pills
-• radius-3xl   (Hero Frame) : 36px    -> Master Page Container, Canvas Bounds
-• radius-2xl   (Cards)      : 24px    -> Floating Search Bar, Category Cards
-• radius-xl    (Overlays)   : 16px    -> Floating Mini-widgets, Popovers
-• radius-sm    (Micro Tags) : 8px     -> Metadata Pills, Tooltips
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Plus Jakarta Sans", "Satoshi", system-ui, -apple-system, sans-serif;
+--font-sans:    "Inter", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+--font-mono:    ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
 
+--text-display: 800 56px / 1.1 var(--font-display); /* Tracking: -0.03em */
+--text-h1:      800 56px / 1.1 var(--font-display);
+--text-h2:      700 28px / 1.2 var(--font-display); /* Tracking: -0.02em */
+--text-h3:      600 16px / 1.3 var(--font-display); /* Tracking: -0.01em */
+--text-body:    400 16px / 1.5 var(--font-sans);
+--text-body-sm: 500 14px / 1.4 var(--font-sans);
+--text-meta:    400 12px / 1.3 var(--font-sans);    /* Tracking: +0.01em */
 
-[ 04. ELEVATION & DEPTH (SHADOWS & LAYERS) ]
---------------------------------------------------------------------------------
-• Elevation Levels:
-  - Level 0 (Flat)       : none
-  - Level 1 (Card Rest)  : 0px 2px 8px -2px rgba(14, 15, 18, 0.04)
-  - Level 2 (Floating)   : 0px 20px 40px -12px rgba(14, 15, 18, 0.08),
-                           0px 1px 3px 0px rgba(14, 15, 18, 0.02)
-  - Level 3 (Active Pop) : 0px 28px 64px -16px rgba(14, 15, 18, 0.14)
+/* Tag pills: 600 11px / 1.0, tracking +0.02em. Do not invent chip labels. */
 
-• Glassmorphism Treatment:
-  - Frosted Float : backdrop-filter: blur(20px) saturate(180%);
-                    background: rgba(255, 255, 255, 0.85);
-                    border: 1px solid rgba(255, 255, 255, 0.60);
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 24px;
+--radius-subtle:  8px;
+--radius-pill:    9999px;
+--radius-3xl:     36px;
+--radius-2xl:     24px;
+--radius-xl:      16px;
+--radius-sm:      8px;
 
+--shadow-base:    0px 2px 8px -2px rgba(14, 15, 18, 0.04);
+--shadow-hover:   0px 20px 40px -12px rgba(14, 15, 18, 0.08), 0px 1px 3px 0px rgba(14, 15, 18, 0.02);
+--shadow-active:  0px 28px 64px -16px rgba(14, 15, 18, 0.14);
+--shadow-level-0: none;
+--shadow-level-1: 0px 2px 8px -2px rgba(14, 15, 18, 0.04);
+--shadow-level-2: 0px 20px 40px -12px rgba(14, 15, 18, 0.08), 0px 1px 3px 0px rgba(14, 15, 18, 0.02);
+--shadow-level-3: 0px 28px 64px -16px rgba(14, 15, 18, 0.14);
+--shadow-accent-glow: 0px 12px 28px -4px rgba(237, 249, 71, 0.45);
 
-[ 05. SPACING & SPATIAL SCALE ]
---------------------------------------------------------------------------------
-• Base Grid: 4px / 8px Baseline System
-• Spacing Tokens:
-  - space-2xs :  4px  -> Icon-to-label gaps, tag inner padding
-  - space-xs  :  8px  -> Input inner gaps, micro card padding
-  - space-sm  : 12px  -> Button vertical padding, chip spacing
-  - space-md  : 16px  -> Card padding horizontal/vertical
-  - space-lg  : 24px  -> Category card padding, grid gutter
-  - space-xl  : 32px  -> Section sub-spacing, search input groups
-  - space-2xl : 48px  -> Section separation, Hero margin
-  - space-3xl : 64px  -> Major layout division
+/* Glass: backdrop-filter: blur(20px) saturate(180%); background rgba(255,255,255,0.85);
+   border 1px solid rgba(255,255,255,0.60).
+   Motion: 200ms micro / 300ms transforms; cubic-bezier(0.16, 1, 0.3, 1).
+   Card hover: translateY(-3px). Circular controls hover scale(1.05); press scale(0.94). */
 
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid #EAECEF;
+--border-hairline:    1px solid #EAECEF;
+--border-medium:      1px solid #DDE1E6;
+--border-active:      1.5px solid #0E0F12;
+--divider-style:      1px solid #EAECEF;
+--focus-ring:         2px solid #0E0F12; /* 2px offset */
 
-[ 06. BORDERS & DIVIDERS ]
---------------------------------------------------------------------------------
-• Default Card Stroke   : 1px solid #EAECEF
-• Active / Hover Stroke : 1.5px solid #0E0F12
-• Search Divider        : 1px solid #EAECEF (Height: 32px, Vertical)
-• Focus Ring Token      : 2px solid #0E0F12, Offset: 2px
+/* Icons: 1.5px-1.75px round-cap monoline; 16px form, 18px action, 32px large. Inherit onyx; muted #9CA3AF for placeholders. */
 
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Full pill. Primary onyx fill with white ink, or lime fill with onyx ink. Hover: lime fill on nav pills; circular icon buttons scale 1.05 with a deeper shadow. Press: scale 0.94 and #D8E534. Use the host's existing labels.
+- **Cards**: White, 24px radius, 1px #EAECEF stroke, level-1 rest shadow. Hover: -3px translateY, #DDE1E6 border, level-2 shadow. Outer frames may use 36px radius. Do not add ranking chips or location tags the host lacks - if chips already exist, skin them with the pastel tag pairs above, keeping the host's own words.
+- **Inputs**: Pill or 16-24px wells, white fill, 1px #EAECEF. Focus: 2px onyx ring, 2px offset. Input font-size >= 16px. Frosted search bars use the glass tokens.
+- **Navigation**: Restyle existing items as pills. Active fill #EDF947 with onyx ink. Do not add catalog names.
+- **Badges / chips / toggles**: 8px-pill. Pastel fills with their paired inks (gold/pink/mint/sky). Do not invent chip copy.
 
-[ 07. ICONOGRAPHY LANGUAGE ]
---------------------------------------------------------------------------------
-• Style        : Clean Monoline / Architectural Line Art (1.5px - 1.75px stroke)
-• Endcaps      : Round (stroke-linecap: round; stroke-linejoin: round;)
-• Sizing       :
-  - Action / Button Icons : 18px x 18px
-  - Form & Search Icons   : 16px x 16px
-  - Category Line Art     : 32px x 32px (Custom linear illustrations)
-• Color Rule   : Inherit text primary (#0E0F12) for categories and controls;
-                 Muted (#9CA3AF) for placeholders and structural indicators.
-
-
-[ 08. INTERACTION & FEEDBACK RULES ]
---------------------------------------------------------------------------------
-• Transitions:
-  - Standard Curve  : cubic-bezier(0.16, 1, 0.3, 1) (Smooth spring ease-out)
-  - Base Duration   : 200ms (Micro-interactions), 300ms (Card transforms)
-
-• Interactive Behaviors:
-  - Navigation Pill : Background changes to #EDF947 with instant active weight.
-  - Search CTA      : Circle button scale(1.05) on hover with deepened shadow.
-  - Category Cards  : Hover brings -3px translateY lift and border #DDE1E6.
-  - Arrow Controls  : Active click triggers scale(0.94); accent yellow indicates
-                      directional pagination readiness.
-================================================================================</code></pre>
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No aviation glyphs, route maps, or travel-story chrome.
+- No hard 0px brutalist frames or zero-blur comic shadows.
+- No neon cyan/purple dark-mode HUD.
+- No gradient text.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+        </code></pre>
         </div>
       </section>
 
@@ -2692,123 +2719,148 @@
        ===================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-                      SKYBOUND DESIGN SYSTEM // STYLE TILE                      
+  Visual language: Alabaster & Electric Lime
+  Construction: cool alabaster • 24-36px radii • frosted glass • pill chrome • onyx ink • electric lime
 ================================================================================
 
-[ 01. COLOR ROLES & PALETTE ]
---------------------------------------------------------------------------------
-• Primary & Accents:
-  - Brand Dark (Primary Text / Base CTA) : #0E0F12  (Deep Onyx Black)
-  - Brand Accent (Interactive Highlight) : #EDF947  (Electric Lemon Lime)
-  - Brand Accent Active / Press          : #D8E534  (Deep Lime)
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
 
-• Surfaces & Backgrounds:
-  - Canvas / Page Background             : #F5F6F8  (Cool Alabaster)
-  - Surface Pure (Cards / Floating Bars) : #FFFFFF  (Pure White)
-  - Glass Surface (Frosted Overlays)     : rgba(255, 255, 255, 0.72)
-  - Glass Border                         : rgba(255, 255, 255, 0.40)
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
-• Neutrals & Grayscale:
-  - Text Primary                         : #0E0F12  (Onyx)
-  - Text Secondary / Subtitles           : #6C727F  (Slate Gray)
-  - Text Muted / Placeholders            : #9CA3AF  (Cool Gray)
-  - Border Subdued / Divider             : #EAECEF  (Soft Gray)
-  - Border Medium                        : #DDE1E6  (Outline Gray)
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A cool daylight field of alabaster canvas and pure-white floating cards, inked in deep onyx. Accents are a single electric lemon-lime used as a fill on active pills and circular controls. Geometry is generous: 36px hero frames, 24px cards, full-pill buttons and search bars. Frosted glass (blur 20px, saturate 180%) sits over the canvas. Shadows are wide and faint. Motion is a short spring ease-out.
 
-• Micro-Badge & Tag Tints (Pastels):
-  - Tag Gold (Top Rated)                 : BG: #FEF3C7 | Text: #78350F
-  - Tag Pink (Trending)                  : BG: #FFE4E6 | Text: #9F1239
-  - Tag Mint (Guest Favorite)            : BG: #D1FAE5 | Text: #065F46
-  - Tag Sky (Location / Info)            : BG: #E0F2FE | Text: #0369A1
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F5F6F8; /* Cool alabaster */
+  --bg-surface:             #FFFFFF; /* Pure white cards */
+  --bg-surface-alt:         #FFFFFF; /* Floating bars */
+  --bg-surface-dark:        #0E0F12; /* Deep onyx inverted */
 
+  /* Inks & Typography */
+  --ink-primary:            #0E0F12; /* Onyx */
+  --ink-secondary:          #6C727F; /* Slate gray */
+  --ink-muted:              #9CA3AF; /* Cool gray */
+  --ink-inverted:           #FFFFFF; /* White on onyx or lime-on-dark */
 
-[ 02. TYPOGRAPHY SYSTEM ]
---------------------------------------------------------------------------------
-• Font Families:
-  - Primary / Headings : "Plus Jakarta Sans", "Satoshi", system-ui, sans-serif
-  - Body / Functional  : "Inter", "Plus Jakarta Sans", system-ui, sans-serif
+  /* Signature Accents */
+  --accent-primary:         #EDF947; /* Electric lemon lime */
+  --accent-primary-hover:   #D8E534; /* Deep lime press */
+  --accent-secondary:       #FEF3C7; /* Gold chip fill */
+  --accent-tertiary:        #E0F2FE; /* Sky chip fill */
 
-• Hierarchy Scale:
-  - Display Hero     : 56px / 1.1 / 800 (ExtraBold)  - Tracking: -0.03em
-  - Section Heading  : 28px / 1.2 / 700 (Bold)       - Tracking: -0.02em
-  - Card Title       : 16px / 1.3 / 600 (SemiBold)   - Tracking: -0.01em
-  - Subtitle / Hero  : 16px / 1.5 / 400 (Regular)    - Tracking:  0.00em
-  - Body / Input     : 14px / 1.4 / 500 (Medium)     - Tracking:  0.00em
-  - Micro / Meta     : 12px / 1.3 / 400 (Regular)    - Tracking: +0.01em
-  - Tag Pill Label   : 11px / 1.0 / 600 (SemiBold)   - Tracking: +0.02em
+  /* Status Tokens */
+  --status-success:         #D1FAE5; /* Mint chip fill */
+  --status-warning:         #FEF3C7; /* Gold chip fill */
+  --status-danger:          #FFE4E6; /* Pink chip fill */
+  --status-info:            #E0F2FE; /* Sky chip fill */
 
+  /* Extra material tokens */
+  --brand-dark:             #0E0F12;
+  --brand-accent:           #EDF947;
+  --brand-accent-active:    #D8E534;
+  --glass-surface:          rgba(255, 255, 255, 0.72);
+  --glass-surface-dense:    rgba(255, 255, 255, 0.85);
+  --glass-border:           rgba(255, 255, 255, 0.40);
+  --glass-border-dense:     rgba(255, 255, 255, 0.60);
+  --border-subdued:         #EAECEF;
+  --border-medium:          #DDE1E6;
+  --tag-gold-bg:            #FEF3C7;
+  --tag-gold-text:          #78350F;
+  --tag-pink-bg:            #FFE4E6;
+  --tag-pink-text:          #9F1239;
+  --tag-mint-bg:            #D1FAE5;
+  --tag-mint-text:          #065F46;
+  --tag-sky-bg:             #E0F2FE;
+  --tag-sky-text:           #0369A1;
+}
 
-[ 03. CORNER GEOMETRY (BORDER RADII) ]
---------------------------------------------------------------------------------
-• radius-pill  (Full Round) : 9999px  -> Buttons, Badges, Search Bar, Nav Pills
-• radius-3xl   (Hero Frame) : 36px    -> Master Page Container, Canvas Bounds
-• radius-2xl   (Cards)      : 24px    -> Floating Search Bar, Category Cards
-• radius-xl    (Overlays)   : 16px    -> Floating Mini-widgets, Popovers
-• radius-sm    (Micro Tags) : 8px     -> Metadata Pills, Tooltips
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Plus Jakarta Sans", "Satoshi", system-ui, -apple-system, sans-serif;
+--font-sans:    "Inter", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+--font-mono:    ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
 
+--text-display: 800 56px / 1.1 var(--font-display); /* Tracking: -0.03em */
+--text-h1:      800 56px / 1.1 var(--font-display);
+--text-h2:      700 28px / 1.2 var(--font-display); /* Tracking: -0.02em */
+--text-h3:      600 16px / 1.3 var(--font-display); /* Tracking: -0.01em */
+--text-body:    400 16px / 1.5 var(--font-sans);
+--text-body-sm: 500 14px / 1.4 var(--font-sans);
+--text-meta:    400 12px / 1.3 var(--font-sans);    /* Tracking: +0.01em */
 
-[ 04. ELEVATION & DEPTH (SHADOWS & LAYERS) ]
---------------------------------------------------------------------------------
-• Elevation Levels:
-  - Level 0 (Flat)       : none
-  - Level 1 (Card Rest)  : 0px 2px 8px -2px rgba(14, 15, 18, 0.04)
-  - Level 2 (Floating)   : 0px 20px 40px -12px rgba(14, 15, 18, 0.08),
-                           0px 1px 3px 0px rgba(14, 15, 18, 0.02)
-  - Level 3 (Active Pop) : 0px 28px 64px -16px rgba(14, 15, 18, 0.14)
+/* Tag pills: 600 11px / 1.0, tracking +0.02em. Do not invent chip labels. */
 
-• Glassmorphism Treatment:
-  - Frosted Float : backdrop-filter: blur(20px) saturate(180%);
-                    background: rgba(255, 255, 255, 0.85);
-                    border: 1px solid rgba(255, 255, 255, 0.60);
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 24px;
+--radius-subtle:  8px;
+--radius-pill:    9999px;
+--radius-3xl:     36px;
+--radius-2xl:     24px;
+--radius-xl:      16px;
+--radius-sm:      8px;
 
+--shadow-base:    0px 2px 8px -2px rgba(14, 15, 18, 0.04);
+--shadow-hover:   0px 20px 40px -12px rgba(14, 15, 18, 0.08), 0px 1px 3px 0px rgba(14, 15, 18, 0.02);
+--shadow-active:  0px 28px 64px -16px rgba(14, 15, 18, 0.14);
+--shadow-level-0: none;
+--shadow-level-1: 0px 2px 8px -2px rgba(14, 15, 18, 0.04);
+--shadow-level-2: 0px 20px 40px -12px rgba(14, 15, 18, 0.08), 0px 1px 3px 0px rgba(14, 15, 18, 0.02);
+--shadow-level-3: 0px 28px 64px -16px rgba(14, 15, 18, 0.14);
+--shadow-accent-glow: 0px 12px 28px -4px rgba(237, 249, 71, 0.45);
 
-[ 05. SPACING & SPATIAL SCALE ]
---------------------------------------------------------------------------------
-• Base Grid: 4px / 8px Baseline System
-• Spacing Tokens:
-  - space-2xs :  4px  -> Icon-to-label gaps, tag inner padding
-  - space-xs  :  8px  -> Input inner gaps, micro card padding
-  - space-sm  : 12px  -> Button vertical padding, chip spacing
-  - space-md  : 16px  -> Card padding horizontal/vertical
-  - space-lg  : 24px  -> Category card padding, grid gutter
-  - space-xl  : 32px  -> Section sub-spacing, search input groups
-  - space-2xl : 48px  -> Section separation, Hero margin
-  - space-3xl : 64px  -> Major layout division
+/* Glass: backdrop-filter: blur(20px) saturate(180%); background rgba(255,255,255,0.85);
+   border 1px solid rgba(255,255,255,0.60).
+   Motion: 200ms micro / 300ms transforms; cubic-bezier(0.16, 1, 0.3, 1).
+   Card hover: translateY(-3px). Circular controls hover scale(1.05); press scale(0.94). */
 
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid #EAECEF;
+--border-hairline:    1px solid #EAECEF;
+--border-medium:      1px solid #DDE1E6;
+--border-active:      1.5px solid #0E0F12;
+--divider-style:      1px solid #EAECEF;
+--focus-ring:         2px solid #0E0F12; /* 2px offset */
 
-[ 06. BORDERS & DIVIDERS ]
---------------------------------------------------------------------------------
-• Default Card Stroke   : 1px solid #EAECEF
-• Active / Hover Stroke : 1.5px solid #0E0F12
-• Search Divider        : 1px solid #EAECEF (Height: 32px, Vertical)
-• Focus Ring Token      : 2px solid #0E0F12, Offset: 2px
+/* Icons: 1.5px-1.75px round-cap monoline; 16px form, 18px action, 32px large. Inherit onyx; muted #9CA3AF for placeholders. */
 
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Full pill. Primary onyx fill with white ink, or lime fill with onyx ink. Hover: lime fill on nav pills; circular icon buttons scale 1.05 with a deeper shadow. Press: scale 0.94 and #D8E534. Use the host's existing labels.
+- **Cards**: White, 24px radius, 1px #EAECEF stroke, level-1 rest shadow. Hover: -3px translateY, #DDE1E6 border, level-2 shadow. Outer frames may use 36px radius. Do not add ranking chips or location tags the host lacks - if chips already exist, skin them with the pastel tag pairs above, keeping the host's own words.
+- **Inputs**: Pill or 16-24px wells, white fill, 1px #EAECEF. Focus: 2px onyx ring, 2px offset. Input font-size >= 16px. Frosted search bars use the glass tokens.
+- **Navigation**: Restyle existing items as pills. Active fill #EDF947 with onyx ink. Do not add catalog names.
+- **Badges / chips / toggles**: 8px-pill. Pastel fills with their paired inks (gold/pink/mint/sky). Do not invent chip copy.
 
-[ 07. ICONOGRAPHY LANGUAGE ]
---------------------------------------------------------------------------------
-• Style        : Clean Monoline / Architectural Line Art (1.5px - 1.75px stroke)
-• Endcaps      : Round (stroke-linecap: round; stroke-linejoin: round;)
-• Sizing       :
-  - Action / Button Icons : 18px x 18px
-  - Form & Search Icons   : 16px x 16px
-  - Category Line Art     : 32px x 32px (Custom linear illustrations)
-• Color Rule   : Inherit text primary (#0E0F12) for categories and controls;
-                 Muted (#9CA3AF) for placeholders and structural indicators.
-
-
-[ 08. INTERACTION & FEEDBACK RULES ]
---------------------------------------------------------------------------------
-• Transitions:
-  - Standard Curve  : cubic-bezier(0.16, 1, 0.3, 1) (Smooth spring ease-out)
-  - Base Duration   : 200ms (Micro-interactions), 300ms (Card transforms)
-
-• Interactive Behaviors:
-  - Navigation Pill : Background changes to #EDF947 with instant active weight.
-  - Search CTA      : Circle button scale(1.05) on hover with deepened shadow.
-  - Category Cards  : Hover brings -3px translateY lift and border #DDE1E6.
-  - Arrow Controls  : Active click triggers scale(0.94); accent yellow indicates
-                      directional pagination readiness.
-================================================================================
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No aviation glyphs, route maps, or travel-story chrome.
+- No hard 0px brutalist frames or zero-blur comic shadows.
+- No neon cyan/purple dark-mode HUD.
+- No gradient text.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- =====================================================================

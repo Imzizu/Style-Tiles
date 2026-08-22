@@ -1878,89 +1878,155 @@
   <!-- EMBEDDED MACHINE-READABLE MARKDOWN STYLE TILE -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Cyber-Kinetic Motorsport • High-Performance Brutalism • Neon HUD
+  Visual language: Cyber-Kinetic
+  Construction: void green-black • hyper-volt green • 45deg chamfers • Chakra Petch • neon hairlines
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Cyber-Kinetic Motorsport & High-Performance Brutalism fuses the visual adrenaline 
-of electric hypercar telemetry, high-density aerospace HUD instrumentation, and 
-stark architectural brutalism. Characterized by acid/hyper-volt neon green (#9AE600), 
-deep atmospheric void green-black (#070E07), 45-degree chamfered geometry, and 
-rapid telemetry feedback, it is tailored for telemetry dashboards, high-frequency 
-fintech terminals, automotive cockpits, and cutting-edge gaming interfaces.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Deep atmospheric void green-black (#070E07) cut by hyper-volt neon green (#9AE600)
+and a luminescent highlight (#B8FF00). Geometry is hard: 0–2px radii or a 45-degree
+8px chamfer — never bubbly. Display is Chakra Petch, ultra-wide tracking, uppercase;
+supporting type is a tech mono and Inter. Frosted acid-tinted glass, hairline traces,
+and volt glow rings carry the energy. Volt, chamfer, and type are the system — not
+vehicle or cockpit subject matter.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Brand & Accent Voltage */
-  --color-brand-primary-electric:    #9AE600; /* Acid / Hyper-Volt Neon Green */
-  --color-brand-primary-glow:        #B8FF00; /* High-intensity luminescent highlight */
-  --color-brand-tint-olive:          #70821E; /* Deep racing chartreuse / Muted olive */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #070E07; /* Void green-black */
+  --bg-surface:             #0D140D; /* Elevated dark card */
+  --bg-surface-alt:         rgba(128, 148, 48, 0.72); /* Acid-filtered frost */
+  --bg-surface-dark:        #070E07;
 
-  /* Surfaces & Backdrop */
-  --color-surface-backdrop:          #070E07; /* Deep atmospheric void green-black */
-  --color-surface-card-tinted:       rgba(128, 148, 48, 0.72); /* Acid-filtered frosted glass */
-  --color-surface-card-frosted:      rgba(215, 222, 215, 0.58); /* Titanium frosted glass */
-  --color-surface-scrim-dark:        rgba(0, 0, 0, 0.65); /* High-contrast background dampener */
-  --color-surface-card-dark:         #0D140D; /* Elevated dark card container */
+  --color-surface-backdrop:     #070E07;
+  --color-surface-card-tinted:  rgba(128, 148, 48, 0.72);
+  --color-surface-card-frosted: rgba(215, 222, 215, 0.58); /* Titanium frost */
+  --color-surface-scrim-dark:   rgba(0, 0, 0, 0.65);
+  --color-surface-card-dark:    #0D140D;
 
-  /* Inks & Readout Typography */
-  --color-text-primary-inverse:      #FFFFFF; /* High-impact display stark white */
-  --color-text-primary-dark:         #0A0F0A; /* Deep obsidian for high-contrast cards */
-  --color-text-secondary-neon:       #9AE600; /* Digital HUD accent text */
-  --color-text-muted:                rgba(255, 255, 255, 0.60); /* De-emphasized metadata */
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF;
+  --ink-secondary:          #9AE600;
+  --ink-muted:              rgba(255, 255, 255, 0.60);
+  --ink-inverted:           #0A0F0A;
 
-  /* Borders & Dividers */
-  --color-border-hairline:           rgba(255, 255, 255, 0.12); /* Subtle structural trace */
-  --color-border-neon-active:        #9AE600; /* Dynamic focus/active outline */
-  --color-border-subtle-glow:        rgba(154, 230, 0, 0.35);
+  --color-text-primary-inverse: #FFFFFF;
+  --color-text-primary-dark:    #0A0F0A;
+  --color-text-secondary-neon:  #9AE600;
+
+  /* Signature Accents */
+  --accent-primary:         #9AE600; /* Hyper-volt neon green */
+  --accent-primary-hover:   #B8FF00; /* Luminescent highlight */
+  --accent-secondary:       #B8FF00;
+  --accent-tertiary:        #70821E; /* Muted olive chartreuse */
+
+  --color-brand-primary-electric: #9AE600;
+  --color-brand-primary-glow:     #B8FF00;
+  --color-brand-tint-olive:       #70821E;
+
+  /* Status Tokens (mapped from volt / olive) */
+  --status-success:         #9AE600;
+  --status-warning:         #B8FF00;
+  --status-danger:          #9AE600;
+  --status-info:            #70821E;
+
+  --color-border-hairline:    rgba(255, 255, 255, 0.12);
+  --color-border-neon-active: #9AE600;
+  --color-border-subtle-glow: rgba(154, 230, 0, 0.35);
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
---font-family-display:   "Chakra Petch", "Nippo", "Druk Wide", sans-serif;
---font-family-tech-mono: "Share Tech Mono", "Oxanium", "Space Mono", monospace;
---font-family-ui:        "Inter", "Helvetica Neue", sans-serif;
+--font-display: "Chakra Petch", "Nippo", "Druk Wide", sans-serif;
+--font-sans:    "Inter", "Helvetica Neue", sans-serif;
+--font-mono:    "Share Tech Mono", "Oxanium", "Space Mono", monospace;
 
-[ TYPOGRAPHY SCALE & ROLES ]
-• Display Hero (Headings)    : clamp(3.5rem, 10vw, 8rem) | 900 Weight | Line-height: 0.85 | Uppercase | Tracking: 0.04em
-• Metric Values (Readouts)   : clamp(2.5rem, 5vw, 4.5rem) | 700 Weight | Line-height: 1.00 | Lowercase/Mono | Tracking: 0.06em
-• Tech Sub-headers & Labels  : 0.875rem | 600 Weight | Line-height: 1.40 | Uppercase | Tracking: 0.22em
-• Navigation & Micro Actions : 0.75rem  | 500 Weight | Line-height: 1.20 | Uppercase | Tracking: 0.28em
-• Body Text                  : 0.9375rem | 400 Weight | Line-height: 1.60 | Standard Casing | Sans-serif
+--text-display: clamp(3.5rem, 10vw, 8rem) / 0.85 var(--font-display); /* Weight 900 | tracking 0.04em | UPPERCASE */
+--text-h1:      clamp(3.5rem, 10vw, 8rem) / 0.85 var(--font-display);
+--text-h2:      clamp(2.5rem, 5vw, 4.5rem) / 1.00 var(--font-mono); /* Weight 700 | tracking 0.06em | figures if host already has them */
+--text-h3:      0.875rem / 1.40 var(--font-display); /* Weight 600 | tracking 0.22em | UPPERCASE */
+--text-body:    0.9375rem / 1.60 var(--font-sans);   /* Weight 400 */
+--text-body-sm: 0.875rem / 1.40 var(--font-display);
+--text-meta:    0.75rem / 1.20 var(--font-display);  /* Weight 500 | tracking 0.28em | UPPERCASE */
 
 /* -----------------------------------------------------------------------------
  * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
---radius-none:       0px;
---radius-micro:      1px;
---radius-chamfer:    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
---radius-pill-btn:   2px; /* Hard-edged industrial pill */
+--radius-default: 0px;
+--radius-subtle:  2px;
+--radius-pill:    2px; /* Hard-edged industrial "pill" */
 
-/* Elevation & Shadows */
+--radius-none:    0px;
+--radius-micro:   1px;
+--radius-chamfer: clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+--radius-pill-btn: 2px;
+
+--shadow-base:   0 20px 40px rgba(0, 0, 0, 0.85);
+--shadow-hover:  0px 0px 48px rgba(184, 255, 0, 0.65);
+--shadow-active: 0px 0px 32px rgba(154, 230, 0, 0.35);
+
 --glow-neon-ambient: 0px 0px 32px rgba(154, 230, 0, 0.35);
 --glow-neon-focused: 0px 0px 48px rgba(184, 255, 0, 0.65);
 --shadow-hard-drop:  0 20px 40px rgba(0, 0, 0, 0.85);
 
-/* -----------------------------------------------------------------------------
- * 5. COMPONENT ARCHETYPES & INTERACTION RULES
- * -------------------------------------------------------------------------- */
-- **Buttons**: Strict chamfered corners, solid electric neon fill (#9AE600) with dark obsidian ink (#0A0F0A). Rapid 120ms snap transitions.
-- **HUD Metric Cards**: Frosted titanium backdrop (blur 24px saturate 180%), inset 1px highlight, hairline borders with HUD corner brackets.
-- **Inputs**: Dark well container (#000000 60%), neon focus glow ring, uppercase mono placeholders.
-- **Navigation**: Sticky frosted void header, monospaced tracking, tactile neon active indicators.
+--duration-snap: 120ms;
 
 /* -----------------------------------------------------------------------------
- * 6. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
-- NO rounded bubbly organic corners (strict 0px to 2px or 45-degree chamfers only).
-- NO generic purple/cyan neon synthwave gradients; maintain electric acid volt green + deep void olive.
-- NO floating borderless cards; every module requires structural hairline borders or corner bracket traces.
-================================================================================
+--border-core:     1px solid #9AE600;
+--border-hairline: 1px solid rgba(255, 255, 255, 0.12);
+--divider-style:   1px solid rgba(255, 255, 255, 0.12);
+
+--border-neon-active: 1px solid #9AE600;
+--border-subtle-glow: 1px solid rgba(154, 230, 0, 0.35);
+
+/* Corner-bracket traces (graphic L-marks) may frame modules. Do not add readout labels. */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Chamfered clip or 2px radius. Fill #9AE600, ink #0A0F0A. Hover: #B8FF00
+  plus --glow-neon-focused. Transitions 120ms snap. Use the host's existing labels.
+- **Cards**: Fill #0D140D, or frosted rgba(215, 222, 215, 0.58) / acid-tint
+  rgba(128, 148, 48, 0.72) with backdrop-filter blur(24px) saturate(180%).
+  Inset 1px highlight, hairline rgba(255,255,255,0.12), optional corner brackets,
+  --shadow-hard-drop. Every module needs a structural hairline or bracket — no
+  borderless float. Do not add motorsport copy, gauges, or fake telemetry.
+- **Inputs**: Dark well rgba(0, 0, 0, 0.65) or #0D140D, 0–2px radius, font-size >= 16px,
+  muted white placeholder. Focus: #9AE600 outline plus --glow-neon-ambient.
+- **Navigation**: Existing items, sticky frosted void header, 0.75rem / 500 / 0.28em
+  uppercase. Active indicator is a volt hairline or glow, not a new status string.
+- **Icons**: Hard geometric, 1–1.5px, square terminals or micro chamfer. Monochrome
+  white or volt. No mascots.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No rounded bubbly organic corners (0–2px or 45-degree chamfers only).
+- No generic purple/cyan synthwave gradients; keep electric volt green + void olive.
+- No floating borderless cards; every module needs a hairline or corner-bracket trace.
+- Do not require hypercar, racing, or cockpit copy — volt and chamfer are visual only.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- JAVASCRIPT LOGIC PER AGENT SPEC -->

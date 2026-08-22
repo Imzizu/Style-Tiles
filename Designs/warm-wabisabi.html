@@ -2632,172 +2632,144 @@
        ======================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  STYLE TILE: WARM WABI-SABI LEDGER (TILE-009)
-  Aesthetic: Organic Minimalism • Tactile Craft • Serene Editorial • Quiet Luxury
+  Visual language: Warm Wabi-Sabi Ledger
+  Construction: unbleached linen • oat slipboard • 2-4px radii • sumi ink • terracotta seal • diffused paper shadows
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-A philosophy of organic minimalism, quiet luxury, and tangible craftsmanship. Rooted in the Japanese aesthetic of wabi-sabi—finding beauty in natural imperfection, raw materiality, and contemplative space. Built upon raw unbleached linen canvas (#F7F3EE) and oat slipboard (#EDE4D8) surfaces, inked with wood-fired sumi charcoal (#2E2A27) and weathered iron gall (#574F49), accented by terracotta pottery stamps (#A65B32), botanical matcha green (#6A7B66), and dried chamomile ochre (#C49A45).
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Raw unbleached linen canvas with oat and sunken slipboard sheets. Ink is wood-fired sumi and weathered iron gall, with terracotta as the only warm actuator, matcha as a quiet second, chamomile ochre as a third, and washed indigo as informational. Corners stay small (2-4px) - tailored paper, not app pills. Shadows are tinted, low, and paper-like. Display is an italic optical serif; body is a light humanist sans with long leading; meta is a wide-tracked typewriter mono.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Canvas & Structural Surfaces */
-  --bg-canvas:               #F7F3EE; /* Raw unbleached linen base */
-  --bg-surface:              #EDE4D8; /* Oat slipboard / card background */
-  --bg-surface-raised:       #F4ECE1; /* Floating card / elevated sheet */
-  --bg-surface-sunken:       #E4DACB; /* Inset ledger / well */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F7F3EE; /* Raw unbleached linen */
+  --bg-surface:             #EDE4D8; /* Oat slipboard */
+  --bg-surface-alt:         #F4ECE1; /* Raised sheet */
+  --bg-surface-dark:        #2E2A27; /* Sumi inverted plane */
 
-  /* Inks & Contrast (Typographic Hierarchy) */
-  --ink-primary:             #2E2A27; /* Wood-fired sumi charcoal */
-  --ink-secondary:           #574F49; /* Weathered iron gall */
-  --ink-muted:               #827870; /* Soft dried clay */
-  --ink-faint:               #B8AFA6; /* Archival watermark */
+  /* Inks & Typography */
+  --ink-primary:            #2E2A27; /* Wood-fired sumi charcoal */
+  --ink-secondary:          #574F49; /* Weathered iron gall */
+  --ink-muted:              #827870; /* Soft dried clay */
+  --ink-inverted:           #F7F3EE; /* Linen on sumi */
 
-  /* Accent Signifiers */
-  --accent-warm:             #A65B32; /* Terracotta pottery seal / Primary CTA */
-  --accent-warm-hover:       #8F4B26; /* Deep burnt sienna */
-  --accent-earth:            #6A7B66; /* Muted botanical matcha / Success */
-  --accent-ochre:            #C49A45; /* Dried chamomile / Warning-Accent */
-  --accent-indigo:           #3F4B5A; /* Washed aizome indigo / Informational */
+  /* Signature Accents */
+  --accent-primary:         #A65B32; /* Terracotta seal */
+  --accent-primary-hover:   #8F4B26; /* Burnt sienna */
+  --accent-secondary:       #6A7B66; /* Muted matcha */
+  --accent-tertiary:        #C49A45; /* Dried chamomile */
 
+  /* Status Tokens */
+  --status-success:         #6A7B66; /* Matcha confirm */
+  --status-warning:         #C49A45; /* Chamomile caution */
+  --status-danger:          #A65B32; /* Terracotta interrupt */
+  --status-info:            #3F4B5A; /* Washed indigo */
 
-  /* ---------------------------------------------------------------------------
-   * 3. TYPOGRAPHY SYSTEM
-   * --------------------------------------------------------------------------- */
-  /* Font Stacks */
-  --font-display:            "Newsreader", "Playfair Display", "Garamond", Georgia, serif;
-  --font-sans:               "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono:               "Courier Prime", "SF Mono", "Consolas", monospace;
-
-  /* Type Scale: Scale factor ~1.25 (Major Third) */
-  --text-display:            italic 400 3.25rem/1.15 var(--font-display);  /* letter-spacing: -0.02em */
-  --text-h1:                 normal 500 2.25rem/1.25 var(--font-display);  /* letter-spacing: -0.01em */
-  --text-h2:                 normal 500 1.75rem/1.30 var(--font-display);  /* letter-spacing: -0.005em */
-  --text-h3:                 normal 600 1.25rem/1.40 var(--font-display);  /* letter-spacing: 0.00em */
-  --text-body-lead:          normal 300 1.1875rem/1.80 var(--font-sans);   /* letter-spacing: 0.01em */
-  --text-body:               normal 300 1.00rem/1.75 var(--font-sans);     /* letter-spacing: 0.01em */
-  --text-caption:            normal 400 0.8125rem/1.50 var(--font-sans);   /* letter-spacing: 0.02em */
-  --text-ledger-mono:        normal 400 0.8125rem/1.60 var(--font-mono);   /* letter-spacing: 0.05em; text-transform: uppercase */
-
-
-  /* ---------------------------------------------------------------------------
-   * 4. CORNER GEOMETRY (BORDER RADII)
-   * --------------------------------------------------------------------------- */
-  /* Intentional softness; avoids hyper-geometric rounded edges */
-  --radius-none:             0px;
-  --radius-subtle:           2px;       /* Sharp-tailored ledger inputs, stamps */
-  --radius-surface:          4px;       /* Primary cards, containers, panels */
-  --radius-pill:             9999px;    /* Status tags, pill filters */
-
-
-  /* ---------------------------------------------------------------------------
-   * 5. ELEVATION & DEPTH (DIFFUSED SHADOWS)
-   * --------------------------------------------------------------------------- */
-  /* Tinted ambient occlusion mimicking heavy paper resting on linen */
-  --shadow-flat:             none;
-  --shadow-resting:          0 1px 3px rgba(46, 42, 39, 0.04),
-                             0 4px 12px rgba(46, 42, 39, 0.03);
-  --shadow-raised:           0 4px 10px rgba(46, 42, 39, 0.05),
-                             0 12px 28px rgba(46, 42, 39, 0.06);
-  --shadow-lifted:           0 10px 24px rgba(46, 42, 39, 0.07),
-                             0 24px 48px rgba(46, 42, 39, 0.08);
-  --shadow-inset-ledger:     inset 0 1px 2px rgba(46, 42, 39, 0.07);
-
-
-  /* ---------------------------------------------------------------------------
-   * 6. SPACING & SPATIAL SCALE (8pt Baseline Grid)
-   * --------------------------------------------------------------------------- */
-  --space-2xs:               0.25rem;   /* 4px  - Hairline gap */
-  --space-xs:                0.50rem;   /* 8px  - Compact elements */
-  --space-sm:                0.75rem;   /* 12px - Input padding / badge margins */
-  --space-md:                1.00rem;   /* 16px - Component gutters */
-  --space-lg:                1.50rem;   /* 24px - Card internal padding */
-  --space-xl:                2.50rem;   /* 40px - Section grouping */
-  --space-2xl:               4.00rem;   /* 64px - Editorial rhythm bands */
-
-
-  /* ---------------------------------------------------------------------------
-   * 7. BORDERS & DIVIDERS
-   * --------------------------------------------------------------------------- */
-  --border-width:            1px;
-  --border-subtle:           1px solid rgba(46, 42, 39, 0.09); /* Faint paper edge */
-  --border-strong:           1px solid rgba(46, 42, 39, 0.22); /* Ledger frame */
-  --border-stamp:            1.5px dashed var(--accent-warm);   /* Archival cutout */
-  --divider-ledger:          1px dashed rgba(46, 42, 39, 0.14);
-
-
-  /* ---------------------------------------------------------------------------
-   * 8. ICONOGRAPHY LANGUAGE
-   * --------------------------------------------------------------------------- */
-  /*
-   * Style: Monoline, open counters, rounded stroke terminals (match Courier/Newsreader).
-   * Weight: 1.25px - 1.5px consistent stroke width.
-   * Optical Size: 20px on 24px grid container.
-   * Tone: Functional, organic, devoid of sharp geometric angles or filled badges.
-   */
-  --icon-stroke-width:       1.25px;
-  --icon-size-sm:            16px;
-  --icon-size-md:            20px;
-  --icon-size-lg:            24px;
-
-
-  /* ---------------------------------------------------------------------------
-   * 9. INTERACTION & FEEDBACK RULES
-   * --------------------------------------------------------------------------- */
-  /* Physics: Gradual entry, graceful organic deceleration */
-  --ease-craft:              cubic-bezier(0.25, 1, 0.5, 1);
-  --duration-fast:           140ms;
-  --duration-normal:         240ms;
-
-  /* Focus Ring: Double-stroke paper cutout outline */
-  --focus-ring:              0 0 0 1px var(--bg-canvas),
-                             0 0 0 2.5px var(--accent-warm);
-}
-
-/* Base Component Rules */
-button.primary {
-  font: var(--text-caption);
-  font-weight: 500;
-  color: var(--bg-canvas);
-  background-color: var(--accent-warm);
-  border: 1px solid transparent;
-  border-radius: var(--radius-subtle);
-  padding: var(--space-xs) var(--space-lg);
-  box-shadow: var(--shadow-resting);
-  transition: all var(--duration-normal) var(--ease-craft);
-}
-
-button.primary:hover {
-  background-color: var(--accent-warm-hover);
-  box-shadow: var(--shadow-raised);
-  transform: translateY(-1px);
-}
-
-button.primary:active {
-  transform: translateY(0px);
-  box-shadow: var(--shadow-inset-ledger);
-}
-
-.ledger-card {
-  background: var(--bg-surface);
-  border: var(--border-subtle);
-  border-radius: var(--radius-surface);
-  box-shadow: var(--shadow-resting);
-  padding: var(--space-lg);
+  /* Extra material tokens */
+  --bg-surface-raised:      #F4ECE1;
+  --bg-surface-sunken:      #E4DACB;
+  --ink-faint:              #B8AFA6;
+  --accent-warm:            #A65B32;
+  --accent-warm-hover:      #8F4B26;
+  --accent-earth:           #6A7B66;
+  --accent-ochre:           #C49A45;
+  --accent-indigo:          #3F4B5A;
 }
 
 /* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-- NO harsh primary neon or neon violet/purple glows on dark backgrounds.
-- NO heavy 3D skeuomorphic bevels or harsh black drop shadows.
-- NO high-saturation rainbow gradients or gradient keyword text fills.
-- NO hyper-geometric rounded pill cards or excessive >16px card corners.
-- NO cluttered icon-stuffed dashboards; preserve open spatial serenity and organic quietude.
+--font-display: "Newsreader", "Playfair Display", "Garamond", Georgia, serif;
+--font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+--font-mono:    "Courier Prime", "SF Mono", "Consolas", monospace;
+
+--text-display: italic 400 3.25rem/1.15 var(--font-display); /* letter-spacing: -0.02em */
+--text-h1:      normal 500 2.25rem/1.25 var(--font-display); /* letter-spacing: -0.01em */
+--text-h2:      normal 500 1.75rem/1.30 var(--font-display); /* letter-spacing: -0.005em */
+--text-h3:      normal 600 1.25rem/1.40 var(--font-display);
+--text-body:    normal 300 1.00rem/1.75 var(--font-sans);    /* letter-spacing: 0.01em */
+--text-body-sm: normal 400 0.8125rem/1.50 var(--font-sans);  /* letter-spacing: 0.02em */
+--text-meta:    normal 400 0.8125rem/1.60 var(--font-mono);  /* letter-spacing: 0.05em | UPPERCASE */
+
+--text-body-lead: normal 300 1.1875rem/1.80 var(--font-sans);
+
+/* Display is a quiet italic serif. Body is light weight with generous leading.
+   Mono meta is typewriter, wide, uppercase. Do not invent ledger headings or craft-shop copy. */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 4px;
+--radius-subtle:  2px;
+--radius-none:    0px;
+--radius-surface: 4px;
+--radius-pill:    9999px; /* Compact status tags only */
+
+--shadow-base:    0 1px 3px rgba(46, 42, 39, 0.04), 0 4px 12px rgba(46, 42, 39, 0.03);
+--shadow-hover:   0 4px 10px rgba(46, 42, 39, 0.05), 0 12px 28px rgba(46, 42, 39, 0.06);
+--shadow-active:  inset 0 1px 2px rgba(46, 42, 39, 0.07);
+--shadow-flat:    none;
+--shadow-resting: 0 1px 3px rgba(46, 42, 39, 0.04), 0 4px 12px rgba(46, 42, 39, 0.03);
+--shadow-raised:  0 4px 10px rgba(46, 42, 39, 0.05), 0 12px 28px rgba(46, 42, 39, 0.06);
+--shadow-lifted:  0 10px 24px rgba(46, 42, 39, 0.07), 0 24px 48px rgba(46, 42, 39, 0.08);
+--shadow-inset-ledger: inset 0 1px 2px rgba(46, 42, 39, 0.07);
+
+--ease-craft:      cubic-bezier(0.25, 1, 0.5, 1);
+--duration-fast:   140ms;
+--duration-normal: 240ms;
+--focus-ring:      0 0 0 1px #F7F3EE, 0 0 0 2.5px #A65B32;
+
+/* Hover lifts 1px; active returns flush with inset shadow. */
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:     1px solid rgba(46, 42, 39, 0.22);
+--border-hairline: 1px solid rgba(46, 42, 39, 0.09);
+--border-subtle:   1px solid rgba(46, 42, 39, 0.09);
+--border-strong:   1px solid rgba(46, 42, 39, 0.22);
+--border-stamp:    1.5px dashed #A65B32;
+--divider-style:   1px dashed rgba(46, 42, 39, 0.14);
+--divider-ledger:  1px dashed rgba(46, 42, 39, 0.14);
+
+/* Icons: 1.25px-1.5px monoline, round terminals, open counters; 16 / 20 / 24px. No filled badge geometry. */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 2px radius. Primary: terracotta fill, linen ink, 1px transparent border, resting paper shadow. Hover: #8F4B26, raised shadow, translateY(-1px). Active: translateY(0), inset shadow. 240ms cubic-bezier(0.25, 1, 0.5, 1). Use the host's existing labels.
+- **Cards**: Oat or raised-sheet fill, 4px radius, faint paper edge, resting shadow, 24px padding. Sunken wells use #E4DACB and inset shadow. Do not add seal numbers, shop marks, or ledger codes the host lacks. A dashed terracotta rule may frame an existing figure - graphic only.
+- **Inputs**: 2px radius, sunken well, 1px strong or subtle border. Focus: double-stroke ring (linen then terracotta). Input font-size >= 16px.
+- **Navigation**: Restyle existing items as quiet sans or small italic serif. Active uses terracotta underline or matcha text. Do not add catalog names.
+- **Badges / chips / toggles**: Small 2px stamps or rare pills; matcha/ochre/indigo fills at low saturation. Uppercase mono only for compact meta the host already shows.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No neon or violet glows.
+- No heavy 3D bevels or harsh black drop shadows.
+- No high-saturation rainbow gradients or gradient text.
+- No hyper-rounded pill cards or radii above 16px on surfaces.
+- No dense icon dashboards; keep open linen field.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ========================================================================

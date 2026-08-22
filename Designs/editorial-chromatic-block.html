@@ -2721,160 +2721,144 @@
        09. RAW MARKDOWN SPECIFICATION EMBED (agent.md Section 2)
        ======================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
-# ==============================================================================
-# DESIGN SYSTEM STYLE TILE: "EDITORIAL CHROMATIC BLOCK"
-# Visual Identity Spec: Tri-Tone Asymmetric Editorial UI
-# ==============================================================================
+================================================================================
+  Visual language: Editorial Chromatic Block
+  Construction: indigo • parchment • vermilion • zero-gap seams • compressed display
+================================================================================
 
-1. COLOR ROLES & PALETTE
---------------------------------------------------------------------------------
-  --palette-indigo-deep:      #2D265C  /* Left rail background, high-contrast anchor */
-  --palette-indigo-muted:     #A59EC2  /* Secondary text / metadata on dark canvas */
-  --palette-parchment-warm:   #FAF8EE  /* Primary center stage background */
-  --palette-vermilion-vivid:  #FF5338  /* Right rail background & focal display type */
-  --palette-vermilion-soft:   #FFE5E0  /* Light tint for vermilion hover states */
-  --palette-ink-primary:      #1C1A24  /* High-contrast body copy on parchment */
-  --palette-ink-secondary:    #636070  /* Author/metadata subtext on light stage */
-  --palette-pure-white:       #FFFFFF  /* Primary headers on dark rail, card canvas */
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
 
-  Semantic Mappings:
-    • Surface.Primary:        var(--palette-parchment-warm)
-    • Surface.Sidebar.Dark:   var(--palette-indigo-deep)
-    • Surface.Sidebar.Accent: var(--palette-vermilion-vivid)
-    • Surface.Card:           var(--palette-pure-white)
-    • Text.Primary.Dark:      var(--palette-pure-white)
-    • Text.Secondary.Dark:    var(--palette-indigo-muted)
-    • Text.Primary.Light:     var(--palette-ink-primary)
-    • Text.Secondary.Light:   var(--palette-ink-secondary)
-    • Text.Accent:            var(--palette-vermilion-vivid)
-    • Interactive.Focus:      #FFD027 (High-vis goldenrod for a11y focus rings)
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
-2. TYPOGRAPHY SYSTEM
---------------------------------------------------------------------------------
-  Font Families:
-    • Display / Impact:       "Druk Condensed", "Cabinet Grotesk", sans-serif
-    • Body / Interface:       "Inter", "Satoshi", "Helvetica Neue", sans-serif
-    • Monospace / Meta:       "JetBrains Mono", monospace
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Tri-tone chromatic blocking: deep indigo (#2D265C), warm parchment (#FAF8EE), and vivid vermilion (#FF5338) meeting at zero-gap vertical seams. The three hues are large architectural planes, not decorative chips. Display is compressed heavy (Druk Condensed / Cabinet Grotesk) at 72px / 0.88 / 900 / uppercase / -0.02em; interface type is Inter. Structural panels are 0px; interactive controls are 6px; the outer frame may use 28px. Elevation is mostly flush color; media may take a quiet indigo-tinted shadow. Goldenrod (#FFD027) is reserved for focus rings.
 
-  Type Hierarchy:
-    • Display XXL (Review Count):
-        Font-Family:          var(--font-display)
-        Size / Line-Height:   72px / 0.88
-        Weight:               900 (Compressed Heavy)
-        Letter-Spacing:       -0.02em
-        Transform:            Uppercase
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FAF8EE; /* Warm parchment stage */
+  --bg-surface:             #FFFFFF; /* White cards */
+  --bg-surface-alt:         #FFE5E0; /* Soft vermilion tint */
+  --bg-surface-dark:        #2D265C; /* Deep indigo plane */
 
-    • Display XL (Section Headers):
-        Font-Family:          var(--font-body)
-        Size / Line-Height:   28px / 1.15
-        Weight:               700 (Bold)
-        Letter-Spacing:       -0.015em
+  /* Inks & Typography */
+  --ink-primary:            #1C1A24; /* On parchment */
+  --ink-secondary:          #636070; /* Quiet on light */
+  --ink-muted:              #A59EC2; /* Muted on indigo */
+  --ink-inverted:           #FFFFFF; /* On indigo or vermilion */
 
-    • Card Title (Book Titles):
-        Font-Family:          var(--font-body)
-        Size / Line-Height:   16px / 1.25
-        Weight:               700 (Bold)
-        Letter-Spacing:       -0.01em
-        Color:                var(--palette-vermilion-vivid)
+  /* Signature Accents */
+  --accent-primary:         #FF5338; /* Vermilion */
+  --accent-primary-hover:   #FFE5E0; /* Soft vermilion hover wash */
+  --accent-secondary:       #2D265C; /* Indigo counter */
+  --accent-tertiary:        #FFD027; /* Goldenrod focus */
 
-    • Category / Nav Label (Right Sidebar):
-        Font-Family:          var(--font-body)
-        Size / Line-Height:   13px / 1.8
-        Weight:               500 (Medium)
-        Letter-Spacing:       0.04em
-        Transform:            Capitalize / Tracking Expanded
+  /* Status Tokens (mapped from original hexes) */
+  --status-success:         #2D265C;
+  --status-warning:         #FFD027;
+  --status-danger:          #FF5338;
+  --status-info:            #A59EC2;
 
-    • Micro Tracked Caps (Awards/Footer):
-        Font-Family:          var(--font-body)
-        Size / Line-Height:   11px / 1.4
-        Weight:               700 (Bold)
-        Letter-Spacing:       0.12em
-        Transform:            Uppercase
+  /* Extra original tokens */
+  --palette-indigo-deep:      #2D265C;
+  --palette-indigo-muted:     #A59EC2;
+  --palette-parchment-warm:   #FAF8EE;
+  --palette-vermilion-vivid:  #FF5338;
+  --palette-vermilion-soft:   #FFE5E0;
+  --palette-ink-primary:      #1C1A24;
+  --palette-ink-secondary:    #636070;
+  --palette-pure-white:       #FFFFFF;
+  --palette-focus-goldenrod:  #FFD027;
+}
 
-    • Body Text (Bio / Paragraphs):
-        Font-Family:          var(--font-body)
-        Size / Line-Height:   13px / 1.6
-        Weight:               400 (Regular)
-        Letter-Spacing:       0.005em
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Druk Condensed", "Cabinet Grotesk", sans-serif;
+--font-sans:    "Inter", "Satoshi", "Helvetica Neue", sans-serif;
+--font-mono:    "JetBrains Mono", monospace;
 
-3. CORNER GEOMETRY (BORDER RADII)
---------------------------------------------------------------------------------
-  • Radius.None:              0px       /* Structural panels, color-block seams */
-  • Radius.Subtle:            3px       /* Book covers, media cards */
-  • Radius.Interactive:       6px       /* Buttons, pill tags, search inputs */
-  • Radius.Frame:             28px      /* Main viewport/application boundary */
-  • Radius.Full:              9999px    /* Profile avatars, status indicators */
+--text-display: 72px / 0.88 var(--font-display); /* Weight: 900 | Tracking: -0.02em | UPPERCASE */
+--text-h1:      28px / 1.15 var(--font-sans);    /* Weight: 700 | Tracking: -0.015em */
+--text-h2:      16px / 1.25 var(--font-sans);    /* Weight: 700 | Tracking: -0.01em | vermilion allowed */
+--text-h3:      13px / 1.80 var(--font-sans);    /* Weight: 500 | Tracking: +0.04em */
+--text-body:    13px / 1.60 var(--font-sans);    /* Weight: 400 | Tracking: +0.005em */
+--text-body-sm: 13px / 1.60 var(--font-sans);    /* Weight: 400 */
+--text-meta:    11px / 1.40 var(--font-sans);    /* Weight: 700 | Tracking: +0.12em | UPPERCASE */
 
-4. ELEVATION & DEPTH (SHADOWS & LAYERS)
---------------------------------------------------------------------------------
-  Approach: Hard Flat Aesthetic with Ambient Micro-Depth on Media
+Compressed display is for existing large headings only. Body stays 13px Inter. Do not invent review-count lockups or specimen titles.
 
-  • Elevation 0 (Canvas Level):
-      Shadow:                  none (Pure flush color-blocking)
-  • Elevation 1 (Resting Media / Book Cover):
-      Shadow:                  0 4px 14px -2px rgba(45, 38, 92, 0.08)
-  • Elevation 2 (Hovered Media / Floating Badge):
-      Shadow:                  0 12px 28px -4px rgba(45, 38, 92, 0.16)
-  • Layer Z-Index Index:
-      - Deep Base (Rails):    z-index: 10
-      - Main Content:         z-index: 20
-      - Overlays / Kinetic:   z-index: 30
-      - Navigation / Modals:  z-index: 100
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-none:        0px;
+--radius-default:     3px;
+--radius-subtle:      3px;
+--radius-interactive: 6px;
+--radius-frame:       28px;
+--radius-pill:        9999px;
 
-5. SPACING & SPATIAL SCALE
---------------------------------------------------------------------------------
-  Base Unit: 4px / 8px Grid Scale
+--shadow-base:    none;
+--shadow-hover:   0 12px 28px -4px rgba(45, 38, 92, 0.16);
+--shadow-active:  none;
+--elevation-0:    none;
+--elevation-1:    0 4px 14px -2px rgba(45, 38, 92, 0.08);
+--elevation-2:    0 12px 28px -4px rgba(45, 38, 92, 0.16);
 
-  • Space.2xs:                4px
-  • Space.xs:                 8px
-  • Space.sm:                 12px
-  • Space.md:                 16px
-  • Space.lg:                 24px
-  • Space.xl:                 32px
-  • Space.2xl:                48px
-  • Space.3xl:                64px
+Color blocks themselves cast no shadow. Media tiles may rest at elevation-1 and lift to elevation-2.
 
-  Layout Dimensions:
-    • Viewport Margins:       16px (Outer frame padding)
-    • Left Rail Width:        320px (Fixed or 26vw)
-    • Main Stage Width:       Flexible (1fr / ~56vw)
-    • Right Rail Width:       220px (Fixed or 18vw)
-    • Media Card Grid:        Repeat(3, minmax(140px, 1fr)) | Gap: 32px 24px
+Spacing: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64px.
+If the host already has a multi-column shell, map indigo / parchment / vermilion onto those existing columns. Do not add rails the host lacks.
 
-6. BORDERS & DIVIDERS
---------------------------------------------------------------------------------
-  • Column Transitions:       0px (Zero-gap chromatic boundary, clean vertical seam)
-  • Contrast Divider (Dark):  1px solid rgba(255, 255, 255, 0.08)
-  • Contrast Divider (Light): 1px solid rgba(45, 38, 92, 0.06)
-  • Outline Rings:            2px solid var(--palette-vermilion-vivid)
+--transition-standard: 200ms cubic-bezier(0.2, 0, 0, 1);
+--motion-lift:         350ms cubic-bezier(0.16, 1, 0.3, 1);
 
-7. ICONOGRAPHY LANGUAGE
---------------------------------------------------------------------------------
-  • Style:                    Geometric Minimalist / Mono-weight Stroke
-  • Stroke Weight:            1.5px to 1.75px uniform
-  • Corner Cap / Join:        Round caps, crisp miters
-  • Default Bounding Box:     16x16px (Nav/Inline), 20x20px (Controls)
-  • Color Dynamic:            Inherits current section text token (currentColor)
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:      2px solid #FF5338;
+--border-hairline:  1px solid rgba(45, 38, 92, 0.06);
+--divider-dark:     1px solid rgba(255, 255, 255, 0.08);
+--divider-light:    1px solid rgba(45, 38, 92, 0.06);
+--divider-style:    0px; /* Chromatic seams: zero-gap, no rule between color blocks */
+--outline-accent:   2px solid #FF5338;
 
-8. INTERACTION & FEEDBACK RULES
---------------------------------------------------------------------------------
-  Motion Curves:
-    • Standard Transition:    200ms cubic-bezier(0.2, 0, 0, 1)
-    • Transform / Lift:       350ms cubic-bezier(0.16, 1, 0.3, 1)
+Focus visibility: `0 0 0 3px #2D265C, 0 0 0 5px #FFD027`.
 
-  Interactive States:
-    • Media Cover Hover:
-        - Transform:          translateY(-6px) scale(1.02)
-        - Shadow:             var(--Elevation-2)
-        - Duration:           var(--motion-lift)
-    • Genre Links (Right Rail):
-        - Default:            color: rgba(255, 255, 255, 0.82)
-        - Hover:              color: #FFFFFF; font-weight: 700; transform: translateX(4px)
-    • Interactive Kinetic Graphic (Badge/Globe):
-        - Continuous Subtle:  Slow rotational drift (30s linear infinite)
-        - Cursor Drag/Hover:  Interactive rotational displacement with friction
-    • Focus Visibility:
-        - Box-Shadow:         0 0 0 3px var(--palette-indigo-deep), 0 0 0 5px #FFD027
+Icons: 1.5-1.75px mono-weight stroke, round caps, crisp miters, 16-20px boxes, currentColor.
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 6px radius. Primary: vermilion fill, white type; hover may use a vermilion-soft wash behind or a brighter vermilion type. Ghost on indigo: white type at 0.82, hover to 1.0 weight 700 with `translateX(4px)` if it is a text link. Keep host labels.
+- **Cards**: White on parchment, 3px radius on media, 0px on structural panels. Resting media shadow elevation-1. Hover: `translateY(-6px) scale(1.02)` over 350ms elastic, elevation-2. Do not add index codes, award lines, or decorative meta.
+- **Inputs**: 6px radius, white well, light indigo hairline. Font-size at least 16px. Focus: goldenrod double ring. Placeholder #636070.
+- **Navigation**: Restyle existing items in the plane they already occupy -- white on indigo, or white at 0.82 on vermilion. Active: full white, weight 700. Do not add a third rail or catalog codes.
+- **Badges / chips / toggles**: 6px or 9999px. Vermilion type on parchment, or white on indigo. Optional slow rotational drift (30s linear) on an existing decorative mark only -- never add a globe badge the host does not have.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No purple neon on dark; indigo is a flat editorial plane, not a glow.
+- No large-radius bento cards (24-32px) on structural blocks; those stay 0px.
+- No gaps or hairlines between the three chromatic planes; seams are flush.
+- No gradient text on compressed display.
+- No biscuit headline pills with pulsing dots.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ========================================================================

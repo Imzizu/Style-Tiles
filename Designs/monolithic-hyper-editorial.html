@@ -2080,125 +2080,148 @@
   <!-- ==========================================================================
        13. EMBEDDED RAW MARKDOWN SPECIFICATION (agent.md Schema Standard)
        ========================================================================== -->
-  <script id="style-tile-markdown" type="text/markdown">================================================================================
-  Aesthetic: System 07 // Monolithic Hyper-Editorial • 1970s Swiss Archival • Industrial Telemetry • High-Frequency Physics
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Monolithic Hyper-Editorial
+  Construction: carbon slabs • 0px rectilinear • bleached-vellum serif • 1px cold-steel hairlines • high-ion chartreuse • 1-bit offset shadows
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-A study in physical-digital convergence. Tension between 1970s Swiss archival typography, brutalist industrial telemetry, and high-frequency tactile physics. Absolute carbon (#050505) and anodized basalt (#0E0F0E) surfaces framed by cold-steel (#1E201E) 1px hairlines, pure signal bleached vellum (#FBF9F3) typography, high-ion chartreuse (#D4FF00) actuators, and venetian vermilion (#E83D1B) killswitches.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
 /* -----------------------------------------------------------------------------
- * 2. CHROMATIC SPECTRUM & MATERIAL TOKENS
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A slab architecture of absolute carbon and anodized basalt, framed by 1px milled cold-steel hairlines. Every corner is 0px. Display type is a soft optical serif set large, light, and tightly kerned in bleached vellum; interface type is a compact grotesque; meta is a small uppercase mono. Accents are two hard inks only: high-ion chartreuse for primary actuation and venetian vermilion for danger. Elevation is 1-bit: solid 2px-3px offset blocks, never gaussian blur. Color changes snap at 0ms; positional shifts use a high-tension spring.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Surfaces & Viewport Base */
-  --canvas-root:            #050505; /* Absolute Carbon — Primary viewport base */
-  --surface-slab:           #0E0F0E; /* Anodized Basalt — Elevated planar containment (1.2:1) */
-  --border-edge:            #1E201E; /* Milled Cold-Steel — Structural 1px precision hairline */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #050505; /* Absolute carbon - viewport base */
+  --bg-surface:             #0E0F0E; /* Anodized basalt - elevated slabs */
+  --bg-surface-alt:         #080908; /* Recessed basalt well */
+  --bg-surface-dark:        #040504; /* Deeper carbon recess */
 
-  /* Inks & Signal Typography */
-  --ink-lead:               #FBF9F3; /* Bleached Vellum — Headline display / pure signal (19.1:1 AAA) */
-  --ink-sub:                #585B55; /* Weathered Lead — Metadata, index tags, datestamps (4.5:1 AA) */
+  /* Inks & Typography */
+  --ink-primary:            #FBF9F3; /* Bleached vellum - display and reading ink */
+  --ink-secondary:          #585B55; /* Weathered lead - secondary type */
+  --ink-muted:              #303430; /* Faded carbon - quiet type */
+  --ink-inverted:           #050505; /* Carbon ink on light fills */
 
-  /* Kinetic Accents & Telemetry Signals */
-  --signal-kinetic:         #D4FF00; /* High-Ion Chartreuse — Primary tactile trigger & live reticle */
-  --signal-oxide:           #E83D1B; /* Venetian Vermilion — Interrupts, system alerts, killswitches */
+  /* Signature Accents */
+  --accent-primary:         #D4FF00; /* High-ion chartreuse */
+  --accent-primary-hover:   #FBF9F3; /* Vellum invert on hover */
+  --accent-secondary:       #E83D1B; /* Venetian vermilion */
+  --accent-tertiary:        #7A8278; /* Archival slate */
 
-  /* Mappings & Compatibility Aliases */
-  --bg-canvas:              var(--canvas-root);
-  --bg-surface:             var(--surface-slab);
-  --border-core:            1px solid var(--border-edge);
-  --border-hairline:        1px solid var(--border-edge);
-  --ink-primary:            var(--ink-lead);
-  --ink-secondary:          var(--ink-sub);
-  --accent-primary:         var(--signal-kinetic);
-  --accent-danger:          var(--signal-oxide);
+  /* Status Tokens */
+  --status-success:         #D4FF00; /* Chartreuse confirm */
+  --status-warning:         #7A8278; /* Slate caution */
+  --status-danger:          #E83D1B; /* Vermilion interrupt */
+  --status-info:            #585B55; /* Weathered lead info */
+
+  /* Extra material aliases */
+  --canvas-root:            #050505;
+  --surface-slab:           #0E0F0E;
+  --surface-well:           #080908;
+  --border-edge:            #1E201E; /* Milled cold-steel */
+  --border-focus:           #585B55;
+  --ink-lead:               #FBF9F3;
+  --ink-sub:                #585B55;
+  --ink-dim:                #303430;
+  --signal-kinetic:         #D4FF00;
+  --signal-oxide:           #E83D1B;
+  --signal-slate:           #7A8278;
 }
 
 /* -----------------------------------------------------------------------------
- * 3. TYPOGRAPHIC ARCHITECTURE & VARIABLE AXES
+ * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Display Archetype // Editorial Title */
---font-display: "Fraunces", "GT Alpina Fine", serif;
+--font-display: "Fraunces", "GT Alpina Fine", Georgia, serif;
 --font-display-settings: "opsz" 144, "wght" 350, "SOFT" 0;
-/* Properties: clamp(3.5rem, 8vw, 6.5rem) | Line-Height: 0.88 | Kerning: -0.05em */
-/* Nuance: Set alternating parenthetical descriptors in Fraunces 400 True Italic */
+--font-sans:    "Space Grotesk", "Sohne Mono", "Neue Haas Grotesk Display", "Inter", sans-serif;
+--font-mono:    "Fragment Mono", "JetBrains Mono", monospace;
 
-/* Structural Interface // Grotesque */
---font-sans: "Space Grotesk", "Söhne Mono", "Neue Haas Grotesk Display", "Inter", sans-serif;
-/* Properties: 13px | Weight: 450 | Line-Height: 1.35 | Tracking: -0.015em */
-
-/* System Telemetry // Archival Index */
---font-mono: "Fragment Mono", "JetBrains Mono", monospace;
-/* Properties: 10px | Weight: 500 | Tracking: +0.12em | Transform: UPPERCASE */
-/* OpenType: font-feature-settings: "tnum" 1, "zero" 1, "ss02" 1, "ss07" 1 */
-
-/* Type Scale Hierarchy */
 --text-display: clamp(3.5rem, 8vw, 6.5rem) / 0.88 var(--font-display); /* Kerning: -0.05em | wght 350 */
 --text-h1:      2.75rem / 0.95 var(--font-display);                   /* Kerning: -0.04em | wght 350 */
 --text-h2:      1.75rem / 1.15 var(--font-display);                   /* Kerning: -0.03em | wght 400 */
 --text-h3:      1.125rem / 1.30 var(--font-sans);                     /* Kerning: -0.02em | Weight: 500 */
 --text-body:    13px / 1.35 var(--font-sans);                         /* Weight: 450 | Tracking: -0.015em */
+--text-body-sm: 13px / 1.35 var(--font-sans);
 --text-meta:    10px / 1.40 var(--font-mono);                         /* Weight: 500 | Tracking: +0.12em | UPPERCASE */
+
+/* Display is light optical serif at extreme size with negative tracking.
+   Alternating italic cuts are a style of emphasis, not an invitation to add parenthetical slogans.
+   Mono meta uses font-feature-settings: "tnum" 1, "zero" 1, "ss02" 1, "ss07" 1.
+   Never prescribe sample headlines or index strings. */
 
 /* -----------------------------------------------------------------------------
  * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
---radius-default: 0px; /* Monolithic 0px strict rectilinear geometry */
+--radius-default: 0px;
 --radius-subtle:  0px;
 --radius-pill:    0px;
 
-/* Elevation & Hard 1-Bit Solid Shadows */
 --shadow-none:      none;
---shadow-kinetic:   3px 3px 0px var(--signal-kinetic);
---shadow-oxide:     3px 3px 0px var(--signal-oxide);
---shadow-coldsteel: 2px 2px 0px var(--border-edge);
+--shadow-base:      2px 2px 0px #1E201E;
+--shadow-hover:     3px 3px 0px #D4FF00;
+--shadow-active:    3px 3px 0px #D4FF00;
+--shadow-kinetic:   3px 3px 0px #D4FF00;
+--shadow-oxide:     3px 3px 0px #E83D1B;
+--shadow-coldsteel: 2px 2px 0px #1E201E;
+--shadow-lead:      3px 3px 0px #FBF9F3;
+
+/* Color and border changes snap at 0ms ease. Positional shifts: 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275)
+   or a high-tension spring (mass: 0.8, tension: 380, friction: 26). Zero soft drop shadows. */
+
+/* Raster grain (optional visual finish on existing surfaces):
+   backdrop-filter: contrast(110%) brightness(98%);
+   background-image: radial-gradient(#1E201E 0.75px, transparent 0.75px); background-size: 16px 16px; */
 
 /* -----------------------------------------------------------------------------
- * 5. BORDERS & MATERIAL FINISHES
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---border-edge:      #1E201E;
---border-hairline:  1px solid #1E201E;
---border-kinetic:   1px solid #D4FF00;
---border-oxide:     1px solid #E83D1B;
+--border-core:        1px solid #1E201E;
+--border-hairline:    1px solid #1E201E;
+--border-kinetic:     1px solid #D4FF00;
+--border-oxide:       1px solid #E83D1B;
+--divider-style:      1px solid #1E201E;
 
-/* Grid Framework: Modular baseline of 4px sub-units; 12-column asymmetrical layout */
-/* Raster Grain Filter: */
-/* backdrop-filter: contrast(110%) brightness(98%); */
-/* background-image: radial-gradient(#1E201E 0.75px, transparent 0.75px); background-size: 16px 16px; */
+/* Modular 4px baseline. Hairlines only - no chunky frames. */
 
 /* -----------------------------------------------------------------------------
- * 6. COMPONENT ARCHETYPES & STRUCTURAL BLUEPRINT
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-/* Primary Actuator (Button) */
-- Resting:      Background #D4FF00, Text #050505 (10px bold mono uppercase). Border: 0px.
-- Hover:        Background #FBF9F3, Text #050505. Translate: -1px, -1px.
-- Active/Press: Invert to #050505 with 1px solid #D4FF00 and text #D4FF00. Offset shadow: 3px 3px 0px #D4FF00.
-
-/* Split Index Header (Card Anchor) */
-- Geometry:     height: 24px, background transparent, bottom border: 1px solid #1E201E.
-- Left Anchor:  [ 01 // SPEC ] in --ink-sub (#585B55).
-- Right Anchor: Pulsing status marker (4px square in #D4FF00, step animation: blink 1.2s infinite steps(1)).
-
-/* Telemetry Parameter Panels */
-- 3-column / 4-column parameter blocks with [ PARAMETER ], [ TELEMETRY ], [ PROTOCOL ] headers.
-- ISO: 0800_RAW, FREQUENCY: 144.2 Hz, MODE: ISOLATED.
-
-/* Interactive Physics */
-- Linear state snapping (0ms ease) on color changes.
-- Structural shifts damp with high-tension springs (mass: 0.8, tension: 380, friction: 26).
-- Zero soft drop shadows; strict reliance on 1-bit solid offset geometry.
+- **Buttons**: 0px radius. Primary rest: fill #D4FF00, ink #050505, 10px bold uppercase mono, no border. Hover: fill #FBF9F3, ink #050505, translate -1px -1px. Active: invert to #050505 fill, 1px solid #D4FF00, ink #D4FF00, 3px 3px 0 #D4FF00 offset. Danger uses vermilion fill or vermilion hairline. Use the host's existing labels.
+- **Cards**: Basalt slabs on carbon canvas, 1px cold-steel hairline, 0px radius. Optional 24px header strip with a hairline under-rule. Do not add numbered index prefixes, split-code headers, or pulsing status squares unless the host already has a status control - then style that control as a 4px chartreuse square.
+- **Inputs**: Square wells in recessed basalt, 1px cold-steel border. Focus uses weathered-lead or chartreuse hairline. Input font-size >= 16px. Mono for compact fields if the host already treats them as data entry.
+- **Navigation**: Restyle existing items as tracked uppercase grotesque or mono. Active state is vellum or chartreuse hairline, never a pill. Do not add clocks, frequencies, mode readouts, or catalog codes.
+- **Badges / chips / toggles**: 0px chips with hairline borders. Chartreuse fill for on; vermilion for destructive; cold-steel outline for idle.
 
 /* -----------------------------------------------------------------------------
- * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- NO rounded pill buttons or smooth soft border-radii (0px monolithic strict).
-- NO soft gaussian blurred drop shadows or diffuse lighting.
-- NO purple/violet accents on dark backgrounds (use High-Ion Chartreuse & Venetian Vermilion).
-- NO rainbow gradients or gradient keyword text fills.
-- NO floating unbordered cards or textureless empty containers.</script>
+- No rounded pill buttons or any non-zero radius.
+- No soft gaussian drop shadows or diffuse lighting.
+- No purple/violet accents on dark backgrounds (chartreuse and vermilion only).
+- No rainbow gradients or gradient text fills.
+- No floating unbordered cards.
+- Do not print System 07, YS.07, TELEMETRY, ISO, FREQ, MODE, or any showcase index string.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
 
   <!-- ==========================================================================
        14. JAVASCRIPT CONTROLLER & LIVING INTERACTIONS

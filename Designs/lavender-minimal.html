@@ -2696,20 +2696,32 @@
        ========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Lavender Minimal • Airy Periwinkle SaaS • Cool Slate Analytics
+  Visual language: Lavender Minimal
+  Construction: cool off-white • periwinkle accent • 20px cards • 9999px pills
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Lavender Minimal is a luminous, monastic analytics language for commerce
-intelligence and calm SaaS dashboards. A cool off-white canvas (#F6F7FA)
-holds 20px white cards, hairline #EDEFF5 strokes, and 9999px pills. Periwinkle
-#7B6EF6 is the only saturated brand voice — reserved for primary actions,
-active segments, and the leading chart series. Cyan #00B2FF appears only as
-comparison ink. Type is Plus Jakarta Sans in slate, never shouting. Ideal for
-price trackers, ops consoles, and product analytics that feel expensive because
-they leave room to breathe.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A cool off-white canvas (#F6F7FA) holds 20px white cards with hairline #EDEFF5
+strokes and whisper shadows. Periwinkle #7B6EF6 is the only saturated brand
+voice, reserved for primary fills, active segments, and a leading chart series.
+Cyan #00B2FF is comparison ink only. Type is Plus Jakarta Sans in slate, compact
+and unshouting. Air is a material: leave room around modules.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
@@ -2719,7 +2731,7 @@ they leave room to breathe.
   --bg-canvas:              #F6F7FA; /* Primary application canvas */
   --bg-surface:             #FFFFFF; /* Elevated cards and containers */
   --bg-surface-alt:         #F0F2F6; /* Secondary panels, wells, sidebars */
-  --bg-surface-dark:        #0F172A; /* Inverted containers / code drawer */
+  --bg-surface-dark:        #0F172A; /* Inverted containers */
 
   /* Inks & Typography */
   --ink-primary:            #0F172A; /* High-contrast primary reading text */
@@ -2730,22 +2742,23 @@ they leave room to breathe.
   /* Signature Accents */
   --accent-primary:         #7B6EF6; /* Primary call-to-action / active tab */
   --accent-primary-hover:   #6B5DE6; /* Interactive hover tone */
-  --accent-secondary:       #00B2FF; /* Supporting visual highlight (compare) */
-  --accent-tertiary:        #ECE9FE; /* Accent badges or energetic highlights */
-
-  /* Neutral chrome */
-  --badge-neutral-bg:       #F1F5F9; /* Delta badge background */
-  --badge-neutral-ink:      #475569; /* Delta badge text */
-  --ink-disabled:           #94A3B8;
-  --divider:                #F1F5F9;
-  --stroke-card:            #EDEFF5;
-  --chart-grid:             #E2E8F0;
+  --accent-secondary:       #00B2FF; /* Comparison / supporting highlight */
+  --accent-tertiary:        #ECE9FE; /* Accent wash */
 
   /* Status Tokens */
   --status-success:         #10B981;
   --status-warning:         #F59E0B;
   --status-danger:          #EF4444;
   --status-info:            #00B2FF;
+
+  /* Extra original tokens */
+  --badge-neutral-bg:       #F1F5F9;
+  --badge-neutral-ink:      #475569;
+  --ink-disabled:           #94A3B8;
+  --divider:                #F1F5F9;
+  --stroke-card:            #EDEFF5;
+  --chart-grid:             #E2E8F0;
+  --gradient-chart:         linear-gradient(180deg, #7B6EF6 0%, rgba(123,110,246,0.15) 100%);
 }
 
 /* -----------------------------------------------------------------------------
@@ -2757,17 +2770,15 @@ they leave room to breathe.
 --font-mono:    "JetBrains Mono", "SF Mono", monospace;
 
 /* Type Scale */
---text-display: 3.5rem   / 1.05  var(--font-display); /* Letter-spacing: -0.03em | Weight: 700 — page hero uses clamp() */
+--text-display: 3.5rem   / 1.05  var(--font-display); /* Letter-spacing: -0.03em | Weight: 700 | page hero may use clamp() */
 --text-h1:      2.5rem   / 1.15  var(--font-display); /* Letter-spacing: -0.02em | Weight: 700 */
 --text-h2:      1.75rem  / 1.25  var(--font-sans);    /* Letter-spacing: -0.015em | Weight: 600 */
---text-h3:      1.25rem  / 1.35  var(--font-sans);    /* Letter-spacing: -0.01em | Weight: 600 — card titles 16–17px */
---text-body:     1.0rem   / 1.60  var(--font-sans);    /* Prefer 13–14px / 500 / 1.4 in product UI */
---text-body-sm:  0.875rem / 1.50  var(--font-sans);    /* Letter-spacing: 0 | Weight: 500 */
---text-meta:     0.75rem  / 1.40  var(--font-mono);    /* Letter-spacing: 0.04em | UPPERCASE */
-
-/* Product UI extras */
---text-metric:  26–28px / 600 / 1.15 / -0.015em; /* Tabular figures for $25,847.00 */
---text-caption: 11–12px / 500 / 1.35 / 0.01em;
+--text-h3:      1.25rem  / 1.35  var(--font-sans);    /* Letter-spacing: -0.01em | Weight: 600 | card titles 16-17px */
+--text-body:    1.0rem   / 1.60  var(--font-sans);    /* Prefer 13-14px / 500 / 1.4 in dense UI */
+--text-body-sm: 0.875rem / 1.50  var(--font-sans);    /* Letter-spacing: 0 | Weight: 500 */
+--text-meta:    0.75rem  / 1.40  var(--font-mono);    /* Letter-spacing: 0.04em | UPPERCASE */
+--text-metric:  26px-28px / 1.15 var(--font-sans);    /* Weight: 600 | Tracking: -0.015em | tabular figures */
+--text-caption: 11px-12px / 1.35 var(--font-sans);    /* Weight: 500 | Tracking: 0.01em */
 
 /* -----------------------------------------------------------------------------
  * 4. CORNER GEOMETRY & ELEVATION
@@ -2779,13 +2790,10 @@ they leave room to breathe.
 --radius-icon:    50%;    /* Icon wells and avatars */
 
 /* Elevation & Shadows */
---shadow-base:    0px 2px 10px rgba(15, 23, 42, 0.02), 0px 1px 2px rgba(15, 23, 42, 0.03);
---shadow-hover:   0px 8px 24px rgba(15, 23, 42, 0.05), 0px 2px 4px rgba(15, 23, 42, 0.04);
---shadow-active:  0px 1px 2px rgba(15, 23, 42, 0.06);
+--shadow-base:     0px 2px 10px rgba(15, 23, 42, 0.02), 0px 1px 2px rgba(15, 23, 42, 0.03);
+--shadow-hover:    0px 8px 24px rgba(15, 23, 42, 0.05), 0px 2px 4px rgba(15, 23, 42, 0.04);
+--shadow-active:   0px 1px 2px rgba(15, 23, 42, 0.06);
 --shadow-floating: 0px 12px 32px -4px rgba(123, 110, 246, 0.12), 0px 4px 12px rgba(15, 23, 42, 0.05);
-
-/* Chart fill */
---gradient-chart: linear-gradient(180deg, #7B6EF6 0%, rgba(123,110,246,0.15) 100%);
 
 /* -----------------------------------------------------------------------------
  * 5. BORDERS & DIVIDERS
@@ -2796,28 +2804,27 @@ they leave room to breathe.
 --chart-gridline:     1px dashed #E2E8F0;
 
 /* -----------------------------------------------------------------------------
- * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-- **Buttons**: Primary is a periwinkle pill (#7B6EF6, white text, 600). Hover deepens to #6B5DE6 and lifts 1px. Secondary is white + hairline. Ghost is transparent slate. Danger is a rose wash, never a hard red brick. Disabled uses #F1F5F9 / #94A3B8.
-- **Cards**: 20px radius, 20–24px padding, 16–20px gaps, 1px #EDEFF5 stroke, whisper shadow. Nested tiles 14px. Never unbordered floaters.
-- **Inputs**: Pill fields on #F6F7FA, placeholder #94A3B8, focus ring 3px #ECE9FE with #7B6EF6 border. Minimum 16px font on mobile.
-- **Segmented controls**: Track #F0F2F6. Active pill background #7B6EF6, white text, weight 600. Inactive transparent, text #64748B. Hover text #0F172A.
-- **Delta badges**: #F1F5F9 pill, 3px 8px padding, text #475569. Do not turn deltas into green/red candy chips.
-- **Charts**: Violet area/line for the primary series; cyan dashed or thinner line for comparison. Grid is 1px dashed #E2E8F0. Highlight is a solid violet vertical bar. Tooltip is a floating white pill with dual colored metric keys (periwinkle + cyan).
-- **Navigation**: Frosted white header, hairline bottom, violet copy action. Icon buttons are 36px circular transparent targets, 16–18px monoline glyphs (1.5–1.75px, round caps).
-- **Toggles / checks / radios**: On-state fills periwinkle. Icon boxes 50%.
+- **Buttons**: Primary is a periwinkle pill (#7B6EF6, white ink, weight 600). Hover deepens to #6B5DE6 and lifts 1px. Secondary is white plus hairline. Ghost is transparent slate. Danger is a rose wash, never a hard red brick. Disabled uses #F1F5F9 / #94A3B8. Use the host's existing labels.
+- **Cards**: 20px radius, 20-24px padding, 16-20px gaps, 1px #EDEFF5 stroke, whisper shadow. Nested tiles 14px. Never unbordered floaters. Do not add index codes or fake meta.
+- **Inputs**: Pill fields on #F6F7FA, placeholder #94A3B8, focus ring 3px #ECE9FE with #7B6EF6 border. Font-size at least 16px.
+- **Navigation**: Frosted white header, hairline bottom. Icon buttons are 36px circular transparent targets with 16-18px monoline glyphs (1.5-1.75px, round caps). Do not add catalog codes, fake clocks, or status readouts.
+- **Segmented controls**: Track #F0F2F6. Active pill #7B6EF6, white ink, weight 600. Inactive transparent, ink #64748B. Hover ink #0F172A.
+- **Badges**: Neutral #F1F5F9 pill, 3px 8px padding, ink #475569. Do not turn deltas into green/red candy chips.
+- **Charts** (if the host already has them): Violet area/line for the primary series; cyan dashed or thinner line for comparison. Grid is 1px dashed #E2E8F0. Tooltip is a floating white pill.
 
 /* -----------------------------------------------------------------------------
- * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- No neo-brutalist 0–2px radii, 3px borders, or hard zero-blur offset shadows.
+- No neo-brutalist 0-2px radii, 3px borders, or hard zero-blur offset shadows.
 - No neon cyber grids, scanlines, reticles, or generic purple glow.
 - No Memphis / playful pop geometry, sticker chrome, or candy palettes.
 - No warm oat, honey caramel, or gold-foil hospitality luxury.
 - No gradient text, glassmorphism overload, or floating unbordered cards.
 - Do not introduce a second saturated brand color besides periwinkle; cyan is comparison ink only.
-- Do not pack the canvas. Air is the material. Dense industrial dashboards ruin the monastic read.
-================================================================================
+- Do not pack the canvas. Air is the material.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ==========================================================================

@@ -1573,119 +1573,132 @@
        ========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Luxury Editorial • Dramatic Chromatic Minimalism • Parisian Crimson
+  Visual language: Dramatic Chromatic Editorial
+  Construction: saturated carmine fields • oxblood Didone • 0px geometry • white micro-sans
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Luxury Editorial / Dramatic Chromatic Minimalism is inspired by high-contrast 
-Parisian fashion canvases, saturated carmine fields (#9E0D12), deep wine vignettes 
-(#7D080C), and massive dark oxblood Didone letterforms bleeding off-screen. 
-It establishes an austere, hyper-luxurious visual tension where 0px geometric angularity 
-and pure white micro-sans typography command absolute authority.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+The field is saturated carmine (#9E0D12) falling into a deep-wine vignette
+(#7D080C). Oversized high-contrast Didone letterforms may sit behind content as
+oxblood silhouettes (#1E0204) with tight tracking and a 0.85 line height; they
+are graphic geometry, not required words. Foreground type is pure white, with
+Inter at 10-11px, +0.18em, uppercase for meta. Primary layout geometry is 0px.
+Motion is a 400ms luxury deceleration.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  --color-canvas-primary:    #9E0D12; /* Saturated Parisian Crimson / Carmine */
-  --color-canvas-subtle:     #7D080C; /* Deep Wine (Gradient base / Vignette) */
-  --color-watermark-glyph:   #1E0204; /* Dark Oxblood / Deep Espresso Silhouette */
-  --color-text-primary:      #FFFFFF; /* Pure Editorial White (High contrast) */
-  --color-text-muted:        #F5E8E8; /* Soft Alabaster (Opacity: 70%) */
-  --color-accent-vermilion:  #D81B24; /* Vibrant Scarlet highlight */
-  --color-overlay-dark:      rgba(30, 2, 4, 0.65);
-  --color-overlay-light:     rgba(255, 255, 255, 0.08);
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #9E0D12; /* Saturated carmine */
+  --bg-surface:             #7D080C; /* Deep wine vignette / gradient base */
+  --bg-surface-alt:         rgba(255, 255, 255, 0.08); /* Light overlay plates */
+  --bg-surface-dark:        #1E0204; /* Dark oxblood inverted containers */
+
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF; /* High-contrast primary reading text */
+  --ink-secondary:          #F5E8E8; /* Soft alabaster secondary (70% opacity in use) */
+  --ink-muted:              #F5E8E8; /* Captions on crimson */
+  --ink-inverted:           #1E0204; /* Ink on light inverted plates */
+
+  /* Signature Accents */
+  --accent-primary:         #D81B24; /* Vibrant scarlet highlight */
+  --accent-primary-hover:   #FFFFFF; /* Hover toward editorial white */
+  --accent-secondary:       #7D080C; /* Deep wine supporting field */
+  --accent-tertiary:        #1E0204; /* Oxblood silhouette */
+
+  /* Status Tokens (in-family) */
+  --status-success:         #FFFFFF;
+  --status-warning:         #F5E8E8;
+  --status-danger:          #D81B24;
+  --status-info:            #F5E8E8;
+
+  /* Extra original tokens */
+  --color-watermark-glyph:  #1E0204;
+  --color-overlay-dark:     rgba(30, 2, 4, 0.65);
+  --color-overlay-light:    rgba(255, 255, 255, 0.08);
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Display Giant / Background Watermark */
---font-display-watermark: "Playfair Display", "Didot", serif;
-- Weight:                 900 Black / 600 SemiBold (High-contrast Didone)
-- Scale:                  240px - 480px (Bleeding past viewport boundaries)
-- Tracking:               -0.04em (Tight interlocking curves)
-- Line Height:            0.85
-
-/* Editorial Section Titles */
+/* Font Stacks */
+--font-display: "Playfair Display", "Didot", serif;
+--font-sans:    "Inter", "Helvetica Neue", sans-serif;
+--font-mono:    "JetBrains Mono", "SF Mono", monospace;
 --font-display-editorial: "Cinzel", "Playfair Display", serif;
-- Weight:                 400 Regular / 600 SemiBold
-- Scale:                  32px - 48px
-- Tracking:               -0.02em
-- Line Height:            1.15
 
-/* Category Labels & Micro-Metadata */
---font-sans-meta:         "Inter", "Helvetica Neue", sans-serif;
-- Weight:                 700 Bold / 600 SemiBold
-- Scale:                  10px - 11px
-- Tracking:               +0.18em (Generously spaced)
-- Line Height:            1.20
-- Text Transform:         Uppercase
+/* Type Scale */
+--text-display: 900 clamp(240px, 22vw, 480px) / 0.85 var(--font-display); /* Tracking: -0.04em | Weight: 900/600 | Graphic underlay only */
+--text-h1:      400 clamp(32px, 4vw, 48px) / 1.15 var(--font-display-editorial); /* Tracking: -0.02em | Weight: 400/600 */
+--text-h2:      600 clamp(32px, 4vw, 48px) / 1.15 var(--font-display-editorial); /* Tracking: -0.02em */
+--text-h3:      700 11px / 1.20 var(--font-sans); /* Tracking: +0.18em | UPPERCASE | Weight: 700/600 */
+--text-body:    400 15px / 1.60 var(--font-sans);
+--text-body-sm: 700 10px / 1.20 var(--font-sans); /* Tracking: +0.18em | UPPERCASE */
+--text-meta:    700 10px / 1.20 var(--font-sans); /* Tracking: +0.18em | UPPERCASE */
 
 /* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
---radius-sharp:   0px;    /* Canvas edge, raw editorial containers */
+--radius-default: 0px;    /* Canvas edge, raw editorial containers */
 --radius-subtle:  2px;    /* Hairline tags, minimalist buttons */
---radius-pill:    9999px; /* Floating micro-badges / luxury capsules */
-* Philosophy: Strict geometric angularity; zero curvature on primary layouts.
+--radius-pill:    9999px; /* Floating micro-badges / capsules */
+
+/* Elevation & Shadows */
+--shadow-base:    0px 30px 60px -12px rgba(18, 1, 2, 0.45);
+--shadow-hover:   0px 20px 40px -8px rgba(0, 0, 0, 0.38), 0px 1px 3px 0px rgba(255, 255, 255, 0.12) inset;
+--shadow-active:  0px 20px 40px -8px rgba(0, 0, 0, 0.38), 0px 1px 3px 0px rgba(255, 255, 255, 0.12) inset;
+--depth-ambient:       0px 30px 60px -12px rgba(18, 1, 2, 0.45);
+--depth-floating-card: 0px 20px 40px -8px rgba(0, 0, 0, 0.38), 0px 1px 3px 0px rgba(255, 255, 255, 0.12) inset;
+
+/* Motion */
+--ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+--duration:       400ms;
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (Z-INDEX ARCHITECTURE)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
-- Z-0 (Base Canvas):        Solid Crimson Background Canvas (#9E0D12)
-- Z-1 (Graphic Watermark):  Massive Cut-off Serif Letterforms (Oxblood #1E0204)
-- Z-2 (Spatial Backdrop):   Soft radial ambient wash (Dark red depth #7D080C)
-- Z-3 (Foreground Content): Pure white micro-sans and editorial titles
-- Z-4 (Floating Overlay):   Frosted luxury capsules and modal drawers
-
---depth-ambient:        0px 30px 60px -12px rgba(18, 1, 2, 0.45);
---depth-floating-card:  0px 20px 40px -8px rgba(0, 0, 0, 0.38), 0px 1px 3px 0px rgba(255, 255, 255, 0.12) inset;
-
-/* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (4px Base Unit)
- * -------------------------------------------------------------------------- */
---space-2xs:    4px;    /* Micro tracking gaps */
---space-xs:     8px;    /* Label-to-Title lockup */
---space-sm:     16px;   /* Inline metadata gutter */
---space-md:     24px;   /* Standard padding */
---space-lg:     48px;   /* Asymmetric negative space */
---space-xl:     80px;   /* Viewport border gutters */
---space-bleed:  -10vw;  /* Watermark typographic overlap */
-
-/* -----------------------------------------------------------------------------
- * 7. BORDERS & DIVIDERS
- * -------------------------------------------------------------------------- */
+--border-core:           1px solid rgba(255, 255, 255, 0.18);
+--border-hairline:       1px solid rgba(255, 255, 255, 0.18);
 --border-hairline-light: 1px solid rgba(255, 255, 255, 0.18);
 --border-hairline-dark:  1px solid rgba(30, 2, 4, 0.35);
---border-active:         1px solid var(--color-text-primary);
-* Rule: Never exceed 1px stroke weight; boundaries are defined by tonal contrast.
+--border-active:         1px solid #FFFFFF;
+--divider-style:         1px solid rgba(255, 255, 255, 0.18);
+/* Never exceed 1px stroke weight; boundaries are tonal. */
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-- Style:         Ultra-thin, refined, optical-weight matching
-- Stroke Weight: 1.2px constant
-- Cap & Join:    Mitered / Square joins, open geometry
-- Grid:          24x24px fixed bounding box
+- **Buttons**: 2px radius or 0px on structural controls. Rest state is transparent with a 1px white hairline. Hover fills rgba(255,255,255,0.08) over 400ms cubic-bezier(0.16, 1, 0.3, 1). Use the host's existing labels.
+- **Cards**: 0px containers on carmine or wine. Floating plates use --depth-floating-card. Do not add index codes, issue numbers, or fake meta.
+- **Inputs**: 2px wells, 1px hairline, font-size at least 16px. Focus becomes 1px solid #FFFFFF.
+- **Navigation**: Restyle existing items as white micro-sans (10-11px, +0.18em, uppercase). Hover expands letter-spacing by +0.02em and drops opacity to 75%. Do not add catalog codes, fake clocks, or status readouts.
+- **Graphic underlay**: If the host already uses a large decorative glyph, set it in oxblood Didone at display scale with -0.04em tracking and 0.85 line-height, optionally translating at 0.25x scroll speed. Do not invent watermark words.
 
 /* -----------------------------------------------------------------------------
- * 9. INTERACTION & FEEDBACK RULES
- * -------------------------------------------------------------------------- */
-- Duration: 400ms cubic-bezier(0.16, 1, 0.3, 1) (Deliberate luxury deceleration).
-- Text Links: Letter-spacing expands (+0.02em) with subtle 75% opacity shift.
-- Minimal Buttons: Background shifts smoothly from transparent to rgba(255,255,255,0.08).
-- Kinetic Layering: Watermark text translates at 0.25x scroll speed; foreground moves at 1.0x.
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
 - NO rounded bento cards (strict 0-2px angular geometry).
-- NO saturated neon blue/purple synthetic cyber gradients (maintain Parisian crimson and oxblood).
+- NO saturated neon blue/purple synthetic cyber gradients.
 - NO thick 2px+ structural borders; maintain 1px hairline delicacy.
-================================================================================
+- NO chunky soft SaaS shadows as the primary elevation language.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ==========================================================================

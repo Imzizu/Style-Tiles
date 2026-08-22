@@ -2526,152 +2526,182 @@
        =========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  DESIGN SYSTEM STYLE TILE // "LAB-01 / INDUSTRIAL GHOST SYSTEM" (TILE-027)
-  Aesthetic: Swiss Lab • Future Instrument • Soft Brutalism • Achromatic Ghost
+  Visual language: Industrial Ghost
+  Construction: cool lab gray • brushed aluminum • hairline geometry • condensed grotesk • achromatic contrast
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Lab-01 / Industrial Ghost System is an ultra-refined, achromatic design architecture
-synthesized from Swiss laboratory instrumentation, future metrology consoles, and soft
-brutalist geometry. Grounded in a cool lab gray canvas (#E8EBEF), secondary ghost washes,
-hairline blueprint coordinate frames, and floating brushed-aluminum hardware modules, it
-delivers extreme clarity and tactile precision. Contrast is generated purely through
-scale, shadow, and negative space rather than saturated hue.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+An ultra-refined achromatic skin: cool lab-gray canvas, ghost washes, and floating
+brushed-aluminum modules. Contrast comes from scale, hard/soft shadow, and negative
+space — never from saturated hue. Display type is condensed Swiss grotesk, uppercase,
+tight tracking; UI chrome is hairline, L-cornered, and quietly metallic.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
   /* Surfaces & Backgrounds */
-  --bg-canvas:              #E8EBEF; /* Main page, cool lab gray */
-  --bg-wash:                #F2F3F5; /* Secondary wash, ghost blocks */
-  --surface-0:              #FFFFFF; /* Solid UI, buttons, cards */
+  --bg-canvas:              #E8EBEF; /* Cool lab gray canvas */
+  --bg-surface:             #FFFFFF; /* Solid plates, buttons, cards */
+  --bg-surface-alt:         #F2F3F5; /* Secondary ghost wash */
+  --bg-surface-dark:        #0E0F10; /* Inverted ink wells */
+
+  /* Extra material surfaces */
+  --bg-wash:                #F2F3F5;
+  --surface-0:              #FFFFFF;
   --surface-1:              #DDE0E4; /* Metallic highlight */
   --surface-metal:          linear-gradient(180deg, #F6F7F8 0%, #C8CDD3 100%); /* Brushed aluminum */
 
   /* Inks & Typography */
-  --ink-primary:            #0E0F10; /* Headlines, primary reading text (16:1) */
-  --ink-secondary:          #7C8088; /* Nav, captions, inactive states */
-  --ink-tertiary:           #A9ADB4; /* Ghost blueprint vector lines */
-  --ink-inverted:           #FFFFFF; /* Inverted text on dark active states */
+  --ink-primary:            #0E0F10; /* High-contrast reading ink */
+  --ink-secondary:          #7C8088; /* Captions, inactive */
+  --ink-muted:              #A9ADB4; /* Ghost vector lines */
+  --ink-inverted:           #FFFFFF;
 
-  /* Lines & Specular Glows */
-  --line-hairline:          rgba(14, 15, 16, 0.10); /* Hairline coordinate grid */
-  --line-strong:            rgba(14, 15, 16, 0.18); /* Structural borders */
-  --accent-glow:            rgba(255, 255, 255, 0.90); /* Knob ring / focus halo */
+  --ink-tertiary:           #A9ADB4;
 
-  /* Status Tokens (Monochrome / High Contrast) */
+  /* Signature Accents (achromatic — no saturated hue) */
+  --accent-primary:         #0E0F10;
+  --accent-primary-hover:   #0E0F10;
+  --accent-secondary:       #C8CDD3; /* Aluminum mid */
+  --accent-tertiary:        #DDE0E4;
+
+  /* Specular / line */
+  --line-hairline:          rgba(14, 15, 16, 0.10);
+  --line-strong:            rgba(14, 15, 16, 0.18);
+  --accent-glow:            rgba(255, 255, 255, 0.90); /* Focus halo */
+
+  /* Status Tokens (monochrome, mapped from the existing inks) */
+  --status-success:         #0E0F10;
+  --status-warning:         #7C8088;
+  --status-danger:          #0E0F10;
+  --status-info:            #A9ADB4;
   --status-active:          #0E0F10;
   --status-muted:           #7C8088;
   --status-blueprint:       #A9ADB4;
 }
 
-/* Palette Ratio: 90% Achromatic (grays + white + black) | 10% Material (brushed aluminum) */
-/* No saturated color. Contrast comes from scale & shadow, not hue. */
+/* Palette ratio: 90% achromatic (grays + white + black) | 10% brushed aluminum. */
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Stacks */
---font-display:             "Instrument Sans", "Neue Haas Grotesk Display", "PP Neue Montreal", sans-serif;
---font-mono:                "Geist Mono", "Suisse Int'l Mono", monospace;
---font-sans:                "Inter", "Suisse Int'l", -apple-system, sans-serif;
---font-jp:                  "IBM Plex Sans JP", sans-serif;
+--font-display: "Instrument Sans", "Neue Haas Grotesk Display", "PP Neue Montreal", sans-serif;
+--font-sans:    "Inter", "Suisse Int'l", -apple-system, sans-serif;
+--font-mono:    "Geist Mono", "Suisse Int'l Mono", monospace;
+--font-jp:      "IBM Plex Sans JP", sans-serif; /* Optional CJK stack; do not add language the host lacks */
 
-/* Type Scale & Hierarchy */
---type-display-mega:        font-size: clamp(4.5rem, 9vw, 8rem) | line-height: 0.88 | tracking: -0.04em | weight: 800 | uppercase;
---type-display-hero:        font-size: clamp(3.0rem, 6vw, 5.5rem) | line-height: 0.90 | tracking: -0.04em | weight: 700 | uppercase;
---type-heading-xl:          font-size: 28px | line-height: 1.15 | tracking: -0.02em | weight: 700 | uppercase;
---type-heading-sm:          font-size: 16px | line-height: 1.30 | tracking: -0.01em | weight: 600;
---type-ui-mono:             font-size: 11px | line-height: 1.20 | tracking: +0.08em | weight: 500 | uppercase;
---type-body-regular:        font-size: 12px | line-height: 1.60 | tracking: +0.01em | weight: 400 | max-width: 32ch;
---type-secondary-jp:        font-size: 18px | line-height: 1.40 | tracking:  0.00em | weight: 400 | opacity: 0.8;
-
-/* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
- * -------------------------------------------------------------------------- */
---r-none:                   0px;    /* Hero headlines, blueprint frames - brutalist cut */
---r-xs:                     4px;    /* Small tags, TRY NOW / EXPLORE GEAR */
---r-sm:                     8px;    /* Inputs, secondary buttons */
---r-md:                     16px;   /* Product cards, image wells */
---r-lg:                     24px;   /* Large floating hardware container */
---r-pill:                   999px;  /* Shop Now, navigation pills (01, 05) */
-
-/* Strict Rule: Hardware = r-lg, UI = r-xs, Navigation = r-pill. Never mix. */
+--text-display: clamp(4.5rem, 9vw, 8rem) / 0.88 var(--font-display); /* Weight 800 | tracking -0.04em | UPPERCASE */
+--text-h1:      clamp(3.0rem, 6vw, 5.5rem) / 0.90 var(--font-display); /* Weight 700 | tracking -0.04em | UPPERCASE */
+--text-h2:      28px / 1.15 var(--font-display); /* Weight 700 | tracking -0.02em | UPPERCASE */
+--text-h3:      16px / 1.30 var(--font-sans);    /* Weight 600 | tracking -0.01em */
+--text-body:    12px / 1.60 var(--font-sans);    /* Weight 400 | tracking +0.01em | max-width 32ch */
+--text-body-sm: 16px / 1.30 var(--font-sans);    /* Weight 600 | tracking -0.01em */
+--text-meta:    11px / 1.20 var(--font-mono);    /* Weight 500 | tracking +0.08em | UPPERCASE */
+--text-jp:      18px / 1.40 var(--font-jp);      /* Weight 400 | opacity 0.8 — only if host already uses CJK */
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
---layer-0:                  0 0 0 1px var(--line-hairline) inset; /* Ghost blueprint strokes */
---layer-1:                  0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
---layer-float:              0 20px 50px rgba(14,15,16,0.10), 0 2px 8px rgba(14,15,16,0.06);
---layer-float-soft:         0 40px 80px -20px rgba(14,15,16,0.18);
---glow-ring:                0 0 0 1px rgba(255,255,255,0.8), 0 0 24px rgba(255,255,255,0.6);
+--radius-default: 16px;   /* Product / image wells */
+--radius-subtle:  4px;    /* Small tags, compact UI */
+--radius-pill:    999px;  /* Navigation capsules */
 
-/* Depth Stack:
- * Background: ghost outline shapes (20% opacity, no shadow)
- * Mid: canvas + hairline grid
- * Fore: floating object with layer-float + glow-ring on active edge
- */
+--r-none:  0px;   /* Display type frames, hairline blueprint cuts */
+--r-xs:    4px;   /* Compact UI */
+--r-sm:    8px;   /* Inputs, secondary buttons */
+--r-md:    16px;  /* Cards, image wells */
+--r-lg:    24px;  /* Large floating hardware modules */
+--r-pill:  999px;
+
+/* Strict split: hardware modules = 24px; compact UI = 4px; navigation = 999px. Do not mix. */
+
+--shadow-base:    0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+--shadow-hover:   0 20px 50px rgba(14,15,16,0.10), 0 2px 8px rgba(14,15,16,0.06);
+--shadow-active:  0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+
+--layer-0:          0 0 0 1px var(--line-hairline) inset;
+--layer-1:          0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+--layer-float:      0 20px 50px rgba(14,15,16,0.10), 0 2px 8px rgba(14,15,16,0.06);
+--layer-float-soft: 0 40px 80px -20px rgba(14,15,16,0.18);
+--glow-ring:        0 0 0 1px rgba(255,255,255,0.8), 0 0 24px rgba(255,255,255,0.6);
+
+/* Depth: ghost outlines at ~20% opacity (no shadow) sit behind the canvas grid;
+   foreground modules use --layer-float plus --glow-ring on the active edge. */
+
+--space-page-gutter: 32px; /* 16px on small viewports */
+--space-section:     96px;
+--space-cluster:     24px;
+--space-stack:       16px;
+/* Base 4px scale: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192. Extreme air. */
+
+--ease-lab:      cubic-bezier(0.16, 1, 0.3, 1);
+--duration-fast: 150ms;
+--duration-med:  350ms;
+--duration-slow: 700ms;
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (4px Base Grid)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
-Base: 4px | Scale: 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192
---space-page-gutter:        32px (desktop) / 16px (mobile);
---space-section:            96px;
---space-cluster:            24px;
---space-stack:              16px;
+--border-core:     1px solid rgba(14, 15, 16, 0.18);
+--border-hairline: 1px solid rgba(14, 15, 16, 0.10);
+--divider-style:   1px dashed rgba(14, 15, 16, 0.12);
 
-/* Layout Logic: Extreme air. Hero type bleeds left gutter, product floats right with 40% overlap. Negative space as a shape. */
+--border-blueprint: 1px dashed rgba(14, 15, 16, 0.12);
+--border-focus:     1px solid var(--ink-primary);
+--divider-L:        12px x 12px L-corner mark, 1px stroke; /* Graphic only — no labels */
+
+/* Optical anchors: L-corners rather than heavy full boxes. Keep divider contrast low. */
 
 /* -----------------------------------------------------------------------------
- * 7. BORDERS & DIVIDERS
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
---border-hairline:          1px solid var(--line-hairline);
---border-blueprint:         1px dashed rgba(14, 15, 16, 0.12); /* Ghost guides */
---border-focus:             1px solid var(--ink-primary);
---divider-L:                L-shaped corner mark (12px x 12px, 1px stroke);
-
-/* Optical anchors: Use L-corners, not full heavy boxes. Keep dividers low contrast. */
+- **Buttons**: Compact UI at 4px radius. Rest fill #FFFFFF, ink #0E0F10, hairline optional.
+  Hover (150ms --ease-lab): fill inverts to #0E0F10, text to #FFFFFF; a monoline NE arrow
+  (11px, no circle) may shift 2px up-right if the host already uses an arrow icon.
+  Pressed: scale(0.98), shadow collapses to --layer-1. Secondary: 8px radius, #FFFFFF well.
+  Do not add action labels the host does not have.
+- **Cards**: Image/product wells 16px; large floating hardware modules 24px with --layer-float
+  and brushed-aluminum gradient where a material fill is needed. Hover: lift 8px,
+  --layer-float-soft, glow-ring +20% intensity (350–700ms). Ghost outline shapes at 20%
+  opacity may sit behind modules. Do not add index codes, metrology readouts, or fake meta.
+- **Inputs**: 8px radius, #FFFFFF well, hairline border. Font-size at least 16px.
+  Focus: 1px solid #0E0F10, 8px outer --glow-ring, 2px offset.
+- **Navigation**: Restyle existing items as 999px capsules. Default opacity ~0.4, hover to 1.0
+  with a hairline underline that grows left to right. Do not add catalog numbers, clocks,
+  or status readouts.
+- **Icons**: Dot-matrix + minimal line. Stroke 1.25px, rounded cap, 90deg corners.
+  Monochrome only. Never filled. Built from dots, lines, and tiny rectangles.
+  A 3x3 dot cluster (4px dots, 3px gap, 50% round) may mark a brand lockup the host already has.
+- **Motion**: Modules float slowly (700ms). Controls snap (150ms).
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- Style:                    Dot-matrix + Minimal line
-- Grid Logo:                3x3 dots, 4px dot, 3px gap, rounded 50%
-- Stroke:                   1.25px, rounded cap, 90deg corners
-- Arrows:                   ↗ (North-East) 11px, no circle, appears on hover
-- Rule:                     Monochrome only. Never filled. Built from dots, lines, and tiny rectangles.
-
-/* -----------------------------------------------------------------------------
- * 9. INTERACTION & FEEDBACK RULES
- * -------------------------------------------------------------------------- */
---ease-lab:                 cubic-bezier(0.16, 1, 0.3, 1); /* Smooth industrial */
---duration-fast:            150ms;
---duration-med:             350ms;
---duration-slow:            700ms; /* Floating product parallax */
-
-- Button Hover:             surface-0 -> ink-primary, text inverts, ↗ shifts 2px up-right
-- Product Hover:            lift 8px, shadow layer-float-soft, glow-ring intensity +20%
-- Nav Link Hover:           opacity 0.4 -> 1.0 + underline hairline grows left -> right
-- Focus State:              1px solid ink + 8px outer glow-ring, 2px offset
-- Active / Pressed:         Scale 0.98, shadow collapses to layer-1
-- Motion Principle:         Objects float slowly (700ms). UI controls snap instantly (150ms).
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
- * -------------------------------------------------------------------------- */
-- NO saturated colors or chromatic gradients (strictly 90% achromatic + 10% metal).
-- NO purple on dark backgrounds or neon glow tropes.
-- NO drop shadows with hard black edges or high-opacity blurs.
-- NO rounded hero typography (must be strict brutalist condensed uppercase).
-- NO mixing radii rules (Hardware = 24px, UI = 4px, Navigation = 999px).
-- NO icon-stuffed bento boxes or generic stock 3D illustrations.
-- NO headline biscuit pills with pulsing dots placed above the main headline.
-================================================================================
+- No saturated colors or chromatic gradients (strictly 90% achromatic + 10% metal).
+- No purple-on-dark or neon glow tropes.
+- No drop shadows with hard black edges or high-opacity blurs.
+- No rounded hero typography — display stays condensed uppercase with -0.04em tracking.
+- No mixing radius roles (hardware 24px, compact UI 4px, navigation 999px).
+- No icon-stuffed bento boxes or generic stock 3D illustrations.
+- No biscuit pills with pulsing dots above the main heading.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ===========================================================================

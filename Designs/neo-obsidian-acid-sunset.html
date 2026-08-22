@@ -1821,135 +1821,171 @@
   <!-- RAW EMBEDDED MARKDOWN SPECIFICATION -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  DESIGN SYSTEM & STYLE TILE: "NEO-OBSIDIAN & ACID SUNSET" (TILE-032)
-  High-Contrast Dark Surface UI with Warm-to-Acid Kinetic Data Layer
+  Visual language: Neo-Obsidian Acid Sunset
+  Construction: carbon obsidian • 108deg amber-chartreuse-lime sweep • 32px squircles • CTA orange
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Neo-Obsidian & Acid Sunset is an elite, high-contrast dark surface design language engineered for
-high-frequency asset telemetry, DeFi yield interfaces, and real-time data visualizers.
-Layered upon deep carbon obsidian surfaces (#0D1111), the interface activates user attention through a
-kinetic 108° sunset spectrum (#F59E0B Amber Gold → #C4E041 Chartreuse → #8CE452 Acid Lime).
-With 32px continuous squircle window framing, 200ms cubic-bezier interactions, and micro-precision
-monospaced telemetry alignment, it establishes an energetic yet surgically disciplined UI.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Deep carbon-obsidian surfaces (#0D1111) lifted by cool near-black cards and a
+kinetic 108-degree sunset sweep from amber gold through chartreuse to acid lime.
+Geometry is a continuous squircle scale (32 / 24 / 16 / 10 / 6 / pill). Type is
+Plus Jakarta Sans with tight negative tracking on display; numerals, if present,
+may sit in JetBrains Mono. Motion is 200ms cubic-bezier(0.16, 1, 0.3, 1) —
+energetic, not noisy.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Canvas & Neutral Base */
-  --canvas-surface:         #0D1111; /* hsl(180, 13%, 6%) - Main App Canvas */
-  --card-surface-default:   #141918; /* hsl(168, 11%, 9%) - L1 Default Card */
-  --card-surface-elevated:  #1A211F; /* hsl(165, 12%, 12%) - L2 Elevated Surface */
-  --input-subsurface:       #0A0D0C; /* hsl(160, 14%, 4%) - L3 Input/Sub-surface */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #0D1111; /* hsl(180, 13%, 6%) carbon obsidian */
+  --bg-surface:             #141918; /* hsl(168, 11%, 9%) L1 card */
+  --bg-surface-alt:         #1A211F; /* hsl(165, 12%, 12%) L2 elevated */
+  --bg-surface-dark:        #0A0D0C; /* hsl(160, 14%, 4%) input well */
 
-  /* Hero Gradient (Kinetic Spectrum) */
-  --gradient-stop-0:        #F59E0B; /* Amber Gold (hsl(38, 92%, 50%)) */
-  --gradient-stop-50:       #C4E041; /* Chartreuse (hsl(71, 74%, 57%)) */
-  --gradient-stop-100:      #8CE452; /* Acid Lime (hsl(96, 74%, 61%)) */
+  --canvas-surface:         #0D1111;
+  --card-surface-default:   #141918;
+  --card-surface-elevated:  #1A211F;
+  --input-subsurface:       #0A0D0C;
+
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF;
+  --ink-secondary:          #8B9994; /* hsl(163, 7%, 58%) */
+  --ink-muted:              #4B5552; /* hsl(162, 7%, 31%) */
+  --ink-inverted:           #0A0D0C;
+
+  --text-inverted-muted:    #2A332F; /* hsl(156, 10%, 18%) on gradient */
+
+  /* Signature Accents */
+  --accent-primary:         #F38C38; /* CTA orange hsl(27, 89%, 59%) */
+  --accent-primary-hover:   #FA9A4B; /* hsl(27, 94%, 64%) */
+  --accent-secondary:       #C4E041; /* Chartreuse */
+  --accent-tertiary:        #8CE452; /* Acid lime */
+
+  --gradient-stop-0:        #F59E0B; /* Amber gold hsl(38, 92%, 50%) */
+  --gradient-stop-50:       #C4E041; /* Chartreuse hsl(71, 74%, 57%) */
+  --gradient-stop-100:      #8CE452; /* Acid lime hsl(96, 74%, 61%) */
   --hero-gradient:          linear-gradient(108deg, #F59E0B 0%, #C4E041 52%, #8CE452 100%);
 
-  /* Semantic & Accents */
-  --brand-primary:          #F38C38; /* CTA Orange (hsl(27, 89%, 59%)) */
-  --brand-hover:            #FA9A4B; /* CTA Hover (hsl(27, 94%, 64%)) */
-  --accent-mint:            #3CD070; /* Positive / Success (hsl(141, 62%, 53%)) */
-  --accent-coral:           #F87171; /* Negative / Danger (hsl(0, 91%, 71%)) */
-  --accent-cyan:            #38BDF8; /* Info / Telemetry (hsl(199, 95%, 60%)) */
-  --accent-gold:            #FBBF24; /* Warning (hsl(43, 96%, 56%)) */
+  --brand-primary:          #F38C38;
+  --brand-hover:            #FA9A4B;
+  --accent-mint:            #3CD070;
+  --accent-coral:           #F87171;
+  --accent-cyan:            #38BDF8;
+  --accent-gold:            #FBBF24;
 
-  /* Typography Colors */
-  --text-primary:           #FFFFFF; /* 100% White */
-  --text-secondary:         #8B9994; /* hsl(163, 7%, 58%) */
-  --text-muted:             #4B5552; /* hsl(162, 7%, 31%) */
-  --text-inverted:          #0A0D0C; /* hsl(160, 14%, 4%) - On Gradient */
-  --text-inverted-muted:    #2A332F; /* hsl(156, 10%, 18%) */
+  /* Status Tokens */
+  --status-success:         #3CD070;
+  --status-warning:         #FBBF24;
+  --status-danger:          #F87171;
+  --status-info:            #38BDF8;
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Stacks */
-Primary Font Family:        "Plus Jakarta Sans", "Inter", -apple-system, sans-serif
-Numeric / Monospace:        "JetBrains Mono", "SF Mono", monospace
+--font-display: "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", "SF Mono", monospace;
 
-/* Type Hierarchy */
-• Display / Large Metric:   36px | Line-Height: 44px | Weight: 700 (Bold)     | Tracking: -0.03em
-• H1 / Page Heading:        24px | Line-Height: 32px | Weight: 600 (SemiBold) | Tracking: -0.02em
-• H2 / Section Title:       18px | Line-Height: 24px | Weight: 600 (SemiBold) | Tracking: -0.01em
-• Card Subtitle / Label:    11px | Line-Height: 16px | Weight: 500 (Medium)   | Tracking: +0.02em (UPPERCASE)
-• Body Regular:             14px | Line-Height: 20px | Weight: 400 (Regular)  | Tracking: 0em
-• Body Medium (Table Data): 13px | Line-Height: 18px | Weight: 500 (Medium)   | Tracking: +0.01em
-• Micro / Trend Tag:        10px | Line-Height: 14px | Weight: 600 (SemiBold) | Tracking: +0.03em
-
-/* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
- * -------------------------------------------------------------------------- */
-• Radius-XL (App Window/Shell):  32px (Extreme continuous squircle)
-• Radius-LG (Primary Containers):24px (Main hero & dashboard cards)
-• Radius-MD (Standard Cards):    16px (Metric tiles, chart panels)
-• Radius-SM (Inputs & Buttons):  10px (Controls, small widgets)
-• Radius-XS (Tooltips & Badges): 6px  (Micro tags, indicator pills)
-• Radius-Pill (Tokens & Action): 9999px (Circular coin badges, chip toggles)
+--text-display: 36px / 44px var(--font-display); /* Weight 700 | tracking -0.03em */
+--text-h1:      24px / 32px var(--font-sans);    /* Weight 600 | tracking -0.02em */
+--text-h2:      18px / 24px var(--font-sans);    /* Weight 600 | tracking -0.01em */
+--text-h3:      11px / 16px var(--font-sans);    /* Weight 500 | tracking +0.02em | UPPERCASE */
+--text-body:    14px / 20px var(--font-sans);    /* Weight 400 | tracking 0 */
+--text-body-sm: 13px / 18px var(--font-sans);    /* Weight 500 | tracking +0.01em | tabular data */
+--text-meta:    10px / 14px var(--font-sans);    /* Weight 600 | tracking +0.03em */
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SHADOWS & OVERLAYS)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
-• Level 0 (Base Canvas):    none
-• Level 1 (Default Card):   0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px -4px rgba(0, 0, 0, 0.4)
-• Level 2 (Floating):       0 12px 32px -6px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08)
-• Glow Effect (CTA Orange): 0 4px 20px -2px rgba(243, 140, 56, 0.35)
-• Glow Effect (Hero Card):  0 16px 48px -8px rgba(196, 224, 65, 0.15)
-• Tooltip Surface:          rgba(10, 13, 12, 0.88) + backdrop-filter: blur(12px)
-• Chart Scrubber Overlay:   rgba(255, 255, 255, 0.04)
+--radius-default: 16px;
+--radius-subtle:  10px;
+--radius-pill:    9999px;
+
+--radius-xl: 32px; /* App shell / window squircle */
+--radius-lg: 24px; /* Hero / primary containers */
+--radius-md: 16px; /* Standard cards, panels */
+--radius-sm: 10px; /* Inputs, buttons */
+--radius-xs: 6px;  /* Tooltips, micro tags */
+
+--shadow-base:   0 1px 2px rgba(0, 0, 0, 0.2), 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+--shadow-hover:  0 12px 32px -6px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
+--shadow-active: 0 4px 20px -2px rgba(243, 140, 56, 0.35);
+
+--glow-cta:   0 4px 20px -2px rgba(243, 140, 56, 0.35);
+--glow-hero:  0 16px 48px -8px rgba(196, 224, 65, 0.15);
+--tooltip-surface: rgba(10, 13, 12, 0.88); /* + backdrop-filter: blur(12px) */
+--chart-overlay:   rgba(255, 255, 255, 0.04);
+
+--space-2xs: 4px;
+--space-xs:  8px;
+--space-sm:  12px;
+--space-md:  16px;
+--space-lg:  24px;
+--space-xl:  32px;
+
+--transition-ui: 200ms cubic-bezier(0.16, 1, 0.3, 1);
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (8-POINT GRID)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
-• space-2xs:                4px   (Inner badge padding, micro gaps)
-• space-xs:                 8px   (Icon-to-text spacing, compact table rows)
-• space-sm:                 12px  (Internal input padding, chip margins)
-• space-md:                 16px  (Standard component gap, nested card padding)
-• space-lg:                 24px  (Card internal padding, grid gutters)
-• space-xl:                 32px  (Section separations, panel margins)
-• Layout Grid:              12-Column fluid / 24px gutters / 24px outer margin
+--border-core:     1px solid rgba(255, 255, 255, 0.05);
+--border-hairline: 1px solid rgba(255, 255, 255, 0.04);
+--divider-style:   1px solid rgba(255, 255, 255, 0.04);
+
+--border-active:   1px solid rgba(255, 255, 255, 0.18);
+--inset-light:     inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+--chart-guide-dark: 1px dashed rgba(255, 255, 255, 0.08);
+--chart-guide-on-gradient: 1px dashed rgba(0, 0, 0, 0.15);
 
 /* -----------------------------------------------------------------------------
- * 7. BORDERS & DIVIDERS
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-• Primary Card Border:      1px solid rgba(255, 255, 255, 0.05)
-• Active / Focused Border:  1px solid rgba(255, 255, 255, 0.18)
-• Table Row Divider:        1px solid rgba(255, 255, 255, 0.04)
-• Inset Light Edge:         inset 0 1px 0 0 rgba(255, 255, 255, 0.06) (Top-edge lighting)
-• Chart Guideline Rule:     1px dashed rgba(0, 0, 0, 0.15) (On Gradient), rgba(255, 255, 255, 0.08) (On Dark)
+- **Buttons**: 10px radius. Primary fill #F38C38, ink #0A0D0C. Hover: translateY(-1px),
+  brightness 108%, shadow expand +4px to --glow-cta, fill #FA9A4B. Press: translateY(0)
+  scale(0.98) brightness 95%. Use the host's existing labels.
+- **Cards**: 16px standard, 24px hero, 32px shell. Fill #141918 or #1A211F, 1px
+  rgba(255,255,255,0.05) plus top inset light. Hover/float uses --shadow-hover.
+  Hero panels may carry --hero-gradient and --glow-hero. Do not add index codes or
+  decorative readouts the host lacks.
+- **Inputs**: Well #0A0D0C, 10px radius, font-size >= 16px. Focus border
+  rgba(255,255,255,0.18).
+- **Navigation**: Existing items. Unselected glyphs/text #8B9994 at 40% opacity;
+  selected 100% white with an active pill. Do not add clocks or status strings.
+- **Tables / rows**: If the host already has rows, hover fill rgba(255,255,255,0.03)
+  at 8px radius. Do not invent new data chrome.
+- **Charts**: If the host already has charts, scrubber overlay rgba(255,255,255,0.04);
+  cursor pin is a dual ring (#0A0D0C center, #FFFFFF 2px halo) plus a vertical dashed guide.
+- **Icons**: Geometric monoline, 1.75px, rounded terminals, 20px glyph in 24px box.
+- **Tooltips**: rgba(10,13,12,0.88) with blur(12px), 6px radius.
+- **Motion**: 200ms ease-out cubic-bezier(0.16, 1, 0.3, 1) on color and transform.
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-• Style Guide:              Geometric, mono-line vector glyphs with rounded terminals
-• Stroke Weight:            1.75px uniform optical thickness
-• Default Canvas:           20x20px viewport in a 24x24px bounding box
-• Asset Coin Icons:         Flat white emblem centered on solid colored circular discs (32x32px)
-• Navigation State:         Unselected = 40% Opacity Mono (#8B9994) | Selected = 100% White + Active Pill
-
-/* -----------------------------------------------------------------------------
- * 9. INTERACTION & FEEDBACK RULES
- * -------------------------------------------------------------------------- */
-• Transitions:              200ms ease-out (cubic-bezier(0.16, 1, 0.3, 1)) across color & transform
-• Button Hover:             Transform: translateY(-1px) | Brightness: 108% | Box-shadow: expand +4px
-• Button Press:             Transform: translateY(0px) | Scale: 0.98 | Brightness: 95%
-• Data Row Hover:           Background: rgba(255, 255, 255, 0.03) | Border-radius: 8px
-• Chart Cursor Pin:         Dual ring (#0A0D0C solid center, #FFFFFF outer 2px halo) + vertical dashed guide
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
- * -------------------------------------------------------------------------- */
-- NO generic purple/violet neon gradients on dark surfaces.
-- NO unbordered floating cards lacking top inset lighting or precise 1px borders.
-- NO arbitrary inconsistent border radii (strictly adhere to 32/24/16/10/6 scale).
-- NO muddy gray low-contrast backgrounds; canvas must remain anchored to #0D1111.
-================================================================================
+- No generic purple/violet neon gradients on dark surfaces.
+- No unbordered floating cards lacking top inset lighting or a precise 1px border.
+- No arbitrary radii; stay on the 32 / 24 / 16 / 10 / 6 / pill scale.
+- No muddy gray canvases; stay anchored to #0D1111.
+- Do not invent "micro-precision telemetry" copy, tickers, or fake metrics.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- JAVASCRIPT LOGIC -->

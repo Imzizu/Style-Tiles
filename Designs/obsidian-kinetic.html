@@ -2148,17 +2148,32 @@
 
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Obsidian Kinetic • Tactile Dark Luxury • Quiet Kinetic Dashboard
+  Visual language: Obsidian Kinetic
+  Construction: void canvas • ceramic 24px modules • gloss-white pills • mint/cyan status
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Obsidian Kinetic is a tactile dark-luxury dashboard language: void canvas, ceramic
-24px modules, and gloss-white active pills that read like machined enamel. Mint and
-cyan report the book — they never become HUD chrome. Ideal for private capital desks,
-family-office analytics, and premium portfolio products that should feel expensive,
-composed, and kinetic in the snap of a thumb.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Void canvas (#060709) holds ceramic modules at 24px with 5% white hairlines and
+an inset top-edge highlight. Active chrome is gloss-white enamel
+(linear-gradient 180deg #FFFFFF to #D8DCE2) with a white glow - not colored neon.
+Mint (#00E599) and cyan (#00F2FE) report status only. Type is compact Inter
+(32px / -0.03em at display). Motion snaps at 150ms / 250ms cubic-bezier(0.16, 1, 0.3, 1).
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
@@ -2178,9 +2193,9 @@ composed, and kinetic in the snap of a thumb.
   --ink-inverted:           #000000; /* Ink on gloss pills and inverse cards */
 
   /* Signature Accents */
-  --accent-primary:         #00E599; /* Neon mint — positive deltas, success */
+  --accent-primary:         #00E599; /* Neon mint - positive / success */
   --accent-primary-hover:   #33EBB0; /* Interactive hover tone */
-  --accent-secondary:       #00F2FE; /* Cyan — live indicators, not chrome */
+  --accent-secondary:       #00F2FE; /* Cyan - live indicators, not chrome */
   --accent-tertiary:        #FFFFFF; /* Gloss ceramic active chrome */
   --accent-mint-surface:    rgba(0, 229, 153, 0.12);
   --accent-destruct-surface:rgba(255, 77, 77, 0.12);
@@ -2231,6 +2246,11 @@ composed, and kinetic in the snap of a thumb.
 --highlight-edge-top: inset 0 1px 1px rgba(255, 255, 255, 0.12);
 --gloss-pill:     linear-gradient(180deg, #FFFFFF 0%, #D8DCE2 100%);
 
+/* Motion */
+--ease-kinetic: cubic-bezier(0.16, 1, 0.3, 1);
+--duration:     150ms;
+--duration-snap: 250ms;
+
 /* -----------------------------------------------------------------------------
  * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
@@ -2241,27 +2261,26 @@ composed, and kinetic in the snap of a thumb.
 --divider-style:      1px solid rgba(255, 255, 255, 0.05);
 
 /* -----------------------------------------------------------------------------
- * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-- **Buttons**: Primary is a gloss pill (linear-gradient 180deg #FFFFFF → #D8DCE2) with white glow; text/icon #000. Ghost uses 12% white border. Danger uses #FF4D4D on rgba(255,77,77,0.12). Mint accent is status CTA, not chrome. Hover 150ms; press scale 0.98.
-- **Cards**: 24px radius, 5% white hairline, inset highlight-edge-top, shadow 0 12px 32px -4px rgba(0,0,0,0.75). Hover: border 12%, surface +2%. Never unbordered gray slabs.
-- **Inputs**: Recessed #0A0B0E wells, inner shadow, 10px radius. Focus border 30% white. Placeholder #525866. Mobile font-size ≥ 16px.
-- **Navigation**: Recessed track with inner shadow. Active item snaps to gloss gradient + glow; icon and label turn #000. Inactive remains ink-secondary.
-- **Segmented toggle**: Recessed track, gloss thumb that snaps 250ms cubic-bezier(0.16,1,0.3,1).
-- **Charts**: White-dot / matrix only. Muted dots at 25% opacity; peaks at 100% white. Cyan reserved for a single live marker. No scanlines, reticles, or CAD grids.
-- **Inverse card**: Solid #FFFFFF plate, #000 ink, 8% black hairline — the one high-impact light object in the void.
-- **Motion**: 150ms / 250ms cubic-bezier(0.16, 1, 0.3, 1). Icons: lucide-like monoline 1.5–1.75px, 14/18px.
+- **Buttons**: Primary is a gloss pill (linear-gradient 180deg #FFFFFF to #D8DCE2) with white glow; text/icon #000. Ghost uses 12% white border. Danger uses #FF4D4D on rgba(255,77,77,0.12). Mint is a status CTA, not chrome. Hover 150ms; press scale 0.98. Use the host's existing labels.
+- **Cards**: 24px radius, 5% white hairline, inset highlight-edge-top, shadow 0 12px 32px -4px rgba(0,0,0,0.75). Hover: border 12%, surface +2%. Never unbordered gray slabs. Inverse card: solid #FFFFFF plate, #000 ink, 8% black hairline. Do not add index codes or fake meta.
+- **Inputs**: Recessed #0A0B0E wells, inner shadow, 10px radius. Focus border 30% white. Placeholder #525866. Font-size at least 16px.
+- **Navigation**: Recessed track with inner shadow. Active item snaps to gloss gradient + glow; icon and label turn #000. Inactive remains ink-secondary. Do not add catalog codes, fake clocks, or status readouts.
+- **Segmented toggle** (if present): Recessed track, gloss thumb that snaps 250ms cubic-bezier(0.16,1,0.3,1).
+- **Charts** (if present): White-dot / matrix only. Muted dots at 25% opacity; peaks at 100% white. Cyan reserved for a single live marker. No scanlines, reticles, or CAD grids.
+- **Icons**: lucide-like monoline 1.5-1.75px, 14/18px.
 
 /* -----------------------------------------------------------------------------
- * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- No purple neon, generic violet-on-dark dashboards, or lime gamer RGB.
-- No scanlines, reticles, CAD dimension grids, or HUD chrome — mint/cyan are status only.
+- No purple neon, generic violet-on-dark skins, or lime gamer RGB.
+- No scanlines, reticles, CAD dimension grids, or HUD chrome - mint/cyan are status only.
 - No 0px brutalist corners, hard offset shadows, or stamp/sticker chrome.
 - No unbordered gray cards floating in the void.
-- No Inter display with huge letter-spacing uppercase fashion; keep compact dashboard type (32px / −0.03em).
+- No Inter display with huge letter-spacing uppercase fashion; keep compact type (32px / -0.03em).
 - No gradient text, glass rainbows, or cyber terminal motifs.
-================================================================================
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <script>

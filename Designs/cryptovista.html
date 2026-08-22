@@ -2259,94 +2259,138 @@
         </div>
 
         <!-- Syntax code viewer -->
-        <pre class="code-editor-frame" id="display-code-block">================================================================================
-  CRYPTOVISTA — DESIGN SYSTEM STYLE TILE
-  Aesthetic: Neo-FinTech Minimalist • Monochromatic Structured • Parametric Clay
+        <pre class="code-editor-frame" id="display-code-block">
+================================================================================
+  Visual language: Parametric Clay Minimal
+  Construction: cool off-white bento • 28-32px radii • pill CTAs • 1.5px ink borders • neon mint • matte clay depth
 ================================================================================
 
-1. COLOR ROLES & PALETTE
---------------------------------------------------------------------------------
-• Canvas & Surfaces:
-  - Canvas Base (Background):     #FFFFFF (Pure Light)
-  - Surface Neutral (Cards/Mod):  #F5F6F8 (Cool Off-White)
-  - Surface Inverted (Badges):    #0F1115 (Deep Pitch Black)
-  - Surface Glass:                rgba(255, 255, 255, 0.75) / backdrop-filter: blur(12px)
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
 
-• Content & Typography:
-  - Text Primary:                 #0A0B0D (High-Contrast Black)
-  - Text Secondary / Muted:       #6C727F (Neutral Slate)
-  - Text Tertiary / Inactive:     #9DA4B0 (Light Gray Trackers)
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
-• Brand Accents & Semantics:
-  - Accent Primary (Neon Mint):   #00E58F (Active Trend / Positive Momentum)
-  - Accent Secondary (Mint Haze): #A7F3D0 (Pattern Fills / Secondary Bars)
-  - Trend Negative:               #EF4444 (Soft Coral Red)
-  - Trend Neutral:                #6B7280 (Muted Mid-Gray)
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A cool, structured light field: pure white canvas, off-white clay cards, and pitch-black inverted wells. Separation is mostly a 1px structural border, with only the softest matte shadow. Outer modules are large 28-32px radii; actions are full pills. Type is compact grotesque - tight tracking on display, uppercase micro labels, tabular mono for figures. The single energetic ink is neon mint against monochrome structure. Hover is a small scale and an inverted icon disc, not a glow bloom.
 
-2. TYPOGRAPHY SYSTEM
---------------------------------------------------------------------------------
-• Primary Font Families:
-  - Display / Headings:           "Cabinet Grotesk" or "Aeonik", sans-serif
-  - Body & UI / Meta:             "Plus Jakarta Sans" or "Inter", sans-serif
-  - Numeric & Tickers:            "Space Grotesk" or "JetBrains Mono", monospace
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FFFFFF; /* Pure light canvas */
+  --bg-surface:             #F5F6F8; /* Cool off-white cards */
+  --bg-surface-alt:         #F0F2F5; /* Pressed / nested well */
+  --bg-surface-dark:        #0F1115; /* Deep pitch inverted surface */
 
-• Typographic Scale & Hierarchy:
-  - Hero Headline (H1):           48px – 64px | Line-Height: 1.05 | Weight: 700 | Tracking: -0.03em
-  - Section Title (H2):           28px – 34px | Line-Height: 1.15 | Weight: 600 | Tracking: -0.02em
-  - Card Metric / Values:         20px – 24px | Line-Height: 1.20 | Weight: 600 | Monospace Numeric
-  - Nav & Micro-Labels:           11px – 13px | Line-Height: 1.00 | Weight: 600 | Text-Transform: UPPERCASE | Tracking: +0.08em
-  - Body Copy (Paragraph):        14px – 15px | Line-Height: 1.50 | Weight: 400 | Tracking: -0.01em
-  - Inline Badges / Symbols:      Aligned baseline, custom typographic lockups (e.g., "✦", "↗", "×")
+  /* Inks & Typography */
+  --ink-primary:            #0A0B0D; /* High-contrast black */
+  --ink-secondary:          #6C727F; /* Neutral slate */
+  --ink-muted:              #9DA4B0; /* Light gray quiet type */
+  --ink-inverted:           #FFFFFF; /* Ink on inverted surfaces */
 
-3. CORNER GEOMETRY (BORDER RADII)
---------------------------------------------------------------------------------
-• Radius Scale:
-  - radius-pill (Full):           9999px (Action buttons, floating tags, ticker chips, social anchors)
-  - radius-card (Container):      28px – 32px (Bento outer grid & major feature panels)
-  - radius-inner (Nested):        16px – 20px (Internal image cutouts, mini modules)
-  - radius-sm (Micro):            8px (Data tooltips, input focus indicators)
+  /* Signature Accents */
+  --accent-primary:         #00E58F; /* Neon mint */
+  --accent-primary-hover:   #00FF9E; /* Electric mint hover */
+  --accent-secondary:       #A7F3D0; /* Mint haze fills */
+  --accent-tertiary:        #6B7280; /* Mid-gray quiet accent */
 
-4. ELEVATION & DEPTH (SHADOWS & LAYERS)
---------------------------------------------------------------------------------
-• Architectural Layering:
-  - Flat Bento Construction: Separation achieved via structural 1px borders rather than heavy drop shadows.
-  - 3D Dimensional Depth: High-contrast, tactile matte-white parametric renders (layered topographical clay textures).
-• Shadow Tokens:
-  - Elevation Base (Cards):       0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 8px -2px rgba(0, 0, 0, 0.03)
-  - Floating Elements (Pills):    0 8px 24px -4px rgba(0, 0, 0, 0.06), 0 0 0 1px #0A0B0D
-  - Focus / Popover:              0 16px 32px -6px rgba(0, 0, 0, 0.10)
+  /* Status Tokens */
+  --status-success:         #00E58F; /* Mint confirm */
+  --status-warning:         #6B7280; /* Neutral mid-gray */
+  --status-danger:          #EF4444; /* Soft coral red */
+  --status-info:            #A7F3D0; /* Mint haze info */
 
-5. SPACING & SPATIAL SCALE
---------------------------------------------------------------------------------
-• Base Grid: 8pt Grid System (4px Micro-steps)
-  - space-xs: 4px | space-sm: 8px | space-md: 16px | space-lg: 24px | space-xl: 32px–40px
-  - Bento Container Padding: 20px outer frame padding surrounding rounded sub-cards.
+  /* Extra material tokens */
+  --bg-surface-inverted:    #0F1115;
+  --bg-surface-glass:       rgba(255, 255, 255, 0.75);
+  --bg-surface-glass-dark:  rgba(15, 17, 21, 0.85);
+  --status-negative:        #EF4444;
+  --status-negative-bg:     #FEF2F2;
+  --status-neutral:         #6B7280;
+  --status-positive-bg:     #ECFDF5;
+  --glass-blur:             blur(12px);
+}
 
-6. BORDERS & DIVIDERS
---------------------------------------------------------------------------------
-• Border Tokens:
-  - Border Primary (Structural):  1.5px solid #0A0B0D (Primary buttons, hero badges, icon rings)
-  - Border Subtle (Separators):   1px solid rgba(10, 11, 13, 0.12) (Grid dividers, light pills)
-  - Border Active (Accent):       1.5px solid #00E58F (Active chart indicators, selected filters)
-  - Inverted Pill Border:         1px solid #FFFFFF (On dark surfaces/badges)
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Cabinet Grotesk", "Aeonik", "Plus Jakarta Sans", -apple-system, sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:    "Space Grotesk", "JetBrains Mono", monospace;
 
-7. ICONOGRAPHY LANGUAGE
---------------------------------------------------------------------------------
-• Stroke Style: Uniform 1.5px – 1.75px stroke width, geometric, monoline
-• Enclosure: Housed in circular 32px – 40px pill containers with centered glyphs
-• Integrated Glyphs: Inline arrow triggers (↗), brandmark nodes (✦), directional sparklines (〰)
+--text-display: 48px-64px / 1.05 var(--font-display); /* Weight: 700 | Tracking: -0.03em */
+--text-h1:      48px-64px / 1.05 var(--font-display); /* Weight: 700 | Tracking: -0.03em */
+--text-h2:      28px-34px / 1.15 var(--font-display); /* Weight: 600 | Tracking: -0.02em */
+--text-h3:      20px-24px / 1.20 var(--font-mono);    /* Weight: 600 | tabular figures */
+--text-body:    14px-15px / 1.50 var(--font-sans);    /* Weight: 400 | Tracking: -0.01em */
+--text-body-sm: 14px / 1.50 var(--font-sans);
+--text-meta:    11px-13px / 1.00 var(--font-sans);    /* Weight: 600 | UPPERCASE | Tracking: +0.08em */
 
-8. INTERACTION & FEEDBACK RULES
---------------------------------------------------------------------------------
-• Button States (Pill Action Modules):
-  - Default: White fill, 1.5px #0A0B0D border, black text + circular icon bubble
-  - Hover: Invert target circle; arrow rotates 45° on axis; scale 1.02x (cubic-bezier(0.16, 1, 0.3, 1))
-  - Active / Pressed: Scale 0.98x; slight background tint #F0F2F5
-• Chart & Metric Micro-Interactions:
-  - Chart Bars: Inactive bars = diagonal hatch / mint-outline; Active = solid #00E58F fill
-  - Hover Focus: Reveals floating tooltip with monospaced value; siblings dim to 40% opacity
-  - Transition Curve: transition: all 200ms cubic-bezier(0.2, 0, 0, 1)
-================================================================================</pre>
+/* Display is a compact geometric grotesque, tight and heavy. Body is slightly smaller than 16px
+   on dense panels; interactive inputs must still be >= 16px. Meta is uppercase micro-label.
+   Do not invent ticker strings or specimen headlines. */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 28px;   /* Bento outer modules (28px-32px) */
+--radius-subtle:  8px;    /* Tooltips and focus indicators */
+--radius-inner:   16px-20px; /* Nested cutouts, inner modules */
+--radius-card:    28px-32px;
+--radius-sm:      8px;
+--radius-pill:    9999px; /* Actions, tags, chips */
+
+--shadow-base:    0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 8px -2px rgba(0, 0, 0, 0.03);
+--shadow-hover:   0 0 0 1px rgba(10, 11, 13, 0.14), 0 12px 32px -4px rgba(0, 0, 0, 0.05);
+--shadow-active:  0 16px 32px -6px rgba(0, 0, 0, 0.10);
+--elevation-pill: 0 8px 24px -4px rgba(0, 0, 0, 0.06), 0 0 0 1px #0A0B0D;
+--elevation-focus: 0 16px 32px -6px rgba(0, 0, 0, 0.10);
+
+/* Depth also comes from matte layered clay: nested radii and 1px structure, not heavy drop shadows.
+   Motion: 200ms cubic-bezier(0.2, 0, 0, 1) for general; cubic-bezier(0.16, 1, 0.3, 1) for pills.
+   Hover scale 1.02; active scale 0.98. */
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1.5px solid #0A0B0D;
+--border-hairline:    1px solid rgba(10, 11, 13, 0.12);
+--border-active:      1.5px solid #00E58F;
+--border-inverted:    1px solid #FFFFFF;
+--divider-style:      1px solid rgba(10, 11, 13, 0.12);
+
+/* Icons: 1.5px-1.75px geometric monoline, round caps and joins, housed in 32px-40px circular discs. */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Full pill. Default: white fill, 1.5px #0A0B0D border, black label, optional circular icon disc. Hover: invert the icon disc, rotate an existing trailing arrow 45deg if present, scale 1.02 with cubic-bezier(0.16, 1, 0.3, 1). Active: scale 0.98, well tint #F0F2F5. Primary filled variant may use mint or pitch-black. Use the host's existing labels.
+- **Cards**: 28-32px outer radius, nested 16-20px inner wells, 1px subtle structure plus the base elevation token. Optional frosted glass: rgba(255,255,255,0.75) with blur(12px). Do not add ticker chips, sparkline chrome, or index codes the host lacks.
+- **Inputs**: 8px-pill wells, 1px slate hairline. Focus uses 1.5px mint or black ring. Input font-size >= 16px.
+- **Navigation**: Restyle existing items as uppercase micro pills or quiet text. Active: mint hairline or mint fill. Do not add catalog names or fake market readouts.
+- **Badges / chips / toggles**: Pills with 1.5px ink or mint borders. On inverted surfaces, use 1px white hairline. If the host has charts, inactive series may use mint outline or diagonal hatch; the active series fills #00E58F; siblings dim to 40% opacity.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No purple neon, crypto-grid backgrounds, or glassmorphism glow bloom.
+- No sharp 0px brutalist cards; keep large clay radii.
+- No heavy drop shadows that overpower the 1px structural border.
+- No gradient text.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+        </pre>
       </div>
     </section>
 
@@ -2383,108 +2427,135 @@
        ======================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  CRYPTOVISTA — DESIGN SYSTEM STYLE TILE
-  Aesthetic: Neo-FinTech Minimalist • Monochromatic Structured • Parametric Clay
+  Visual language: Parametric Clay Minimal
+  Construction: cool off-white bento • 28-32px radii • pill CTAs • 1.5px ink borders • neon mint • matte clay depth
 ================================================================================
 
-1. COLOR ROLES & PALETTE
---------------------------------------------------------------------------------
-• Canvas & Surfaces:
-  - Canvas Base (Background):     #FFFFFF (Pure Light)
-  - Surface Neutral (Cards/Mod):  #F5F6F8 (Cool Off-White)
-  - Surface Inverted (Badges):    #0F1115 (Deep Pitch Black)
-  - Surface Glass:                rgba(255, 255, 255, 0.75) / backdrop-filter: blur(12px)
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
 
-• Content & Typography:
-  - Text Primary:                 #0A0B0D (High-Contrast Black)
-  - Text Secondary / Muted:       #6C727F (Neutral Slate)
-  - Text Tertiary / Inactive:     #9DA4B0 (Light Gray Trackers)
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
-• Brand Accents & Semantics:
-  - Accent Primary (Neon Mint):   #00E58F (Active Trend / Positive Momentum)
-  - Accent Secondary (Mint Haze): #A7F3D0 (Pattern Fills / Secondary Bars)
-  - Trend Negative:               #EF4444 (Soft Coral Red)
-  - Trend Neutral:                #6B7280 (Muted Mid-Gray)
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A cool, structured light field: pure white canvas, off-white clay cards, and pitch-black inverted wells. Separation is mostly a 1px structural border, with only the softest matte shadow. Outer modules are large 28-32px radii; actions are full pills. Type is compact grotesque - tight tracking on display, uppercase micro labels, tabular mono for figures. The single energetic ink is neon mint against monochrome structure. Hover is a small scale and an inverted icon disc, not a glow bloom.
 
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FFFFFF; /* Pure light canvas */
+  --bg-surface:             #F5F6F8; /* Cool off-white cards */
+  --bg-surface-alt:         #F0F2F5; /* Pressed / nested well */
+  --bg-surface-dark:        #0F1115; /* Deep pitch inverted surface */
 
-2. TYPOGRAPHY SYSTEM
---------------------------------------------------------------------------------
-• Primary Font Families:
-  - Display / Headings:           "Cabinet Grotesk" or "Aeonik", sans-serif
-  - Body & UI / Meta:             "Plus Jakarta Sans" or "Inter", sans-serif
-  - Numeric & Tickers:            "Space Grotesk" or "JetBrains Mono", monospace
+  /* Inks & Typography */
+  --ink-primary:            #0A0B0D; /* High-contrast black */
+  --ink-secondary:          #6C727F; /* Neutral slate */
+  --ink-muted:              #9DA4B0; /* Light gray quiet type */
+  --ink-inverted:           #FFFFFF; /* Ink on inverted surfaces */
 
-• Typographic Scale & Hierarchy:
-  - Hero Headline (H1):           48px – 64px | Line-Height: 1.05 | Weight: 700 | Tracking: -0.03em
-  - Section Title (H2):           28px – 34px | Line-Height: 1.15 | Weight: 600 | Tracking: -0.02em
-  - Card Metric / Values:         20px – 24px | Line-Height: 1.20 | Weight: 600 | Monospace Numeric
-  - Nav & Micro-Labels:           11px – 13px | Line-Height: 1.00 | Weight: 600 | Text-Transform: UPPERCASE | Tracking: +0.08em
-  - Body Copy (Paragraph):        14px – 15px | Line-Height: 1.50 | Weight: 400 | Tracking: -0.01em
-  - Inline Badges / Symbols:      Aligned baseline, custom typographic lockups (e.g., "✦", "↗", "×")
+  /* Signature Accents */
+  --accent-primary:         #00E58F; /* Neon mint */
+  --accent-primary-hover:   #00FF9E; /* Electric mint hover */
+  --accent-secondary:       #A7F3D0; /* Mint haze fills */
+  --accent-tertiary:        #6B7280; /* Mid-gray quiet accent */
 
+  /* Status Tokens */
+  --status-success:         #00E58F; /* Mint confirm */
+  --status-warning:         #6B7280; /* Neutral mid-gray */
+  --status-danger:          #EF4444; /* Soft coral red */
+  --status-info:            #A7F3D0; /* Mint haze info */
 
-3. CORNER GEOMETRY (BORDER RADII)
---------------------------------------------------------------------------------
-• Radius Scale:
-  - `radius-pill` (Full):         9999px (Action buttons, floating tags, ticker chips, social anchors)
-  - `radius-card` (Container):    28px – 32px (Bento outer grid & major feature panels)
-  - `radius-inner` (Nested):      16px – 20px (Internal image cutouts, mini modules)
-  - `radius-sm` (Micro):          8px (Data tooltips, input focus indicators)
+  /* Extra material tokens */
+  --bg-surface-inverted:    #0F1115;
+  --bg-surface-glass:       rgba(255, 255, 255, 0.75);
+  --bg-surface-glass-dark:  rgba(15, 17, 21, 0.85);
+  --status-negative:        #EF4444;
+  --status-negative-bg:     #FEF2F2;
+  --status-neutral:         #6B7280;
+  --status-positive-bg:     #ECFDF5;
+  --glass-blur:             blur(12px);
+}
 
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Cabinet Grotesk", "Aeonik", "Plus Jakarta Sans", -apple-system, sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:    "Space Grotesk", "JetBrains Mono", monospace;
 
-4. ELEVATION & DEPTH (SHADOWS & LAYERS)
---------------------------------------------------------------------------------
-• Architectural Layering:
-  - Flat Bento Construction: Separation achieved via structural 1px borders rather than heavy drop shadows.
-  - 3D Dimensional Depth: High-contrast, tactile matte-white parametric renders (layered topographical clay textures).
+--text-display: 48px-64px / 1.05 var(--font-display); /* Weight: 700 | Tracking: -0.03em */
+--text-h1:      48px-64px / 1.05 var(--font-display); /* Weight: 700 | Tracking: -0.03em */
+--text-h2:      28px-34px / 1.15 var(--font-display); /* Weight: 600 | Tracking: -0.02em */
+--text-h3:      20px-24px / 1.20 var(--font-mono);    /* Weight: 600 | tabular figures */
+--text-body:    14px-15px / 1.50 var(--font-sans);    /* Weight: 400 | Tracking: -0.01em */
+--text-body-sm: 14px / 1.50 var(--font-sans);
+--text-meta:    11px-13px / 1.00 var(--font-sans);    /* Weight: 600 | UPPERCASE | Tracking: +0.08em */
 
-• Shadow Tokens:
-  - Elevation Base (Cards):       0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 8px -2px rgba(0, 0, 0, 0.03)
-  - Floating Elements (Pills):    0 8px 24px -4px rgba(0, 0, 0, 0.06), 0 0 0 1px #0A0B0D
-  - Focus / Popover:              0 16px 32px -6px rgba(0, 0, 0, 0.10)
+/* Display is a compact geometric grotesque, tight and heavy. Body is slightly smaller than 16px
+   on dense panels; interactive inputs must still be >= 16px. Meta is uppercase micro-label.
+   Do not invent ticker strings or specimen headlines. */
 
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 28px;   /* Bento outer modules (28px-32px) */
+--radius-subtle:  8px;    /* Tooltips and focus indicators */
+--radius-inner:   16px-20px; /* Nested cutouts, inner modules */
+--radius-card:    28px-32px;
+--radius-sm:      8px;
+--radius-pill:    9999px; /* Actions, tags, chips */
 
-5. SPACING & SPATIAL SCALE
---------------------------------------------------------------------------------
-• Base Grid: 8pt Grid System (4px Micro-steps)
-  - `space-xs`:                   4px  (Inline icon-to-label gaps)
-  - `space-sm`:                   8px  (Badge internal padding, micro chips)
-  - `space-md`:                   16px (Bento grid gutters, card padding)
-  - `space-lg`:                   24px (Standard panel internal padding)
-  - `space-xl`:                   32px – 40px (Section margins, headline offsets)
-  - Bento Container Padding:      20px outer frame padding surrounding rounded sub-cards.
+--shadow-base:    0 0 0 1px rgba(0, 0, 0, 0.08), 0 2px 8px -2px rgba(0, 0, 0, 0.03);
+--shadow-hover:   0 0 0 1px rgba(10, 11, 13, 0.14), 0 12px 32px -4px rgba(0, 0, 0, 0.05);
+--shadow-active:  0 16px 32px -6px rgba(0, 0, 0, 0.10);
+--elevation-pill: 0 8px 24px -4px rgba(0, 0, 0, 0.06), 0 0 0 1px #0A0B0D;
+--elevation-focus: 0 16px 32px -6px rgba(0, 0, 0, 0.10);
 
+/* Depth also comes from matte layered clay: nested radii and 1px structure, not heavy drop shadows.
+   Motion: 200ms cubic-bezier(0.2, 0, 0, 1) for general; cubic-bezier(0.16, 1, 0.3, 1) for pills.
+   Hover scale 1.02; active scale 0.98. */
 
-6. BORDERS & DIVIDERS
---------------------------------------------------------------------------------
-• Border Tokens:
-  - Border Primary (Structural):  1.5px solid #0A0B0D (Primary buttons, hero badges, icon rings)
-  - Border Subtle (Separators):   1px solid rgba(10, 11, 13, 0.12) (Grid dividers, light pills)
-  - Border Active (Accent):       1.5px solid #00E58F (Active chart indicators, selected filters)
-  - Inverted Pill Border:         1px solid #FFFFFF (On dark surfaces/badges)
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1.5px solid #0A0B0D;
+--border-hairline:    1px solid rgba(10, 11, 13, 0.12);
+--border-active:      1.5px solid #00E58F;
+--border-inverted:    1px solid #FFFFFF;
+--divider-style:      1px solid rgba(10, 11, 13, 0.12);
 
+/* Icons: 1.5px-1.75px geometric monoline, round caps and joins, housed in 32px-40px circular discs. */
 
-7. ICONOGRAPHY LANGUAGE
---------------------------------------------------------------------------------
-• Visual Characteristics:
-  - Stroke Style:                 Uniform 1.5px – 1.75px stroke width, geometric, monoline
-  - Enclosure:                    Housed in circular 32px – 40px pill containers with centered glyphs
-  - Terminal Ends:                Precise, rounded caps (`stroke-linecap: round`, `stroke-linejoin: round`)
-  - Integrated Glyphs:            Inline arrow triggers (↗), brandmark nodes (✦), directional sparklines (〰)
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Full pill. Default: white fill, 1.5px #0A0B0D border, black label, optional circular icon disc. Hover: invert the icon disc, rotate an existing trailing arrow 45deg if present, scale 1.02 with cubic-bezier(0.16, 1, 0.3, 1). Active: scale 0.98, well tint #F0F2F5. Primary filled variant may use mint or pitch-black. Use the host's existing labels.
+- **Cards**: 28-32px outer radius, nested 16-20px inner wells, 1px subtle structure plus the base elevation token. Optional frosted glass: rgba(255,255,255,0.75) with blur(12px). Do not add ticker chips, sparkline chrome, or index codes the host lacks.
+- **Inputs**: 8px-pill wells, 1px slate hairline. Focus uses 1.5px mint or black ring. Input font-size >= 16px.
+- **Navigation**: Restyle existing items as uppercase micro pills or quiet text. Active: mint hairline or mint fill. Do not add catalog names or fake market readouts.
+- **Badges / chips / toggles**: Pills with 1.5px ink or mint borders. On inverted surfaces, use 1px white hairline. If the host has charts, inactive series may use mint outline or diagonal hatch; the active series fills #00E58F; siblings dim to 40% opacity.
 
-
-8. INTERACTION & FEEDBACK RULES
---------------------------------------------------------------------------------
-• Button States (Pill Action Modules):
-  - Default:                      White fill, 1.5px #0A0B0D border, black text + circular icon bubble
-  - Hover:                        Invert target circle; arrow rotates 45° on axis; scale 1.02x (`cubic-bezier(0.16, 1, 0.3, 1)`)
-  - Active / Pressed:             Scale 0.98x; slight background tint #F0F2F5
-
-• Chart & Metric Micro-Interactions:
-  - Chart Bars:                   Inactive bars = diagonal hatch / mint-outline; Active = solid #00E58F fill
-  - Hover Focus:                  Active bar reveals floating tooltip with monospaced value; siblings dim to 40% opacity
-  - Transition Curve:             `transition: all 200ms cubic-bezier(0.2, 0, 0, 1)`
-================================================================================
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No purple neon, crypto-grid backgrounds, or glassmorphism glow bloom.
+- No sharp 0px brutalist cards; keep large clay radii.
+- No heavy drop shadows that overpower the 1px structural border.
+- No gradient text.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ========================================================================

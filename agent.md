@@ -8,9 +8,9 @@
 
 ## 1. Core Architecture & Philosophy
 
-1. **Every page is dual-purpose**:
-   - **For Humans**: It is a fully interactive, living, "vibe coded" showcase celebrating a singular, cohesive design aesthetic.
-   - **For AI Agents**: It is a machine-readable token vault. It provides instant copy/download access to the exact Markdown design prompt used to replicate that visual style in any codebase.
+1. **Every page is dual-purpose — but the two halves have different jobs**:
+   - **For Humans (the HTML page)**: It is a fully interactive, living, "vibe coded" showcase celebrating a singular, cohesive design aesthetic. Theatrical copy, fake telemetry, sample industry stories, and decorative meta are allowed **on the showcase page only**.
+   - **For AI Agents (the Style Tile Markdown)**: It is a machine-readable **visual skin**. It is copied into other products. It must describe construction (color, type, geometry, motion) and must **never** dictate, invent, or replace the host site's content.
 
 2. **Self-Contained & Zero-Build**:
    - Each design page lives as an individual HTML file inside the `Designs/` folder: `Designs/<design-slug>.html` (e.g. `Designs/cyber-terminal.html`, `Designs/editorial-brutalist.html`, `Designs/swiss-international.html`).
@@ -18,11 +18,16 @@
    - Google Fonts may be imported via `<link>` or `@import`.
    - SVG icons should be inline or standard monoline glyphs.
 
-3. **Content Speaks About the Design**:
-   - The design page is not a generic dummy page. Its written copy, typography specimens, color swatches, component archetypes, and interactive demos must explicitly **explain, demonstrate, and celebrate the design philosophy itself**.
-   - The **Main `<h1>` Display Heading** must be the exact **Name of the Design**.
+3. **Showcase page content speaks about the design; the Markdown does not**:
+   - The **HTML design page** is not a generic dummy page. Its written copy, typography specimens, color swatches, component archetypes, and interactive demos must explicitly **explain, demonstrate, and celebrate the design philosophy itself**.
+   - The **Main `<h1>` Display Heading** on the showcase page must be the exact **Name of the Design**.
+   - The **Style Tile Markdown** (`<script id="style-tile-markdown">`) is the opposite: it is a transferable visual language. It must not contain sample headlines, dummy nav, telemetry strings, ISO codes, industry stories, or "use it for [product type]" instructions. Those leak into client sites when an agent pastes the tile.
 
-4. **Mandatory Live Preview on Catalog Cards**:
+4. **Split of concerns (do not collapse these)**:
+   - The catalog name (`TILE-00X`, `System 07 // …`, a fictional brand) is **museum-label metadata**. It lives in the catalog card, the showcase `<h1>`, and the header title block.
+   - It must **not** appear as required UI copy in the Markdown prompt. Agents applying the tile to a real site must restyle existing chrome, not print the tile's name in the header.
+
+5. **Mandatory Live Preview on Catalog Cards**:
    - When a design page `Designs/<design-slug>.html` is published, its corresponding card in the main catalog (`index.html`) **MUST render a live, scaled 16:9 preview iframe of the actual design page** instead of a placeholder wireframe.
    - This ensures users and agents immediately see the true rendered typography, colors, borders, and vibe directly on the catalog grid.
 
@@ -186,17 +191,66 @@ When `hasPage: true`, `app.js` renders the clean live 16:9 preview component:
 
 ## 4. Standard Style Tile Markdown Schema
 
-When writing the Style Tile Markdown (both for embedding in the page script and for downloading), use this exact structural schema:
+The Style Tile Markdown is a **visual-language prompt**. A professional pastes it into an AI and says "restyle my existing site with this." If the Markdown names a fake product, lists sample headlines, or describes "telemetry" chrome, the AI will inject that copy into a real interface. That is a failure of the tile.
+
+### 4.1 What the Markdown is allowed to specify
+- Color tokens, type stacks and scale, radii, shadows, borders, spacing, motion, icon stroke language.
+- How **existing** buttons, cards, inputs, and nav should *look*.
+- Visual anti-patterns (no gaussian shadows, no purple neon, no pills, etc.).
+
+### 4.2 What the Markdown is forbidden to specify
+- Sample UI copy, dummy labels, example headlines, pangrams-as-content.
+- Thematic chrome the host site does not already have: `TELEMETRY`, `ISO: 0800_RAW`, `FREQ: 144.2 HZ`, issue codes, fake clocks, catalog tile IDs, "System 07" locks, decorative status readouts.
+- Industry or product use-cases ("use it for veterinary sites / CAD consoles / healthtech / eco logistics"). Visual rules must transfer to a bakery, a bank, or a docs site without rewriting the business.
+- Instructions to rename the product, change the information architecture, or add mascots/watermarks/system codes.
+- The catalog title as required UI text. "Healthy Pets, Happy Hearts" and "CryptoVista" are showcase names, not brands to stamp on a client.
+
+### 4.3 Title line
+Lead with a **clean visual-language name** (construction), not a fictional product or "System XX" code.
+
+```
+Visual language: Monolithic Hyper-Editorial
+Construction: carbon slabs • Swiss archival serif • 0px geometry • 1-bit offsets
+```
+
+Not: `Aesthetic: System 07 // Monolithic Hyper-Editorial • Industrial Telemetry • High-Frequency Physics`
+
+The showcase page may still use the theatrical catalog name in its `<h1>` and header. The Markdown must not treat that name as copy to insert.
+
+### 4.4 Visual statement (section 1)
+2–4 sentences of **construction only**: materials, contrast, type voice, geometry, motion. No "ideal product use cases." No emotional fiction that implies new copy ("a study in archival isolation").
+
+### 4.5 Component skin (section 6)
+Describe visual treatment of the host's existing components. Always say, in effect: use the host's existing labels. Never give example strings (`"Book Now"`, `"Skip the Hold Music."`, `[ TELEMETRY ]`).
+
+### 4.6 Required schema
+
+When writing the Style Tile Markdown (both for embedding in the page script and for downloading), use this exact structural schema. Section **0 is mandatory** and must appear first after the title.
 
 ````markdown
 ================================================================================
-  Aesthetic: [Design Name] • [Sub-genre] • [Atmosphere Keywords]
+  Visual language: [Clean aesthetic name — no fake product, no system code]
+  Construction: [3–6 visual keywords: materials • geometry • type • palette energy]
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-[2-3 sentences explaining the essence, emotional resonance, and ideal product use cases for this design language.]
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+[2–4 sentences of visual construction only: surfaces, contrast, type voice, radii, shadows, motion. No industries. No sample strings.]
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
@@ -264,18 +318,18 @@ When writing the Style Tile Markdown (both for embedding in the page script and 
 --divider-style:      ...;
 
 /* -----------------------------------------------------------------------------
- * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-- **Buttons**: [Describe hover states, active transforms, shadows, radii]
-- **Cards**: [Describe background surfaces, border styling, padding scales]
-- **Inputs**: [Describe borders, focus states, placeholder colors]
-- **Navigation**: [Describe header styling, active links, backdrop blur or borders]
+- **Buttons**: [Fill, radius, border, hover, active. Use the host's existing labels.]
+- **Cards**: [Surface, border, padding, elevation. Do not add index codes or fake meta.]
+- **Inputs**: [Wells, borders, focus. Font-size at least 16px.]
+- **Navigation**: [Restyle existing items. Do not add catalog codes, fake clocks, or status readouts.]
 
 /* -----------------------------------------------------------------------------
- * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- [Specify patterns that ruin this specific aesthetic]
-- [e.g. No gradient text, no generic purple neon, no floating unbordered cards, etc.]
+- [Visual anti-patterns that ruin this specific aesthetic]
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
 ````
 
 ---
@@ -308,6 +362,7 @@ Every design page created in `Designs/<slug>.html` must render the following ric
 
 6. **Style Tile Prompt Code Drawer**:
    - An accordion or visible code block containing the full Markdown Style Tile with a 1-click copy button, allowing agents to copy directly from the bottom of the page as well.
+   - Populate it from `<script id="style-tile-markdown">` at runtime. Do **not** hardcode a second copy of the spec in the drawer — those copies go stale and leak old showcase copy into agent prompts.
 
 ---
 
@@ -351,12 +406,17 @@ When adding a new design:
 - [ ] Create `Designs/<design-slug>.html` following all rules in this document.
 - [ ] Link `Designs/design-page-mobile.css` and add page-specific `@media (max-width: 768px)` rules so the design is mobile-friendly.
 - [ ] Ensure all 3 header buttons (`Preview`, `Copy Style Tile`, `Download Style Tile`) work seamlessly on both desktop and mobile.
-- [ ] Embed the exact Markdown in `<script id="style-tile-markdown" type="text/markdown">`.
+- [ ] Embed the Style Tile Markdown in `<script id="style-tile-markdown" type="text/markdown">`. The HTML script tag is the source of truth (`app.js` `markdownSpec` may be `null` and will be fetched from the page).
+- [ ] Markdown content-safety (Section 4) — a professional must be able to paste this onto an unrelated product:
+  - [ ] Section 0 Application Contract is present verbatim.
+  - [ ] Title is a clean visual-language name, not a fictional product or `System XX` code.
+  - [ ] Visual statement has no industry use-cases and no sample headlines.
+  - [ ] Component skin has no example labels (`TELEMETRY`, `Book Now`, ISO/FREQ/MODE strings, etc.).
+  - [ ] Forbidden list includes: never inject this tile's name, construction tags, or showcase copy into the host interface.
 - [ ] Update `app.js` `STYLE_TILES_DATA`:
   - [ ] Set `theme: "Dark" | "Light" | "Dark/Light"`.
   - [ ] Set exactly one `vibeBadge` using the classification guide in Section 3 (judge construction, not marketing copy). Set `categories` to only the matching slug. Set the page header `.design-vibe-tag` to that same official string.
   - [ ] Set `hasPage: true` to activate the live 16:9 scaled design preview iframe.
-  - [ ] Include the complete Markdown Style Tile in `markdownSpec`.
 - [ ] Verify that the live 16:9 Design Page Preview displays and scales cleanly on the catalog card in `index.html` (testing Grid, Compact, and Editorial Spread views).
 - [ ] Test at phone (~390px), tablet (~768px), and desktop: no horizontal overflow, stacked layouts, readable type, and working header actions.
 - [ ] Test color contrast and keyboard accessibility.

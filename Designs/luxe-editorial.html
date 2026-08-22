@@ -1892,24 +1892,40 @@
 
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Luxe Editorial • High-Contrast Monochrome Fashion Magazine • Paper, Ink, Frost
+  Visual language: Luxe Editorial
+  Construction: bleached paper • Bodoni display • frost glass • monochrome ink
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Luxe Editorial is a fashion-magazine system: paper-white canvas, giant Bodoni
-watermark type, and frosted glass captions over chiaroscuro photography. Ink is
-absolute (#0A0A0A); secondary copy recedes to cool gray (#6E6E73). Built for
-lookbooks, house journals, archival fashion sites, and high-contrast folios that
-must feel printed — never like a colorful product dashboard.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Bleached paper-white (#FFFFFF) is the stock. Ink is absolute (#0A0A0A);
+secondary copy recedes to cool gray (#6E6E73). Display is Bodoni Moda at
+folio scale with open tracking on the largest size. Photography stages are
+0px; captions sit in frost glass (blur 20-24px, saturate 140%) over a
+rgba(25,25,25,0.45) plate. Controls are black pills. Motion is 280ms
+cubic-bezier(0.16, 1, 0.3, 1). Giant type is scale, not a required underlay word.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
   /* Surfaces & Backgrounds */
-  --bg-canvas:              #FFFFFF; /* Primary application canvas — bleached stock */
+  --bg-canvas:              #FFFFFF; /* Bleached stock */
   --bg-surface:             #FFFFFF; /* Elevated cards and containers */
   --bg-surface-alt:         #F7F7F7; /* Secondary panels, wells, sidebars */
   --bg-surface-dark:        #0A0A0A; /* Inverted containers, photography fields */
@@ -1926,7 +1942,7 @@ must feel printed — never like a colorful product dashboard.
   --accent-secondary:       #6E6E73; /* Supporting visual highlight */
   --accent-tertiary:        #E5E5E5; /* Hairline plates and quiet chips */
 
-  --watermark:              rgba(0, 0, 0, 0.035); /* Giant display underlay */
+  --watermark:              rgba(0, 0, 0, 0.035); /* Giant display underlay tone */
   --glass-overlay:          rgba(25, 25, 25, 0.45); /* Frosted photography caption */
 
   /* Status Tokens */
@@ -1945,7 +1961,7 @@ must feel printed — never like a colorful product dashboard.
 --font-mono:    ui-monospace, "SF Mono", Menlo, monospace;
 
 /* Type Scale */
---text-display: clamp(6rem, 15vw, 14rem) / 0.9  var(--font-display); /* Weight: 700 | Tracking: 0.08em | UPPERCASE watermark */
+--text-display: clamp(6rem, 15vw, 14rem) / 0.9  var(--font-display); /* Weight: 700 | Tracking: 0.08em | UPPERCASE */
 --text-h1:      clamp(2.5rem, 5vw, 4.5rem) / 1.05 var(--font-display); /* Weight: 400 | Tracking: -0.01em | UPPERCASE */
 --text-h2:      clamp(1.5rem, 2.4vw, 2.25rem) / 1.15 var(--font-display); /* Weight: 400 | UPPERCASE */
 --text-h3:      1.25rem  / 1.30  var(--font-display); /* Weight: 400 | UPPERCASE */
@@ -1971,7 +1987,7 @@ must feel printed — never like a colorful product dashboard.
 /* Glass elevation */
 --elevation-glass: blur(24px) saturate(140%);
 --glass-gradient:  linear-gradient(135deg, rgba(255,255,255,0.15), rgba(0,0,0,0.45));
---glass-blur:      blur(20px); /* caption overlay on rgba(25,25,25,0.45) */
+--glass-blur:      blur(20px);
 
 /* Motion */
 --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
@@ -1988,34 +2004,26 @@ must feel printed — never like a colorful product dashboard.
 --divider-style:      1px solid #E5E5E5; /* Magazine rules; no heavy bars */
 
 /* -----------------------------------------------------------------------------
- * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-- **Buttons**: Primary is black pill (#0A0A0A / #FFFFFF). Secondary is transparent
-  outlined (#E5E5E5). Hover on outlined pills: black fill, white text, translateY(-1px)
-  over 280ms cubic-bezier(0.16, 1, 0.3, 1). Ghost stays borderless with 0.04 black wash.
-  Danger remains monochrome — outlined ink, fills on hover. Never orange or cobalt.
-- **Circular buttons**: 44px discs. Hover: scale(1.05) and rgba(0,0,0,0.04) fill.
-  Solid black discs carry inverted play / spark glyphs.
+- **Buttons**: Primary is a black pill (#0A0A0A / #FFFFFF). Secondary is transparent outlined (#E5E5E5). Hover on outlined pills: black fill, white text, translateY(-1px) over 280ms cubic-bezier(0.16, 1, 0.3, 1). Ghost stays borderless with 0.04 black wash. Danger remains monochrome - outlined ink, fills on hover. Never orange or cobalt. Use the host's existing labels.
+- **Circular buttons**: 44px discs. Hover: scale(1.05) and rgba(0,0,0,0.04) fill. Solid black discs carry inverted glyphs the host already uses.
 - **Tabs**: Inactive is quiet gray type. Active tab is a black pill with white text.
-- **Cards**: Photography stages are 0px radius. Glass caption cards are 4px with
-  frost overlay (blur 20–24px, saturate 140%, white 0.2 hairline). No 24px bento.
-- **Inputs**: 4px radius, 1px #E5E5E5, 16px type to prevent iOS zoom. Focus becomes
-  #0A0A0A hairline. Placeholder #C7C7C7.
-- **Navigation**: Frosted white header, hairline #E5E5E5, Inter 12px uppercase 0.08em.
-  Catalog / action pills fill black on hover.
-- **Icons**: 1.25px geometric stroke, hairline arrows, solid black circle badges
-  with inverted play and spark glyphs.
-- **Pagination**: 10px circles; active fills #0A0A0A.
+- **Cards**: Photography stages are 0px radius. Glass caption cards are 4px with frost overlay (blur 20-24px, saturate 140%, white 0.2 hairline). No 24px bento. Do not add index codes or fake meta. Do not invent underlay words.
+- **Inputs**: 4px radius, 1px #E5E5E5, font-size at least 16px. Focus becomes #0A0A0A hairline. Placeholder #C7C7C7.
+- **Navigation**: Frosted white header, hairline #E5E5E5, Inter 12px uppercase 0.08em. Action pills fill black on hover. Do not add catalog codes, fake clocks, or status readouts.
+- **Icons**: 1.25px geometric stroke, hairline arrows, solid black circle badges with inverted glyphs.
+- **Pagination** (if present): 10px circles; active fills #0A0A0A.
 
 /* -----------------------------------------------------------------------------
- * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
 - No color photography palettes, cobalt, safety orange, or candy SaaS accents.
 - No 24px bento radii, chunky soft shadows, or floating unbordered cards.
 - No neon, gradient text, or generic purple glows.
-- No slab serif. Inter is body and UI only — never the hero display face.
-- No dense dashboards, telemetry chrome, or product-metric theater.
-================================================================================
+- No slab serif. Inter is body and UI only - never the hero display face.
+- No dense metric theater, telemetry chrome, or required watermark lettering.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <script>

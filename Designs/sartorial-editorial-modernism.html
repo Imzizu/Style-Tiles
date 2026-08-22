@@ -1475,110 +1475,133 @@
        ========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Sartorial Editorial Modernism • Warm Bone & Oxblood Burgundy
+  Visual language: Sartorial Editorial Modernism
+  Construction: warm bone • oxblood serif • sandstone hairlines • charcoal pills
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Sartorial Editorial Modernism merges high-fashion atelier luxury with architectural 
-precision. Featuring warm bone antique ivory (#F5EFEB), deep oxblood burgundy typography 
-(#5C1013), and floating charcoal noir pills (#12100E), the design relies on deconstructed 
-bento mosaic grids separated by 1px sandstone hairline borders and circular medallion crests.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Warm bone antique ivory (#F5EFEB) is the canvas. Display serif reads in oxblood
+(#5C1013); body ink is espresso (#1F1A17). Layout tiles are 0px architectural
+slabs separated by 1px sandstone hairlines (#DFD7CE). Floating charcoal pills
+(#12100E) are the only fully round geometry. Motion is a 350ms slow luxury ease.
+Circular medallions are graphic containers, not crests that need motto copy.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  --color-canvas-base:       #F5EFEB; /* Warm bone / antique ivory background */
-  --color-canvas-subtle:     #EBE4DC; /* Neutral stone parchment secondary */
-  --color-surface-dark:      #12100E; /* Charcoal noir (pill buttons & dark tiles) */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F5EFEB; /* Warm bone / antique ivory */
+  --bg-surface:             #EBE4DC; /* Neutral stone parchment */
+  --bg-surface-alt:         #EBE4DC; /* Secondary panels */
+  --bg-surface-dark:        #12100E; /* Charcoal noir pills and dark tiles */
 
-  --color-primary-burgundy:  #5C1013; /* Deep oxblood / Sartorial wine red */
-  --color-primary-crimson:   #7A161A; /* Vibrant carmine highlight */
+  /* Inks & Typography */
+  --ink-primary:            #5C1013; /* Oxblood headlines */
+  --ink-secondary:          #1F1A17; /* Espresso body */
+  --ink-muted:              #7D756D; /* Camel-taupe captions */
+  --ink-inverted:           #F8F5F0; /* Soft chalk on dark surfaces */
 
-  --color-text-headline:     #5C1013; /* Dominant burgundy editorial typography */
-  --color-text-body-dark:    #1F1A17; /* High-contrast espresso body text */
-  --color-text-body-muted:   #7D756D; /* Muted camel-taupe for metadata/labels */
-  --color-text-on-dark:      #F8F5F0; /* Soft chalk white for dark surfaces */
+  /* Signature Accents */
+  --accent-primary:         #5C1013; /* Deep oxblood */
+  --accent-primary-hover:   #7A161A; /* Vibrant carmine */
+  --accent-secondary:       #7A161A; /* Carmine highlight */
+  --accent-tertiary:        #12100E; /* Charcoal noir */
 
-  --color-border-hairline:   #DFD7CE; /* Subtle sandstone grid borders */
-  --color-border-on-dark:    rgba(255, 255, 255, 0.18); /* Architectural tile split */
+  /* Status Tokens (in-family) */
+  --status-success:         #5C1013;
+  --status-warning:         #7A161A;
+  --status-danger:          #7A161A;
+  --status-info:            #5C1013;
+
+  /* Extra original tokens */
+  --color-border-hairline:  #DFD7CE;
+  --color-border-on-dark:   rgba(255, 255, 255, 0.18);
+  --surface-tint-overlay:   rgba(18, 16, 14, 0.4);
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
 /* Font Stacks */
---font-editorial-serif: "Fraunces", "Newsreader", "Playfair Display", serif;
---font-modern-sans:     "Inter", "DM Sans", -apple-system, sans-serif;
---font-mono:            "JetBrains Mono", monospace;
+--font-display: "Fraunces", "Newsreader", "Playfair Display", serif;
+--font-sans:    "Inter", "DM Sans", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", monospace;
 
-/* Scale & Hierarchy */
---type-display-brand:   400 clamp(3.5rem, 7vw, 6.5rem) / 0.92 var(--font-editorial-serif); /* -0.03em Tracking */
---type-headline-caps:   700 clamp(1.5rem, 2.8vw, 2.75rem) / 1.08 var(--font-modern-sans);   /* UPPERCASE, -0.01em */
---type-nav-utility:     600 0.6875rem (11px) / 1.2 var(--font-modern-sans);                 /* UPPERCASE, +0.08em */
---type-body-caption:    400 0.8125rem (13px) / 1.45 var(--font-modern-sans);                /* +0.01em Tracking */
-
-/* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
- * -------------------------------------------------------------------------- */
---radius-none:    0px;    /* Architectural layout tiles & imagery */
---radius-sharp:   2px;    /* Crisp card edges */
---radius-micro:   4px;    /* Dropdowns & contextual popovers */
---radius-pill:    9999px; /* Primary CTA buttons & nav badges */
---radius-circle:  50%;    /* Icon anchors, crest emblems & toggles */
+/* Type Scale */
+--text-display: 400 clamp(3.5rem, 7vw, 6.5rem) / 0.92 var(--font-display); /* Tracking: -0.03em */
+--text-h1:      400 clamp(3.5rem, 7vw, 6.5rem) / 0.92 var(--font-display); /* Tracking: -0.03em */
+--text-h2:      700 clamp(1.5rem, 2.8vw, 2.75rem) / 1.08 var(--font-sans); /* UPPERCASE | Tracking: -0.01em */
+--text-h3:      700 clamp(1.5rem, 2.8vw, 2.75rem) / 1.08 var(--font-sans); /* UPPERCASE */
+--text-body:    400 0.8125rem / 1.45 var(--font-sans); /* Tracking: +0.01em | 13px */
+--text-body-sm: 400 0.8125rem / 1.45 var(--font-sans);
+--text-meta:    600 0.6875rem / 1.2 var(--font-sans); /* UPPERCASE | Tracking: +0.08em | 11px */
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SHADOWS & LAYERING)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
---shadow-none:          none;
---shadow-pill-floating: 0 12px 28px -4px rgba(18, 16, 14, 0.45);
---shadow-soft-crest:    0 4px 14px rgba(92, 16, 19, 0.22);
+--radius-default: 0px;    /* Architectural layout tiles and imagery */
+--radius-subtle:  2px;    /* Crisp card edges */
+--radius-micro:   4px;    /* Dropdowns and popovers */
+--radius-pill:    9999px; /* Primary CTAs and nav badges */
+--radius-circle:  50%;    /* Icon anchors and medallions */
+
+/* Elevation & Shadows */
+--shadow-base:           none;
+--shadow-hover:          0 12px 28px -4px rgba(18, 16, 14, 0.45);
+--shadow-active:         0 4px 14px rgba(92, 16, 19, 0.22);
+--shadow-pill-floating:  0 12px 28px -4px rgba(18, 16, 14, 0.45);
+--shadow-soft-crest:     0 4px 14px rgba(92, 16, 19, 0.22);
 --backdrop-blur-overlay: blur(8px);
---surface-tint-overlay:  rgba(18, 16, 14, 0.4);
+
+/* Motion */
+--ease-luxury: cubic-bezier(0.19, 1, 0.22, 1);
+--duration:    350ms;
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (4px Base Unit)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---space-unit:        4px;
---space-tile-gap:    1px;        /* Hairline deconstructed grid spacing */
---space-inset-pill:  10px 22px;  /* Button padding */
---space-section-pad: clamp(2rem, 5vw, 5rem);
-
-- Grid Architecture: Deconstructed Bento Mosaic (1:1 and 2:3 aspect crops)
-- Layout Max Width:  1560px
-
-/* -----------------------------------------------------------------------------
- * 7. BORDERS & DIVIDERS
- * -------------------------------------------------------------------------- */
+--border-core:          1px solid #DFD7CE;
+--border-hairline:      1px solid #DFD7CE;
 --border-grid-hairline: 1px solid #DFD7CE;
 --border-image-split:   1px solid rgba(245, 239, 235, 0.2);
 --border-pill-focus:    1px solid rgba(255, 255, 255, 0.35);
+--divider-style:        1px solid #DFD7CE;
+--space-tile-gap:       1px;
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
---icon-stroke-weight: 1.25px (micro-fine architectural weight)
-- Style:              Minimal, geometric, hairline, monoline
-- Container:          Circular medallion (24px - 32px diameter)
-- Accent Badge:       Filled oxblood circle with chalk-white symbol
+- **Buttons**: Primary controls are charcoal #12100E pills (9999px) with chalk ink #F8F5F0, padding 10px 22px, and floating shadow 0 12px 28px -4px rgba(18, 16, 14, 0.45). Hover: fill #5C1013, ink #F5EFEB, scale(1.03), 350ms cubic-bezier(0.19, 1, 0.22, 1). Use the host's existing labels.
+- **Cards**: 0px (or 2px) mosaic tiles on bone, 1px #DFD7CE joints, no gap beyond the hairline. Hover may use brightness(1.05) contrast(1.02). Do not add index codes or fake meta.
+- **Inputs**: 4px wells, sandstone hairline, font-size at least 16px. Focus uses 1px rgba(255,255,255,0.35) on dark or oxblood on light.
+- **Navigation**: Restyle existing items as 11px uppercase sans at +0.08em. Hover opacity 0.65. Do not add catalog codes, fake clocks, or status readouts.
+- **Icons / medallions**: 1.25px monoline geometry in 24-32px circles. Filled oxblood discs carry chalk-white glyphs. Omit motto rings if they would require new copy.
 
 /* -----------------------------------------------------------------------------
- * 9. INTERACTION & FEEDBACK RULES
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- Duration & Ease: 350ms cubic-bezier(0.19, 1, 0.22, 1) (Slow luxury ease).
-- Hover Pill: Background shifts to #5C1013, color #F5EFEB, scale(1.03).
-- Hover Tile: Filter brightness(1.05) contrast(1.02), cursor crosshair.
-- Hover Link: Opacity 0.65.
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
- * -------------------------------------------------------------------------- */
-- NO rounded 16px bento cards (maintain strict 0px architectural tiles with 9999px floating pills).
-- NO saturated neon blue/purple cyber gradients (maintain sartorial oxblood burgundy and warm bone).
-- NO thick 2px+ structural borders; maintain 1px sandstone hairline discipline.
-================================================================================
+- NO rounded 16px bento cards; tiles stay 0px, pills stay 9999px.
+- NO saturated neon blue/purple cyber gradients.
+- NO thick 2px+ structural borders; keep 1px sandstone hairlines.
+- NO generic SaaS indigo or candy palettes.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ==========================================================================

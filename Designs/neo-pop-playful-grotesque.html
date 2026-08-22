@@ -1433,114 +1433,168 @@
   <!-- RAW EMBEDDED MARKDOWN SPECIFICATION -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  DESIGN SYSTEM & STYLE TILE: NEO-POP PLAYFUL GROTESQUE (TILE-035)
-  Aesthetic: Gen-Z Vibe-Driven, High-Contrast Neo-Brutalist Soft UI
+  Visual language: Neo-Pop Playful Grotesque
+  Construction: cream + charcoal • lime/lilac/bubblegum • 32px soft tiles • Satoshi grotesk • spring motion
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. COLOR ROLES & PALETTE
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+High-contrast cream canvas and charcoal ink, punched with electric lime,
+soft lilac, bubblegum pink, and mint sherbet. Geometry is soft: 32px hero
+tiles, 24px cards, 9999px pills. Type is a single Satoshi grotesk with tight
+negative tracking on display. Shadows are airy floats plus a lime CTA glow.
+Motion is bouncy — cubic-bezier(0.34, 1.56, 0.64, 1) — never corporate-stiff.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Core Brand Surfaces & Solids */
-  --charcoal-void:             #111215; /* hsl(225, 12%, 8%) - Dark Base / Text */
-  --pure-cream:                #F8F9FA; /* hsl(210, 17%, 98%) - Light Base Canvas */
-  --surface-pure:              #FFFFFF; /* hsl(0, 0%, 100%) - Card White */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F8F9FA; /* Pure cream hsl(210, 17%, 98%) */
+  --bg-surface:             #FFFFFF;
+  --bg-surface-alt:         #F8F9FA;
+  --bg-surface-dark:        #111215; /* Charcoal void hsl(225, 12%, 8%) */
 
-  /* Energetic Accents & Chips */
-  --electric-lime:             #E0FA53; /* hsl(70, 94%, 65%) - Hero Energy */
-  --soft-lilac:                #D0B8FF; /* hsl(260, 100%, 86%) - Secondary Chill */
-  --bubblegum-pink:            #FCAFD2; /* hsl(333, 94%, 84%) - Playful / Love */
-  --mint-sherbet:              #C5F7DC; /* hsl(147, 74%, 87%) - Organic / Fresh */
+  --charcoal-void:          #111215;
+  --pure-cream:             #F8F9FA;
+  --surface-pure:           #FFFFFF;
 
-  /* Text & State Neutrals */
-  --neutral-900:               #18181B; /* hsl(240, 6%, 10%) - Headings */
-  --neutral-600:               #71717A; /* hsl(240, 5%, 46%) - Subtext */
-  --neutral-400:               #A1A1AA; /* hsl(240, 5%, 65%) - Muted */
-  --neutral-100:               #E4E4E7; /* hsl(240, 6%, 90%) - Borders */
+  /* Inks & Typography */
+  --ink-primary:            #18181B; /* hsl(240, 6%, 10%) */
+  --ink-secondary:          #71717A; /* hsl(240, 5%, 46%) */
+  --ink-muted:              #A1A1AA; /* hsl(240, 5%, 65%) */
+  --ink-inverted:           #F8F9FA;
 
-  /* Atmospheric Gradients */
-  --aura-mesh-01:              linear-gradient(135deg, #FAD0E6 0%, #D8C3FE 50%, #E8FAA8 100%);
-  --aura-mesh-02:              linear-gradient(180deg, #FFFFFF 0%, #F5F0FF 50%, #F8FDE8 100%);
-  --dark-obsidian:             radial-gradient(circle at center, #27282D 0%, #111215 100%);
+  --neutral-900:            #18181B;
+  --neutral-600:            #71717A;
+  --neutral-400:            #A1A1AA;
+  --neutral-100:            #E4E4E7;
+
+  /* Signature Accents */
+  --accent-primary:         #E0FA53; /* Electric lime hsl(70, 94%, 65%) */
+  --accent-primary-hover:   #E0FA53;
+  --accent-secondary:       #D0B8FF; /* Soft lilac hsl(260, 100%, 86%) */
+  --accent-tertiary:        #FCAFD2; /* Bubblegum hsl(333, 94%, 84%) */
+
+  --electric-lime:          #E0FA53;
+  --soft-lilac:             #D0B8FF;
+  --bubblegum-pink:         #FCAFD2;
+  --mint-sherbet:           #C5F7DC;
+
+  --aura-mesh-01:           linear-gradient(135deg, #FAD0E6 0%, #D8C3FE 50%, #E8FAA8 100%);
+  --aura-mesh-02:           linear-gradient(180deg, #FFFFFF 0%, #F5F0FF 50%, #F8FDE8 100%);
+  --dark-obsidian:          radial-gradient(circle at center, #27282D 0%, #111215 100%);
+
+  /* Status Tokens (mapped from existing pops) */
+  --status-success:         #C5F7DC;
+  --status-warning:         #E0FA53;
+  --status-danger:          #FCAFD2;
+  --status-info:            #D0B8FF;
 }
 
 /* -----------------------------------------------------------------------------
- * 2. TYPOGRAPHY SYSTEM
+ * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-Primary Typeface:              "Satoshi", -apple-system, BlinkMacSystemFont, "Cabinet Grotesk", sans-serif
-Handcrafted Accent:            Doodle/Marker Highlights (Underlines, hand-drawn emphasis marks)
+--font-display: "Satoshi", -apple-system, BlinkMacSystemFont, "Cabinet Grotesk", sans-serif;
+--font-sans:    "Satoshi", -apple-system, BlinkMacSystemFont, "Cabinet Grotesk", sans-serif;
+--font-mono:    ui-monospace, monospace;
 
-[ TYPE SCALE & ROLES ]
-• Display-Hero:                48px | 900 Bold | Line Height: 1.05 | Tracking: -0.03em  (Landing & Hero titles)
-• Heading-1:                   32px | 800 Bold | Line Height: 1.15 | Tracking: -0.025em (Main section headers)
-• Heading-2:                   22px | 700 Bold | Line Height: 1.25 | Tracking: -0.015em (Card / Modal headers)
-• Subheading:                  16px | 600 Semi | Line Height: 1.35 | Tracking: -0.010em (Taglines, pill headers)
-• Body-Lead:                   16px | 400 Reg  | Line Height: 1.50 | Tracking:  0.000em (Primary readable text)
-• Body-Small:                  13px | 500 Med  | Line Height: 1.40 | Tracking: +0.010em (Stats, secondary info)
-• Micro / Pill:                11px | 700 Bold | Line Height: 1.20 | Tracking: +0.030em (Category pills, tags)
+--text-display: 48px / 1.05 var(--font-display); /* Weight 900 | tracking -0.03em */
+--text-h1:      32px / 1.15 var(--font-sans);    /* Weight 800 | tracking -0.025em */
+--text-h2:      22px / 1.25 var(--font-sans);    /* Weight 700 | tracking -0.015em */
+--text-h3:      16px / 1.35 var(--font-sans);    /* Weight 600 | tracking -0.010em */
+--text-body:    16px / 1.50 var(--font-sans);    /* Weight 400 | tracking 0 */
+--text-body-sm: 13px / 1.40 var(--font-sans);    /* Weight 500 | tracking +0.010em */
+--text-meta:    11px / 1.20 var(--font-sans);    /* Weight 700 | tracking +0.030em */
 
-/* -----------------------------------------------------------------------------
- * 3. CORNER GEOMETRY (BORDER RADII)
- * -------------------------------------------------------------------------- */
-• Radius-Pill (9999px):        Buttons, active filters, search bars, floating badges
-• Radius-XL (32px):            Hero modules, primary container cards, viewport wrappers
-• Radius-LG (24px):            Standard interaction cards, content panels
-• Radius-MD (16px):            Icon badges, mini metric cards, status containers
-• Radius-SM (10px):            Small nested elements, micro-indicators, tooltip cards
+/* Optional graphic: marker-style underlines on existing emphasis. Do not add new slogans. */
 
 /* -----------------------------------------------------------------------------
- * 4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
-• Ambient Float:               0px 16px 36px -8px rgba(17, 18, 21, 0.08)
-• Card Surface:                0px 4px 20px -2px rgba(17, 18, 21, 0.04)
-• Pop Accent:                  0px 10px 24px -4px rgba(224, 250, 83, 0.35) [Glow for Lime CTA]
-• Neomorphic Dark:             0px 8px 30px rgba(0, 0, 0, 0.25), inset 0px 1px 1px rgba(255, 255, 255, 0.15)
-• Pixel Overlays:              0px elevation; rely entirely on hard edge contrast & layering.
+--radius-default: 24px;
+--radius-subtle:  16px;
+--radius-pill:    9999px;
+
+--radius-xl: 32px; /* Hero modules, viewport wrappers */
+--radius-lg: 24px; /* Standard cards */
+--radius-md: 16px; /* Icon badges, mini metrics */
+--radius-sm: 10px; /* Nested, tooltips */
+
+--shadow-base:   0px 4px 20px -2px rgba(17, 18, 21, 0.04);
+--shadow-hover:  0px 16px 36px -8px rgba(17, 18, 21, 0.08);
+--shadow-active: 0px 10px 24px -4px rgba(224, 250, 83, 0.35);
+
+--ambient-float:    0px 16px 36px -8px rgba(17, 18, 21, 0.08);
+--card-surface:     0px 4px 20px -2px rgba(17, 18, 21, 0.04);
+--pop-accent:       0px 10px 24px -4px rgba(224, 250, 83, 0.35);
+--neomorphic-dark:  0px 8px 30px rgba(0, 0, 0, 0.25), inset 0px 1px 1px rgba(255, 255, 255, 0.15);
+
+--space-2:  8px;
+--space-3:  12px;
+--space-4:  16px;
+--space-6:  24px;
+--space-8:  32px;
+--space-12: 48px;
+
+--spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+--smooth: cubic-bezier(0.16, 1, 0.3, 1);
+--duration-ui: 200ms; /* 200–280ms; press 120ms */
 
 /* -----------------------------------------------------------------------------
- * 5. SPACING & SPATIAL SCALE (4px / 8px Modular System)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
-• space-2:                     8px   (Tight element separation)
-• space-3:                     12px  (Button inner padding vertical, badge spacing)
-• space-4:                     16px  (Standard inner-card padding, gap in tight grids)
-• space-6:                     24px  (Standard card outer margins, header padding)
-• space-8:                     32px  (Container gutters, section vertical separation)
-• space-12:                    48px  (Hero padding, major module separators)
+--border-core:     1.5px solid #111215;
+--border-hairline: 1px solid #ECECF0;
+--divider-style:   1px solid #ECECF0;
+
+--stroke-badge:     1.5px solid #111215;
+--frosted-rim:      1px solid rgba(255, 255, 255, 0.6);
+--dark-inset-ring:  1.5px solid rgba(255, 255, 255, 0.08);
 
 /* -----------------------------------------------------------------------------
- * 6. BORDERS & DIVIDERS
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-• Crisp Divider:               1px solid #ECECF0 (Neutral Light)
-• Stroke Badge:                1.5px solid #111215 (High-contrast chip border)
-• Frosted Rim:                 1px solid rgba(255, 255, 255, 0.6) (For glass/gradient tiles)
-• Dark Inset Ring:             1.5px solid rgba(255, 255, 255, 0.08) (Inside dark mode modules)
+- **Buttons**: 9999px pills. Primary fill #E0FA53, ink #111215, optional 1.5px charcoal
+  stroke. Hover: scale(1.03) + --pop-accent bloom, 200–280ms --spring. Press: scale(0.95)
+  at 120ms. Use the host's existing labels.
+- **Cards**: 24px standard, 32px hero, fill #FFFFFF, --card-surface shadow, hairline #ECECF0
+  or 1.5px #111215 when a crisp edge is needed. Dark modules use --dark-obsidian plus
+  --neomorphic-dark. Hover: scale(1.03) + shadow bloom. Do not add index codes.
+- **Inputs**: Pill search/fields, font-size >= 16px, cream or white well. Focus ring:
+  3px solid #111215, 2px offset.
+- **Navigation**: Existing items in Satoshi. Hover scale/color only. Do not add catalog
+  codes or clocks.
+- **Badges / chips / toggles**: Pill; rest #E4E4E7 or white with 1.5px #111215; active
+  snaps to a solid accent (lime, lilac, pink, or mint) with ink flip. Icon tiles 44x44
+  rounded squares or pills filled with a solid accent.
+- **Icons**: Rounded monoline 2px + solid playful glyphs. Round caps and joins.
+  Pixel stars, 4-point sparkles, daisies as graphic ornament only — omit if they need
+  new copy to make sense.
+- **Atmosphere**: Optional mesh --aura-mesh-01 / --aura-mesh-02 behind hero plates.
 
 /* -----------------------------------------------------------------------------
- * 7. ICONOGRAPHY & GRAPHIC ACCENTS
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-• Style Hybrid:                Rounded Mono-line (2px uniform stroke) + Solid Playful Glyphs.
-• Pop Accents:                 8-bit Pixelated Stars, retro 4-point Sparkles (✦), Daisy Flowers (✿), Smileys (☺).
-• Stroke Ends:                 Round caps (stroke-linecap="round") and smooth corner joins.
-• Container Tile:              Nested within 44x44px rounded squares or pill shapes filled with solid accents.
-
-/* -----------------------------------------------------------------------------
- * 8. INTERACTION & FEEDBACK RULES
- * -------------------------------------------------------------------------- */
-• Spring Curve:                cubic-bezier(0.34, 1.56, 0.64, 1) [Bouncy, playful tactile feel]
-• Smooth Ease:                 cubic-bezier(0.16, 1, 0.3, 1) [For sheets, fades, expands]
-• Base Duration:               200ms - 280ms
-• Hover State:                 Micro-scale scale(1.03) + slight shadow bloom.
-• Active / Press:              scale(0.95) with snappy 120ms release.
-• Tag Toggle:                  Instant background shift from Neutral Light to Active Solid Accent + text flip.
-• Focus Ring:                  3px solid #111215 with a 2px offset.
-
-/* -----------------------------------------------------------------------------
- * 9. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
- * -------------------------------------------------------------------------- */
-- NO muddy, desaturated gray cards lacking the crisp 1.5px charcoal boundary.
-- NO rigid sharp 0px corners on soft UI tiles (strictly adhere to 32px/24px/pill scale).
-- NO corporate stiff transitions; always retain bouncy spring feedback.
-================================================================================
+- No muddy desaturated gray cards lacking a crisp 1.5px charcoal boundary when contrast is needed.
+- No rigid 0px corners on soft UI tiles (32 / 24 / 16 / 10 / pill).
+- No corporate stiff transitions; keep the bouncy spring curve.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- JAVASCRIPT LOGIC -->

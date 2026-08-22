@@ -2479,193 +2479,179 @@
   <!-- ==========================================================================
        RAW MARKDOWN STYLE TILE DATA EMBED
        ========================================================================== -->
-  <script id="style-tile-markdown" type="text/markdown">================================================================================
-  STYLE TILE // SPECIFICATION SYSTEM: "TACTICAL HYPER-LIGHT" (TILE-030)
-  Aesthetic: High-Performance Esport / Editorial Modernist UI
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Tactical Hyper-Light
+  Construction: aero slate • abyss navy • pulse cyan • 24px media frames • condensed Bebas
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Tactical Hyper-Light is a high-performance design architecture that synthesizes the razor-sharp
-telemetry and velocity of professional esport HUDs with the compositional restraint of editorial modernism.
-Built upon an "Aero Slate" canvas (#F1F5F9) layered beneath deep "Abyss Navy" structural anchors (#051226),
-the system deploys electric "Pulse Cyan" (#00F0FF) as high-energy kinetic vector ink.
-With 24px rounded media frames, segmented compass rulers, floating L4 draggable tokens,
-geometric micro-star ratings, and crisp L0–L5 depth stacking, it creates an elite, competitive,
-and tactile digital atmosphere engineered for gaming platforms, telemetry dashboards, sports media,
-and high-velocity developer tools.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
 /* -----------------------------------------------------------------------------
- * 2. COLOR ROLES & TOKEN PALETTE
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A high-key aero-slate canvas (#F1F5F9) anchored by abyss-navy structure (#051226)
+and a single pulse-cyan vector (#00F0FF). Display type is condensed uppercase
+Bebas; body is a geometric sans. Media frames sit at 24px radius with a top-to-bottom
+navy vignette; action controls are cyan pills with phosphor glow. Depth is a crisp
+L0–L5 stack of slate, ghost watermarks, cards, and luminescent floats — not muddy gray.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Surfaces & Substrates */
-  --bg-canvas:              #F1F5F9; /* "Aero Slate" — Primary page background */
-  --bg-ghost:               #E2E8F0; /* "Ghost Slate" — Oversized background watermarks */
-  --bg-surface-dark:        #051226; /* "Abyss Navy" — Navigation bars, input backgrounds */
-  --bg-surface-elevated:    #0A1D38; /* "Deep Void" — Card overlays, active wells */
-  --bg-surface-white:       #FFFFFF; /* "Pure Light" — High-contrast container surface */
-  --bg-surface-alt:         #E8EEF5; /* Recessed tactical wells & telemetry strips */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F1F5F9; /* Aero slate */
+  --bg-surface:             #FFFFFF; /* High-contrast light plate */
+  --bg-surface-alt:         #E8EEF5; /* Recessed wells */
+  --bg-surface-dark:        #051226; /* Abyss navy */
 
-  /* Kinetic Brand Accents */
-  --brand-electric:         #00F0FF; /* "Pulse Cyan" — Primary CTA, drag pills, reticles */
-  --brand-electric-hover:   #33F3FF; /* "Hyper Cyan" — Hover & active glow states */
-  --brand-electric-glow:    rgba(0, 240, 255, 0.45); /* Phosphor luminescent spread */
+  --bg-ghost:               #E2E8F0; /* Ghost slate */
+  --bg-surface-elevated:    #0A1D38; /* Deep void overlays */
+  --bg-surface-white:       #FFFFFF;
 
   /* Inks & Typography */
-  --text-primary:           #051226; /* "Abyss Navy" — Hero headlines, high-emphasis text */
-  --text-secondary:         #334155; /* "Slate Core" — Body copy, descriptions */
-  --text-inverse:           #FFFFFF; /* "Pure White" — Text on dark containers & imagery */
-  --text-muted:             #64748B; /* "Muted Steel" — Input placeholders, metadata */
+  --ink-primary:            #051226; /* Abyss navy headlines */
+  --ink-secondary:          #334155; /* Slate body */
+  --ink-muted:              #64748B; /* Muted steel */
+  --ink-inverted:           #FFFFFF;
 
-  /* Semantic & Ratings */
-  --semantic-success:       #00B67A; /* "Trust Green" — Verification badges & Trustpilot */
-  --semantic-warning:       #FF5A00; /* "Review Amber" — Star ratings & review badges */
-  --semantic-danger:        #FF2A55; /* "Apex Red" — Critical alerts & elimination flags */
+  --text-primary:           #051226;
+  --text-secondary:         #334155;
+  --text-inverse:           #FFFFFF;
+  --text-muted:             #64748B;
 
-  /* Tactical Borders & Dividers */
-  --border-subtle:          rgba(5, 18, 38, 0.08); /* "Navy Hairline" — Structural dividers */
-  --border-dark:            #051226;               /* Solid 1px flush container border */
-  --border-electric:        rgba(0, 240, 255, 0.35);/* Cyan vector guide outline */
+  /* Signature Accents */
+  --accent-primary:         #00F0FF; /* Pulse cyan */
+  --accent-primary-hover:   #33F3FF; /* Hyper cyan */
+  --accent-secondary:       #051226;
+  --accent-tertiary:        #00B67A;
+
+  --brand-electric:         #00F0FF;
+  --brand-electric-hover:   #33F3FF;
+  --brand-electric-glow:    rgba(0, 240, 255, 0.45);
+
+  /* Status Tokens */
+  --status-success:         #00B67A;
+  --status-warning:         #FF5A00;
+  --status-danger:          #FF2A55;
+  --status-info:            #00F0FF;
+
+  /* Borders */
+  --border-subtle:          rgba(5, 18, 38, 0.08);
+  --border-dark:            #051226;
+  --border-electric:        rgba(0, 240, 255, 0.35);
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Stacks */
---font-display:             "Bebas Neue", "Space Grotesk", sans-serif;
---font-sans:                "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
---font-hud:                 "Space Grotesk", "Plus Jakarta Sans", sans-serif;
---font-mono:                "JetBrains Mono", "Chivo Mono", monospace;
+--font-display: "Bebas Neue", "Space Grotesk", sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-hud:     "Space Grotesk", "Plus Jakarta Sans", sans-serif;
+--font-mono:    "JetBrains Mono", "Chivo Mono", monospace;
 
-/* Type Scale Ladder */
-• Display-XL:
-    Font Family:            var(--font-display)
-    Weight:                 900
-    Size:                   clamp(4.0rem, 7.5vw, 6.0rem) (72px - 96px)
-    Line-Height:            0.92
-    Letter-Spacing:         +0.02em
-    Transform:              UPPERCASE
+--text-display: clamp(4.0rem, 7.5vw, 6.0rem) / 0.92 var(--font-display); /* Weight 900 | tracking +0.02em | UPPERCASE | 72–96px */
+--text-h1:      clamp(2.25rem, 4.0vw, 3.0rem) / 1.00 var(--font-display); /* Weight 800 | tracking +0.01em | UPPERCASE | 36–48px */
+--text-h2:      1.25rem / 1.40 var(--font-sans); /* Weight 600 | tracking -0.01em | 18–20px lead */
+--text-h3:      0.875rem / 1.20 var(--font-hud); /* Weight 700 | tracking +0.06em | UPPERCASE | 13–14px */
+--text-body:    1.0rem / 1.50 var(--font-sans);  /* Weight 400 | 15–16px */
+--text-body-sm: 0.9375rem / 1.50 var(--font-sans);
+--text-meta:    0.6875rem / 1.00 var(--font-mono); /* Weight 700 | tracking +0.12em | UPPERCASE | 10–11px */
 
-• Display-MD:
-    Font Family:            var(--font-display)
-    Weight:                 800
-    Size:                   clamp(2.25rem, 4.0vw, 3.0rem) (36px - 48px)
-    Line-Height:            1.00
-    Letter-Spacing:         +0.01em
-    Transform:              UPPERCASE
-
-• Nav Link:
-    Font Family:            var(--font-hud)
-    Weight:                 700
-    Size:                   13px – 14px
-    Line-Height:            1.20
-    Letter-Spacing:         +0.06em
-    Transform:              UPPERCASE
-
-• Body-Lead:
-    Font Family:            var(--font-sans)
-    Weight:                 600
-    Size:                   18px – 20px
-    Line-Height:            1.40
-    Letter-Spacing:         -0.01em
-    Transform:              Sentence
-
-• Body-Base:
-    Font Family:            var(--font-sans)
-    Weight:                 400
-    Size:                   15px – 16px
-    Line-Height:            1.50
-    Letter-Spacing:         +0.00em
-    Transform:              Sentence
-
-• HUD / Ticks:
-    Font Family:            var(--font-mono)
-    Weight:                 700
-    Size:                   10px – 11px
-    Line-Height:            1.00
-    Letter-Spacing:         +0.12em
-    Transform:              UPPERCASE
-
-• Button / Pill:
-    Font Family:            var(--font-display)
-    Weight:                 700
-    Size:                   14px – 16px
-    Line-Height:            1.00
-    Letter-Spacing:         +0.08em
-    Transform:              UPPERCASE
+--text-button:  0.875rem / 1.00 var(--font-display); /* Weight 700 | tracking +0.08em | UPPERCASE | 14–16px */
 
 /* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
---radius-xs:                2px;    /* Technical compass ticks, sub-pixel indicators */
---radius-sm:                4px;    /* Search button append, tag chips */
---radius-md:                8px;    /* Input containers, dropdown menus */
---radius-xl:                24px;   /* Primary media cards, showcase carousel frames */
---radius-pill:              9999px; /* Floating drag token, primary action buttons, badges */
+--radius-default: 24px; /* Primary media cards */
+--radius-subtle:  8px;  /* Inputs, menus */
+--radius-pill:    9999px;
+
+--radius-xs: 2px;
+--radius-sm: 4px;
+--radius-md: 8px;
+--radius-xl: 24px;
+
+--shadow-base:   0 16px 36px -12px rgba(5, 18, 38, 0.25);
+--shadow-hover:  0 0 32px rgba(0, 240, 255, 0.45), 0 8px 16px rgba(5, 18, 38, 0.20);
+--shadow-active: 0 0 24px rgba(0, 240, 255, 0.45), 0 8px 16px rgba(5, 18, 38, 0.20);
+
+/* Depth stack (visual layers, not required chrome):
+   L0 z-0  solid #F1F5F9
+   L1 z-1  oversized display letterforms at 4% opacity #051226 (graphic watermark only; do not invent words)
+   L2 z-10 layout, text, inputs
+   L3 z-20 cards: 0 16px 36px -12px rgba(5, 18, 38, 0.25) + top-to-bottom dark vignette on media
+   L4 z-30 cyan phosphor float: 0 0 24px rgba(0, 240, 255, 0.45), 0 8px 16px rgba(5, 18, 38, 0.20)
+   L5 z-50 modals, sticky headers, tooltips */
+
+--space-2:  4px;
+--space-4:  8px;
+--space-6:  12px;
+--space-8:  16px;
+--space-12: 24px;
+--space-16: 32px;
+--space-24: 48px;
+--space-32: 64px;
+
+--ease-snap: cubic-bezier(0.16, 1, 0.3, 1);
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION, DEPTH & LAYERING
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
-• L0 (Base Canvas):         z-0   Solid #F1F5F9 canvas.
-• L1 (Watermark):           z-1   Oversized Display typography, repeated, 4% opacity navy (#051226).
-• L2 (Content):             z-10  Standard layout elements, text blocks, inputs.
-• L3 (Cards):               z-20  box-shadow: 0 16px 36px -12px rgba(5, 18, 38, 0.25);
-                                  Card image with top-to-bottom dark gradient vignette.
-• L4 (Floating Token):      z-30  box-shadow: 0 0 24px rgba(0, 240, 255, 0.45),
-                                              0 8px 16px rgba(5, 18, 38, 0.20);
-• L5 (Overlays & Headers):  z-50  Modals, navigation sticky headers, global tooltips.
+--border-core:     1px solid #051226;
+--border-hairline: 1px solid rgba(5, 18, 38, 0.08);
+--divider-style:   1px solid rgba(5, 18, 38, 0.08);
+
+/* Optional graphic: 1px hairline with 2px x 6px tick marks as a ruler motif.
+   Do not add compass letters or coordinate labels the host does not already have.
+   A center chevron caret may sit as a purely geometric gravity mark. */
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (8-Point Fluid Spatial Metric)
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
---space-2:                  4px;    /* Icon-to-text spacing, HUD tick intervals */
---space-4:                  8px;    /* Tight internal chip padding, rating star gaps */
---space-6:                  12px;   /* Standard form element padding (inline) */
---space-8:                  16px;   /* Card row gaps, input field block padding */
---space-12:                 24px;   /* Section intra-item margins */
---space-16:                 32px;   /* Horizontal card carousel gutters */
---space-24:                 48px;   /* Hero container vertical stacking rhythm */
---space-32:                 64px+;  /* Macro section separation blocks */
+- **Buttons**: Pill 9999px, Bebas/display 14–16px uppercase +0.08em. Primary fill #00F0FF,
+  ink #051226. Hover: #33F3FF, glow spread 24px to 32px. Pressed: scale(0.95).
+  Search/append controls: 4px radius cyan block if the host already has a search action.
+  Use the host's existing labels.
+- **Cards**: 24px radius media frames, white or navy wells, L3 shadow, dark gradient vignette
+  on imagery. Hover: scale(1.03), brightness +10%, 300ms cubic-bezier(0.16, 1, 0.3, 1).
+  Do not add drag tokens, HUD readouts, or index codes the host lacks. If a control already
+  floats, skin it with L4 cyan phosphor — do not invent a new draggable token.
+- **Inputs**: 8px radius (or navy pill shell), 1px solid #051226, font-size >= 16px,
+  placeholder #64748B. Focus-visible: 2px solid #00F0FF, offset 2px.
+- **Navigation**: Existing items in Space Grotesk 13–14px / 700 / +0.06em / uppercase,
+  on abyss navy or aero slate. Do not add clocks, frequencies, or status readouts.
+- **Badges / chips**: 4px or 9999px; cyan or navy. Geometric micro-stars for ratings only
+  if the host already shows ratings (solid fill, 4px kerning).
+- **Icons**: Geometric, 2.0px stroke, sharp corners with slight optical rounding.
+  Sizes 16 / 20 / 24px.
+- **Idle motion**: Subtle horizontal parallax on pointer X, if motion is already present.
 
 /* -----------------------------------------------------------------------------
- * 7. BORDERS & TACTICAL DIVIDERS
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-• Input Shell:              Solid 1px #051226 flush border with integrated action button.
-• Compass/HUD Ruler:        1px hairline border with segmented tick markers (2px x 6px)
-                            and coordinate labels ("N", "NE", "E", "SE", "S") positioned on macro scale.
-• Section Directional:      Center-aligned geometric chevron caret (▼) acting as visual gravity anchor
-                            toward interactive showcase components.
-
-/* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
- * -------------------------------------------------------------------------- */
-• Style:                    Geometric, 2.0px stroke, sharp corners with subtle optical rounding.
-• Search Icon:              Minimalist line-drawn magnifying glass centered in Cyan block.
-• Tactical / Nav:           Dual-direction chevrons (‹ DRAG ›) encased in circular pills.
-• Ratings:                  Solid filled geometric micro-stars with uniform 4px kerning.
-• Scale:                    16px (micro UI), 20px (inputs), 24px (action buttons).
-
-/* -----------------------------------------------------------------------------
- * 9. INTERACTION & FEEDBACK RULES
- * -------------------------------------------------------------------------- */
-• Hover Media Cards:        Scale 1.03x; brightness +10%; transition cubic-bezier(0.16, 1, 0.3, 1) 300ms.
-• Hover Cyan Actions:       Background #33F3FF; box-shadow glow expands from 24px to 32px spread.
-• Focus-Visible Inputs:     2px solid #00F0FF outline offset by 2px.
-• Active / Drag Pill:       Cursor shifts to 'grabbing'; scale compresses to 0.95x; subtle radial ripple emitted.
-• Idle Motion:              Continuous subtle horizontal parallax glide on mouse movement across X-axis.
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
- * -------------------------------------------------------------------------- */
-- NO generic purple or violet gradients on dark themes.
-- NO unbordered floating cards lacking the sharp 24px radius vignette or solid structure.
-- NO headline biscuit pills with pulsing dots placed above the main headline.
-- NO icon-stuffed bento boxes with arbitrary symbols.
-- NO muddy, low-contrast grayscale without the stark #051226 / #00F0FF / #F1F5F9 tension.
-- NO blurry uncalibrated drop shadows; strictly L3/L4 luminescent phosphor spreads.
-================================================================================</script>
+- No generic purple or violet gradients on dark themes.
+- No unbordered floating cards lacking the 24px radius or L3 vignette structure.
+- No biscuit pills with pulsing dots above the main heading.
+- No icon-stuffed bento boxes with arbitrary symbols.
+- No muddy low-contrast grayscale without the #051226 / #00F0FF / #F1F5F9 tension.
+- No blurry uncalibrated drop shadows; use L3 navy occlusion or L4 cyan phosphor.
+- Do not mandate esport HUD chrome, compass legends, or floating drag tokens as content.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
 
   <!-- ==========================================================================
        JAVASCRIPT LOGIC & INTERACTION ENGINE

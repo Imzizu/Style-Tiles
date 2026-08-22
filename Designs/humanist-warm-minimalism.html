@@ -2141,136 +2141,166 @@
        ========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Humanist Warm-Minimalism • Editorial Tech • Luminous Oat & Honey Caramel
+  Visual language: Humanist Warm-Minimalism
+  Construction: luminous oat • honey caramel • 28px bento • Plus Jakarta Sans • soft ambient shadow
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Humanist Warm-Minimalism fuses the serene, tactile warmth of linen and oat paper 
-with the crisp precision of contemporary editorial technology. Built on generous 
-spatial air, 28px softened bento geometry, and radiant honey-caramel accents (#CC7827), 
-it delivers an elevated reading and product experience that feels warm, calm, and 
-intellectually refined. Ideal for modern knowledge platforms, AI research workspaces, 
-curated publishing, and human-centered SaaS tools.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Luminous oat-linen canvas, pure white plates, and a single honey-caramel accent
+against pitch-obsidian ink. Display and UI share Plus Jakarta Sans with very
+tight display tracking. Geometry is softened bento: 28px cards, 16px nested,
+9999px pills. Elevation is ultra-soft warm occlusion, not hard outlines.
+Generous air (section gaps ~80px) keeps the field calm.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Canvas & Structural Backgrounds */
-  --bg-app:                #F7F2EA; /* Warm oat / luminous linen canvas */
-  --bg-surface-card:       #FFFFFF; /* Pure clean card surface */
-  --bg-surface-subtle:     #EFE9DF; /* Muted pill / toggle container */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F7F2EA; /* Warm oat / luminous linen */
+  --bg-surface:             #FFFFFF;
+  --bg-surface-alt:         #EFE9DF; /* Muted pill / toggle well */
+  --bg-surface-dark:        #111111;
 
-  /* Brand & Primary Accents */
-  --accent-caramel:        #CC7827; /* Rich honey-amber / CTA primary */
-  --accent-caramel-hover:  #B8691E; /* Deepened caramel state */
-  --accent-caramel-soft:   rgba(204, 120, 39, 0.15); /* Tinted fills & badge wash */
+  --bg-app:                 #F7F2EA;
+  --bg-surface-card:        #FFFFFF;
+  --bg-surface-subtle:      #EFE9DF;
 
-  /* Text & Typographic Anchors */
-  --text-primary:          #111111; /* Pitch obsidian / headline punch */
-  --text-secondary:        #65625D; /* Muted warm-slate body */
-  --text-tertiary:         #9D988F; /* Microcopy / timestamps */
-  --text-inverse:          #FFFFFF; /* Pure white on dark / caramel surfaces */
+  /* Inks & Typography */
+  --ink-primary:            #111111;
+  --ink-secondary:          #65625D; /* Warm-slate body */
+  --ink-muted:              #9D988F; /* Microcopy */
+  --ink-inverted:           #FFFFFF;
 
-  /* Utility & Status Indicators */
-  --trend-positive:        #1FA24C; /* Crisp emerald metric indicator */
-  --track-pattern-base:    #E9E3D8; /* Striped / hatched progress track */
+  /* Signature Accents */
+  --accent-primary:         #CC7827; /* Honey-amber */
+  --accent-primary-hover:   #B8691E;
+  --accent-secondary:       rgba(204, 120, 39, 0.15); /* Caramel wash */
+  --accent-tertiary:        #1FA24C; /* Emerald metric */
+
+  --accent-caramel:         #CC7827;
+  --accent-caramel-hover:   #B8691E;
+  --accent-caramel-soft:    rgba(204, 120, 39, 0.15);
+
+  /* Status Tokens */
+  --status-success:         #1FA24C;
+  --status-warning:         #CC7827;
+  --status-danger:          #111111;
+  --status-info:            #CC7827;
+
+  --trend-positive:         #1FA24C;
+  --track-pattern-base:     #E9E3D8;
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Stacks */
 --font-display: "Plus Jakarta Sans", "Syne", system-ui, -apple-system, sans-serif;
 --font-sans:    "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
 --font-mono:    "JetBrains Mono", "SF Mono", monospace;
 
-/* Type Scale & Hierarchy */
---type-display-hero: 800 clamp(2.75rem, 7vw, 6.0rem) / 0.92 var(--font-display); /* Tracking: -0.045em */
---type-card-heading: 700 1.25rem / 1.20 var(--font-display);                      /* Tracking: -0.02em (20px) */
---type-stat-number:  800 2.00rem / 1.10 var(--font-display);                      /* Tracking: -0.03em (32px) */
---type-body-regular: 500 0.9375rem / 1.45 var(--font-sans);                       /* Tracking: -0.01em (15px) */
---type-body-caption: 400 0.8125rem / 1.40 var(--font-sans);                       /* Tracking: 0em (13px) */
---type-micro-action: 700 0.6875rem / 1.00 var(--font-sans);                       /* Tracking: 0.08em; UPPERCASE (11px) */
+--text-display: clamp(2.75rem, 7vw, 6.0rem) / 0.92 var(--font-display); /* Weight 800 | tracking -0.045em */
+--text-h1:      clamp(2.75rem, 7vw, 6.0rem) / 0.92 var(--font-display);
+--text-h2:      1.25rem / 1.20 var(--font-display); /* Weight 700 | tracking -0.02em | 20px */
+--text-h3:      2.00rem / 1.10 var(--font-display); /* Weight 800 | tracking -0.03em | 32px figures if host has them */
+--text-body:    0.9375rem / 1.45 var(--font-sans);  /* Weight 500 | tracking -0.01em | 15px */
+--text-body-sm: 0.8125rem / 1.40 var(--font-sans);  /* Weight 400 | 13px */
+--text-meta:    0.6875rem / 1.00 var(--font-sans);  /* Weight 700 | tracking 0.08em | UPPERCASE | 11px */
 
 /* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
---radius-pill:             9999px; /* Badges, CTAs, Nav segments, Hero media-cutouts */
---radius-card:             28px;   /* Data tiles and interactive surface panels */
---radius-nested:           16px;   /* Inner containers and nested elements */
---radius-avatar:           50%;    /* Stacked user avatars & icon containers */
+--radius-default: 28px;
+--radius-subtle:  16px;
+--radius-pill:    9999px;
+--radius-avatar:  50%;
+
+--radius-card:   28px;
+--radius-nested: 16px;
+
+--shadow-base:   0 14px 40px -12px rgba(133, 114, 91, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+--shadow-hover:  0 18px 48px -8px rgba(17, 17, 17, 0.22);
+--shadow-active: 0 14px 40px -12px rgba(133, 114, 91, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+
+--elevation-flat:     none;
+--elevation-card:     0 14px 40px -12px rgba(133, 114, 91, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+--elevation-floating: 0 18px 48px -8px rgba(17, 17, 17, 0.22);
+
+--gradient-chart-fill: linear-gradient(180deg, rgba(204, 120, 39, 0.35) 0%, rgba(204, 120, 39, 0.0) 100%);
+
+--space-2xs: 4px;
+--space-xs:  8px;
+--space-sm:  12px;
+--space-md:  16px;
+--space-lg:  24px;
+--space-xl:  32px;
+--space-2xl: 48px;
+--space-section: 80px;
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
-/* Multi-layered, ultra-soft diffused ambient illumination */
---elevation-flat:          none;
---elevation-card:          0 14px 40px -12px rgba(133, 114, 91, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
---elevation-floating:      0 18px 48px -8px rgba(17, 17, 17, 0.22); /* Dark floating pills */
+--border-core:     1px solid rgba(0, 0, 0, 0.08);
+--border-hairline: 1px solid rgba(0, 0, 0, 0.04);
+--divider-style:   1px solid rgba(0, 0, 0, 0.04);
 
-/* Gradients & Masks */
---gradient-chart-fill:     linear-gradient(180deg, rgba(204, 120, 39, 0.35) 0%, rgba(204, 120, 39, 0.0) 100%);
---mask-media-pill:         border-radius(9999px) with solid 4px #111111 outer stroke;
+--border-subtle:      1px solid rgba(0, 0, 0, 0.04);
+--border-active-pill: 1px solid rgba(0, 0, 0, 0.08);
+--border-avatar-gap:  2.5px solid #FFFFFF;
+--mask-media-stroke:  4px solid #111111; /* Pill media cutouts */
+--divider-hatch: repeating-linear-gradient(
+  45deg,
+  #DFD8CD,
+  #DFD8CD 2px,
+  transparent 2px,
+  transparent 5px
+);
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (4px / 8px Grid)
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
---space-2xs:               4px;
---space-xs:                8px;
---space-sm:                12px;
---space-md:                16px;
---space-lg:                24px;   /* Standard card internal padding */
---space-xl:                32px;   /* Inter-card gutters */
---space-2xl:               48px;
---space-section:           80px;   /* Expansive negative space */
+- **Buttons**: 9999px pills. Primary fill #CC7827, text #FFFFFF. Hover: scale(1.02),
+  fill #B8691E. Use the host's existing labels.
+- **Cards**: 28px white plates, --elevation-card, 24px inner padding. Nested wells 16px.
+  Do not add index codes or fake meta.
+- **Inputs**: 16px nested or pill, #EFE9DF or white well, font-size >= 16px, ink #111111,
+  muted #9D988F. Focus: caramel wash or 1px rgba(0,0,0,0.08) pill ring.
+- **Navigation**: Existing items as pill segments inside an #EFE9DF track; the active
+  segment is a white plate with micro-shadow. Do not add clocks or catalog codes.
+- **Segmented controls**: Same muted-pill track + white active plate, only if the host
+  already has segmented controls.
+- **Badges**: Caramel wash rgba(204, 120, 39, 0.15) or solid caramel; 36px circular
+  caramel discs for icons the host already uses. Success chips #1FA24C if status exists.
+- **Avatars**: 50% with 2.5px white gap and -10px overlap, only if the host already stacks them.
+- **Progress / tracks**: If the host already has meters, hatch #DFD8CD at 45deg with
+  caramel fill and --gradient-chart-fill. Do not invent telemetry.
+- **Media cutouts**: Pill 9999px framed by 4px solid #111111 if the host already crops media.
+- **Icons**: Monoline 1.75–2px, rounded joins, inside solid accent circles when a badge exists.
 
 /* -----------------------------------------------------------------------------
- * 7. BORDERS & DIVIDERS
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
---border-subtle:           1px solid rgba(0, 0, 0, 0.04);
---border-active-pill:      1px solid rgba(0, 0, 0, 0.08);
---border-avatar-gap:       2.5px solid #FFFFFF; /* Inter-avatar overlap divider */
---divider-hatch:           repeating-linear-gradient(
-                             45deg,
-                             #DFD8CD,
-                             #DFD8CD 2px,
-                             transparent 2px,
-                             transparent 5px
-                           );
-
-/* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
- * -------------------------------------------------------------------------- */
---icon-stroke-weight:      1.75px – 2px (Consistent across line sets);
---icon-corner-style:       Smooth rounded joins & terminal caps;
---icon-render-mode:        Monoline glyphs inside solid accent circles;
-
-Contextual Roles:
-- Directional Anchors:     Diagonal launch arrows (↗) & downwards-pointing arrows (↓);
-- Category Badges:         Crisp white hairline symbols inside 36px circular caramel badges;
-- Status Indicators:       Micro geometric shapes (▲ for positive deltas, ✦ for AI tags);
-
-/* -----------------------------------------------------------------------------
- * 9. COMPONENT ARCHETYPES & INTERACTION RULES
- * -------------------------------------------------------------------------- */
-- **Buttons & CTAs**: Primary CTA in rich caramel (#CC7827) scales subtly on hover (scale: 1.02) with caramel darkening (#B8691E). Pill geometry (9999px).
-- **Segmented Controls**: Muted pill container (#EFE9DF) housing active pill with solid white plate and micro-shadow.
-- **Bento Panels**: Generous 28px radii with ultra-soft ambient shadow; nested content cards at 16px radius.
-- **Avatar Stacks**: Circular (50%) with 2.5px white gap dividers and negative horizontal margin overlap (-10px).
-- **Telemetry & Data Tracks**: Hatched diagonal tracks (#DFD8CD) paired with smooth caramel progress fills and crisp emerald trend badges (#1FA24C).
-- **Media Cutouts**: Pill masks (9999px) framed by crisp 4px solid obsidian (#111111) stroke.
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
- * -------------------------------------------------------------------------- */
-- NO harsh black drop shadows or hard brutalist outlines (rely on soft ambient lighting and tonal plane separation).
-- NO neon cyber gradients or synthetic purple glows (maintain organic warm oat, obsidian, and rich honey caramel).
-- NO sharp 0px corners or generic boxed cards (adhere strictly to 28px card and 9999px pill geometry).
-- NO cramped, noisy layouts without generous negative space.
-================================================================================
+- No harsh black drop shadows or hard brutalist outlines; use soft ambient lighting.
+- No neon cyber gradients or synthetic purple glows; keep oat, obsidian, and honey caramel.
+- No sharp 0px corners or generic boxed cards; 28px cards and 9999px pills.
+- No cramped, noisy layouts without generous negative space.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ==========================================================================

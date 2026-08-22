@@ -1262,145 +1262,161 @@
   <!-- RAW EMBEDDED MARKDOWN SPECIFICATION -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  STYLE TILE: NEO-EDITORIAL / POSTER BRUTALISM (TILE-034)
-  Aesthetic: High-contrast, hyper-condensed typography, acid-pop vector overlays,
-             utilitarian grid geometry, and zine-inspired collage layering.
+  Visual language: Neo-Editorial Poster Brutalism
+  Construction: warm concrete • ultra-condensed display • acid coral + chartreuse • 0px geometry • zine collage
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. COLOR ROLES & PALETTE
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Neutral warm concrete paper under carbon-black ink, acid-coral bursts, and
+electric-chartreuse fluid blobs. Display type is ultra-condensed, weight 900,
+line-height ~0.82, uppercase. Everything structural is 0px radius. Depth is
+raw collage overlap — grid rules, then type, then stickers — with zero gaussian
+blur. Motion is snappy 0.12s.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  --color-canvas-base:         #E1E1E1; /* Neutral warm concrete / industrial paper */
-  --color-ink-primary:         #111111; /* Deep carbon black / brutalist black */
-  --color-ink-inverted:        #FFFFFF; /* Pure paper white (badges / inverted text) */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #E1E1E1; /* Neutral warm concrete */
+  --bg-surface:             #E1E1E1;
+  --bg-surface-alt:         #FFFFFF; /* Inverted paper */
+  --bg-surface-dark:        #111111; /* Carbon black */
 
-  /* Accent Pop Tokens */
-  --color-accent-burst:        #FF505F; /* Acid coral / neon punch pink (stickers, bursts) */
-  --color-accent-highlight:    #D9FF38; /* Electric chartreuse / acid lime (ambient blobs) */
-  --color-accent-subtle:       #481A66; /* Deep electric violet / framing accent */
+  --color-canvas-base:      #E1E1E1;
+  --color-ink-primary:      #111111;
+  --color-ink-inverted:     #FFFFFF;
 
-  /* Semantic Aliases */
-  --bg-surface:                var(--color-canvas-base);
-  --text-primary:              var(--color-ink-primary);
-  --text-badge:                var(--color-ink-inverted);
-  --border-divider:            var(--color-ink-primary);
-  --badge-fill:                var(--color-accent-burst);
-  --blob-fill:                 var(--color-accent-highlight);
+  /* Inks & Typography */
+  --ink-primary:            #111111;
+  --ink-secondary:          #111111;
+  --ink-muted:              #111111; /* No low-contrast gray body */
+  --ink-inverted:           #FFFFFF;
+
+  /* Signature Accents */
+  --accent-primary:         #FF505F; /* Acid coral */
+  --accent-primary-hover:   #FF505F;
+  --accent-secondary:       #D9FF38; /* Electric chartreuse */
+  --accent-tertiary:        #481A66; /* Deep electric violet */
+
+  --color-accent-burst:     #FF505F;
+  --color-accent-highlight: #D9FF38;
+  --color-accent-subtle:    #481A66;
+  --badge-fill:             #FF505F;
+  --blob-fill:              #D9FF38;
+
+  /* Status Tokens (mapped from existing pops) */
+  --status-success:         #D9FF38;
+  --status-warning:         #FF505F;
+  --status-danger:          #FF505F;
+  --status-info:            #481A66;
 }
 
 /* -----------------------------------------------------------------------------
- * 2. TYPOGRAPHY SYSTEM
+ * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Families */
---font-family-display:         "Druk Condensed", "Impact", "Bebas Neue", sans-serif;
---font-family-sans:            "Neue Haas Grotesk", "Helvetica Now", "Inter", sans-serif;
---font-family-mono:            "JetBrains Mono", monospace;
+--font-display: "Druk Condensed", "Impact", "Bebas Neue", sans-serif;
+--font-sans:    "Neue Haas Grotesk", "Helvetica Now", "Inter", sans-serif;
+--font-mono:    "JetBrains Mono", monospace;
 
-/* Typography Scale & Weight Tokens */
-• Hero Display:
-    - Font Family:             var(--font-family-display)
-    - Size:                    clamp(6.5rem, 16vw, 15rem)
-    - Line-Height:             0.82
-    - Letter-Spacing:          -0.03em
-    - Text-Transform:          UPPERCASE
-    - Font-Stretch:            Ultra-condensed
-    - Weight:                  900
+--text-display: clamp(6.5rem, 16vw, 15rem) / 0.82 var(--font-display); /* Weight 900 | tracking -0.03em | UPPERCASE | ultra-condensed */
+--text-h1:      clamp(6.5rem, 16vw, 15rem) / 0.82 var(--font-display);
+--text-h2:      1.25rem / 1.05 var(--font-sans); /* Weight 800 | tracking -0.01em | UPPERCASE | 20px */
+--text-h3:      1.25rem / 1.05 var(--font-sans);
+--text-body:    0.75rem / 1.25 var(--font-sans); /* Weight 700 | tracking 0.02em | UPPERCASE | 12px */
+--text-body-sm: 0.75rem / 1.25 var(--font-sans);
+--text-meta:    0.7rem / 1.1 var(--font-sans);   /* Weight 800 | tracking 0.01em | UPPERCASE | 11px | center */
 
-• Heading Grid:
-    - Font Family:             var(--font-family-sans)
-    - Size:                    1.25rem (20px)
-    - Line-Height:             1.05
-    - Letter-Spacing:          -0.01em
-    - Text-Transform:          UPPERCASE
-    - Weight:                  800
-
-• Body Dense:
-    - Font Family:             var(--font-family-sans)
-    - Size:                    0.75rem (12px)
-    - Line-Height:             1.25
-    - Letter-Spacing:          0.02em
-    - Text-Transform:          UPPERCASE
-    - Weight:                  700
-
-• Badge Label:
-    - Font Family:             var(--font-family-sans)
-    - Size:                    0.7rem (11px)
-    - Line-Height:             1.1
-    - Letter-Spacing:          0.01em
-    - Text-Transform:          UPPERCASE
-    - Weight:                  800
-    - Text-Align:              Center
+/* If the host already uses large numerals, they may be oversized condensed and
+   locked into the headline plane. Do not invent numbers. */
 
 /* -----------------------------------------------------------------------------
- * 3. CORNER GEOMETRY (BORDER RADII)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
-• radius-none:                 0px (Strict default: cards, containers, buttons)
-• radius-sharp:                0px (No soft rounded UI curves)
-• geometry-sticker:            polygon(16-point starburst sticker path)
-• geometry-ambient-blob:       path(asymmetric smooth fluid chartreuse curve)
+--radius-default: 0px;
+--radius-subtle:  0px;
+--radius-pill:    0px; /* No soft pills; badges stay sharp or use starburst clips */
+
+--radius-none:  0px;
+--radius-sharp: 0px;
+
+--geometry-sticker: 16-point starburst polygon clip;
+--geometry-ambient-blob: asymmetric smooth fluid path;
+
+--shadow-base:   none;
+--shadow-hover:  none;
+--shadow-active: none;
+--shadow-none:   none;
+
+/* Collage stack:
+   0 concrete #E1E1E1
+   1 chartreuse fluid blob #D9FF38
+   2 1px solid #111111 grid rules
+   3 headings / body
+   4 dominant condensed display
+   5 overlapping coral starbursts */
+
+--space-2xs: 4px;
+--space-xs:  8px;
+--space-sm:  16px;
+--space-md:  24px;
+--space-lg:  40px;
+--space-xl:  56px;
+
+--transition-ui: 0.12s cubic-bezier(0, 0, 0.2, 1);
 
 /* -----------------------------------------------------------------------------
- * 4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
-• shadow-none:                 none (Zero gaussian blur / soft elevation)
+--border-core:     1px solid #111111;
+--border-hairline: 1px solid #111111;
+--divider-style:   1px solid #111111;
 
-/* Z-Index Hierarchy (Raw Collage Overlap) */
-0. [ Base ]     Base concrete background (--color-canvas-base: #E1E1E1)
-1. [ Layer 1 ]  Organic chartreuse fluid vector (--color-accent-highlight: #D9FF38)
-2. [ Layer 2 ]  Hairline grid rules (1px solid #111111)
-3. [ Layer 3 ]  Headings, numbers, body copy
-4. [ Layer 4 ]  Dominant condensed display type
-5. [ Top ]      Overlapping coral starbursts & badges (--color-accent-burst: #FF505F)
+--divider-thickness: 1px;
+--divider-rule:      1px solid #111111;
 
 /* -----------------------------------------------------------------------------
- * 5. SPACING & SPATIAL SCALE
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-• grid-columns-layout:         12
-• grid-split-display:          5 cols (Massive vertical display anchor left)
-• grid-split-content:          7 cols (2x3 dense modular information matrix right)
-• space-2xs:                   4px (Internal badge padding)
-• space-xs:                    8px (Gap between title & descriptive body text)
-• space-sm:                    16px (Margin above divider lines)
-• space-md:                    24px (Vertical module spacing)
-• space-lg:                    40px (Grid gutter between columns)
-• space-xl:                    56px (Page margins / container boundaries)
+- **Buttons**: 0px radius, carbon fill or coral fill, white or black ink, 1px #111111
+  optional. Hover: color #FF505F or translate(-2px, -2px). 0.12s cubic-bezier(0, 0, 0.2, 1).
+  Use the host's existing labels. UPPERCASE grotesk.
+- **Cards**: 0px, concrete or inverted black, 1px #111111 rules, no shadow.
+  Hover: translate(-2px, -2px). Invert mode: background #111111, color #E1E1E1.
+  Do not add index codes. Chartreuse blobs and coral starbursts are graphic overlays
+  only — never add copy to fill them.
+- **Inputs**: 0px, #E1E1E1 or #FFFFFF well, 1px solid #111111, font-size >= 16px,
+  ink #111111. Focus: 1px solid #FF505F or inverted black field.
+- **Navigation**: Existing items, uppercase 800, 1.25rem or 0.75rem. Hover color #FF505F.
+  Do not add catalog codes or clocks.
+- **Badges**: Coral #FF505F, white ink, 0px or starburst clip, 11px / 800 / uppercase.
+  Hover: rotate(6deg) scale(1.05).
+- **Icons**: Prefer type and vector geometry over icon sets. No decorative icon grid.
 
 /* -----------------------------------------------------------------------------
- * 6. BORDERS & DIVIDERS
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-• divider-thickness:           1px
-• divider-style:               solid
-• divider-color:               var(--color-ink-primary) (#111111)
-• divider-rule:                1px solid var(--color-ink-primary)
-• divider-placement:           Bottom-border per row (spans localized grid cells only)
-
-/* -----------------------------------------------------------------------------
- * 7. ICONOGRAPHY & GRAPHIC ACCENTS LANGUAGE
- * -------------------------------------------------------------------------- */
-• Icon Style:                  None (Typographic & Vector Geometry Driven)
-• Graphic Burst Accent:        Spiky multi-vertex starbursts with embedded text
-• Graphic Fluid Accent:        Freeform asymmetric organic blobs in high-vis lime
-• Graphic Numeral Prominence:  Large standalone brutal numerals embedded in headlines
-
-/* -----------------------------------------------------------------------------
- * 8. INTERACTION & FEEDBACK RULES
- * -------------------------------------------------------------------------- */
-• Transition Speed:            0.12s
-• Transition Curve:            cubic-bezier(0, 0, 0.2, 1) (Snappy / Instantaneous)
-• Hover Link:                  color: var(--color-accent-burst)
-• Hover Card:                  transform: translate(-2px, -2px)
-• Hover Badge:                 transform: rotate(6deg) scale(1.05)
-• Invert Mode:                 background: var(--color-ink-primary); color: var(--color-canvas-base)
-
-/* -----------------------------------------------------------------------------
- * 9. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
- * -------------------------------------------------------------------------- */
-- NO rounded corners (0px strict on all cards, buttons, frames).
-- NO soft gaussian shadows or blur layers.
-- NO low-contrast gray text; keep carbon black on concrete paper.
-- NO lowercase shouting or uncalibrated mixed line heights.
-================================================================================
+- No rounded corners (0px strict on cards, buttons, frames).
+- No soft gaussian shadows or blur layers.
+- No low-contrast gray text; keep carbon black on concrete paper.
+- No uncalibrated mixed line heights or loose lowercase display shouting.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- JAVASCRIPT LOGIC -->

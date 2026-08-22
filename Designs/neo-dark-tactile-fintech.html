@@ -2561,39 +2561,71 @@
   <!-- RAW MARKDOWN TEMPLATE EMBED (agent.md Section 2 & 4) -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  STYLE TILE: NEO-DARK TACTILE FINTECH / SAAS (TILE-018)
-  Design Language & Machine-Readable Token Specification
+  Visual language: Neo-Dark Tactile
+  Construction: void black • glass plates • chartreuse bloom • rivets • large soft radii
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Neo-Dark Tactile FinTech / SaaS merges ultra-deep void canvas surfaces (#08090A) with high-density engineered glassmorphism, hardware-pinned micro-plates, and high-energy electric chartreuse CTAs (#D8F878 -> #AEE63A). Driven by atmospheric aura glows, 1px luminous edge strokes, and industrial micro-fasteners, this system delivers uncompromising tactile feedback and precision financial telemetry.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Ultra-deep void (#08090A) with elevated charcoal plates (#121316) and frosted glass (rgba(22, 24, 28, 0.75)). Primary energy is electric chartreuse (#D8F878 to #AEE63A); warm amber (#F7A832) and cyan (#1FD5C9) spark at the edges; a violet aura (#7A22E5 / #8B3DFF) sits as underglow, not as UI chrome. Surfaces carry 1px luminous edges and inset chisels. Optional 3px corner rivets (recessed metallic dots) are silent hardware -- omit if they would need captions. Type is Plus Jakarta Sans at medium weights with tight negative tracking; meta is small and cool-slate. Radii are large and tactile: 7px controls, 18px cards, 30px media, 9999px pills.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Canvas & Base Surfaces */
-  --surface-ground:         #08090A; /* Ultra-deep void black, base background */
-  --surface-elevated:       #121316; /* Card base & floating surface tone */
-  --surface-glass:          rgba(22, 24, 28, 0.75); /* Frosted glass overlay */
-  --surface-subtle:         rgba(255, 255, 255, 0.03); /* Hover wells / chip base */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #08090A; /* Void black */
+  --bg-surface:             #121316; /* Elevated plate */
+  --bg-surface-alt:         rgba(22, 24, 28, 0.75); /* Frosted glass */
+  --bg-surface-dark:        #08090A; /* Ground void */
 
-  /* Typography & Foreground */
-  --text-primary:           #F4F5F6; /* Pure crisp high-contrast off-white */
-  --text-secondary:         #8F94A0; /* Muted cool slate grey for body/descriptions */
-  --text-tertiary:          #525660; /* Low-emphasis micro labels and metadata */
-  --text-inverse:           #0B0D0E; /* Deep charcoal text for high-contrast CTA */
+  /* Inks & Typography */
+  --ink-primary:            #F4F5F6; /* Off-white */
+  --ink-secondary:          #8F94A0; /* Cool slate */
+  --ink-muted:              #525660; /* Low-emphasis meta */
+  --ink-inverted:           #0B0D0E; /* Charcoal on chartreuse */
 
-  /* Brand Accents & Gradients */
-  --brand-primary-lime:     #D8F878; /* High-energy electric chartreuse start */
-  --brand-primary-lime-end: #AEE63A; /* High-energy electric chartreuse end */
-  --brand-warm-amber:       #F7A832; /* Signature brand warm ochre / gold */
-  --accent-cyan:            #1FD5C9; /* Electric teal micro-accent */
-  --accent-violet:          #8B3DFF; /* Deep atmospheric violet glow */
+  /* Signature Accents */
+  --accent-primary:         #D8F878; /* Electric chartreuse */
+  --accent-primary-hover:   #AEE63A; /* Chartreuse end / press */
+  --accent-secondary:       #F7A832; /* Warm amber */
+  --accent-tertiary:        #1FD5C9; /* Cyan spark */
 
-  /* Ambient Aura Blends (Underglow & Lighting) */
+  /* Status Tokens (mapped from original accent hexes) */
+  --status-success:         #AEE63A;
+  --status-warning:         #F7A832;
+  --status-danger:          #8B3DFF;
+  --status-info:            #1FD5C9;
+
+  /* Extra original tokens */
+  --surface-ground:         #08090A;
+  --surface-elevated:       #121316;
+  --surface-glass:          rgba(22, 24, 28, 0.75);
+  --surface-subtle:         rgba(255, 255, 255, 0.03);
+  --text-primary:           #F4F5F6;
+  --text-secondary:         #8F94A0;
+  --text-tertiary:          #525660;
+  --text-inverse:           #0B0D0E;
+  --brand-primary-lime:     #D8F878;
+  --brand-primary-lime-end: #AEE63A;
+  --brand-warm-amber:       #F7A832;
+  --accent-cyan:            #1FD5C9;
+  --accent-violet:          #8B3DFF;
   --aura-gradient-primary:  linear-gradient(135deg, #7A22E5 0%, #1FD5C9 50%, #F7A832 100%);
   --aura-cta-gradient:      linear-gradient(180deg, #D4F97E 0%, #A4E834 100%);
 }
@@ -2601,88 +2633,80 @@ Neo-Dark Tactile FinTech / SaaS merges ultra-deep void canvas surfaces (#08090A)
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Stacks */
 --font-display: "Plus Jakarta Sans", "Inter Display", -apple-system, sans-serif;
 --font-sans:    "Plus Jakarta Sans", -apple-system, sans-serif;
 --font-mono:    "JetBrains Mono", "SF Mono", monospace;
 
-/* Scale & Hierarchy */
-Hero Display:   64px (4.0rem)   | Line-height: 1.05 | Tracking: -0.035em | Weight: 500/Medium
-Heading 1:      40px (2.5rem)   | Line-height: 1.15 | Tracking: -0.025em | Weight: 500/Medium
-Heading 2:      20px (1.25rem)  | Line-height: 1.30 | Tracking: -0.015em | Weight: 600/SemiBold
-Body Large:     16px (1.0rem)   | Line-height: 1.55 | Tracking: -0.010em | Weight: 400/Regular
-Body Regular:   14px (0.875rem) | Line-height: 1.50 | Tracking: normal   | Weight: 400/Regular
-Micro / Meta:   11px (0.6875rem)| Line-height: 1.40 | Tracking: +0.020em | Weight: 500/Medium
+--text-display: 4.0rem    / 1.05 var(--font-display); /* Weight: 500 | Tracking: -0.035em */
+--text-h1:      2.5rem    / 1.15 var(--font-display); /* Weight: 500 | Tracking: -0.025em */
+--text-h2:      1.25rem   / 1.30 var(--font-sans);    /* Weight: 600 | Tracking: -0.015em */
+--text-h3:      1.25rem   / 1.30 var(--font-sans);    /* Weight: 600 */
+--text-body:    1.0rem    / 1.55 var(--font-sans);    /* Weight: 400 | Tracking: -0.010em */
+--text-body-sm: 0.875rem  / 1.50 var(--font-sans);    /* Weight: 400 */
+--text-meta:    0.6875rem / 1.40 var(--font-sans);    /* Weight: 500 | Tracking: +0.020em */
+
+Display is medium, not black, with tight tracking on a dark field. Meta stays small and slate. Do not set host copy in fake instrument fonts or specimen strings.
 
 /* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
---radius-pill: 9999px;        /* Pill CTAs, header buttons, active state chips */
---radius-xl:   30px;          /* 28px – 32px: Hero media containers, key feature blocks */
---radius-lg:   18px;          /* 16px – 20px: Floating data cards, modals, contextual widgets */
---radius-md:   11px;          /* 10px – 12px: Tactile micro-plates, status modules */
---radius-sm:   7px;           /* 6px – 8px: Form controls, tooltips, nested status tags */
-
-/* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SHADOWS & LAYERING)
- * -------------------------------------------------------------------------- */
-- Layer 0 (Canvas):   Static dot-matrix grid (24px x 24px, 2px dot @ 8% opacity) with scattered luminous nodes (#1FD5C9, #F7A832, #D8F878)
-- Layer 1 (Aura):     Soft radial backdrop blur [filter: blur(80px)] for vibrant halos
-- Layer 2 (Base):     Main media hero container with 1px luminous edge (rgba(255, 255, 255, 0.08))
-- Layer 3 (Overlay):  Floating glass morphism dialogs & data modules
-- Layer 4 (Tactile):  Hardware-styled pinned micro-plates with inner drop shadow
+--radius-pill:    9999px;
+--radius-xl:      30px;   /* 28-32px media and large shells */
+--radius-lg:      18px;   /* 16-20px cards, modals */
+--radius-md:      11px;   /* 10-12px plates */
+--radius-sm:      7px;    /* 6-8px fields */
+--radius-default: 18px;
+--radius-subtle:  7px;
 
 --shadow-floating: 0 24px 48px -12px rgba(0, 0, 0, 0.75), 0 0 1px 1px rgba(255, 255, 255, 0.08);
 --shadow-plate:    0 12px 24px -6px rgba(0, 0, 0, 0.60), inset 0 1px 0 rgba(255, 255, 255, 0.25);
 --shadow-ambient:  0 0 80px 20px rgba(122, 34, 229, 0.18);
+--shadow-base:     0 12px 24px -6px rgba(0, 0, 0, 0.60), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+--shadow-hover:    0 0 24px rgba(216, 248, 120, 0.35);
+--shadow-active:   none;
+
+Layer 0: optional 24px x 24px dot-matrix (2px dots at 8% white) with scattered luminous nodes in #1FD5C9, #F7A832, #D8F878 -- decorative only, no labels.
+Layer 1: radial aura, filter blur(80px), using the 135deg violet-cyan-amber wash.
+Layer 2-3: luminous-edge plates and glass dialogs.
+Layer 4: pinned micro-plates with inner highlight.
+
+Corner rivets: 3px circles, four corners, recessed inset shadow. Omit rather than caption.
+
+Spacing: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64px.
+
+--ease-tactile: cubic-bezier(0.16, 1, 0.3, 1);
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---space-2xs: 4px;
---space-xs:  8px;
---space-sm:  12px;
---space-md:  16px;
---space-lg:  24px;
---space-xl:  32px;
---space-2xl: 48px;
---space-3xl: 64px;
+--border-core:      1px solid rgba(255, 255, 255, 0.08);
+--border-luminous:  1px solid rgba(255, 255, 255, 0.08);
+--border-active:    1px solid rgba(216, 248, 120, 0.40);
+--border-subtle:    1px solid rgba(255, 255, 255, 0.05);
+--border-hairline:  1px solid rgba(255, 255, 255, 0.05);
+--border-chisel:    inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+--divider-style:    1px solid rgba(255, 255, 255, 0.05);
+
+Icons: 20-24px optical grid, 1.75px stroke, round caps and joins, duo-tone or quiet mono. Vertical 2px pill ticks may mark on/off if the host already has status dots -- do not invent a legend.
 
 /* -----------------------------------------------------------------------------
- * 7. BORDERS & DIVIDERS
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
---border-luminous: 1px solid rgba(255, 255, 255, 0.08);
---border-active:   1px solid rgba(216, 248, 120, 0.40);
---border-subtle:   1px solid rgba(255, 255, 255, 0.05);
---border-chisel:   inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+- **Buttons**: Pills (9999px) or 11px plates. Primary: vertical chartreuse gradient `#D4F97E` to `#A4E834`, ink #0B0D0E. Hover: chartreuse bloom `0 0 24px rgba(216, 248, 120, 0.35)`. Active: `scale(0.98)`. Secondary: glass fill, luminous edge, slate type; hover opacity 1.0 from 0.70 over 150ms elastic. Keep host labels.
+- **Cards**: 18px radius (30px for large media). Elevated #121316 or glass 0.75, luminous 1px edge, floating or plate shadow, inner chisel. Hover may lift `translateY(-4px)` with dampening. Do not add telemetry headers, ISO codes, or pinned serial plates the host lacks.
+- **Inputs**: 7px radius, void or 0.03 white well, subtle luminous border. Font-size at least 16px. Focus: 1px chartreuse-alpha edge `rgba(216, 248, 120, 0.40)`. Placeholder #525660. Toggles and checkboxes: 7-11px plates; on-state chartreuse fill with charcoal mark.
+- **Navigation**: Restyle existing items as glass pills on void. Active: chartreuse fill or 1px chartreuse edge. Optional frosted bar. No catalog codes, fake clocks, or frequency readouts.
+- **Badges / chips / toggles**: 11px or pill. Chartreuse, amber, or cyan fills at low alpha; charcoal type on solid chartreuse. Rivets remain unlabeled hardware.
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY & INDUSTRIAL ACCENTS
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- Bounding Box: 20px / 24px optical grid
-- Stroke Weight: 1.75px uniform, rounded caps & joins
-- Treatment: Duo-tone or subtle monochrome with geometric framing
-- Hardware Motifs:
-  • Corner Rivets: Micro 4-corner metallic fasteners (3px circles with recessed inset shadow)
-  • Status Indicators: 2px vertical pill bars (Green = Active/Past, Amber = Pending/Future)
-
-/* -----------------------------------------------------------------------------
- * 9. INTERACTION & FEEDBACK RULES
- * -------------------------------------------------------------------------- */
-- Primary Lime Plate: Scale(0.98) on click | Box-shadow bloom on hover: 0 0 24px rgba(216, 248, 120, 0.35)
-- Secondary Text Links: Opacity shift 0.70 -> 1.00 with smooth 150ms cubic-bezier transition
-- Floating Card Parallax: Subtle +4px Y-axis translation with dampening on viewport hover
-- Transition Curve: cubic-bezier(0.16, 1, 0.3, 1)
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
- * -------------------------------------------------------------------------- */
-- NO generic purple-on-dark dashboard clichés with low-contrast violet text.
-- NO unbordered floating cards that bleed into void backgrounds.
-- NO headline biscuit pills with pulsating dots.
-- NO generic rainbow gradient keyword text fills.
-- NO zero-depth flat buttons lacking tactile feedback and luminous bloom.
-================================================================================
+- No generic purple-on-dark dashboards with low-contrast violet body text (violet is aura only).
+- No unbordered cards bleeding into the void; every plate keeps a luminous edge.
+- No biscuit headline pills with pulsing dots.
+- No rainbow gradient keyword fills on display type.
+- No zero-depth flat buttons; primary actions need tactile scale and chartreuse bloom.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- JAVASCRIPT LOGIC & INTERACTIVE SUITE -->

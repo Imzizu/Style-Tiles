@@ -2033,87 +2033,122 @@
        ========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Warm Botanical & Solar Terracotta • Sun-Baked Earth • Radiant Marigold
+  Visual language: Warm Botanical Terracotta
+  Construction: sun-baked terracotta • linen cream • marigold gold • 24–36px glass • Plus Jakarta Sans
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Warm Botanical & Solar Terracotta blends the grounded, tactile warmth of sun-baked 
-terracotta clay (#B84E29) and sunlit linen cream (#EEDCB9) with radiant marigold gold 
-(#FAB833) and frosted ambient glass overlays. It creates a serene, restorative, and 
-intellectually refined atmosphere tailored for botanical apothecaries, sustainable 
-luxury, wellness technology, and human-centered editorial experiences.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A sun-baked terracotta field (#B84E29) with a radial warm core, linen-cream
+plates, carbon-black anchors, and radiant marigold gold (#FAB833). Frosted
+glass overlays sit at 18–36px radius; actions are 9999px gold pills with a
+soft gold glow. Type is Plus Jakarta Sans, tight on display. Depth is
+diffused terracotta occlusion and glass blur — not HUD wires or apothecary
+ornament.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Canvas & Ambient */
-  --bg-canvas-primary:       #B84E29; /* Sun-baked terracotta base */
-  --bg-canvas-gradient:      radial-gradient(circle at 50% 30%, #C95A32 0%, #A43F1C 100%);
-  --bg-surface-dark:         #141414; /* Deep carbon black for high-contrast anchors */
-  --bg-surface-cream:        #EEDCB9; /* Warm sunlit linen / soft oat */
-  --bg-surface-glass:        rgba(255, 255, 255, 0.12); /* Frosted ambient glass overlay */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #B84E29; /* Sun-baked terracotta */
+  --bg-surface:             #EEDCB9; /* Sunlit linen / oat */
+  --bg-surface-alt:         rgba(255, 255, 255, 0.12); /* Frosted glass */
+  --bg-surface-dark:        #141414; /* Deep carbon */
 
-  /* Accents & Interactive */
-  --accent-gold-primary:     #FAB833; /* Radiant marigold / warm amber yellow */
-  --accent-gold-hover:       #E5A424;
-  --accent-sunburst:         #F58A42; /* Supporting warm apricot */
+  --bg-canvas-primary:      #B84E29;
+  --bg-canvas-gradient:     radial-gradient(circle at 50% 30%, #C95A32 0%, #A43F1C 100%);
+  --bg-surface-cream:       #EEDCB9;
+  --bg-surface-glass:       rgba(255, 255, 255, 0.12);
 
-  /* Typography & Icon Contrast */
-  --text-primary-light:      #FFFFFF; /* Crisp contrast against terracotta/dark */
-  --text-secondary-light:    rgba(255, 240, 230, 0.75); /* Soft peach-tinted neutral */
-  --text-primary-dark:       #1F1A17; /* Espresso-tinted near-black on light panels */
-  --text-secondary-dark:     #5C5346; /* Muted olive-bark for secondary card copy */
-  --text-accent-gold:        #FAB833;
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF; /* On terracotta / carbon */
+  --ink-secondary:          rgba(255, 240, 230, 0.75); /* Peach-tinted */
+  --ink-muted:              #5C5346; /* Olive-bark on cream */
+  --ink-inverted:           #1F1A17; /* Espresso on light plates */
 
-  /* Overlays & Strokes */
-  --stroke-subtle-white:     rgba(255, 255, 255, 0.22);
-  --stroke-hairline-wire:    rgba(255, 255, 255, 0.40);
-  --stroke-dark:             rgba(20, 20, 20, 0.08);
+  --text-primary-light:     #FFFFFF;
+  --text-secondary-light:   rgba(255, 240, 230, 0.75);
+  --text-primary-dark:      #1F1A17;
+  --text-secondary-dark:    #5C5346;
+  --text-accent-gold:       #FAB833;
+
+  /* Signature Accents */
+  --accent-primary:         #FAB833; /* Radiant marigold */
+  --accent-primary-hover:   #E5A424;
+  --accent-secondary:       #F58A42; /* Warm apricot */
+  --accent-tertiary:        #EEDCB9;
+
+  --accent-gold-primary:    #FAB833;
+  --accent-gold-hover:      #E5A424;
+  --accent-sunburst:        #F58A42;
+
+  /* Status Tokens (mapped from gold / apricot / terracotta) */
+  --status-success:         #FAB833;
+  --status-warning:         #F58A42;
+  --status-danger:          #B84E29;
+  --status-info:            #EEDCB9;
+
+  --stroke-subtle-white:    rgba(255, 255, 255, 0.22);
+  --stroke-hairline-wire:   rgba(255, 255, 255, 0.40);
+  --stroke-dark:            rgba(20, 20, 20, 0.08);
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Families */
 --font-display: "Plus Jakarta Sans", "Outfit", sans-serif;
---font-body:    "Inter", "DM Sans", -apple-system, sans-serif;
+--font-sans:    "Inter", "DM Sans", -apple-system, sans-serif;
 --font-mono:    "JetBrains Mono", "SF Mono", monospace;
+--font-body:    "Inter", "DM Sans", -apple-system, sans-serif;
 
-/* Scale & Hierarchy */
---text-display-xl:   font-size: 52px; line-height: 1.08; weight: 700; tracking: -0.02em;
---text-heading-lg:   font-size: 28px; line-height: 1.20; weight: 600; tracking: -0.01em;
---text-heading-md:   font-size: 20px; line-height: 1.30; weight: 600; tracking: 0;
---text-body-regular: font-size: 14px; line-height: 1.50; weight: 400; tracking: 0;
---text-body-compact: font-size: 12px; line-height: 1.45; weight: 400; tracking: 0.01em;
---text-nav-link:     font-size: 13px; line-height: 1.00; weight: 500; tracking: 0.02em;
---text-rating-num:   font-size: 32px; line-height: 1.00; weight: 600; tracking: -0.02em;
-
-/* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
- * -------------------------------------------------------------------------- */
---radius-pill:       9999px; /* Nav CTA, pill buttons, icon badges */
---radius-container:  36px;   /* Outer screen wrapper */
---radius-card-lg:    24px;   /* Main feature/hero split banners */
---radius-card-sm:    18px;   /* Floating interactive media cards */
---radius-control:    10px;   /* Standard compact buttons & tags */
+--text-display: 52px / 1.08 var(--font-display); /* Weight 700 | tracking -0.02em */
+--text-h1:      52px / 1.08 var(--font-display);
+--text-h2:      28px / 1.20 var(--font-display); /* Weight 600 | tracking -0.01em */
+--text-h3:      20px / 1.30 var(--font-display); /* Weight 600 | tracking 0 */
+--text-body:    14px / 1.50 var(--font-sans);    /* Weight 400 */
+--text-body-sm: 12px / 1.45 var(--font-sans);    /* Weight 400 | tracking 0.01em */
+--text-meta:    13px / 1.00 var(--font-sans);    /* Weight 500 | tracking 0.02em | nav */
+--text-figure:  32px / 1.00 var(--font-display); /* Weight 600 | tracking -0.02em — only for host-existing figures */
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
---glass-blur-sm:          backdrop-filter: blur(8px);
---glass-blur-lg:          backdrop-filter: blur(20px);
+--radius-default: 24px;
+--radius-subtle:  18px;
+--radius-pill:    9999px;
 
---shadow-floating-card:   0 16px 36px -8px rgba(70, 20, 5, 0.28);
---shadow-button-glow:     0 8px 20px -4px rgba(250, 184, 51, 0.45);
---shadow-dark-card:       0 20px 40px -12px rgba(0, 0, 0, 0.35);
---shadow-node-dot:        0 0 12px 2px rgba(255, 255, 255, 0.80);
+--radius-container: 36px;
+--radius-card-lg:   24px;
+--radius-card-sm:   18px;
+--radius-control:   10px;
 
-/* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE
- * -------------------------------------------------------------------------- */
+--shadow-base:   0 16px 36px -8px rgba(70, 20, 5, 0.28);
+--shadow-hover:  0 20px 40px -12px rgba(0, 0, 0, 0.35);
+--shadow-active: 0 8px 20px -4px rgba(250, 184, 51, 0.45);
+
+--glass-blur-sm:        blur(8px);
+--glass-blur-lg:        blur(20px);
+--shadow-floating-card: 0 16px 36px -8px rgba(70, 20, 5, 0.28);
+--shadow-button-glow:   0 8px 20px -4px rgba(250, 184, 51, 0.45);
+--shadow-dark-card:     0 20px 40px -12px rgba(0, 0, 0, 0.35);
+--shadow-node-dot:      0 0 12px 2px rgba(255, 255, 255, 0.80);
+
 --space-2xs: 4px;
 --space-xs:  8px;
 --space-sm:  12px;
@@ -2122,43 +2157,48 @@ luxury, wellness technology, and human-centered editorial experiences.
 --space-xl:  32px;
 --space-2xl: 48px;
 
-- Canvas Margins:        40px horizontal padding within main viewport frame
-- Content Flow:          Asymmetric product staging centered with floating offset chips
-- Internal Card Padding: 20px 24px (compact), 28px 32px (large banner cards)
-
 /* -----------------------------------------------------------------------------
- * 7. BORDERS & DIVIDERS
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
+--border-core:     1px solid rgba(255, 255, 255, 0.20);
+--border-hairline: 1px solid rgba(255, 255, 255, 0.08);
+--divider-style:   1px solid rgba(255, 255, 255, 0.22);
+
 --border-glass-card:     1px solid rgba(255, 255, 255, 0.20);
 --border-opaque-card:    1px solid rgba(255, 255, 255, 0.08);
---border-technical-line: 1px solid rgba(255, 255, 255, 0.35); /* Product callout wires */
+--border-technical-line: 1px solid rgba(255, 255, 255, 0.35);
 
-- Diagram Node:          6px circular white indicator node with semi-transparent outer ring
-- Hairline Leader Wire:  45-degree angled polyline pointing from subject to copy metadata
-
-/* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
- * -------------------------------------------------------------------------- */
-- Minimal geometric, single-weight linear (1.5px stroke) & solid accents
-- Circular badges centered inside high-contrast solid color disks
-- Symbols: Solar / sunburst radial line spokes, 5-point filled stars in gold (#FAB833), 
-  geometric play triangle (solid carbon on gold), diagonal directional launch arrows (↗)
+/* Hairline strokes may exist as borders. Do not add leader-wire callouts,
+   diagram nodes, or metadata labels the host does not already have. */
 
 /* -----------------------------------------------------------------------------
- * 9. COMPONENT ARCHETYPES & INTERACTION RULES
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-- **Primary CTA (Gold)**: Slight upward lift (translateY(-2px)) with expanded gold glow.
-- **Dark Pill Buttons**: Background shifts to #262626 with border lightened to 30% opacity.
-- **Floating Cards**: Subtle scale (1.02x) with ambient elevation drop-shadow deepening.
-- **Nav Links**: Opacity shifts from 0.70 to 1.00 with subtle warm glow underline.
+- **Buttons**: 9999px gold pills. Fill #FAB833, ink #1F1A17. Hover: translateY(-2px)
+  plus 0 8px 20px -4px rgba(250, 184, 51, 0.45); fill #E5A424. Dark pills: carbon
+  #141414 shifting toward #262626 with border lightened to ~30% white. Compact
+  controls 10px radius. Use the host's existing labels.
+- **Cards**: Cream #EEDCB9 at 24px, glass rgba(255,255,255,0.12) at 18px with
+  blur(8–20px) and white hairline, or carbon #141414 at 24–36px with --shadow-dark-card.
+  Inner padding 20px 24px compact / 28px 32px large. Hover: scale(1.02) and deeper
+  terracotta occlusion. Do not add apothecary labels, HUD wires, or fake meta.
+- **Inputs**: Cream or glass well, 10px or pill, font-size >= 16px, espresso ink
+  on light / white ink on terracotta. Focus: gold glow or 1px rgba(255,255,255,0.35).
+- **Navigation**: Existing items 13px / 500 / 0.02em. Rest opacity 0.70 on terracotta;
+  hover 1.00 with a warm gold underline glow. Do not add clocks or catalog codes.
+- **Badges**: Gold or cream pills; circular high-contrast discs for existing icons.
+- **Icons**: Single-weight linear 1.5px plus solid accents. Sunburst spokes, filled
+  stars in #FAB833, or a play triangle (carbon on gold) only if the host already
+  uses those control types.
 
 /* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- NO cold synthetic neon blue/purple cyber gradients; maintain organic solar terracotta warmth.
-- NO harsh, unsoftened drop shadows (use diffused terracotta/carbon ambient occlusion).
-- NO rigid brutalist zero-radius borders (strictly adhere to 18-36px and 9999px pill geometry).
-================================================================================
+- No cold synthetic neon blue/purple cyber gradients; keep solar terracotta warmth.
+- No harsh unsoftened drop shadows; use diffused terracotta/carbon occlusion.
+- No rigid 0px brutalist borders; stay on 10 / 18 / 24 / 36px and 9999px pills.
+- Do not add apothecary, botanical-product, or HUD callout copy.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ==========================================================================

@@ -2173,140 +2173,145 @@
   </div>
 
   <!-- EMBEDDED RAW MARKDOWN SPECIFICATION -->
-  <script id="style-tile-markdown" type="text/markdown">================================================================================
-  STYLE TILE: "DARK TACTICAL EDITORIAL / CYBER-GOTHIC"
-  Production-Ready Design System Specification (TILE-007)
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Dark Tactical Editorial
+  Construction: obsidian planes • 0px angularity • condensed display caps • hairline white rules • faint blackletter texture • radial atmosphere
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-A hyper-disciplined collision of high-fashion editorial brutalism, cybernetic aerospace telemetry, and monastic dark gothic calligraphy. Characterized by pitch-black obsidian planes (#0A0A0C), razor-sharp 0px angularity, atmospheric radial illumination, ambient ghost blackletter watermarks, 237° orbital perspective grids, and high-contrast stark white precision actuators.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Pitch obsidian planes with a quiet radial lift toward charcoal, ruled by 1px white-alpha hairlines and 0px corners. Display is a heavy condensed grotesque, often uppercase and tightly tracked; body is a cool humanist sans; a blackletter face may appear only as a giant faint texture behind existing content, never as a new caption. Accent is stark white - no chromatic neon. Atmosphere comes from radial darkening and a deep stage glow, not pastel shadows.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Canvas & Base Layers */
-  --canvas-base:            #0A0A0C; /* Deep obsidian black, primary viewport background */
-  --canvas-subtle:          #121216; /* Slight atmospheric radial lift */
-  --surface-card:           #18181D; /* Card / container baseline */
-  --surface-elevated:       #22222A; /* Tooltips, popovers, elevated interactive surfaces */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #0A0A0C; /* Deep obsidian */
+  --bg-surface:             #18181D; /* Card / container baseline */
+  --bg-surface-alt:         #121216; /* Atmospheric lift */
+  --bg-surface-dark:        #0A0A0C; /* Viewport void */
 
-  /* Inks & Signal Typography */
-  --text-primary:           #F5F5F7; /* High-contrast pure white for titles & actions */
-  --text-secondary:         #9E9EA8; /* Neutral cool grey for reading copy & paragraphs */
-  --text-muted:             #52525B; /* Low-contrast metadata, index tags, unit coordinates */
-  --text-watermark:         rgba(255, 255, 255, 0.035); /* Giant ambient blackletter calligraphy */
+  /* Inks & Typography */
+  --ink-primary:            #F5F5F7; /* High-contrast white */
+  --ink-secondary:          #9E9EA8; /* Cool grey reading ink */
+  --ink-muted:              #52525B; /* Low-contrast quiet type */
+  --ink-inverted:           #0A0A0C; /* Obsidian on white fills */
 
-  /* Accents & Tactical Highlights */
-  --accent-solid:           #FFFFFF; /* Sharp high-contrast micro-indicators & active borders */
-  --accent-subtle:          rgba(255, 255, 255, 0.12); /* Dashed guides, crosshairs, stage grids */
-  --state-focus:            rgba(255, 255, 255, 0.24); /* Active focal rings & targeting bounds */
+  /* Signature Accents */
+  --accent-primary:         #FFFFFF; /* Stark white actuator */
+  --accent-primary-hover:   #F5F5F7; /* Same-family hover */
+  --accent-secondary:       rgba(255, 255, 255, 0.12); /* Dashed guides */
+  --accent-tertiary:        rgba(255, 255, 255, 0.24); /* Focus bounds */
 
-  /* Structural Aliases */
-  --bg-canvas:              var(--canvas-base);
-  --bg-surface:             var(--surface-card);
-  --bg-surface-elevated:    var(--surface-elevated);
-  --ink-primary:            var(--text-primary);
-  --ink-secondary:          var(--text-secondary);
-  --ink-muted:              var(--text-muted);
+  /* Status Tokens */
+  --status-success:         #F5F5F7; /* White confirm */
+  --status-warning:         #9E9EA8; /* Grey caution */
+  --status-danger:          #F5F5F7; /* White interrupt */
+  --status-info:            #9E9EA8; /* Grey info */
+
+  /* Extra material tokens */
+  --canvas-base:            #0A0A0C;
+  --canvas-subtle:          #121216;
+  --surface-card:           #18181D;
+  --surface-elevated:       #22222A;
+  --text-watermark:         rgba(255, 255, 255, 0.035);
+  --state-focus:            rgba(255, 255, 255, 0.24);
+  --backdrop-radial:        radial-gradient(circle at 50% 45%, #18181D 0%, #0A0A0C 85%);
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Stacks */
 --font-display:   "Syne", "Monument Extended", "Druk Wide", -apple-system, sans-serif;
 --font-sans:      "Inter", "Aeonik", "Satoshi", -apple-system, sans-serif;
 --font-watermark: "UnifrakturMaguntia", "Old London", "Pirata One", cursive, serif;
 --font-mono:      "JetBrains Mono", "Space Mono", monospace;
 
-/* Type Scale & Typographic Metrics */
---text-ambient-ghost:  220px  / 1.00  var(--font-watermark); /* Weight: 400 | Opacity: 0.035 */
---text-hero-vertical:  96px   / 0.90  var(--font-display);   /* Weight: 900 | Tracking: -0.03em | Vertical (270deg) */
---text-display:        3.5rem / 1.05  var(--font-display);   /* Weight: 800 | Tracking: -0.03em */
---text-h1:             2.5rem / 1.15  var(--font-display);   /* Weight: 800 | Tracking: -0.02em */
---text-h2:             1.5rem / 1.25  var(--font-display);   /* Weight: 700 | Tracking: -0.01em */
---text-section-header: 13px   / 1.20  var(--font-display);   /* Weight: 800 | Tracking: 0.22em  | UPPERCASE */
---text-nav-item:       12px   / 1.20  var(--font-display);   /* Weight: 700 | Tracking: 0.18em  | UPPERCASE */
---text-cta-link:       13px   / 1.20  var(--font-display);   /* Weight: 800 | Tracking: 0.15em  | UPPERCASE */
---text-badge-index:    18px   / 1.10  var(--font-display);   /* Weight: 800 | Tracking: -0.01em | Tabular figures (No.04) */
---text-body:           14px   / 1.65  var(--font-sans);      /* Weight: 400 | Tracking: 0.01em  | Line-height: 1.65 */
---text-micro-coord:    11px   / 1.30  var(--font-mono);      /* Weight: 600 | Tracking: 0.08em  | Monospaced (237°) */
+--text-display: 3.5rem / 1.05 var(--font-display); /* Weight: 800 | Tracking: -0.03em */
+--text-h1:      2.5rem / 1.15 var(--font-display); /* Weight: 800 | Tracking: -0.02em */
+--text-h2:      1.5rem / 1.25 var(--font-display); /* Weight: 700 | Tracking: -0.01em */
+--text-h3:      13px / 1.20 var(--font-display);   /* Weight: 800 | Tracking: 0.22em | UPPERCASE */
+--text-body:    14px / 1.65 var(--font-sans);      /* Weight: 400 | Tracking: 0.01em */
+--text-body-sm: 12px / 1.20 var(--font-display);   /* Weight: 700 | Tracking: 0.18em | UPPERCASE nav */
+--text-meta:    11px / 1.30 var(--font-mono);      /* Weight: 600 | Tracking: 0.08em */
+
+--text-ambient-ghost: 220px / 1.00 var(--font-watermark); /* Weight: 400 | Opacity: 0.035 */
+--text-hero-vertical: 96px / 0.90 var(--font-display);    /* Weight: 900 | Tracking: -0.03em | optional 270deg */
+
+/* Blackletter is a faint oversized texture only. If used, set the host's own display word at
+   0.035 opacity - do not invent watermark strings, degree marks, or index codes. */
 
 /* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
---radius-none:  0px;    /* Primary CTAs, cards, navigational frames */
---radius-sm:    2px;    /* Badges, micro tags, chip indicators */
---radius-full:  9999px; /* Circular orbital stage rings, radial markers */
+--radius-default: 0px;
+--radius-subtle:  2px;
+--radius-none:    0px;
+--radius-sm:      2px;
+--radius-pill:    9999px; /* Circular rings and radial markers only - not buttons or cards */
 
-/* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
- * -------------------------------------------------------------------------- */
-/* Optical Stacking Hierarchy (Back to Front):
- * Layer 0 (Backdrop):   Radial gradient: radial-gradient(circle at 50% 45%, #18181D 0%, #0A0A0C 85%)
- * Layer 1 (Ghost Text): Ambient blackletter graphic text positioned behind foreground subject
- * Layer 2 (Guides):     Perspective dashed ellipse stage base (0 deg tilt ground plane)
- * Layer 3 (Content):    HUD labels, floating text blocks, side rail navigation
- * Layer 4 (Overlays):   Global fixed header, hamburger trigger, coordinate markers
- */
---backdrop-radial:    radial-gradient(circle at 50% 45%, #18181D 0%, #0A0A0C 85%);
+--shadow-base:    none;
+--shadow-hover:   0 4px 20px rgba(0, 0, 0, 0.60);
+--shadow-active:  0 8px 32px rgba(0, 0, 0, 0.90), 0 0 0 1px rgba(255, 255, 255, 0.12);
 --depth-stage-glow:   0 0 120px rgba(0, 0, 0, 0.85);
 --depth-hover-subtle: 0 4px 20px rgba(0, 0, 0, 0.60);
 --depth-tooltip:      0 8px 32px rgba(0, 0, 0, 0.90), 0 0 0 1px rgba(255, 255, 255, 0.12);
 
-/* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (8-POINT SYSTEM)
- * -------------------------------------------------------------------------- */
---space-2xs: 4px;   /* Icon-to-text micro gaps */
---space-xs:  8px;   /* Tag internal padding, chevron offsets */
---space-sm:  16px;  /* Header text margin bottom */
---space-md:  24px;  /* Paragraph gap, navigation spacing */
---space-lg:  40px;  /* Section module separation */
---space-xl:  64px;  /* Viewport edge insets */
---space-2xl: 96px;  /* Hero display separation */
+/* Canvas finish: radial-gradient(circle at 50% 45%, #18181D 0%, #0A0A0C 85%).
+   Optional dashed ellipse under a hero as a graphic stage - no coordinate labels.
+   Motion: 200ms ease-out. */
 
 /* -----------------------------------------------------------------------------
- * 7. BORDERS & DIVIDERS
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---border-dashed: 1px dashed rgba(255, 255, 255, 0.18); /* Orbital floor rings */
---border-solid:  1px solid rgba(255, 255, 255, 0.08);  /* Panel dividers */
---border-accent: 1.5px solid #FFFFFF;                  /* Active markers */
---divider-dash:  4px 6px;                              /* Dash 4px, Gap 6px */
+--border-core:     1px solid rgba(255, 255, 255, 0.08);
+--border-hairline: 1px solid rgba(255, 255, 255, 0.08);
+--border-dashed:   1px dashed rgba(255, 255, 255, 0.18);
+--border-solid:    1px solid rgba(255, 255, 255, 0.08);
+--border-accent:   1.5px solid #FFFFFF;
+--border-focus:    1px solid rgba(255, 255, 255, 0.24);
+--divider-style:   1px dashed rgba(255, 255, 255, 0.18);
+--divider-dash:    4px 6px;
+
+/* Icons: 1.5px-2.0px monoline, sharp terminals, 0px rounding. Hamburger as two 20px bars with 6px gap. */
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-- Style: Monoline, ultra-geometric, sharp terminal points (0px corner rounding).
-- Stroke Weight: 1.5px to 2.0px.
-- Standard Glyphs:
-  - Navigation Menu: Two parallel horizontal bars (Width: 20px, Gap: 6px)
-  - Directional Link: Square angled corner arrow (↳ / →)
-  - Stepper / Pagination: Double chevron (») with 3px inner spacing
-  - Spatial Orientation: Degree unit notation (237°) with monospaced font
+- **Buttons**: 0px radius. Primary is a white-fill rectangle or a tracked uppercase text actuator in #F5F5F7. Hover: letter-spacing +0.03em, or translateX(4px) with an underline that scales from the left. Active remains angular. Use the host's existing labels.
+- **Cards**: #18181D or #22222A slabs, 0px radius, 1px white-alpha hairline. Elevated surfaces use the tooltip shadow. Do not add index numbers, coordinate readouts, or degree annotations.
+- **Inputs**: Square wells, 1px hairline, focus ring rgba(255,255,255,0.24). Input font-size >= 16px.
+- **Navigation**: Restyle existing items as 12px uppercase display, tracking 0.18em. Hover brightens to #FFFFFF and opens tracking +0.03em. Do not add clocks, frequencies, or catalog codes.
+- **Badges / chips / toggles**: 2px radius maximum. White hairline idle; 1.5px solid white active. Dashed rings (opacity 0.18, hover 0.45) only as graphic frames around existing media - never labeled as bearings or orbits.
 
 /* -----------------------------------------------------------------------------
- * 9. INTERACTION & FEEDBACK RULES
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- Nav Links: Hover -> letter-spacing: +0.03em; color: #FFFFFF; (Transition: 200ms ease-out)
-- Action CTA (↳ GET): Hover -> transform: translateX(4px); underline scale from left (0 to 100%)
-- Pagination (»): Hover -> Chevrons pulse rightwards by 2px in sequence
-- Stage Orbit: Hover -> Dashed ring opacity increases from 0.18 to 0.45
-- Cursor Dynamics:
-  - Default: Minimalist custom dot cursor (6px #FFF)
-  - Interactive Target: Expands to hollow targeting circle (28px border: 1px solid #FFF) with 0.15s lerp
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
- * -------------------------------------------------------------------------- */
-- NO generic purple/violet gradients on dark backgrounds (strict obsidian/neutral palette).
-- NO round pill buttons or soft rounded card corners (strictly 0px angularity; 2px for chips only).
-- NO blurry diffuse pastel shadows (rely on radial atmospheric contrast and crisp hairlines).
-- NO gradient keywords or rainbow accents.
-- NO floating cards without hairline borders or dark obsidian surface differentiation.
-</script>
+- No purple/violet gradients on dark backgrounds (obsidian and white only).
+- No round pill buttons or soft card corners (0px; 2px chips only).
+- No blurry pastel shadows.
+- No gradient keywords or rainbow accents.
+- No floating cards without hairlines.
+- Do not print degree marks, fake coordinates, or showcase index strings.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
 
   <!-- JAVASCRIPT LOGIC -->
   <script>

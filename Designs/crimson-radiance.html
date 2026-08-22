@@ -2118,162 +2118,160 @@
        =========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  DESIGN SYSTEM STYLE TILE // "CRIMSON RADIANCE / LUMINA TECH" (TILE-026)
-  Aesthetic: Hyper-saturated editorial glassmorphism & luminescent dark UI
+  Visual language: Crimson Radiance
+  Construction: obsidian • crimson amber glow • glassmorphism • heavy tracking • specular pills
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Crimson Radiance / Lumina Tech is a hyper-saturated, luminescent dark design system
-engineered for telemetry synthesizers, high-frequency kinetic media, photonics computing,
-and futuristic editorial technology platforms. It pairs an ultra-deep obsidian black canvas
-(#080202) with kinetic crimson (#B50D00), solar orange (#FF6B00), and electric amber (#FFAE00)
-atmospheric underglows, hyper-refined glassmorphism, monoline iconography with 3x3 dot matrix
-accents, and heavy tracking typography.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Ultra-deep obsidian (#080202) lit from behind by kinetic crimson (#B50D00), solar orange (#FF6B00), and electric amber (#FFAE00). Foreground surfaces are glass: 0.04 / 0.08 / 0.14 white at blur 8-40px with saturate 140-200% and inset specular highlights. Primary actions are solid white, not red. Display is Syne, 76px / 0.92 / 700 / uppercase / -0.04em. Pills 9999px, cards 24px, fields 10px. 3x3 dot matrices and luminous rings are silent ornaments. Multi-strand sine fills may skin existing charts only -- do not add waveforms as required decoration.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Background & Canvas */
-  --canvas-base:             #080202; /* Ultra-deep obsidian black */
-  --canvas-glow-crimson:     #B50D00; /* Deep kinetic red */
-  --canvas-glow-amber:       #FF6B00; /* Vibrant solar orange */
-  --canvas-glow-gold:        #FFAE00; /* Bright electric amber */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #080202; /* Obsidian */
+  --bg-surface:             rgba(255, 255, 255, 0.08); /* Active glass */
+  --bg-surface-alt:         rgba(255, 255, 255, 0.04); /* Quiet glass */
+  --bg-surface-dark:        rgba(18, 5, 4, 0.55); /* Grounded tint */
 
-  /* Glass Surfaces */
-  --surface-glass-low:       rgba(255, 255, 255, 0.04); /* Subtle floating panels */
-  --surface-glass-med:       rgba(255, 255, 255, 0.08); /* Active interactive cards */
-  --surface-glass-high:      rgba(255, 255, 255, 0.14); /* Hover states / Nav pills */
-  --surface-dark-tint:       rgba(18, 5, 4, 0.55);      /* Grounded data modules */
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF;
+  --ink-secondary:          rgba(255, 255, 255, 0.72);
+  --ink-muted:              rgba(255, 255, 255, 0.44);
+  --ink-inverted:           #080202;
 
-  /* Typography & Foreground */
-  --text-primary:            #FFFFFF; /* 100% pure white */
-  --text-secondary:          rgba(255, 255, 255, 0.72); /* Muted body copy */
-  --text-tertiary:           rgba(255, 255, 255, 0.44); /* Metadata, captions */
-  --text-accent-gold:        #FFB800; /* Data callouts & indicators */
-
-  /* Brand Accent & Accents */
-  --accent-primary:          #FFFFFF; /* High-contrast solid action CTA */
-  --accent-luminous:         #FF4D00; /* Energy lines / waveforms / glows */
-  --accent-ring:             rgba(255, 255, 255, 0.85); /* Specular focus rings */
+  /* Signature Accents */
+  --accent-primary:         #FFFFFF; /* Solid action fill */
+  --accent-primary-hover:   #FFFFFF; /* Brightness 1.1 + white bloom on hover */
+  --accent-secondary:       #FF4D00; /* Luminous energy */
+  --accent-tertiary:        #FFB800; /* Gold callout */
 
   /* Status Tokens */
-  --status-success:          #00E599; /* Radiant Emerald */
-  --status-warning:          #FFAE00; /* Solar Amber */
-  --status-danger:           #FF2A1A; /* Laser Crimson */
-  --status-info:             #FF6B00; /* Plasma Orange */
+  --status-success:         #00E599;
+  --status-warning:         #FFAE00;
+  --status-danger:          #FF2A1A;
+  --status-info:            #FF6B00;
+
+  /* Extra original tokens */
+  --canvas-base:            #080202;
+  --canvas-glow-crimson:    #B50D00;
+  --canvas-glow-amber:      #FF6B00;
+  --canvas-glow-gold:       #FFAE00;
+  --surface-glass-low:      rgba(255, 255, 255, 0.04);
+  --surface-glass-med:      rgba(255, 255, 255, 0.08);
+  --surface-glass-high:     rgba(255, 255, 255, 0.14);
+  --surface-dark-tint:      rgba(18, 5, 4, 0.55);
+  --text-accent-gold:       #FFB800;
+  --accent-luminous:        #FF4D00;
+  --accent-ring:            rgba(255, 255, 255, 0.85);
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Stacks */
---font-display:              "Syne", "Clash Display", "Plus Jakarta Sans", sans-serif;
---font-sans:                 "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
---font-mono:                 "JetBrains Mono", ui-monospace, monospace;
+--font-display: "Syne", "Clash Display", "Plus Jakarta Sans", sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", ui-monospace, monospace;
 
-/* Scale & Hierarchy */
---type-display-mega:         font-size: 76px | line-height: 0.92 | tracking: -0.04em | weight: 700 | uppercase;
---type-heading-xl:           font-size: 28px | line-height: 1.15 | tracking: -0.02em | weight: 600;
---type-heading-sm:           font-size: 16px | line-height: 1.30 | tracking: -0.01em | weight: 600;
---type-body-regular:         font-size: 13px | line-height: 1.50 | tracking:  0.00em | weight: 400;
---type-caption-meta:         font-size: 11px | line-height: 1.40 | tracking: +0.02em | weight: 500;
---type-nav-pill:             font-size: 12px | line-height: 1.00 | tracking: +0.03em | weight: 500;
+--text-display: 76px / 0.92 var(--font-display); /* Weight: 700 | Tracking: -0.04em | UPPERCASE */
+--text-h1:      28px / 1.15 var(--font-sans);    /* Weight: 600 | Tracking: -0.02em */
+--text-h2:      16px / 1.30 var(--font-sans);    /* Weight: 600 | Tracking: -0.01em */
+--text-h3:      16px / 1.30 var(--font-sans);    /* Weight: 600 */
+--text-body:    13px / 1.50 var(--font-sans);    /* Weight: 400 */
+--text-body-sm: 12px / 1.00 var(--font-sans);    /* Weight: 500 | Tracking: +0.03em | nav pills */
+--text-meta:    11px / 1.40 var(--font-sans);    /* Weight: 500 | Tracking: +0.02em */
 
-/* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
- * -------------------------------------------------------------------------- */
---radius-full:               9999px; /* Floating navbars, pill buttons, micro-badges */
---radius-xl:                 24px;   /* Main modular data cards, content containers */
---radius-lg:                 16px;   /* Nested sub-cards, status containers */
---radius-md:                 10px;   /* Input fields, embedded media windows */
---radius-circle:             50%;    /* Concentric play/trigger controls */
+Display stays tightly tracked and uppercase. Gold (#FFB800) may tint existing callouts, not invented data strings. Do not print a product or system name from this tile.
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION, DEPTH & BLURS
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
-/* Backdrop Filter Blurs */
---blur-subtle:               backdrop-filter: blur(8px) saturate(140%);
---blur-glass:                backdrop-filter: blur(24px) saturate(180%);
---blur-heavy:                backdrop-filter: blur(40px) saturate(200%);
+--radius-full:    9999px;
+--radius-xl:      24px;
+--radius-lg:      16px;
+--radius-md:      10px;
+--radius-circle:  50%;
+--radius-default: 24px;
+--radius-subtle:  10px;
+--radius-pill:    9999px;
 
-/* Shadows & Specular Highlights */
+--blur-subtle: backdrop-filter: blur(8px) saturate(140%);
+--blur-glass:  backdrop-filter: blur(24px) saturate(180%);
+--blur-heavy:  backdrop-filter: blur(40px) saturate(200%);
+
 --elevation-card:
-  box-shadow:
-    inset 0 1px 1px 0 rgba(255, 255, 255, 0.22),
-    inset 0 0 20px 0 rgba(255, 255, 255, 0.03),
-    0 24px 48px -12px rgba(0, 0, 0, 0.45);
-
+  inset 0 1px 1px 0 rgba(255, 255, 255, 0.22),
+  inset 0 0 20px 0 rgba(255, 255, 255, 0.03),
+  0 24px 48px -12px rgba(0, 0, 0, 0.45);
 --elevation-glow-cta:
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.6),
-    0 0 35px 4px rgba(255, 110, 0, 0.45);
-
+  0 0 0 1px rgba(255, 255, 255, 0.6),
+  0 0 35px 4px rgba(255, 110, 0, 0.45);
 --elevation-play-disc:
-  box-shadow:
-    0 0 0 8px rgba(255, 255, 255, 0.08),
-    0 0 0 1px rgba(255, 255, 255, 0.4),
-    0 10px 30px rgba(0, 0, 0, 0.5);
+  0 0 0 8px rgba(255, 255, 255, 0.08),
+  0 0 0 1px rgba(255, 255, 255, 0.4),
+  0 10px 30px rgba(0, 0, 0, 0.5);
+--shadow-base:  inset 0 1px 1px 0 rgba(255, 255, 255, 0.22), inset 0 0 20px 0 rgba(255, 255, 255, 0.03), 0 24px 48px -12px rgba(0, 0, 0, 0.45);
+--shadow-hover: 0 0 25px rgba(255, 255, 255, 0.4);
+--shadow-active: none;
+
+Canvas underglow: large crimson/orange/amber blooms behind glass, not as UI labels.
+
+Spacing: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96px. Compact padding 12px 16px; standard 20px 24px; large 48px 64px.
+
+--transition-snap:    150ms cubic-bezier(0.4, 0.0, 0.2, 1);
+--transition-smooth:  300ms cubic-bezier(0.16, 1, 0.3, 1);
+--transition-elastic: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (8pt Base Grid)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---space-2xs: 4px;   --space-xs:  8px;   --space-sm: 12px;
---space-md:  16px;  --space-lg:  24px;  --space-xl: 32px;
---space-2xl: 48px;  --space-3xl: 64px;  --space-4xl: 96px;
+--border-core:          1px solid rgba(255, 255, 255, 0.10);
+--border-glass-subtle:  1px solid rgba(255, 255, 255, 0.10);
+--border-glass-focus:   1px solid rgba(255, 255, 255, 0.25);
+--border-hairline:      1px solid rgba(255, 255, 255, 0.06);
+--border-gradient-edge: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.02) 100%);
+--divider-style:        1px solid rgba(255, 255, 255, 0.06);
 
-/* Card Internal Padding */
---pad-compact:               12px 16px; /* Navbars, pill tags */
---pad-standard:              20px 24px; /* Data panels, metric widgets */
---pad-hero:                  48px 64px; /* Major responsive gutters */
+Icons: 1.5px monoline, round/semi-sharp caps, rgba(255,255,255,0.85) default, #FF6B00 accent. Optional 3x3 dot matrix in existing icon wells. Concentric rings only on controls the host already has.
+
+Charts, if present, may use overlapping sine strokes with crimson-to-amber fills. Do not insert waveforms as page chrome.
 
 /* -----------------------------------------------------------------------------
- * 7. BORDERS & STROKES
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
---border-glass-subtle:       1px solid rgba(255, 255, 255, 0.10);
---border-glass-focus:        1px solid rgba(255, 255, 255, 0.25);
---border-gradient-edge:      linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.02) 100%);
---divider-translucent:       1px solid rgba(255, 255, 255, 0.06);
+- **Buttons**: 9999px. Primary: solid #FFFFFF, dark type; hover `scale(1.02)`, brightness(1.1), `box-shadow: 0 0 25px rgba(255,255,255,0.4)` over 150ms snap. Optional CTA glow `0 0 35px 4px rgba(255, 110, 0, 0.45)`. Ghost: glass 0.04-0.08, white type, 1px glass hairline. Keep host labels.
+- **Cards**: 24px (16px nested). Glass 0.04-0.08, blur 24px saturate 180%, inset specular, 1px glass edge, dark ambient. Hover: border rgba(255,255,255,0.22), fill 0.10, `translateY(-2px)` over 300ms. Do not add instrument headers or sample readouts.
+- **Inputs**: 10px, glass well, subtle glass border. Font-size at least 16px. Focus: 1px rgba(255,255,255,0.25) plus `rgba(255,255,255,0.85)` ring. Placeholder 0.44 white. Toggles: glass off, white or #FF4D00 on.
+- **Navigation**: Restyle existing items as glass pills (12px / 500 / +0.03em). Active: glass-high 0.14 or solid white. Floating frosted bar allowed. No catalog codes, fake clocks, or frequency legends.
+- **Badges / chips / toggles**: Pills, glass or gold/orange fill. Status: emerald #00E599, amber #FFAE00, laser #FF2A1A, plasma #FF6B00. Play/disc treatments (concentric halo, scale 1.08, 0.8s breathe) only if the host already has a media trigger.
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY & DATA VISUALIZATION LANGUAGE
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- Stroke-width:              1.5px / Monoline
-- Corner caps:               Round / Semi-sharp aesthetic
-- Color:                     rgba(255, 255, 255, 0.85) default, #FF6B00 accent
-- Micro-accents:             3x3 dot matrix grid patterns, diagonal link arrows (↗)
-- Ambient Waveforms:         Multi-strand overlapping sine waves with gradient fills
-- Glow Ratios:               Luminous scalar rings (40% to 100% opacity gradient arcs)
-- Status Nodes:              Glowing pill badges containing centered micro-text
-
-/* -----------------------------------------------------------------------------
- * 9. INTERACTION & MOTION DYNAMICS
- * -------------------------------------------------------------------------- */
---transition-snap:           150ms cubic-bezier(0.4, 0.0, 0.2, 1);
---transition-smooth:         300ms cubic-bezier(0.16, 1, 0.3, 1);
---transition-elastic:        500ms cubic-bezier(0.34, 1.56, 0.64, 1);
-
-- Primary Button Hover:
-    scale: 1.02; filter: brightness(1.1); box-shadow: 0 0 25px rgba(255,255,255,0.4);
-- Glass Card Hover:
-    border-color: rgba(255, 255, 255, 0.22);
-    background: rgba(255, 255, 255, 0.10);
-    transform: translateY(-2px);
-- Play / Action Trigger Hover:
-    concentric halo pulse expansion: scale(1.08) with 0.8s looping breathe.
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
- * -------------------------------------------------------------------------- */
-- NO generic purple on dark violet neon gradients.
-- NO untracked massive headlines.
-- NO flat textureless surfaces without specular inset highlights or saturated backdrop blurs.
-- NO generic 0px brutalist sharp harsh blocks without glass refraction.
-- NO icon-stuffed bento boxes or generic corporate stock illustrations.
-- NO headline biscuit pills with pulsing dots right above the main headline.
-================================================================================
+- No generic purple-on-violet neon gradients; glow is crimson, orange, amber.
+- No untracked massive headlines; keep -0.04em on display.
+- No flat textureless panels; glass needs specular insets and saturated blur.
+- No 0px brutalist blocks without refraction.
+- No icon-stuffed bento grids or stock corporate illustration.
+- No biscuit headline pills with pulsing dots.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ===========================================================================

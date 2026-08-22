@@ -2066,25 +2066,39 @@
        ========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Ethos Void • Luminous Monochrome • Cinematic Quiet Luxury
+  Visual language: Ethos Void
+  Construction: abyss black • frost glass • ice-cyan volume • Syne display
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Ethos Void is a cinematic dark language of abyss black, frost glass, and ice-cyan
-volumetric top-light. It is quiet luxury engineered as atmosphere: high-contrast
-white headlines, Inter at 300 for the long line, and a single falling column of
-white-to-cyan illumination screen-blended over #000000. Ideal for optical ateliers,
-private product studios, architecture houses, and cinematic brand systems that
-refuse neon, HUD chrome, and ornamental color.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Pure abyss (#000000) is the canvas. Ice-cyan volume (#3A6E8C / #3A7899) falls
+as a screen-blended radial column from white at the top, never as a fill block.
+Surfaces are frost glass at 0.03-0.07 white with 24px blur and inset rim light.
+Display is Syne 800 at tight tracking; body is Inter 300. Geometry mixes 12-20px
+inner plates with 9999px pills. Motion is 250ms cubic-bezier(0.16, 1, 0.3, 1).
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
   /* Surfaces & Backgrounds */
-  --bg-canvas:              #000000; /* Primary application canvas — pure abyss */
+  --bg-canvas:              #000000; /* Pure abyss */
   --bg-surface:             rgba(255, 255, 255, 0.03); /* Raised glass cards */
   --bg-surface-alt:         rgba(255, 255, 255, 0.07); /* Elevated / hover plates */
   --bg-surface-dark:        #0D1821; /* Falloff wells, inverted containers */
@@ -2096,33 +2110,31 @@ refuse neon, HUD chrome, and ornamental color.
   --ink-muted:              #5A5A5A; /* Captions, disabled text, ticks */
   --ink-inverted:           #000000; /* Ink on white pills */
 
-  /* Atmosphere (volumetric, not fills) */
-  --ambient-top:            #FFFFFF; /* Aurora white core */
-  --ambient-core:           #3A6E8C; /* Ice-cyan volume */
-  --ambient-falloff:        #0D1821; /* Cyan-black decay */
-  --aurora-mid:             #3A7899; /* Hero aurora 45% stop */
-
   /* Signature Accents */
   --accent-primary:         #FFFFFF; /* Primary CTA fill / disc */
   --accent-primary-hover:   #E8E8E8; /* Interactive hover tone */
   --accent-secondary:       #3A6E8C; /* Ice-cyan supporting highlight */
   --accent-tertiary:        #3A7899; /* Aurora / badge energy */
 
+  /* Status Tokens */
+  --status-success:         #6B8F7A;
+  --status-warning:         #A3926A;
+  --status-danger:          #8C4A4A;
+  --status-info:            #3A6E8C;
+
+  /* Atmosphere (volumetric, not fills) */
+  --ambient-top:            #FFFFFF;
+  --ambient-core:           #3A6E8C;
+  --ambient-falloff:        #0D1821;
+  --aurora-mid:             #3A7899;
+  --hero-aurora:            radial-gradient(ellipse 80% 50% at 50% -10%, #FFFFFF 0%, #3A7899 45%, #000000 100%);
+
   /* Interactive Pills */
   --pill-fill:              rgba(255, 255, 255, 0.08);
   --pill-stroke:            rgba(255, 255, 255, 0.20);
   --pill-hover-fill:        rgba(255, 255, 255, 0.15);
   --pill-hover-stroke:      rgba(255, 255, 255, 0.40);
-
-  /* Status Tokens — restrained, never SaaS berry */
-  --status-success:         #6B8F7A;
-  --status-warning:         #A3926A;
-  --status-danger:          #8C4A4A;
-  --status-info:            #3A6E8C;
 }
-
-/* Hero aurora (atmosphere only — mix-blend-mode: screen) */
---hero-aurora: radial-gradient(ellipse 80% 50% at 50% -10%, #FFFFFF 0%, #3A7899 45%, #000000 100%);
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
@@ -2136,17 +2148,17 @@ refuse neon, HUD chrome, and ornamental color.
 --text-display: clamp(64px, 12vw, 140px) / 0.9  var(--font-display); /* Tracking: -0.04em | Weight: 800 */
 --text-h1:      clamp(32px, 5vw, 48px) / 1.1  var(--font-sans);      /* Tracking: -0.03em | Weight: 400 */
 --text-h2:      1.75rem  / 1.25  var(--font-sans);                   /* Letter-spacing: -0.03em | Weight: 400 */
---text-h3:      20px     / 1.25  var(--font-sans);                   /* Card title | Weight: 500 */
+--text-h3:      20px     / 1.25  var(--font-sans);                   /* Weight: 500 */
 --text-body:    14px     / 1.60  var(--font-sans);                   /* Weight: 300 */
 --text-body-sm: 0.875rem / 1.50  var(--font-sans);                   /* Weight: 300 */
---text-meta:    10px     / 1.40  var(--font-mono);                   /* UPPERCASE | Tracking: 0.18em | [ PRODUCTS ] [ COMPANY ] */
+--text-meta:    10px     / 1.40  var(--font-mono);                   /* UPPERCASE | Tracking: 0.18em */
 
 /* -----------------------------------------------------------------------------
  * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
 --radius-subtle:   0px;    /* Sharp technical edges, ticks */
 --radius-default:  12px;   /* Inner cards, feature plates */
---radius-card-lg:  20px;   /* Outer glass shells, demo frame */
+--radius-card-lg:  20px;   /* Outer glass shells */
 --radius-pill:     9999px; /* CTAs, search, nav, discs */
 
 /* Elevation & Shadows */
@@ -2163,32 +2175,32 @@ refuse neon, HUD chrome, and ornamental color.
 /* -----------------------------------------------------------------------------
  * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
+--border-core:      1px solid rgba(255, 255, 255, 0.14);
 --border-hairline:  1px solid rgba(255, 255, 255, 0.08);
 --border-glass:     1px solid rgba(255, 255, 255, 0.14);
 --border-hover:     1px solid rgba(255, 255, 255, 0.22);
 --border-active:    1px solid rgba(255, 255, 255, 0.28);
 --divider-style:    1px solid rgba(255, 255, 255, 0.08);
-
-/* Technical corner crosses: 12×12px 1px ticks centered on outer bounding corners. */
-
-/* -----------------------------------------------------------------------------
- * 6. COMPONENT ARCHETYPES & INTERACTION RULES
- * -------------------------------------------------------------------------- */
-- **Buttons**: Primary = solid white pill, black ink, inverse disc. Ghost = pill fill 0.08 / stroke 0.20, white circular disc with black arrow. Hover: fill 0.15, stroke 0.40, icon translateX(3px), 250ms cubic-bezier(0.16, 1, 0.3, 1). Danger = muted wine #8C4A4A, never berry pink. Accent = ice-cyan wash, not a fill block.
-- **Cards**: Raised glass 0.03, radius 12 (inner) / 20 (outer), hairline 0.08, inset rim light, backdrop-filter blur(24px). Hover: fill 0.05, border 0.22. Outer frames may carry fine 1px corner crosses.
-- **Inputs**: Sit on #000000. Pill geometry. Placeholder #5A5A5A. Focus border 0.28. Font-size ≥ 16px on touch. Trailing white disc / black arrow submits.
-- **Navigation**: Frosted pill bar, mono-bracket links [ PRODUCTS ] [ COMPANY ] at 10px / 0.18em. Active link is a whisper of white fill, never a colored underline.
-- **Icons**: Line geometric 1.25px, 14–16px. Circular white disc with black arrow is the canonical affordance. Meta uses mono brackets [ + ] [ 01 ].
+/* Optional technical corner crosses: 12x12px 1px ticks on outer bounding corners. Omit if they read as HUD chrome the host does not have. */
 
 /* -----------------------------------------------------------------------------
- * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-- NO generic purple / indigo / violet neon (this is monochrome + ice-cyan volume only).
+- **Buttons**: Primary is a solid white pill with black ink and an inverse disc. Ghost is pill fill 0.08 / stroke 0.20, white circular disc with black arrow. Hover: fill 0.15, stroke 0.40, icon translateX(3px), 250ms cubic-bezier(0.16, 1, 0.3, 1). Danger is muted wine #8C4A4A. Accent is an ice-cyan wash, not a fill block. Use the host's existing labels.
+- **Cards**: Raised glass 0.03, radius 12 (inner) / 20 (outer), hairline 0.08, inset rim light, backdrop-filter blur(24px). Hover: fill 0.05, border 0.22. Outer frames may carry fine 1px corner crosses. Do not add index codes or fake meta.
+- **Inputs**: Sit on #000000. Pill geometry. Placeholder #5A5A5A. Focus border 0.28. Font-size at least 16px. A trailing white disc / black arrow may submit if the host already uses an inline submit control.
+- **Navigation**: Frosted pill bar. Meta links may use 10px / 0.18em mono. Active link is a whisper of white fill, never a colored underline. Do not add catalog codes, fake clocks, or status readouts.
+- **Icons**: Line geometric 1.25px, 14-16px. Circular white disc with black arrow is the canonical affordance.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- NO generic purple / indigo / violet neon (monochrome + ice-cyan volume only).
 - NO scanlines, reticles, HUD crosshairs, terminal green, or cyber CAD grids.
-- NO chunky brutalist offset shadows (4px 4px 0 #000) or 0–2px stamp chrome.
+- NO chunky brutalist offset shadows (4px 4px 0 #000) or 0-2px stamp chrome.
 - NO bright SaaS berry pink, candy gradients, or unbordered floating gray cards.
 - NO gradient text, glassmorphism without a rim, or colored button fills besides white / muted status.
-================================================================================
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <script>

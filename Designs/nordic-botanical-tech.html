@@ -2513,162 +2513,147 @@
        =========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  DESIGN SYSTEM STYLE TILE // "NORDIC BOTANICAL TECH" (TILE-024)
-  A high-contrast, editorial aesthetic pairing deep organic tones with 
-  hyper-modern acid accents and asymmetric geometric surface layouts.
+  Visual language: Nordic Botanical
+  Construction: alpine pine • warm linen • acid chartreuse • asymmetric radii • pill CTAs
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Nordic Botanical Tech is a high-contrast, editorial design language uniting the 
-pristine serenity of sub-arctic evergreen flora with high-voltage acid chartreuse 
-telemetry and asymmetric geometric surface architecture. Developed for sustainable 
-luxury, phyto-biotech telemetry, precision ecological instrumentation, and modern 
-canopy science platforms.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Deep alpine pine (#0F3B32, #164E43, #0B2B24) holds high-contrast warm linen cards (#F8F3E8) and acid chartreuse strikes (#D4E825), with desaturated sage (#74A99C) as a quiet second. Type is Plus Jakarta Sans, extra-bold display at clamp 3.25-5.5rem / 0.96 / -0.035em, sage-gray secondary on dark, forest ink on linen. Cards are 28px, sometimes asymmetric (28px 28px 0 28px). Pills are 9999px. Hover lifts 2px and blooms chartreuse. Pixel-step corner mosaics and 3x16px tab underscores are silent geometry -- no specimen metrics.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
   /* Surfaces & Backgrounds */
-  --color-canvas-base:       #0F3B32; /* Deep Alpine Pine (Primary Dark Surface) */
-  --color-canvas-subtle:     #164E43; /* Muted Evergreen (Depth / Container base) */
-  --color-surface-warm:      #F8F3E8; /* Warm Linen / Ecru (High-contrast Card) */
-  --color-surface-dark:      #0B2B24; /* Midnight Pine (Recessed areas) */
-
-  /* Signature Accents */
-  --color-accent-electric:   #D4E825; /* Acid Chartreuse / High-voltage Highlight */
-  --color-accent-mint:       #74A99C; /* Desaturated Sage (Secondary indicator) */
+  --bg-canvas:              #0F3B32; /* Deep alpine pine */
+  --bg-surface:             #F8F3E8; /* Warm linen / ecru */
+  --bg-surface-alt:         #164E43; /* Muted evergreen */
+  --bg-surface-dark:        #0B2B24; /* Midnight pine */
 
   /* Inks & Typography */
-  --color-text-on-dark:      #FFFFFF; /* Pure White (High-emphasis Dark Mode) */
-  --color-text-on-dark-sub:  #A4C3BA; /* Sage Gray (Medium-emphasis Dark Mode) */
-  --color-text-on-light:     #0F3830; /* Forest Ink (High-emphasis Light Surface) */
-  --color-text-on-light-sub: #5C7871; /* Olive Smoke (Medium-emphasis Light) */
+  --ink-primary:            #FFFFFF; /* On pine */
+  --ink-secondary:          #A4C3BA; /* Sage gray on dark */
+  --ink-muted:              #5C7871; /* Olive smoke on linen */
+  --ink-inverted:           #0F3830; /* Forest ink on linen */
 
-  /* Special Seals */
-  --color-badge-black:       #111614; /* Pitch Onyx (Floating Starburst Badges) */
+  /* Signature Accents */
+  --accent-primary:         #D4E825; /* Acid chartreuse */
+  --accent-primary-hover:   #D4E825; /* Same strike; hover adds glow + lift */
+  --accent-secondary:       #74A99C; /* Desaturated sage */
+  --accent-tertiary:        #111614; /* Pitch onyx seals */
+
+  /* Status Tokens (mapped from original hexes) */
+  --status-success:         #D4E825;
+  --status-warning:         #74A99C;
+  --status-danger:          #111614;
+  --status-info:            #A4C3BA;
+
+  /* Extra original tokens */
+  --color-canvas-base:       #0F3B32;
+  --color-canvas-subtle:     #164E43;
+  --color-surface-warm:      #F8F3E8;
+  --color-surface-dark:      #0B2B24;
+  --color-accent-electric:   #D4E825;
+  --color-accent-mint:       #74A99C;
+  --color-text-on-dark:      #FFFFFF;
+  --color-text-on-dark-sub:  #A4C3BA;
+  --color-text-on-light:     #0F3830;
+  --color-text-on-light-sub: #5C7871;
+  --color-badge-black:       #111614;
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Stacks */
-Primary Font Family:   "Plus Jakarta Sans", "Satoshi", system-ui, sans-serif
-Secondary / Mono:      "JetBrains Mono", monospace (Micro-specs & Metrics)
+--font-display: "Plus Jakarta Sans", "Satoshi", system-ui, sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Satoshi", system-ui, sans-serif;
+--font-mono:    "JetBrains Mono", monospace;
 
-[Type Hierarchy]
-* Hero Display:        font-size: clamp(3.25rem, 6vw, 5.5rem) | weight: 800
-                       line-height: 0.96                      | tracking: -0.035em
-* Display Stat Lg:     font-size: 3.5rem                      | weight: 800
-                       line-height: 1.00                      | tracking: -0.03em
-* Section Title / H2:  font-size: 2.0rem                      | weight: 700
-                       line-height: 1.15                      | tracking: -0.02em
-* Subheading / H3:     font-size: 1.25rem                     | weight: 600
-                       line-height: 1.30                      | tracking: -0.01em
-* Body Text:           font-size: 0.95rem                     | weight: 400
-                       line-height: 1.55                      | tracking: 0.00em
-* Button / Nav Action: font-size: 0.875rem                    | weight: 600
-                       line-height: 1.00                      | tracking: 0.01em
-* Micro / Metadata:    font-size: 0.75rem                     | weight: 500
-                       line-height: 1.40                      | tracking: 0.02em
+--text-display: clamp(3.25rem, 6vw, 5.5rem) / 0.96 var(--font-display); /* Weight: 800 | Tracking: -0.035em */
+--text-h1:      3.5rem / 1.00 var(--font-display); /* Weight: 800 | Tracking: -0.03em */
+--text-h2:      2.0rem / 1.15 var(--font-sans);    /* Weight: 700 | Tracking: -0.02em */
+--text-h3:      1.25rem / 1.30 var(--font-sans);   /* Weight: 600 | Tracking: -0.01em */
+--text-body:    0.95rem / 1.55 var(--font-sans);   /* Weight: 400 */
+--text-body-sm: 0.875rem / 1.00 var(--font-sans);  /* Weight: 600 | Tracking: +0.01em | actions */
+--text-meta:    0.75rem / 1.40 var(--font-sans);   /* Weight: 500 | Tracking: +0.02em */
+
+Mono is for existing micro-specs only. Do not invent specimen stats or botanical readouts. On linen, primary ink is #0F3830; on pine, white.
 
 /* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
---radius-pill:         9999px;              /* CTA buttons, pills, search bars */
---radius-circle:       50%;                 /* Floating media triggers & icons */
---radius-surface-lg:   28px;                /* Floating high-contrast cards */
---radius-surface-md:   16px;                /* Inner modules, small media slots */
---radius-asymmetric:   28px 28px 0px 28px;  /* Stylized structural anchor cards */
---radius-sharp:        0px;                 /* Pixel-grid accents & mosaic cuts */
---shape-badge-badge:   polygon(scalloped 12-point starburst / organic seal)
+--radius-pill:       9999px;
+--radius-circle:     50%;
+--radius-surface-lg: 28px;
+--radius-surface-md: 16px;
+--radius-asymmetric: 28px 28px 0px 28px;
+--radius-sharp:      0px;
+--radius-default:    28px;
+--radius-subtle:     16px;
 
-/* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
- * -------------------------------------------------------------------------- */
-[Z-Index Architecture]
-* Base Plane (z-0):    Deep alpine green canvas with flat lighting
-* Structural (z-10):   Solid flat cards (Warm Linen & Acid Yellow)
-* Overlay Cut (z-20):  Extruded subjects breaking boundary boxes (3D cutouts)
-* Interaction (z-30):  Floating pill controls, play heads, and dynamic badges
-
-[Shadow System]
 --shadow-glow-accent:  0 12px 32px -8px rgba(212, 232, 37, 0.35);
 --shadow-card-ambient: 0 20px 48px -12px rgba(0, 0, 0, 0.35);
 --shadow-pill-float:   0 8px 20px -4px rgba(0, 0, 0, 0.20);
 --shadow-inset-bevel:  inset 0 1px 1px rgba(255, 255, 255, 0.15);
+--shadow-base:         0 20px 48px -12px rgba(0, 0, 0, 0.35);
+--shadow-hover:        0 12px 32px -8px rgba(212, 232, 37, 0.35);
+--shadow-active:       none;
+
+Optional 12-point scalloped seal as a badge shape -- unlabeled. Pixel mosaic: 12px step tiles in a corner dock, no legend.
+
+Spacing: 4 / 8 / 16 / 24 / 32 / 48 / 64 / 96px. Card padding 28-36px. Gaps 32px / 40px. Existing media may overhang -24 to -48px.
+
+--transition-snappy: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+--transition-smooth: 320ms cubic-bezier(0.25, 0.8, 0.25, 1);
+
+Media may take a +/-3deg micro-tilt on hover if the host already has imagery.
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
-Base Multiplier: 4px | Core Scale: 8pt Grid
-
---space-xxs:           4px;
---space-xs:            8px;
---space-sm:            16px;
---space-md:            24px;
---space-lg:            32px;
---space-xl:            48px;
---space-2xl:           64px;
---space-3xl:           96px;
-
-[Compositional Rules]
-* Card Inner Padding:  28px to 36px (Generous breathing room)
-* Grid Gap:            32px horizontal / 40px vertical
-* Overhang / Bleed:    -24px to -48px (Hero assets break past container bounds)
-
-/* -----------------------------------------------------------------------------
- * 7. BORDERS & ACCENT DIVIDERS
- * -------------------------------------------------------------------------- */
+--border-core:         2px solid rgba(255, 255, 255, 0.90);
 --border-subtle-dark:  1px solid rgba(255, 255, 255, 0.12);
 --border-hairline:     1px solid rgba(15, 56, 48, 0.15);
 --border-active-pill:  2px solid rgba(255, 255, 255, 0.90);
+--divider-style:       3px x 16px chartreuse pill bar under the active nav item;
 
-[Graphic Accent Motifs]
-* Pixel Mosaic Motif:  12px geometric step-down grid tiles placed in corner docks
-* Underscore Accents:  3px high by 16px wide pill bars beneath active nav tabs
-
-/* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
- * -------------------------------------------------------------------------- */
-* Style:               Minimal, geometric, neo-lineal
-* Stroke Weight:       1.75px uniform outline with rounded joins and terminals
-* Sizing Scale:        16px (Inline/Action), 24px (Navigation), 40px (Hero trigger)
-* Containers:          Inverted circular buttons (--color-surface-warm fill with
-                       centered solid geometric glyphs)
-* Play Indicators:     Crisp solid triangle glyph enclosed in floating 50% circle
+Icons: 1.75px neo-lineal, round joins, 16/24/40px. Existing circular media triggers: linen fill, solid geometric glyph. Do not add a play disc unless the host already has media controls.
 
 /* -----------------------------------------------------------------------------
- * 9. INTERACTION & FEEDBACK RULES
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
---transition-snappy:   180ms cubic-bezier(0.16, 1, 0.3, 1);
---transition-smooth:   320ms cubic-bezier(0.25, 0.8, 0.25, 1);
-
-[Interactive States]
-* Pill Button (Default): 
-  - Background: #FFFFFF | Color: #0F3830 | Transform: translateY(0)
-* Pill Button (Hover):   
-  - Background: #D4E825 | Color: #0B2B24 | Transform: translateY(-2px)
-  - Box Shadow: var(--shadow-glow-accent)
-* Floating Media Trigger (Hover):
-  - Scale: 1.08 | Opacity: 1.0 | Transition: var(--transition-snappy)
-* Card Image Cutouts (Scroll/Hover):
-  - Subtle parallax micro-tilt (±3deg 3D perspective shift)
-* Active Nav Indicator:
-  - Slide-in underline bar in --color-accent-electric with subtle glow
+- **Buttons**: 9999px pills. Default: #FFFFFF fill, #0F3830 type, `translateY(0)`. Hover: #D4E825 fill, #0B2B24 type, `translateY(-2px)`, chartreuse glow, 180ms snappy. Ghost on pine: hairline white 0.12, white type. Keep host labels.
+- **Cards**: 28px (or 28px 28px 0 28px asymmetric). Linen on pine with ambient shadow, or evergreen #164E43 wells. Inner modules 16px. Hover may lift slightly. Do not add telemetry headers, ISO chips, or canopy readouts.
+- **Inputs**: Pill or 16px, linen or midnight well. Font-size at least 16px. Focus: 2px white or chartreuse. Placeholder sage. Toggles: sage off, chartreuse on.
+- **Navigation**: Restyle existing items as white/linen pills on pine. Active: chartreuse 3x16px underline with quiet glow. No catalog codes or fake clocks.
+- **Badges / chips / toggles**: Pill or 12-point seal in #111614 with linen or chartreuse type. Sage for secondary indicators.
 
 /* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- NO generic purple neon or violet accents on dark backgrounds.
-- NO cluttered dashboard widget spam without clear editorial whitespace.
-- NO unanchored cards without precise radii or borders.
-- NO bloated gradient text fills across headline keywords.
-- NO headline biscuit pills with pulsing dots right above the main headline.
-- NO 3D cartoon/vector illustrations (prefer authentic organic botanical vectors).
-================================================================================
+- No generic purple neon or violet on dark pine.
+- No cluttered dashboard widget spam; keep editorial air.
+- No unanchored cards without the stated radii or hairlines.
+- No gradient fills on headline keywords.
+- No biscuit headline pills with pulsing dots.
+- No 3D cartoon illustrations; if ornaments exist, keep them flat botanical or geometric.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ===========================================================================

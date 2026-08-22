@@ -2593,119 +2593,147 @@
       </div>
 
       <div class="spec-code-card">
-        <pre class="spec-code-pre"><code id="spec-code-display">================================================================================
-  DESIGN SYSTEM STYLE TILE: "FLUID BENTO / SOFT SAAS"
+        <pre class="spec-code-pre"><code id="spec-code-display">
+================================================================================
+  Visual language: Fluid Bento
+  Construction: warm slate canvas • 24px outer tiles • nested 16px wells • berry pink • soft float shadows
 ================================================================================
 
-1. COLOR ROLES & PALETTE
---------------------------------------------------------------------------------
-• Canvas / Neutral Backgrounds:
-  - Surface-0 (App Background)  : #ECEFF2  /* Soft warm slate canvas */
-  - Surface-1 (Card / Bento Tile): #FFFFFF  /* Pure white base cards */
-  - Surface-2 (Nested Container): #F6F8FA  /* Sub-card & input fill */
-  - Surface-Dark (Card Accent)  : #111315  /* High-contrast feature card */
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
 
-• Brand & Semantic Accents:
-  - Primary Accent (Berry Pink) : #DE2454  /* Active nav, pills, high-priority CTA */
-  - Primary Accent Soft         : #FCE8EE  /* Light berry badge background */
-  - Metric Alert / Secondary    : #E42A58  /* Delta / negative / spotlight tags */
-  - Chart Accent Line           : #E83D6D  /* Dynamic trendline stroke */
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
-• Typography Colors:
-  - Text-Primary (Headers/Data) : #111315  /* Near black, high contrast */
-  - Text-Secondary (Subheaders) : #6B7280  /* Neutral slate */
-  - Text-Muted (Decimals/Units) : #9CA3AF  /* Light gray auxiliary text */
-  - Text-On-Dark (Inverted)     : #FFFFFF  /* Pure white */
-  - Text-Accent (Active Item)   : #DE2454  /* Highlighted link / active menu */
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A soft warm-slate canvas holding pure-white bento tiles with nested mist wells and occasional onyx inverted cards. Outer tiles are 24px; inner wells 16px; compact controls 10px; search and segments are full pills. Berry pink is the only loud ink - active nav, pills, and primary actions. Depth is a very light float shadow, not a hard border. Type is a single geometric sans with tabular figures. Motion is a short fluid spring.
 
-• Data / Integration Palette:
-  - Dribbble : #EA4C89 | Behance : #0057FF | Google : #4285F4 | IG : #E1306C
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #ECEFF2; /* Soft warm slate */
+  --bg-surface:             #FFFFFF; /* White bento tile */
+  --bg-surface-alt:         #F6F8FA; /* Nested well */
+  --bg-surface-dark:        #111315; /* Inverted feature card */
 
+  /* Inks & Typography */
+  --ink-primary:            #111315; /* Near black */
+  --ink-secondary:          #6B7280; /* Neutral slate */
+  --ink-muted:              #9CA3AF; /* Auxiliary gray */
+  --ink-inverted:           #FFFFFF; /* White on onyx */
 
-2. TYPOGRAPHY SYSTEM
---------------------------------------------------------------------------------
-• Primary Font Family: "Plus Jakarta Sans", "Inter", or "SF Pro Display", sans-serif
-• Tabular Data: Lining Figures enabled (font-variant-numeric: tabular-nums)
+  /* Signature Accents */
+  --accent-primary:         #DE2454; /* Berry pink */
+  --accent-primary-hover:   #C71E49; /* Deep berry */
+  --accent-secondary:       #FCE8EE; /* Light berry wash */
+  --accent-tertiary:        #E83D6D; /* Trendline berry */
 
-• Type Hierarchy:
-  - Display Title  : 28px / Line Height: 34px | SemiBold (600) | Tracking: -0.02em
-  - Metric Large   : 24px / Line Height: 30px | Bold (700)     | Tracking: -0.03em
-    ↳ Sub-decimals : 18px / Line Height: 30px | SemiBold (600) | Color: Text-Muted
-  - Section Header : 16px / Line Height: 22px | SemiBold (600) | Tracking: -0.01em
-  - Body Regular   : 13px / Line Height: 18px | Medium (500)   | Tracking: 0em
-  - Label / Badge  : 11px / Line Height: 14px | SemiBold (600) | Tracking: +0.01em
-  - Micro / Meta   : 10px / Line Height: 12px | Regular (400)  | Tracking: +0.02em
+  /* Status Tokens */
+  --status-success:         #10B981; /* Quiet green */
+  --status-warning:         #E83D6D; /* Berry caution */
+  --status-danger:          #E42A58; /* Alert berry */
+  --status-info:            #4285F4; /* Cool information blue */
 
+  /* Extra material tokens */
+  --surface-0:              #ECEFF2;
+  --surface-1:              #FFFFFF;
+  --surface-2:              #F6F8FA;
+  --surface-dark:           #111315;
+  --surface-glass:          rgba(255, 255, 255, 0.85);
+  --primary-accent-soft:    #FCE8EE;
+  --metric-alert:           #E42A58;
+  --chart-accent:           #E83D6D;
+  --color-success-soft:     #D1FAE5;
+  --nav-idle-fill:          #F3F4F6;
+}
 
-3. CORNER GEOMETRY (BORDER RADII)
---------------------------------------------------------------------------------
-• Radius-Pill (Full) : 9999px  /* Search bar, segmented pills, badge chips, avatars */
-• Radius-Outer (XL)  : 24px    /* Primary Bento grid card containers */
-• Radius-Medium (MD) : 16px    /* Nested metric tiles, drop-downs, secondary cards */
-• Radius-Inner (SM)  : 10px    /* Interactive buttons, filter pills, small badges */
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Plus Jakarta Sans", "Inter", "SF Pro Display", sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+--font-mono:    ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
 
+--text-display: 600 28px / 34px var(--font-display); /* Tracking: -0.02em */
+--text-h1:      600 28px / 34px var(--font-display);
+--text-h2:      700 24px / 30px var(--font-display); /* Tracking: -0.03em | large figures */
+--text-h3:      600 16px / 22px var(--font-sans);    /* Tracking: -0.01em */
+--text-body:    500 13px / 18px var(--font-sans);
+--text-body-sm: 600 11px / 14px var(--font-sans);    /* Tracking: +0.01em */
+--text-meta:    400 10px / 12px var(--font-sans);    /* Tracking: +0.02em */
 
-4. ELEVATION & DEPTH (SHADOWS & LAYERING)
---------------------------------------------------------------------------------
-• Elevation-0 (Flat Base):
-  - Canvas background separation via background color contrast (#ECEFF2 vs #FFFFFF).
+/* font-variant-numeric: tabular-nums on figures. Interactive inputs must still be >= 16px.
+   Do not invent metric captions or chip labels. */
 
-• Elevation-1 (Bento Tile):
-  - box-shadow: 0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 24px;
+--radius-subtle:  10px;
+--radius-pill:    9999px;
+--radius-outer:   24px;
+--radius-medium:  16px;
+--radius-inner:   10px;
 
-• Elevation-2 (Floating Chips & Popovers):
-  - box-shadow: 0 10px 30px -4px rgba(17, 19, 21, 0.08), 0 4px 12px -2px rgba(17, 19, 21, 0.03);
+--shadow-base:    0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);
+--shadow-hover:   0 10px 30px -4px rgba(17, 19, 21, 0.08), 0 4px 12px -2px rgba(17, 19, 21, 0.03);
+--shadow-active:  0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);
+--shadow-elevation-0: none;
+--shadow-elevation-1: 0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);
+--shadow-elevation-2: 0 10px 30px -4px rgba(17, 19, 21, 0.08), 0 4px 12px -2px rgba(17, 19, 21, 0.03);
+--shadow-accent-glow: 0 8px 24px -4px rgba(222, 36, 84, 0.28);
 
-• Depth Structure:
-  - Outer Canvas (Layer 0) ➔ Bento Surface (Layer 1) ➔ Inset Wells / Nested Pods (Layer 0.5 Inset)
+--ease-fluid:     cubic-bezier(0.16, 1, 0.3, 1);
+--duration-micro: 150ms-200ms;
 
+/* Hover: translateY(-1px), background rgba(0,0,0,0.03). */
 
-5. SPACING & SPATIAL SCALE
---------------------------------------------------------------------------------
-• Base Grid: 4px / 8px spatial step
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:     1px solid rgba(17, 19, 21, 0.04);
+--border-hairline: 1px solid #E5E7EB;
+--border-active:   1.5px solid #111315;
+--divider-style:   1px solid #D1D5DB;
+--stroke-standard: 1px solid rgba(17, 19, 21, 0.04);
+--stroke-active:   1.5px solid #111315;
+--stroke-input:    1px solid #E5E7EB;
+--stroke-tree:     1px solid #D1D5DB;
+--stroke-berry-soft: 1px solid rgba(222, 36, 84, 0.15);
 
-• Spacing Scale:
-  - Gap-XS (Micro/Tags)     : 4px - 6px
-  - Gap-SM (Pill padding)   : 8px - 10px
-  - Gap-MD (Card gutter)    : 12px - 16px
-  - Gap-LG (Bento layout)   : 20px - 24px
-  - Card Internal Padding   : 20px (Comfortable), 16px (Compact nested)
+/* Icons: 1.75px rounded monoline; 14 / 18 / 22px. Neutral icons #6B7280; circular white discs for hub icons.
+   Do not insert emoji into chips. */
 
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 10px radius or pill. Primary: berry fill, white ink. Hover: #C71E49 and a berry glow. Segmented controls: idle #F3F4F6 with slate ink; active solid #111315 with white ink. Use the host's existing labels.
+- **Cards**: White 24px tiles on slate canvas, nested 16px #F6F8FA wells, 16-20px padding, elevation-1 shadow, 1px near-invisible stroke. Inverted tiles fill #111315 with white ink. Do not add sample KPI captions, emoji chips, or integration-brand marks the host lacks.
+- **Inputs**: 10px-pill wells, #F6F8FA or white, 1px #E5E7EB. Focus: 1.5px #111315. Input font-size >= 16px.
+- **Navigation**: Restyle existing items as quiet slate text. Active: berry ink plus a small berry node. If the host has a tree, elbow connectors are 1px #D1D5DB. Do not add catalog names.
+- **Badges / chips / toggles**: Pills, berry-soft fill or berry text. If the host already has filter chips, restyle them - do not invent chip copy or emoji.
 
-6. BORDERS & DIVIDERS
---------------------------------------------------------------------------------
-• Micro Borders:
-  - Standard Surface Stroke : 1px solid rgba(17, 19, 21, 0.04)
-  - Active / Focus Stroke   : 1.5px solid #111315
-  - Input / Chip Stroke     : 1px solid #E5E7EB
-
-• Tree-View & Hierarchy Connectors:
-  - Sidebar Tree Lines      : 1px solid #D1D5DB (90° elbow turns at sub-levels)
-
-
-7. ICONOGRAPHY LANGUAGE
---------------------------------------------------------------------------------
-• Visual Grammar: Minimalist, geometric, rounded line style (Lucide / Phosphor Icons).
-• Stroke Width  : 1.75px fixed; Rounded caps & joins (stroke-linecap="round").
-• Icon Sizing   : 14px (Micro inline), 18px (Standard action), 22px (Nav Rail).
-• Icon Treatment:
-  - Monochromatic slate icons for neutral actions (#6B7280).
-  - Circular badge-contained icons for integration hubs (#FFFFFF background).
-  - Native emoji integration within filter chips (e.g., "Top sales 💡", "Streak ⚡").
-
-
-8. INTERACTION & FEEDBACK RULES
---------------------------------------------------------------------------------
-• States:
-  - Default Nav/Pill : Background transparent or #F3F4F6, Text #6B7280.
-  - Active Nav Item  : Berry pink text (#DE2454) + subtle pink node marker.
-  - Active Segment   : Solid #111315 pill fill, #FFFFFF text, instant visual anchor.
-  - Interactive Hover: transform: translateY(-1px), background rgba(0, 0, 0, 0.03).
-
-• Motion & Transitions:
-  - Curve            : cubic-bezier(0.16, 1, 0.3, 1) (Fluid spring / ease-out).
-  - Duration         : Fast micro-interactions at 150ms - 200ms.
-================================================================================</code></pre>
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No emoji inside chips or "top sales" sample tags.
+- No hard 0px brutalist frames or comic offset shadows.
+- No purple neon or glassmorphism HUD.
+- No floating unbordered dark cards on white without the onyx token.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+        </code></pre>
       </div>
     </section>
 
@@ -2756,118 +2784,144 @@
        =========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  DESIGN SYSTEM STYLE TILE: "FLUID BENTO / SOFT SAAS"
+  Visual language: Fluid Bento
+  Construction: warm slate canvas • 24px outer tiles • nested 16px wells • berry pink • soft float shadows
 ================================================================================
 
-1. COLOR ROLES & PALETTE
---------------------------------------------------------------------------------
-• Canvas / Neutral Backgrounds:
-  - Surface-0 (App Background)  : #ECEFF2  /* Soft warm slate canvas */
-  - Surface-1 (Card / Bento Tile): #FFFFFF  /* Pure white base cards */
-  - Surface-2 (Nested Container): #F6F8FA  /* Sub-card & input fill */
-  - Surface-Dark (Card Accent)  : #111315  /* High-contrast feature card */
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
 
-• Brand & Semantic Accents:
-  - Primary Accent (Berry Pink) : #DE2454  /* Active nav, pills, high-priority CTA */
-  - Primary Accent Soft         : #FCE8EE  /* Light berry badge background */
-  - Metric Alert / Secondary    : #E42A58  /* Delta / negative / spotlight tags */
-  - Chart Accent Line           : #E83D6D  /* Dynamic trendline stroke */
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
-• Typography Colors:
-  - Text-Primary (Headers/Data) : #111315  /* Near black, high contrast */
-  - Text-Secondary (Subheaders) : #6B7280  /* Neutral slate */
-  - Text-Muted (Decimals/Units) : #9CA3AF  /* Light gray auxiliary text */
-  - Text-On-Dark (Inverted)     : #FFFFFF  /* Pure white */
-  - Text-Accent (Active Item)   : #DE2454  /* Highlighted link / active menu */
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A soft warm-slate canvas holding pure-white bento tiles with nested mist wells and occasional onyx inverted cards. Outer tiles are 24px; inner wells 16px; compact controls 10px; search and segments are full pills. Berry pink is the only loud ink - active nav, pills, and primary actions. Depth is a very light float shadow, not a hard border. Type is a single geometric sans with tabular figures. Motion is a short fluid spring.
 
-• Data / Integration Palette:
-  - Dribbble : #EA4C89 | Behance : #0057FF | Google : #4285F4 | IG : #E1306C
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #ECEFF2; /* Soft warm slate */
+  --bg-surface:             #FFFFFF; /* White bento tile */
+  --bg-surface-alt:         #F6F8FA; /* Nested well */
+  --bg-surface-dark:        #111315; /* Inverted feature card */
 
+  /* Inks & Typography */
+  --ink-primary:            #111315; /* Near black */
+  --ink-secondary:          #6B7280; /* Neutral slate */
+  --ink-muted:              #9CA3AF; /* Auxiliary gray */
+  --ink-inverted:           #FFFFFF; /* White on onyx */
 
-2. TYPOGRAPHY SYSTEM
---------------------------------------------------------------------------------
-• Primary Font Family: "Plus Jakarta Sans", "Inter", or "SF Pro Display", sans-serif
-• Tabular Data: Lining Figures enabled (`font-variant-numeric: tabular-nums`)
+  /* Signature Accents */
+  --accent-primary:         #DE2454; /* Berry pink */
+  --accent-primary-hover:   #C71E49; /* Deep berry */
+  --accent-secondary:       #FCE8EE; /* Light berry wash */
+  --accent-tertiary:        #E83D6D; /* Trendline berry */
 
-• Type Hierarchy:
-  - Display Title  : 28px / Line Height: 34px | SemiBold (600) | Tracking: -0.02em
-  - Metric Large   : 24px / Line Height: 30px | Bold (700)     | Tracking: -0.03em
-    ↳ Sub-decimals : 18px / Line Height: 30px | SemiBold (600) | Color: Text-Muted
-  - Section Header : 16px / Line Height: 22px | SemiBold (600) | Tracking: -0.01em
-  - Body Regular   : 13px / Line Height: 18px | Medium (500)   | Tracking: 0em
-  - Label / Badge  : 11px / Line Height: 14px | SemiBold (600) | Tracking: +0.01em
-  - Micro / Meta   : 10px / Line Height: 12px | Regular (400)  | Tracking: +0.02em
+  /* Status Tokens */
+  --status-success:         #10B981; /* Quiet green */
+  --status-warning:         #E83D6D; /* Berry caution */
+  --status-danger:          #E42A58; /* Alert berry */
+  --status-info:            #4285F4; /* Cool information blue */
 
+  /* Extra material tokens */
+  --surface-0:              #ECEFF2;
+  --surface-1:              #FFFFFF;
+  --surface-2:              #F6F8FA;
+  --surface-dark:           #111315;
+  --surface-glass:          rgba(255, 255, 255, 0.85);
+  --primary-accent-soft:    #FCE8EE;
+  --metric-alert:           #E42A58;
+  --chart-accent:           #E83D6D;
+  --color-success-soft:     #D1FAE5;
+  --nav-idle-fill:          #F3F4F6;
+}
 
-3. CORNER GEOMETRY (BORDER RADII)
---------------------------------------------------------------------------------
-• Radius-Pill (Full) : 9999px  /* Search bar, segmented pills, badge chips, avatars */
-• Radius-Outer (XL)  : 24px    /* Primary Bento grid card containers */
-• Radius-Medium (MD) : 16px    /* Nested metric tiles, drop-downs, secondary cards */
-• Radius-Inner (SM)  : 10px    /* Interactive buttons, filter pills, small badges */
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Plus Jakarta Sans", "Inter", "SF Pro Display", sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+--font-mono:    ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
 
+--text-display: 600 28px / 34px var(--font-display); /* Tracking: -0.02em */
+--text-h1:      600 28px / 34px var(--font-display);
+--text-h2:      700 24px / 30px var(--font-display); /* Tracking: -0.03em | large figures */
+--text-h3:      600 16px / 22px var(--font-sans);    /* Tracking: -0.01em */
+--text-body:    500 13px / 18px var(--font-sans);
+--text-body-sm: 600 11px / 14px var(--font-sans);    /* Tracking: +0.01em */
+--text-meta:    400 10px / 12px var(--font-sans);    /* Tracking: +0.02em */
 
-4. ELEVATION & DEPTH (SHADOWS & LAYERING)
---------------------------------------------------------------------------------
-• Elevation-0 (Flat Base):
-  - Canvas background separation via background color contrast (#ECEFF2 vs #FFFFFF).
+/* font-variant-numeric: tabular-nums on figures. Interactive inputs must still be >= 16px.
+   Do not invent metric captions or chip labels. */
 
-• Elevation-1 (Bento Tile):
-  - `box-shadow: 0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);`
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 24px;
+--radius-subtle:  10px;
+--radius-pill:    9999px;
+--radius-outer:   24px;
+--radius-medium:  16px;
+--radius-inner:   10px;
 
-• Elevation-2 (Floating Chips & Popovers):
-  - `box-shadow: 0 10px 30px -4px rgba(17, 19, 21, 0.08), 0 4px 12px -2px rgba(17, 19, 21, 0.03);`
+--shadow-base:    0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);
+--shadow-hover:   0 10px 30px -4px rgba(17, 19, 21, 0.08), 0 4px 12px -2px rgba(17, 19, 21, 0.03);
+--shadow-active:  0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);
+--shadow-elevation-0: none;
+--shadow-elevation-1: 0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);
+--shadow-elevation-2: 0 10px 30px -4px rgba(17, 19, 21, 0.08), 0 4px 12px -2px rgba(17, 19, 21, 0.03);
+--shadow-accent-glow: 0 8px 24px -4px rgba(222, 36, 84, 0.28);
 
-• Depth Structure:
-  - Outer Canvas (Layer 0) ➔ Bento Surface (Layer 1) ➔ Inset Wells / Nested Pods (Layer 0.5 Inset)
+--ease-fluid:     cubic-bezier(0.16, 1, 0.3, 1);
+--duration-micro: 150ms-200ms;
 
+/* Hover: translateY(-1px), background rgba(0,0,0,0.03). */
 
-5. SPACING & SPATIAL SCALE
---------------------------------------------------------------------------------
-• Base Grid: 4px / 8px spatial step
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:     1px solid rgba(17, 19, 21, 0.04);
+--border-hairline: 1px solid #E5E7EB;
+--border-active:   1.5px solid #111315;
+--divider-style:   1px solid #D1D5DB;
+--stroke-standard: 1px solid rgba(17, 19, 21, 0.04);
+--stroke-active:   1.5px solid #111315;
+--stroke-input:    1px solid #E5E7EB;
+--stroke-tree:     1px solid #D1D5DB;
+--stroke-berry-soft: 1px solid rgba(222, 36, 84, 0.15);
 
-• Spacing Scale:
-  - Gap-XS (Micro/Tags)     : 4px - 6px
-  - Gap-SM (Pill padding)   : 8px - 10px
-  - Gap-MD (Card gutter)    : 12px - 16px
-  - Gap-LG (Bento layout)   : 20px - 24px
-  - Card Internal Padding   : 20px (Comfortable), 16px (Compact nested)
+/* Icons: 1.75px rounded monoline; 14 / 18 / 22px. Neutral icons #6B7280; circular white discs for hub icons.
+   Do not insert emoji into chips. */
 
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 10px radius or pill. Primary: berry fill, white ink. Hover: #C71E49 and a berry glow. Segmented controls: idle #F3F4F6 with slate ink; active solid #111315 with white ink. Use the host's existing labels.
+- **Cards**: White 24px tiles on slate canvas, nested 16px #F6F8FA wells, 16-20px padding, elevation-1 shadow, 1px near-invisible stroke. Inverted tiles fill #111315 with white ink. Do not add sample KPI captions, emoji chips, or integration-brand marks the host lacks.
+- **Inputs**: 10px-pill wells, #F6F8FA or white, 1px #E5E7EB. Focus: 1.5px #111315. Input font-size >= 16px.
+- **Navigation**: Restyle existing items as quiet slate text. Active: berry ink plus a small berry node. If the host has a tree, elbow connectors are 1px #D1D5DB. Do not add catalog names.
+- **Badges / chips / toggles**: Pills, berry-soft fill or berry text. If the host already has filter chips, restyle them - do not invent chip copy or emoji.
 
-6. BORDERS & DIVIDERS
---------------------------------------------------------------------------------
-• Micro Borders:
-  - Standard Surface Stroke : `1px solid rgba(17, 19, 21, 0.04)`
-  - Active / Focus Stroke   : `1.5px solid #111315`
-  - Input / Chip Stroke     : `1px solid #E5E7EB`
-
-• Tree-View & Hierarchy Connectors:
-  - Sidebar Tree Lines      : `1px solid #D1D5DB` (90° elbow turns at sub-levels)
-
-
-7. ICONOGRAPHY LANGUAGE
---------------------------------------------------------------------------------
-• Visual Grammar: Minimalist, geometric, rounded line style (Lucide / Phosphor Icons).
-• Stroke Width  : 1.75px fixed; Rounded caps & joins (`stroke-linecap="round"`).
-• Icon Sizing   : 14px (Micro inline), 18px (Standard action), 22px (Nav Rail).
-• Icon Treatment:
-  - Monochromatic slate icons for neutral actions (`#6B7280`).
-  - Circular badge-contained icons for integration hubs (`#FFFFFF` background).
-  - Native emoji integration within filter chips (e.g., "Top sales 💡", "Streak ⚡").
-
-
-8. INTERACTION & FEEDBACK RULES
---------------------------------------------------------------------------------
-• States:
-  - Default Nav/Pill : Background transparent or `#F3F4F6`, Text `#6B7280`.
-  - Active Nav Item  : Berry pink text (`#DE2454`) + subtle pink node marker.
-  - Active Segment   : Solid `#111315` pill fill, `#FFFFFF` text, instant visual anchor.
-  - Interactive Hover: `transform: translateY(-1px)`, background `rgba(0, 0, 0, 0.03)`.
-
-• Motion & Transitions:
-  - Curve            : `cubic-bezier(0.16, 1, 0.3, 1)` (Fluid spring / ease-out).
-  - Duration         : Fast micro-interactions at `150ms - 200ms`.
-================================================================================
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No emoji inside chips or "top sales" sample tags.
+- No hard 0px brutalist frames or comic offset shadows.
+- No purple neon or glassmorphism HUD.
+- No floating unbordered dark cards on white without the onyx token.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ===========================================================================

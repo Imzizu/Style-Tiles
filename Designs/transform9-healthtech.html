@@ -2355,202 +2355,145 @@
             Copy Style Tile
           </button>
         </div>
-        <pre class="raw-spec-code"><code id="code-drawer-content"># ==============================================================================
-# STYLE TILE: TRANSFORM9+ DESIGN SYSTEM
-# Archetype: Neo-Brutalist HealthTech / High-Contrast Precision Dark Mode
-# ==============================================================================
+        <pre class="raw-spec-code"><code id="code-drawer-content">
+================================================================================
+  Visual language: Neo-Brutalist Lime & Cobalt
+  Construction: onyx and white slabs • 0-4px radii • electric lime • cobalt stack • pixel mosaic • glass header
+================================================================================
 
-# ------------------------------------------------------------------------------
-# 1. COLOR ROLES & PALETTE
-# ------------------------------------------------------------------------------
-color_palette:
-  canvas_and_surfaces:
-    canvas_dark_base:       "#090A0C"   # Deep onyx background for high-contrast presentation
-    canvas_light_base:      "#FFFFFF"   # Stark pure white for modular spotlight cards
-    surface_dark_elevated:  "#12141A"   # Secondary panel dark surface
-    surface_dark_subtle:    "#181B22"   # Inset cards and hover states
-    surface_inverse:        "#FFFFFF"   # Selected item fill / high-contrast card background
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
 
-  accents_and_brand:
-    electric_lime:          "#A8F33A"   # High-energy conversion/action color (CTAs, highlight spans)
-    electric_lime_hover:    "#B9FA55"   # Brighter active state
-    cobalt_primary:         "#1A52EE"   # Core brand & trust accent (hero spans, active badges)
-    cobalt_vivid:           "#0D3ED4"   # Secondary interactive blue
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
-  sequential_blues_data_scale:
-    # Used for vertical accordion/stack hierarchy
-    level_01:               "#1A52EE"   # Top/Active layer (100% saturation)
-    level_02:               "#123EBE"   # 80% intensity
-    level_03:               "#0C2E94"   # 60% intensity
-    level_04:               "#09216B"   # 40% intensity
-    level_05:               "#06164A"   # 20% deepest navy base
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+High-contrast onyx canvas with stark white spotlight cards and 0px lime actuators. Cobalt appears as stacked intensity steps and as link ink. Geometry is brutalist on buttons and full-width rows (0px), slightly eased on floating cards (4px) and fields (2px). Atmosphere is a cobalt radial glow plus an optional lime-to-cobalt pixel mosaic overlay. Type is a heavy geometric sans with tight negative tracking; mono is reserved for compact indices the host already shows.
 
-  typography_and_ink:
-    text_primary_dark:      "#FFFFFF"   # 100% white on dark surfaces
-    text_secondary_dark:    "#8E95A5"   # Muted descriptions & metadata
-    text_tertiary_dark:     "#4E5463"   # Subdued indices and disabled labels
-    text_primary_light:     "#090A0C"   # Heavy black on white cards
-    text_secondary_light:   "#5A6170"   # Gray subtext on white cards
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #090A0C; /* Deep onyx */
+  --bg-surface:             #12141A; /* Elevated dark panel */
+  --bg-surface-alt:         #181B22; /* Inset dark well */
+  --bg-surface-dark:        #090A0C; /* Canvas void */
 
-  atmospheric_gradients:
-    ambient_glow_blue:      "radial-gradient(circle, rgba(26,82,238,0.28) 0%, rgba(9,10,12,0) 70%)"
-    pixel_mosaic_overlay:   "linear-gradient(135deg, #A8F33A 0%, #1A52EE 50%, #06164A 100%)"
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF; /* White on dark */
+  --ink-secondary:          #8E95A5; /* Muted description */
+  --ink-muted:              #4E5463; /* Quiet / disabled */
+  --ink-inverted:           #090A0C; /* Onyx on white or lime */
 
-# ------------------------------------------------------------------------------
-# 2. TYPOGRAPHY SYSTEM
-# ------------------------------------------------------------------------------
-typography:
-  font_families:
-    primary_sans:           "'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif"
-    technical_mono:         "'JetBrains Mono', 'Space Mono', monospace"
+  /* Signature Accents */
+  --accent-primary:         #A8F33A; /* Electric lime */
+  --accent-primary-hover:   #B9FA55; /* Brighter lime */
+  --accent-secondary:       #1A52EE; /* Cobalt */
+  --accent-tertiary:        #0D3ED4; /* Vivid cobalt */
 
-  hierarchy:
-    display_xl:
-      font_size:            "48px"
-      line_height:          "1.05"
-      font_weight:          "800"
-      letter_spacing:       "-0.035em"
-      use_case:             "Primary landing titles (e.g., 'Skip the Hold Music.')"
+  /* Status Tokens */
+  --status-success:         #A8F33A; /* Lime confirm */
+  --status-warning:         #B9FA55; /* Bright lime caution */
+  --status-danger:          #0D3ED4; /* Cobalt interrupt */
+  --status-info:            #1A52EE; /* Cobalt info */
 
-    heading_lg:
-      font_size:            "32px"
-      line_height:          "1.15"
-      font_weight:          "700"
-      letter_spacing:       "-0.025em"
-      use_case:             "Section headlines & modular card titles"
+  /* Extra material tokens */
+  --canvas-light-base:      #FFFFFF;
+  --surface-inverse:        #FFFFFF;
+  --electric-lime-active:   #98E02E;
+  --text-primary-light:     #090A0C;
+  --text-secondary-light:   #5A6170;
+  --blue-level-01:          #1A52EE;
+  --blue-level-02:          #123EBE;
+  --blue-level-03:          #0C2E94;
+  --blue-level-04:          #09216B;
+  --blue-level-05:          #06164A;
+  --ambient-glow-blue:      radial-gradient(circle, rgba(26,82,238,0.28) 0%, rgba(9,10,12,0) 70%);
+  --pixel-mosaic-overlay:   linear-gradient(135deg, #A8F33A 0%, #1A52EE 50%, #06164A 100%);
+  --glass-header:           rgba(9, 10, 12, 0.85);
+}
 
-    heading_md:
-      font_size:            "24px"
-      line_height:          "1.25"
-      font_weight:          "700"
-      letter_spacing:       "-0.015em"
-      use_case:             "Feature block titles (e.g., 'Outreach Agent')"
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", "Space Mono", monospace;
 
-    metric_value:
-      font_size:            "40px"
-      line_height:          "1.0"
-      font_weight:          "800"
-      letter_spacing:       "-0.03em"
-      use_case:             "Stat numbers (e.g., '2,000+ providers')"
+--text-display: 800 48px / 1.05 var(--font-display); /* Letter-spacing: -0.035em */
+--text-h1:      800 48px / 1.05 var(--font-display);
+--text-h2:      700 32px / 1.15 var(--font-display); /* Letter-spacing: -0.025em */
+--text-h3:      700 24px / 1.25 var(--font-display); /* Letter-spacing: -0.015em */
+--text-body:    400 15px / 1.50 var(--font-sans);    /* Letter-spacing: -0.005em */
+--text-body-sm: 600 14px / 1.20 var(--font-sans);
+--text-meta:    500 12px / 1.00 var(--font-mono);    /* Letter-spacing: 0.05em */
 
-    body_base:
-      font_size:            "15px"
-      line_height:          "1.50"
-      font_weight:          "400"
-      letter_spacing:       "-0.005em"
-      use_case:             "Main descriptive copy and body text"
+/* Large figures: 800 40px / 1.0, tracking -0.03em, for numbers the host already displays.
+   Do not invent slogans, agent names, or provider counts. */
 
-    interactive_label:
-      font_size:            "14px"
-      line_height:          "1.20"
-      font_weight:          "600"
-      letter_spacing:       "0.00em"
-      use_case:             "Menu lists, tab triggers, specialty options"
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 0px;
+--radius-subtle:  4px;
+--radius-sharp:   0px;
+--radius-control: 2px;
+--radius-pill:    9999px; /* Compact status chips only */
 
-    technical_index:
-      font_family:          "technical_mono"
-      font_size:            "12px"
-      line_height:          "1.0"
-      font_weight:          "500"
-      letter_spacing:       "0.05em"
-      use_case:             "Numerical tags (e.g., '#4', '01', '02', '03')"
+--shadow-base:    none;
+--shadow-hover:   0 20px 40px -10px rgba(0, 0, 0, 0.5);
+--shadow-active:  none;
+--shadow-ambient-glow:  0 0 80px -20px rgba(26, 82, 238, 0.45);
+--shadow-floating-card: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
 
-# ------------------------------------------------------------------------------
-# 3. CORNER GEOMETRY (BORDER RADII)
-# ------------------------------------------------------------------------------
-border_radius:
-  sharp_block:              "0px"     # High-impact brutalist buttons, stacked full-width rows
-  subtle_card:              "4px"     # Floating light cards, modal cards, nested containers
-  interactive_control:      "2px"     # Text input fields, toggle indicators
-  pill_badge:               "9999px"  # Specialty status pills, category chips
+/* Glass header: background rgba(9,10,12,0.85); backdrop-filter blur(16px);
+   border-bottom 1px solid rgba(255,255,255,0.08).
+   Motion: 150-240ms cubic-bezier(0.16, 1, 0.3, 1). List-row invert 180ms ease-out.
+   Lime hover translateY(-1px); press #98E02E. */
 
-# ------------------------------------------------------------------------------
-# 4. ELEVATION & DEPTH (SHADOWS & ATMOSPHERE)
-# ------------------------------------------------------------------------------
-elevation:
-  flat_contrast:
-    box_shadow:             "none"
-    border_treatment:       "Strict high-contrast color bounding"
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:            1px solid rgba(255, 255, 255, 0.18);
+--border-hairline:        1px solid rgba(255, 255, 255, 0.12);
+--divider-style:          1px solid rgba(255, 255, 255, 0.12);
+--divider-hairline-light: 1px solid rgba(0, 0, 0, 0.08);
+--card-outline:           1px solid rgba(255, 255, 255, 0.18);
+--card-outline-subtle:    1px solid rgba(255, 255, 255, 0.08);
+--active-input-outline:   1.5px solid #FFFFFF;
 
-  ambient_back_glow:
-    box_shadow:             "0 0 80px -20px rgba(26, 82, 238, 0.45)"
-    use_case:               "Behind security shield & hero tech visuals"
+/* Icons: 1.75px geometric line, square/flat caps. Optional 4x4 or 8x8 pixel clusters as
+   decorative fills on existing cards - no new badge copy, no invented shields. */
 
-  elevated_card_floating:
-    box_shadow:             "0 20px 40px -10px rgba(0, 0, 0, 0.5)"
-    backdrop_filter:        "blur(12px)"
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 0px radius. Primary: lime fill #A8F33A, onyx ink, no border. Hover: #B9FA55, translateY(-1px). Active: #98E02E, translateY(0). Text links: cobalt #1A52EE, 1.5px underline offset; hover white. Use the host's existing labels.
+- **Cards**: Dark #12141A / #181B22 or stark white, 4px on floating modules, 0px on stacked full-width rows. White cards use onyx ink and 1px rgba(0,0,0,0.08) dividers. Optional cobalt radial glow behind a hero media well. Do not add numbered agent titles or statistic slogans.
+- **Inputs**: 2px radius, 1.5px white focus outline. Input font-size >= 16px.
+- **Navigation**: Restyle existing items as 14px semibold sans. Active row may invert to white fill with onyx ink, 0px radius. Glass sticky header. Do not add catalog names or fake indices.
+- **Badges / chips / toggles**: Rare 9999px pills for host-existing status only. Accordion or stacked panels the host already has may use the sequential cobalt steps (#1A52EE to #06164A); hover brightness(1.15) and padding-left +4px.
 
-  glass_header:
-    background:             "rgba(9, 10, 12, 0.85)"
-    backdrop_filter:        "blur(16px)"
-    border_bottom:          "1px solid rgba(255, 255, 255, 0.08)"
-
-# ------------------------------------------------------------------------------
-# 5. SPACING & SPATIAL SCALE (8pt Baseline Grid)
-# ------------------------------------------------------------------------------
-spacing_system:
-  base_unit:                "4px"
-  space_1:                  "4px"     # Micro badge gaps, tight icon offsets
-  space_2:                  "8px"     # Element inner padding, inline tags
-  space_3:                  "12px"    # Compact list padding
-  space_4:                  "16px"    # Standard container padding, form field inset
-  space_6:                  "24px"    # Card interior gutters, stack row separation
-  space_8:                  "32px"    # Section separation
-  space_12:                 "48px"    # Hero block vertical gutters
-  space_16:                 "64px"    # Major module break
-
-# ------------------------------------------------------------------------------
-# 6. BORDERS & DIVIDERS
-# ------------------------------------------------------------------------------
-borders:
-  divider_hairline:         "1px solid rgba(255, 255, 255, 0.12)" # List row separators
-  divider_hairline_light:   "1px solid rgba(0, 0, 0, 0.08)"       # White card sub-dividers
-  card_outline:             "1px solid rgba(255, 255, 255, 0.18)" # Standalone dark module borders
-  active_input_outline:     "1.5px solid #FFFFFF"                  # Phone/text field focus state
-
-# ------------------------------------------------------------------------------
-# 7. ICONOGRAPHY & GRAPHIC MOTIFS
-# ------------------------------------------------------------------------------
-iconography:
-  style:                    "Geometric Line + Modular Pixel Matrix"
-  stroke_width:             "1.75px"
-  corner_cap:               "Square / Flat"
-  key_motifs:
-    - pixel_grid:           "4x4 and 8x8 pixel cluster mosaics (accenting cards & icons)"
-    - tech_shield:          "Geometric badge with digital pixel checkmark core"
-    - minimalist_nav:       "2-line hamburger bar (24px width, 1.5px stroke)"
-    - calendar_pixel:       "Grid-accented digital scheduler badge"
-
-# ------------------------------------------------------------------------------
-# 8. INTERACTION & FEEDBACK RULES
-# ------------------------------------------------------------------------------
-interaction_states:
-  buttons:
-    primary_cta (Lime):
-      default:              "bg: #A8F33A | text: #090A0C | border: none | radius: 0px"
-      hover:                "bg: #B9FA55 | transform: translateY(-1px)"
-      active:               "bg: #98E02E | transform: translateY(0)"
-
-    inline_link_cta:
-      default:              "text: #1A52EE | text-decoration: underline (1.5px offset)"
-      hover:                "text: #FFFFFF | text-decoration: underline"
-
-  specialty_list_rows:
-    default:
-      bg:                   "transparent"
-      text:                 "#FFFFFF"
-      border_bottom:        "1px solid rgba(255, 255, 255, 0.12)"
-    active_selected:
-      bg:                   "#FFFFFF"
-      text:                 "#090A0C"
-      font_weight:          "700"
-      border_radius:        "0px"
-      transition:           "all 180ms ease-out"
-
-  accordion_stack_panels:
-    default_state:          "Progressive step background colors (#1A52EE -> #06164A)"
-    hover_state:            "brightness(1.15) | padding-left: +4px transition"
-    timing_function:        "cubic-bezier(0.16, 1, 0.3, 1)"</code></pre>
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No purple neon, soft 16px+ app radii, or pill primary buttons.
+- No gradient text.
+- No medical clip-art, heartbeat glyphs, or invented provider counts.
+- No slogans, product nicknames, or "system" codes from this tile.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+        </code></pre>
       </div>
 
     </div>
@@ -2591,202 +2534,143 @@ interaction_states:
        RAW MARKDOWN SPECIFICATION EMBEDDED IN SCRIPT
        ========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
-# ==============================================================================
-# STYLE TILE: TRANSFORM9+ DESIGN SYSTEM
-# Archetype: Neo-Brutalist HealthTech / High-Contrast Precision Dark Mode
-# ==============================================================================
+================================================================================
+  Visual language: Neo-Brutalist Lime & Cobalt
+  Construction: onyx and white slabs • 0-4px radii • electric lime • cobalt stack • pixel mosaic • glass header
+================================================================================
 
-# ------------------------------------------------------------------------------
-# 1. COLOR ROLES & PALETTE
-# ------------------------------------------------------------------------------
-color_palette:
-  canvas_and_surfaces:
-    canvas_dark_base:       "#090A0C"   # Deep onyx background for high-contrast presentation
-    canvas_light_base:      "#FFFFFF"   # Stark pure white for modular spotlight cards
-    surface_dark_elevated:  "#12141A"   # Secondary panel dark surface
-    surface_dark_subtle:    "#181B22"   # Inset cards and hover states
-    surface_inverse:        "#FFFFFF"   # Selected item fill / high-contrast card background
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
 
-  accents_and_brand:
-    electric_lime:          "#A8F33A"   # High-energy conversion/action color (CTAs, highlight spans)
-    electric_lime_hover:    "#B9FA55"   # Brighter active state
-    cobalt_primary:         "#1A52EE"   # Core brand & trust accent (hero spans, active badges)
-    cobalt_vivid:           "#0D3ED4"   # Secondary interactive blue
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
 
-  sequential_blues_data_scale:
-    # Used for vertical accordion/stack hierarchy
-    level_01:               "#1A52EE"   # Top/Active layer (100% saturation)
-    level_02:               "#123EBE"   # 80% intensity
-    level_03:               "#0C2E94"   # 60% intensity
-    level_04:               "#09216B"   # 40% intensity
-    level_05:               "#06164A"   # 20% deepest navy base
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+High-contrast onyx canvas with stark white spotlight cards and 0px lime actuators. Cobalt appears as stacked intensity steps and as link ink. Geometry is brutalist on buttons and full-width rows (0px), slightly eased on floating cards (4px) and fields (2px). Atmosphere is a cobalt radial glow plus an optional lime-to-cobalt pixel mosaic overlay. Type is a heavy geometric sans with tight negative tracking; mono is reserved for compact indices the host already shows.
 
-  typography_and_ink:
-    text_primary_dark:      "#FFFFFF"   # 100% white on dark surfaces
-    text_secondary_dark:    "#8E95A5"   # Muted descriptions & metadata
-    text_tertiary_dark:     "#4E5463"   # Subdued indices and disabled labels
-    text_primary_light:     "#090A0C"   # Heavy black on white cards
-    text_secondary_light:   "#5A6170"   # Gray subtext on white cards
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #090A0C; /* Deep onyx */
+  --bg-surface:             #12141A; /* Elevated dark panel */
+  --bg-surface-alt:         #181B22; /* Inset dark well */
+  --bg-surface-dark:        #090A0C; /* Canvas void */
 
-  atmospheric_gradients:
-    ambient_glow_blue:      "radial-gradient(circle, rgba(26,82,238,0.28) 0%, rgba(9,10,12,0) 70%)"
-    pixel_mosaic_overlay:   "linear-gradient(135deg, #A8F33A 0%, #1A52EE 50%, #06164A 100%)"
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF; /* White on dark */
+  --ink-secondary:          #8E95A5; /* Muted description */
+  --ink-muted:              #4E5463; /* Quiet / disabled */
+  --ink-inverted:           #090A0C; /* Onyx on white or lime */
 
-# ------------------------------------------------------------------------------
-# 2. TYPOGRAPHY SYSTEM
-# ------------------------------------------------------------------------------
-typography:
-  font_families:
-    primary_sans:           "'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif"
-    technical_mono:         "'JetBrains Mono', 'Space Mono', monospace"
+  /* Signature Accents */
+  --accent-primary:         #A8F33A; /* Electric lime */
+  --accent-primary-hover:   #B9FA55; /* Brighter lime */
+  --accent-secondary:       #1A52EE; /* Cobalt */
+  --accent-tertiary:        #0D3ED4; /* Vivid cobalt */
 
-  hierarchy:
-    display_xl:
-      font_size:            "48px"
-      line_height:          "1.05"
-      font_weight:          "800"
-      letter_spacing:       "-0.035em"
-      use_case:             "Primary landing titles (e.g., 'Skip the Hold Music.')"
+  /* Status Tokens */
+  --status-success:         #A8F33A; /* Lime confirm */
+  --status-warning:         #B9FA55; /* Bright lime caution */
+  --status-danger:          #0D3ED4; /* Cobalt interrupt */
+  --status-info:            #1A52EE; /* Cobalt info */
 
-    heading_lg:
-      font_size:            "32px"
-      line_height:          "1.15"
-      font_weight:          "700"
-      letter_spacing:       "-0.025em"
-      use_case:             "Section headlines & modular card titles"
+  /* Extra material tokens */
+  --canvas-light-base:      #FFFFFF;
+  --surface-inverse:        #FFFFFF;
+  --electric-lime-active:   #98E02E;
+  --text-primary-light:     #090A0C;
+  --text-secondary-light:   #5A6170;
+  --blue-level-01:          #1A52EE;
+  --blue-level-02:          #123EBE;
+  --blue-level-03:          #0C2E94;
+  --blue-level-04:          #09216B;
+  --blue-level-05:          #06164A;
+  --ambient-glow-blue:      radial-gradient(circle, rgba(26,82,238,0.28) 0%, rgba(9,10,12,0) 70%);
+  --pixel-mosaic-overlay:   linear-gradient(135deg, #A8F33A 0%, #1A52EE 50%, #06164A 100%);
+  --glass-header:           rgba(9, 10, 12, 0.85);
+}
 
-    heading_md:
-      font_size:            "24px"
-      line_height:          "1.25"
-      font_weight:          "700"
-      letter_spacing:       "-0.015em"
-      use_case:             "Feature block titles (e.g., 'Outreach Agent')"
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", "Space Mono", monospace;
 
-    metric_value:
-      font_size:            "40px"
-      line_height:          "1.0"
-      font_weight:          "800"
-      letter_spacing:       "-0.03em"
-      use_case:             "Stat numbers (e.g., '2,000+ providers')"
+--text-display: 800 48px / 1.05 var(--font-display); /* Letter-spacing: -0.035em */
+--text-h1:      800 48px / 1.05 var(--font-display);
+--text-h2:      700 32px / 1.15 var(--font-display); /* Letter-spacing: -0.025em */
+--text-h3:      700 24px / 1.25 var(--font-display); /* Letter-spacing: -0.015em */
+--text-body:    400 15px / 1.50 var(--font-sans);    /* Letter-spacing: -0.005em */
+--text-body-sm: 600 14px / 1.20 var(--font-sans);
+--text-meta:    500 12px / 1.00 var(--font-mono);    /* Letter-spacing: 0.05em */
 
-    body_base:
-      font_size:            "15px"
-      line_height:          "1.50"
-      font_weight:          "400"
-      letter_spacing:       "-0.005em"
-      use_case:             "Main descriptive copy and body text"
+/* Large figures: 800 40px / 1.0, tracking -0.03em, for numbers the host already displays.
+   Do not invent slogans, agent names, or provider counts. */
 
-    interactive_label:
-      font_size:            "14px"
-      line_height:          "1.20"
-      font_weight:          "600"
-      letter_spacing:       "0.00em"
-      use_case:             "Menu lists, tab triggers, specialty options"
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 0px;
+--radius-subtle:  4px;
+--radius-sharp:   0px;
+--radius-control: 2px;
+--radius-pill:    9999px; /* Compact status chips only */
 
-    technical_index:
-      font_family:          "technical_mono"
-      font_size:            "12px"
-      line_height:          "1.0"
-      font_weight:          "500"
-      letter_spacing:       "0.05em"
-      use_case:             "Numerical tags (e.g., '#4', '01', '02', '03')"
+--shadow-base:    none;
+--shadow-hover:   0 20px 40px -10px rgba(0, 0, 0, 0.5);
+--shadow-active:  none;
+--shadow-ambient-glow:  0 0 80px -20px rgba(26, 82, 238, 0.45);
+--shadow-floating-card: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
 
-# ------------------------------------------------------------------------------
-# 3. CORNER GEOMETRY (BORDER RADII)
-# ------------------------------------------------------------------------------
-border_radius:
-  sharp_block:              "0px"     # High-impact brutalist buttons, stacked full-width rows
-  subtle_card:              "4px"     # Floating light cards, modal cards, nested containers
-  interactive_control:      "2px"     # Text input fields, toggle indicators
-  pill_badge:               "9999px"  # Specialty status pills, category chips
+/* Glass header: background rgba(9,10,12,0.85); backdrop-filter blur(16px);
+   border-bottom 1px solid rgba(255,255,255,0.08).
+   Motion: 150-240ms cubic-bezier(0.16, 1, 0.3, 1). List-row invert 180ms ease-out.
+   Lime hover translateY(-1px); press #98E02E. */
 
-# ------------------------------------------------------------------------------
-# 4. ELEVATION & DEPTH (SHADOWS & ATMOSPHERE)
-# ------------------------------------------------------------------------------
-elevation:
-  flat_contrast:
-    box_shadow:             "none"
-    border_treatment:       "Strict high-contrast color bounding"
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:            1px solid rgba(255, 255, 255, 0.18);
+--border-hairline:        1px solid rgba(255, 255, 255, 0.12);
+--divider-style:          1px solid rgba(255, 255, 255, 0.12);
+--divider-hairline-light: 1px solid rgba(0, 0, 0, 0.08);
+--card-outline:           1px solid rgba(255, 255, 255, 0.18);
+--card-outline-subtle:    1px solid rgba(255, 255, 255, 0.08);
+--active-input-outline:   1.5px solid #FFFFFF;
 
-  ambient_back_glow:
-    box_shadow:             "0 0 80px -20px rgba(26, 82, 238, 0.45)"
-    use_case:               "Behind security shield & hero tech visuals"
+/* Icons: 1.75px geometric line, square/flat caps. Optional 4x4 or 8x8 pixel clusters as
+   decorative fills on existing cards - no new badge copy, no invented shields. */
 
-  elevated_card_floating:
-    box_shadow:             "0 20px 40px -10px rgba(0, 0, 0, 0.5)"
-    backdrop_filter:        "blur(12px)"
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 0px radius. Primary: lime fill #A8F33A, onyx ink, no border. Hover: #B9FA55, translateY(-1px). Active: #98E02E, translateY(0). Text links: cobalt #1A52EE, 1.5px underline offset; hover white. Use the host's existing labels.
+- **Cards**: Dark #12141A / #181B22 or stark white, 4px on floating modules, 0px on stacked full-width rows. White cards use onyx ink and 1px rgba(0,0,0,0.08) dividers. Optional cobalt radial glow behind a hero media well. Do not add numbered agent titles or statistic slogans.
+- **Inputs**: 2px radius, 1.5px white focus outline. Input font-size >= 16px.
+- **Navigation**: Restyle existing items as 14px semibold sans. Active row may invert to white fill with onyx ink, 0px radius. Glass sticky header. Do not add catalog names or fake indices.
+- **Badges / chips / toggles**: Rare 9999px pills for host-existing status only. Accordion or stacked panels the host already has may use the sequential cobalt steps (#1A52EE to #06164A); hover brightness(1.15) and padding-left +4px.
 
-  glass_header:
-    background:             "rgba(9, 10, 12, 0.85)"
-    backdrop_filter:        "blur(16px)"
-    border_bottom:          "1px solid rgba(255, 255, 255, 0.08)"
-
-# ------------------------------------------------------------------------------
-# 5. SPACING & SPATIAL SCALE (8pt Baseline Grid)
-# ------------------------------------------------------------------------------
-spacing_system:
-  base_unit:                "4px"
-  space_1:                  "4px"     # Micro badge gaps, tight icon offsets
-  space_2:                  "8px"     # Element inner padding, inline tags
-  space_3:                  "12px"    # Compact list padding
-  space_4:                  "16px"    # Standard container padding, form field inset
-  space_6:                  "24px"    # Card interior gutters, stack row separation
-  space_8:                  "32px"    # Section separation
-  space_12:                 "48px"    # Hero block vertical gutters
-  space_16:                 "64px"    # Major module break
-
-# ------------------------------------------------------------------------------
-# 6. BORDERS & DIVIDERS
-# ------------------------------------------------------------------------------
-borders:
-  divider_hairline:         "1px solid rgba(255, 255, 255, 0.12)" # List row separators
-  divider_hairline_light:   "1px solid rgba(0, 0, 0, 0.08)"       # White card sub-dividers
-  card_outline:             "1px solid rgba(255, 255, 255, 0.18)" # Standalone dark module borders
-  active_input_outline:     "1.5px solid #FFFFFF"                  # Phone/text field focus state
-
-# ------------------------------------------------------------------------------
-# 7. ICONOGRAPHY & GRAPHIC MOTIFS
-# ------------------------------------------------------------------------------
-iconography:
-  style:                    "Geometric Line + Modular Pixel Matrix"
-  stroke_width:             "1.75px"
-  corner_cap:               "Square / Flat"
-  key_motifs:
-    - pixel_grid:           "4x4 and 8x8 pixel cluster mosaics (accenting cards & icons)"
-    - tech_shield:          "Geometric badge with digital pixel checkmark core"
-    - minimalist_nav:       "2-line hamburger bar (24px width, 1.5px stroke)"
-    - calendar_pixel:       "Grid-accented digital scheduler badge"
-
-# ------------------------------------------------------------------------------
-# 8. INTERACTION & FEEDBACK RULES
-# ------------------------------------------------------------------------------
-interaction_states:
-  buttons:
-    primary_cta (Lime):
-      default:              "bg: #A8F33A | text: #090A0C | border: none | radius: 0px"
-      hover:                "bg: #B9FA55 | transform: translateY(-1px)"
-      active:               "bg: #98E02E | transform: translateY(0)"
-
-    inline_link_cta:
-      default:              "text: #1A52EE | text-decoration: underline (1.5px offset)"
-      hover:                "text: #FFFFFF | text-decoration: underline"
-
-  specialty_list_rows:
-    default:
-      bg:                   "transparent"
-      text:                 "#FFFFFF"
-      border_bottom:        "1px solid rgba(255, 255, 255, 0.12)"
-    active_selected:
-      bg:                   "#FFFFFF"
-      text:                 "#090A0C"
-      font_weight:          "700"
-      border_radius:        "0px"
-      transition:           "all 180ms ease-out"
-
-  accordion_stack_panels:
-    default_state:          "Progressive step background colors (#1A52EE -> #06164A)"
-    hover_state:            "brightness(1.15) | padding-left: +4px transition"
-    timing_function:        "cubic-bezier(0.16, 1, 0.3, 1)"
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No purple neon, soft 16px+ app radii, or pill primary buttons.
+- No gradient text.
+- No medical clip-art, heartbeat glyphs, or invented provider counts.
+- No slogans, product nicknames, or "system" codes from this tile.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ==========================================================================

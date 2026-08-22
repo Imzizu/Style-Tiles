@@ -2293,17 +2293,33 @@
 
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Aero-Aquatic • Hydrated Glassminimalism • Quiet Luxury Wellness
+  Visual language: Aero-Aquatic
+  Construction: sky-blue gradient • liquid glass • condensed white display • navy punch
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Aero-Aquatic is high-key ethereal hydration: a sky-blue gradient field, liquid
-glass navigation, gigantic condensed white display type, and a single navy punch
-for CTAs. It is Quiet Luxury for mineral water, clinical-calm wellness, and
-ritual product worlds — airy, refractive, and restrained. Never Memphis, never
-candy stickers, never dark OLED, never brutalist offsets.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A high-key sky field (#BFE3FD) washes through linear-gradient(180deg, #CEEAFE,
+#A8D8FC, #99CEFB). Navigation is liquid glass: rgba(255,255,255,0.22) with
+blur(16px) saturate(180%) and an inset white rim. Display is condensed Bebas
+Neue / Anton, uppercase, white, with a soft 0 2px 18px rgba(255,255,255,0.45)
+drop-shadow. The only punch fill is navy (#0B2B63). Geometry is 24px cards and
+9999px pills, with one optional asymmetric plate at 36px 12px 28px 12px.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
@@ -2318,12 +2334,12 @@ candy stickers, never dark OLED, never brutalist offsets.
   --bg-glass-nav:           rgba(255, 255, 255, 0.22); /* Liquid glass */
 
   /* Inks & Typography */
-  --ink-primary:            #0B2B63; /* Navy — card headings, body punch */
+  --ink-primary:            #0B2B63; /* Navy - card headings, body punch */
   --ink-secondary:          #1B3B73; /* Subtle navy */
   --ink-muted:              #6C87A3; /* Body, captions */
   --ink-inverted:           #FFFFFF; /* Hero display + on-navy */
   --ink-nav:                rgba(255, 255, 255, 0.88); /* Glass nav links */
-  --ink-badge:              #7D9BB6; /* Clinical chips */
+  --ink-badge:              #7D9BB6; /* Quiet chips */
 
   /* Signature Accents */
   --accent-primary:         #0B2B63; /* Navy punch CTA */
@@ -2347,14 +2363,14 @@ candy stickers, never dark OLED, never brutalist offsets.
 --font-mono:    "Space Mono", ui-monospace, monospace;
 
 /* Type Scale */
---text-display: clamp(4.5rem, 11vw, 9rem) / 0.88 var(--font-display); /* UPPERCASE | ls -0.01em | white drop-shadow 0 2px 18px rgba(255,255,255,0.45) | Bebas default weight */
+--text-display: clamp(4.5rem, 11vw, 9rem) / 0.88 var(--font-display); /* UPPERCASE | ls -0.01em | white drop-shadow 0 2px 18px rgba(255,255,255,0.45) */
 --text-h1:      2.5rem   / 0.92  var(--font-display); /* UPPERCASE */
---text-h2:      1.75rem  / 1.05  var(--font-display); /* Card header · UPPERCASE · 0.02em · navy */
+--text-h2:      1.75rem  / 1.05  var(--font-display); /* UPPERCASE | Tracking: 0.02em | navy */
 --text-h3:      1.25rem  / 1.20  var(--font-sans);    /* Inter 600 */
 --text-body:    1.0rem   / 1.60  var(--font-sans);    /* Muted #6C87A3 */
 --text-body-sm: 0.875rem / 1.50  var(--font-sans);
---text-meta:    0.75rem  / 1.40  var(--font-sans);    /* Buttons 0.75rem 700 0.12em UPPERCASE · Nav 0.7rem 600 0.14em UPPERCASE */
---text-clinical: 9px     / 1.40  var(--font-sans);    /* 600 · 0.08em · UPPERCASE · muted */
+--text-meta:    0.75rem  / 1.40  var(--font-sans);    /* Buttons 0.75rem 700 0.12em UPPERCASE. Nav 0.7rem 600 0.14em UPPERCASE */
+--text-clinical: 9px     / 1.40  var(--font-sans);    /* 600 | 0.08em | UPPERCASE | muted */
 
 /* -----------------------------------------------------------------------------
  * 4. CORNER GEOMETRY & ELEVATION
@@ -2362,7 +2378,7 @@ candy stickers, never dark OLED, never brutalist offsets.
 --radius-default: 24px;
 --radius-subtle:  12px;
 --radius-pill:    9999px;
---radius-asymmetric: 36px 12px 28px 12px; /* At least one hero / feature plate */
+--radius-asymmetric: 36px 12px 28px 12px; /* At least one hero / feature plate if the layout already has a featured module */
 --radius-droplet: 50%;
 
 /* Elevation & Shadows */
@@ -2372,38 +2388,41 @@ candy stickers, never dark OLED, never brutalist offsets.
 --shadow-cta:     0 12px 24px -6px rgba(11,43,99,0.35);
 
 /* Glass layer */
-backdrop-filter: blur(16px) saturate(180%);
-background: rgba(255,255,255,0.2);
-box-shadow: inset 0 1px 1px rgba(255,255,255,0.6);
+--glass-blur:     blur(16px) saturate(180%);
+--glass-fill:     rgba(255,255,255,0.2);
+--glass-inset:    inset 0 1px 1px rgba(255,255,255,0.6);
+
+/* Motion */
+--ease-aquatic: cubic-bezier(0.16, 1, 0.3, 1);
+--duration:     0.4s;
 
 /* -----------------------------------------------------------------------------
  * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---border-core:        1px solid rgba(255,255,255,0.55); /* Glass edge */
---border-hairline:    1px solid rgba(255,255,255,0.45); /* Nav stroke */
+--border-core:        1px solid rgba(255,255,255,0.55);
+--border-hairline:    1px solid rgba(255,255,255,0.45);
 --border-card:        1px solid rgba(255,255,255,0.8);
 --divider-style:      1px solid rgba(108,135,163,0.15);
 
 /* -----------------------------------------------------------------------------
- * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-- **Motion**: All interactions 0.4s cubic-bezier(0.16, 1, 0.3, 1).
-- **Buttons**: Primary is a navy pill (#0B2B63) with a white solid circle badge holding a thin navy NE arrow (stroke 1.75px, round). Hover: translateY(-2px) scale(1.02), background #071D44, shadow 0 12px 24px -6px rgba(11,43,99,0.35); badge rotates 45deg. Secondary: ice white + navy hairline. Ghost: liquid glass. Danger: restrained coral pill. Accent: ice cyan.
-- **Cards**: Solid #FFFFFF, 24px radius, floating dual shadow. Hover: translateY(-4px) + larger shadow. One feature plate uses asymmetric 36px 12px 28px 12px.
-- **Inputs**: Glass pills, 16px type (no iOS zoom), ice placeholder #7D9BB6, navy focus ring.
-- **Navigation**: Liquid glass bar rgba(255,255,255,0.22), stroke rgba(255,255,255,0.45), links rgba(255,255,255,0.88) Inter 0.7rem 600 0.14em uppercase. Hover: pure white + text-shadow 0 0 10px rgba(255,255,255,0.8).
+- **Buttons**: Primary is a navy pill (#0B2B63) with a white solid circle badge holding a thin navy northeast arrow (stroke 1.75px, round). Hover: translateY(-2px) scale(1.02), background #071D44, shadow 0 12px 24px -6px rgba(11,43,99,0.35); badge rotates 45deg. Secondary: ice white + navy hairline. Ghost: liquid glass. Danger: restrained coral pill. All interactions 0.4s cubic-bezier(0.16, 1, 0.3, 1). Use the host's existing labels.
+- **Cards**: Solid #FFFFFF, 24px radius, floating dual shadow. Hover: translateY(-4px) + larger shadow. One feature plate may use asymmetric 36px 12px 28px 12px. Do not add index codes or fake meta.
+- **Inputs**: Glass pills, font-size at least 16px, ice placeholder #7D9BB6, navy focus ring.
+- **Navigation**: Liquid glass bar rgba(255,255,255,0.22), stroke rgba(255,255,255,0.45), links rgba(255,255,255,0.88) Inter 0.7rem 600 0.14em uppercase. Hover: pure white + text-shadow 0 0 10px rgba(255,255,255,0.8). Do not add catalog codes, fake clocks, or status readouts.
 - **Icons**: Monoline 1.75px round caps, white on navy discs. Icon badges rotate 45deg on hover.
-- **Clinical badges**: Inter 9px 600 0.08em uppercase in mist (#7D9BB6) or navy.
+- **Badges**: Inter 9px 600 0.08em uppercase in mist (#7D9BB6) or navy.
 
 /* -----------------------------------------------------------------------------
- * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
 - No Memphis geometry, candy stickers, toy shapes, or Playful & Pop energy.
 - No dark OLED canvases, scanlines, or cyber neon.
 - No brutalist 0-radius offsets or hard black drop shadows (4px 4px 0 #000).
-- No Inter (or any humanist sans) as the giant hero display — hero must be condensed Bebas Neue / Anton.
-- No gold-foil hospitality clichés; luxury here is air, glass, and water — not ornament.
-================================================================================
+- No Inter (or any humanist sans) as the giant hero display - hero must be condensed Bebas Neue / Anton.
+- No gold-foil ornament; luxury here is air, glass, and water.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <script>

@@ -2282,172 +2282,145 @@
        ======================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  STYLE TILE // BIO-CLINICAL TECHNICAL EDITORIAL (TILE-017)
+  Visual language: Bio-Ivory Editorial
+  Construction: ivory parchment • pine olive • matcha chartreuse • flat Swiss layering • hairline rules
 ================================================================================
 
-[ 01. DESIGN ETHOS & MOOD ]
---------------------------------------------------------------------------------
-  * Aesthetic: Bio-Clinical Technical Editorial
-  * Vibe: Sterile yet organic, Swiss International layout discipline, clinical telemetry
-  * Visual Rhythm: High-density clinical data grids, bio-ivory parchment base,
-                    coniferous pine inks (#21361D), radiant matcha chartreuse alerts (#DBE8B8).
-  * Elevation Philosophy: Completely Flat / Swiss Minimalist (Zero blurred drop-shadows)
-  * Depth Method: Tonal layering, explicit line nesting, and high-contrast bounding boxes.
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
 
-[ 02. COLOR ROLES & PALETTE ]
---------------------------------------------------------------------------------
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Ivory parchment (#F7F8F1) holds crisp white modules and sage-tinted wells. Ink is coniferous olive: near-black pine (#121610) for reading, mid olive-grey (#525E4B) for secondary, deep olive (#21361D) for inverted plates. Matcha chartreuse (#DBE8B8) is a high-visibility wash, not a neon. The system is completely flat -- zero blur shadows -- with depth from tonal nesting and 1px solid, dashed, or dotted olive bounds. Display is a light-medium grotesque (Neue Haas Grotesk / Plus Jakarta Sans) with tight tracking; meta is condensed uppercase mono. Radii sit between 2px markers and 20px cards, with true pills only on existing chips.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
 :root {
-  /* Canvas & Neutrals */
-  --color-canvas-base:       #F7F8F1; /* Warm parchment / bio-ivory background */
-  --color-surface-card:      #FFFFFF; /* Pure crisp white for primary modules */
-  --color-surface-tint:      #F0F3E7; /* Soft tinted container layer */
-  --color-surface-muted:     #E5ECD8; /* Mid-tone sage background */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F7F8F1; /* Bio-ivory parchment */
+  --bg-surface:             #FFFFFF; /* Crisp white modules */
+  --bg-surface-alt:         #F0F3E7; /* Soft sage tint wells */
+  --bg-surface-dark:        #21361D; /* Deep olive inverted plates */
 
-  /* Deep Accents & Brand */
-  --color-primary-deep:      #21361D; /* Deep coniferous / dark olive green */
-  --color-primary-hover:     #182914; /* High-contrast active dark green */
-  --color-olive-mid:         #60714E; /* Muted secondary olive */
-  --color-olive-light:       #8A9E75; /* Tertiary density tone */
+  /* Inks & Typography */
+  --ink-primary:            #121610; /* Near-black pine */
+  --ink-secondary:          #525E4B; /* Olive-grey reading */
+  --ink-muted:              #60714E; /* Mid olive quiet */
+  --ink-inverted:           #F7F8F1; /* Ivory on deep olive */
 
-  /* Highlights & Functional States */
-  --color-accent-chartreuse: #DBE8B8; /* Radiant matcha / high-visibility alert */
-  --color-accent-lime-soft:  #E8F0CD; /* Low-friction status tint */
-  --color-neutral-empty:     #EDF1E4; /* Unfilled matrix / slot placeholder */
-
-  /* Text & Data Inks */
-  --color-ink-primary:       #121610; /* Deep near-black pine ink */
-  --color-ink-secondary:     #525E4B; /* Mid-contrast technical olive-grey */
-  --color-ink-inverse:       #F7F8F1; /* Inverse parchment ink on deep surfaces */
+  /* Signature Accents */
+  --accent-primary:         #21361D; /* Deep coniferous olive */
+  --accent-primary-hover:   #182914; /* Darker olive press */
+  --accent-secondary:       #DBE8B8; /* Matcha chartreuse wash */
+  --accent-tertiary:        #8A9E75; /* Light olive */
 
   /* Status Tokens */
-  --color-status-success:    #21361D;
-  --color-status-warning:    #8A9E75;
+  --status-success:         #21361D;
+  --status-warning:         #8A9E75;
+  --status-danger:          #60714E;
+  --status-info:            #DBE8B8;
+
+  /* Extra original tokens */
+  --color-canvas-base:       #F7F8F1;
+  --color-surface-card:      #FFFFFF;
+  --color-surface-tint:      #F0F3E7;
+  --color-surface-muted:     #E5ECD8;
+  --color-primary-deep:      #21361D;
+  --color-primary-hover:     #182914;
+  --color-olive-mid:         #60714E;
+  --color-olive-light:       #8A9E75;
+  --color-accent-chartreuse: #DBE8B8;
+  --color-accent-lime-soft:  #E8F0CD;
+  --color-neutral-empty:     #EDF1E4;
+  --color-ink-primary:       #121610;
+  --color-ink-secondary:     #525E4B;
+  --color-ink-inverse:       #F7F8F1;
   --color-status-alert:      #DBE8B8;
 }
 
-[ 03. TYPOGRAPHY SYSTEM ]
---------------------------------------------------------------------------------
-/* Font Stacks */
---font-primary-display: "Neue Haas Grotesk", "PP Neue Montreal", "Plus Jakarta Sans", sans-serif;
---font-secondary-tech:  "PP Supply Mono", "JetBrains Mono", monospace;
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Neue Haas Grotesk", "PP Neue Montreal", "Plus Jakarta Sans", sans-serif;
+--font-sans:    "Neue Haas Grotesk", "PP Neue Montreal", "Plus Jakarta Sans", sans-serif;
+--font-mono:    "PP Supply Mono", "JetBrains Mono", monospace;
 
-/* Hierarchy & Tokens */
-Display Heading:
-  font-family:    var(--font-primary-display)
-  font-size:      38px
-  line-height:    1.08
-  font-weight:    500
-  letter-spacing: -0.03em
-  text-transform: none
+--text-display: 38px / 1.08 var(--font-display); /* Weight: 500 | Tracking: -0.03em | no transform */
+--text-h1:      38px / 1.08 var(--font-display); /* Weight: 500 | Tracking: -0.03em */
+--text-h2:      14px / 1.45 var(--font-sans);    /* Weight: 400 | Tracking: -0.01em | section body voice */
+--text-h3:      11px / 1.20 var(--font-mono);    /* Weight: 700 | Tracking: +0.08em | UPPERCASE kickers */
+--text-body:    14px / 1.45 var(--font-sans);    /* Weight: 400 | Tracking: -0.01em */
+--text-body-sm: 12px / 1.40 var(--font-mono);    /* Weight: 500 | Tracking: +0.04em | UPPERCASE rows */
+--text-meta:    11px / 1.20 var(--font-mono);    /* Weight: 700 | Tracking: +0.08em | UPPERCASE */
 
-Metric / Data Stat:
-  font-family:    var(--font-primary-display)
-  font-size:      44px
-  line-height:    1.0
-  font-weight:    400
-  letter-spacing: -0.04em
-  font-variant-numeric: tabular-nums
+Numeric figures, where the host already shows them, use tabular-nums at 44px / 1.0 / weight 400 / tracking -0.04em on the display grotesque. Do not invent metric theatre or specimen strings.
 
-Section Label / Kicker:
-  font-family:    var(--font-secondary-tech)
-  font-size:      11px
-  line-height:    1.2
-  font-weight:    700
-  letter-spacing: 0.08em
-  text-transform: uppercase
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-xs:      2px;
+--radius-sm:      6px;
+--radius-md:      12px;
+--radius-lg:      20px;
+--radius-default: 20px;
+--radius-subtle:  6px;
+--radius-pill:    9999px;
 
-Data Row / Actionable Item:
-  font-family:    var(--font-secondary-tech)
-  font-size:      12px
-  line-height:    1.4
-  font-weight:    500
-  letter-spacing: 0.04em
-  text-transform: uppercase
+--shadow-base:    none;
+--shadow-hover:   none;
+--shadow-active:  none;
 
-Body Secondary:
-  font-family:    var(--font-primary-display)
-  font-size:      14px
-  line-height:    1.45
-  font-weight:    400
-  letter-spacing: -0.01em
+Completely flat. Depth stack: ivory canvas -> white card + 1px solid/dashed olive -> tinted #F0F3E7 or inverted #21361D nest -> chartreuse wash with no elevation shift.
 
-[ 04. CORNER GEOMETRY (BORDER RADII) ]
---------------------------------------------------------------------------------
---radius-xs:    2px;   /* Micro markers, data heat-map cells */
---radius-sm:    6px;   /* Input fields, utility pills, mini action tiles */
---radius-md:   12px;   /* Nav buttons, secondary nested modules */
---radius-lg:   20px;   /* Primary container cards, high-level dashboards */
---radius-pill: 9999px; /* Standalone badges, status trackers */
+Spacing: 4 / 8 / 12 / 16 / 24 / 32 / 48px. Card padding 20px 24px. Grid gap 16px. Existing dense rows may keep a 32px baseline with a hairline delimiter.
 
-[ 05. ELEVATION & DEPTH (SHADOWS & LAYERS) ]
---------------------------------------------------------------------------------
-* Philosophy: Completely Flat / Swiss Minimalist (Zero blurred drop-shadows)
-* Depth Method: Tonal layering, explicit line nesting, and high-contrast bounding boxes.
-* Layer Stack:
-  Layer 0 (Canvas):        --color-canvas-base (#F7F8F1)
-  Layer 1 (Card Frame):    --color-surface-card (#FFFFFF) + 1px solid/dashed border
-  Layer 2 (Internal Pill): --color-surface-tint (#F0F3E7) or --color-primary-deep (#21361D)
-  Layer 3 (Overlay Focus): Accent fills (#DBE8B8) without elevation shift
+--ease-out-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
 
-[ 06. SPACING & SPATIAL SCALE ]
---------------------------------------------------------------------------------
-* Base Unit: 4px / 8pt Geometric Modular Scale
-  --space-2xs: 4px;
-  --space-xs:  8px;
-  --space-sm:  12px;
-  --space-md:  16px;
-  --space-lg:  24px;
-  --space-xl:  32px;
-  --space-2xl: 48px;
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:      1px solid #21361D;
+--border-hairline:  1px solid rgba(33, 54, 29, 0.25);
+--border-solid:     1px solid #21361D;
+--border-dashed:    1px dashed rgba(33, 54, 29, 0.45);
+--border-dotted:    1px dotted rgba(33, 54, 29, 0.50);
+--divider-style:    1px solid rgba(33, 54, 29, 0.25);
 
-* Layout Density:
-  Card Padding (Internal): 20px 24px
-  Grid Gap:                16px horizontal / 16px vertical
-  Data Row Height:         32px fixed baseline with hairline delimiter
+Utility headers may use dashed or dotted enclosure. Internal card rules are 1px solid olive. Lists, if present, take full-width hairline row strokes. Focus: 1px solid #21361D with 2px outline-offset.
 
-[ 07. BORDERS & DIVIDERS ]
---------------------------------------------------------------------------------
---border-hairline: 1px solid rgba(33, 54, 29, 0.25);
---border-solid:    1px solid var(--color-primary-deep);
---border-dashed:   1px dashed rgba(33, 54, 29, 0.45);
---border-dotted:   1px dotted rgba(33, 54, 29, 0.50);
+Icons: 1.25-1.5px geometric stroke, sharp or 0.5px micro-radius. Bracket glyphs are optional visual framing of existing actions -- do not add assay or run labels.
 
-* Divider Application:
-  - Top Utility Headers: Enclosed in 1px dashed/dotted bounds
-  - Internal Card Dividers: 1px solid horizontal lines anchoring category labels
-  - Data Lists: Full-width hairline bottom strokes between consecutive records
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 6-12px radius (pill only if the host already pills). Primary: deep olive #21361D fill, ivory type; hover #182914. Secondary: white or tint fill, hairline olive; hover outline thickens to solid olive. Ghost: transparent, olive type; hover fills #DBE8B8. Keep host labels.
+- **Cards**: 20px radius, white on ivory, 1px hairline olive. Nested wells #F0F3E7 or #E5ECD8. Hover: hairline becomes solid olive. Inverted cards fill #21361D with ivory type; hover #182914. Do not add matrix headers, slot codes, or decorative readouts.
+- **Inputs**: 6px radius, white or #EDF1E4 well, hairline olive. Font-size at least 16px. Focus: 1px solid olive, 2px offset. Placeholder in #525E4B. Checkboxes 2-6px radius; checked olive fill with ivory mark. Radios 50%. Toggles: off #E5ECD8, on #21361D with chartreuse track optional.
+- **Navigation**: Restyle existing items as 12px-radius olive/ivory chips or a hairline-top bar. Active item: olive fill + ivory type, or a chartreuse band. No catalog codes, clocks, or fake frequencies.
+- **Badges / chips / toggles**: 9999px or 6px. Chartreuse wash for highlight, olive fill for selected, light olive for quiet. Selected pill is full #21361D with #F7F8F1 type. Persistent highlight, if the host already has one, is a chartreuse block-band.
 
-[ 08. ICONOGRAPHY LANGUAGE ]
---------------------------------------------------------------------------------
-* Paradigm: Utilitarian Monospace Glyphs & Technical Vector Primitives
-* Stroke Weight: 1.25px - 1.5px constant geometric stroke
-* Corner Treatment: Sharp or 0.5px micro-radius
-* Key Glyph Patterns:
-  - Bracketed Affordances: `[VIEW ↗]`, `[+]`, `[−]`, `[x]`, `[RUN ASSAY ↗]`
-  - Metric Indicators: `↗`, `→`, `↓`
-  - Matrix Elements: `○`, `●` and modular rectangular grids
-
-[ 09. INTERACTION & FEEDBACK RULES ]
---------------------------------------------------------------------------------
-* Default Transition: 150ms cubic-bezier(0.16, 1, 0.3, 1) (Ease-Out Fast)
-* Interactive Hover:
-  - Text Links / Brackets: Background fill transitions to `--color-accent-chartreuse` (#DBE8B8)
-  - Inverted Cards: Shift background from #21361D to #182914
-  - Standard Card Hover: Outline shifts from `--border-hairline` to `--border-solid`
-* Selection / Active:
-  - Selected Pill: Full flood fill `--color-primary-deep` with `--color-ink-inverse`
-  - Alert Highlight: Persistent block-band fill of `--color-accent-chartreuse`
-* Focus State:
-  - 2px outline-offset, 1px solid var(--color-primary-deep)
-
-[ 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS ]
---------------------------------------------------------------------------------
-- NO blurred drop shadows or skeuomorphic bevels (Strict flat tonal layering).
-- NO purple/violet dark theme or generic neon cyberspace glows.
-- NO high-saturation rainbow badges; stick strictly to pine, sage, chartreuse, olive.
-- NO floating unanchored cards without structural hairline bounds.
-- NO rounded biscuit headline pills with pulsing dots.
-================================================================================
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No blurred drop shadows or skeuomorphic bevels; stay flat and tonal.
+- No purple/violet dark themes or neon cyberspace glows.
+- No high-saturation rainbow badges; stay in pine, sage, chartreuse, olive, ivory.
+- No floating unanchored cards without hairline bounds.
+- No biscuit headline pills with pulsing dots.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ========================================================================

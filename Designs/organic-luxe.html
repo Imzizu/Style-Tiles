@@ -2327,147 +2327,155 @@
        =========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  DESIGN SYSTEM STYLE TILE // "ORGANIC LUXE" (TILE-025)
-  A decadent, tactile design system uniting rich roasted cacao and soft oat milk 
-  surfaces with liquid caramel-gold accents, organic fluid contours, and luxury typography.
+  Visual language: Organic Luxe
+  Construction: espresso cacao • oat milk • caramel gold • fluid waves • condensed caps + script
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Organic Luxe is an opulent, sensory-driven design system engineered for artisanal 
-gastronomy, luxury botanicals, single-origin cacao wellness, and sustainable prestige goods. 
-It balances heavy espresso and warm bittersweet chocolate surfaces with velvety oat-milk 
-canvases, fluid molten caramel-gold interactions, handwritten organic script annotations, 
-and condensed monolithic display headlines.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A dual-material field: deep espresso (#2B1810) and bittersweet cacao (#3D2318) against oat-milk bone (#F8F5F0) and cloud mist (#E6ECF0), with liquid caramel-gold (#D9822B) as the moving accent. Display is condensed all-caps (Bebas Neue) at 72px / 0.95 / +0.04em; Caveat Brush script at 28px may tilt -4deg on existing emphasis; body is Plus Jakarta Sans. Pills (9999px) sit with 12px and 24px cards. Section breaks may use a two-phase S-curve or a drip path between cacao and oat -- geometry only. Motion is springy (220ms hover, 450ms reveal).
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Brand & Surfaces */
-  --surface-dark-primary:     #2B1810; /* Deep Espresso / Rich Roasted Cacao */
-  --surface-dark-secondary:   #3D2318; /* Warm Bittersweet Chocolate */
-  --surface-light-primary:    #F8F5F0; /* Soft Oat Milk / Warm Bone */
-  --surface-light-cool:       #E6ECF0; /* Cloud Mist / Slate Accent Canvas */
-  --surface-overlay-card:     #FFFFFF; /* Pure Floating White */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F8F5F0; /* Oat milk / warm bone */
+  --bg-surface:             #FFFFFF; /* Floating white */
+  --bg-surface-alt:         #E6ECF0; /* Cloud mist */
+  --bg-surface-dark:        #2B1810; /* Espresso / roasted cacao */
 
-  /* Accents & Energetics */
-  --accent-caramel-gold:      #D9822B; /* Roasted Toffee / Dynamic Accent */
-  --accent-warm-ochre:        #B8621B; /* Deep Amber / Interactive Active */
-  --accent-metallic-foil:     linear-gradient(135deg, #ECC880 0%, #A86B24 50%, #F5DEAA 100%);
+  /* Inks & Typography */
+  --ink-primary:            #1F120B; /* On light */
+  --ink-secondary:          #786D66; /* Quiet on light */
+  --ink-muted:              #D1C5BD; /* Quiet on dark */
+  --ink-inverted:           #FFFFFF; /* On cacao */
 
-  /* Content & Readability */
-  --text-light-high:          #FFFFFF; /* Primary text on dark surfaces */
-  --text-light-muted:         #D1C5BD; /* Secondary metadata on dark */
-  --text-dark-high:           #1F120B; /* Primary typography on light */
-  --text-dark-muted:          #786D66; /* Secondary labels / nutritional specs */
-  --border-subtle-dark:       rgba(255, 255, 255, 0.18);
-  --border-subtle-light:      rgba(43, 24, 16, 0.15);
+  /* Signature Accents */
+  --accent-primary:         #D9822B; /* Caramel gold */
+  --accent-primary-hover:   #B8621B; /* Deep amber */
+  --accent-secondary:       #3D2318; /* Bittersweet chocolate */
+  --accent-tertiary:         #ECC880; /* Foil highlight stop */
 
   /* Status Tokens */
-  --status-success:           #4A7C59; /* Botanical Herb */
-  --status-warning:           #D9822B; /* Warm Caramel */
-  --status-danger:            #A8382B; /* Roasted Hibiscus */
-  --status-info:              #5C788D; /* Slate Mist */
+  --status-success:         #4A7C59;
+  --status-warning:         #D9822B;
+  --status-danger:          #A8382B;
+  --status-info:            #5C788D;
+
+  /* Extra original tokens */
+  --surface-dark-primary:   #2B1810;
+  --surface-dark-secondary: #3D2318;
+  --surface-light-primary:  #F8F5F0;
+  --surface-light-cool:     #E6ECF0;
+  --surface-overlay-card:   #FFFFFF;
+  --accent-caramel-gold:    #D9822B;
+  --accent-warm-ochre:      #B8621B;
+  --accent-metallic-foil:   linear-gradient(135deg, #ECC880 0%, #A86B24 50%, #F5DEAA 100%);
+  --text-light-high:        #FFFFFF;
+  --text-light-muted:       #D1C5BD;
+  --text-dark-high:         #1F120B;
+  --text-dark-muted:        #786D66;
+  --border-subtle-dark:     rgba(255, 255, 255, 0.18);
+  --border-subtle-light:    rgba(43, 24, 16, 0.15);
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Stacks */
---font-display-condensed:     'Bebas Neue', 'Druk Wide', sans-serif;
---font-accent-hand:           'Caveat Brush', 'Permanent Marker', cursive;
---font-body-ui:               'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+--font-display: "Bebas Neue", "Druk Wide", sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:    "Plus Jakarta Sans", "Inter", sans-serif;
+--font-accent-hand: "Caveat Brush", "Permanent Marker", cursive;
 
-/* Type Hierarchy Tokens */
---type-display-mega:          72px / 0.95 / 0.04em / All-Caps (Bebas Neue);
---type-display-section:       44px / 1.05 / 0.02em / All-Caps (Bebas Neue);
---type-accent-hand:           28px / 1.10 / 0.00em / Organic Tilt -4deg (Caveat Brush);
---type-stat-numeric:          36px / 1.00 / -0.01em / Heavy Condensed (Bebas Neue);
---type-data-label:            11px / 1.40 / 0.12em / Bold Monospaced Uppercase (Plus Jakarta Sans);
---type-body-regular:          14px / 1.55 / -0.01em / Regular 400 (Plus Jakarta Sans);
---type-button-label:          13px / 1.00 / 0.08em / Bold Uppercase (Plus Jakarta Sans);
+--text-display: 72px / 0.95 var(--font-display); /* Tracking: +0.04em | all-caps */
+--text-h1:      44px / 1.05 var(--font-display); /* Tracking: +0.02em | all-caps */
+--text-h2:      28px / 1.10 var(--font-accent-hand); /* Tracking: 0 | optional -4deg tilt */
+--text-h3:      36px / 1.00 var(--font-display); /* Tracking: -0.01em | condensed figures */
+--text-body:    14px / 1.55 var(--font-sans); /* Weight: 400 | Tracking: -0.01em */
+--text-body-sm: 13px / 1.00 var(--font-sans); /* Weight: 700 | Tracking: +0.08em | UPPERCASE actions */
+--text-meta:    11px / 1.40 var(--font-sans); /* Weight: 700 | Tracking: +0.12em | UPPERCASE */
 
-/* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
- * -------------------------------------------------------------------------- */
---radius-pill:                9999px;              /* Navigation chips, Action buttons, Badges */
---radius-card-sm:             12px;                /* Micro-containers, Steppers, Modals */
---radius-card-lg:             24px;                /* Floating product plates, Info panels */
---radius-diagram-node:        100px;               /* Interactive cluster badges & pills */
-
-/* Organic Contours */
---mask-organic-drip:          path("M0,0 C150,90 350,-40 500,60 C650,160 900,20 1200,80 L1200,0 Z");
---divider-fluid-wave:         Continuous 2-phase S-curve separating espresso and oat-milk zones
+Script annotates existing emphasis; it does not become body copy. Do not invent product stories or specimen headlines. Foil gradient may stroke or fill small existing marks, not long paragraphs.
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
-/* Spatial Layer Stacking */
-Layer 0 (Base Canvas)   : Solid or dual-tone organic split background
-Layer 1 (Surface UI)    : Flat pill containers, data tables, line vectors
-Layer 2 (Elevated UI)   : Floating navigation bars, active drop-downs
-Layer 3 (Hero Heroics)  : Suspended packshots & dynamic debris
+--radius-pill:         9999px;
+--radius-card-sm:      12px;
+--radius-card-lg:      24px;
+--radius-diagram-node: 100px;
+--radius-default:      24px;
+--radius-subtle:       12px;
 
-/* Shadow Profiles */
---shadow-card-subtle:         0px 4px 16px rgba(43, 24, 16, 0.06);
---shadow-floating-asset:      0px 24px 48px -12px rgba(35, 18, 11, 0.45),
-                              0px 8px 16px -4px rgba(35, 18, 11, 0.25);
---shadow-action-pressed:      0px 2px 6px rgba(43, 24, 16, 0.20);
---text-shadow-metallic:       0px 1px 2px rgba(0, 0, 0, 0.35);
+--shadow-card-subtle:    0px 4px 16px rgba(43, 24, 16, 0.06);
+--shadow-floating-asset: 0px 24px 48px -12px rgba(35, 18, 11, 0.45), 0px 8px 16px -4px rgba(35, 18, 11, 0.25);
+--shadow-action-pressed: 0px 2px 6px rgba(43, 24, 16, 0.20);
+--text-shadow-metallic:  0px 1px 2px rgba(0, 0, 0, 0.35);
+--shadow-base:           0px 4px 16px rgba(43, 24, 16, 0.06);
+--shadow-hover:          0px 24px 48px -12px rgba(35, 18, 11, 0.45), 0px 8px 16px -4px rgba(35, 18, 11, 0.25);
+--shadow-active:         0px 2px 6px rgba(43, 24, 16, 0.20);
+
+Organic contours:
+--mask-organic-drip: path("M0,0 C150,90 350,-40 500,60 C650,160 900,20 1200,80 L1200,0 Z");
+Fluid S-curve may separate espresso and oat-milk zones. Splatter dots and drip arcs are unlabeled ornaments.
+
+Spacing: 4 / 8 / 12 / 16 / 32 / 48 / 64 / 96px. Stack gaps 8 / 24 / 40px.
+
+--easing-spring:         cubic-bezier(0.34, 1.56, 0.64, 1);
+--transition-speed-fast: 220ms;
+--transition-speed-slow: 450ms;
+
+Existing hero media may take a mouse-aware +/-3deg tilt. Do not add floating debris objects.
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (4px / 8px Grid Engine)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---space-xxs: 4px;   --space-sm: 12px;  --space-xl: 32px;  --space-3xl: 64px;
---space-xs:  8px;   --space-md: 16px;  --space-2xl: 48px; --space-4xl: 96px;
-
-Content Max-Width       : 1240px
-Mobile Padding Inset    : 20px
-Desktop Section Gaps    : 80px – 120px
-Component Stack Gap     : 8px (Tight data), 24px (Cards), 40px (Hero groups)
-
-/* -----------------------------------------------------------------------------
- * 7. BORDERS & DIVIDERS
- * -------------------------------------------------------------------------- */
---border-hairline-table  : 1px solid rgba(43, 24, 16, 0.12); /* Clean data row lines */
+--border-core:             1px solid rgba(43, 24, 16, 0.15);
+--border-hairline-table:   1px solid rgba(43, 24, 16, 0.12);
 --border-interactive-pill: 1px solid rgba(255, 255, 255, 0.35);
---border-diagram-link   : 1px solid #786D66 with 4px circular junction nodes;
---divider-fluid-edge    : Smooth vector masks blending dark espresso into warm cream;
+--border-hairline:         1px solid rgba(43, 24, 16, 0.12);
+--border-diagram-link:     1px solid #786D66;
+--divider-style:           fluid vector mask between cacao and cream;
+
+Diagram nodes, if the host already has a connected graph, may use 4px circular junctions. Do not invent a diagram.
+
+Icons: 1.5px wireframe, round cap/join, 20x20 with 2px padding, centered in pills. Stars only if the host already rates.
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-* Geometry              : Minimalist, clean geometric wireframe
-* Stroke Weight         : 1.5px consistent stroke (Round cap, Round join)
-* Grid Canvas           : 20x20px viewport with 2px internal safe padding
-* Optical Alignment     : Center-aligned within pill/circle badges
-* Rating Glyphs         : Filled 5-point star micro-cluster (10px size)
-* Dynamic Accents       : Asymmetric splatter dots, splash arcs, fluid drop decals
+- **Buttons**: 9999px. Primary: caramel #D9822B fill, white or espresso type; hover `translateY(-2px)` over 220ms spring, deepen to #B8621B; optional drip expansion is visual only. Secondary: transparent + 1px light or dark hairline; hover inverts to white-on-cacao or cacao-on-oat. Active uses pressed shadow. Keep host labels.
+- **Cards**: 24px large / 12px small. White or oat on cacao (or cacao plates on oat) with subtle cacao-tinted shadow. Do not add tasting notes, nutrition rows, or packshot theatre.
+- **Inputs**: 12px or pill, oat or white well, hairline cacao. Font-size at least 16px. Focus: 1px #D9822B. Placeholder #786D66. Toggles: caramel on, mist off.
+- **Navigation**: Restyle existing items as oat or cacao pills. Active: caramel fill or foil hairline. Frosted cacao bar allowed. No catalog codes.
+- **Badges / chips / toggles**: Pills or 100px nodes. Caramel fill + scale(1.08) on hover if they are already interactive. Success herb #4A7C59, danger #A8382B, info #5C788D.
 
 /* -----------------------------------------------------------------------------
- * 9. INTERACTION & FEEDBACK RULES
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
---easing-spring         : cubic-bezier(0.34, 1.56, 0.64, 1);
---transition-speed-fast : 220ms (Hover states);
---transition-speed-slow : 450ms (Layer reveals);
-
-* Primary Button (Drip)  : Normal: Caramel-Gold fill -> Hover: translateY(-2px) + Expand Drop
-* Secondary Button (Pill): Normal: Transparent + Border -> Hover: Invert fill to White/Dark
-* Interactive Nodes      : Normal: Neutral outline -> Hover: Gold fill + Scale(1.08)
-* Hero Asset Parallax    : Mouse-aware inertia tilt (-3deg to +3deg) with floating debris
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
- * -------------------------------------------------------------------------- */
-- NO purple or neon violet accents on dark cacao backgrounds.
-- NO cold corporate SaaS gradients or sterile grey dashboards.
-- NO untracked giant headers or generic sans-serif placeholders.
-- NO rigid 90-degree square boxes everywhere without organic curve balancing.
-- NO generic stock 3D cartoon icons or bloated icon-stuffed bento grids.
-- NO headline biscuit pills with pulsing dots right above the main headline.
-================================================================================
+- No purple or neon violet on cacao.
+- No cold corporate grey dashboards as the default field.
+- No untracked giant headers; condensed caps need the stated tracking.
+- No rigid 90-degree boxes everywhere; balance with pills, 12-24px rounds, and fluid dividers.
+- No cartoon 3D icon spam or over-nested bento grids.
+- No biscuit headline pills with pulsing dots.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ===========================================================================

@@ -1958,124 +1958,138 @@
        ========================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Luminous Midnight • Editorial SaaS • Obsidian Void & Electric Violet
+  Visual language: Luminous Midnight
+  Construction: obsidian void • electric indigo mesh • frosted glass pills • editorial serif
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Luminous Midnight / Editorial SaaS fuses a pitch obsidian void backdrop (#06060C) 
-with intense electric indigo (#4A21E8) and royal violet ambient mesh lighting. 
-Paired with sleek frosted glass pills and refined editorial serif accents, it creates 
-a high-trust, immersive, and luxurious visual presence ideal for modern AI software, 
-developer tools, and high-throughput SaaS platforms.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Pitch obsidian void (#06060C) is the canvas. Electric indigo (#4A21E8) and royal
+violet (#7434F8) bloom as a radial mesh along the lower field, never as neon
+outlines. Surfaces are frosted glass pills with 1px alpha strokes, inner rim
+light, and soft violet glow on primary fills. Type is Plus Jakarta Sans for
+structure, with Instrument Serif used only as an italic display accent.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Canvas & Backgrounds */
-  --bg-base:                 #06060C;          /* Deep obsidian void */
-  --bg-surface-glass:        rgba(255, 255, 255, 0.04); /* Frosted floating surfaces */
-  --bg-surface-glass-hover:  rgba(255, 255, 255, 0.08);
-  --bg-surface-active:       rgba(255, 255, 255, 0.12);
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #06060C; /* Deep obsidian void */
+  --bg-surface:             rgba(255, 255, 255, 0.04); /* Frosted floating surfaces */
+  --bg-surface-alt:         rgba(255, 255, 255, 0.08); /* Hover glass */
+  --bg-surface-dark:        #06060C; /* Inverted / recessed void */
 
-  /* Atmospheric & Ambient Glow */
-  --ambient-glow-primary:    #4A21E8;          /* Intense electric indigo */
-  --ambient-glow-secondary:  #7434F8;          /* Vibrant royal violet */
-  --ambient-glow-tertiary:   #2D1577;          /* Deep purple base bloom */
-  --ambient-mesh-gradient:   radial-gradient(ellipse 120% 60% at 50% 100%, 
-                               rgba(116, 52, 248, 0.45) 0%, 
-                               rgba(74, 33, 232, 0.25) 45%, 
-                               rgba(6, 6, 12, 0) 80%);
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF; /* High-contrast primary reading text */
+  --ink-secondary:          rgba(255, 255, 255, 0.72); /* Subtitles, secondary copy */
+  --ink-muted:              rgba(255, 255, 255, 0.42); /* Captions, disabled text */
+  --ink-inverted:           #06060C; /* Ink on light inverted plates */
 
-  /* Brand & Accents */
-  --accent-primary:          #4B32DF;          /* Primary CTA fill */
-  --accent-primary-hover:    #5940EC;          /* Elevated hover state */
-  --accent-primary-pressed:  #3E25C7;
-  --accent-glow:             rgba(75, 50, 223, 0.45);
+  /* Signature Accents */
+  --accent-primary:         #4B32DF; /* Primary call-to-action fill */
+  --accent-primary-hover:   #5940EC; /* Elevated hover tone */
+  --accent-secondary:       #7434F8; /* Vibrant royal violet */
+  --accent-tertiary:        #8F7CFF; /* Light violet highlight */
 
-  /* Typography & Foreground */
-  --text-primary:            #FFFFFF;          /* 100% Crisp solid white */
-  --text-secondary:          rgba(255, 255, 255, 0.72); /* Muted body copy */
-  --text-tertiary:           rgba(255, 255, 255, 0.42); /* Captions, subtle labels */
-  --text-brand:              #8F7CFF;          /* Light violet highlight */
+  /* Status Tokens (in-family; no second hue family) */
+  --status-success:         #8F7CFF;
+  --status-warning:         #7434F8;
+  --status-danger:          #3E25C7;
+  --status-info:            #4A21E8;
+
+  /* Extra original tokens */
+  --bg-surface-active:      rgba(255, 255, 255, 0.12);
+  --ambient-glow-primary:   #4A21E8; /* Intense electric indigo */
+  --ambient-glow-secondary: #7434F8; /* Vibrant royal violet */
+  --ambient-glow-tertiary:  #2D1577; /* Deep purple base bloom */
+  --ambient-mesh-gradient:  radial-gradient(ellipse 120% 60% at 50% 100%,
+                              rgba(116, 52, 248, 0.45) 0%,
+                              rgba(74, 33, 232, 0.25) 45%,
+                              rgba(6, 6, 12, 0) 80%);
+  --accent-primary-pressed: #3E25C7;
+  --accent-glow:            rgba(75, 50, 223, 0.45);
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Families */
---font-sans:          "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
---font-serif-display: "Instrument Serif", "Newsreader", Georgia, serif;
---font-mono:          "JetBrains Mono", "SF Mono", monospace;
+/* Font Stacks */
+--font-display: "Instrument Serif", "Newsreader", Georgia, serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", "SF Mono", monospace;
 
-/* Scale & Hierarchy */
---display-hero:      700 clamp(2.5rem, 6.0vw, 64px) / 1.08 var(--font-sans); /* Accent: Italic Serif 400 */
---heading-section:   600 32px / 1.20 var(--font-sans);
---heading-eyebrow:   500 13px / 1.00 var(--font-sans);                       /* Letter-Spacing: +0.02em */
---body-lead:         400 17px / 1.60 var(--font-sans);
---label-nav:         500 13px / 1.00 var(--font-sans);                       /* Letter-Spacing: -0.01em */
---label-badge:       500 12px / 1.00 var(--font-sans);
-
-/* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
- * -------------------------------------------------------------------------- */
---radius-full:           9999px;      /* Pill capsules: Nav bars, CTA buttons, badges */
---radius-pill:           28px;        /* Outer container bars */
---radius-card:           16px;        /* Brand partner chips, media tiles */
---radius-nested-avatar:  50%;         /* Overlapping circular social proof avatars */
+/* Type Scale */
+--text-display: 700 clamp(2.5rem, 6.0vw, 64px) / 1.08 var(--font-sans); /* Italic serif 400 may punctuate a display line */
+--text-h1:      600 32px / 1.20 var(--font-sans);
+--text-h2:      600 32px / 1.20 var(--font-sans);
+--text-h3:      500 13px / 1.00 var(--font-sans); /* Letter-spacing: +0.02em */
+--text-body:    400 17px / 1.60 var(--font-sans);
+--text-body-sm: 500 13px / 1.00 var(--font-sans); /* Letter-spacing: -0.01em */
+--text-meta:    500 12px / 1.00 var(--font-sans);
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (SHADOWS & LAYERS)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
+--radius-default: 16px;   /* Cards, media tiles, partner chips */
+--radius-subtle:  16px;
+--radius-pill:    9999px; /* Nav bars, CTA buttons, badges */
+--radius-bar:     28px;   /* Outer container bars */
+--radius-avatar:  50%;    /* Circular avatars */
+
+/* Elevation & Shadows */
 --glass-blur-nav:        blur(16px) saturate(180%);
 --glass-blur-card:       blur(12px);
 --ambient-blur-glow:     blur(120px);
-
+--shadow-base:           0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+--shadow-hover:          0 0 20px -2px rgba(75, 50, 223, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+--shadow-active:         0 0 20px -2px rgba(75, 50, 223, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
 --shadow-button-primary: 0 0 20px -2px rgba(75, 50, 223, 0.5), inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
 --shadow-glass-pill:     0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
 --shadow-avatar-overlap: 0 0 0 2px #06060C;
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (4px / 8px Grid)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---space-hero-stack-gap:   28px;
---space-cta-cluster-gap:  14px;
---space-pill-padding-x:   22px;
---space-pill-padding-y:   12px;
---space-partner-grid-gap: 18px;
---space-section-padding-y: 96px;
-
-/* -----------------------------------------------------------------------------
- * 7. BORDERS & DIVIDERS
- * -------------------------------------------------------------------------- */
+--border-core:            1px solid rgba(255, 255, 255, 0.08);
+--border-hairline:        1px solid rgba(255, 255, 255, 0.08);
 --border-glass-subtle:    1px solid rgba(255, 255, 255, 0.08);
 --border-glass-hover:     1px solid rgba(255, 255, 255, 0.18);
 --border-glass-highlight: 1px solid rgba(255, 255, 255, 0.28);
+--divider-style:          1px solid rgba(255, 255, 255, 0.08);
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
---icon-stroke-width:   1.85px;
---icon-treatment:      Monochrome translucent (rgba(255, 255, 255, 0.7)) to pure white;
---icon-corner-radius:  Smooth rounded joins and terminal caps;
+- **Buttons**: Primary fills #4B32DF with 9999px radius, inner 1px white rim, and glow 0 0 20px -2px rgba(75, 50, 223, 0.5). Hover lightens to #5940EC, expands the glow, and lifts slightly. Pressed is #3E25C7. Ghost / secondary is a frosted glass pill (rgba(255,255,255,0.04) to 0.12 on hover) with a 1px alpha stroke. Use the host's existing labels.
+- **Cards**: Frosted plates at 16px radius, 1px rgba(255,255,255,0.08) stroke, blur(12px), and glass shadow. Do not add index codes or fake meta.
+- **Inputs**: Glass wells, 16px radius or pill, ink #FFFFFF, muted placeholder rgba(255,255,255,0.42). Focus brightens the stroke to rgba(255,255,255,0.28). Font-size at least 16px.
+- **Navigation**: Restyle existing items as frosted pills (blur 16px, saturate 180%) with 1px alpha strokes. Do not add catalog codes, fake clocks, or status readouts.
+- **Avatars / chips**: Circular 50% avatars with a 2px #06060C knockout ring. Small chips use 16px radius and a 1.02x hover scale with a brighter glass border.
 
 /* -----------------------------------------------------------------------------
- * 9. COMPONENT ARCHETYPES & INTERACTION RULES
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-- **Primary CTA**: Background lightens to #5940EC with expanded 28px glow and subtle upward lift.
-- **Secondary Glass Pill**: Translucent hover shift rgba(255,255,255,0.05) -> rgba(255,255,255,0.12).
-- **Social Proof Avatars**: Circular (50%) with 2px obsidian knockout mask and negative overlap (-8px).
-- **Partner Chips**: Micro scale (1.02x) on hover with fractional border brighten.
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS
- * -------------------------------------------------------------------------- */
-- NO solid opaque white or gray borders; all boundaries must use alpha strokes.
-- NO muddy gray or pure black #000 backgrounds without electric violet ambient glow.
-- NO harsh unsoftened drop shadows; all elevation relies on frosted backdrop blurs and subtle glows.
-================================================================================
+- NO solid opaque white or gray borders; all boundaries use alpha strokes.
+- NO muddy gray or pure black #000 canvases without electric-violet ambient glow.
+- NO harsh unsoftened drop shadows; elevation is frosted blur plus violet glow.
+- NO scanlines, HUD reticles, or generic purple neon outlines.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ==========================================================================

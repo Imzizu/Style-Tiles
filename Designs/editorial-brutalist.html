@@ -2121,135 +2121,137 @@
        ======================================================================== -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  Aesthetic: Editorial Brutalist Gazette • Archival Drafting • Tactile Risograph
+  Visual language: Editorial Brutalist
+  Construction: manila parchment • stark ink frames • 0px geometry • zero-blur offset shadows • stamp vermilion • highlighter ochre
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-A physical, tactile design system rooted in vintage drafting tables, architectural blueprints, risograph printmaking, and editorial neo-brutalism. Stark, high-contrast black ink over warm Manila parchment and bleached paper sheets, punctuated by vintage stamp vermilion and highlighter ochre accents. Features zero-blur hard drop shadows, mechanical click interactions, and perforated tear-lines.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A physical paper construction: warm Manila parchment canvas, bleached-sheet cards, and kraft wells, all ruled by pure black ink. Geometry is rigid - 0px corners on primary frames, 3px solid borders, and hard zero-blur offset shadows that read as stacked sheets. Display type is a heavy optical serif; body is a geometric grotesque; meta is monospaced and tracked wide. Accent energy is vintage stamp vermilion and highlighter ochre. Motion is mechanical and short: hover lifts the sheet; press slams it flush to the page.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
   /* Surfaces & Backgrounds */
-  --surface-canvas:         #F4EFEA; /* Warm Manila parchment (Primary background) */
-  --surface-sheet:          #FAF7F2; /* Bleached paper highlight (Elevated cards)  */
-  --surface-kraft:          #EAE2D8; /* Aged chipboard (Muted panels, wells)      */
-  --surface-dark:           #141312; /* Drafting charcoal (Inverted containers)    */
+  --bg-canvas:              #F4EFEA; /* Warm Manila parchment - primary canvas */
+  --bg-surface:             #FAF7F2; /* Bleached paper - elevated cards */
+  --bg-surface-alt:         #EAE2D8; /* Aged chipboard - muted panels and wells */
+  --bg-surface-dark:        #141312; /* Drafting charcoal - inverted containers */
 
-  /* Stark Ink & Monochromes */
-  --ink-primary:            #000000; /* Pure stark ink (Text, borders, shadows)   */
-  --ink-secondary:          #3D3A37; /* Diluted carbon (Secondary copy)           */
-  --ink-muted:              #78726D; /* Pencil graphite (Captions, timestamps)    */
-  --ink-inverted:           #F4EFEA; /* Parchment contrast for dark surfaces       */
+  /* Inks & Typography */
+  --ink-primary:            #000000; /* Pure stark ink - reading text, borders, shadows */
+  --ink-secondary:          #3D3A37; /* Diluted carbon - secondary copy */
+  --ink-muted:              #78726D; /* Pencil graphite - captions and quiet type */
+  --ink-inverted:           #F4EFEA; /* Parchment contrast on dark surfaces */
 
   /* Signature Accents */
-  --accent-burnt-orange:    #FF6B4A; /* Vintage stamp vermilion (Primary CTA/Hot) */
-  --accent-orange-hover:    #FF522B; /* Saturated press tone                      */
-  --accent-mustard:         #FFD166; /* Highlighter ochre (Badges, warm focus)    */
-  --accent-mustard-hover:   #FFC53D; /* Deep ochre stamp                          */
+  --accent-primary:         #FF6B4A; /* Vintage stamp vermilion */
+  --accent-primary-hover:   #FF522B; /* Saturated vermilion press tone */
+  --accent-secondary:       #FFD166; /* Highlighter ochre */
+  --accent-tertiary:        #FFC53D; /* Deep ochre stamp */
 
-  /* Contextual / System Tokens */
-  --status-success:         #4D7C5D; /* Botanical archive green                   */
-  --status-warning:         #FFD166; /* Mustard alert                             */
-  --status-danger:          #FF6B4A; /* Burnt vermilion flag                      */
-  --status-info:            #5B85AA; /* Blueprint cyan-slate                      */
+  /* Status Tokens */
+  --status-success:         #4D7C5D; /* Botanical archive green */
+  --status-warning:         #FFD166; /* Mustard alert */
+  --status-danger:          #FF6B4A; /* Burnt vermilion flag */
+  --status-info:            #5B85AA; /* Blueprint cyan-slate */
+
+  /* Extra material aliases */
+  --surface-canvas:         #F4EFEA;
+  --surface-sheet:          #FAF7F2;
+  --surface-kraft:          #EAE2D8;
+  --surface-dark:           #141312;
+  --accent-burnt-orange:    #FF6B4A;
+  --accent-orange-hover:    #FF522B;
+  --accent-mustard:         #FFD166;
+  --accent-mustard-hover:   #FFC53D;
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Stacks */
 --font-display: "Fraunces", "Playfair Display", "Georgia", serif;
 --font-sans:    "Space Grotesk", "Inter", -apple-system, sans-serif;
 --font-mono:    "JetBrains Mono", "Courier Prime", monospace;
 
-/* Type Scale */
 --text-display: 3.5rem   / 1.05  var(--font-display); /* 56px | Letter-spacing: -0.03em | Weight: 800 */
 --text-h1:      2.5rem   / 1.15  var(--font-display); /* 40px | Letter-spacing: -0.02em | Weight: 700 */
 --text-h2:      1.75rem  / 1.25  var(--font-sans);    /* 28px | Letter-spacing: -0.02em | Weight: 700 */
 --text-h3:      1.25rem  / 1.35  var(--font-sans);    /* 20px | Letter-spacing: -0.01em | Weight: 600 */
 --text-body:     1.0rem   / 1.60  var(--font-sans);    /* 16px | Letter-spacing:  0.00em | Weight: 400 */
 --text-body-sm:  0.875rem / 1.50  var(--font-sans);    /* 14px | Letter-spacing:  0.00em | Weight: 400 */
---text-meta:     0.75rem  / 1.40  var(--font-mono);    /* 12px | Letter-spacing: +0.06em | UPPERCASE   */
+--text-meta:     0.75rem  / 1.40  var(--font-mono);    /* 12px | Letter-spacing: +0.06em | UPPERCASE */
+
+/* Display is optical serif, tight and heavy. Body is geometric grotesque at reading size.
+   Meta is monospaced, uppercase, and wide-tracked. Do not invent headlines or specimen copy. */
 
 /* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
---radius-sharp:  0px;    /* Canonical default (Cards, buttons, layout frames)     */
---radius-tactile:2px;    /* Soft die-cut paper edge (Micro tags, chips)           */
---radius-stamp:  4px;    /* Stamp & photo frame containers                        */
---radius-pill:   9999px; /* Status pills & metadata capsules strictly             */
+--radius-default: 0px;    /* Canonical default - cards, buttons, layout frames */
+--radius-subtle:  2px;    /* Soft die-cut paper edge - micro tags, chips */
+--radius-stamp:   4px;    /* Stamp and photo-frame containers */
+--radius-pill:    9999px; /* Status pills and metadata capsules only */
 
-/* Rule: Primary interactive & layout elements enforce 0px for brutalist rigidity */
-
-/* -----------------------------------------------------------------------------
- * 5. ELEVATION & DEPTH (HARD SHADOWS & LAYERS)
- * -------------------------------------------------------------------------- */
-/* Zero-blur, high-contrast, physical paper drop projections */
 --shadow-none:       0px 0px 0px transparent;
---shadow-sm:         2px 2px 0px #000000;          /* Micro tags, small inputs    */
---shadow-base:       4px 4px 0px #000000;          /* Default buttons, cards      */
---shadow-md:         6px 6px 0px #000000;          /* Hovered states, modal items */
---shadow-lg:         8px 8px 0px #000000;          /* Floating sheets, drawers    */
---shadow-accent-hot: 4px 4px 0px var(--accent-burnt-orange);
---shadow-accent-war: 4px 4px 0px var(--accent-mustard);
+--shadow-sm:         2px 2px 0px #000000;
+--shadow-base:       4px 4px 0px #000000;
+--shadow-hover:      6px 6px 0px #000000;
+--shadow-active:     0px 0px 0px transparent;
+--shadow-md:         6px 6px 0px #000000;
+--shadow-lg:         8px 8px 0px #000000;
+--shadow-accent-hot: 4px 4px 0px #FF6B4A;
+--shadow-accent-war: 4px 4px 0px #FFD166;
+
+/* Motion: 120ms cubic-bezier(0.2, 0.8, 0.2, 1). Hover translate(-2px, -2px) with 6px shadow.
+   Active translate(4px, 4px) with 0px shadow. Primary interactive and layout elements stay 0px radius. */
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (4px / 8px DRAFTING GRID)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
---space-1:   0.25rem; /*  4px | Micro spacers, tight gaps                         */
---space-2:   0.50rem; /*  8px | Button inline gaps, icon padding                  */
---space-3:   0.75rem; /* 12px | Compact cell padding                              */
---space-4:   1.00rem; /* 16px | Standard component padding                        */
---space-6:   1.50rem; /* 24px | Card & container internal padding                */
---space-8:   2.00rem; /* 32px | Section gutter spacing                            */
---space-12:  3.00rem; /* 48px | Large block separations                           */
---space-16:  4.00rem; /* 64px | Page section vertical padding                    */
+--border-core:        3px solid #000000;
+--border-hairline:    1px solid #000000;
+--border-accent-hot:  3px solid #FF6B4A;
+--border-accent-warm: 3px solid #FFD166;
+--divider-style:      2px dashed #000000;
+--divider-perforated: 2px dashed #000000;
+--divider-dotted:     2px dotted #000000;
+
+/* Icons: 2.5px monoline, square caps, miter joins; 16 / 24 / 32px sizes. */
 
 /* -----------------------------------------------------------------------------
- * 7. BORDERS & DIVIDERS
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
---border-core:        3px solid #000000; /* Primary bounding frame for all elements */
---border-hairline:    1px solid #000000; /* Sub-grid lines, table interior rules   */
---border-accent-hot:  3px solid var(--accent-burnt-orange);
---border-accent-warm: 3px solid var(--accent-mustard);
-
-/* Physical Paper Dividers */
---divider-perforated: 2px dashed #000000; /* Tear-off slip / receipt cut line     */
---divider-dotted:     2px dotted #000000; /* Ledger guide line                    */
+- **Buttons**: 0px radius, 3px solid black border, 4px hard zero-blur shadow. Primary fill is vermilion with inverted parchment ink, or bleached sheet with black ink. Hover lifts translate(-2px, -2px) and grows the shadow to 6px. Active presses translate(4px, 4px) and collapses the shadow to 0. Use the host's existing labels.
+- **Cards**: Bleached-paper surfaces on Manila canvas. 3px solid black frames and 4px-8px hard drop shadows. Optional kraft wells inside. Do not add index codes, folio numbers, or drafting stamps the host lacks.
+- **Inputs**: Manila or kraft wells, 3px black borders, 2px hard shadows. Focus uses a 2px dashed black outline with 4px offset. Input font-size >= 16px.
+- **Navigation**: Restyle existing nav as a ruled ink bar or sheet strip. Active items use vermilion or ochre fill with hard borders. Do not add catalog codes, issue numbers, or fake clocks.
+- **Badges / chips / toggles**: 2px-4px radius or pill capsules, 3px borders, 2px hard shadows. Ochre or vermilion fills. Perforated 2px dashed rules may divide stacked regions that already exist.
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
- * -------------------------------------------------------------------------- */
---icon-stroke-width: 2.5px;
---icon-line-cap:     square;
---icon-line-join:    miter;
---icon-size-sm:      16px;
---icon-size-md:      24px;
---icon-size-lg:      32px;
-
-/* Visual Aesthetic: Monoline mechanical glyphs, technical symbols, geometric 
-   ink-traps, and archival ledger marks (Lucide / Phosphor styled with square caps). */
-
-/* -----------------------------------------------------------------------------
- * 9. COMPONENT ARCHETYPES & INTERACTION RULES
- * -------------------------------------------------------------------------- */
-- **Buttons**: Strict 0px radius, 3px solid black border, 4px hard zero-blur shadow. Hover shifts translate(-2px, -2px) with 6px shadow; Active presses translate(4px, 4px) with 0px shadow.
-- **Cards & Surfaces**: Warm Manila (#F4EFEA) canvas with elevated Bleached Paper (#FAF7F2) cards. Heavy 3px solid black border frames and 4px-8px hard drop shadows.
-- **Inputs & Controls**: Manila well backgrounds, 3px black borders with 2px hard shadows. Focus state uses 2px dashed outline with 4px offset.
-- **Dividers & Perforations**: 2px dashed black tear-off lines for receipts and modular partitions; 2px dotted ledger guides for tables.
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
 - No blurred, diffuse box shadows (only zero-blur hard offsets).
-- No soft border radii (>4px) on primary cards or buttons (keep 0px brutalist edges).
+- No soft border radii greater than 4px on primary cards or buttons (keep 0px brutalist edges).
 - No generic purple/violet neon gradients or dark glassmorphism.
 - No floating unbordered cards or low-contrast light gray borders.
-- No generic placeholder cards without tangible archival or drafting metadata.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- ========================================================================

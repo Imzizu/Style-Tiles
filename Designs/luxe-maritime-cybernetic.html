@@ -1706,131 +1706,167 @@
   <!-- RAW EMBEDDED MARKDOWN SPECIFICATION -->
   <script id="style-tile-markdown" type="text/markdown">
 ================================================================================
-  STYLE TILE // LUXE MARITIME CYBERNETIC (CINEMATIC DARK GLASS) (TILE-033)
+  Visual language: Luxe Maritime Glass
+  Construction: abyss navy • frosted ice pills • crimson accent • 24px glass blur • titanium type
 ================================================================================
 
 /* -----------------------------------------------------------------------------
- * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
  * -------------------------------------------------------------------------- */
-Luxe Maritime Cybernetic is a cinematic dark glass design system engineered for autonomous naval
-telemetry, luxury maritime interfaces, and oceanographic research platforms.
-Rooted in deep oceanic void blacks (#030B12) and rich sea navies (#081624), the aesthetic achieves
-high-tension contrast with frosted ice pills (#D2E6F5), high-intensity crimson hull anchors (#E52521),
-electric azure halos (#2488CE), 24px blurred glass HUD modules, and brushed titanium typography.
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Cinematic dark glass: void-black and rich navy fields, frosted ice pills, a
+high-intensity crimson focal accent, and electric azure halos. Panels are 24px
+blurred glass with a 1px top inset highlight. Display type is Syne with a
+brushed-titanium vertical gradient (white to steel). Geometry is pill / 24px /
+14px — never 0px. Maritime here is material (abyss, ice, crimson) not subject matter.
 
 /* -----------------------------------------------------------------------------
  * 2. COLOR ROLES & PALETTE
  * -------------------------------------------------------------------------- */
 :root {
-  /* Surface & Abyss */
-  --bg-abyss-primary:       #030B12; /* Deep oceanic void black */
-  --bg-abyss-secondary:     #081624; /* Rich deep sea navy */
-  --bg-surface-glass:       rgba(9, 23, 37, 0.65); /* Translucent floating panel */
-  --bg-surface-pill:        rgba(210, 230, 245, 0.90); /* Frosted ice primary pill */
-  --bg-surface-pill-hover:  #FFFFFF; /* Pure white luminescence */
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #030B12; /* Deep oceanic void black */
+  --bg-surface:             rgba(9, 23, 37, 0.65); /* Translucent floating panel */
+  --bg-surface-alt:         #081624; /* Rich deep-sea navy */
+  --bg-surface-dark:        #030B12;
 
-  /* Kinetic & Accent */
-  --accent-crimson-core:    #E52521; /* High-intensity hull red / focal anchor */
-  --accent-crimson-deep:    #9E1311; /* Shadow red / hull shade */
-  --accent-azure-active:    #2488CE; /* Oceanic electric blue / secondary CTA */
-  --accent-azure-glow:      rgba(36, 136, 206, 0.35); /* Atmospheric halo */
+  --bg-abyss-primary:       #030B12;
+  --bg-abyss-secondary:     #081624;
+  --bg-surface-glass:       rgba(9, 23, 37, 0.65);
+  --bg-surface-pill:        rgba(210, 230, 245, 0.90); /* Frosted ice */
+  --bg-surface-pill-hover:  #FFFFFF;
 
-  /* Typography & Iconography */
-  --text-primary:           #FFFFFF; /* 100% white */
-  --text-metallic-top:      #FFFFFF; /* Chrome gradient start */
-  --text-metallic-bottom:   #8C9FA8; /* Chrome gradient end / brushed titanium */
-  --text-secondary:         #8FA5B8; /* Muted glacial steel */
-  --text-tertiary:          #4B6375; /* Subdued structural label */
-  --text-inverted:          #030B12; /* For high-contrast white/light pills */
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF;
+  --ink-secondary:          #8FA5B8; /* Glacial steel */
+  --ink-muted:              #4B6375; /* Subdued structural */
+  --ink-inverted:           #030B12;
+
+  --text-metallic-top:      #FFFFFF;
+  --text-metallic-bottom:   #8C9FA8; /* Brushed titanium end */
+  --text-tertiary:          #4B6375;
+
+  /* Signature Accents */
+  --accent-primary:         #D2E6F5; /* Ice pill fill (solid stand-in for 0.90 ice) */
+  --accent-primary-hover:   #FFFFFF;
+  --accent-secondary:       #E52521; /* Crimson focal */
+  --accent-tertiary:        #2488CE; /* Electric azure */
+
+  --accent-crimson-core:    #E52521;
+  --accent-crimson-deep:    #9E1311;
+  --accent-azure-active:    #2488CE;
+  --accent-azure-glow:      rgba(36, 136, 206, 0.35);
+
+  /* Status Tokens (mapped from crimson / azure) */
+  --status-success:         #2488CE;
+  --status-warning:         #9E1311;
+  --status-danger:          #E52521;
+  --status-info:            #2488CE;
 }
 
 /* -----------------------------------------------------------------------------
  * 3. TYPOGRAPHY SYSTEM
  * -------------------------------------------------------------------------- */
-/* Font Families */
---font-display:             "Syne", "Plus Jakarta Sans", -apple-system, sans-serif;
---font-ui:                  "Plus Jakarta Sans", "Inter", sans-serif;
---font-mono:                "JetBrains Mono", monospace;
+--font-display: "Syne", "Plus Jakarta Sans", -apple-system, sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", sans-serif;
+--font-mono:    "JetBrains Mono", monospace;
+--font-ui:      "Plus Jakarta Sans", "Inter", sans-serif;
 
-/* Hierarchy & Scale */
-• Hero Display:             72px - 96px | SemiBold (600) | Tracking: -0.04em
-                            Fill: linear-gradient(180deg, #FFFFFF 30%, #8C9FA8 100%)
-• Headline Accent:          48px - 64px | Light (300) / Regular (400) | Tracking: -0.03em
-• Section / Card Title:     18px - 22px | Medium (500) | Tracking: -0.02em
-• Hero Metrics:             32px - 40px | Medium (500) | Tabular figures
-• Micro Metric Values:      13px - 14px | SemiBold (600) | Tracking: -0.01em
-• Micro Labels / Meta:      9px - 10px  | Bold (700)   | Tracking: +0.12em (ALL CAPS)
-• Navigation Links:         13px - 14px | Regular (400) | Tracking: -0.01em
-
-/* -----------------------------------------------------------------------------
- * 4. CORNER GEOMETRY (BORDER RADII)
- * -------------------------------------------------------------------------- */
-• radius-pill:              9999px (Buttons, badges, video trigger chips)
-• radius-card-lg:           24px   (Floating HUD modules & telemetry cards)
-• radius-card-sm:           14px   (Nested visual viewports / interactive insets)
-• radius-avatar:            50%    (Overlapping social proof avatars)
+--text-display: 72px / 1.05 var(--font-display); /* Weight 600 | tracking -0.04em | 72–96px | fill linear-gradient(180deg, #FFFFFF 30%, #8C9FA8 100%) */
+--text-h1:      48px / 1.10 var(--font-display); /* Weight 300–400 | tracking -0.03em | 48–64px */
+--text-h2:      22px / 1.20 var(--font-sans);    /* Weight 500 | tracking -0.02em | 18–22px */
+--text-h3:      18px / 1.20 var(--font-sans);    /* Weight 500 | tracking -0.02em */
+--text-body:    1.0rem / 1.60 var(--font-sans);
+--text-body-sm: 13px / 1.20 var(--font-sans);    /* Weight 600 | tracking -0.01em | 13–14px */
+--text-meta:    10px / 1.20 var(--font-sans);    /* Weight 700 | tracking +0.12em | UPPERCASE | 9–10px */
+--text-metric:  32px / 1.00 var(--font-sans);    /* Weight 500 | tabular | 32–40px — only for host-existing figures */
 
 /* -----------------------------------------------------------------------------
- * 5. ELEVATION, DEPTH & BLUR
+ * 4. CORNER GEOMETRY & ELEVATION
  * -------------------------------------------------------------------------- */
-• elevation-glass-hud:
-    - Backdrop Filter:      blur(24px) saturate(180%)
-    - Box Shadow:           0 30px 60px -12px rgba(0, 0, 0, 0.75), inset 0 1px 0 0 rgba(255, 255, 255, 0.12)
-• elevation-pill-floating:  0 12px 32px rgba(0, 0, 0, 0.45)
-• elevation-glow-accent:    0 0 28px rgba(36, 136, 206, 0.40)
-• elevation-glow-crimson:   0 0 28px rgba(229, 37, 33, 0.40)
+--radius-default: 24px;
+--radius-subtle:  14px;
+--radius-pill:    9999px;
+--radius-avatar:  50%;
+
+--radius-card-lg: 24px;
+--radius-card-sm: 14px;
+
+--shadow-base:   0 30px 60px -12px rgba(0, 0, 0, 0.75), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+--shadow-hover:  0 12px 32px rgba(0, 0, 0, 0.45);
+--shadow-active: 0 0 28px rgba(36, 136, 206, 0.40);
+
+--elevation-glass-hud:     0 30px 60px -12px rgba(0, 0, 0, 0.75), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+--elevation-pill-floating: 0 12px 32px rgba(0, 0, 0, 0.45);
+--elevation-glow-accent:   0 0 28px rgba(36, 136, 206, 0.40);
+--elevation-glow-crimson:  0 0 28px rgba(229, 37, 33, 0.40);
+
+/* Glass: backdrop-filter: blur(24px) saturate(180%) */
+
+--space-xs:  4px;
+--space-sm:  8px;
+--space-md:  16px;
+--space-lg:  24px;
+--space-xl:  40px;
+--space-2xl: 80px;
+
+--ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+--duration-ui: 200ms; /* 200–300ms */
 
 /* -----------------------------------------------------------------------------
- * 6. SPACING & SPATIAL SCALE (8pt Baseline Grid)
+ * 5. BORDERS & DIVIDERS
  * -------------------------------------------------------------------------- */
-• space-xs:                 4px   (Badge internal spacing, indicator gaps)
-• space-sm:                 8px   (Icon-to-text spacing, micro metadata gaps)
-• space-md:                 16px  (Button padding Y/X ratio: 12px 24px)
-• space-lg:                 24px  (Card inner padding, telemetry cluster gap)
-• space-xl:                 40px  (Hero sub-element separation)
-• space-2xl:                80px+ (Screen edges, negative space canvas anchors)
+--border-core:     1px solid rgba(255, 255, 255, 0.16);
+--border-hairline: 1px solid rgba(255, 255, 255, 0.08);
+--divider-style:   1px solid rgba(143, 165, 184, 0.15);
+
+--border-glass-subtle:    1px solid rgba(255, 255, 255, 0.08);
+--border-glass-highlight: 1px solid rgba(255, 255, 255, 0.16);
+--border-active-pill:     1px solid rgba(255, 255, 255, 0.35);
+--divider-vertical-grid:  1px solid rgba(143, 165, 184, 0.15);
+--avatar-ring-overlap:    2px solid #061320;
 
 /* -----------------------------------------------------------------------------
- * 7. BORDERS & DIVIDERS
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
  * -------------------------------------------------------------------------- */
-• border-glass-subtle:      1px solid rgba(255, 255, 255, 0.08)
-• border-glass-highlight:   1px solid rgba(255, 255, 255, 0.16)
-• border-active-pill:       1px solid rgba(255, 255, 255, 0.35)
-• divider-vertical-grid:    1px solid rgba(143, 165, 184, 0.15) (Metric column dividers)
-• avatar-ring-overlap:      2px solid #061320 (Keeps stacked avatars distinct)
+- **Buttons**: 9999px pills. Primary rest: fill rgba(210, 230, 245, 0.90), ink #030B12,
+  padding ~12px 24px. Hover: fill #FFFFFF, scale(1.02), box-shadow 0 0 24px rgba(255,255,255,0.4).
+  Active: scale(0.98). Crimson or azure may mark a focal/secondary action the host already has
+  (glow 0 0 28px of that hue). Use the host's existing labels.
+- **Cards**: 24px outer, 14px nested. Fill rgba(9, 23, 37, 0.65), blur(24px) saturate(180%),
+  hairline rgba(255,255,255,0.08), top inset highlight, --elevation-glass-hud.
+  Hover: border rgba(255,255,255,0.22), translateY(-2px), 200–300ms --ease-luxe.
+  Do not add ship/navy copy, gauges, or fake meta.
+- **Inputs**: Dark glass wells, pill or 14px, font-size >= 16px, ink #FFFFFF, muted #4B6375.
+  Focus: azure halo 0 0 28px rgba(36, 136, 206, 0.40) or ice rim rgba(255,255,255,0.35).
+- **Navigation**: Existing items 13–14px / 400 / -0.01em. Rest #8FA5B8; hover #FFFFFF with
+  text-shadow 0 0 12px rgba(255,255,255,0.5). Do not add clocks or status readouts.
+- **Badges / chips**: Ice or crimson pills; 1px rgba(255,255,255,0.35) on active.
+- **Icons**: Monoline 1.5px, round caps, 14–18px. A NE arrow may mark existing primary actions.
+  A glass-ring play triangle only if the host already has media playback.
+- **Avatars**: 50% with 2px solid #061320 overlap rings, only if the host already stacks them.
 
 /* -----------------------------------------------------------------------------
- * 8. ICONOGRAPHY LANGUAGE
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
  * -------------------------------------------------------------------------- */
-• Stroke Weight:            1.5px (Monoline, ultra-refined)
-• Corner Treatment:         Subtle round caps (stroke-linecap: round)
-• Primary Functional:       North-East directional arrow (↗) for primary actions
-• Multimedia Token:         Glass-ring encircled minimal play triangle (▷)
-• Icon Scale:               14px - 18px bounding box
-
-/* -----------------------------------------------------------------------------
- * 9. INTERACTION & FEEDBACK RULES
- * -------------------------------------------------------------------------- */
-• Motion Curve:             cubic-bezier(0.16, 1, 0.3, 1) (Snappy, mechanical-luxury)
-• Duration Token:           200ms - 300ms
-• Primary CTA (Pill):
-    - Rest:                 bg: rgba(210, 230, 245, 0.90) | text: #030B12
-    - Hover:                bg: #FFFFFF | scale: 1.02 | box-shadow: 0 0 24px rgba(255,255,255,0.4)
-    - Active:               scale: 0.98
-• Nav Link / Text Action:
-    - Rest:                 text: #8FA5B8
-    - Hover:                text: #FFFFFF | text-shadow: 0 0 12px rgba(255,255,255,0.5)
-• Glass HUD / Cards:
-    - Rest:                 border: rgba(255, 255, 255, 0.08)
-    - Hover:                border: rgba(255, 255, 255, 0.22) | translateY(-2px)
-
-/* -----------------------------------------------------------------------------
- * 10. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
- * -------------------------------------------------------------------------- */
-- NO generic pastel gradients or muddy flat gray backgrounds.
-- NO unblurred flat cards; always preserve the 24px backdrop blur and top inset lighting.
-- NO sharp 0px brutalist corners; strictly 24px/14px/pill geometry.
-================================================================================
+- No generic pastel gradients or muddy flat gray backgrounds.
+- No unblurred flat cards; keep 24px backdrop blur and top inset lighting.
+- No sharp 0px brutalist corners; strictly 24px / 14px / pill.
+- Do not require naval, ship, or oceanographic copy — abyss, ice, and crimson are materials.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
   </script>
 
   <!-- JAVASCRIPT LOGIC -->
