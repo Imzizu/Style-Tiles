@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxe Editorial — Style Tile & Design System (TILE-051)</title>
+  <meta name="description" content="Luxe Editorial (TILE-051): High-contrast monochrome fashion magazine design system. Paper-white canvas #FFFFFF, ink #0A0A0A, Bodoni Moda display, Inter editorial body, frosted glass overlays, giant watermark type.">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon/favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-canvas:              #FFFFFF;
+      --bg-surface:             #FFFFFF;
+      --bg-surface-alt:         #F7F7F7;
+      --bg-surface-dark:        #0A0A0A;
+
+      --ink-primary:            #0A0A0A;
+      --ink-secondary:          #6E6E73;
+      --ink-muted:              #C7C7C7;
+      --ink-inverted:           #FFFFFF;
+
+      --accent-primary:         #0A0A0A;
+      --accent-primary-hover:   #1C1C1C;
+      --accent-secondary:       #6E6E73;
+      --accent-tertiary:        #E5E5E5;
+
+      --status-success:         #1C1C1C;
+      --status-warning:         #6E6E73;
+      --status-danger:          #0A0A0A;
+      --status-info:            #6E6E73;
+
+      --watermark:              rgba(0, 0, 0, 0.035);
+      --glass-overlay:          rgba(25, 25, 25, 0.45);
+      --glass-border:           rgba(255, 255, 255, 0.2);
+      --glass-gradient:         linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.45) 100%);
+
+      --border-core:            #E5E5E5;
+      --border-interactive:     #C7C7C7;
+      --border-active:          #0A0A0A;
+
+      --font-display:           "Bodoni Moda", "Didot", "Bodoni MT", "Times New Roman", serif;
+      --font-sans:              "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono:              ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+      --text-watermark:         700 clamp(6rem, 15vw, 14rem) / 0.9 var(--font-display);
+      --text-h1:                400 clamp(2.5rem, 5vw, 4.5rem) / 1.05 var(--font-display);
+      --text-h2:                400 clamp(1.5rem, 2.4vw, 2.25rem) / 1.15 var(--font-display);
+      --text-h3:                400 1.25rem / 1.3 var(--font-display);
+      --text-body:              400 15px / 1.55 var(--font-sans);
+      --text-ui:                500 12px / 1.2 var(--font-sans);
+      --text-caption:           400 13px / 1.4 var(--font-sans);
+      --text-meta:              500 12px / 1.4 var(--font-sans);
+
+      --radius-canvas:          0px;
+      --radius-glass:           4px;
+      --radius-pill:            9999px;
+      --radius-circle:          50%;
+
+      --shadow-base:            0 8px 28px -12px rgba(10, 10, 10, 0.18);
+      --shadow-hover:           0 14px 36px -14px rgba(10, 10, 10, 0.28);
+      --shadow-active:          0 2px 8px rgba(10, 10, 10, 0.12);
+
+      --ease-editorial:         cubic-bezier(0.16, 1, 0.3, 1);
+      --duration:               280ms;
+      --transition:             all 280ms cubic-bezier(0.16, 1, 0.3, 1);
+
+      --space-2xs:              4px;
+      --space-xs:               8px;
+      --space-sm:               12px;
+      --space-md:               16px;
+      --space-lg:               24px;
+      --space-xl:               40px;
+      --space-2xl:              64px;
+      --space-section:          88px;
+
+      --max-width:              1280px;
+      --icon-stroke:            1.25px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      font: var(--text-body);
+      letter-spacing: -0.01em;
+      color: var(--ink-secondary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(90deg, rgba(10, 10, 10, 0.018) 1px, transparent 1px),
+        radial-gradient(circle at 1px 1px, rgba(10, 10, 10, 0.035) 0.6px, transparent 0.7px);
+      background-size: 25% 100%, 18px 18px;
+      opacity: 0.7;
+    }
+
+    ::selection {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+    }
+
+    :focus-visible {
+      outline: 1px solid var(--border-active);
+      outline-offset: 3px;
+    }
+
+    button, input, textarea, select {
+      font-family: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    .page-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+      position: relative;
+      z-index: 1;
+    }
+
+    .section {
+      padding: var(--space-2xl) 0;
+      border-top: 1px solid var(--border-core);
+    }
+
+    .section-kicker {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+      flex-wrap: wrap;
+    }
+
+    .section-index {
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .section-folio {
+      font: var(--text-ui);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .section-title {
+      font: var(--text-h2);
+      color: var(--ink-primary);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-sm);
+    }
+
+    .section-lead {
+      font: var(--text-body);
+      color: var(--ink-secondary);
+      letter-spacing: -0.01em;
+      max-width: 62ch;
+    }
+
+    /* Header */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border-core);
+      padding: 12px var(--space-xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      background: transparent;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-core);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-back-link:hover {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      border-color: var(--ink-primary);
+      transform: translateY(-1px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .design-code {
+      font: var(--text-ui);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-pill);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .design-vibe-tag {
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      border: 1px solid var(--border-core);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      border: 1px solid var(--border-core);
+      background: transparent;
+      color: var(--ink-primary);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-tile svg {
+      flex-shrink: 0;
+      stroke-width: var(--icon-stroke);
+    }
+
+    .btn-tile:hover {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      border-color: var(--ink-primary);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      border-color: var(--ink-primary);
+    }
+
+    .btn-copy:hover {
+      background: var(--accent-primary-hover);
+    }
+
+    /* Hero */
+    .hero-section {
+      position: relative;
+      padding: var(--space-2xl) 0 var(--space-section);
+      overflow: hidden;
+    }
+
+    .hero-watermark {
+      position: absolute;
+      top: 4%;
+      left: 50%;
+      transform: translateX(-50%);
+      font: var(--text-watermark);
+      font-family: var(--font-display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 0.9;
+      color: var(--watermark);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-2xl);
+      align-items: end;
+    }
+
+    .hero-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: var(--space-lg);
+    }
+
+    .issue-chip {
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      border: 1px solid var(--border-core);
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-canvas);
+    }
+
+    .issue-chip.solid {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      border-color: var(--ink-primary);
+    }
+
+    .hero-section h1 {
+      font: var(--text-h1);
+      font-family: var(--font-display);
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      color: var(--ink-primary);
+      margin-bottom: var(--space-lg);
+      overflow-wrap: anywhere;
+    }
+
+    .hero-narrative {
+      font: var(--text-body);
+      letter-spacing: -0.01em;
+      color: var(--ink-secondary);
+      max-width: 54ch;
+      margin-bottom: var(--space-xl);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: var(--space-xl);
+    }
+
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-active);
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      transition: var(--transition);
+    }
+
+    .btn-pill:hover {
+      background: var(--accent-primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-pill.outlined {
+      background: transparent;
+      color: var(--ink-primary);
+      border-color: var(--border-core);
+    }
+
+    .btn-pill.outlined:hover {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      border-color: var(--ink-primary);
+      transform: translateY(-1px);
+    }
+
+    .btn-pill.ghost {
+      background: transparent;
+      border-color: transparent;
+      color: var(--ink-primary);
+    }
+
+    .btn-pill.ghost:hover {
+      background: rgba(10, 10, 10, 0.04);
+      color: var(--ink-primary);
+      border-color: transparent;
+      transform: translateY(-1px);
+    }
+
+    .btn-pill.danger {
+      background: transparent;
+      color: var(--ink-primary);
+      border-color: var(--ink-primary);
+    }
+
+    .btn-pill.danger:hover {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      transform: translateY(-1px);
+    }
+
+    .btn-pill.accent {
+      background: var(--bg-surface-alt);
+      color: var(--ink-primary);
+      border-color: var(--border-core);
+    }
+
+    .btn-pill.accent:hover {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      border-color: var(--ink-primary);
+      transform: translateY(-1px);
+    }
+
+    .btn-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-circle);
+      border: 1px solid var(--border-core);
+      background: transparent;
+      color: var(--ink-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .btn-circle svg {
+      stroke-width: var(--icon-stroke);
+    }
+
+    .btn-circle:hover {
+      transform: scale(1.05);
+      background: rgba(0, 0, 0, 0.04);
+      border-color: var(--border-interactive);
+    }
+
+    .btn-circle.solid {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      border-color: var(--ink-primary);
+    }
+
+    .btn-circle.solid:hover {
+      background: var(--accent-primary-hover);
+      transform: scale(1.05);
+    }
+
+    .hero-glass-card {
+      border-radius: var(--radius-glass);
+      background: var(--glass-overlay);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      padding: 16px 18px;
+      color: var(--ink-inverted);
+      max-width: 420px;
+    }
+
+    .hero-glass-card .glass-kicker {
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.72);
+      margin-bottom: 6px;
+    }
+
+    .hero-glass-card p {
+      font: var(--text-caption);
+      color: #FFFFFF;
+      letter-spacing: 0;
+    }
+
+    .look-stage {
+      position: relative;
+      min-height: 460px;
+      height: 100%;
+      border-radius: var(--radius-canvas);
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 42% 28%, #8A8A8A 0%, #3A3A3A 38%, #141414 72%, #0A0A0A 100%);
+      isolation: isolate;
+    }
+
+    .look-stage.look-b {
+      background:
+        radial-gradient(ellipse at 58% 22%, #C8C8C8 0%, #6A6A6A 32%, #1E1E1E 68%, #0A0A0A 100%);
+    }
+
+    .look-stage.look-c {
+      background:
+        linear-gradient(180deg, #E8E8E8 0%, #9A9A9A 38%, #2A2A2A 78%, #0A0A0A 100%);
+    }
+
+    .look-grain {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.35) 0.5px, transparent 0.6px);
+      background-size: 3px 3px;
+      mix-blend-mode: overlay;
+    }
+
+    .look-figure {
+      position: absolute;
+      inset: 12% 22% 0;
+      pointer-events: none;
+    }
+
+    .look-head {
+      width: 72px;
+      height: 88px;
+      margin: 0 auto;
+      border-radius: 50% 50% 46% 46%;
+      background: linear-gradient(160deg, #D4D4D4 0%, #6E6E73 55%, #2A2A2A 100%);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .look-neck {
+      width: 22px;
+      height: 28px;
+      margin: -4px auto 0;
+      background: linear-gradient(#8A8A8A, #3A3A3A);
+    }
+
+    .look-column {
+      width: 58%;
+      height: 70%;
+      margin: 0 auto;
+      background:
+        linear-gradient(180deg, #F2F2F2 0%, #A0A0A0 18%, #3A3A3A 62%, #111 100%);
+      clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
+      opacity: 0.92;
+    }
+
+    .look-light {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      top: -40px;
+      left: 12%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.28) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .look-glass {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      border-radius: var(--radius-glass);
+      background: var(--glass-gradient);
+      backdrop-filter: blur(24px) saturate(140%);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
+      border: 1px solid var(--glass-border);
+      padding: 14px 16px;
+      color: #FFFFFF;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .look-glass .glass-meta {
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 4px;
+    }
+
+    .look-glass h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.35rem;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+    }
+
+    .play-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-circle);
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Palette */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .swatch {
+      border: 1px solid var(--border-core);
+      border-radius: var(--radius-glass);
+      overflow: hidden;
+      background: var(--bg-surface);
+      cursor: pointer;
+      text-align: left;
+      transition: var(--transition);
+      color: var(--ink-primary);
+    }
+
+    .swatch:hover {
+      border-color: var(--border-active);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-base);
+    }
+
+    .swatch-chip {
+      height: 84px;
+      border-bottom: 1px solid var(--border-core);
+    }
+
+    .swatch-chip.ink { background: #0A0A0A; }
+    .swatch-chip.canvas { background: #FFFFFF; }
+    .swatch-chip.secondary { background: #6E6E73; }
+    .swatch-chip.inverse { background: #FFFFFF; }
+    .swatch-chip.border { background: #E5E5E5; }
+    .swatch-chip.interactive { background: #C7C7C7; }
+    .swatch-chip.watermark { background: #F7F7F7; }
+    .swatch-chip.glass {
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.45)),
+        repeating-linear-gradient(45deg, #222 0 8px, #444 8px 16px);
+    }
+    .swatch-chip.alt { background: #F7F7F7; }
+    .swatch-chip.dark { background: #0A0A0A; }
+    .swatch-chip.success { background: #1C1C1C; }
+    .swatch-chip.warning { background: #6E6E73; }
+
+    .swatch-meta {
+      padding: 12px 14px 14px;
+    }
+
+    .swatch-name {
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      margin-bottom: 4px;
+    }
+
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-secondary);
+      margin-bottom: 2px;
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-primary);
+    }
+
+    /* Type */
+    .type-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-2xl);
+    }
+
+    .type-pairings {
+      display: grid;
+      gap: 18px;
+      margin-bottom: var(--space-xl);
+    }
+
+    .type-card {
+      border-top: 1px solid var(--border-core);
+      padding-top: 16px;
+    }
+
+    .type-label {
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+    }
+
+    .type-watermark-sample {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      line-height: 0.9;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0A0A0A;
+      opacity: 0.12;
+    }
+
+    .type-h1-sample {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .type-body-sample {
+      font: var(--text-body);
+      letter-spacing: -0.01em;
+      color: var(--ink-secondary);
+    }
+
+    .type-ui-sample {
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .type-caption-sample {
+      font: var(--text-caption);
+      color: var(--ink-secondary);
+      background: var(--ink-primary);
+      color: #FFFFFF;
+      padding: 12px 14px;
+      border-radius: var(--radius-glass);
+      max-width: 36ch;
+    }
+
+    .type-ladder {
+      display: grid;
+      gap: 20px;
+    }
+
+    .ladder-row {
+      border-bottom: 1px solid var(--border-core);
+      padding-bottom: 16px;
+    }
+
+    .live-type-box {
+      width: 100%;
+      min-height: 140px;
+      border: 1px solid var(--border-core);
+      border-radius: var(--radius-glass);
+      padding: 16px;
+      font-family: var(--font-display);
+      font-size: clamp(16px, 2.4vw, 1.65rem);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      background: var(--bg-canvas);
+      resize: vertical;
+    }
+
+    .live-type-box:focus {
+      border-color: var(--border-active);
+      outline: none;
+    }
+
+    /* Components */
+    .component-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+    }
+
+    .comp-panel {
+      border: 1px solid var(--border-core);
+      border-radius: var(--radius-glass);
+      padding: var(--space-lg);
+      background: var(--bg-surface);
+    }
+
+    .comp-panel h3 {
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      margin-bottom: 16px;
+    }
+
+    .comp-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .glass-demo-card {
+      border-radius: var(--radius-glass);
+      overflow: hidden;
+      min-height: 160px;
+      position: relative;
+      background:
+        radial-gradient(ellipse at 40% 30%, #7A7A7A, #1A1A1A 70%);
+    }
+
+    .glass-demo-card .look-glass {
+      position: absolute;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .field label {
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+    }
+
+    .field input[type="text"],
+    .field input[type="email"] {
+      width: 100%;
+      height: 46px;
+      border: 1px solid var(--border-core);
+      border-radius: var(--radius-glass);
+      padding: 0 14px;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      background: var(--bg-canvas);
+      transition: var(--transition);
+    }
+
+    .field input::placeholder {
+      color: var(--ink-muted);
+    }
+
+    .field input:focus {
+      border-color: var(--border-active);
+      outline: none;
+    }
+
+    .check-row,
+    .radio-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font: var(--text-body);
+      color: var(--ink-primary);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .check-row input,
+    .radio-row input,
+    .toggle input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .check-box {
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--border-interactive);
+      border-radius: 2px;
+      display: grid;
+      place-items: center;
+      transition: var(--transition);
+      background: var(--bg-canvas);
+      flex-shrink: 0;
+    }
+
+    .check-row input:checked + .check-box {
+      background: var(--ink-primary);
+      border-color: var(--ink-primary);
+    }
+
+    .check-row input:checked + .check-box::after {
+      content: "";
+      width: 8px;
+      height: 5px;
+      border-left: 1.25px solid #fff;
+      border-bottom: 1.25px solid #fff;
+      transform: translateY(-1px) rotate(-45deg);
+    }
+
+    .radio-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid var(--border-interactive);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .radio-row input:checked + .radio-dot {
+      border-color: var(--ink-primary);
+    }
+
+    .radio-row input:checked + .radio-dot::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ink-primary);
+    }
+
+    .toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .toggle-track {
+      width: 40px;
+      height: 22px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface-alt);
+      border: 1px solid var(--border-core);
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .toggle-track::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--ink-primary);
+      transition: var(--transition);
+    }
+
+    .toggle input:checked + .toggle-track {
+      background: var(--ink-primary);
+      border-color: var(--ink-primary);
+    }
+
+    .toggle input:checked + .toggle-track::after {
+      left: 20px;
+      background: #FFFFFF;
+    }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .page-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid var(--border-interactive);
+      background: transparent;
+      padding: 0;
+      transition: var(--transition);
+    }
+
+    .page-dot.active,
+    .page-dot:hover {
+      background: var(--ink-primary);
+      border-color: var(--ink-primary);
+      transform: scale(1.05);
+    }
+
+    .tabs {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 4px;
+      border: 1px solid var(--border-core);
+      border-radius: var(--radius-pill);
+      background: var(--bg-canvas);
+    }
+
+    .tab-btn {
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border: none;
+      background: transparent;
+      color: var(--ink-secondary);
+      border-radius: var(--radius-pill);
+      transition: var(--transition);
+    }
+
+    .tab-btn:hover {
+      color: var(--ink-primary);
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .tab-btn.active {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+    }
+
+    /* Living demo */
+    .demo-shell {
+      border: 1px solid var(--border-core);
+      background: var(--bg-canvas);
+    }
+
+    .demo-masthead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border-core);
+      flex-wrap: wrap;
+    }
+
+    .masthead-mark {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .masthead-meta {
+      font: var(--text-ui);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+    }
+
+    .demo-body {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      min-height: 480px;
+    }
+
+    .demo-look {
+      position: relative;
+      min-height: 420px;
+    }
+
+    .demo-look .look-stage {
+      min-height: 480px;
+      height: 100%;
+    }
+
+    .demo-copy {
+      padding: 28px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      border-left: 1px solid var(--border-core);
+    }
+
+    .demo-copy h2 {
+      font: var(--text-h2);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+    }
+
+    .demo-copy p {
+      font: var(--text-body);
+      letter-spacing: -0.01em;
+      color: var(--ink-secondary);
+    }
+
+    .demo-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .demo-hidden { display: none; }
+
+    .archive-list {
+      display: grid;
+      gap: 0;
+    }
+
+    .archive-row {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-core);
+      font: var(--text-body);
+      color: var(--ink-primary);
+    }
+
+    .archive-row span:first-child {
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* Drawer, modal, toast */
+    .spec-drawer-card {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-glass);
+      padding: var(--space-xl);
+    }
+
+    .spec-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .spec-drawer-header h2 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .spec-code-pre {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #E8E8E8;
+      background: #141414;
+      padding: 20px;
+      border-radius: var(--radius-glass);
+      overflow-x: auto;
+      max-height: 440px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.55);
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-window {
+      background: #0A0A0A;
+      color: #FFFFFF;
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      border-radius: var(--radius-glass);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .modal-header h2 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.35rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .modal-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: transparent;
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      transition: var(--transition);
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: scale(1.05);
+    }
+
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      font: var(--text-ui);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      z-index: 1000;
+      display: none;
+      box-shadow: var(--shadow-hover);
+      animation: toastSlideUp 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes toastSlideUp {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .icon-hairline {
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.25;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @media (max-width: 768px) {
+      .page-container {
+        padding: 0 16px;
+      }
+
+      .style-tile-header {
+        padding: 10px 12px;
+      }
+
+      .hero-watermark {
+        font-size: clamp(3.25rem, 22vw, 7rem);
+        top: 0;
+      }
+
+      .hero-grid,
+      .type-layout,
+      .component-gallery,
+      .demo-body,
+      .swatch-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .demo-copy {
+        border-left: none;
+        border-top: 1px solid var(--border-core);
+        padding: 22px 18px;
+      }
+
+      .hero-section h1 {
+        font-size: clamp(2.25rem, 11vw, 3.4rem);
+      }
+
+      .look-stage,
+      .demo-look .look-stage {
+        min-height: 380px;
+      }
+
+      .field input[type="text"],
+      .field input[type="email"],
+      .live-type-box {
+        font-size: 16px !important;
+      }
+
+      .archive-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .spec-drawer-card,
+      .modal-window {
+        padding: 18px;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .page-container, .hero-grid, .hero-grid > *, .section-block { min-width: 0; max-width: 100%; }
+      p, h1, h2, h3, .hero-lede, .hero-copy { overflow-wrap: anywhere; word-break: break-word; max-width: 100%; }
+      .hero-cta-row, .issue-chips { flex-wrap: wrap !important; width: 100%; max-width: 100%; }
+      .hero-cta-row > * { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code">TILE-051</span>
+      <span class="design-title">Luxe Editorial</span>
+      <span class="design-vibe-tag">Editorial & Archival</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-luxe-editorial.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <div class="page-container">
+
+    <section class="hero-section" id="hero">
+      <div class="hero-watermark" aria-hidden="true">ATELIER</div>
+
+      <div class="hero-grid">
+        <div>
+          <div class="hero-chips">
+            <span class="issue-chip solid">Vol. XII</span>
+            <span class="issue-chip">No. 08</span>
+            <span class="issue-chip">SS26</span>
+            <span class="issue-chip">Monochrome</span>
+          </div>
+
+          <h1>Luxe Editorial</h1>
+
+          <p class="hero-narrative">
+            A fashion-magazine language built on paper-white canvas, ink-black Bodoni, and frosted glass laid over chiaroscuro photography. High-contrast monochrome editorial: giant watermark type, hairline geometry, pill actions, and captions that read like a spring atelier folio — never a product dashboard.
+          </p>
+
+          <div class="hero-cta-row">
+            <button class="btn-pill" type="button" onclick="copyTilePromptDirect()">Copy Prompt for Agent</button>
+            <a class="btn-pill outlined" href="#components">Test Interactive Elements</a>
+            <button class="btn-circle solid" type="button" aria-label="Play look" title="Play look">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5L8 5.5z"/></svg>
+            </button>
+          </div>
+
+          <div class="hero-glass-card">
+            <div class="glass-kicker">Issue 08 — Glass Caption</div>
+            <p>Bodoni on bleached stock. Inter at 15px for the run of copy. Overlay: rgba(25,25,25,0.45) · blur(20px) · 1px white hairline. The photograph is the field; type is the cut.</p>
+          </div>
+        </div>
+
+        <div class="look-stage" aria-hidden="true">
+          <div class="look-light"></div>
+          <div class="look-figure">
+            <div class="look-head"></div>
+            <div class="look-neck"></div>
+            <div class="look-column"></div>
+          </div>
+          <div class="look-grain"></div>
+          <div class="look-glass">
+            <div>
+              <div class="glass-meta">Look 01 · Silk Column</div>
+              <h3>Chiaroscuro</h3>
+            </div>
+            <span class="play-badge" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M8 5.5v13l11-6.5L8 5.5z"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="palette">
+      <div class="section-kicker">
+        <span class="section-index">01 — Palette</span>
+        <span class="section-folio">051 / Ink</span>
+      </div>
+      <h2 class="section-title">Color roles</h2>
+      <p class="section-lead">Paper, ink, and frost. No cobalt, no safety orange, no candy. Click a swatch to copy its value.</p>
+
+      <div class="swatch-grid" style="margin-top: 32px;">
+        <button class="swatch" type="button" onclick="copyHex('#FFFFFF', 'Canvas')">
+          <div class="swatch-chip canvas"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Canvas</div>
+            <div class="swatch-var">--bg-canvas</div>
+            <div class="swatch-hex">#FFFFFF</div>
+          </div>
+        </button>
+        <button class="swatch" type="button" onclick="copyHex('#F7F7F7', 'Surface Alt')">
+          <div class="swatch-chip alt"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Surface Alt</div>
+            <div class="swatch-var">--bg-surface-alt</div>
+            <div class="swatch-hex">#F7F7F7</div>
+          </div>
+        </button>
+        <button class="swatch" type="button" onclick="copyHex('#0A0A0A', 'Ink Primary')">
+          <div class="swatch-chip ink"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Ink Primary</div>
+            <div class="swatch-var">--ink-primary</div>
+            <div class="swatch-hex">#0A0A0A</div>
+          </div>
+        </button>
+        <button class="swatch" type="button" onclick="copyHex('#6E6E73', 'Ink Secondary')">
+          <div class="swatch-chip secondary"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Ink Secondary</div>
+            <div class="swatch-var">--ink-secondary</div>
+            <div class="swatch-hex">#6E6E73</div>
+          </div>
+        </button>
+        <button class="swatch" type="button" onclick="copyHex('#FFFFFF', 'Ink Inverse')">
+          <div class="swatch-chip inverse" style="border-bottom-color:#E5E5E5"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Inverse</div>
+            <div class="swatch-var">--ink-inverted</div>
+            <div class="swatch-hex">#FFFFFF</div>
+          </div>
+        </button>
+        <button class="swatch" type="button" onclick="copyHex('rgba(0,0,0,0.035)', 'Watermark')">
+          <div class="swatch-chip watermark"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Watermark</div>
+            <div class="swatch-var">--watermark</div>
+            <div class="swatch-hex">rgba(0,0,0,0.035)</div>
+          </div>
+        </button>
+        <button class="swatch" type="button" onclick="copyHex('#E5E5E5', 'Border')">
+          <div class="swatch-chip border"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Border</div>
+            <div class="swatch-var">--border-core</div>
+            <div class="swatch-hex">#E5E5E5</div>
+          </div>
+        </button>
+        <button class="swatch" type="button" onclick="copyHex('#C7C7C7', 'Interactive')">
+          <div class="swatch-chip interactive"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Interactive</div>
+            <div class="swatch-var">--border-interactive</div>
+            <div class="swatch-hex">#C7C7C7</div>
+          </div>
+        </button>
+        <button class="swatch" type="button" onclick="copyHex('#0A0A0A', 'Action / Active')">
+          <div class="swatch-chip dark"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Action Primary</div>
+            <div class="swatch-var">--accent-primary</div>
+            <div class="swatch-hex">#0A0A0A</div>
+          </div>
+        </button>
+        <button class="swatch" type="button" onclick="copyHex('rgba(25,25,25,0.45)', 'Glass Overlay')">
+          <div class="swatch-chip glass"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Glass Overlay</div>
+            <div class="swatch-var">--glass-overlay</div>
+            <div class="swatch-hex">rgba(25,25,25,0.45)</div>
+          </div>
+        </button>
+        <button class="swatch" type="button" onclick="copyHex('#1C1C1C', 'Status Success')">
+          <div class="swatch-chip success"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Success</div>
+            <div class="swatch-var">--status-success</div>
+            <div class="swatch-hex">#1C1C1C</div>
+          </div>
+        </button>
+        <button class="swatch" type="button" onclick="copyHex('#6E6E73', 'Status Warning')">
+          <div class="swatch-chip warning"></div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Warning / Info</div>
+            <div class="swatch-var">--status-warning</div>
+            <div class="swatch-hex">#6E6E73</div>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <section class="section" id="type">
+      <div class="section-kicker">
+        <span class="section-index">02 — Typography</span>
+        <span class="section-folio">Bodoni · Inter</span>
+      </div>
+      <h2 class="section-title">Type ladder</h2>
+      <p class="section-lead">Display serif is the hero voice. Inter never headlines. Watermark shouts; body recedes to #6E6E73.</p>
+
+      <div class="type-layout" style="margin-top: 32px;">
+        <div>
+          <div class="type-pairings">
+            <div class="type-card">
+              <div class="type-label">Watermark · Bodoni 700 · uppercase · 0.08em · lh 0.9</div>
+              <div class="type-watermark-sample">ATELIER</div>
+            </div>
+            <div class="type-card">
+              <div class="type-label">H1 · Bodoni 400 · uppercase · −0.01em · 1.05</div>
+              <div class="type-h1-sample">Luxe Editorial</div>
+            </div>
+            <div class="type-card">
+              <div class="type-label">Body editorial · Inter 15px 400 · 1.55 · −0.01em</div>
+              <p class="type-body-sample">The quick brown fox jumps over the lazy dog. Sphinx of black quartz, judge my vow. A folio of silk, chalk, and hairline rules — set for magazines, lookbooks, and archival fashion houses.</p>
+            </div>
+            <div class="type-card">
+              <div class="type-label">UI interactive · Inter 12px 500 · uppercase · 0.08em</div>
+              <div class="type-ui-sample">View Look · Save Atelier · Issue Archive</div>
+            </div>
+            <div class="type-card">
+              <div class="type-label">Caption glass · Inter 13px 400 · 1.4 · white</div>
+              <p class="type-caption-sample">Look 03 — Ivory grain against a black column. Caption sits in frost, never in a colored chip.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="type-label" style="margin-bottom: 10px;">Live pangram — edit in place</div>
+          <textarea class="live-type-box" id="live-type-box" spellcheck="false">The atelier holds the light. Silk falls like a rule. Ink, paper, frost.</textarea>
+          <div class="type-ladder" style="margin-top: 28px;">
+            <div class="ladder-row">
+              <div class="type-label">Display / Watermark</div>
+              <div style="font-family:var(--font-display);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;font-size:1.75rem;color:var(--ink-primary);line-height:0.95;">Luxe</div>
+            </div>
+            <div class="ladder-row">
+              <div class="type-label">H2</div>
+              <div style="font:var(--text-h2);text-transform:uppercase;color:var(--ink-primary);">Spring Folio</div>
+            </div>
+            <div class="ladder-row">
+              <div class="type-label">H3</div>
+              <div style="font:var(--text-h3);text-transform:uppercase;color:var(--ink-primary);">Run of Show</div>
+            </div>
+            <div class="ladder-row">
+              <div class="type-label">Meta</div>
+              <div class="type-ui-sample">Vol. XII No. 08 · Paris</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="components">
+      <div class="section-kicker">
+        <span class="section-index">03 — Components</span>
+        <span class="section-folio">Pills · Glass · Hairline</span>
+      </div>
+      <h2 class="section-title">Archetypes</h2>
+      <p class="section-lead">Black fill is the primary verb. Outlines wait. Circles carry play and spark. Glass cards stay 4px — never 24px bento.</p>
+
+      <div class="component-gallery" style="margin-top: 32px;">
+        <div class="comp-panel">
+          <h3>Buttons</h3>
+          <div class="comp-row">
+            <button class="btn-pill" type="button">Primary</button>
+            <button class="btn-pill outlined" type="button">Outlined</button>
+            <button class="btn-pill ghost" type="button">Ghost</button>
+            <button class="btn-pill danger" type="button">Danger</button>
+            <button class="btn-pill accent" type="button">Accent</button>
+          </div>
+        </div>
+
+        <div class="comp-panel">
+          <h3>Circular icons</h3>
+          <div class="comp-row">
+            <button class="btn-circle solid" type="button" aria-label="Play">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5L8 5.5z"/></svg>
+            </button>
+            <button class="btn-circle solid" type="button" aria-label="Spark">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.4 8.6L22 12l-8.6 1.4L12 22l-1.4-8.6L2 12l8.6-1.4L12 2z"/></svg>
+            </button>
+            <button class="btn-circle" type="button" aria-label="Next">
+              <svg class="icon-hairline" width="16" height="16" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <button class="btn-circle" type="button" aria-label="Previous">
+              <svg class="icon-hairline" width="16" height="16" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="comp-panel">
+          <h3>Glass card · 4px</h3>
+          <div class="glass-demo-card">
+            <div class="look-grain"></div>
+            <div class="look-glass">
+              <div>
+                <div class="glass-meta">Caption · Frost</div>
+                <h3>Ivory Grain</h3>
+              </div>
+              <span class="play-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M12 2l1.4 8.6L22 12l-8.6 1.4L12 22l-1.4-8.6L2 12l8.6-1.4L12 2z"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="comp-panel">
+          <h3>Inputs</h3>
+          <div class="field">
+            <label for="atelier-input">Subscriber</label>
+            <input id="atelier-input" type="text" placeholder="Name for the list" autocomplete="off">
+          </div>
+          <div class="field" style="margin-top:12px;">
+            <label for="atelier-mail">Correspondence</label>
+            <input id="atelier-mail" type="email" placeholder="studio@atelier.example" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="comp-panel">
+          <h3>Selectors</h3>
+          <div style="display:grid;gap:12px;">
+            <label class="check-row">
+              <input type="checkbox" checked>
+              <span class="check-box"></span>
+              Run of show
+            </label>
+            <label class="check-row">
+              <input type="checkbox">
+              <span class="check-box"></span>
+              Private archive
+            </label>
+            <label class="toggle">
+              <input type="checkbox" checked>
+              <span class="toggle-track"></span>
+              Night proof
+            </label>
+            <label class="radio-row">
+              <input type="radio" name="look-select" checked>
+              <span class="radio-dot"></span>
+              Look 01 — Silk
+            </label>
+            <label class="radio-row">
+              <input type="radio" name="look-select">
+              <span class="radio-dot"></span>
+              Look 02 — Tailoring
+            </label>
+          </div>
+        </div>
+
+        <div class="comp-panel">
+          <h3>Pagination circles</h3>
+          <div class="pagination" id="comp-pagination">
+            <button class="page-dot active" type="button" aria-label="Page 1"></button>
+            <button class="page-dot" type="button" aria-label="Page 2"></button>
+            <button class="page-dot" type="button" aria-label="Page 3"></button>
+            <button class="page-dot" type="button" aria-label="Page 4"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="demo">
+      <div class="section-kicker">
+        <span class="section-index">04 — Living folio</span>
+        <span class="section-folio">SS26 Atelier</span>
+      </div>
+      <h2 class="section-title">Fashion editorial</h2>
+      <p class="section-lead">A fragment of issue 08: masthead, look panel, glass caption, split verbs, and a Stories / Looks / Archive rail.</p>
+
+      <div class="demo-shell" style="margin-top: 32px;">
+        <div class="demo-masthead">
+          <div>
+            <div class="masthead-mark">Luxe Editorial</div>
+            <div class="masthead-meta">Vol. XII · No. 08 · Spring Atelier · Paris</div>
+          </div>
+          <div class="tabs" role="tablist" aria-label="Folio sections">
+            <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-tab="stories">Stories</button>
+            <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="looks">Looks</button>
+            <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="archive">Archive</button>
+          </div>
+        </div>
+
+        <div class="demo-body" id="panel-stories">
+          <div class="demo-look">
+            <div class="look-stage">
+              <div class="look-light"></div>
+              <div class="look-figure">
+                <div class="look-head"></div>
+                <div class="look-neck"></div>
+                <div class="look-column"></div>
+              </div>
+              <div class="look-grain"></div>
+              <div class="look-glass">
+                <div>
+                  <div class="glass-meta">Essay 01 · The Cut</div>
+                  <h3>Paper &amp; Pitch</h3>
+                </div>
+                <span class="play-badge" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M8 5.5v13l11-6.5L8 5.5z"/></svg>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="demo-copy">
+            <div class="type-label">Cover story</div>
+            <h2>Monochrome is the luxury</h2>
+            <p>Color is a concession. This system keeps the folio on bleached stock and Didot ink so photography — even when simulated in gradient and grain — can carry the drama. Frosted glass is the only overlay: a caption, a credit, a play glyph inverted in a black disc.</p>
+            <p>Use it for lookbooks, house journals, and archival fashion sites that must feel printed, not productized.</p>
+            <div class="demo-actions">
+              <button class="btn-pill" type="button">Read Story</button>
+              <button class="btn-pill outlined" type="button">Save</button>
+              <div class="pagination">
+                <button class="page-dot active" type="button" aria-label="Story 1"></button>
+                <button class="page-dot" type="button" aria-label="Story 2"></button>
+                <button class="page-dot" type="button" aria-label="Story 3"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-body demo-hidden" id="panel-looks">
+          <div class="demo-look">
+            <div class="look-stage look-b" id="living-look-stage">
+              <div class="look-light"></div>
+              <div class="look-figure">
+                <div class="look-head"></div>
+                <div class="look-neck"></div>
+                <div class="look-column"></div>
+              </div>
+              <div class="look-grain"></div>
+              <div class="look-glass">
+                <div>
+                  <div class="glass-meta" id="living-look-meta">Look 02 · Noir Tailoring</div>
+                  <h3 id="living-look-title">Black Column</h3>
+                </div>
+                <span class="play-badge" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M8 5.5v13l11-6.5L8 5.5z"/></svg>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="demo-copy">
+            <div class="type-label">Run of show</div>
+            <h2 id="living-look-heading">Look 02</h2>
+            <p id="living-look-copy">A single black column against chalk light. Hairline arrows page the sequence; the play disc starts the motion study. Save keeps the look in the private archive.</p>
+            <div class="demo-actions">
+              <button class="btn-pill" type="button">View Look</button>
+              <button class="btn-pill outlined" type="button" id="btn-save-look">Save</button>
+              <div class="pagination" id="look-pagination">
+                <button class="page-dot" type="button" data-look="0" aria-label="Look 1"></button>
+                <button class="page-dot active" type="button" data-look="1" aria-label="Look 2"></button>
+                <button class="page-dot" type="button" data-look="2" aria-label="Look 3"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-hidden" id="panel-archive" style="padding: 8px 28px 28px;">
+          <div class="archive-list">
+            <div class="archive-row"><span>No. 08</span><span>Spring Atelier — Silk Column</span><span class="type-ui-sample">SS26</span></div>
+            <div class="archive-row"><span>No. 07</span><span>Winter Proof — Ivory Grain</span><span class="type-ui-sample">AW25</span></div>
+            <div class="archive-row"><span>No. 06</span><span>Noir Tailoring — The Cut</span><span class="type-ui-sample">AW25</span></div>
+            <div class="archive-row"><span>No. 05</span><span>Paper &amp; Pitch — House Journal</span><span class="type-ui-sample">SS25</span></div>
+            <div class="archive-row"><span>No. 04</span><span>Watermark Studies — Bodoni</span><span class="type-ui-sample">SS25</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="spec" style="border-bottom: none; padding-bottom: 96px;">
+      <div class="section-kicker">
+        <span class="section-index">05 — Style tile</span>
+        <span class="section-folio">Markdown</span>
+      </div>
+      <h2 class="section-title">Prompt drawer</h2>
+      <p class="section-lead">The machine-readable token vault. Copy or download the exact Markdown used to replicate Luxe Editorial.</p>
+
+      <div class="spec-drawer-card" style="margin-top: 32px;">
+        <div class="spec-drawer-header">
+          <h2>TILE-051 // Luxe Editorial</h2>
+          <button class="btn-tile btn-copy" type="button" onclick="copyTilePromptDirect()" style="background:#fff;color:#0A0A0A;border-color:#fff;">Copy Prompt</button>
+        </div>
+        <pre class="spec-code-pre" id="spec-code-display"></pre>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="modal-overlay" id="spec-modal" onclick="closeSpecModalOnOutside(event)">
+    <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <div>
+          <h2 id="modal-title">TILE-051 // Luxe Editorial</h2>
+          <div class="type-ui-sample" style="color:rgba(255,255,255,0.55);margin-top:4px;">Official Style Tile Token Specification</div>
+        </div>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close preview">✕</button>
+      </div>
+      <pre class="spec-code-pre" id="modal-spec-display" style="max-height: 60vh;"></pre>
+      <div style="display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;">
+        <button class="btn-tile btn-copy" type="button" onclick="copyTilePromptDirect()" style="background:#fff;color:#0A0A0A;border-color:#fff;">Copy Markdown</button>
+        <button class="btn-tile" type="button" onclick="closeSpecModal()" style="color:#fff;border-color:rgba(255,255,255,0.25);">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-popup" id="toast-popup">✓ Copied to Clipboard!</div>
+
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Aesthetic: Luxe Editorial • High-Contrast Monochrome Fashion Magazine • Paper, Ink, Frost
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Luxe Editorial is a fashion-magazine system: paper-white canvas, giant Bodoni
+watermark type, and frosted glass captions over chiaroscuro photography. Ink is
+absolute (#0A0A0A); secondary copy recedes to cool gray (#6E6E73). Built for
+lookbooks, house journals, archival fashion sites, and high-contrast folios that
+must feel printed — never like a colorful product dashboard.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FFFFFF; /* Primary application canvas — bleached stock */
+  --bg-surface:             #FFFFFF; /* Elevated cards and containers */
+  --bg-surface-alt:         #F7F7F7; /* Secondary panels, wells, sidebars */
+  --bg-surface-dark:        #0A0A0A; /* Inverted containers, photography fields */
+
+  /* Inks & Typography */
+  --ink-primary:            #0A0A0A; /* High-contrast primary reading text */
+  --ink-secondary:          #6E6E73; /* Subtitles, secondary copy */
+  --ink-muted:              #C7C7C7; /* Captions, disabled text, quiet rules */
+  --ink-inverted:           #FFFFFF; /* Inverted contrast text */
+
+  /* Signature Accents */
+  --accent-primary:         #0A0A0A; /* Primary call-to-action fill */
+  --accent-primary-hover:   #1C1C1C; /* Interactive hover tone */
+  --accent-secondary:       #6E6E73; /* Supporting visual highlight */
+  --accent-tertiary:        #E5E5E5; /* Hairline plates and quiet chips */
+
+  --watermark:              rgba(0, 0, 0, 0.035); /* Giant display underlay */
+  --glass-overlay:          rgba(25, 25, 25, 0.45); /* Frosted photography caption */
+
+  /* Status Tokens */
+  --status-success:         #1C1C1C;
+  --status-warning:         #6E6E73;
+  --status-danger:          #0A0A0A;
+  --status-info:            #6E6E73;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Bodoni Moda", "Didot", "Bodoni MT", serif;
+--font-sans:    "Inter", -apple-system, sans-serif;
+--font-mono:    ui-monospace, "SF Mono", Menlo, monospace;
+
+/* Type Scale */
+--text-display: clamp(6rem, 15vw, 14rem) / 0.9  var(--font-display); /* Weight: 700 | Tracking: 0.08em | UPPERCASE watermark */
+--text-h1:      clamp(2.5rem, 5vw, 4.5rem) / 1.05 var(--font-display); /* Weight: 400 | Tracking: -0.01em | UPPERCASE */
+--text-h2:      clamp(1.5rem, 2.4vw, 2.25rem) / 1.15 var(--font-display); /* Weight: 400 | UPPERCASE */
+--text-h3:      1.25rem  / 1.30  var(--font-display); /* Weight: 400 | UPPERCASE */
+--text-body:    15px     / 1.55  var(--font-sans);    /* Weight: 400 | Tracking: -0.01em | Color: #6E6E73 */
+--text-body-sm: 0.875rem / 1.50  var(--font-sans);    /* Weight: 400 | Tracking: -0.01em */
+--text-meta:    12px     / 1.20  var(--font-sans);    /* Weight: 500 | Tracking: 0.08em | UPPERCASE UI */
+--text-caption: 13px     / 1.40  var(--font-sans);    /* Weight: 400 | Glass captions in #FFFFFF */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 4px;     /* Glass cards, inputs, drawers */
+--radius-subtle:  4px;
+--radius-pill:    9999px;  /* Buttons, chips, tabs, toggles */
+--radius-circle:  50%;     /* Icon discs, pagination, play badges */
+--radius-canvas:  0px;     /* Page canvas and photography stages */
+
+/* Elevation & Shadows */
+--shadow-base:    0 8px 28px -12px rgba(10, 10, 10, 0.18);
+--shadow-hover:   0 14px 36px -14px rgba(10, 10, 10, 0.28);
+--shadow-active:  0 2px 8px rgba(10, 10, 10, 0.12);
+
+/* Glass elevation */
+--elevation-glass: blur(24px) saturate(140%);
+--glass-gradient:  linear-gradient(135deg, rgba(255,255,255,0.15), rgba(0,0,0,0.45));
+--glass-blur:      blur(20px); /* caption overlay on rgba(25,25,25,0.45) */
+
+/* Motion */
+--ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+--duration:       280ms;
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid #E5E5E5;
+--border-hairline:    1px solid #E5E5E5;
+--border-interactive: 1px solid #C7C7C7;
+--border-active:      1px solid #0A0A0A;
+--border-glass:       1px solid rgba(255, 255, 255, 0.2);
+--divider-style:      1px solid #E5E5E5; /* Magazine rules; no heavy bars */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Primary is black pill (#0A0A0A / #FFFFFF). Secondary is transparent
+  outlined (#E5E5E5). Hover on outlined pills: black fill, white text, translateY(-1px)
+  over 280ms cubic-bezier(0.16, 1, 0.3, 1). Ghost stays borderless with 0.04 black wash.
+  Danger remains monochrome — outlined ink, fills on hover. Never orange or cobalt.
+- **Circular buttons**: 44px discs. Hover: scale(1.05) and rgba(0,0,0,0.04) fill.
+  Solid black discs carry inverted play / spark glyphs.
+- **Tabs**: Inactive is quiet gray type. Active tab is a black pill with white text.
+- **Cards**: Photography stages are 0px radius. Glass caption cards are 4px with
+  frost overlay (blur 20–24px, saturate 140%, white 0.2 hairline). No 24px bento.
+- **Inputs**: 4px radius, 1px #E5E5E5, 16px type to prevent iOS zoom. Focus becomes
+  #0A0A0A hairline. Placeholder #C7C7C7.
+- **Navigation**: Frosted white header, hairline #E5E5E5, Inter 12px uppercase 0.08em.
+  Catalog / action pills fill black on hover.
+- **Icons**: 1.25px geometric stroke, hairline arrows, solid black circle badges
+  with inverted play and spark glyphs.
+- **Pagination**: 10px circles; active fills #0A0A0A.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- No color photography palettes, cobalt, safety orange, or candy SaaS accents.
+- No 24px bento radii, chunky soft shadows, or floating unbordered cards.
+- No neon, gradient text, or generic purple glows.
+- No slab serif. Inter is body and UI only — never the hero display face.
+- No dense dashboards, telemetry chrome, or product-metric theater.
+================================================================================
+  </script>
+
+  <script>
+    const markdownContent = document.getElementById("style-tile-markdown").textContent.trim();
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      window.clearTimeout(triggerToast._t);
+      triggerToast._t = window.setTimeout(function () {
+        toast.style.display = "none";
+      }, 2200);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.innerHTML = "<span>✓ Copied to Clipboard!</span>";
+          window.setTimeout(function () {
+            copyBtn.innerHTML = original;
+          }, 2000);
+        }
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-luxe-editorial.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-luxe-editorial.md");
+    });
+
+    document.getElementById("btn-preview-tile").addEventListener("click", function () {
+      document.getElementById("spec-modal").classList.add("active");
+    });
+
+    function closeSpecModal() {
+      document.getElementById("spec-modal").classList.remove("active");
+    }
+
+    function closeSpecModalOnOutside(e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    document.querySelectorAll("#comp-pagination .page-dot").forEach(function (dot) {
+      dot.addEventListener("click", function () {
+        document.querySelectorAll("#comp-pagination .page-dot").forEach(function (d) {
+          d.classList.remove("active");
+        });
+        dot.classList.add("active");
+      });
+    });
+
+    const looks = [
+      { cls: "", meta: "Look 01 · Silk Column", title: "Chiaroscuro", heading: "Look 01", copy: "Silk falls in a single vertical. Frosted glass holds the caption; the play disc starts the motion study." },
+      { cls: "look-b", meta: "Look 02 · Noir Tailoring", title: "Black Column", heading: "Look 02", copy: "A single black column against chalk light. Hairline arrows page the sequence; Save keeps the look in the private archive." },
+      { cls: "look-c", meta: "Look 03 · Ivory Atelier", title: "Ivory Grain", heading: "Look 03", copy: "High-key stock, low-key ink. The photograph is simulated in gradient and grain so the type system stays the star." }
+    ];
+
+    function setLook(index) {
+      const look = looks[index];
+      const stage = document.getElementById("living-look-stage");
+      if (!stage || !look) return;
+      stage.classList.remove("look-b", "look-c");
+      if (look.cls) stage.classList.add(look.cls);
+      document.getElementById("living-look-meta").textContent = look.meta;
+      document.getElementById("living-look-title").textContent = look.title;
+      document.getElementById("living-look-heading").textContent = look.heading;
+      document.getElementById("living-look-copy").textContent = look.copy;
+      document.querySelectorAll("#look-pagination .page-dot").forEach(function (d, i) {
+        d.classList.toggle("active", i === index);
+      });
+    }
+
+    document.querySelectorAll("#look-pagination .page-dot").forEach(function (dot) {
+      dot.addEventListener("click", function () {
+        setLook(Number(dot.getAttribute("data-look")));
+      });
+    });
+
+    document.getElementById("btn-save-look").addEventListener("click", function () {
+      triggerToast("✓ Look saved to archive");
+    });
+
+    document.querySelectorAll(".tabs .tab-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".tabs .tab-btn").forEach(function (b) {
+          b.classList.remove("active");
+          b.setAttribute("aria-selected", "false");
+        });
+        btn.classList.add("active");
+        btn.setAttribute("aria-selected", "true");
+        const key = btn.getAttribute("data-tab");
+        ["stories", "looks", "archive"].forEach(function (id) {
+          const panel = document.getElementById("panel-" + id);
+          if (!panel) return;
+          panel.classList.toggle("demo-hidden", id !== key);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

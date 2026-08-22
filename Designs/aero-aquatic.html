@@ -1,0 +1,2522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aero-Aquatic — Hydrated Glassminimalism Style Tile (TILE-052)</title>
+  <meta name="description" content="Aero-Aquatic (TILE-052): High-key ethereal hydration and glassminimalism. Sky-blue gradient canvas, liquid glass nav, condensed white display type, ultra-rounded pills, and navy punch CTAs for Quiet Luxury wellness products.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon/favicon.ico">
+
+  <!-- Google Fonts: Bebas Neue (display), Anton (fallback), Inter (body/nav), Space Mono (micro) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       STYLE TILE: AERO-AQUATIC // HYDRATED GLASSMINIMALISM // TILE-052
+       ============================================================================= */
+
+    :root {
+      /* ------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * ------------------------------------------------------------------------ */
+      /* Surfaces & Backgrounds */
+      --bg-canvas:              #BFE3FD;
+      --bg-ambient:             linear-gradient(180deg, #CEEAFE 0%, #A8D8FC 60%, #99CEFB 100%);
+      --bg-surface:             #FFFFFF;
+      --bg-surface-alt:         rgba(255, 255, 255, 0.85);
+      --bg-surface-dark:        #0B2B63;
+      --bg-glass:               rgba(255, 255, 255, 0.22);
+      --bg-glass-dense:         rgba(255, 255, 255, 0.20);
+      --bg-glass-nav:           rgba(255, 255, 255, 0.22);
+      --droplet-glow:           rgba(255, 255, 255, 0.65);
+
+      /* Inks & Typography */
+      --ink-primary:            #0B2B63;
+      --ink-secondary:          #1B3B73;
+      --ink-muted:              #6C87A3;
+      --ink-inverted:           #FFFFFF;
+      --ink-nav:                rgba(255, 255, 255, 0.88);
+      --ink-badge:              #7D9BB6;
+      --ink-hero:               #FFFFFF;
+
+      /* Signature Accents */
+      --accent-primary:         #0B2B63;
+      --accent-primary-hover:   #071D44;
+      --accent-secondary:       #1B3B73;
+      --accent-tertiary:        #7D9BB6;
+      --accent-ice:             #7EC8F0;
+      --ice-white:              #FFFFFF;
+
+      /* Status Tokens */
+      --status-success:         #2F8F7C;
+      --status-warning:         #C4A35A;
+      --status-danger:          #C45C6A;
+      --status-info:            #4A8BC4;
+
+      /* ------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * ------------------------------------------------------------------------ */
+      --font-display:           "Bebas Neue", "Anton", Impact, sans-serif;
+      --font-sans:              "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono:              "Space Mono", ui-monospace, "SF Mono", monospace;
+
+      --text-display:           clamp(4.5rem, 11vw, 9rem) / 0.88 var(--font-display);
+      --text-h1:                clamp(2.5rem, 5vw, 3.5rem) / 0.92 var(--font-display);
+      --text-h2:                1.75rem / 1.05 var(--font-display);
+      --text-h3:                1.25rem / 1.2 var(--font-sans);
+      --text-body:              1.0rem / 1.60 var(--font-sans);
+      --text-body-sm:           0.875rem / 1.50 var(--font-sans);
+      --text-meta:              0.75rem / 1.40 var(--font-sans);
+      --text-clinical:          9px / 1.4 var(--font-sans);
+
+      /* ------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY & ELEVATION
+       * ------------------------------------------------------------------------ */
+      --radius-pill:            9999px;
+      --radius-card:            24px;
+      --radius-asymmetric:      36px 12px 28px 12px;
+      --radius-droplet:         50%;
+      --radius-inner:           12px;
+      --radius-subtle:          12px;
+      --radius-default:         24px;
+
+      --shadow-base:            0 24px 48px -12px rgba(11, 43, 99, 0.12),
+                                0 8px 16px -4px rgba(255, 255, 255, 0.6);
+      --shadow-hover:           0 32px 56px -12px rgba(11, 43, 99, 0.18),
+                                0 10px 20px -4px rgba(255, 255, 255, 0.7);
+      --shadow-active:          0 8px 18px -8px rgba(11, 43, 99, 0.22);
+      --shadow-cta:             0 12px 24px -6px rgba(11, 43, 99, 0.35);
+      --shadow-glass-inset:     inset 0 1px 1px rgba(255, 255, 255, 0.6);
+
+      /* ------------------------------------------------------------------------
+       * 4. BORDERS & DIVIDERS
+       * ------------------------------------------------------------------------ */
+      --border-core:            1px solid rgba(255, 255, 255, 0.55);
+      --border-hairline:        1px solid rgba(255, 255, 255, 0.45);
+      --border-card:            1px solid rgba(255, 255, 255, 0.8);
+      --border-nav:             1px solid rgba(255, 255, 255, 0.45);
+      --divider-style:          1px solid rgba(108, 135, 163, 0.15);
+
+      /* ------------------------------------------------------------------------
+       * 5. MOTION
+       * ------------------------------------------------------------------------ */
+      --ease-aero:              cubic-bezier(0.16, 1, 0.3, 1);
+      --duration:               0.4s;
+      --transition:             all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+      --max-width:              1200px;
+      --space-xs:               8px;
+      --space-sm:               12px;
+      --space-md:               16px;
+      --space-lg:               24px;
+      --space-xl:               32px;
+      --space-2xl:              48px;
+      --space-3xl:              80px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: clip;
+      max-width: 100%;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      line-height: 1.6;
+      font-weight: 400;
+      color: var(--ink-muted);
+      background-color: var(--bg-canvas);
+      background-image: var(--bg-ambient);
+      background-attachment: fixed;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: clip;
+      max-width: 100%;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 15% 10%, rgba(255, 255, 255, 0.55) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 90% 80%, rgba(255, 255, 255, 0.28) 0%, transparent 50%),
+        radial-gradient(circle at 50% 0%, rgba(206, 234, 254, 0.5) 0%, transparent 40%);
+    }
+
+    ::selection {
+      background: var(--accent-primary);
+      color: var(--ice-white);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .page-shell {
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+
+    /* =========================================================================
+       MANDATORY HEADER — liquid glass over sky (not a dark bar)
+       ========================================================================= */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      padding: 12px 28px;
+      background: var(--bg-glass-nav);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-bottom: var(--border-nav);
+      box-shadow: var(--shadow-glass-inset), 0 8px 32px -16px rgba(11, 43, 99, 0.12);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-nav);
+      background: rgba(255, 255, 255, 0.18);
+      border: var(--border-core);
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-glass-inset);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .nav-back-link:hover {
+      color: var(--ice-white);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      transform: translateX(-2px);
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ice-white);
+      background: var(--accent-primary);
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ice-white);
+      text-shadow: 0 1px 12px rgba(255, 255, 255, 0.35);
+    }
+
+    .design-vibe-tag {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-badge);
+      background: rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-preview {
+      background: rgba(255, 255, 255, 0.22);
+      color: var(--ink-nav);
+      border: var(--border-core);
+      box-shadow: var(--shadow-glass-inset);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+    }
+
+    .btn-preview:hover {
+      color: var(--ice-white);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.32);
+    }
+
+    .btn-copy {
+      background: var(--accent-primary);
+      color: var(--ice-white);
+      box-shadow: 0 8px 20px -8px rgba(11, 43, 99, 0.45);
+    }
+
+    .btn-copy:hover {
+      background: var(--accent-primary-hover);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: var(--shadow-cta);
+    }
+
+    .btn-download {
+      background: var(--ice-white);
+      color: var(--accent-primary);
+      box-shadow: 0 8px 18px -8px rgba(11, 43, 99, 0.18);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: var(--shadow-cta);
+    }
+
+    /* =========================================================================
+       HERO — sky field, refractive droplets, condensed white display
+       ========================================================================= */
+    .hero-section {
+      position: relative;
+      min-height: min(100vh, 920px);
+      padding: 48px 0 80px;
+      overflow: clip;
+    }
+
+    .hero-orbs {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: var(--radius-droplet);
+      pointer-events: none;
+    }
+
+    .orb-a {
+      width: 280px; height: 280px;
+      top: 8%; left: 6%;
+      background: radial-gradient(circle at 32% 28%,
+        rgba(255,255,255,0.95) 0%,
+        rgba(255,255,255,0.45) 16%,
+        rgba(191,227,253,0.18) 42%,
+        rgba(255,255,255,0.12) 68%,
+        rgba(168,216,252,0.25) 100%);
+      box-shadow: 0 0 60px var(--droplet-glow), inset 0 10px 24px rgba(255,255,255,0.55), inset 0 -12px 28px rgba(11,43,99,0.06);
+      animation: floatY 9s var(--ease-aero) infinite;
+    }
+
+    .orb-b {
+      width: 140px; height: 140px;
+      top: 18%; right: 14%;
+      background: radial-gradient(circle at 30% 30%,
+        rgba(255,255,255,0.9) 0%,
+        rgba(255,255,255,0.3) 28%,
+        rgba(153,206,251,0.2) 100%);
+      box-shadow: 0 0 36px var(--droplet-glow), inset 0 6px 14px rgba(255,255,255,0.6);
+      animation: floatY 7s var(--ease-aero) infinite 0.6s;
+    }
+
+    .orb-c {
+      width: 72px; height: 72px;
+      bottom: 22%; left: 18%;
+      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.95), rgba(255,255,255,0.2) 70%);
+      box-shadow: 0 0 24px var(--droplet-glow);
+      animation: floatY 6s var(--ease-aero) infinite 1.2s;
+    }
+
+    .orb-d {
+      width: 44px; height: 44px;
+      top: 42%; left: 42%;
+      background: radial-gradient(circle at 32% 28%, #fff, rgba(255,255,255,0.15));
+      box-shadow: 0 0 18px var(--droplet-glow);
+      animation: floatY 8s var(--ease-aero) infinite 0.3s;
+    }
+
+    .orb-e {
+      width: 180px; height: 180px;
+      bottom: 6%; right: 8%;
+      background: radial-gradient(circle at 34% 30%,
+        rgba(255,255,255,0.88) 0%,
+        rgba(255,255,255,0.28) 30%,
+        rgba(168,216,252,0.22) 100%);
+      box-shadow: 0 0 48px var(--droplet-glow), inset 0 8px 18px rgba(255,255,255,0.5);
+      animation: floatY 10s var(--ease-aero) infinite 1.8s;
+    }
+
+    .orb-spec {
+      position: absolute;
+      width: 28%;
+      height: 16%;
+      top: 16%;
+      left: 18%;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.75);
+      filter: blur(2px);
+    }
+
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-glass-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-glass-inset);
+      margin-bottom: 28px;
+    }
+
+    .hero-glass-nav a {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-nav);
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      transition: var(--transition);
+    }
+
+    .hero-glass-nav a:hover,
+    .hero-glass-nav a.is-active {
+      color: var(--ice-white);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .hero-kicker {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-badge);
+      background: rgba(255, 255, 255, 0.42);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    .chip-navy {
+      background: var(--accent-primary);
+      color: var(--ice-white);
+      border-color: transparent;
+    }
+
+    .clinical {
+      font-family: var(--font-sans);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(4.5rem, 11vw, 9rem);
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--ink-hero);
+      text-shadow: 0 2px 18px rgba(255, 255, 255, 0.45);
+      margin-bottom: 20px;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+
+    .hero-lede {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(11, 43, 99, 0.72);
+      max-width: 36rem;
+      margin-bottom: 28px;
+      font-weight: 400;
+    }
+
+    .hero-lede strong {
+      color: var(--ink-primary);
+      font-weight: 600;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Navy punch CTA with white circle arrow badge */
+    .btn-navy-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--accent-primary);
+      color: var(--ice-white);
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 10px 10px 10px 22px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 10px 22px -8px rgba(11, 43, 99, 0.35);
+    }
+
+    .btn-navy-cta:hover {
+      background: var(--accent-primary-hover);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: var(--shadow-cta);
+    }
+
+    .btn-navy-cta:hover .cta-badge {
+      transform: rotate(45deg);
+    }
+
+    .cta-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--ice-white);
+      color: var(--accent-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.4s var(--ease-aero);
+    }
+
+    .cta-badge svg {
+      stroke: var(--accent-primary);
+      stroke-width: 1.75;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .btn-glass-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.22);
+      color: var(--ink-primary);
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      padding: 14px 22px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      box-shadow: var(--shadow-glass-inset);
+    }
+
+    .btn-glass-ghost:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+      color: var(--accent-primary);
+    }
+
+    /* Product bottle + floating asymmetric preview card */
+    .hero-visual {
+      position: relative;
+      min-height: 460px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bottle {
+      position: relative;
+      width: 148px;
+      z-index: 2;
+      filter: drop-shadow(0 28px 40px rgba(11, 43, 99, 0.18));
+      animation: floatY 8s var(--ease-aero) infinite;
+    }
+
+    .bottle-cap {
+      width: 52px;
+      height: 20px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, #1B3B73, #0B2B63);
+      border-radius: 8px 8px 4px 4px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+    }
+
+    .bottle-collar {
+      width: 38px;
+      height: 14px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.45);
+      border-left: 1px solid rgba(255,255,255,0.7);
+      border-right: 1px solid rgba(255,255,255,0.7);
+    }
+
+    .bottle-neck {
+      width: 34px;
+      height: 42px;
+      margin: 0 auto;
+      background: linear-gradient(90deg, rgba(255,255,255,0.15), rgba(255,255,255,0.55) 40%, rgba(255,255,255,0.18));
+      border-left: 1px solid rgba(255,255,255,0.6);
+      border-right: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .bottle-body {
+      position: relative;
+      width: 118px;
+      height: 268px;
+      margin: 0 auto;
+      border-radius: 22px 22px 46px 46px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0.42) 38%, rgba(255,255,255,0.16));
+      border: 1px solid rgba(255,255,255,0.65);
+      overflow: hidden;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.7), inset -10px 0 24px rgba(11,43,99,0.06);
+    }
+
+    .bottle-liquid {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 74%;
+      background: linear-gradient(180deg, rgba(206,234,254,0.55) 0%, #7EC8F0 55%, #4A8BC4 100%);
+      border-radius: 0 0 44px 44px;
+    }
+
+    .bottle-liquid::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.55), transparent);
+      border-radius: 50%;
+    }
+
+    .bottle-shine {
+      position: absolute;
+      top: 10%;
+      left: 14%;
+      width: 16px;
+      height: 62%;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.05));
+    }
+
+    .bottle-mark {
+      position: absolute;
+      top: 42%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.92);
+      text-shadow: 0 1px 8px rgba(11,43,99,0.2);
+    }
+
+    .preview-card {
+      position: absolute;
+      right: 0;
+      bottom: 18px;
+      width: min(280px, 70%);
+      background: var(--bg-surface);
+      border: var(--border-card);
+      border-radius: var(--radius-asymmetric);
+      padding: 22px;
+      box-shadow: var(--shadow-base);
+      z-index: 3;
+      transition: var(--transition);
+    }
+
+    .preview-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .preview-card .clinical {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+    }
+
+    .preview-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      margin-bottom: 8px;
+    }
+
+    .preview-card p {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      margin-bottom: 14px;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: var(--divider-style);
+    }
+
+    .stat-row span {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .stat-row strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      letter-spacing: 0.04em;
+      color: var(--ink-primary);
+      font-weight: 400;
+    }
+
+    /* =========================================================================
+       SHARED SECTION CHROME
+       ========================================================================= */
+    .section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-badge);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      line-height: 0.95;
+    }
+
+    .section-note {
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      max-width: 28rem;
+    }
+
+    .glass-panel {
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: var(--border-core);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-glass-inset), var(--shadow-base);
+    }
+
+    .white-card {
+      background: var(--bg-surface);
+      border: var(--border-card);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-base);
+      transition: var(--transition);
+    }
+
+    .white-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* =========================================================================
+       PALETTE
+       ========================================================================= */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .swatch-card {
+      background: var(--bg-surface);
+      border: var(--border-card);
+      border-radius: var(--radius-card);
+      padding: 14px;
+      cursor: pointer;
+      box-shadow: var(--shadow-base);
+      transition: var(--transition);
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .swatch-preview {
+      height: 88px;
+      border-radius: var(--radius-inner);
+      border: 1px solid rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .swatch-hint {
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.9);
+      color: var(--ink-primary);
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .swatch-card:hover .swatch-hint { opacity: 1; }
+
+    .swatch-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-tertiary);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .swatch-role {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-top: 4px;
+    }
+
+    /* =========================================================================
+       TYPOGRAPHY
+       ========================================================================= */
+    .type-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+    }
+
+    .type-card {
+      background: var(--bg-surface);
+      border: var(--border-card);
+      border-radius: var(--radius-card);
+      padding: 28px;
+      box-shadow: var(--shadow-base);
+      transition: var(--transition);
+    }
+
+    .type-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .pair-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: var(--divider-style);
+    }
+
+    .pair-row:last-child { border-bottom: none; }
+
+    .pair-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .pair-name { color: var(--ink-primary); font-weight: 600; font-size: 0.95rem; }
+
+    .ladder-item {
+      padding: 14px 0;
+      border-bottom: var(--divider-style);
+    }
+
+    .ladder-item:last-child { border-bottom: none; }
+
+    .ladder-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      margin-bottom: 6px;
+    }
+
+    .ladder-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      line-height: 0.88;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .ladder-h1 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      line-height: 0.92;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+      color: var(--ink-primary);
+    }
+
+    .ladder-h2 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .ladder-h3 {
+      font-family: var(--font-sans);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .ladder-body {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--ink-muted);
+    }
+
+    .ladder-meta-type {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .live-sample {
+      width: 100%;
+      min-height: 120px;
+      border: var(--divider-style);
+      border-radius: var(--radius-inner);
+      padding: 16px;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      background: rgba(191, 227, 253, 0.28);
+      resize: vertical;
+      outline: none;
+    }
+
+    .live-sample:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(11, 43, 99, 0.12);
+    }
+
+    /* =========================================================================
+       COMPONENTS
+       ========================================================================= */
+    .comp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .comp-card {
+      background: var(--bg-surface);
+      border: var(--border-card);
+      border-radius: var(--radius-card);
+      padding: 28px;
+      box-shadow: var(--shadow-base);
+      transition: var(--transition);
+    }
+
+    .comp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .comp-card.asymmetric {
+      border-radius: var(--radius-asymmetric);
+    }
+
+    .comp-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      margin-bottom: 6px;
+    }
+
+    .comp-card .clinical {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 18px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--ice-white);
+      color: var(--accent-primary);
+      border: 1px solid rgba(11, 43, 99, 0.16);
+      border-radius: var(--radius-pill);
+      padding: 12px 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px) scale(1.02);
+      border-color: var(--accent-primary);
+      box-shadow: var(--shadow-cta);
+    }
+
+    .btn-danger {
+      display: inline-flex;
+      align-items: center;
+      background: var(--status-danger);
+      color: var(--ice-white);
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 12px 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-danger:hover {
+      transform: translateY(-2px) scale(1.02);
+      filter: brightness(0.94);
+    }
+
+    .btn-accent {
+      display: inline-flex;
+      align-items: center;
+      background: var(--accent-ice);
+      color: var(--accent-primary);
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 12px 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-accent:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 24px -8px rgba(126, 200, 240, 0.65);
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .glass-input {
+      width: 100%;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--ink-primary);
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: var(--radius-pill);
+      padding: 12px 18px;
+      outline: none;
+      transition: var(--transition);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+    }
+
+    .glass-input::placeholder { color: var(--ink-badge); }
+
+    .glass-input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(11, 43, 99, 0.12);
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .choice-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 22px;
+      align-items: center;
+    }
+
+    .choice {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      color: var(--ink-primary);
+      cursor: pointer;
+    }
+
+    .choice input[type="checkbox"],
+    .choice input[type="radio"] {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid rgba(11, 43, 99, 0.28);
+      background: var(--ice-white);
+      display: grid;
+      place-items: center;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .choice input[type="checkbox"] { border-radius: 6px; }
+    .choice input[type="radio"] { border-radius: 50%; }
+
+    .choice input[type="checkbox"]:checked,
+    .choice input[type="radio"]:checked {
+      background: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .choice input[type="checkbox"]:checked::after {
+      content: "";
+      width: 10px;
+      height: 6px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) translateY(-1px);
+    }
+
+    .choice input[type="radio"]:checked::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .toggle {
+      position: relative;
+      width: 48px;
+      height: 28px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .toggle input,
+    .choice .toggle input[type="checkbox"] {
+      appearance: none;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      margin: 0;
+      padding: 0;
+      border: none;
+      position: absolute;
+    }
+
+    .choice .toggle input[type="checkbox"]::after {
+      content: none;
+      display: none;
+    }
+
+    .toggle-track {
+      position: absolute;
+      inset: 0;
+      background: rgba(108, 135, 163, 0.22);
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .toggle-track::after {
+      content: "";
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--ice-white);
+      top: 3px;
+      left: 3px;
+      box-shadow: 0 4px 10px rgba(11, 43, 99, 0.18);
+      transition: var(--transition);
+    }
+
+    .toggle input:checked + .toggle-track {
+      background: var(--accent-primary);
+    }
+
+    .toggle input:checked + .toggle-track::after {
+      transform: translateX(20px);
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .micro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      background: rgba(191, 227, 253, 0.45);
+      border: 1px solid rgba(255,255,255,0.8);
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    .micro-badge.navy {
+      background: var(--accent-primary);
+      color: var(--ice-white);
+      border-color: transparent;
+    }
+
+    .micro-badge.ok { color: var(--status-success); background: rgba(47, 143, 124, 0.12); }
+    .micro-badge.warn { color: #8A6E2E; background: rgba(196, 163, 90, 0.18); }
+    .micro-badge.alert { color: var(--status-danger); background: rgba(196, 92, 106, 0.12); }
+
+    .icon-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.4s var(--ease-aero);
+    }
+
+    .icon-badge:hover { transform: rotate(45deg); }
+
+    .icon-badge svg {
+      stroke: #fff;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .span-2 { grid-column: span 2; }
+
+    /* =========================================================================
+       LIVING DEMO — hydration product fragment
+       ========================================================================= */
+    .demo-stage {
+      position: relative;
+      overflow: clip;
+      background: linear-gradient(180deg, rgba(206,234,254,0.55), rgba(168,216,252,0.4));
+      border: var(--border-core);
+      border-radius: 32px;
+      padding: 28px;
+      box-shadow: var(--shadow-glass-inset), var(--shadow-base);
+    }
+
+    .demo-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .demo-brand {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.14em;
+      color: var(--ice-white);
+      text-shadow: 0 2px 12px rgba(255,255,255,0.4);
+    }
+
+    .demo-pills {
+      display: inline-flex;
+      gap: 4px;
+      padding: 5px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-glass-inset);
+    }
+
+    .demo-pills button {
+      background: transparent;
+      border: none;
+      color: var(--ink-nav);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .demo-pills button:hover {
+      color: var(--ice-white);
+      text-shadow: 0 0 10px rgba(255,255,255,0.8);
+    }
+
+    .demo-pills button.is-active {
+      background: rgba(255,255,255,0.28);
+      color: var(--ice-white);
+    }
+
+    .demo-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .demo-feature {
+      background: var(--bg-surface);
+      border-radius: var(--radius-card);
+      border: var(--border-card);
+      padding: 28px;
+      box-shadow: var(--shadow-base);
+      transition: var(--transition);
+    }
+
+    .demo-feature:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .demo-feature h3 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      margin: 8px 0 10px;
+    }
+
+    .demo-feature p {
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      margin-bottom: 20px;
+    }
+
+    .droplet-stat {
+      background: rgba(255,255,255,0.28);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: var(--border-core);
+      border-radius: var(--radius-card);
+      padding: 28px;
+      text-align: center;
+      box-shadow: var(--shadow-glass-inset);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .droplet-glyph {
+      width: 88px;
+      height: 88px;
+      border-radius: 50% 50% 50% 8px;
+      transform: rotate(45deg);
+      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.95), rgba(126,200,240,0.55) 55%, rgba(11,43,99,0.25));
+      box-shadow: 0 0 28px var(--droplet-glow);
+      position: relative;
+    }
+
+    .droplet-fill {
+      position: absolute;
+      left: 8px; right: 8px; bottom: 8px;
+      height: 42%;
+      border-radius: 40%;
+      background: linear-gradient(180deg, #CEEAFE, #0B2B63);
+      opacity: 0.55;
+      transition: height 0.4s var(--ease-aero);
+    }
+
+    .droplet-stat .num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--ink-primary);
+    }
+
+    .formula-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-asymmetric);
+      border: var(--border-card);
+      padding: 24px;
+      box-shadow: var(--shadow-base);
+      transition: var(--transition);
+    }
+
+    .formula-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .formula-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      margin-bottom: 14px;
+    }
+
+    .ing-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 10px 0;
+      border-bottom: var(--divider-style);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .ing-row span:last-child {
+      font-family: var(--font-mono);
+      color: var(--ink-primary);
+    }
+
+    .ing-row:last-of-type { border-bottom: none; }
+
+    /* =========================================================================
+       MARKDOWN DRAWER
+       ========================================================================= */
+    .drawer {
+      background: var(--bg-surface);
+      border: var(--border-card);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-base);
+      overflow: hidden;
+      margin-bottom: 80px;
+    }
+
+    .drawer-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: transparent;
+      border: none;
+      padding: 20px 24px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .drawer-toggle h2 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .drawer-toggle small {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-top: 4px;
+    }
+
+    .drawer-body {
+      display: none;
+      padding: 0 24px 24px;
+      border-top: var(--divider-style);
+    }
+
+    .drawer.open .drawer-body { display: block; padding-top: 18px; }
+
+    .spec-code-pre {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #D7E9F8;
+      background: #0B2B63;
+      padding: 20px;
+      border-radius: var(--radius-inner);
+      overflow-x: auto;
+      max-height: 440px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 43, 99, 0.45);
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal-window {
+      background: rgba(255, 255, 255, 0.92);
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      border-radius: var(--radius-card);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      border: var(--border-card);
+      box-shadow: var(--shadow-hover);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .modal-header h2 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .modal-close-btn {
+      background: var(--accent-primary);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: var(--transition);
+    }
+
+    .modal-close-btn:hover { background: var(--accent-primary-hover); transform: rotate(45deg); }
+
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--accent-primary);
+      color: var(--ice-white);
+      padding: 12px 22px;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-cta);
+      z-index: 1000;
+      display: none;
+      animation: toastSlideUp 0.4s var(--ease-aero);
+    }
+
+    @keyframes toastSlideUp {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    footer.page-foot {
+      text-align: center;
+      padding: 0 0 48px;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-badge);
+    }
+
+    /* =========================================================================
+       MOBILE
+       ========================================================================= */
+    @media (max-width: 980px) {
+      .hero-grid,
+      .type-grid,
+      .comp-grid,
+      .demo-layout,
+      .palette-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .span-2 { grid-column: span 2; }
+    }
+
+    @media (max-width: 768px) {
+      html, body {
+        overflow-x: clip;
+        max-width: 100vw;
+      }
+
+      .page-container { padding: 0 16px; }
+
+      .hero-section {
+        min-height: 0;
+        padding: 28px 0 48px;
+        overflow: clip;
+      }
+
+      .hero-orbs { overflow: hidden; max-width: 100%; }
+
+      .orb-a { width: 160px; height: 160px; left: -40px; }
+      .orb-b { width: 90px; height: 90px; right: -20px; }
+      .orb-e { width: 110px; height: 110px; right: -30px; bottom: 0; }
+
+      .hero-grid,
+      .type-grid,
+      .comp-grid,
+      .demo-layout,
+      .palette-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .span-2 { grid-column: span 1; }
+
+      .hero-title {
+        font-size: clamp(3.2rem, 16vw, 5.5rem);
+      }
+
+      .hero-visual { min-height: 420px; }
+
+      .preview-card {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      .hero-glass-nav { flex-wrap: wrap; width: 100%; }
+
+      .glass-input,
+      input, textarea, select {
+        font-size: 16px !important;
+      }
+
+      .section { padding: 48px 0; }
+
+      .live-sample { font-size: 1.5rem; }
+
+      .toast-popup { left: 16px; right: 16px; text-align: center; }
+    }
+  </style>
+
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .page-shell, .page-container, .hero-grid, .hero-grid > *, .hero-copy, .section-block { min-width: 0; max-width: 100%; }
+      p, h1, h2, h3, .hero-lede, .hero-title { overflow-wrap: anywhere; word-break: break-word; max-width: 100%; }
+      .hero-cta-row, .hero-nav-pill, .hero-chips { flex-wrap: wrap !important; width: 100%; max-width: 100%; }
+      .hero-cta-row > * { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+
+    <header class="style-tile-header">
+      <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+        <span class="icon">←</span> Catalog
+      </a>
+
+      <div class="header-title-block">
+        <span class="design-code">TILE-052</span>
+        <span class="design-title">Aero-Aquatic</span>
+        <span class="design-vibe-tag">Quiet Luxury</span>
+      </div>
+
+      <div class="header-actions">
+        <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Preview Style Tile
+        </button>
+
+        <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Style Tile
+        </button>
+
+        <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-aero-aquatic.md">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Style Tile
+        </button>
+      </div>
+    </header>
+
+    <!-- =====================================================================
+         HERO
+         ===================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-orbs" aria-hidden="true">
+        <div class="orb orb-a"><span class="orb-spec"></span></div>
+        <div class="orb orb-b"><span class="orb-spec"></span></div>
+        <div class="orb orb-c"></div>
+        <div class="orb orb-d"></div>
+        <div class="orb orb-e"><span class="orb-spec"></span></div>
+      </div>
+
+      <div class="page-container">
+        <div class="hero-grid">
+          <div>
+            <nav class="hero-glass-nav" aria-label="Product chapters">
+              <a href="#demo" class="is-active">Formula</a>
+              <a href="#demo">Ritual</a>
+              <a href="#demo">Journal</a>
+              <a href="#palette">Origin</a>
+            </nav>
+
+            <div class="hero-kicker">
+              <span class="chip chip-navy">Quiet Luxury</span>
+              <span class="chip">Hydrated Glassminimalism</span>
+              <span class="chip">Sky #BFE3FD · Navy #0B2B63</span>
+            </div>
+
+            <h1 class="hero-title">Aero-Aquatic</h1>
+
+            <p class="hero-lede">
+              High-key ethereal hydration. A Quiet Luxury language of <strong>sky-held glass</strong>,
+              condensed white display, and navy punch — built for mineral water, clinical-calm wellness,
+              and ritual product worlds. Not Memphis. Not candy. Air, water, and restraint.
+            </p>
+
+            <div class="hero-cta-row">
+              <button class="btn-navy-cta" type="button" onclick="copyTilePromptDirect()">
+                Copy Prompt for Agent
+                <span class="cta-badge" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                </span>
+              </button>
+              <a class="btn-glass-ghost" href="#components">Test Interactive Elements</a>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="bottle" aria-hidden="true">
+              <div class="bottle-cap"></div>
+              <div class="bottle-collar"></div>
+              <div class="bottle-neck"></div>
+              <div class="bottle-body">
+                <div class="bottle-liquid"></div>
+                <div class="bottle-shine"></div>
+                <div class="bottle-mark">AERO</div>
+              </div>
+            </div>
+
+            <article class="preview-card">
+              <div class="clinical">Lot AA-052 · Sky Mineral 02</div>
+              <h3>Aero Mist</h3>
+              <p>Trace silica, coastal electrolytes, and still air — bottled as a daily hydration ritual.</p>
+              <div class="stat-row">
+                <div><span>pH</span><strong>7.4</strong></div>
+                <div><span>TDS</span><strong>42</strong></div>
+                <div><span>Origin</span><strong>Alto</strong></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-container">
+
+      <!-- =================================================================
+           PALETTE
+           ================================================================= -->
+      <section class="section" id="palette">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Color roles · click to copy</div>
+            <h2 class="section-title">Sky, Ice &amp; Navy Punch</h2>
+          </div>
+          <p class="section-note">A high-key hydration field. Canvas is atmosphere, cards are ice, CTAs are deep water.</p>
+        </div>
+
+        <div class="palette-grid">
+          <div class="swatch-card" onclick="copyHex('#BFE3FD', 'Canvas')">
+            <div class="swatch-preview" style="background:#BFE3FD;"><span class="swatch-hint">Copy</span></div>
+            <div class="swatch-name">Canvas</div>
+            <div class="swatch-var">--bg-canvas</div>
+            <div class="swatch-hex">#BFE3FD</div>
+            <div class="swatch-role">Primary application sky</div>
+          </div>
+          <div class="swatch-card" onclick="copyHex('#CEEAFE', 'Ambient High')">
+            <div class="swatch-preview" style="background:linear-gradient(180deg,#CEEAFE,#99CEFB);"><span class="swatch-hint">Copy</span></div>
+            <div class="swatch-name">Ambient</div>
+            <div class="swatch-var">--bg-ambient</div>
+            <div class="swatch-hex">#CEEAFE → #99CEFB</div>
+            <div class="swatch-role">Vertical sky wash</div>
+          </div>
+          <div class="swatch-card" onclick="copyHex('#FFFFFF', 'Ice White')">
+            <div class="swatch-preview" style="background:#FFFFFF; border:1px solid rgba(11,43,99,0.08);"><span class="swatch-hint">Copy</span></div>
+            <div class="swatch-name">Ice White</div>
+            <div class="swatch-var">--bg-surface</div>
+            <div class="swatch-hex">#FFFFFF</div>
+            <div class="swatch-role">Solid floating cards</div>
+          </div>
+          <div class="swatch-card" onclick="copyHex('rgba(255,255,255,0.22)', 'Glass')">
+            <div class="swatch-preview" style="background:rgba(255,255,255,0.45);"><span class="swatch-hint">Copy</span></div>
+            <div class="swatch-name">Liquid Glass</div>
+            <div class="swatch-var">--bg-glass-nav</div>
+            <div class="swatch-hex">rgba(255,255,255,0.22)</div>
+            <div class="swatch-role">Nav · blur 16 · saturate 180</div>
+          </div>
+          <div class="swatch-card" onclick="copyHex('#0B2B63', 'Navy')">
+            <div class="swatch-preview" style="background:#0B2B63;"><span class="swatch-hint">Copy</span></div>
+            <div class="swatch-name">Navy Punch</div>
+            <div class="swatch-var">--accent-primary</div>
+            <div class="swatch-hex">#0B2B63</div>
+            <div class="swatch-role">CTA · card headings</div>
+          </div>
+          <div class="swatch-card" onclick="copyHex('#071D44', 'Navy Hover')">
+            <div class="swatch-preview" style="background:#071D44;"><span class="swatch-hint">Copy</span></div>
+            <div class="swatch-name">Navy Hover</div>
+            <div class="swatch-var">--accent-primary-hover</div>
+            <div class="swatch-hex">#071D44</div>
+            <div class="swatch-role">Pressed deep water</div>
+          </div>
+          <div class="swatch-card" onclick="copyHex('#1B3B73', 'Navy Subtle')">
+            <div class="swatch-preview" style="background:#1B3B73;"><span class="swatch-hint">Copy</span></div>
+            <div class="swatch-name">Navy Subtle</div>
+            <div class="swatch-var">--accent-secondary</div>
+            <div class="swatch-hex">#1B3B73</div>
+            <div class="swatch-role">Secondary navy plane</div>
+          </div>
+          <div class="swatch-card" onclick="copyHex('#6C87A3', 'Muted Ink')">
+            <div class="swatch-preview" style="background:#6C87A3;"><span class="swatch-hint">Copy</span></div>
+            <div class="swatch-name">Body Muted</div>
+            <div class="swatch-var">--ink-muted</div>
+            <div class="swatch-hex">#6C87A3</div>
+            <div class="swatch-role">Reading secondary</div>
+          </div>
+          <div class="swatch-card" onclick="copyHex('#7D9BB6', 'Badge')">
+            <div class="swatch-preview" style="background:#7D9BB6;"><span class="swatch-hint">Copy</span></div>
+            <div class="swatch-name">Badge Mist</div>
+            <div class="swatch-var">--ink-badge</div>
+            <div class="swatch-hex">#7D9BB6</div>
+            <div class="swatch-role">Clinical chips</div>
+          </div>
+          <div class="swatch-card" onclick="copyHex('#2F8F7C', 'Success')">
+            <div class="swatch-preview" style="background:#2F8F7C;"><span class="swatch-hint">Copy</span></div>
+            <div class="swatch-name">Success</div>
+            <div class="swatch-var">--status-success</div>
+            <div class="swatch-hex">#2F8F7C</div>
+            <div class="swatch-role">Mineral confirm</div>
+          </div>
+          <div class="swatch-card" onclick="copyHex('#C4A35A', 'Warning')">
+            <div class="swatch-preview" style="background:#C4A35A;"><span class="swatch-hint">Copy</span></div>
+            <div class="swatch-name">Warning</div>
+            <div class="swatch-var">--status-warning</div>
+            <div class="swatch-hex">#C4A35A</div>
+            <div class="swatch-role">Warm mineral caution</div>
+          </div>
+          <div class="swatch-card" onclick="copyHex('#C45C6A', 'Danger')">
+            <div class="swatch-preview" style="background:#C45C6A;"><span class="swatch-hint">Copy</span></div>
+            <div class="swatch-name">Danger</div>
+            <div class="swatch-var">--status-danger</div>
+            <div class="swatch-hex">#C45C6A</div>
+            <div class="swatch-role">Restrained coral alert</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           TYPE
+           ================================================================= -->
+      <section class="section" id="type">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Typography system</div>
+            <h2 class="section-title">Condensed White vs Micro Sans</h2>
+          </div>
+          <p class="section-note">Bebas Neue holds the sky. Inter whispers clinical ritual. Space Mono timestamps the lab.</p>
+        </div>
+
+        <div class="type-grid">
+          <div class="type-card">
+            <div class="section-kicker">Type ladder</div>
+            <div class="ladder-item">
+              <div class="ladder-meta"><span>Display · Bebas Neue</span><span>clamp 4.5–9rem / 0.88 / −0.01em</span></div>
+              <div class="ladder-display">Aero-Aquatic</div>
+            </div>
+            <div class="ladder-item">
+              <div class="ladder-meta"><span>H1</span><span>2.5rem uppercase</span></div>
+              <div class="ladder-h1">Sky mineral ritual</div>
+            </div>
+            <div class="ladder-item">
+              <div class="ladder-meta"><span>H2 · Card header</span><span>1.75rem / 0.02em</span></div>
+              <div class="ladder-h2">Aero mist 02</div>
+            </div>
+            <div class="ladder-item">
+              <div class="ladder-meta"><span>H3 · Inter 600</span><span>1.25rem</span></div>
+              <div class="ladder-h3">Daily hydration target</div>
+            </div>
+            <div class="ladder-item">
+              <div class="ladder-meta"><span>Body · Inter</span><span>1.0rem / 1.60</span></div>
+              <div class="ladder-body">Still air, high-key glass, and a navy punch. The page should feel like water held in light — never playful, never dark.</div>
+            </div>
+            <div class="ladder-item">
+              <div class="ladder-meta"><span>Clinical meta</span><span>Inter 9px / 0.08em / 600</span></div>
+              <div class="ladder-meta-type">Lot AA-052 · pH 7.4 · Electrolytes 0.6%</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="type-card" style="margin-bottom:20px;">
+              <div class="section-kicker">Pairings</div>
+              <div class="pair-row">
+                <div>
+                  <div class="pair-label">Display</div>
+                  <div class="pair-name" style="font-family:var(--font-display); font-size:1.6rem; letter-spacing:0.04em; text-transform:uppercase;">Bebas Neue</div>
+                </div>
+                <div style="font-family:var(--font-display); font-size:2rem; color:var(--ink-primary);">Aa</div>
+              </div>
+              <div class="pair-row">
+                <div>
+                  <div class="pair-label">Body / Nav / Buttons</div>
+                  <div class="pair-name">Inter</div>
+                </div>
+                <div style="font-weight:600; color:var(--ink-primary);">Aa</div>
+              </div>
+              <div class="pair-row">
+                <div>
+                  <div class="pair-label">Micro / Lab</div>
+                  <div class="pair-name" style="font-family:var(--font-mono);">Space Mono</div>
+                </div>
+                <div style="font-family:var(--font-mono); color:var(--ink-primary);">01</div>
+              </div>
+            </div>
+
+            <div class="type-card">
+              <div class="section-kicker">Live editable sample</div>
+              <h3 class="ladder-h2" style="margin-bottom:12px;">Pangram</h3>
+              <textarea class="live-sample" id="live-type-box" spellcheck="false">The quick mist hydrates every quiet sky.</textarea>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           COMPONENTS
+           ================================================================= -->
+      <section class="section" id="components">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Component archetypes</div>
+            <h2 class="section-title">Pills, Glass &amp; Ice Cards</h2>
+          </div>
+          <p class="section-note">Ultra-rounded CTAs. Liquid glass ghosts. White 24px cards. One asymmetric hero plate.</p>
+        </div>
+
+        <div class="comp-grid">
+          <div class="comp-card">
+            <div class="clinical">Buttons · 0.75rem / 700 / 0.12em</div>
+            <h3>Actions</h3>
+            <div class="btn-row">
+              <button class="btn-navy-cta" type="button">
+                Hydrate
+                <span class="cta-badge" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                </span>
+              </button>
+              <button class="btn-glass-ghost" type="button">Glass Ghost</button>
+              <button class="btn-secondary" type="button">Secondary</button>
+              <button class="btn-danger" type="button">Danger</button>
+              <button class="btn-accent" type="button">Accent Ice</button>
+            </div>
+          </div>
+
+          <div class="comp-card">
+            <div class="clinical">Inputs · glass · 16px</div>
+            <h3>Fields</h3>
+            <div class="field">
+              <label for="name-input">Ritual name</label>
+              <input class="glass-input" id="name-input" type="text" placeholder="Morning mist">
+            </div>
+            <div class="field">
+              <label for="mail-input">Journal address</label>
+              <input class="glass-input" id="mail-input" type="email" placeholder="you@aero.studio">
+            </div>
+          </div>
+
+          <div class="comp-card">
+            <div class="clinical">Selection · navy fill</div>
+            <h3>Choices</h3>
+            <div class="choice-row">
+              <label class="choice"><input type="checkbox" checked> Still</label>
+              <label class="choice"><input type="checkbox"> Sparkling</label>
+              <label class="choice"><input type="radio" name="origin" checked> Alto</label>
+              <label class="choice"><input type="radio" name="origin"> Coastal</label>
+              <label class="choice" for="aero-toggle">Still night</label>
+              <label class="toggle" title="Toggle ritual">
+                <input type="checkbox" id="aero-toggle" checked>
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="comp-card">
+            <div class="clinical">Clinical micro · Inter 9px</div>
+            <h3>Badges</h3>
+            <div class="badge-row" style="margin-bottom:16px;">
+              <span class="micro-badge navy">Lot AA-052</span>
+              <span class="micro-badge">pH 7.4</span>
+              <span class="micro-badge ok">Hydrated</span>
+              <span class="micro-badge warn">Low mineral</span>
+              <span class="micro-badge alert">Hold</span>
+            </div>
+            <div class="btn-row">
+              <span class="icon-badge" title="Rotate on hover">
+                <svg width="18" height="18" viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+              </span>
+              <span class="icon-badge" title="Droplet">
+                <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 3s7 8 7 12a7 7 0 1 1-14 0c0-4 7-12 7-12z"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="comp-card span-2 asymmetric">
+            <div class="clinical">Asymmetric radius · 36px 12px 28px 12px</div>
+            <h3>Feature plate</h3>
+            <p class="ladder-body" style="margin-bottom:16px;">
+              One hero card breaks the 24px regularity — a cut-glass corner language that still feels Quiet Luxury, never brutalist. Pair with floating navy stats and a single Hydrate CTA.
+            </p>
+            <div class="btn-row">
+              <button class="btn-navy-cta" type="button" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">
+                Open Living Demo
+                <span class="cta-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                </span>
+              </button>
+              <span class="micro-badge">Radius 36 / 12 / 28 / 12</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           LIVING DEMO
+           ================================================================= -->
+      <section class="section" id="demo">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Living micro-experience</div>
+            <h2 class="section-title">Aero Mist Ritual</h2>
+          </div>
+          <p class="section-note">A hydration product fragment: glass nav, floating ice card, droplet stat, lifting CTA.</p>
+        </div>
+
+        <div class="demo-stage">
+          <div class="demo-nav">
+            <div class="demo-brand">AERO MIST</div>
+            <div class="demo-pills" role="tablist">
+              <button type="button" class="is-active" data-panel="formula" onclick="setDemoPanel(this, 'formula')">Formula</button>
+              <button type="button" data-panel="ritual" onclick="setDemoPanel(this, 'ritual')">Ritual</button>
+              <button type="button" data-panel="journal" onclick="setDemoPanel(this, 'journal')">Journal</button>
+            </div>
+          </div>
+
+          <div class="demo-layout">
+            <article class="demo-feature">
+              <div class="clinical" id="demo-kicker">Formula 02 · Sky mineral</div>
+              <h3 id="demo-title">Held in light</h3>
+              <p id="demo-copy">A still-water concentrate with coastal electrolytes and trace silica. Designed as a morning ritual — two litres, unflavoured, high-key.</p>
+              <button class="btn-navy-cta" type="button" id="hydrate-btn" onclick="hydrateSip()">
+                Hydrate
+                <span class="cta-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                </span>
+              </button>
+            </article>
+
+            <div class="droplet-stat">
+              <div class="droplet-glyph" aria-hidden="true"><span class="droplet-fill" id="droplet-fill"></span></div>
+              <div class="num" id="sip-readout">2.4 L</div>
+              <div class="clinical">Daily target · tap Hydrate</div>
+            </div>
+
+            <aside class="formula-card">
+              <div class="clinical">Clinical assay</div>
+              <h3>Ingredients</h3>
+              <div class="ing-row"><span>Purified H<sub>2</sub>O</span><span>99.2%</span></div>
+              <div class="ing-row"><span>Electrolytes</span><span>0.60%</span></div>
+              <div class="ing-row"><span>Trace silica</span><span>0.12%</span></div>
+              <div class="ing-row"><span>Coastal minerals</span><span>0.08%</span></div>
+              <div class="ing-row"><span>Nothing else</span><span>0.00%</span></div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
+           MARKDOWN DRAWER
+           ================================================================= -->
+      <section class="section" id="spec" style="padding-top:0;">
+        <div class="drawer open" id="spec-drawer">
+          <button class="drawer-toggle" type="button" onclick="toggleDrawer()">
+            <div>
+              <h2>Style Tile Prompt</h2>
+              <small>Machine-readable markdown · copy for any agent</small>
+            </div>
+            <span class="micro-badge navy" id="drawer-caret">Hide</span>
+          </button>
+          <div class="drawer-body">
+            <div style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+              <button class="btn-navy-cta" type="button" onclick="copyTilePromptDirect()">
+                Copy Markdown
+                <span class="cta-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+                </span>
+              </button>
+            </div>
+            <pre class="spec-code-pre" id="spec-code-display"></pre>
+          </div>
+        </div>
+      </section>
+
+      <footer class="page-foot">TILE-052 · Aero-Aquatic · Quiet Luxury · Hydrated Glassminimalism</footer>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="spec-modal" onclick="closeSpecModalOnOutside(event)">
+    <div class="modal-window" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <div>
+          <h2 id="modal-title">TILE-052 · Aero-Aquatic</h2>
+          <div class="clinical">Official Style Tile specification</div>
+        </div>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" title="Close">✕</button>
+      </div>
+      <pre class="spec-code-pre" id="modal-spec-display" style="max-height:58vh;"></pre>
+      <div style="display:flex; justify-content:flex-end; gap:8px; flex-wrap:wrap;">
+        <button class="btn-navy-cta" type="button" onclick="copyTilePromptDirect()">
+          Copy Markdown
+          <span class="cta-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg>
+          </span>
+        </button>
+        <button class="btn-secondary" type="button" onclick="closeSpecModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-popup" id="toast-popup">✓ Copied to Clipboard!</div>
+
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Aesthetic: Aero-Aquatic • Hydrated Glassminimalism • Quiet Luxury Wellness
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Aero-Aquatic is high-key ethereal hydration: a sky-blue gradient field, liquid
+glass navigation, gigantic condensed white display type, and a single navy punch
+for CTAs. It is Quiet Luxury for mineral water, clinical-calm wellness, and
+ritual product worlds — airy, refractive, and restrained. Never Memphis, never
+candy stickers, never dark OLED, never brutalist offsets.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #BFE3FD; /* Primary application canvas */
+  --bg-ambient:             linear-gradient(180deg, #CEEAFE 0%, #A8D8FC 60%, #99CEFB 100%);
+  --bg-surface:             #FFFFFF; /* Elevated ice-white cards */
+  --bg-surface-alt:         rgba(255, 255, 255, 0.85); /* Translucent plates */
+  --bg-surface-dark:        #0B2B63; /* Inverted navy containers */
+  --bg-glass-nav:           rgba(255, 255, 255, 0.22); /* Liquid glass */
+
+  /* Inks & Typography */
+  --ink-primary:            #0B2B63; /* Navy — card headings, body punch */
+  --ink-secondary:          #1B3B73; /* Subtle navy */
+  --ink-muted:              #6C87A3; /* Body, captions */
+  --ink-inverted:           #FFFFFF; /* Hero display + on-navy */
+  --ink-nav:                rgba(255, 255, 255, 0.88); /* Glass nav links */
+  --ink-badge:              #7D9BB6; /* Clinical chips */
+
+  /* Signature Accents */
+  --accent-primary:         #0B2B63; /* Navy punch CTA */
+  --accent-primary-hover:   #071D44; /* Deep-water hover */
+  --accent-secondary:       #1B3B73;
+  --accent-tertiary:        #7D9BB6;
+
+  /* Status Tokens */
+  --status-success:         #2F8F7C;
+  --status-warning:         #C4A35A;
+  --status-danger:          #C45C6A;
+  --status-info:            #4A8BC4;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Bebas Neue", "Anton", Impact, sans-serif;
+--font-sans:    "Inter", -apple-system, sans-serif;
+--font-mono:    "Space Mono", ui-monospace, monospace;
+
+/* Type Scale */
+--text-display: clamp(4.5rem, 11vw, 9rem) / 0.88 var(--font-display); /* UPPERCASE | ls -0.01em | white drop-shadow 0 2px 18px rgba(255,255,255,0.45) | Bebas default weight */
+--text-h1:      2.5rem   / 0.92  var(--font-display); /* UPPERCASE */
+--text-h2:      1.75rem  / 1.05  var(--font-display); /* Card header · UPPERCASE · 0.02em · navy */
+--text-h3:      1.25rem  / 1.20  var(--font-sans);    /* Inter 600 */
+--text-body:    1.0rem   / 1.60  var(--font-sans);    /* Muted #6C87A3 */
+--text-body-sm: 0.875rem / 1.50  var(--font-sans);
+--text-meta:    0.75rem  / 1.40  var(--font-sans);    /* Buttons 0.75rem 700 0.12em UPPERCASE · Nav 0.7rem 600 0.14em UPPERCASE */
+--text-clinical: 9px     / 1.40  var(--font-sans);    /* 600 · 0.08em · UPPERCASE · muted */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 24px;
+--radius-subtle:  12px;
+--radius-pill:    9999px;
+--radius-asymmetric: 36px 12px 28px 12px; /* At least one hero / feature plate */
+--radius-droplet: 50%;
+
+/* Elevation & Shadows */
+--shadow-base:    0 24px 48px -12px rgba(11,43,99,0.12), 0 8px 16px -4px rgba(255,255,255,0.6);
+--shadow-hover:   0 32px 56px -12px rgba(11,43,99,0.18), 0 10px 20px -4px rgba(255,255,255,0.7);
+--shadow-active:  0 8px 18px -8px rgba(11,43,99,0.22);
+--shadow-cta:     0 12px 24px -6px rgba(11,43,99,0.35);
+
+/* Glass layer */
+backdrop-filter: blur(16px) saturate(180%);
+background: rgba(255,255,255,0.2);
+box-shadow: inset 0 1px 1px rgba(255,255,255,0.6);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid rgba(255,255,255,0.55); /* Glass edge */
+--border-hairline:    1px solid rgba(255,255,255,0.45); /* Nav stroke */
+--border-card:        1px solid rgba(255,255,255,0.8);
+--divider-style:      1px solid rgba(108,135,163,0.15);
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Motion**: All interactions 0.4s cubic-bezier(0.16, 1, 0.3, 1).
+- **Buttons**: Primary is a navy pill (#0B2B63) with a white solid circle badge holding a thin navy NE arrow (stroke 1.75px, round). Hover: translateY(-2px) scale(1.02), background #071D44, shadow 0 12px 24px -6px rgba(11,43,99,0.35); badge rotates 45deg. Secondary: ice white + navy hairline. Ghost: liquid glass. Danger: restrained coral pill. Accent: ice cyan.
+- **Cards**: Solid #FFFFFF, 24px radius, floating dual shadow. Hover: translateY(-4px) + larger shadow. One feature plate uses asymmetric 36px 12px 28px 12px.
+- **Inputs**: Glass pills, 16px type (no iOS zoom), ice placeholder #7D9BB6, navy focus ring.
+- **Navigation**: Liquid glass bar rgba(255,255,255,0.22), stroke rgba(255,255,255,0.45), links rgba(255,255,255,0.88) Inter 0.7rem 600 0.14em uppercase. Hover: pure white + text-shadow 0 0 10px rgba(255,255,255,0.8).
+- **Icons**: Monoline 1.75px round caps, white on navy discs. Icon badges rotate 45deg on hover.
+- **Clinical badges**: Inter 9px 600 0.08em uppercase in mist (#7D9BB6) or navy.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- No Memphis geometry, candy stickers, toy shapes, or Playful & Pop energy.
+- No dark OLED canvases, scanlines, or cyber neon.
+- No brutalist 0-radius offsets or hard black drop shadows (4px 4px 0 #000).
+- No Inter (or any humanist sans) as the giant hero display — hero must be condensed Bebas Neue / Anton.
+- No gold-foil hospitality clichés; luxury here is air, glass, and water — not ornament.
+================================================================================
+  </script>
+
+  <script>
+    const markdownContent = document.getElementById("style-tile-markdown").textContent.trim();
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      setTimeout(() => { toast.style.display = "none"; }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(() => {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(() => { copyBtn.innerHTML = original; }, 2000);
+        }
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+
+    document.getElementById("btn-download-tile").addEventListener("click", () => {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-aero-aquatic.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-aero-aquatic.md");
+    });
+
+    document.getElementById("btn-preview-tile").addEventListener("click", () => {
+      document.getElementById("spec-modal").classList.add("active");
+    });
+
+    function closeSpecModal() {
+      document.getElementById("spec-modal").classList.remove("active");
+    }
+
+    function closeSpecModalOnOutside(e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    function toggleDrawer() {
+      const drawer = document.getElementById("spec-drawer");
+      drawer.classList.toggle("open");
+      const caret = document.getElementById("drawer-caret");
+      if (caret) caret.textContent = drawer.classList.contains("open") ? "Hide" : "Show";
+    }
+
+    const demoCopy = {
+      formula: {
+        kicker: "Formula 02 · Sky mineral",
+        title: "Held in light",
+        copy: "A still-water concentrate with coastal electrolytes and trace silica. Designed as a morning ritual — two litres, unflavoured, high-key."
+      },
+      ritual: {
+        kicker: "Ritual · AM sequence",
+        title: "Two litres, unhurried",
+        copy: "Wake. Pour. Pause. The glass catches sky. Sip to 2.4 L before dusk — no flavour, no fizz, only air and mineral quiet."
+      },
+      journal: {
+        kicker: "Journal · Assay log",
+        title: "Alto, week 12",
+        copy: "pH stable at 7.4. TDS 42. Hydration streak 18 days. The page should feel like water held in light — never playful, never dark."
+      }
+    };
+
+    function setDemoPanel(btn, key) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll("button").forEach((b) => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
+      const data = demoCopy[key];
+      if (!data) return;
+      document.getElementById("demo-kicker").textContent = data.kicker;
+      document.getElementById("demo-title").textContent = data.title;
+      document.getElementById("demo-copy").textContent = data.copy;
+    }
+
+    let sips = 0;
+    function hydrateSip() {
+      sips = Math.min(sips + 1, 8);
+      const litres = (1.2 + sips * 0.15).toFixed(1);
+      document.getElementById("sip-readout").textContent = litres + " L";
+      const fill = document.getElementById("droplet-fill");
+      if (fill) fill.style.height = Math.min(42 + sips * 6, 78) + "%";
+      triggerToast("✓ Ritual +" + litres + " L");
+    }
+  </script>
+</body>
+</html>

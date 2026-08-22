@@ -7242,6 +7242,1274 @@ high-energy creative direction presence.
 - NO generic 8px or 12px card radii (strictly maintain 28px card and 9999px pill geometry).
 - NO purple/blue synthetic cyber neon glows (maintain pure high-voltage vermilion #FF3823).
 ================================================================================`
+  },
+  {
+    id: "TILE-045",
+    slug: "lavender-minimal",
+    name: "Lavender Minimal",
+    vibe: "Airy Periwinkle SaaS • Cool Slate Analytics • 20px Cards • 9999px Pills",
+    vibeBadge: "Minimalist & Monastic",
+    categories: ["minimalist"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+          "display": "Plus Jakarta Sans",
+          "sans": "Plus Jakarta Sans",
+          "mono": "JetBrains Mono"
+    },
+    palette: [
+          {
+                "name": "Cool Canvas",
+                "hex": "#F6F7FA"
+          },
+          {
+                "name": "Pure Surface",
+                "hex": "#FFFFFF"
+          },
+          {
+                "name": "Periwinkle",
+                "hex": "#7B6EF6"
+          },
+          {
+                "name": "Lavender Tint",
+                "hex": "#ECE9FE"
+          },
+          {
+                "name": "Comparison Cyan",
+                "hex": "#00B2FF"
+          },
+          {
+                "name": "Slate Ink",
+                "hex": "#0F172A"
+          }
+    ],
+    description: "Luminous, monastic analytics language: cool off-white canvas #F6F7FA, 20px white cards, hairline #EDEFF5 strokes, and periwinkle #7B6EF6 as the only saturated brand voice. Ideal for price trackers, ops consoles, and airy SaaS dashboards.",
+    markdownSpec: `================================================================================
+  Aesthetic: Lavender Minimal • Airy Periwinkle SaaS • Cool Slate Analytics
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Lavender Minimal is a luminous, monastic analytics language for commerce
+intelligence and calm SaaS dashboards. A cool off-white canvas (#F6F7FA)
+holds 20px white cards, hairline #EDEFF5 strokes, and 9999px pills. Periwinkle
+#7B6EF6 is the only saturated brand voice — reserved for primary actions,
+active segments, and the leading chart series. Cyan #00B2FF appears only as
+comparison ink. Type is Plus Jakarta Sans in slate, never shouting. Ideal for
+price trackers, ops consoles, and product analytics that feel expensive because
+they leave room to breathe.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F6F7FA; /* Primary application canvas */
+  --bg-surface:             #FFFFFF; /* Elevated cards and containers */
+  --bg-surface-alt:         #F0F2F6; /* Secondary panels, wells, sidebars */
+  --bg-surface-dark:        #0F172A; /* Inverted containers / code drawer */
+
+  /* Inks & Typography */
+  --ink-primary:            #0F172A; /* High-contrast primary reading text */
+  --ink-secondary:          #334155; /* Subtitles, secondary copy */
+  --ink-muted:              #64748B; /* Captions, disabled text, inactive tabs */
+  --ink-inverted:           #FFFFFF; /* Inverted contrast text */
+
+  /* Signature Accents */
+  --accent-primary:         #7B6EF6; /* Primary call-to-action / active tab */
+  --accent-primary-hover:   #6B5DE6; /* Interactive hover tone */
+  --accent-secondary:       #00B2FF; /* Supporting visual highlight (compare) */
+  --accent-tertiary:        #ECE9FE; /* Accent badges or energetic highlights */
+
+  /* Neutral chrome */
+  --badge-neutral-bg:       #F1F5F9; /* Delta badge background */
+  --badge-neutral-ink:      #475569; /* Delta badge text */
+  --ink-disabled:           #94A3B8;
+  --divider:                #F1F5F9;
+  --stroke-card:            #EDEFF5;
+  --chart-grid:             #E2E8F0;
+
+  /* Status Tokens */
+  --status-success:         #10B981;
+  --status-warning:         #F59E0B;
+  --status-danger:          #EF4444;
+  --status-info:            #00B2FF;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", "SF Mono", monospace;
+
+/* Type Scale */
+--text-display: 3.5rem   / 1.05  var(--font-display); /* Letter-spacing: -0.03em | Weight: 700 — page hero uses clamp() */
+--text-h1:      2.5rem   / 1.15  var(--font-display); /* Letter-spacing: -0.02em | Weight: 700 */
+--text-h2:      1.75rem  / 1.25  var(--font-sans);    /* Letter-spacing: -0.015em | Weight: 600 */
+--text-h3:      1.25rem  / 1.35  var(--font-sans);    /* Letter-spacing: -0.01em | Weight: 600 — card titles 16–17px */
+--text-body:     1.0rem   / 1.60  var(--font-sans);    /* Prefer 13–14px / 500 / 1.4 in product UI */
+--text-body-sm:  0.875rem / 1.50  var(--font-sans);    /* Letter-spacing: 0 | Weight: 500 */
+--text-meta:     0.75rem  / 1.40  var(--font-mono);    /* Letter-spacing: 0.04em | UPPERCASE */
+
+/* Product UI extras */
+--text-metric:  26–28px / 600 / 1.15 / -0.015em; /* Tabular figures for $25,847.00 */
+--text-caption: 11–12px / 500 / 1.35 / 0.01em;
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 20px;   /* Cards */
+--radius-subtle:  14px;   /* Nested tiles */
+--radius-pill:    9999px; /* Buttons, segments, badges, search */
+--radius-bar:     8px 8px 0 0; /* Volume bar caps */
+--radius-icon:    50%;    /* Icon wells and avatars */
+
+/* Elevation & Shadows */
+--shadow-base:    0px 2px 10px rgba(15, 23, 42, 0.02), 0px 1px 2px rgba(15, 23, 42, 0.03);
+--shadow-hover:   0px 8px 24px rgba(15, 23, 42, 0.05), 0px 2px 4px rgba(15, 23, 42, 0.04);
+--shadow-active:  0px 1px 2px rgba(15, 23, 42, 0.06);
+--shadow-floating: 0px 12px 32px -4px rgba(123, 110, 246, 0.12), 0px 4px 12px rgba(15, 23, 42, 0.05);
+
+/* Chart fill */
+--gradient-chart: linear-gradient(180deg, #7B6EF6 0%, rgba(123,110,246,0.15) 100%);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid #EDEFF5;
+--border-hairline:    1px solid #F1F5F9;
+--divider-style:      1px solid #F1F5F9;
+--chart-gridline:     1px dashed #E2E8F0;
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Primary is a periwinkle pill (#7B6EF6, white text, 600). Hover deepens to #6B5DE6 and lifts 1px. Secondary is white + hairline. Ghost is transparent slate. Danger is a rose wash, never a hard red brick. Disabled uses #F1F5F9 / #94A3B8.
+- **Cards**: 20px radius, 20–24px padding, 16–20px gaps, 1px #EDEFF5 stroke, whisper shadow. Nested tiles 14px. Never unbordered floaters.
+- **Inputs**: Pill fields on #F6F7FA, placeholder #94A3B8, focus ring 3px #ECE9FE with #7B6EF6 border. Minimum 16px font on mobile.
+- **Segmented controls**: Track #F0F2F6. Active pill background #7B6EF6, white text, weight 600. Inactive transparent, text #64748B. Hover text #0F172A.
+- **Delta badges**: #F1F5F9 pill, 3px 8px padding, text #475569. Do not turn deltas into green/red candy chips.
+- **Charts**: Violet area/line for the primary series; cyan dashed or thinner line for comparison. Grid is 1px dashed #E2E8F0. Highlight is a solid violet vertical bar. Tooltip is a floating white pill with dual colored metric keys (periwinkle + cyan).
+- **Navigation**: Frosted white header, hairline bottom, violet copy action. Icon buttons are 36px circular transparent targets, 16–18px monoline glyphs (1.5–1.75px, round caps).
+- **Toggles / checks / radios**: On-state fills periwinkle. Icon boxes 50%.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- No neo-brutalist 0–2px radii, 3px borders, or hard zero-blur offset shadows.
+- No neon cyber grids, scanlines, reticles, or generic purple glow.
+- No Memphis / playful pop geometry, sticker chrome, or candy palettes.
+- No warm oat, honey caramel, or gold-foil hospitality luxury.
+- No gradient text, glassmorphism overload, or floating unbordered cards.
+- Do not introduce a second saturated brand color besides periwinkle; cyan is comparison ink only.
+- Do not pack the canvas. Air is the material. Dense industrial dashboards ruin the monastic read.
+================================================================================`
+  },
+  {
+    id: "TILE-046",
+    slug: "ethos-void",
+    name: "Ethos Void",
+    vibe: "Abyss Black • Ice-Cyan Volumetric Light • Frost Glass • Syne Display • Quiet Atmosphere",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+          "display": "Syne",
+          "sans": "Inter",
+          "mono": "JetBrains Mono"
+    },
+    palette: [
+          {
+                "name": "Abyss",
+                "hex": "#000000"
+          },
+          {
+                "name": "Pure White",
+                "hex": "#FFFFFF"
+          },
+          {
+                "name": "Ice Cyan",
+                "hex": "#3A6E8C"
+          },
+          {
+                "name": "Aurora Mid",
+                "hex": "#3A7899"
+          },
+          {
+                "name": "Falloff",
+                "hex": "#0D1821"
+          },
+          {
+                "name": "Muted Gray",
+                "hex": "#5A5A5A"
+          }
+    ],
+    description: "Cinematic dark language of abyss black, frost glass, and ice-cyan volumetric top-light. High-contrast white headlines, Syne 800 display, Inter 300 body, and screen-blended aurora — quiet luxury engineered as atmosphere.",
+    markdownSpec: `================================================================================
+  Aesthetic: Ethos Void • Luminous Monochrome • Cinematic Quiet Luxury
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Ethos Void is a cinematic dark language of abyss black, frost glass, and ice-cyan
+volumetric top-light. It is quiet luxury engineered as atmosphere: high-contrast
+white headlines, Inter at 300 for the long line, and a single falling column of
+white-to-cyan illumination screen-blended over #000000. Ideal for optical ateliers,
+private product studios, architecture houses, and cinematic brand systems that
+refuse neon, HUD chrome, and ornamental color.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #000000; /* Primary application canvas — pure abyss */
+  --bg-surface:             rgba(255, 255, 255, 0.03); /* Raised glass cards */
+  --bg-surface-alt:         rgba(255, 255, 255, 0.07); /* Elevated / hover plates */
+  --bg-surface-dark:        #0D1821; /* Falloff wells, inverted containers */
+  --bg-overlay:             rgba(0, 0, 0, 0.60); /* Modal / drawer scrim */
+
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF; /* High-contrast primary reading text */
+  --ink-secondary:          #9E9E9E; /* Subtitles, secondary copy */
+  --ink-muted:              #5A5A5A; /* Captions, disabled text, ticks */
+  --ink-inverted:           #000000; /* Ink on white pills */
+
+  /* Atmosphere (volumetric, not fills) */
+  --ambient-top:            #FFFFFF; /* Aurora white core */
+  --ambient-core:           #3A6E8C; /* Ice-cyan volume */
+  --ambient-falloff:        #0D1821; /* Cyan-black decay */
+  --aurora-mid:             #3A7899; /* Hero aurora 45% stop */
+
+  /* Signature Accents */
+  --accent-primary:         #FFFFFF; /* Primary CTA fill / disc */
+  --accent-primary-hover:   #E8E8E8; /* Interactive hover tone */
+  --accent-secondary:       #3A6E8C; /* Ice-cyan supporting highlight */
+  --accent-tertiary:        #3A7899; /* Aurora / badge energy */
+
+  /* Interactive Pills */
+  --pill-fill:              rgba(255, 255, 255, 0.08);
+  --pill-stroke:            rgba(255, 255, 255, 0.20);
+  --pill-hover-fill:        rgba(255, 255, 255, 0.15);
+  --pill-hover-stroke:      rgba(255, 255, 255, 0.40);
+
+  /* Status Tokens — restrained, never SaaS berry */
+  --status-success:         #6B8F7A;
+  --status-warning:         #A3926A;
+  --status-danger:          #8C4A4A;
+  --status-info:            #3A6E8C;
+}
+
+/* Hero aurora (atmosphere only — mix-blend-mode: screen) */
+--hero-aurora: radial-gradient(ellipse 80% 50% at 50% -10%, #FFFFFF 0%, #3A7899 45%, #000000 100%);
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Syne", sans-serif;
+--font-sans:    "Inter", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", monospace;
+
+/* Type Scale */
+--text-display: clamp(64px, 12vw, 140px) / 0.9  var(--font-display); /* Tracking: -0.04em | Weight: 800 */
+--text-h1:      clamp(32px, 5vw, 48px) / 1.1  var(--font-sans);      /* Tracking: -0.03em | Weight: 400 */
+--text-h2:      1.75rem  / 1.25  var(--font-sans);                   /* Letter-spacing: -0.03em | Weight: 400 */
+--text-h3:      20px     / 1.25  var(--font-sans);                   /* Card title | Weight: 500 */
+--text-body:    14px     / 1.60  var(--font-sans);                   /* Weight: 300 */
+--text-body-sm: 0.875rem / 1.50  var(--font-sans);                   /* Weight: 300 */
+--text-meta:    10px     / 1.40  var(--font-mono);                   /* UPPERCASE | Tracking: 0.18em | [ PRODUCTS ] [ COMPANY ] */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-subtle:   0px;    /* Sharp technical edges, ticks */
+--radius-default:  12px;   /* Inner cards, feature plates */
+--radius-card-lg:  20px;   /* Outer glass shells, demo frame */
+--radius-pill:     9999px; /* CTAs, search, nav, discs */
+
+/* Elevation & Shadows */
+--glass-blur:     blur(24px);
+--glass-inset:    inset 0 1px 1px rgba(255,255,255,0.35), inset 0 -1px 1px rgba(0,0,0,0.40);
+--shadow-base:    0 10px 30px -5px rgba(0,0,0,0.8), 0 0 15px rgba(255,255,255,0.05);
+--shadow-hover:   0 16px 40px -8px rgba(0,0,0,0.88), 0 0 24px rgba(255,255,255,0.07);
+--shadow-active:  0 6px 18px -4px rgba(0,0,0,0.70);
+
+/* Motion */
+--ease-void: cubic-bezier(0.16, 1, 0.3, 1);
+--duration:  250ms;
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-hairline:  1px solid rgba(255, 255, 255, 0.08);
+--border-glass:     1px solid rgba(255, 255, 255, 0.14);
+--border-hover:     1px solid rgba(255, 255, 255, 0.22);
+--border-active:    1px solid rgba(255, 255, 255, 0.28);
+--divider-style:    1px solid rgba(255, 255, 255, 0.08);
+
+/* Technical corner crosses: 12×12px 1px ticks centered on outer bounding corners. */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Primary = solid white pill, black ink, inverse disc. Ghost = pill fill 0.08 / stroke 0.20, white circular disc with black arrow. Hover: fill 0.15, stroke 0.40, icon translateX(3px), 250ms cubic-bezier(0.16, 1, 0.3, 1). Danger = muted wine #8C4A4A, never berry pink. Accent = ice-cyan wash, not a fill block.
+- **Cards**: Raised glass 0.03, radius 12 (inner) / 20 (outer), hairline 0.08, inset rim light, backdrop-filter blur(24px). Hover: fill 0.05, border 0.22. Outer frames may carry fine 1px corner crosses.
+- **Inputs**: Sit on #000000. Pill geometry. Placeholder #5A5A5A. Focus border 0.28. Font-size ≥ 16px on touch. Trailing white disc / black arrow submits.
+- **Navigation**: Frosted pill bar, mono-bracket links [ PRODUCTS ] [ COMPANY ] at 10px / 0.18em. Active link is a whisper of white fill, never a colored underline.
+- **Icons**: Line geometric 1.25px, 14–16px. Circular white disc with black arrow is the canonical affordance. Meta uses mono brackets [ + ] [ 01 ].
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO generic purple / indigo / violet neon (this is monochrome + ice-cyan volume only).
+- NO scanlines, reticles, HUD crosshairs, terminal green, or cyber CAD grids.
+- NO chunky brutalist offset shadows (4px 4px 0 #000) or 0–2px stamp chrome.
+- NO bright SaaS berry pink, candy gradients, or unbordered floating gray cards.
+- NO gradient text, glassmorphism without a rim, or colored button fills besides white / muted status.
+================================================================================`
+  },
+  {
+    id: "TILE-047",
+    slug: "warm-organic-bento",
+    name: "Warm Organic Bento",
+    vibe: "Warm Oat Canvas • Sunburst Orange • 24px Bento • Dot-Matrix Charts • Pastel Chips",
+    vibeBadge: "Minimalist & Monastic",
+    categories: ["minimalist"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+          "display": "Plus Jakarta Sans",
+          "sans": "Plus Jakarta Sans",
+          "mono": "JetBrains Mono"
+    },
+    palette: [
+          {
+                "name": "Oat Canvas",
+                "hex": "#F7F5EE"
+          },
+          {
+                "name": "White Card",
+                "hex": "#FFFFFF"
+          },
+          {
+                "name": "Sunburst Orange",
+                "hex": "#F38D3C"
+          },
+          {
+                "name": "Apricot Tint",
+                "hex": "#FDF1E6"
+          },
+          {
+                "name": "Near Black",
+                "hex": "#18181B"
+          },
+          {
+                "name": "Emerald",
+                "hex": "#10B981"
+          }
+    ],
+    description: "Warm, tactile SaaS bento on oat canvas #F7F5EE with 24px modules, sunburst orange #F38D3C, pastel categorical chips, and a signature vertical 4px dot-matrix chart. Selected nav is a solid near-black pill — never orange.",
+    markdownSpec: `================================================================================
+  Aesthetic: Warm Organic Bento • Tactile Soft SaaS • Oat Canvas & Sunburst Orange
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Warm Organic Bento is a tactile, pastel-infused, high-clarity SaaS language.
+It sits on a warm oat canvas (#F7F5EE) with 24px white bento modules, a single
+sunburst-orange CTA (#F38D3C), and ultra-soft categorical chips. Data is plotted
+as vertical 4px dot-matrix columns — never crude solid bars. Ideal for hospitality
+ops, residency networks, craft commerce, wellness studios, and calm people-tools
+that must feel handmade without losing product precision.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F7F5EE; /* Primary application canvas — warm oat */
+  --bg-surface:             #FFFFFF; /* Elevated 24px bento cards */
+  --bg-surface-alt:         #FAF9F5; /* Nested wells, sidebar, input fills */
+  --bg-surface-dark:        #18181B; /* Inverted containers & selected nav */
+
+  /* Inks & Typography */
+  --ink-primary:            #18181B; /* High-contrast headlines & selected pills */
+  --ink-secondary:          #3F3F46; /* Body copy */
+  --ink-muted:              #71717A; /* Captions, table headers, unused nav */
+  --ink-inverted:           #FFFFFF; /* Text on black / orange */
+
+  /* Signature Accents */
+  --accent-primary:         #F38D3C; /* Sunburst CTA, New action, matrix ink */
+  --accent-primary-hover:   #E07B2B; /* Hover / pressed orange */
+  --accent-secondary:       #FDF1E6; /* Peach tint — secondary button fill */
+  --accent-tertiary:        #F97316; /* Supporting orange chip */
+
+  /* Status Tokens */
+  --status-success:         #10B981; /* Emerald — pair with #D1FAE5 / #065F46 */
+  --status-warning:         #F59E0B; /* Amber — pair with #FEF3C7 / #92400E */
+  --status-danger:          #C2410C; /* Terracotta — pair with #FFEDD5 / #9A3412 */
+  --status-info:            #3B82F6; /* Blue — pair with #DBEAFE / #1E40AF */
+}
+
+/* Categorical pastel chips (bg / ink) */
+--data-amber:    #F59E0B / #FEF3C7 / #92400E;
+--data-blue:     #3B82F6 / #DBEAFE / #1E40AF;
+--data-orange:   #F97316 / #FFEDD5 / #9A3412;
+--data-purple:   #A855F7 / #F3E8FF / #6B21A8;
+--data-emerald:  #10B981 / #D1FAE5 / #065F46;
+
+--ink-secondary-btn: #4A2800; /* Secondary button label on peach tint */
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+--font-sans:    "Inter", "Plus Jakarta Sans", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+/* Type Scale */
+--text-display: 1.5rem    / 1.333 var(--font-display); /* 24/32 | Weight: 700 | Tracking: -0.02em */
+--text-h1:      1.75rem   / 1.214 var(--font-display); /* 28/34 | Weight: 700 | Tracking: -0.03em — metrics */
+--text-h2:      1.125rem  / 1.444 var(--font-display); /* 18/26 | Weight: 600 | Tracking: -0.01em — card heading */
+--text-h3:      0.875rem  / 1.40  var(--font-display); /* 14/20 | Weight: 600 */
+--text-body:    0.8125rem / 1.538 var(--font-sans);    /* 13/20 | Weight: 500 */
+--text-body-sm: 0.6875rem / 1.455 var(--font-sans);    /* 11/16 | Weight: 400 | muted captions */
+--text-meta:    0.6875rem / 1.455 var(--font-mono);    /* 11/600 | UPPERCASE | Letter-spacing: 0.06em — table headers */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 24px;   /* Outer bento containers */
+--radius-subtle:  18px;   /* Nested wells, inputs, inner modules */
+--radius-pill:    9999px; /* Nav pills, CTAs, avatars, badges */
+
+/* Elevation & Shadows */
+--shadow-base:    0 1px 3px rgba(0,0,0,0.02), 0 8px 24px -4px rgba(28,25,23,0.04); /* Cards */
+--shadow-hover:   0 2px 6px rgba(0,0,0,0.03), 0 14px 32px -6px rgba(28,25,23,0.08);
+--shadow-active:  0 2px 6px -1px rgba(0,0,0,0.05); /* Pills */
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid #E7E5DE; /* Ghost nav / default pill outline */
+--border-hairline:    1px solid #F0EFEA; /* Card edges */
+--divider-style:      1px solid #F5F4EE; /* Table row dividers */
+--border-pill-alt:    1px solid #ECEAE2; /* Secondary / progress track */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Primary is solid #F38D3C (hover #E07B2B) with a soft orange glow. Secondary is #FDF1E6 fill with #4A2800 text. Ghost is transparent + 1px #E7E5DE. Danger is terracotta wash, never berry pink. All pills 9999px.
+- **Navigation**: Selected item is a solid #18181B pill with white text. Default is ghost + 1px #E7E5DE. Orange is not used for selection.
+- **Cards**: White #FFFFFF on oat, 24px radius, dual whisper shadow. Nested wells #FAF9F5 at 18px. No hard offset shadows.
+- **Inputs**: 18px radius, #FAF9F5 fill, #E7E5DE border. Focus ring is 3px sunburst at 16% alpha. Mobile font-size ≥ 16px.
+- **Badges**: Ultra-soft pastel background + deep hue text (e.g. #D1FAE5 / #065F46). 6px status dots.
+- **Tables**: Header 11/600 uppercase 0.06em muted. Divider 1px #F5F4EE. Row hover #FDFCF9 at 150ms. Generous cell padding — never cramped.
+- **Progress**: Segmented flat pill. Solid #F38D3C fill + 45° hatched/muted remainder (#EEEDE6).
+- **Data viz (signature)**: Vertical Dot-Matrix Bar Chart. 4px circles, 3px gap, opacity ramps from 30% at the bottom to 100% at the peak. Do not substitute standard bars.
+- **Icons**: Linear 1.5px stroke, rounded caps, 16–18px.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- No hard 0px brutalist shadows or 2–3px offset black stamps.
+- No berry-pink SaaS clone (#DE2454) and no cyan neon HUD.
+- No caramel #CC7827 and no 28px sibling radii — this tile is #F38D3C / 24px.
+- No standard solid bar charts; the matrix of 4px circular dots is mandatory.
+- No cramped tables, gradient text, generic purple glow, or floating unbordered cards.
+- Do not use orange for selected navigation — selected is always solid #18181B.
+================================================================================`
+  },
+  {
+    id: "TILE-048",
+    slug: "cobalt-concrete",
+    name: "Cobalt & Concrete",
+    vibe: "Industrial Concrete • Electric Cobalt • 0px Modular Tiles • Optical Flatness • Swiss Grotesk",
+    vibeBadge: "Neo-Brutalism",
+    categories: ["brutalist"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+          "display": "Inter",
+          "sans": "Inter",
+          "mono": "JetBrains Mono"
+    },
+    palette: [
+          {
+                "name": "Concrete",
+                "hex": "#D8D8D8"
+          },
+          {
+                "name": "Mid Gray Tile",
+                "hex": "#C2C2C2"
+          },
+          {
+                "name": "Electric Cobalt",
+                "hex": "#0022FF"
+          },
+          {
+                "name": "Midnight Ink",
+                "hex": "#030519"
+          },
+          {
+                "name": "Carbon",
+                "hex": "#0A0A0A"
+          },
+          {
+                "name": "White",
+                "hex": "#FFFFFF"
+          }
+    ],
+    description: "Digital Editorial Modernism: industrial concrete #D8D8D8 field, electric cobalt #0022FF current, 0px flush tiles, 24px dot matrix, and zero drop shadows. Hard geometry and optical flatness — voltage, not atmosphere.",
+    markdownSpec: `================================================================================
+  Aesthetic: Cobalt & Concrete • Digital Editorial Modernism • Industrial Slab / Electric Current
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Cobalt & Concrete is Digital Editorial Modernism built as hard geometry: an industrial
+concrete canvas (#D8D8D8), mid-gray modular tiles (#C2C2C2), and a single electric
+cobalt current (#0022FF). Depth is optical — overlapping midnight (#030519) and cobalt
+(#0033FF) planes — never drop shadows. Inter stands in for Neue Haas Grotesk with
+tight negative tracking and structural periods on stacked headlines. Ideal for
+architecture studios, cultural infrastructure, editorial platforms, and any product
+that should feel like a Swiss-modular slab charged with voltage.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #D8D8D8; /* Industrial concrete — primary application canvas */
+  --bg-surface:             #C2C2C2; /* Mid-gray stone tiles, secondary CTAs, inset planes */
+  --bg-surface-alt:         #CECECE; /* Secondary panels, wells */
+  --bg-surface-dark:        #030519; /* Midnight ink inverted containers / duotone shadow */
+  --bg-glass:               rgba(216, 216, 216, 0.75); /* Frosted nav bar only */
+
+  /* Inks & Typography */
+  --ink-primary:            #0A0A0A; /* Carbon — high-contrast reading text */
+  --ink-secondary:          #444444; /* Subtitles, secondary copy */
+  --ink-muted:              rgba(10, 10, 10, 0.48); /* Captions, disabled */
+  --ink-inverted:           #FFFFFF; /* Text on cobalt / midnight */
+  --ink-link:               #0022FF; /* Links = primary cobalt */
+
+  /* Signature Accents */
+  --accent-primary:         #0022FF; /* Electric cobalt — CTA, nav snap, punctuation */
+  --accent-primary-hover:   #0A0A0A; /* Primary CTA hover inverts to carbon */
+  --accent-secondary:       #0033FF; /* Duotone highlight plane */
+  --accent-tertiary:        #C2C2C2; /* Stone supporting tile */
+  --accent-active:          #001ACC; /* Stone tile :active after cobalt hover */
+
+  /* Status Tokens */
+  --status-success:         #1A7A4C;
+  --status-warning:         #C47A00;
+  --status-danger:          #C8102E;
+  --status-info:            #0033FF;
+
+  /* Field marks */
+  --dot-matrix:             rgba(10, 10, 10, 0.22); /* 1.5px dots / 24px module */
+  --hairline:               rgba(10, 10, 10, 0.15);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Inter", "Neue Haas Grotesk", "Helvetica Neue", sans-serif;
+--font-sans:    "Inter", "Helvetica Neue", sans-serif;
+--font-metric:  "Archivo", "Inter", sans-serif;
+--font-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+/* Type Scale */
+--text-display: 3.5–6.25rem / 1.05  var(--font-display); /* Weight 700 | Tracking -0.04em | clamp(3.5rem, 6vw, 6.25rem) */
+--text-h1:      2.5rem   / 1.15  var(--font-display); /* Weight 700 | Tracking -0.03em */
+--text-h2:      1.75rem  / 1.25  var(--font-sans);    /* Weight 600 | Tracking -0.025em */
+--text-h3:      1.25rem  / 1.35  var(--font-sans);    /* Weight 600 */
+--text-metric:  3.0rem   / 1.00  var(--font-metric);  /* Weight 700 | Tracking -0.03em */
+--text-body:    18px     / 1.45  var(--font-sans);    /* Weight 400 | Tracking -0.01em */
+--text-body-sm: 0.875rem / 1.50  var(--font-sans);
+--text-sub:     13px     / 1.40  var(--font-sans);    /* Weight 400 */
+--text-nav:     13px     / 1.20  var(--font-sans);    /* Weight 500 */
+--text-cta:     14px     / 1.20  var(--font-sans);    /* Weight 500 */
+--text-meta:    0.75rem  / 1.40  var(--font-mono);    /* UPPERCASE | 0.08–0.12em */
+
+/* Structural periods on multi-line stacked headlines. Tight negative kerning throughout. */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 0px;   /* Layout tiles, cards, buttons, badges, inputs */
+--radius-subtle:  0px;
+--radius-pill:    0px;   /* Forbidden as a system default */
+--radius-nav-float: 3px; /* ONLY isolated floating mini-nav pills (2–4px) */
+
+/* Elevation & Shadows */
+--shadow-base:    none;
+--shadow-hover:   none;
+--shadow-active:  none;
+/* Depth via duotone contrast and overlapping planes. Nav: backdrop-filter blur(12px). */
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid rgba(10, 10, 10, 0.12);
+--border-hairline:    1px solid rgba(10, 10, 10, 0.15);
+--border-accent:      1px solid #0022FF;
+--divider-style:      1px solid rgba(10, 10, 10, 0.08);
+Background: radial 1.5px dots at 24px intervals, color rgba(10,10,10,0.22).
+Page margin: clamp(24px, 4.5vw, 64px). Spacing on an 8px scale.
+Left column ~40–45% text; right column monumental visual.
+Modular action strip: 64px height, 50/50 contiguous tiles.
+Metric strip: 48px height.
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Buttons / CTA tiles**: 0px. Primary: bg #0022FF, white text; hover bg #0A0A0A; arrow translateX(4px). Secondary stone: bg #C2C2C2; hover bg #0022FF white; active #001ACC. Ghost: 1px carbon outline, hover fills cobalt. Icons: monoline 1.25px, sharp 90°/45° terminals, → and ↗ right-aligned.
+- **Cards / tiles**: Flush modular slabs. No gap (or hairline divider only). Background #C2C2C2 or transparent over dotted canvas. Zero shadow.
+- **Inputs**: 0 radius, 16px type (iOS), hairline border, focus 1px solid #0022FF. Checkboxes and radios are squares. Toggles are rectangles.
+- **Navigation**: Frosted bar rgba(216,216,216,0.75) + backdrop-filter blur(12px). Isolated floating mini-nav may use 2–4px radius. Hover snaps immediately to #0022FF.
+- **Motion**: cubic-bezier(0.16, 1, 0.3, 1), 180–220ms. Paint the plane; never lift it.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- NO drop shadows of any kind — not soft, not hard-offset 4px 4px 0. Optical flatness only.
+- NO 16–32px bento radii, pills as the default, or glassmorphism except the frosted nav bar.
+- NO serif display as the hero voice. Inter / grotesk only.
+- NO purple neon gradients, generic SaaS indigo, or candy palettes.
+- NO floating unbordered cards. Tiles abut. Hairlines describe joints.
+================================================================================`
+  },
+  {
+    id: "TILE-049",
+    slug: "warm-earth-wellness",
+    name: "Warm Earth Wellness",
+    vibe: "Sandstone Canvas • Ceramic White • Espresso Ink • Pill CTAs • Botanical Seals",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+          "display": "Syne",
+          "sans": "Plus Jakarta Sans",
+          "mono": "JetBrains Mono"
+    },
+    palette: [
+          {
+                "name": "Sandstone",
+                "hex": "#C5A58E"
+          },
+          {
+                "name": "Ceramic White",
+                "hex": "#FFFFFF"
+          },
+          {
+                "name": "Oat Milk",
+                "hex": "#F5EEE8"
+          },
+          {
+                "name": "Espresso",
+                "hex": "#32231D"
+          },
+          {
+                "name": "Walnut",
+                "hex": "#614D43"
+          },
+          {
+                "name": "Soft Clay",
+                "hex": "#8C776C"
+          }
+    ],
+    description: "Hospitality wellness language on warm sandstone #C5A58E with ceramic-white surfaces, espresso #32231D type, and white pill CTAs that invert on hover. Botanical circular seals, uppercase Syne, and expansive editorial air.",
+    markdownSpec: `================================================================================
+  Aesthetic: Warm Earth Wellness • Quiet Luxury Hospitality • Sandstone, Ceramic & Espresso
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Warm Earth Wellness is a composed hospitality design language: warm sandstone
+canvas, ceramic-white navigation and cards, and espresso ink. White pill CTAs
+carry a 1.5px espresso stroke and invert to espresso fill on hover. Botanical
+circular seals and editorial negative space give modern spa, residence, and
+wellness-maison products a fashion-house calm — expensive, ritual-led, never
+rustic and never confectionery.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #C5A58E; /* Primary sandstone application canvas */
+  --bg-surface:             #FFFFFF; /* Ceramic white — nav, cards, CTA fill */
+  --bg-surface-alt:         #F5EEE8; /* Warm oat wells, sidebars, subtle panels */
+  --bg-surface-dark:        #32231D; /* Espresso inverted containers */
+
+  /* Inks & Typography */
+  --ink-primary:            #32231D; /* High-contrast espresso reading text */
+  --ink-secondary:          #614D43; /* Subtitles, hospitality body */
+  --ink-muted:              #8C776C; /* Captions, disabled text, quiet labels */
+  --ink-inverted:           #FFFFFF; /* Inverse contrast on espresso fills */
+
+  /* Signature Accents */
+  --accent-primary:         #FFFFFF; /* Primary CTA fill at rest */
+  --accent-primary-hover:   #32231D; /* Interactive invert / hover fill */
+  --accent-secondary:       #F5EEE8; /* Supporting oat highlight */
+  --accent-tertiary:        #5A7A5E; /* Botanical sage, used sparingly */
+
+  /* Status Tokens */
+  --status-success:         #5A7A5E; /* Botanical sage */
+  --status-warning:         #A87848; /* Warm clay */
+  --status-danger:          #8F4A3E; /* Terracotta */
+  --status-info:            #6A7A78; /* Stone sage */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Syne", "Plus Jakarta Sans", sans-serif; /* Cabinet Grotesk / Clash Display stand-in */
+--font-sans:    "Plus Jakarta Sans", -apple-system, sans-serif;
+--font-mono:    "Plus Jakarta Sans", ui-monospace, monospace;
+
+/* Type Scale */
+--text-display: 3.5rem   / 0.95  var(--font-display); /* Letter-spacing: -0.02em | Weight: 700 | UPPERCASE | Hero clamp ~4.5rem */
+--text-h1:      2.5rem   / 1.15  var(--font-display); /* Letter-spacing: -0.02em | Weight: 700 | UPPERCASE */
+--text-h2:      2.25rem  / 1.1   var(--font-display); /* Letter-spacing: -0.01em | Weight: 700 | UPPERCASE */
+--text-h3:      1.25rem  / 1.35  var(--font-sans);    /* Letter-spacing: -0.01em | Weight: 700 */
+--text-body:     0.9375rem / 1.55 var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
+--text-body-sm:  0.875rem / 1.50  var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
+--text-meta:     0.75rem  / 1.40  var(--font-sans);    /* Letter-spacing: 0.18em | Weight: 600 | UPPERCASE */
+/* Nav: 600 0.75rem uppercase 0.12em · Buttons: 700 0.75rem uppercase 0.15em */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 0px;     /* Structural sections stay square */
+--radius-subtle:  4px;     /* Images, cards, input wells */
+--radius-pill:    9999px;  /* Buttons, badges, floating nav cluster */
+
+/* Elevation & Shadows */
+--shadow-base:    0 18px 40px -10px rgba(50, 35, 29, 0.18); /* Floating ceramic nav / cards */
+--shadow-hover:   0 6px 16px -2px rgba(50, 35, 29, 0.12);   /* Hover lift */
+--shadow-active:  0 2px 8px -2px rgba(50, 35, 29, 0.10);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1.5px solid #32231D;                 /* Interactive espresso stroke */
+--border-hairline:    1px solid rgba(50, 35, 29, 0.10);    /* Quiet structure */
+--divider-style:      1px solid rgba(50, 35, 29, 0.10);
+--border-badge:       1px solid rgba(255, 255, 255, 0.40); /* Overlay badges on sandstone */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Pill 9999px. Default ceramic white fill, espresso text, 1.5px espresso border. Hover: espresso fill, white text, translateY(-1px). Active: translateY(0) scale(0.98). Transition all 200ms cubic-bezier(0.16, 1, 0.3, 1). Outlined CTAs share the stroke on a transparent/sandstone ground and invert the same way. Ghost links only change opacity and tracking. Danger uses terracotta stroke/fill. Accent is the espresso-filled invert, used as a committed state.
+- **Cards**: Ceramic white or oat #F5EEE8, 4px radius, hairline border, optional floating shadow. Structural bands and section shells remain 0px radius.
+- **Inputs**: 4px wells on oat, 16px type to prevent iOS zoom, espresso 1.5px focus stroke. Placeholders in muted #8C776C.
+- **Navigation**: Ceramic-white floating cluster (pill) over sandstone. Links 600 / 0.75rem / uppercase / 0.12em. Hover: opacity 0.65 and letter-spacing 0.14em. Optional espresso-stroke Reserve pill on the right.
+- **Seals & icons**: Monoline organic geometry, 1.25–1.5px stroke, circular botanical stamps. No drop-shadowed brutalist chops.
+- **Badges**: Pills with espresso stroke, oat fill, espresso fill, or white 40% overlay stroke on sandstone.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- No rustic wabi-sabi clutter, frayed craft textures, or irregular handmade stamps — this is polished wellness luxury.
+- No neon, cyan HUD, or generic purple gradients.
+- No 20–32px bento SaaS dashboards, chunky soft shadows, or product-analytics chrome.
+- No chocolate, cacao, caramel-gold, or foil confectionery palettes (that is a different house).
+- No hard zero-blur brutalist offset shadows on seals or cards.
+- No hover-only actions; every control must work on touch.
+================================================================================`
+  },
+  {
+    id: "TILE-050",
+    slug: "obsidian-kinetic",
+    name: "Obsidian Kinetic",
+    vibe: "Deep Void • Gloss White Pills • Neon Mint Status • 24px Modules • Tactile Dark Luxury",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+          "display": "Inter",
+          "sans": "Inter",
+          "mono": "JetBrains Mono"
+    },
+    palette: [
+          {
+                "name": "Void",
+                "hex": "#060709"
+          },
+          {
+                "name": "Panel",
+                "hex": "#0E1013"
+          },
+          {
+                "name": "Elevated",
+                "hex": "#14171C"
+          },
+          {
+                "name": "Neon Mint",
+                "hex": "#00E599"
+          },
+          {
+                "name": "Cyan Glow",
+                "hex": "#00F2FE"
+          },
+          {
+                "name": "Gloss White",
+                "hex": "#FFFFFF"
+          }
+    ],
+    description: "Tactile dark luxury dashboard: void #060709, 16–24px modules, gloss white active pills with specular glow, and mint/cyan as status — never HUD chrome. Recessed segmented tracks, inset edge light, expensive motion.",
+    markdownSpec: `================================================================================
+  Aesthetic: Obsidian Kinetic • Tactile Dark Luxury • Quiet Kinetic Dashboard
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Obsidian Kinetic is a tactile dark-luxury dashboard language: void canvas, ceramic
+24px modules, and gloss-white active pills that read like machined enamel. Mint and
+cyan report the book — they never become HUD chrome. Ideal for private capital desks,
+family-office analytics, and premium portfolio products that should feel expensive,
+composed, and kinetic in the snap of a thumb.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #060709; /* Primary application canvas */
+  --bg-surface:             #0E1013; /* Elevated cards and containers */
+  --bg-surface-alt:         #14171C; /* Secondary panels, wells, sidebars */
+  --bg-surface-dark:        #0A0B0E; /* Recessed tracks and input wells */
+  --bg-contrast:            #FFFFFF; /* Inverse high-impact cards */
+
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF; /* High-contrast primary reading text */
+  --ink-secondary:          #8F96A3; /* Subtitles, secondary copy */
+  --ink-muted:              #525866; /* Captions, disabled text, labels */
+  --ink-inverted:           #000000; /* Ink on gloss pills and inverse cards */
+
+  /* Signature Accents */
+  --accent-primary:         #00E599; /* Neon mint — positive deltas, success */
+  --accent-primary-hover:   #33EBB0; /* Interactive hover tone */
+  --accent-secondary:       #00F2FE; /* Cyan — live indicators, not chrome */
+  --accent-tertiary:        #FFFFFF; /* Gloss ceramic active chrome */
+  --accent-mint-surface:    rgba(0, 229, 153, 0.12);
+  --accent-destruct-surface:rgba(255, 77, 77, 0.12);
+
+  /* Status Tokens */
+  --status-success:         #00E599;
+  --status-warning:         #FFB800;
+  --status-danger:          #FF4D4D;
+  --status-info:            #00F2FE;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+--font-sans:    "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+--font-mono:    "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+
+/* Type Scale */
+--text-display: 32px   / 1.1  var(--font-display); /* Letter-spacing: -0.03em | Weight: 700 */
+--text-h1:      32px   / 1.1  var(--font-display); /* Letter-spacing: -0.03em | Weight: 700 */
+--text-h2:      22px   / 1.2  var(--font-display); /* Letter-spacing: -0.02em | Weight: 600 */
+--text-h3:      16px   / 1.3  var(--font-sans);    /* Letter-spacing: -0.01em | Weight: 600 */
+--text-body:    13px   / 1.4  var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
+--text-body-sm: 13px   / 1.4  var(--font-sans);    /* Letter-spacing: 0 | Weight: 500 */
+--text-meta:    11px   / 1.0  var(--font-mono);    /* Letter-spacing: +0.06em | UPPERCASE | Weight: 600 */
+--text-caption: 11px   / 1.3  var(--font-sans);    /* Letter-spacing: +0.01em | Weight: 400 */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-xs:      6px;
+--radius-sm:      10px;
+--radius-md:      16px;
+--radius-default: 16px;
+--radius-lg:      24px;
+--radius-subtle:  10px;
+--radius-pill:    9999px;
+
+/* Elevation & Shadows */
+--shadow-base:    0 12px 32px -4px rgba(0, 0, 0, 0.75);
+--shadow-hover:   0 20px 48px -8px rgba(0, 0, 0, 0.90);
+--shadow-active:  0 4px 20px rgba(255, 255, 255, 0.35), 0 0 8px rgba(255, 255, 255, 0.20);
+--glow-pill:      0 4px 20px rgba(255, 255, 255, 0.35), 0 0 8px rgba(255, 255, 255, 0.20);
+--glow-mint:      0 4px 16px rgba(0, 229, 153, 0.28), 0 0 8px rgba(0, 229, 153, 0.16);
+--glow-cyan:      0 4px 16px rgba(0, 242, 254, 0.22), 0 0 8px rgba(0, 242, 254, 0.12);
+--highlight-edge-top: inset 0 1px 1px rgba(255, 255, 255, 0.12);
+--gloss-pill:     linear-gradient(180deg, #FFFFFF 0%, #D8DCE2 100%);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid rgba(255, 255, 255, 0.12);
+--border-hairline:    1px solid rgba(255, 255, 255, 0.05);
+--border-focus:       1px solid rgba(255, 255, 255, 0.30);
+--border-inverse:     1px solid rgba(0, 0, 0, 0.08);
+--divider-style:      1px solid rgba(255, 255, 255, 0.05);
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Primary is a gloss pill (linear-gradient 180deg #FFFFFF → #D8DCE2) with white glow; text/icon #000. Ghost uses 12% white border. Danger uses #FF4D4D on rgba(255,77,77,0.12). Mint accent is status CTA, not chrome. Hover 150ms; press scale 0.98.
+- **Cards**: 24px radius, 5% white hairline, inset highlight-edge-top, shadow 0 12px 32px -4px rgba(0,0,0,0.75). Hover: border 12%, surface +2%. Never unbordered gray slabs.
+- **Inputs**: Recessed #0A0B0E wells, inner shadow, 10px radius. Focus border 30% white. Placeholder #525866. Mobile font-size ≥ 16px.
+- **Navigation**: Recessed track with inner shadow. Active item snaps to gloss gradient + glow; icon and label turn #000. Inactive remains ink-secondary.
+- **Segmented toggle**: Recessed track, gloss thumb that snaps 250ms cubic-bezier(0.16,1,0.3,1).
+- **Charts**: White-dot / matrix only. Muted dots at 25% opacity; peaks at 100% white. Cyan reserved for a single live marker. No scanlines, reticles, or CAD grids.
+- **Inverse card**: Solid #FFFFFF plate, #000 ink, 8% black hairline — the one high-impact light object in the void.
+- **Motion**: 150ms / 250ms cubic-bezier(0.16, 1, 0.3, 1). Icons: lucide-like monoline 1.5–1.75px, 14/18px.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- No purple neon, generic violet-on-dark dashboards, or lime gamer RGB.
+- No scanlines, reticles, CAD dimension grids, or HUD chrome — mint/cyan are status only.
+- No 0px brutalist corners, hard offset shadows, or stamp/sticker chrome.
+- No unbordered gray cards floating in the void.
+- No Inter display with huge letter-spacing uppercase fashion; keep compact dashboard type (32px / −0.03em).
+- No gradient text, glass rainbows, or cyber terminal motifs.
+================================================================================`
+  },
+  {
+    id: "TILE-051",
+    slug: "luxe-editorial",
+    name: "Luxe Editorial",
+    vibe: "Paper White • Bodoni Display • High-Contrast Monochrome • Frosted Glass Overlays • Fashion Folio",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+          "display": "Bodoni Moda",
+          "sans": "Inter",
+          "mono": "JetBrains Mono"
+    },
+    palette: [
+          {
+                "name": "Paper White",
+                "hex": "#FFFFFF"
+          },
+          {
+                "name": "Editorial Black",
+                "hex": "#0A0A0A"
+          },
+          {
+                "name": "Muted Grey",
+                "hex": "#6E6E73"
+          },
+          {
+                "name": "Hairline",
+                "hex": "#E5E5E5"
+          },
+          {
+                "name": "Pill Outline",
+                "hex": "#C7C7C7"
+          },
+          {
+                "name": "Inverse",
+                "hex": "#FFFFFF"
+          }
+    ],
+    description: "High-contrast monochrome fashion editorial: stark white canvas, Bodoni Moda as the hero voice, giant watermark type, 4px glass overlays, and black/white pill inversion. Magazine energy — not a SaaS dashboard.",
+    markdownSpec: `================================================================================
+  Aesthetic: Luxe Editorial • High-Contrast Monochrome Fashion Magazine • Paper, Ink, Frost
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Luxe Editorial is a fashion-magazine system: paper-white canvas, giant Bodoni
+watermark type, and frosted glass captions over chiaroscuro photography. Ink is
+absolute (#0A0A0A); secondary copy recedes to cool gray (#6E6E73). Built for
+lookbooks, house journals, archival fashion sites, and high-contrast folios that
+must feel printed — never like a colorful product dashboard.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FFFFFF; /* Primary application canvas — bleached stock */
+  --bg-surface:             #FFFFFF; /* Elevated cards and containers */
+  --bg-surface-alt:         #F7F7F7; /* Secondary panels, wells, sidebars */
+  --bg-surface-dark:        #0A0A0A; /* Inverted containers, photography fields */
+
+  /* Inks & Typography */
+  --ink-primary:            #0A0A0A; /* High-contrast primary reading text */
+  --ink-secondary:          #6E6E73; /* Subtitles, secondary copy */
+  --ink-muted:              #C7C7C7; /* Captions, disabled text, quiet rules */
+  --ink-inverted:           #FFFFFF; /* Inverted contrast text */
+
+  /* Signature Accents */
+  --accent-primary:         #0A0A0A; /* Primary call-to-action fill */
+  --accent-primary-hover:   #1C1C1C; /* Interactive hover tone */
+  --accent-secondary:       #6E6E73; /* Supporting visual highlight */
+  --accent-tertiary:        #E5E5E5; /* Hairline plates and quiet chips */
+
+  --watermark:              rgba(0, 0, 0, 0.035); /* Giant display underlay */
+  --glass-overlay:          rgba(25, 25, 25, 0.45); /* Frosted photography caption */
+
+  /* Status Tokens */
+  --status-success:         #1C1C1C;
+  --status-warning:         #6E6E73;
+  --status-danger:          #0A0A0A;
+  --status-info:            #6E6E73;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Bodoni Moda", "Didot", "Bodoni MT", serif;
+--font-sans:    "Inter", -apple-system, sans-serif;
+--font-mono:    ui-monospace, "SF Mono", Menlo, monospace;
+
+/* Type Scale */
+--text-display: clamp(6rem, 15vw, 14rem) / 0.9  var(--font-display); /* Weight: 700 | Tracking: 0.08em | UPPERCASE watermark */
+--text-h1:      clamp(2.5rem, 5vw, 4.5rem) / 1.05 var(--font-display); /* Weight: 400 | Tracking: -0.01em | UPPERCASE */
+--text-h2:      clamp(1.5rem, 2.4vw, 2.25rem) / 1.15 var(--font-display); /* Weight: 400 | UPPERCASE */
+--text-h3:      1.25rem  / 1.30  var(--font-display); /* Weight: 400 | UPPERCASE */
+--text-body:    15px     / 1.55  var(--font-sans);    /* Weight: 400 | Tracking: -0.01em | Color: #6E6E73 */
+--text-body-sm: 0.875rem / 1.50  var(--font-sans);    /* Weight: 400 | Tracking: -0.01em */
+--text-meta:    12px     / 1.20  var(--font-sans);    /* Weight: 500 | Tracking: 0.08em | UPPERCASE UI */
+--text-caption: 13px     / 1.40  var(--font-sans);    /* Weight: 400 | Glass captions in #FFFFFF */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 4px;     /* Glass cards, inputs, drawers */
+--radius-subtle:  4px;
+--radius-pill:    9999px;  /* Buttons, chips, tabs, toggles */
+--radius-circle:  50%;     /* Icon discs, pagination, play badges */
+--radius-canvas:  0px;     /* Page canvas and photography stages */
+
+/* Elevation & Shadows */
+--shadow-base:    0 8px 28px -12px rgba(10, 10, 10, 0.18);
+--shadow-hover:   0 14px 36px -14px rgba(10, 10, 10, 0.28);
+--shadow-active:  0 2px 8px rgba(10, 10, 10, 0.12);
+
+/* Glass elevation */
+--elevation-glass: blur(24px) saturate(140%);
+--glass-gradient:  linear-gradient(135deg, rgba(255,255,255,0.15), rgba(0,0,0,0.45));
+--glass-blur:      blur(20px); /* caption overlay on rgba(25,25,25,0.45) */
+
+/* Motion */
+--ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+--duration:       280ms;
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid #E5E5E5;
+--border-hairline:    1px solid #E5E5E5;
+--border-interactive: 1px solid #C7C7C7;
+--border-active:      1px solid #0A0A0A;
+--border-glass:       1px solid rgba(255, 255, 255, 0.2);
+--divider-style:      1px solid #E5E5E5; /* Magazine rules; no heavy bars */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Primary is black pill (#0A0A0A / #FFFFFF). Secondary is transparent
+  outlined (#E5E5E5). Hover on outlined pills: black fill, white text, translateY(-1px)
+  over 280ms cubic-bezier(0.16, 1, 0.3, 1). Ghost stays borderless with 0.04 black wash.
+  Danger remains monochrome — outlined ink, fills on hover. Never orange or cobalt.
+- **Circular buttons**: 44px discs. Hover: scale(1.05) and rgba(0,0,0,0.04) fill.
+  Solid black discs carry inverted play / spark glyphs.
+- **Tabs**: Inactive is quiet gray type. Active tab is a black pill with white text.
+- **Cards**: Photography stages are 0px radius. Glass caption cards are 4px with
+  frost overlay (blur 20–24px, saturate 140%, white 0.2 hairline). No 24px bento.
+- **Inputs**: 4px radius, 1px #E5E5E5, 16px type to prevent iOS zoom. Focus becomes
+  #0A0A0A hairline. Placeholder #C7C7C7.
+- **Navigation**: Frosted white header, hairline #E5E5E5, Inter 12px uppercase 0.08em.
+  Catalog / action pills fill black on hover.
+- **Icons**: 1.25px geometric stroke, hairline arrows, solid black circle badges
+  with inverted play and spark glyphs.
+- **Pagination**: 10px circles; active fills #0A0A0A.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- No color photography palettes, cobalt, safety orange, or candy SaaS accents.
+- No 24px bento radii, chunky soft shadows, or floating unbordered cards.
+- No neon, gradient text, or generic purple glows.
+- No slab serif. Inter is body and UI only — never the hero display face.
+- No dense dashboards, telemetry chrome, or product-metric theater.
+================================================================================`
+  },
+  {
+    id: "TILE-052",
+    slug: "aero-aquatic",
+    name: "Aero-Aquatic",
+    vibe: "Sky Gradient • Hydrated Glass • Bebas Condensed • Navy Punch CTAs • Liquid Droplets",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+          "display": "Bebas Neue",
+          "sans": "Inter",
+          "mono": "Space Mono"
+    },
+    palette: [
+          {
+                "name": "Sky Canvas",
+                "hex": "#BFE3FD"
+          },
+          {
+                "name": "Ice White",
+                "hex": "#FFFFFF"
+          },
+          {
+                "name": "Deep Navy",
+                "hex": "#0B2B63"
+          },
+          {
+                "name": "Navy Hover",
+                "hex": "#071D44"
+          },
+          {
+                "name": "Clinical Slate",
+                "hex": "#6C87A3"
+          },
+          {
+                "name": "Badge Mist",
+                "hex": "#7D9BB6"
+          }
+    ],
+    description: "Hydrated glassminimalism: high-key sky gradient #BFE3FD, liquid glass nav, gigantic condensed white Bebas display, and navy #0B2B63 punch CTAs with white-circle arrow badges. Ethereal wellness product — not Memphis play.",
+    markdownSpec: `================================================================================
+  Aesthetic: Aero-Aquatic • Hydrated Glassminimalism • Quiet Luxury Wellness
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Aero-Aquatic is high-key ethereal hydration: a sky-blue gradient field, liquid
+glass navigation, gigantic condensed white display type, and a single navy punch
+for CTAs. It is Quiet Luxury for mineral water, clinical-calm wellness, and
+ritual product worlds — airy, refractive, and restrained. Never Memphis, never
+candy stickers, never dark OLED, never brutalist offsets.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #BFE3FD; /* Primary application canvas */
+  --bg-ambient:             linear-gradient(180deg, #CEEAFE 0%, #A8D8FC 60%, #99CEFB 100%);
+  --bg-surface:             #FFFFFF; /* Elevated ice-white cards */
+  --bg-surface-alt:         rgba(255, 255, 255, 0.85); /* Translucent plates */
+  --bg-surface-dark:        #0B2B63; /* Inverted navy containers */
+  --bg-glass-nav:           rgba(255, 255, 255, 0.22); /* Liquid glass */
+
+  /* Inks & Typography */
+  --ink-primary:            #0B2B63; /* Navy — card headings, body punch */
+  --ink-secondary:          #1B3B73; /* Subtle navy */
+  --ink-muted:              #6C87A3; /* Body, captions */
+  --ink-inverted:           #FFFFFF; /* Hero display + on-navy */
+  --ink-nav:                rgba(255, 255, 255, 0.88); /* Glass nav links */
+  --ink-badge:              #7D9BB6; /* Clinical chips */
+
+  /* Signature Accents */
+  --accent-primary:         #0B2B63; /* Navy punch CTA */
+  --accent-primary-hover:   #071D44; /* Deep-water hover */
+  --accent-secondary:       #1B3B73;
+  --accent-tertiary:        #7D9BB6;
+
+  /* Status Tokens */
+  --status-success:         #2F8F7C;
+  --status-warning:         #C4A35A;
+  --status-danger:          #C45C6A;
+  --status-info:            #4A8BC4;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Bebas Neue", "Anton", Impact, sans-serif;
+--font-sans:    "Inter", -apple-system, sans-serif;
+--font-mono:    "Space Mono", ui-monospace, monospace;
+
+/* Type Scale */
+--text-display: clamp(4.5rem, 11vw, 9rem) / 0.88 var(--font-display); /* UPPERCASE | ls -0.01em | white drop-shadow 0 2px 18px rgba(255,255,255,0.45) | Bebas default weight */
+--text-h1:      2.5rem   / 0.92  var(--font-display); /* UPPERCASE */
+--text-h2:      1.75rem  / 1.05  var(--font-display); /* Card header · UPPERCASE · 0.02em · navy */
+--text-h3:      1.25rem  / 1.20  var(--font-sans);    /* Inter 600 */
+--text-body:    1.0rem   / 1.60  var(--font-sans);    /* Muted #6C87A3 */
+--text-body-sm: 0.875rem / 1.50  var(--font-sans);
+--text-meta:    0.75rem  / 1.40  var(--font-sans);    /* Buttons 0.75rem 700 0.12em UPPERCASE · Nav 0.7rem 600 0.14em UPPERCASE */
+--text-clinical: 9px     / 1.40  var(--font-sans);    /* 600 · 0.08em · UPPERCASE · muted */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 24px;
+--radius-subtle:  12px;
+--radius-pill:    9999px;
+--radius-asymmetric: 36px 12px 28px 12px; /* At least one hero / feature plate */
+--radius-droplet: 50%;
+
+/* Elevation & Shadows */
+--shadow-base:    0 24px 48px -12px rgba(11,43,99,0.12), 0 8px 16px -4px rgba(255,255,255,0.6);
+--shadow-hover:   0 32px 56px -12px rgba(11,43,99,0.18), 0 10px 20px -4px rgba(255,255,255,0.7);
+--shadow-active:  0 8px 18px -8px rgba(11,43,99,0.22);
+--shadow-cta:     0 12px 24px -6px rgba(11,43,99,0.35);
+
+/* Glass layer */
+backdrop-filter: blur(16px) saturate(180%);
+background: rgba(255,255,255,0.2);
+box-shadow: inset 0 1px 1px rgba(255,255,255,0.6);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid rgba(255,255,255,0.55); /* Glass edge */
+--border-hairline:    1px solid rgba(255,255,255,0.45); /* Nav stroke */
+--border-card:        1px solid rgba(255,255,255,0.8);
+--divider-style:      1px solid rgba(108,135,163,0.15);
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Motion**: All interactions 0.4s cubic-bezier(0.16, 1, 0.3, 1).
+- **Buttons**: Primary is a navy pill (#0B2B63) with a white solid circle badge holding a thin navy NE arrow (stroke 1.75px, round). Hover: translateY(-2px) scale(1.02), background #071D44, shadow 0 12px 24px -6px rgba(11,43,99,0.35); badge rotates 45deg. Secondary: ice white + navy hairline. Ghost: liquid glass. Danger: restrained coral pill. Accent: ice cyan.
+- **Cards**: Solid #FFFFFF, 24px radius, floating dual shadow. Hover: translateY(-4px) + larger shadow. One feature plate uses asymmetric 36px 12px 28px 12px.
+- **Inputs**: Glass pills, 16px type (no iOS zoom), ice placeholder #7D9BB6, navy focus ring.
+- **Navigation**: Liquid glass bar rgba(255,255,255,0.22), stroke rgba(255,255,255,0.45), links rgba(255,255,255,0.88) Inter 0.7rem 600 0.14em uppercase. Hover: pure white + text-shadow 0 0 10px rgba(255,255,255,0.8).
+- **Icons**: Monoline 1.75px round caps, white on navy discs. Icon badges rotate 45deg on hover.
+- **Clinical badges**: Inter 9px 600 0.08em uppercase in mist (#7D9BB6) or navy.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- No Memphis geometry, candy stickers, toy shapes, or Playful & Pop energy.
+- No dark OLED canvases, scanlines, or cyber neon.
+- No brutalist 0-radius offsets or hard black drop shadows (4px 4px 0 #000).
+- No Inter (or any humanist sans) as the giant hero display — hero must be condensed Bebas Neue / Anton.
+- No gold-foil hospitality clichés; luxury here is air, glass, and water — not ornament.
+================================================================================`
   }
 ];
 

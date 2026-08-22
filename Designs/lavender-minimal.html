@@ -1,0 +1,3151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lavender Minimal — Style Tile & Design System (TILE-045)</title>
+  <meta name="description" content="Production design system and Style Tile for Lavender Minimal (TILE-045): luminous cool off-white canvas #F6F7FA, 20px cards, periwinkle #7B6EF6 as the only saturated voice, airy SaaS analytics, Plus Jakarta Sans, 9999px pills, and hairline #EDEFF5 strokes.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon/favicon.ico">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       STYLE TILE: LAVENDER MINIMAL // TILE-045
+       Airy periwinkle SaaS analytics. Cool slate type. One saturated voice.
+       ========================================================================== */
+
+    :root {
+      /* ------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * ------------------------------------------------------------------------ */
+      /* Surfaces & Backgrounds */
+      --bg-canvas:              #F6F7FA; /* Primary application canvas */
+      --bg-surface:             #FFFFFF; /* Elevated cards and containers */
+      --bg-surface-alt:         #F0F2F6; /* Secondary panels, wells, sidebars */
+      --bg-surface-dark:        #0F172A; /* Inverted containers / code drawer */
+
+      /* Inks & Typography */
+      --ink-primary:            #0F172A; /* High-contrast primary reading text */
+      --ink-secondary:          #334155; /* Subtitles, secondary copy */
+      --ink-muted:              #64748B; /* Captions, inactive segments */
+      --ink-disabled:           #94A3B8; /* Disabled text */
+      --ink-inverted:           #FFFFFF; /* Inverted contrast text */
+      --ink-badge:              #475569; /* Neutral badge text */
+
+      /* Signature Accents */
+      --accent-primary:         #7B6EF6; /* Periwinkle — the only saturated voice */
+      --accent-primary-hover:   #6B5DE6; /* Interactive hover tone */
+      --accent-subtle:          #ECE9FE; /* Soft brand wash */
+      --accent-secondary:       #00B2FF; /* Cyan comparison / supporting highlight */
+      --accent-tertiary:        #ECE9FE; /* Accent badges and energetic tints */
+
+      /* Status Tokens */
+      --status-success:         #10B981;
+      --status-warning:         #F59E0B;
+      --status-danger:          #EF4444;
+      --status-info:            #00B2FF;
+
+      /* Neutral chrome */
+      --badge-neutral-bg:       #F1F5F9;
+      --divider:                #F1F5F9;
+      --stroke-card:            #EDEFF5;
+      --chart-grid:             #E2E8F0;
+
+      /* ------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * ------------------------------------------------------------------------ */
+      --font-display:           "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
+      --font-sans:              "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
+      --font-mono:              "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+
+      --text-display:           700 clamp(2.5rem, 6.2vw, 4.5rem) / 1.12 var(--font-display);
+      --text-h1:                700 2.5rem / 1.15 var(--font-display);
+      --text-h2:                600 1.75rem / 1.25 var(--font-sans);
+      --text-h3:                600 1.0625rem / 1.30 var(--font-sans);
+      --text-metric:            600 1.75rem / 1.15 var(--font-display);
+      --text-body:              500 0.875rem / 1.40 var(--font-sans);
+      --text-body-sm:           500 0.8125rem / 1.40 var(--font-sans);
+      --text-caption:           500 0.75rem / 1.35 var(--font-sans);
+      --text-meta:              500 0.6875rem / 1.40 var(--font-mono);
+
+      /* ------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY
+       * ------------------------------------------------------------------------ */
+      --radius-pill:            9999px;
+      --radius-card:            20px;
+      --radius-nested:          14px;
+      --radius-bar:             8px 8px 0 0;
+      --radius-icon:            50%;
+      --radius-input:           12px;
+
+      /* ------------------------------------------------------------------------
+       * 4. ELEVATION
+       * ------------------------------------------------------------------------ */
+      --shadow-card:            0px 2px 10px rgba(15, 23, 42, 0.02),
+                                0px 1px 2px rgba(15, 23, 42, 0.03);
+      --shadow-hover:           0px 8px 24px rgba(15, 23, 42, 0.05),
+                                0px 2px 4px rgba(15, 23, 42, 0.04);
+      --shadow-floating:        0px 12px 32px -4px rgba(123, 110, 246, 0.12),
+                                0px 4px 12px rgba(15, 23, 42, 0.05);
+      --shadow-active:          0px 1px 2px rgba(15, 23, 42, 0.06);
+
+      --gradient-chart:         linear-gradient(180deg, #7B6EF6 0%, rgba(123, 110, 246, 0.15) 100%);
+
+      /* ------------------------------------------------------------------------
+       * 5. BORDERS
+       * ------------------------------------------------------------------------ */
+      --border-core:            1px solid var(--stroke-card);
+      --border-hairline:        1px solid var(--divider);
+      --border-focus:           1px solid var(--accent-primary);
+      --chart-gridline:         1px dashed var(--chart-grid);
+
+      /* ------------------------------------------------------------------------
+       * 6. SPACING & MOTION
+       * ------------------------------------------------------------------------ */
+      --space-2xs:              4px;
+      --space-xs:               8px;
+      --space-sm:               12px;
+      --space-md:               16px;
+      --space-lg:               20px;
+      --space-xl:               24px;
+      --space-2xl:              40px;
+      --space-section:          72px;
+
+      --icon-stroke:            1.65px;
+      --transition:             180ms cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out:               cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ==========================================================================
+       RESET & BASE
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--ink-secondary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.4;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse 80% 46% at 92% -8%, rgba(123, 110, 246, 0.08) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 38% at 6% 100%, rgba(0, 178, 255, 0.045) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    ::selection {
+      background-color: var(--accent-subtle);
+      color: var(--ink-primary);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button, input, textarea, select {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-primary);
+      outline-offset: 2px;
+    }
+
+    .page-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+      position: relative;
+      z-index: 1;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ==========================================================================
+       MANDATORY HEADER BAR
+       ========================================================================== */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: var(--border-core);
+      padding: 12px var(--space-xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      background: var(--bg-surface-alt);
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      border: var(--border-core);
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+    }
+
+    .nav-back-link:hover {
+      background: var(--accent-subtle);
+      color: var(--accent-primary);
+      transform: translateX(-2px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      background: var(--accent-subtle);
+      color: var(--accent-primary);
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .design-vibe-tag {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-badge);
+      background: var(--badge-neutral-bg);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      letter-spacing: -0.01em;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      border: none;
+      transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .btn-preview {
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      border: var(--border-core);
+      box-shadow: var(--shadow-card);
+    }
+
+    .btn-preview:hover {
+      background: var(--bg-surface-alt);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy {
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      box-shadow: 0 6px 16px rgba(123, 110, 246, 0.28);
+    }
+
+    .btn-copy:hover {
+      background: var(--accent-primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-download {
+      background: var(--accent-subtle);
+      color: var(--accent-primary);
+    }
+
+    .btn-download:hover {
+      background: #E0DBFD;
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       HERO
+       ========================================================================== */
+    .hero-section {
+      padding: var(--space-2xl) 0 var(--space-section);
+    }
+
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+
+    .hero-badge-strip {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: var(--radius-pill);
+    }
+
+    .badge-brand {
+      background: var(--accent-subtle);
+      color: var(--accent-primary);
+    }
+
+    .badge-ink {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+    }
+
+    .badge-neutral {
+      background: var(--badge-neutral-bg);
+      color: var(--ink-badge);
+      border: var(--border-core);
+    }
+
+    .badge-cyan {
+      background: rgba(0, 178, 255, 0.12);
+      color: #0891C7;
+    }
+
+    .hero-title {
+      font: var(--text-display);
+      letter-spacing: -0.03em;
+      color: var(--ink-primary);
+      margin-bottom: var(--space-lg);
+      max-width: 14ch;
+    }
+
+    .hero-title .accent-text {
+      color: var(--accent-primary);
+    }
+
+    .hero-narrative {
+      font-size: 1.0625rem;
+      line-height: 1.55;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      max-width: 560px;
+      margin-bottom: var(--space-xl);
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 10px 24px -6px rgba(123, 110, 246, 0.45);
+      cursor: pointer;
+      border: none;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .cta-primary:hover {
+      background: var(--accent-primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px -6px rgba(123, 110, 246, 0.5);
+    }
+
+    .cta-primary:active {
+      transform: translateY(0);
+      box-shadow: var(--shadow-active);
+    }
+
+    .cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      border: var(--border-core);
+      box-shadow: var(--shadow-card);
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .cta-secondary:hover {
+      background: var(--bg-surface-alt);
+      transform: translateY(-1px);
+    }
+
+    .hero-visual-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-card);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-floating);
+      border: var(--border-core);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .hero-visual-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .hero-kicker {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .hero-metric-value {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: var(--ink-primary);
+    }
+
+    .hero-spark-wrap {
+      height: 92px;
+      width: 100%;
+    }
+
+    .hero-spark-wrap svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hero-mini-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+    }
+
+    .hero-mini-tile {
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-nested);
+      padding: 12px 14px;
+    }
+
+    .hero-mini-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .hero-mini-stat {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+    }
+
+    /* ==========================================================================
+       SECTION CHROME
+       ========================================================================== */
+    .section-block {
+      margin-bottom: var(--space-section);
+    }
+
+    .section-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: var(--space-xl);
+      border-bottom: var(--border-hairline);
+      padding-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .section-header-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .section-header-sub {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      margin-top: 4px;
+    }
+
+    /* ==========================================================================
+       COLOR PALETTE
+       ========================================================================== */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+    }
+
+    .swatch-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-card);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-card);
+      border: var(--border-core);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .swatch-preview {
+      height: 72px;
+      border-radius: var(--radius-nested);
+      border: var(--border-core);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 8px;
+    }
+
+    .swatch-copy-hint {
+      font-size: 10px;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--ink-primary);
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .swatch-card:hover .swatch-copy-hint,
+    .swatch-card:focus-visible .swatch-copy-hint {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .swatch-meta-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .swatch-meta-token {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-primary);
+      font-weight: 500;
+    }
+
+    .swatch-meta-hex {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .swatch-meta-role {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    /* ==========================================================================
+       TYPOGRAPHY SPECIMEN
+       ========================================================================== */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-xl);
+    }
+
+    .type-ladder-card,
+    .type-playground-card {
+      background: var(--bg-surface);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-card);
+      border: var(--border-core);
+    }
+
+    .type-playground-card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .type-ladder-item {
+      padding: var(--space-md) 0;
+      border-bottom: var(--border-hairline);
+    }
+
+    .type-ladder-item:first-child { padding-top: 0; }
+    .type-ladder-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .type-ladder-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      margin-bottom: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      flex-wrap: wrap;
+    }
+
+    .type-ladder-name {
+      font-weight: 600;
+      color: var(--accent-primary);
+    }
+
+    .sample-display {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .sample-h1 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .sample-h2 {
+      font-family: var(--font-sans);
+      font-size: 1.75rem;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--ink-primary);
+    }
+
+    .sample-h3 {
+      font-family: var(--font-sans);
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+    }
+
+    .sample-body {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--ink-secondary);
+    }
+
+    .sample-meta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .font-pair-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .font-pair-chip {
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-nested);
+      padding: 12px;
+    }
+
+    .font-pair-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .font-pair-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .playground-controls {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .playground-pill-btn {
+      padding: 6px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      background: transparent;
+      border: none;
+      color: var(--ink-muted);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .playground-pill-btn:hover { color: var(--ink-primary); }
+
+    .playground-pill-btn.active {
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+    }
+
+    .playground-textarea {
+      width: 100%;
+      min-height: 140px;
+      padding: var(--space-md);
+      background: var(--bg-canvas);
+      border-radius: var(--radius-nested);
+      border: var(--border-core);
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      line-height: 1.3;
+      letter-spacing: -0.015em;
+      resize: vertical;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .playground-textarea:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
+    }
+
+    /* ==========================================================================
+       COMPONENT GALLERY
+       ========================================================================== */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .component-tile {
+      background: var(--bg-surface);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-card);
+      border: var(--border-core);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .component-tile-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+    }
+
+    .component-tile-sub {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .button-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-ghost,
+    .btn-danger,
+    .btn-accent {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      border: none;
+      transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      box-shadow: 0 6px 16px rgba(123, 110, 246, 0.22);
+    }
+    .btn-primary:hover {
+      background: var(--accent-primary-hover);
+      transform: translateY(-1px);
+    }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-primary:disabled,
+    .btn-primary.is-disabled {
+      background: var(--badge-neutral-bg);
+      color: var(--ink-disabled);
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      border: var(--border-core);
+      box-shadow: var(--shadow-card);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-surface-alt);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink-muted);
+      border: 1px solid transparent;
+    }
+    .btn-ghost:hover {
+      color: var(--ink-primary);
+      background: var(--bg-surface-alt);
+    }
+
+    .btn-danger {
+      background: #FEF2F2;
+      color: var(--status-danger);
+      border: 1px solid #FECACA;
+    }
+    .btn-danger:hover {
+      background: #FEE2E2;
+      transform: translateY(-1px);
+    }
+
+    .btn-accent {
+      background: rgba(0, 178, 255, 0.12);
+      color: #0891C7;
+    }
+    .btn-accent:hover {
+      background: rgba(0, 178, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-icon);
+      background: transparent;
+      border: var(--border-core);
+      color: var(--ink-secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+
+    .icon-btn:hover {
+      background: var(--accent-subtle);
+      color: var(--accent-primary);
+      border-color: transparent;
+    }
+
+    .icon-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: var(--icon-stroke);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Segmented controls */
+    .segmented-control {
+      display: inline-flex;
+      background: var(--bg-surface-alt);
+      padding: 4px;
+      border-radius: var(--radius-pill);
+      gap: 2px;
+    }
+
+    .segment-item {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      color: var(--ink-muted);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .segment-item:hover { color: var(--ink-primary); }
+
+    .segment-item.active {
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      font-weight: 600;
+    }
+
+    /* Inputs */
+    .field-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .lm-input {
+      width: 100%;
+      padding: 11px 16px;
+      padding-right: 44px;
+      background: var(--bg-canvas);
+      border-radius: var(--radius-pill);
+      border: var(--border-core);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-primary);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+
+    .lm-input::placeholder { color: var(--ink-disabled); }
+
+    .lm-input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px var(--accent-subtle);
+      background: var(--bg-surface);
+    }
+
+    .input-icon-btn {
+      position: absolute;
+      right: 6px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .input-icon-btn:hover {
+      background: var(--accent-primary-hover);
+      transform: scale(1.04);
+    }
+
+    .input-icon-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Checkbox / Radio / Toggle */
+    .choice-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .choice-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .lm-checkbox,
+    .lm-radio {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid #E2E8F0;
+      background: var(--bg-surface);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background var(--transition), border-color var(--transition);
+      flex-shrink: 0;
+    }
+
+    .lm-checkbox { border-radius: 5px; }
+    .lm-radio { border-radius: 50%; }
+
+    .lm-checkbox:checked,
+    .lm-radio:checked {
+      background: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .lm-checkbox:checked::after {
+      content: "";
+      width: 9px;
+      height: 5px;
+      border-left: 1.75px solid #fff;
+      border-bottom: 1.75px solid #fff;
+      transform: rotate(-45deg) translate(0.5px, -0.5px);
+    }
+
+    .lm-radio:checked::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .toggle-switch {
+      width: 44px;
+      height: 24px;
+      background: var(--bg-surface-alt);
+      border-radius: var(--radius-pill);
+      padding: 3px;
+      cursor: pointer;
+      border: none;
+      transition: background var(--transition);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch.active { background: var(--accent-primary); }
+
+    .toggle-knob {
+      width: 18px;
+      height: 18px;
+      background: #FFFFFF;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.16);
+      transition: transform var(--transition);
+      transform: translateX(0);
+    }
+
+    .toggle-switch.active .toggle-knob { transform: translateX(20px); }
+
+    .delta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--badge-neutral-bg);
+      color: var(--ink-badge);
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .status-chip .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .chip-success { background: #ECFDF5; color: #059669; }
+    .chip-success .dot { background: var(--status-success); }
+    .chip-warning { background: #FFFBEB; color: #B45309; }
+    .chip-warning .dot { background: var(--status-warning); }
+    .chip-danger { background: #FEF2F2; color: #DC2626; }
+    .chip-danger .dot { background: var(--status-danger); }
+    .chip-info { background: rgba(0, 178, 255, 0.12); color: #0891C7; }
+    .chip-info .dot { background: var(--status-info); }
+    .chip-brand { background: var(--accent-subtle); color: var(--accent-primary); }
+    .chip-brand .dot { background: var(--accent-primary); }
+
+    .feature-card {
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-nested);
+      padding: 16px 18px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .feature-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-subtle);
+      color: var(--accent-primary);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .feature-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: var(--icon-stroke);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .feature-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .feature-copy {
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.4;
+      margin-top: 2px;
+    }
+
+    /* ==========================================================================
+       LIVING DASHBOARD DEMO
+       ========================================================================== */
+    .demo-shell {
+      background: var(--bg-surface);
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-card);
+      border: var(--border-core);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .demo-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .demo-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .demo-brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-subtle);
+      color: var(--accent-primary);
+      display: grid;
+      place-items: center;
+    }
+
+    .demo-brand-mark svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .demo-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+    }
+
+    .demo-subtitle {
+      font-size: 12px;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .demo-top-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .avatar-stack {
+      display: flex;
+      align-items: center;
+    }
+
+    .avatar-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #FFFFFF;
+      margin-left: -8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .avatar-circle:first-child { margin-left: 0; }
+    .avatar-1 { background: var(--accent-primary); }
+    .avatar-2 { background: var(--accent-secondary); }
+    .avatar-3 { background: #334155; }
+    .avatar-4 { background: #94A3B8; }
+
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-md);
+    }
+
+    .metric-card {
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-nested);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .metric-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink-muted);
+    }
+
+    .metric-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: var(--border-core);
+      color: var(--accent-primary);
+      display: grid;
+      place-items: center;
+    }
+
+    .metric-icon svg {
+      width: 14px;
+      height: 14px;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .metric-value {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: var(--ink-primary);
+    }
+
+    .demo-middle {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .chart-card,
+    .watchlist-card {
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-nested);
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .chart-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .chart-product {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+    }
+
+    .chart-legend {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .legend-key {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink-muted);
+    }
+
+    .legend-swatch {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .legend-swatch.violet { background: var(--accent-primary); }
+    .legend-swatch.cyan { background: var(--accent-secondary); }
+
+    .chart-viewport {
+      position: relative;
+      width: 100%;
+      height: 220px;
+    }
+
+    .chart-viewport svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+    }
+
+    .chart-tooltip {
+      position: absolute;
+      pointer-events: none;
+      background: var(--bg-surface);
+      border: var(--border-core);
+      box-shadow: var(--shadow-floating);
+      border-radius: var(--radius-pill);
+      padding: 8px 14px;
+      display: none;
+      z-index: 4;
+      white-space: nowrap;
+      min-width: 148px;
+    }
+
+    .chart-tooltip.is-on { display: block; }
+
+    .tooltip-date {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+
+    .tooltip-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .tooltip-row.price { color: var(--accent-primary); }
+    .tooltip-row.comp { color: var(--accent-secondary); }
+
+    .volume-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 36px;
+      padding-top: 4px;
+    }
+
+    .volume-bar {
+      flex: 1;
+      background: var(--accent-subtle);
+      border-radius: var(--radius-bar);
+      min-height: 6px;
+    }
+
+    .volume-bar.is-peak { background: var(--accent-primary); }
+
+    .watchlist-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: var(--border-hairline);
+      cursor: pointer;
+    }
+
+    .watchlist-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .watchlist-item:first-child { padding-top: 0; }
+
+    .watchlist-item:hover .watch-name { color: var(--accent-primary); }
+
+    .watch-thumb {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: var(--border-core);
+      display: grid;
+      place-items: center;
+      color: var(--ink-secondary);
+      flex-shrink: 0;
+    }
+
+    .watch-thumb svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .watch-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      transition: color var(--transition);
+    }
+
+    .watch-meta {
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .watch-price {
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .watch-price .val {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .table-card {
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-nested);
+      padding: 8px 8px 4px;
+      overflow-x: auto;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .data-table th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      border-bottom: var(--border-hairline);
+    }
+
+    .data-table td {
+      padding: 12px 14px;
+      border-bottom: var(--border-hairline);
+      color: var(--ink-secondary);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .data-table tbody tr {
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .data-table tbody tr:hover td { background: var(--bg-surface); }
+
+    .data-table .prod-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink-primary);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       SPEC DRAWER
+       ========================================================================== */
+    .spec-drawer-card {
+      background: var(--bg-surface-dark);
+      color: #E2E8F0;
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-floating);
+    }
+
+    .spec-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .spec-drawer-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+    }
+
+    .spec-drawer-sub {
+      font-size: 12px;
+      color: #94A3B8;
+      margin-top: 4px;
+    }
+
+    .spec-code-pre {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #CBD5E1;
+      background: #111827;
+      padding: var(--space-lg);
+      border-radius: var(--radius-nested);
+      overflow-x: auto;
+      max-height: 440px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* ==========================================================================
+       MODAL & TOAST
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.48);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal-window {
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      border-radius: var(--radius-card);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      box-shadow: var(--shadow-floating);
+      border: var(--border-core);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .modal-kicker {
+      font-size: 11px;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .modal-close-btn {
+      background: var(--bg-surface-alt);
+      color: var(--ink-primary);
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .modal-close-btn:hover { background: var(--accent-subtle); color: var(--accent-primary); }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: var(--shadow-floating);
+      z-index: 1000;
+      display: none;
+      animation: toastSlideUp 200ms var(--ease-out);
+    }
+
+    @keyframes toastSlideUp {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ==========================================================================
+       PAGE-SPECIFIC MOBILE
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .palette-grid { grid-template-columns: repeat(3, 1fr); }
+      .metrics-row { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .page-container { padding: 0 var(--space-md); }
+
+      .hero-container,
+      .type-specimen-grid,
+      .components-grid,
+      .demo-middle,
+      .hero-mini-row,
+      .font-pair-row {
+        grid-template-columns: 1fr;
+      }
+
+      .palette-grid,
+      .metrics-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: clamp(2.1rem, 9vw, 3.1rem);
+        max-width: none;
+      }
+
+      .sample-h1 { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+      .sample-display { font-size: clamp(1.5rem, 6vw, 2rem); }
+
+      .lm-input,
+      .playground-textarea {
+        font-size: 16px !important;
+      }
+
+      .metric-value { font-size: 24px; }
+
+      .chart-viewport { height: 180px; }
+
+      .swatch-copy-hint {
+        opacity: 1;
+        transform: none;
+      }
+
+      .data-table th,
+      .data-table td {
+        padding: 10px 10px;
+      }
+
+      .toast-popup {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        text-align: center;
+      }
+
+      .hero-section { padding-top: var(--space-xl); }
+      .section-header-title { font-size: 22px; }
+    }
+  </style>
+
+  <!-- Shared Mobile Safety Sheet -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .page-container, .hero-container, .hero-container > *, .section-block { min-width: 0; max-width: 100%; }
+      p, h1, h2, h3, .hero-narrative, .hero-title, .section-header-sub { overflow-wrap: anywhere; word-break: break-word; max-width: 100%; }
+      .hero-cta-group, .hero-badge-strip { flex-wrap: wrap !important; width: 100%; max-width: 100%; }
+      .hero-cta-group > * { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. MANDATORY TOP NAVIGATION HEADER
+       ========================================================================== -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code">TILE-045</span>
+      <span class="design-title">Lavender Minimal</span>
+      <span class="design-vibe-tag">Minimalist & Monastic</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download lavender-minimal.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <div class="page-container">
+
+    <!-- ==========================================================================
+         2. HERO DISPLAY BANNER
+         ========================================================================== -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-content-col">
+          <div class="hero-badge-strip">
+            <span class="badge-pill badge-brand">Periwinkle SaaS</span>
+            <span class="badge-pill badge-ink">Light Canvas #F6F7FA</span>
+            <span class="badge-pill badge-neutral">20px Cards · 9999px Pills</span>
+            <span class="badge-pill badge-cyan">Cyan Comparison Ink</span>
+          </div>
+
+          <h1 class="hero-title">Lavender Minimal</h1>
+
+          <p class="hero-narrative">
+            A luminous analytics language built on cool off-white air, hairline #EDEFF5 strokes, and a single saturated voice: periwinkle #7B6EF6. Cards rest at 20px. Controls are pills. Type is Plus Jakarta Sans in slate, never shouting. Designed for price intelligence, commerce ops, and calm SaaS dashboards that feel expensive because they leave room to breathe.
+          </p>
+
+          <div class="hero-cta-group">
+            <button class="cta-primary" type="button" onclick="copyTilePromptDirect()">
+              <span>Copy Prompt for Agent</span>
+              <span>↗</span>
+            </button>
+            <a href="#demo-section" class="cta-secondary">
+              <span>Test Interactive Elements</span>
+              <span>↓</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual-card" aria-hidden="false">
+          <div class="hero-visual-top">
+            <div>
+              <div class="hero-kicker">Live snapshot · Last 7d</div>
+              <div class="hero-metric-value tabular-nums">$25,847.00</div>
+            </div>
+            <span class="delta-badge">▲ +4.2%</span>
+          </div>
+
+          <div class="hero-spark-wrap">
+            <svg viewBox="0 0 420 92" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="heroVioletFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#7B6EF6" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#7B6EF6" stop-opacity="0.04"/>
+                </linearGradient>
+              </defs>
+              <path d="M0 78 C 40 74, 70 62, 105 58 C 145 53, 170 68, 210 50 C 250 32, 280 44, 320 28 C 360 14, 390 22, 420 16 L 420 92 L 0 92 Z" fill="url(#heroVioletFill)"/>
+              <path d="M0 78 C 40 74, 70 62, 105 58 C 145 53, 170 68, 210 50 C 250 32, 280 44, 320 28 C 360 14, 390 22, 420 16" fill="none" stroke="#7B6EF6" stroke-width="2.25" stroke-linecap="round"/>
+              <path d="M0 64 C 50 60, 90 52, 140 48 C 200 42, 250 50, 310 38 C 360 28, 390 34, 420 30" fill="none" stroke="#00B2FF" stroke-width="1.75" stroke-linecap="round" stroke-dasharray="3 4"/>
+            </svg>
+          </div>
+
+          <div class="hero-mini-row">
+            <div class="hero-mini-tile">
+              <div class="hero-mini-label">Avg. listing</div>
+              <div class="hero-mini-stat tabular-nums">$348.00 <span class="delta-badge" style="margin-left:6px;">−1.8%</span></div>
+            </div>
+            <div class="hero-mini-tile">
+              <div class="hero-mini-label">Watchers</div>
+              <div class="hero-mini-stat tabular-nums">1,284 <span class="delta-badge" style="margin-left:6px;">+12.6%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. COLOR SWATCHES
+         ========================================================================== -->
+    <section class="section-block" id="palette-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-header-title">01 / Color Roles & Palette Matrix</h2>
+          <p class="section-header-sub">Click any swatch to copy its hex. Periwinkle is the only saturated voice; everything else is cool slate and air.</p>
+        </div>
+        <span class="badge-pill badge-neutral">16 System Tokens</span>
+      </div>
+
+      <div class="palette-grid">
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#F6F7FA', '--bg-canvas')" onkeydown="swatchKey(event, '#F6F7FA', '--bg-canvas')">
+          <div class="swatch-preview" style="background-color:#F6F7FA;"><span class="swatch-copy-hint">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Canvas Base</div>
+            <div class="swatch-meta-token">--bg-canvas</div>
+            <div class="swatch-meta-hex">#F6F7FA</div>
+          </div>
+          <p class="swatch-meta-role">Luminous cool off-white application canvas. The air the dashboard sits in.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#FFFFFF', '--bg-surface')" onkeydown="swatchKey(event, '#FFFFFF', '--bg-surface')">
+          <div class="swatch-preview" style="background-color:#FFFFFF;"><span class="swatch-copy-hint">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Surface</div>
+            <div class="swatch-meta-token">--bg-surface</div>
+            <div class="swatch-meta-hex">#FFFFFF</div>
+          </div>
+          <p class="swatch-meta-role">Elevated cards and floating chrome. Always paired with a hairline stroke.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#F0F2F6', '--bg-surface-alt')" onkeydown="swatchKey(event, '#F0F2F6', '--bg-surface-alt')">
+          <div class="swatch-preview" style="background-color:#F0F2F6;"><span class="swatch-copy-hint">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Surface Muted</div>
+            <div class="swatch-meta-token">--bg-surface-alt</div>
+            <div class="swatch-meta-hex">#F0F2F6</div>
+          </div>
+          <p class="swatch-meta-role">Segmented wells, nested panels, and quiet input tracks.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#7B6EF6', '--accent-primary')" onkeydown="swatchKey(event, '#7B6EF6', '--accent-primary')">
+          <div class="swatch-preview" style="background-color:#7B6EF6;"><span class="swatch-copy-hint" style="background:#0F172A;color:#fff;">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Brand Primary</div>
+            <div class="swatch-meta-token">--accent-primary</div>
+            <div class="swatch-meta-hex">#7B6EF6</div>
+          </div>
+          <p class="swatch-meta-role">Periwinkle — CTAs, active tabs, chart ink. The only saturated brand voice.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#6B5DE6', '--accent-primary-hover')" onkeydown="swatchKey(event, '#6B5DE6', '--accent-primary-hover')">
+          <div class="swatch-preview" style="background-color:#6B5DE6;"><span class="swatch-copy-hint" style="background:#0F172A;color:#fff;">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Brand Hover</div>
+            <div class="swatch-meta-token">--accent-primary-hover</div>
+            <div class="swatch-meta-hex">#6B5DE6</div>
+          </div>
+          <p class="swatch-meta-role">Deepened periwinkle for hover and pressed primary actions.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#ECE9FE', '--accent-subtle')" onkeydown="swatchKey(event, '#ECE9FE', '--accent-subtle')">
+          <div class="swatch-preview" style="background-color:#ECE9FE;"><span class="swatch-copy-hint">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Brand Subtle</div>
+            <div class="swatch-meta-token">--accent-subtle</div>
+            <div class="swatch-meta-hex">#ECE9FE</div>
+          </div>
+          <p class="swatch-meta-role">Soft wash for icon wells, selected rows, and focus rings.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#00B2FF', '--accent-secondary')" onkeydown="swatchKey(event, '#00B2FF', '--accent-secondary')">
+          <div class="swatch-preview" style="background-color:#00B2FF;"><span class="swatch-copy-hint" style="background:#0F172A;color:#fff;">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Accent Cyan</div>
+            <div class="swatch-meta-token">--accent-secondary</div>
+            <div class="swatch-meta-hex">#00B2FF</div>
+          </div>
+          <p class="swatch-meta-role">Comparison series, secondary metric keys, supporting highlights only.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#0F172A', '--ink-primary')" onkeydown="swatchKey(event, '#0F172A', '--ink-primary')">
+          <div class="swatch-preview" style="background-color:#0F172A;"><span class="swatch-copy-hint" style="background:#fff;">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Heading Ink</div>
+            <div class="swatch-meta-token">--ink-primary</div>
+            <div class="swatch-meta-hex">#0F172A</div>
+          </div>
+          <p class="swatch-meta-role">Slate-900 headlines and metric heroes. Cool, not warm black.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#334155', '--ink-secondary')" onkeydown="swatchKey(event, '#334155', '--ink-secondary')">
+          <div class="swatch-preview" style="background-color:#334155;"><span class="swatch-copy-hint" style="background:#fff;">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Body Ink</div>
+            <div class="swatch-meta-token">--ink-secondary</div>
+            <div class="swatch-meta-hex">#334155</div>
+          </div>
+          <p class="swatch-meta-role">Reading copy and table values. Medium contrast, never charcoal warm.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#64748B', '--ink-muted')" onkeydown="swatchKey(event, '#64748B', '--ink-muted')">
+          <div class="swatch-preview" style="background-color:#64748B;"><span class="swatch-copy-hint" style="background:#fff;">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Subtle Ink</div>
+            <div class="swatch-meta-token">--ink-muted</div>
+            <div class="swatch-meta-hex">#64748B</div>
+          </div>
+          <p class="swatch-meta-role">Captions, inactive segments, and chart axis labels.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#94A3B8', '--ink-disabled')" onkeydown="swatchKey(event, '#94A3B8', '--ink-disabled')">
+          <div class="swatch-preview" style="background-color:#94A3B8;"><span class="swatch-copy-hint">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Disabled Ink</div>
+            <div class="swatch-meta-token">--ink-disabled</div>
+            <div class="swatch-meta-hex">#94A3B8</div>
+          </div>
+          <p class="swatch-meta-role">Placeholders and disabled controls. Still readable, never noisy.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#F1F5F9', '--badge-neutral-bg')" onkeydown="swatchKey(event, '#F1F5F9', '--badge-neutral-bg')">
+          <div class="swatch-preview" style="background-color:#F1F5F9;"><span class="swatch-copy-hint">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Neutral Badge</div>
+            <div class="swatch-meta-token">--badge-neutral-bg</div>
+            <div class="swatch-meta-hex">#F1F5F9</div>
+          </div>
+          <p class="swatch-meta-role">Delta chips and quiet tags. Text on these pills is #475569.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#EDEFF5', '--stroke-card')" onkeydown="swatchKey(event, '#EDEFF5', '--stroke-card')">
+          <div class="swatch-preview" style="background-color:#EDEFF5;"><span class="swatch-copy-hint">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Card Stroke</div>
+            <div class="swatch-meta-token">--stroke-card</div>
+            <div class="swatch-meta-hex">#EDEFF5</div>
+          </div>
+          <p class="swatch-meta-role">1px solid hairline around every card. Structure without shadow theater.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#10B981', '--status-success')" onkeydown="swatchKey(event, '#10B981', '--status-success')">
+          <div class="swatch-preview" style="background-color:#10B981;"><span class="swatch-copy-hint" style="background:#0F172A;color:#fff;">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Status Success</div>
+            <div class="swatch-meta-token">--status-success</div>
+            <div class="swatch-meta-hex">#10B981</div>
+          </div>
+          <p class="swatch-meta-role">Sparse confirmation chips. Never a second brand color.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#EF4444', '--status-danger')" onkeydown="swatchKey(event, '#EF4444', '--status-danger')">
+          <div class="swatch-preview" style="background-color:#EF4444;"><span class="swatch-copy-hint" style="background:#0F172A;color:#fff;">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Status Danger</div>
+            <div class="swatch-meta-token">--status-danger</div>
+            <div class="swatch-meta-hex">#EF4444</div>
+          </div>
+          <p class="swatch-meta-role">Destructive actions and price-drop alerts. Used sparingly.</p>
+        </div>
+
+        <div class="swatch-card" role="button" tabindex="0" onclick="copyHex('#F59E0B', '--status-warning')" onkeydown="swatchKey(event, '#F59E0B', '--status-warning')">
+          <div class="swatch-preview" style="background-color:#F59E0B;"><span class="swatch-copy-hint" style="background:#0F172A;color:#fff;">Copy Hex</span></div>
+          <div>
+            <div class="swatch-meta-name">Status Warning</div>
+            <div class="swatch-meta-token">--status-warning</div>
+            <div class="swatch-meta-hex">#F59E0B</div>
+          </div>
+          <p class="swatch-meta-role">Threshold caution. Amber, not gold foil.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. TYPOGRAPHY SPECIMEN
+         ========================================================================== -->
+    <section class="section-block" id="type-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-header-title">02 / Typography & Typeface Specimen</h2>
+          <p class="section-header-sub">Plus Jakarta Sans for display, body, and UI. Inter as the fallback. JetBrains Mono for meta, tokens, and timestamps.</p>
+        </div>
+        <span class="badge-pill badge-neutral">Optical kerning · −0.02em display</span>
+      </div>
+
+      <div class="type-specimen-grid">
+        <div class="type-ladder-card">
+          <div class="font-pair-row">
+            <div class="font-pair-chip">
+              <div class="font-pair-label">Display / Sans</div>
+              <div class="font-pair-name" style="font-family:var(--font-display);">Plus Jakarta Sans</div>
+            </div>
+            <div class="font-pair-chip">
+              <div class="font-pair-label">Fallback</div>
+              <div class="font-pair-name" style="font-family:Inter,sans-serif;">Inter</div>
+            </div>
+            <div class="font-pair-chip">
+              <div class="font-pair-label">Mono / Meta</div>
+              <div class="font-pair-name" style="font-family:var(--font-mono);">JetBrains Mono</div>
+            </div>
+          </div>
+
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">Display</span>
+              <span>700 · 32px · 1.2 · −0.02em</span>
+            </div>
+            <div class="sample-display">Lavender Minimal</div>
+          </div>
+
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">H1</span>
+              <span>700 · 2.5rem · 1.15 · −0.02em</span>
+            </div>
+            <div class="sample-h1">Airy periwinkle analytics</div>
+          </div>
+
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">H2</span>
+              <span>600 · 1.75rem · 1.25 · −0.015em</span>
+            </div>
+            <div class="sample-h2">Price intelligence, quietly</div>
+          </div>
+
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">H3 / Card title</span>
+              <span>600 · 16–17px · 1.3 · −0.01em</span>
+            </div>
+            <div class="sample-h3">Sony WH-1000XM5 — Price Trend</div>
+          </div>
+
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">Body</span>
+              <span>500 · 13–14px · 1.4</span>
+            </div>
+            <div class="sample-body">
+              Periwinkle is reserved for the thing you can press or the series you should watch. Body copy stays in cool slate so the dashboard never feels candy, cyber, or brutal.
+            </div>
+          </div>
+
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">Meta</span>
+              <span>500 · 11–12px · 1.4 · UPPERCASE · JetBrains Mono</span>
+            </div>
+            <div class="sample-meta">TILE-045 · LAST 7D · UPDATED 09:14 UTC</div>
+          </div>
+        </div>
+
+        <div class="type-playground-card">
+          <div class="playground-controls" role="tablist" aria-label="Type weight">
+            <button class="playground-pill-btn" type="button" onclick="setFontWeight(this, '700')">700 Bold</button>
+            <button class="playground-pill-btn active" type="button" onclick="setFontWeight(this, '600')">600 Semibold</button>
+            <button class="playground-pill-btn" type="button" onclick="setFontWeight(this, '500')">500 Medium</button>
+            <button class="playground-pill-btn" type="button" onclick="setFontWeight(this, '400')">400 Regular</button>
+          </div>
+
+          <label class="field-label" for="live-type-box">Live pangram</label>
+          <textarea id="live-type-box" class="playground-textarea" spellcheck="false">The quick brown fox jumps over the lazy dog. 0123456789 — Lavender Minimal holds the air.</textarea>
+
+          <p class="sample-body">
+            Plus Jakarta Sans has a humanist aperture and a product-UI spine: round enough for hospitality, precise enough for a $25,847.00 metric. Metrics sit at 26–28px / 600 / −0.015em with tabular figures.
+          </p>
+
+          <div class="hero-mini-tile">
+            <div class="sample-meta" style="text-transform:none; letter-spacing:0;">
+              FONT: "Plus Jakarta Sans", "Inter", sans-serif<br>
+              METRIC: 26–28px / 600 / 1.15 / −0.015em<br>
+              CAPTION: 11–12px / 500 / 1.35 / 0.01em
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. COMPONENT ARCHETYPE GALLERY
+         ========================================================================== -->
+    <section class="section-block" id="components-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-header-title">03 / Component Archetypes & Interaction</h2>
+          <p class="section-header-sub">Violet pills, 20px cards, hairline strokes, circular icon targets. Hover is a courtesy; every control works on touch.</p>
+        </div>
+        <span class="badge-pill badge-brand">Periwinkle active states</span>
+      </div>
+
+      <div class="components-grid">
+        <div class="component-tile">
+          <div>
+            <div class="component-tile-title">Buttons</div>
+            <div class="component-tile-sub">Primary · Secondary · Ghost · Danger · Accent</div>
+          </div>
+
+          <div class="button-stack">
+            <button class="btn-primary" type="button" onclick="triggerToast('Primary action — periwinkle CTA')">Primary</button>
+            <button class="btn-secondary" type="button" onclick="triggerToast('Secondary — white plate, hairline')">Secondary</button>
+            <button class="btn-ghost" type="button" onclick="triggerToast('Ghost — idle slate, hover ink')">Ghost</button>
+            <button class="btn-danger" type="button" onclick="triggerToast('Danger — rose wash, not neon')">Danger</button>
+            <button class="btn-accent" type="button" onclick="triggerToast('Accent — cyan supporting voice')">Accent</button>
+            <button class="btn-primary is-disabled" type="button" disabled>Disabled</button>
+          </div>
+
+          <div>
+            <div class="component-tile-sub" style="margin-bottom:10px;">Circular icon targets · 36px</div>
+            <div class="button-stack">
+              <button class="icon-btn" type="button" title="Filter" onclick="triggerToast('Filter')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+              </button>
+              <button class="icon-btn" type="button" title="Share" onclick="triggerToast('Share')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              </button>
+              <button class="icon-btn" type="button" title="Download CSV" onclick="triggerToast('Export CSV')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </button>
+              <button class="icon-btn" type="button" title="More" onclick="triggerToast('More actions')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="component-tile">
+          <div>
+            <div class="component-tile-title">Inputs & Search</div>
+            <div class="component-tile-sub">Pill field · violet focus ring</div>
+          </div>
+
+          <div class="field-stack">
+            <label class="field-label" for="demo-search">Watchlist search</label>
+            <div class="input-wrapper">
+              <input id="demo-search" type="text" class="lm-input" placeholder="Search SKU, product, or merchant…">
+              <button class="input-icon-btn" type="button" title="Search" onclick="triggerToast('Search executed')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <div class="component-tile-sub" style="margin-bottom:8px;">Date segmented control</div>
+            <div class="segmented-control" role="tablist" aria-label="Range preview">
+              <button class="segment-item" type="button" onclick="setSegment(this)">Last 7d</button>
+              <button class="segment-item active" type="button" onclick="setSegment(this)">30d</button>
+              <button class="segment-item" type="button" onclick="setSegment(this)">90d</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="component-tile">
+          <div>
+            <div class="component-tile-title">Choice Controls</div>
+            <div class="component-tile-sub">Checkbox · Radio · Toggle</div>
+          </div>
+
+          <div class="choice-stack">
+            <label class="choice-row">
+              <input class="lm-checkbox" type="checkbox" checked>
+              Include refurbished listings
+            </label>
+            <label class="choice-row">
+              <input class="lm-checkbox" type="checkbox">
+              Alert on MAP violations
+            </label>
+          </div>
+
+          <div class="choice-stack">
+            <label class="choice-row">
+              <input class="lm-radio" type="radio" name="alert-mode" checked>
+              Daily digest
+            </label>
+            <label class="choice-row">
+              <input class="lm-radio" type="radio" name="alert-mode">
+              Instant webhook
+            </label>
+          </div>
+
+          <div class="toggle-row">
+            <div>
+              <div class="feature-title">Compare to MSRP</div>
+              <div class="feature-copy">Cyan series overlays the periwinkle price path.</div>
+            </div>
+            <button class="toggle-switch active" type="button" role="switch" aria-checked="true" aria-label="Compare to MSRP" onclick="toggleSwitch(this)">
+              <div class="toggle-knob"></div>
+            </button>
+          </div>
+        </div>
+
+        <div class="component-tile">
+          <div>
+            <div class="component-tile-title">Badges & Cards</div>
+            <div class="component-tile-sub">Neutral deltas · 20px surfaces</div>
+          </div>
+
+          <div class="badge-row">
+            <span class="delta-badge">▲ +4.2%</span>
+            <span class="delta-badge">−1.8%</span>
+            <span class="status-chip chip-brand"><span class="dot"></span>Tracking</span>
+            <span class="status-chip chip-success"><span class="dot"></span>In stock</span>
+            <span class="status-chip chip-warning"><span class="dot"></span>MAP watch</span>
+            <span class="status-chip chip-danger"><span class="dot"></span>Price drop</span>
+            <span class="status-chip chip-info"><span class="dot"></span>New SKU</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 6-6"/></svg>
+            </div>
+            <div>
+              <div class="feature-title">Hairline, not shadow theater</div>
+              <div class="feature-copy">Cards use 1px #EDEFF5 and a whisper of slate shadow. Elevation is felt, not performed.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. LIVING MICRO-EXPERIENCE — ANALYTICS DASHBOARD
+         ========================================================================== -->
+    <section class="section-block" id="demo-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-header-title">04 / Living Micro-Experience — Lumen Track</h2>
+          <p class="section-header-sub">A working price-intelligence dashboard. Switch Last 7d / 30d / 90d to restamp metrics, the violet area chart, and the cyan comparison series.</p>
+        </div>
+        <span class="badge-pill badge-brand">Interactive SVG charts</span>
+      </div>
+
+      <div class="demo-shell">
+        <div class="demo-top-bar">
+          <div class="demo-brand">
+            <div class="demo-brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="8"/><path d="M8 12h8M12 8v8"/></svg>
+            </div>
+            <div>
+              <div class="demo-title">Overview</div>
+              <div class="demo-subtitle">Lumen Track · Commerce intelligence</div>
+            </div>
+          </div>
+
+          <div class="demo-top-right">
+            <div class="segmented-control" role="tablist" aria-label="Date range">
+              <button class="segment-item active" type="button" data-range="7d" onclick="setDashboardRange(this, '7d')">Last 7d</button>
+              <button class="segment-item" type="button" data-range="30d" onclick="setDashboardRange(this, '30d')">30d</button>
+              <button class="segment-item" type="button" data-range="90d" onclick="setDashboardRange(this, '90d')">90d</button>
+            </div>
+            <div class="avatar-stack" aria-label="Analysts">
+              <div class="avatar-circle avatar-1">AL</div>
+              <div class="avatar-circle avatar-2">MK</div>
+              <div class="avatar-circle avatar-3">JN</div>
+              <div class="avatar-circle avatar-4">+4</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="metrics-row">
+          <article class="metric-card">
+            <div class="metric-card-head">
+              <span class="metric-label">Tracked GMV</span>
+              <span class="metric-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </span>
+            </div>
+            <div class="metric-value tabular-nums" id="metric-gmv">$25,847.00</div>
+            <span class="delta-badge" id="metric-gmv-delta">▲ +4.2%</span>
+          </article>
+
+          <article class="metric-card">
+            <div class="metric-card-head">
+              <span class="metric-label">Avg. street price</span>
+              <span class="metric-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>
+              </span>
+            </div>
+            <div class="metric-value tabular-nums" id="metric-price">$348.00</div>
+            <span class="delta-badge" id="metric-price-delta">−1.8%</span>
+          </article>
+
+          <article class="metric-card">
+            <div class="metric-card-head">
+              <span class="metric-label">Watchers</span>
+              <span class="metric-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </span>
+            </div>
+            <div class="metric-value tabular-nums" id="metric-watchers">1,284</div>
+            <span class="delta-badge" id="metric-watchers-delta">▲ +12.6%</span>
+          </article>
+
+          <article class="metric-card">
+            <div class="metric-card-head">
+              <span class="metric-label">Price alerts</span>
+              <span class="metric-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              </span>
+            </div>
+            <div class="metric-value tabular-nums" id="metric-alerts">8</div>
+            <span class="delta-badge" id="metric-alerts-delta">+2</span>
+          </article>
+        </div>
+
+        <div class="demo-middle">
+          <article class="chart-card">
+            <div class="chart-head">
+              <div>
+                <div class="chart-product">Sony WH-1000XM5 — Price Trend</div>
+                <div class="demo-subtitle" id="chart-range-caption">Street vs. MSRP · last 7 days</div>
+              </div>
+              <div class="chart-legend">
+                <span class="legend-key"><span class="legend-swatch violet"></span> Street price</span>
+                <span class="legend-key"><span class="legend-swatch cyan"></span> MSRP / compare</span>
+              </div>
+            </div>
+
+            <div class="chart-viewport" id="chart-viewport">
+              <svg id="trend-chart" viewBox="0 0 640 220" preserveAspectRatio="none" role="img" aria-label="Price trend chart">
+                <defs>
+                  <linearGradient id="violetArea" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#7B6EF6" stop-opacity="0.38"/>
+                    <stop offset="100%" stop-color="#7B6EF6" stop-opacity="0.06"/>
+                  </linearGradient>
+                </defs>
+                <g id="chart-grid"></g>
+                <rect id="chart-highlight" x="0" y="12" width="3" height="176" fill="#7B6EF6" opacity="0"></rect>
+                <path id="chart-area" fill="url(#violetArea)" d=""></path>
+                <path id="chart-line" fill="none" stroke="#7B6EF6" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" d=""></path>
+                <path id="chart-compare" fill="none" stroke="#00B2FF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d=""></path>
+                <g id="chart-dots"></g>
+              </svg>
+              <div class="chart-tooltip" id="chart-tooltip">
+                <div class="tooltip-date" id="tooltip-date">Wed</div>
+                <div class="tooltip-row price"><span>Street</span><span id="tooltip-price">$348.00</span></div>
+                <div class="tooltip-row comp"><span>MSRP</span><span id="tooltip-comp">$370.00</span></div>
+              </div>
+            </div>
+
+            <div class="volume-row" id="volume-row" aria-hidden="true"></div>
+          </article>
+
+          <article class="watchlist-card">
+            <div class="chart-head">
+              <div class="chart-product">Watchlist</div>
+              <span class="delta-badge">4 live SKUs</span>
+            </div>
+
+            <div class="watchlist-item" onclick="triggerToast('Opened Sony WH-1000XM5')">
+              <div class="watch-thumb">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+              </div>
+              <div>
+                <div class="watch-name">Sony WH-1000XM5</div>
+                <div class="watch-meta">Headphones · MAP $348</div>
+              </div>
+              <div class="watch-price">
+                <div class="val tabular-nums" id="watch-sony">$348.00</div>
+                <span class="delta-badge" id="watch-sony-delta">−1.8%</span>
+              </div>
+            </div>
+
+            <div class="watchlist-item" onclick="triggerToast('Opened AirPods Max')">
+              <div class="watch-thumb">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>
+              </div>
+              <div>
+                <div class="watch-name">AirPods Max</div>
+                <div class="watch-meta">Headphones · Silver</div>
+              </div>
+              <div class="watch-price">
+                <div class="val tabular-nums" id="watch-airpods">$499.00</div>
+                <span class="delta-badge" id="watch-airpods-delta">+2.1%</span>
+              </div>
+            </div>
+
+            <div class="watchlist-item" onclick="triggerToast('Opened Bose QC Ultra')">
+              <div class="watch-thumb">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="8" width="16" height="9" rx="2"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg>
+              </div>
+              <div>
+                <div class="watch-name">Bose QC Ultra</div>
+                <div class="watch-meta">Headphones · Black</div>
+              </div>
+              <div class="watch-price">
+                <div class="val tabular-nums" id="watch-bose">$379.00</div>
+                <span class="delta-badge" id="watch-bose-delta">−4.4%</span>
+              </div>
+            </div>
+
+            <div class="watchlist-item" onclick="triggerToast('Opened Pixel 9 Pro')">
+              <div class="watch-thumb">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="7" y="2" width="10" height="20" rx="2"/><circle cx="12" cy="18" r="1"/></svg>
+              </div>
+              <div>
+                <div class="watch-name">Pixel 9 Pro</div>
+                <div class="watch-meta">Phone · 256 GB</div>
+              </div>
+              <div class="watch-price">
+                <div class="val tabular-nums" id="watch-pixel">$899.00</div>
+                <span class="delta-badge" id="watch-pixel-delta">0.0%</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="table-card">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Merchant</th>
+                <th>Street</th>
+                <th>MSRP</th>
+                <th>Δ range</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="product-tbody">
+              <tr>
+                <td>
+                  <span class="prod-cell">
+                    <span class="avatar-circle avatar-1" style="margin:0;width:22px;height:22px;font-size:9px;">S</span>
+                    Sony WH-1000XM5
+                  </span>
+                </td>
+                <td>Lumen Direct</td>
+                <td class="tabular-nums">$348.00</td>
+                <td class="tabular-nums">$399.99</td>
+                <td><span class="delta-badge">−1.8%</span></td>
+                <td><span class="status-chip chip-brand"><span class="dot"></span>Tracking</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="prod-cell">
+                    <span class="avatar-circle avatar-2" style="margin:0;width:22px;height:22px;font-size:9px;">A</span>
+                    AirPods Max
+                  </span>
+                </td>
+                <td>Northwind Audio</td>
+                <td class="tabular-nums">$499.00</td>
+                <td class="tabular-nums">$549.00</td>
+                <td><span class="delta-badge">+2.1%</span></td>
+                <td><span class="status-chip chip-success"><span class="dot"></span>In stock</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="prod-cell">
+                    <span class="avatar-circle avatar-3" style="margin:0;width:22px;height:22px;font-size:9px;">B</span>
+                    Bose QC Ultra
+                  </span>
+                </td>
+                <td>Harbor Sound</td>
+                <td class="tabular-nums">$379.00</td>
+                <td class="tabular-nums">$429.00</td>
+                <td><span class="delta-badge">−4.4%</span></td>
+                <td><span class="status-chip chip-danger"><span class="dot"></span>Price drop</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="prod-cell">
+                    <span class="avatar-circle avatar-4" style="margin:0;width:22px;height:22px;font-size:9px;">P</span>
+                    Pixel 9 Pro
+                  </span>
+                </td>
+                <td>Gridline Mobile</td>
+                <td class="tabular-nums">$899.00</td>
+                <td class="tabular-nums">$999.00</td>
+                <td><span class="delta-badge">0.0%</span></td>
+                <td><span class="status-chip chip-warning"><span class="dot"></span>MAP watch</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. STYLE TILE PROMPT CODE DRAWER
+         ========================================================================== -->
+    <section class="section-block" id="spec-section">
+      <div class="spec-drawer-card">
+        <div class="spec-drawer-header">
+          <div>
+            <div class="spec-drawer-title">Markdown Style Tile Specification</div>
+            <div class="spec-drawer-sub">Copy into Cursor, Claude, Copilot, or any agent prompt to replicate Lavender Minimal.</div>
+          </div>
+          <button class="btn-tile btn-copy" type="button" onclick="copyTilePromptDirect()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Prompt
+          </button>
+        </div>
+        <pre class="spec-code-pre" id="spec-code-display"></pre>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==========================================================================
+       PREVIEW MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="spec-modal" onclick="closeSpecModalOnOutside(event)" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <div id="modal-title" class="spec-drawer-title" style="color:var(--ink-primary);">TILE-045 // Lavender Minimal</div>
+          <div class="modal-kicker">Official Style Tile token specification</div>
+        </div>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close preview">✕</button>
+      </div>
+      <pre class="spec-code-pre" id="modal-spec-display" style="max-height:56vh; background:#0F172A;"></pre>
+      <div class="modal-actions">
+        <button class="btn-tile btn-copy" type="button" onclick="copyTilePromptDirect()">Copy Markdown</button>
+        <button class="btn-tile btn-preview" type="button" onclick="closeSpecModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-popup" id="toast-popup" role="status" aria-live="polite">✓ Copied to Clipboard!</div>
+
+  <!-- ==========================================================================
+       EMBEDDED STYLE TILE MARKDOWN
+       ========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Aesthetic: Lavender Minimal • Airy Periwinkle SaaS • Cool Slate Analytics
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+Lavender Minimal is a luminous, monastic analytics language for commerce
+intelligence and calm SaaS dashboards. A cool off-white canvas (#F6F7FA)
+holds 20px white cards, hairline #EDEFF5 strokes, and 9999px pills. Periwinkle
+#7B6EF6 is the only saturated brand voice — reserved for primary actions,
+active segments, and the leading chart series. Cyan #00B2FF appears only as
+comparison ink. Type is Plus Jakarta Sans in slate, never shouting. Ideal for
+price trackers, ops consoles, and product analytics that feel expensive because
+they leave room to breathe.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F6F7FA; /* Primary application canvas */
+  --bg-surface:             #FFFFFF; /* Elevated cards and containers */
+  --bg-surface-alt:         #F0F2F6; /* Secondary panels, wells, sidebars */
+  --bg-surface-dark:        #0F172A; /* Inverted containers / code drawer */
+
+  /* Inks & Typography */
+  --ink-primary:            #0F172A; /* High-contrast primary reading text */
+  --ink-secondary:          #334155; /* Subtitles, secondary copy */
+  --ink-muted:              #64748B; /* Captions, disabled text, inactive tabs */
+  --ink-inverted:           #FFFFFF; /* Inverted contrast text */
+
+  /* Signature Accents */
+  --accent-primary:         #7B6EF6; /* Primary call-to-action / active tab */
+  --accent-primary-hover:   #6B5DE6; /* Interactive hover tone */
+  --accent-secondary:       #00B2FF; /* Supporting visual highlight (compare) */
+  --accent-tertiary:        #ECE9FE; /* Accent badges or energetic highlights */
+
+  /* Neutral chrome */
+  --badge-neutral-bg:       #F1F5F9; /* Delta badge background */
+  --badge-neutral-ink:      #475569; /* Delta badge text */
+  --ink-disabled:           #94A3B8;
+  --divider:                #F1F5F9;
+  --stroke-card:            #EDEFF5;
+  --chart-grid:             #E2E8F0;
+
+  /* Status Tokens */
+  --status-success:         #10B981;
+  --status-warning:         #F59E0B;
+  --status-danger:          #EF4444;
+  --status-info:            #00B2FF;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", "SF Mono", monospace;
+
+/* Type Scale */
+--text-display: 3.5rem   / 1.05  var(--font-display); /* Letter-spacing: -0.03em | Weight: 700 — page hero uses clamp() */
+--text-h1:      2.5rem   / 1.15  var(--font-display); /* Letter-spacing: -0.02em | Weight: 700 */
+--text-h2:      1.75rem  / 1.25  var(--font-sans);    /* Letter-spacing: -0.015em | Weight: 600 */
+--text-h3:      1.25rem  / 1.35  var(--font-sans);    /* Letter-spacing: -0.01em | Weight: 600 — card titles 16–17px */
+--text-body:     1.0rem   / 1.60  var(--font-sans);    /* Prefer 13–14px / 500 / 1.4 in product UI */
+--text-body-sm:  0.875rem / 1.50  var(--font-sans);    /* Letter-spacing: 0 | Weight: 500 */
+--text-meta:     0.75rem  / 1.40  var(--font-mono);    /* Letter-spacing: 0.04em | UPPERCASE */
+
+/* Product UI extras */
+--text-metric:  26–28px / 600 / 1.15 / -0.015em; /* Tabular figures for $25,847.00 */
+--text-caption: 11–12px / 500 / 1.35 / 0.01em;
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 20px;   /* Cards */
+--radius-subtle:  14px;   /* Nested tiles */
+--radius-pill:    9999px; /* Buttons, segments, badges, search */
+--radius-bar:     8px 8px 0 0; /* Volume bar caps */
+--radius-icon:    50%;    /* Icon wells and avatars */
+
+/* Elevation & Shadows */
+--shadow-base:    0px 2px 10px rgba(15, 23, 42, 0.02), 0px 1px 2px rgba(15, 23, 42, 0.03);
+--shadow-hover:   0px 8px 24px rgba(15, 23, 42, 0.05), 0px 2px 4px rgba(15, 23, 42, 0.04);
+--shadow-active:  0px 1px 2px rgba(15, 23, 42, 0.06);
+--shadow-floating: 0px 12px 32px -4px rgba(123, 110, 246, 0.12), 0px 4px 12px rgba(15, 23, 42, 0.05);
+
+/* Chart fill */
+--gradient-chart: linear-gradient(180deg, #7B6EF6 0%, rgba(123,110,246,0.15) 100%);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid #EDEFF5;
+--border-hairline:    1px solid #F1F5F9;
+--divider-style:      1px solid #F1F5F9;
+--chart-gridline:     1px dashed #E2E8F0;
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Primary is a periwinkle pill (#7B6EF6, white text, 600). Hover deepens to #6B5DE6 and lifts 1px. Secondary is white + hairline. Ghost is transparent slate. Danger is a rose wash, never a hard red brick. Disabled uses #F1F5F9 / #94A3B8.
+- **Cards**: 20px radius, 20–24px padding, 16–20px gaps, 1px #EDEFF5 stroke, whisper shadow. Nested tiles 14px. Never unbordered floaters.
+- **Inputs**: Pill fields on #F6F7FA, placeholder #94A3B8, focus ring 3px #ECE9FE with #7B6EF6 border. Minimum 16px font on mobile.
+- **Segmented controls**: Track #F0F2F6. Active pill background #7B6EF6, white text, weight 600. Inactive transparent, text #64748B. Hover text #0F172A.
+- **Delta badges**: #F1F5F9 pill, 3px 8px padding, text #475569. Do not turn deltas into green/red candy chips.
+- **Charts**: Violet area/line for the primary series; cyan dashed or thinner line for comparison. Grid is 1px dashed #E2E8F0. Highlight is a solid violet vertical bar. Tooltip is a floating white pill with dual colored metric keys (periwinkle + cyan).
+- **Navigation**: Frosted white header, hairline bottom, violet copy action. Icon buttons are 36px circular transparent targets, 16–18px monoline glyphs (1.5–1.75px, round caps).
+- **Toggles / checks / radios**: On-state fills periwinkle. Icon boxes 50%.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- No neo-brutalist 0–2px radii, 3px borders, or hard zero-blur offset shadows.
+- No neon cyber grids, scanlines, reticles, or generic purple glow.
+- No Memphis / playful pop geometry, sticker chrome, or candy palettes.
+- No warm oat, honey caramel, or gold-foil hospitality luxury.
+- No gradient text, glassmorphism overload, or floating unbordered cards.
+- Do not introduce a second saturated brand color besides periwinkle; cyan is comparison ink only.
+- Do not pack the canvas. Air is the material. Dense industrial dashboards ruin the monastic read.
+================================================================================
+  </script>
+
+  <!-- ==========================================================================
+       JAVASCRIPT
+       ========================================================================== -->
+  <script>
+    const markdownContent = document.getElementById("style-tile-markdown").textContent.trim();
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message || "✓ Copied to Clipboard!";
+      toast.style.display = "block";
+      window.clearTimeout(triggerToast._t);
+      triggerToast._t = window.setTimeout(() => {
+        toast.style.display = "none";
+      }, 2200);
+    }
+
+    function flashCopyButton(btn) {
+      if (!btn) return;
+      const original = btn.innerHTML;
+      btn.innerHTML = "✓ Copied to Clipboard!";
+      window.setTimeout(() => { btn.innerHTML = original; }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(() => {
+        triggerToast("✓ Copied to Clipboard!");
+        flashCopyButton(document.getElementById("btn-copy-tile"));
+      }).catch(() => {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function swatchKey(event, hex, name) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        copyHex(hex, name);
+      }
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+
+    document.getElementById("btn-download-tile").addEventListener("click", () => {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-lavender-minimal.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-lavender-minimal.md");
+    });
+
+    document.getElementById("btn-preview-tile").addEventListener("click", () => {
+      document.getElementById("spec-modal").classList.add("active");
+    });
+
+    function closeSpecModal() {
+      document.getElementById("spec-modal").classList.remove("active");
+    }
+
+    function closeSpecModalOnOutside(e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    function setFontWeight(btn, weight) {
+      document.querySelectorAll(".playground-controls .playground-pill-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      const textarea = document.getElementById("live-type-box");
+      if (textarea) textarea.style.fontWeight = weight;
+    }
+
+    function setSegment(btn) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll(".segment-item").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      triggerToast("Range: " + btn.textContent.trim());
+    }
+
+    function toggleSwitch(el) {
+      el.classList.toggle("active");
+      const on = el.classList.contains("active");
+      el.setAttribute("aria-checked", on ? "true" : "false");
+      triggerToast(on ? "Compare to MSRP on" : "Compare to MSRP off");
+    }
+
+    /* ----- Dashboard range + SVG chart ----- */
+    const RANGE_DATA = {
+      "7d": {
+        caption: "Street vs. MSRP · last 7 days",
+        gmv: "$25,847.00", gmvDelta: "▲ +4.2%",
+        price: "$348.00", priceDelta: "−1.8%",
+        watchers: "1,284", watchersDelta: "▲ +12.6%",
+        alerts: "8", alertsDelta: "+2",
+        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        street: [360, 352, 348, 355, 342, 350, 348],
+        msrp:   [378, 372, 370, 368, 365, 364, 362],
+        volume: [28, 36, 44, 32, 58, 40, 48],
+        watch: {
+          sony: ["$348.00", "−1.8%"],
+          airpods: ["$499.00", "+2.1%"],
+          bose: ["$379.00", "−4.4%"],
+          pixel: ["$899.00", "0.0%"]
+        }
+      },
+      "30d": {
+        caption: "Street vs. MSRP · last 30 days",
+        gmv: "$98,420.00", gmvDelta: "▲ +8.4%",
+        price: "$339.50", priceDelta: "−3.1%",
+        watchers: "4,102", watchersDelta: "▲ +18.2%",
+        alerts: "24", alertsDelta: "+6",
+        labels: ["W1", "W2", "W3", "W4", "W5"],
+        street: [358, 351, 344, 336, 339.5],
+        msrp:   [380, 376, 372, 368, 366],
+        volume: [34, 42, 38, 61, 47],
+        watch: {
+          sony: ["$339.50", "−3.1%"],
+          airpods: ["$489.00", "−1.2%"],
+          bose: ["$369.00", "−5.8%"],
+          pixel: ["$879.00", "−2.2%"]
+        }
+      },
+      "90d": {
+        caption: "Street vs. MSRP · last 90 days",
+        gmv: "$284,190.00", gmvDelta: "▲ +11.7%",
+        price: "$352.10", priceDelta: "+2.4%",
+        watchers: "9,841", watchersDelta: "▲ +22.0%",
+        alerts: "61", alertsDelta: "+14",
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep"],
+        street: [328, 336, 348, 360, 354, 352.1],
+        msrp:   [390, 384, 378, 372, 368, 366],
+        volume: [22, 31, 44, 52, 48, 57],
+        watch: {
+          sony: ["$352.10", "+2.4%"],
+          airpods: ["$509.00", "+3.4%"],
+          bose: ["$389.00", "+1.1%"],
+          pixel: ["$919.00", "+2.2%"]
+        }
+      }
+    };
+
+    const CHART = { padL: 8, padR: 8, padT: 18, padB: 28, w: 640, h: 220 };
+
+    function money(n) {
+      return "$" + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function seriesToCoords(series, all, chart) {
+      const min = Math.min.apply(null, all) - 8;
+      const max = Math.max.apply(null, all) + 8;
+      const span = max - min || 1;
+      const innerW = chart.w - chart.padL - chart.padR;
+      const innerH = chart.h - chart.padT - chart.padB;
+      return series.map((v, i) => {
+        const x = chart.padL + (series.length === 1 ? innerW / 2 : (i / (series.length - 1)) * innerW);
+        const y = chart.padT + (1 - (v - min) / span) * innerH;
+        return { x: x, y: y, v: v };
+      });
+    }
+
+    function linePath(pts) {
+      return pts.map((p, i) => (i === 0 ? "M" : "L") + p.x.toFixed(1) + " " + p.y.toFixed(1)).join(" ");
+    }
+
+    function areaPath(pts, chart) {
+      const base = chart.h - chart.padB;
+      return linePath(pts) + " L " + pts[pts.length - 1].x.toFixed(1) + " " + base + " L " + pts[0].x.toFixed(1) + " " + base + " Z";
+    }
+
+    let currentRange = "7d";
+    let currentStreetPts = [];
+    let currentMsrpPts = [];
+
+    function renderChart(key) {
+      const data = RANGE_DATA[key];
+      const all = data.street.concat(data.msrp);
+      const streetPts = seriesToCoords(data.street, all, CHART);
+      const msrpPts = seriesToCoords(data.msrp, all, CHART);
+      currentStreetPts = streetPts;
+      currentMsrpPts = msrpPts;
+
+      const grid = document.getElementById("chart-grid");
+      grid.innerHTML = "";
+      [0.25, 0.5, 0.75].forEach((t) => {
+        const y = CHART.padT + t * (CHART.h - CHART.padT - CHART.padB);
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", String(CHART.padL));
+        line.setAttribute("x2", String(CHART.w - CHART.padR));
+        line.setAttribute("y1", y.toFixed(1));
+        line.setAttribute("y2", y.toFixed(1));
+        line.setAttribute("stroke", "#E2E8F0");
+        line.setAttribute("stroke-width", "1");
+        line.setAttribute("stroke-dasharray", "4 5");
+        grid.appendChild(line);
+      });
+
+      document.getElementById("chart-area").setAttribute("d", areaPath(streetPts, CHART));
+      document.getElementById("chart-line").setAttribute("d", linePath(streetPts));
+      document.getElementById("chart-compare").setAttribute("d", linePath(msrpPts));
+
+      const dots = document.getElementById("chart-dots");
+      dots.innerHTML = "";
+      streetPts.forEach((p, i) => {
+        const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        c.setAttribute("cx", p.x.toFixed(1));
+        c.setAttribute("cy", p.y.toFixed(1));
+        c.setAttribute("r", i === streetPts.length - 1 ? "5" : "3.5");
+        c.setAttribute("fill", "#FFFFFF");
+        c.setAttribute("stroke", "#7B6EF6");
+        c.setAttribute("stroke-width", "2");
+        dots.appendChild(c);
+      });
+
+      const vol = document.getElementById("volume-row");
+      vol.innerHTML = "";
+      const peak = Math.max.apply(null, data.volume);
+      data.volume.forEach((v) => {
+        const b = document.createElement("div");
+        b.className = "volume-bar" + (v === peak ? " is-peak" : "");
+        b.style.height = Math.max(8, Math.round((v / peak) * 36)) + "px";
+        vol.appendChild(b);
+      });
+    }
+
+    function applyRange(key) {
+      const data = RANGE_DATA[key];
+      currentRange = key;
+      document.getElementById("metric-gmv").textContent = data.gmv;
+      document.getElementById("metric-gmv-delta").textContent = data.gmvDelta;
+      document.getElementById("metric-price").textContent = data.price;
+      document.getElementById("metric-price-delta").textContent = data.priceDelta;
+      document.getElementById("metric-watchers").textContent = data.watchers;
+      document.getElementById("metric-watchers-delta").textContent = data.watchersDelta;
+      document.getElementById("metric-alerts").textContent = data.alerts;
+      document.getElementById("metric-alerts-delta").textContent = data.alertsDelta;
+      document.getElementById("chart-range-caption").textContent = data.caption;
+      document.getElementById("watch-sony").textContent = data.watch.sony[0];
+      document.getElementById("watch-sony-delta").textContent = data.watch.sony[1];
+      document.getElementById("watch-airpods").textContent = data.watch.airpods[0];
+      document.getElementById("watch-airpods-delta").textContent = data.watch.airpods[1];
+      document.getElementById("watch-bose").textContent = data.watch.bose[0];
+      document.getElementById("watch-bose-delta").textContent = data.watch.bose[1];
+      document.getElementById("watch-pixel").textContent = data.watch.pixel[0];
+      document.getElementById("watch-pixel-delta").textContent = data.watch.pixel[1];
+      renderChart(key);
+    }
+
+    function setDashboardRange(btn, key) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll(".segment-item").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      applyRange(key);
+      triggerToast("Overview · " + btn.textContent.trim());
+    }
+
+    function bindChartHover() {
+      const svg = document.getElementById("trend-chart");
+      const tip = document.getElementById("chart-tooltip");
+      const bar = document.getElementById("chart-highlight");
+      const viewport = document.getElementById("chart-viewport");
+
+      function nearestIndex(clientX) {
+        const rect = svg.getBoundingClientRect();
+        const x = ((clientX - rect.left) / rect.width) * CHART.w;
+        let best = 0;
+        let dist = Infinity;
+        currentStreetPts.forEach((p, i) => {
+          const d = Math.abs(p.x - x);
+          if (d < dist) { dist = d; best = i; }
+        });
+        return best;
+      }
+
+      function showAt(i) {
+        const data = RANGE_DATA[currentRange];
+        const p = currentStreetPts[i];
+        if (!p) return;
+        bar.setAttribute("x", String(p.x - 1.5));
+        bar.setAttribute("opacity", "0.22");
+        document.getElementById("tooltip-date").textContent = data.labels[i];
+        document.getElementById("tooltip-price").textContent = money(data.street[i]);
+        document.getElementById("tooltip-comp").textContent = money(data.msrp[i]);
+        tip.classList.add("is-on");
+        const rect = viewport.getBoundingClientRect();
+        const svgRect = svg.getBoundingClientRect();
+        const left = ((p.x / CHART.w) * svgRect.width) - 20;
+        tip.style.left = Math.max(8, Math.min(left, rect.width - 168)) + "px";
+        tip.style.top = Math.max(8, ((p.y / CHART.h) * svgRect.height) - 64) + "px";
+      }
+
+      svg.addEventListener("mousemove", (e) => {
+        if (!currentStreetPts.length) return;
+        showAt(nearestIndex(e.clientX));
+      });
+      svg.addEventListener("mouseleave", () => {
+        bar.setAttribute("opacity", "0");
+        tip.classList.remove("is-on");
+      });
+      svg.addEventListener("click", (e) => {
+        if (!currentStreetPts.length) return;
+        const i = nearestIndex(e.clientX);
+        const data = RANGE_DATA[currentRange];
+        triggerToast(data.labels[i] + " · street " + money(data.street[i]));
+      });
+    }
+
+    applyRange("7d");
+    bindChartHover();
+  </script>
+</body>
+</html>
