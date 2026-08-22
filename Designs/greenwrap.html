@@ -1374,6 +1374,45 @@
   </style>
   <link rel="stylesheet" href="design-page-mobile.css">
   <script src="design-page-mobile.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .layout-wrapper, .page-wrap { padding-left: 16px !important; padding-right: 16px !important; }
+      .hero-section { padding: 16px 0 20px !important; }
+      .hero-card {
+        padding: 0 !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        overflow: visible !important;
+      }
+      .hero-guilloche-art { opacity: 0.08 !important; width: 220px !important; height: 220px !important; right: -80px !important; }
+      .hero-title { font-size: clamp(1.75rem, 8vw, 2.2rem) !important; line-height: 1.2 !important; }
+      .serif-pill {
+        display: inline !important;
+        padding: 0 2px !important;
+        margin: 0 !important;
+        background: transparent !important;
+        color: inherit !important;
+        border-radius: 0 !important;
+        font-size: 1em !important;
+      }
+      .hero-lead { font-size: 15px !important; }
+      .hero-cta-group {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+      }
+      .hero-cta-group .btn-action-primary,
+      .hero-cta-group .btn-action-secondary {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .avatar-stack-group { margin-top: 8px; }
+      .hero-meta-row { flex-wrap: wrap !important; }
+      .pill-badge { max-width: 100%; }
+    }
+  </style>
 </head>
 <body>
 

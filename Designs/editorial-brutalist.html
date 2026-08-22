@@ -1265,6 +1265,41 @@
   </style>
   <link rel="stylesheet" href="design-page-mobile.css">
   <script src="design-page-mobile.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .layout-wrapper { padding-left: 16px !important; padding-right: 16px !important; }
+      .hero-banner { padding: 16px 0 24px !important; }
+      .hero-card {
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+      .hero-stamp-corner { display: none !important; }
+      .hero-grid { gap: 20px !important; }
+      .hero-lead-box { gap: 12px !important; }
+      .hero-tag-strip { flex-wrap: wrap !important; }
+      .hero-tag-strip {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+      }
+      .hero-tag-strip .badge { width: auto !important; }
+      .hero-lead-box > div:last-of-type {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        gap: 10px !important;
+      }
+      .hero-lead-box .btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .hero-meta-summary { padding: 0 !important; border: none !important; }
+      p, h1 { overflow-wrap: anywhere; }
+    }
+  </style>
 </head>
 <body>
 

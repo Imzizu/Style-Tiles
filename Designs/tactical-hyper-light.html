@@ -1641,6 +1641,40 @@
   <!-- Mandatory Mobile Safety Sheet from agent.md -->
   <link rel="stylesheet" href="design-page-mobile.css">
   <script src="design-page-mobile.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .tactical-watermark, .tactical-watermark-secondary { display: none !important; }
+      .hud-ruler-container { display: none !important; }
+      .telemetry-strip { padding: 8px 16px !important; }
+      .telemetry-inner {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 6px 14px !important;
+      }
+      .telemetry-item { font-size: 9px !important; }
+      .telemetry-item:nth-child(n+4) { display: none !important; }
+      .layout-container { padding-left: 16px !important; padding-right: 16px !important; }
+      .hero-section, .hero-wrap { padding: 16px 0 24px !important; }
+      .hero-main-title { font-size: clamp(2.1rem, 11vw, 2.8rem) !important; }
+      .section-card, .showcase-container {
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+      .hero-action-bar {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 10px !important;
+      }
+      .hero-action-bar a, .hero-action-bar button {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .hero-top-meta { flex-wrap: wrap !important; }
+    }
+  </style>
 </head>
 <body>
 

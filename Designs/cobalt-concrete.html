@@ -1699,6 +1699,21 @@
       .page-shell, .page-container, .hero-grid, .hero-grid > *, .hero-copy, .section-block { min-width: 0; max-width: 100%; }
       p, h1, h2, h3, .hero-narrative, .hero-title { overflow-wrap: anywhere; word-break: break-word; max-width: 100%; }
       .hero-badges, .hero-meta-row, .action-strip { flex-wrap: wrap !important; width: 100%; max-width: 100%; }
+      .hero-section, .hero-copy, .hero-grid {
+        padding: 0 !important;
+        border: none !important;
+      }
+      .page-container { padding-left: 16px !important; padding-right: 16px !important; }
+      .hero-visual { min-height: 180px !important; margin-top: 16px; }
+      .action-strip {
+        display: flex !important;
+        flex-direction: column !important;
+        height: auto !important;
+      }
+      .cta-tile, .cta-tile-primary {
+        width: 100% !important;
+        border-right: none !important;
+      }
     }
   </style>
 </head>

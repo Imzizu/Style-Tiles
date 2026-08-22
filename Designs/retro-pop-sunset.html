@@ -1709,6 +1709,35 @@
   <!-- Mandatory Shared Mobile Safety Sheet (agent.md Section 6) -->
   <link rel="stylesheet" href="design-page-mobile.css">
   <script src="design-page-mobile.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .layout-wrapper { padding-left: 16px !important; padding-right: 16px !important; }
+      .hero-section { padding: 16px 0 20px !important; }
+      .hero-billboard-card {
+        padding: 0 !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        overflow: visible !important;
+      }
+      .hero-sun-motif, .hero-watermark { opacity: 0.2 !important; }
+      .hero-cta-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        gap: 10px !important;
+      }
+      .hero-cta-row a, .hero-cta-row button,
+      .btn-hero-primary, .btn-hero-secondary {
+        width: 100% !important;
+        justify-content: center !important;
+        box-sizing: border-box;
+      }
+      .hero-title { font-size: clamp(2rem, 10vw, 2.6rem) !important; overflow-wrap: anywhere; }
+    }
+  </style>
 </head>
 
 <body>

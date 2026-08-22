@@ -1461,6 +1461,38 @@
   </style>
   <link rel="stylesheet" href="design-page-mobile.css">
   <script src="design-page-mobile.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .layout-wrapper { padding-left: 16px !important; padding-right: 16px !important; max-width: 100% !important; }
+      .hero-banner { padding: 16px 0 20px !important; }
+      .hero-bento-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+      .hero-main-card {
+        padding: 0 !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        overflow: visible !important;
+      }
+      .hero-main-card::after { display: none !important; }
+      .hero-badge-chips { flex-wrap: wrap !important; max-width: 100% !important; }
+      .chip-tag { max-width: 100%; overflow-wrap: anywhere; }
+      .hero-lead-text, .text-display { max-width: 100% !important; overflow-wrap: anywhere; }
+      .hero-actions-row {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+      }
+      .hero-actions-row .pill-action-btn {
+        width: 100% !important;
+        max-width: 100% !important;
+        justify-content: space-between !important;
+        box-sizing: border-box;
+      }
+      .hero-side-column { min-width: 0; }
+      .parametric-clay-card { min-height: 0 !important; padding: 16px !important; }
+    }
+  </style>
 </head>
 <body>
 

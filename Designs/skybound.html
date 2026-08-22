@@ -1550,6 +1550,31 @@
   </style>
   <link rel="stylesheet" href="design-page-mobile.css">
   <script src="design-page-mobile.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .layout-wrapper { padding-left: 16px !important; padding-right: 16px !important; }
+      .master-canvas {
+        margin: 0 0 24px !important;
+        padding: 8px 0 24px !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+      .hero-banner { padding-bottom: 20px !important; }
+      .hero-cta-group {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+      }
+      .hero-cta-group .btn-skybound {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .hero-stats-strip { grid-template-columns: 1fr !important; padding: 12px !important; }
+      .hero-headline, .hero-subtitle { max-width: 100% !important; overflow-wrap: anywhere; }
+    }
+  </style>
 </head>
 <body>
 

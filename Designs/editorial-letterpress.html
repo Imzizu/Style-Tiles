@@ -1594,6 +1594,40 @@
   <!-- Mandatory Mobile Safety Sheet (agent.md Section 6) -->
   <link rel="stylesheet" href="design-page-mobile.css">
   <script src="design-page-mobile.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .layout-wrapper, .folio-sheet, .hero-section {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+      .hero-section {
+        padding-top: 16px !important;
+        padding-bottom: 20px !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+      .card-registration.hero-main {
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+      .reg-tl, .reg-tr, .reg-bl, .reg-br { display: none !important; }
+      .hero-grid { gap: 16px !important; }
+      .hero-sidebar-card { padding: 12px 0 !important; border: none !important; box-shadow: none !important; }
+      .hero-cta-group {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .hero-cta-group a, .hero-cta-group button {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .hero-title, .hero-lede { overflow-wrap: anywhere; }
+    }
+  </style>
 </head>
 <body>
 

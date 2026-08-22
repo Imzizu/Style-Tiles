@@ -1539,6 +1539,50 @@
   </style>
   <link rel="stylesheet" href="design-page-mobile.css">
   <script src="design-page-mobile.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .layout-wrapper { padding-left: 16px !important; padding-right: 16px !important; }
+      .hero-banner { padding: 16px 0 20px !important; }
+      .hero-box {
+        padding: 0 !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        overflow: visible !important;
+        background: transparent !important;
+      }
+      .hero-blob-bg, .hero-star-motif { display: none !important; }
+      .hero-content { z-index: 2; max-width: 100% !important; }
+      .hero-content p, .hero-lede, .hero-body {
+        position: relative;
+        z-index: 2;
+        background: transparent;
+      }
+      .header-title-block .design-title {
+        letter-spacing: 0 !important;
+        word-spacing: 0.06em;
+        font-size: 0.95rem !important;
+        overflow-wrap: anywhere;
+      }
+      .hero-actions-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        gap: 10px !important;
+      }
+      .hero-actions-row .btn-primary-pop,
+      .hero-actions-row .btn-secondary-pop,
+      .hero-actions-row button,
+      .hero-actions-row a {
+        width: 100% !important;
+        max-width: 100% !important;
+        justify-content: center !important;
+        box-sizing: border-box;
+      }
+      h1, p { overflow-wrap: anywhere; }
+    }
+  </style>
 </head>
 <body>
 
