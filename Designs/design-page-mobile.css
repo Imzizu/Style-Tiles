@@ -20,6 +20,35 @@ body.in-iframe .style-tile-header,
   overflow: hidden !important;
 }
 
+/* Overlays must not sit on top of the catalog crop. */
+html.is-preview .modal-overlay,
+html.is-preview #spec-modal,
+html.is-preview .toast-popup,
+html.is-preview #toast-popup {
+  display: none !important;
+}
+
+/* Keep below-fold sections in flow so they do not collapse into the 16:9 crop,
+   but skip painting them while the catalog iframe is showing the hero. */
+html.is-preview .section-block,
+html.in-iframe .section-block,
+html.is-preview #palette-section,
+html.is-preview #typography-section,
+html.is-preview #components-section,
+html.is-preview #demo-section,
+html.is-preview #spec-section,
+html.is-preview .spec-drawer-card {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 640px;
+}
+
+html.is-preview,
+html.is-preview body,
+html.in-iframe,
+html.in-iframe body {
+  min-height: 0 !important;
+}
+
 @media (max-width: 768px) {
   html,
   body {

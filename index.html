@@ -3,9 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    html.catalog-restoring { visibility: hidden; }
-  </style>
   <script>
     (function () {
       try {
@@ -17,10 +14,6 @@
           || (typeof state.visibleCount === "number" && state.visibleCount > 15);
         if (!shouldRestore) return;
         if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-        document.documentElement.classList.add("catalog-restoring");
-        window.setTimeout(function () {
-          document.documentElement.classList.remove("catalog-restoring");
-        }, 1200);
       } catch (err) {}
     })();
   </script>
@@ -359,6 +352,6 @@
   </footer>
 
   <!-- Main Application Script -->
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>

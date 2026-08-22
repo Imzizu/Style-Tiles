@@ -1054,8 +1054,22 @@ a {
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background-color: var(--surface-sheet);
+  background-color: var(--preview-poster, var(--surface-sheet));
   border-bottom: var(--border-core);
+  contain: layout paint;
+}
+
+.card-preview-poster {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--preview-poster, var(--surface-sheet));
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.card-preview-live.is-ready .card-preview-poster {
+  opacity: 0;
 }
 
 .card-preview-iframe {
@@ -1067,8 +1081,13 @@ a {
   border: none;
   pointer-events: none;
   transform-origin: top left;
-  background-color: #FAF7F2;
-  transition: opacity 180ms ease;
+  background-color: transparent;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.card-preview-iframe.is-loaded {
+  opacity: 1;
 }
 
 /* 2:3 Mobile Preview Mode Modifier */
