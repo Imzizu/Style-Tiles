@@ -236,29 +236,132 @@ const STYLE_TILES_DATA = [
     id: "TILE-010",
     slug: "blueprint-hud",
     name: "Industrial Blueprint HUD",
-    vibe: "Architectural Cyanotype • CAD Precision • Aerospace Telemetry",
+    vibe: "Prussian Cyanotype • Ivory Vector Ink • ISO Title Block",
     vibeBadge: "Cyber & Blueprint",
     categories: ["cyber"],
     theme: "Dark",
     hasPage: true,
     fonts: {
-      display: "Orbitron",
-      sans: "DM Sans",
-      mono: "Chivo Mono"
+      display: "Big Shoulders Display",
+      sans: "IBM Plex Sans",
+      mono: "IBM Plex Mono"
     },
     palette: [
-      { name: "Deep Void", hex: "#040B16" },
-      { name: "Cyanotype Sheet", hex: "#081325" },
-      { name: "Drawing Frame", hex: "#0E2445" },
-      { name: "Electric Pen", hex: "#00E5FF" },
-      { name: "Vector Secondary", hex: "#00B4D8" },
-      { name: "Technical White", hex: "#E0F2FE" },
-      { name: "Revision Amber", hex: "#FF9900" },
-      { name: "Nominal Emerald", hex: "#00FFA3" },
-      { name: "Load Crimson", hex: "#FF3366" }
+      { name: "Prussian Night", hex: "#062033" },
+      { name: "Cyanotype Paper", hex: "#0A3D5C" },
+      { name: "Drawing Frame", hex: "#114E72" },
+      { name: "Ivory Vector", hex: "#EEF4F8" },
+      { name: "Sun-Bleach Cyan", hex: "#9ED8EA" },
+      { name: "Revision Brass", hex: "#C9A44A" },
+      { name: "Calibration Seafoam", hex: "#6FC9B0" },
+      { name: "Red Pencil", hex: "#E25B4A" }
     ],
-    description: "Architectural CAD blueprint and cyanotype drafting board with electric cyan vector pen lines, 45° chamfered geometry, coordinate reticles, dimension callouts, and precision aerospace telemetry.",
-    markdownSpec: null
+    description: "A drawing sheet that became an interface: Prussian cyanotype paper, ivory construction ink, ISO title blocks, brass revision stamps, and a thin instrument overlay — not neon HUD chrome.",
+    markdownSpec: `================================================================================
+  Aesthetic: Industrial Blueprint HUD • Prussian Cyanotype • Ivory Vector Ink
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 1. DESIGN STATEMENT & VIBE SUMMARY
+ * -------------------------------------------------------------------------- */
+A drawing sheet that became an interface. Industrial Blueprint HUD is a
+cyanotype design language: Prussian blue paper, ivory construction ink,
+ISO title blocks, brass revision stamps, and a thin instrument overlay.
+Use it for naval architecture software, CNC controllers, CAD viewports,
+and aerospace ops consoles. It is a real blueprint — not a neon HUD skin.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #062033; /* Prussian night — application canvas */
+  --bg-surface:             #0A3D5C; /* Cyanotype drawing paper */
+  --bg-surface-alt:         #114E72; /* Elevated frames and panels */
+  --bg-surface-dark:        #041624; /* Title-block wells, viewport void */
+
+  /* Inks & Typography */
+  --ink-primary:            #EEF4F8; /* Ivory vector — primary construction ink */
+  --ink-secondary:          #C5DCE8; /* Annotation, secondary copy */
+  --ink-muted:              #7AA3B8; /* Captions, zone letters, disabled */
+  --ink-inverted:           #062033; /* Ink on ivory fills */
+
+  /* Signature Accents */
+  --accent-primary:         #9ED8EA; /* Sun-bleach cyan — live HUD only */
+  --accent-primary-hover:   #C5EBF5; /* Hover bleach */
+  --accent-secondary:       #C9A44A; /* Industrial brass — stamps, dimensions */
+  --accent-tertiary:        #E8D5A3; /* Pale brass highlight */
+
+  /* Status Tokens */
+  --status-success:         #6FC9B0; /* Nominal / calibrated */
+  --status-warning:         #C9A44A; /* Revision / caution (brass) */
+  --status-danger:          #E25B4A; /* Red-pencil markup */
+  --status-info:            #9ED8EA; /* HUD info */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+--font-sans:    "IBM Plex Sans", -apple-system, sans-serif;
+--font-mono:    "IBM Plex Mono", ui-monospace, monospace;
+
+/* Type Scale */
+--text-display: 3.5rem   / 0.84  var(--font-display); /* Letter-spacing: -0.02em | Weight: 800 | UPPERCASE */
+--text-h1:      2.5rem   / 1.00  var(--font-display); /* Letter-spacing: 0.02em | Weight: 700 | UPPERCASE */
+--text-h2:      1.75rem  / 1.10  var(--font-display); /* Letter-spacing: 0.04em | Weight: 700 | UPPERCASE */
+--text-h3:      1.15rem  / 1.30  var(--font-sans);    /* Letter-spacing: 0 | Weight: 600 */
+--text-body:    1.0rem   / 1.60  var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
+--text-body-sm: 0.875rem / 1.50  var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
+--text-meta:    0.6875rem / 1.40 var(--font-mono);    /* Letter-spacing: 0.16em | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 0px;
+--radius-subtle:  2px;
+--radius-pill:    9999px; /* Forbidden on buttons and cards. Meta ticks only. */
+
+--clip-notch: polygon(0 8px, 8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
+
+/* Elevation & Shadows */
+--shadow-base:    none;
+--shadow-hover:   inset 0 0 0 1px var(--accent-primary);
+--shadow-active:  inset 0 0 24px rgba(158, 216, 234, 0.12);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid rgba(158, 216, 234, 0.55);
+--border-hairline:    1px solid rgba(238, 244, 248, 0.18);
+--divider-style:      1px dashed rgba(238, 244, 248, 0.18);
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT ARCHETYPES & INTERACTION RULES
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 0px radius, 8px opposite-corner notches. Primary is filled ivory
+  on Prussian (the inked region). Secondary is ivory outline. Ghost is hairline.
+  Accent is brass fill for revision actions. Danger is red-pencil outline.
+  Hover inverts or bleaches; active translates 1px down. No pills, no glow bloom.
+- **Cards**: Cyanotype sheet surfaces with hairline frames and four reticle
+  corners. Optional 45° hatch in wells. Title-block header strip in mono.
+- **Inputs**: Square wells, IBM Plex Mono, 16px to prevent iOS zoom. Focus is a
+  sun-bleach border plus inset HUD wash — never a colored outer glow ring.
+- **Navigation**: Sticky Prussian well, brass TILE code chip, sun-bleach Catalog
+  link. Hairline bottom rule. No frosted glass pills.
+- **Drawing language**: ISO zone letters, centerlines (long-dash short-dash),
+  dimension arrows in brass, ivory construction, HUD reticles in pale cyan only.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS FOR THIS STYLE
+ * -------------------------------------------------------------------------- */
+- No Orbitron, Rajdhani, Share Tech Mono, or other sci-fi display faces.
+- No electric neon cyan (#00E5FF, #00F0FF) and no purple cyberpunk gradients.
+- No scanline overlays, CRT flicker, or video-game bezel chrome.
+- No pill buttons, 12px+ radii, or iOS-style toggles.
+- No soft gaussian drop shadows or floating unbordered glass cards.
+- No gradient text. Lines are ink, not light.`
   },
   {
     id: "TILE-011",
