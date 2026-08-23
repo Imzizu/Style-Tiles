@@ -412,6 +412,41 @@ a {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
 }
 
+.badge-clickable,
+.badge-theme-dark,
+.badge-theme-light,
+.badge-theme-dark-light {
+  cursor: pointer;
+  user-select: none;
+  transition: var(--transition-snap);
+}
+
+.badge-theme-dark:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 1px 1px 0px var(--shadow-ink);
+  border-color: var(--accent-mustard);
+}
+
+.badge-theme-light:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 1px 1px 0px var(--shadow-ink);
+  background-color: #F5F0EB;
+  border-color: var(--accent-burnt-orange);
+}
+
+.badge-theme-dark-light:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 1px 1px 0px var(--shadow-ink);
+  border-color: var(--accent-mustard);
+}
+
+.badge-theme-dark:focus-visible,
+.badge-theme-light:focus-visible,
+.badge-theme-dark-light:focus-visible {
+  outline: 2px dashed var(--focus-ring);
+  outline-offset: 2px;
+}
+
 .badge-pill {
   border-radius: var(--radius-pill);
   padding: 0.15rem 0.65rem;
@@ -2404,6 +2439,10 @@ kbd,
   .design-card:hover,
   .filter-chip:hover,
   .card-vibe-badge:hover,
+  .badge-clickable:hover,
+  .badge-theme-dark:hover,
+  .badge-theme-light:hover,
+  .badge-theme-dark-light:hover,
   .theme-picker-option:hover {
     transform: none;
   }

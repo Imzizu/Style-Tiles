@@ -52,16 +52,17 @@
   <link rel="manifest" href="favicon/site.webmanifest">
   <link rel="shortcut icon" href="favicon/favicon.ico">
   
-  <!-- Google Fonts: Bebas Neue, Fraunces, Space Grotesk, JetBrains Mono, Fragment Mono, Newsreader, Inter, Courier Prime, Orbitron, DM Sans, Chivo Mono, IBM Plex Mono -->
+  <!-- Google Fonts: Bebas Neue, Fraunces, Space Grotesk, JetBrains Mono, Fragment Mono, Newsreader, Inter, Courier Prime, Orbitron, DM Sans, Chivo Mono, IBM Plex Mono, Instrument Serif -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chivo+Mono:ital,wght@0,400..800;1,400..800&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Fragment+Mono:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400..800;1,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Orbitron:wght@400..900&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chivo+Mono:ital,wght@0,400..800;1,400..800&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Fragment+Mono:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400..800;1,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Orbitron:wght@400..900&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
   
   <!-- Stylesheet + catalog chrome theme packs (see theme-toggle.md) -->
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="themes/archival-drafting.css">
   <link rel="stylesheet" href="themes/monolithic-hyper-editorial.css">
   <link rel="stylesheet" href="themes/neo-editorial-poster-brutalism.css">
+  <link rel="stylesheet" href="themes/pine-sage-luxury.css">
 </head>
 <body>
 
@@ -271,30 +272,36 @@
 
           <!-- Category Filter Chips Bar -->
           <div class="filter-chips-bar">
-            <span class="filter-label">FILTER BY VIBE:</span>
+            <span class="filter-label">FILTER BY:</span>
             <button class="filter-chip active" data-cat="all" onclick="setCategory('all')">
-              All Specs <span class="chip-count">15</span>
+              All Specs <span class="chip-count">52</span>
+            </button>
+            <button class="filter-chip" data-cat="Dark" onclick="setCategory('Dark')" title="Filter by Dark theme">
+              ◐ Dark <span class="chip-count">20</span>
+            </button>
+            <button class="filter-chip" data-cat="Light" onclick="setCategory('Light')" title="Filter by Light theme">
+              ◑ Light <span class="chip-count">33</span>
             </button>
             <button class="filter-chip" data-cat="Editorial & Archival" onclick="setCategory('Editorial & Archival')">
-              Editorial & Archival <span class="chip-count">3</span>
+              Editorial & Archival <span class="chip-count">11</span>
             </button>
             <button class="filter-chip" data-cat="Neo-Brutalism" onclick="setCategory('Neo-Brutalism')">
-              Neo-Brutalism <span class="chip-count">3</span>
+              Neo-Brutalism <span class="chip-count">8</span>
             </button>
             <button class="filter-chip" data-cat="Cyber & Blueprint" onclick="setCategory('Cyber & Blueprint')">
-              Cyber & Blueprint <span class="chip-count">1</span>
+              Cyber & Blueprint <span class="chip-count">8</span>
             </button>
             <button class="filter-chip" data-cat="Minimalist & Monastic" onclick="setCategory('Minimalist & Monastic')">
-              Minimalist & Monastic <span class="chip-count">3</span>
+              Minimalist & Monastic <span class="chip-count">8</span>
             </button>
             <button class="filter-chip" data-cat="Playful & Pop" onclick="setCategory('Playful & Pop')">
-              Playful & Pop <span class="chip-count">3</span>
+              Playful & Pop <span class="chip-count">5</span>
             </button>
             <button class="filter-chip" data-cat="Retro & Y2K" onclick="setCategory('Retro & Y2K')">
               Retro & Y2K <span class="chip-count">0</span>
             </button>
             <button class="filter-chip" data-cat="Quiet Luxury" onclick="setCategory('Quiet Luxury')">
-              Quiet Luxury <span class="chip-count">2</span>
+              Quiet Luxury <span class="chip-count">12</span>
             </button>
           </div>
         </div>

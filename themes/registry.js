@@ -36,6 +36,16 @@ window.CATALOG_THEMES = [
     themeColor: "#E1E1E1",
     swatches: ["#E1E1E1", "#FFFFFF", "#111111", "#FF505F"],
     fonts: { display: "Bebas Neue", sans: "Inter", mono: "JetBrains Mono" }
+  },
+  {
+    id: "pine-sage-luxury",
+    mode: "dark",
+    shortName: "Pine & Sage",
+    label: "Pine & Sage Dark Luxury",
+    sourceTile: "greenwrap",
+    themeColor: "#121414",
+    swatches: ["#121414", "#063826", "#FFFFFF", "#9BC89E"],
+    fonts: { display: "Plus Jakarta Sans", sans: "Plus Jakarta Sans", mono: "JetBrains Mono" }
   }
 ];
 

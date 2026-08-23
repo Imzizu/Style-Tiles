@@ -1583,7 +1583,9 @@ function applyRestoredCatalogState(state) {
   if (searchInput) searchInput.value = currentSearchQuery;
 
   document.querySelectorAll(".filter-chip").forEach(chip => {
-    chip.classList.toggle("active", chip.getAttribute("data-cat") === currentCategory);
+    const chipCat = chip.getAttribute("data-cat");
+    const isActive = chipCat === currentCategory || (chipCat && currentCategory && chipCat.toLowerCase() === currentCategory.toLowerCase());
+    chip.classList.toggle("active", isActive);
   });
 
   return true;
@@ -1822,7 +1824,17 @@ function renderCardPreview(tile) {
 
 function getFilteredTiles() {
   return STYLE_TILES_DATA.filter(tile => {
-    const matchesCat = currentCategory === "all" || tile.vibeBadge === currentCategory;
+    let matchesCat = false;
+    if (!currentCategory || currentCategory === "all") {
+      matchesCat = true;
+    } else if (currentCategory.toLowerCase() === "dark") {
+      matchesCat = !!(tile.theme && tile.theme.toLowerCase().includes("dark"));
+    } else if (currentCategory.toLowerCase() === "light") {
+      matchesCat = !!(tile.theme && tile.theme.toLowerCase().includes("light"));
+    } else {
+      matchesCat = tile.vibeBadge === currentCategory;
+    }
+
     const q = currentSearchQuery.toLowerCase().trim();
     const matchesSearch = !q ||
       tile.name.toLowerCase().includes(q) ||
@@ -1838,6 +1850,18 @@ function getFilteredTiles() {
 }
 
 function renderTileCard(tile) {
+  const themeVal = tile.theme || "Light";
+  const isDualTheme = themeVal === "Dark/Light";
+  const targetTheme = isDualTheme
+    ? (currentCategory && currentCategory.toLowerCase() === "dark" ? "Light" : "Dark")
+    : themeVal;
+  const themeLabel = isDualTheme
+    ? "◐◑ Dark/Light"
+    : (themeVal === "Dark" ? "◐ Dark" : "◑ Light");
+  const themeTooltip = isDualTheme
+    ? "Filter by Dark or Light theme"
+    : `Filter by ${themeVal} theme`;
+
   return `
     <article class="design-card" data-id="${tile.id}">
       <!-- Card Header with Vibe Filter Option Badge -->
@@ -1872,8 +1896,8 @@ function renderTileCard(tile) {
 
           <!-- Typography, category and theme metadata tags -->
           <div class="card-meta-tags">
-            <span class="badge badge-theme-${tile.theme.toLowerCase().replace('/', '-')}">
-              ${tile.theme === 'Dark' ? '◐ Dark' : tile.theme === 'Light' ? '◑ Light' : '◐◑ Dark/Light'}
+            <span class="badge badge-theme-${themeVal.toLowerCase().replace('/', '-')} badge-clickable" role="button" tabindex="0" title="${themeTooltip}" onclick="setCategory('${targetTheme}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();setCategory('${targetTheme}');}" aria-label="${themeTooltip}">
+              ${themeLabel}
             </span>
             <span class="badge badge-dark">Display: ${tile.fonts.display}</span>
             <span class="badge">Body: ${tile.fonts.sans}</span>
@@ -1963,10 +1987,11 @@ function renderCatalog(options = {}) {
   if (filtered.length === 0) {
     previewLoadQueue.length = 0;
     if (previewObserver) previewObserver.disconnect();
+    const queryDesc = currentSearchQuery ? `"${currentSearchQuery}"` : (currentCategory !== "all" ? `the "${currentCategory}" filter` : "the selected filters");
     gridContainer.innerHTML = `
       <div style="grid-column: 1 / -1; padding: 48px; text-align: center; background: var(--surface-sheet); border: var(--border-core); box-shadow: var(--shadow-base);">
         <p class="font-mono text-h3" style="margin-bottom: 8px;">NO DRAFT SPECIFICATIONS FOUND</p>
-        <p class="text-body-sm" style="color: var(--ink-muted);">No Style Tiles match "${currentSearchQuery}". Try clearing search query or filter tags.</p>
+        <p class="text-body-sm" style="color: var(--ink-muted);">No Style Tiles match ${queryDesc}. Try clearing search query or filter tags.</p>
         <button class="btn btn-mustard btn-sm" style="margin-top: 16px;" onclick="resetCatalog()">Reset All Filters</button>
       </div>
     `;
@@ -2025,11 +2050,9 @@ function setCategory(category) {
   currentCategory = category;
 
   document.querySelectorAll(".filter-chip").forEach(chip => {
-    if (chip.getAttribute("data-cat") === category) {
-      chip.classList.add("active");
-    } else {
-      chip.classList.remove("active");
-    }
+    const chipCat = chip.getAttribute("data-cat");
+    const isActive = chipCat === category || (chipCat && category && chipCat.toLowerCase() === category.toLowerCase());
+    chip.classList.toggle("active", isActive);
   });
 
   applyViewSettings();
@@ -2740,6 +2763,10 @@ function updateFilterChipCounts() {
     if (!countEl) return;
     if (cat === "all") {
       countEl.textContent = STYLE_TILES_DATA.length;
+    } else if (cat && cat.toLowerCase() === "dark") {
+      countEl.textContent = STYLE_TILES_DATA.filter(t => t.theme && t.theme.toLowerCase().includes("dark")).length;
+    } else if (cat && cat.toLowerCase() === "light") {
+      countEl.textContent = STYLE_TILES_DATA.filter(t => t.theme && t.theme.toLowerCase().includes("light")).length;
     } else {
       const count = STYLE_TILES_DATA.filter(t => t.vibeBadge === cat).length;
       countEl.textContent = count;
