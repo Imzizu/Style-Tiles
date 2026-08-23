@@ -2205,6 +2205,8 @@ function applyViewSettings() {
     mobileBtn.setAttribute("aria-pressed", isMobilePreviewMode ? "true" : "false");
   }
 
+  syncThemeToggle();
+
   requestAnimationFrame(resizeCardIframes);
 }
 
@@ -2251,6 +2253,265 @@ function toggleMobilePreviewMode() {
     isMobilePreviewMode ? "Mobile Viewport Preview: ON (2:3 Ratio)" : "Mobile Viewport Preview: OFF (16:9 Ratio)",
     isMobilePreviewMode ? "📱" : "💻"
   );
+}
+
+const CATALOG_THEME_STORE_KEY = "styleTiles.catalogTheme.v2";
+const LEGACY_THEME_STORE_KEY = "styleTiles.theme";
+
+function defaultCatalogThemeState() {
+  const defaults = window.CATALOG_THEME_DEFAULTS || { light: "archival-drafting", dark: "monolithic-hyper-editorial" };
+  return {
+    mode: "light",
+    themes: {
+      light: defaults.light,
+      dark: defaults.dark
+    },
+    explicit: false
+  };
+}
+
+function readCatalogThemeState() {
+  const fallback = defaultCatalogThemeState();
+  try {
+    const raw = localStorage.getItem(CATALOG_THEME_STORE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && (parsed.mode === "light" || parsed.mode === "dark")) {
+        fallback.mode = parsed.mode;
+        fallback.explicit = !!parsed.explicit;
+        if (parsed.themes && typeof parsed.themes === "object") {
+          if (parsed.themes.light) fallback.themes.light = parsed.themes.light;
+          if (parsed.themes.dark) fallback.themes.dark = parsed.themes.dark;
+        }
+        return fallback;
+      }
+    }
+    const v1 = localStorage.getItem(LEGACY_THEME_STORE_KEY);
+    if (v1 === "dark" || v1 === "light") {
+      fallback.mode = v1;
+      fallback.explicit = true;
+      return fallback;
+    }
+  } catch (err) {}
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    fallback.mode = "dark";
+  }
+  return fallback;
+}
+
+function persistCatalogThemeState(state) {
+  try {
+    localStorage.setItem(CATALOG_THEME_STORE_KEY, JSON.stringify({
+      mode: state.mode,
+      themes: {
+        light: state.themes.light,
+        dark: state.themes.dark
+      },
+      explicit: !!state.explicit
+    }));
+  } catch (err) {}
+}
+
+function resolveThemeIdForMode(state, mode) {
+  const wanted = mode === "dark" ? "dark" : "light";
+  const storedId = state && state.themes ? state.themes[wanted] : null;
+  const stored = typeof getCatalogThemeById === "function" ? getCatalogThemeById(storedId) : null;
+  if (stored && stored.mode === wanted) return stored.id;
+  return typeof getDefaultCatalogThemeId === "function"
+    ? getDefaultCatalogThemeId(wanted)
+    : (wanted === "dark" ? "monolithic-hyper-editorial" : "archival-drafting");
+}
+
+function pickRandomThemeId(mode, excludeId) {
+  const wanted = mode === "dark" ? "dark" : "light";
+  const pool = (typeof getCatalogThemesByMode === "function" ? getCatalogThemesByMode(wanted) : [])
+    .map((theme) => theme && theme.id)
+    .filter(Boolean);
+  if (!pool.length) {
+    return typeof getDefaultCatalogThemeId === "function" ? getDefaultCatalogThemeId(wanted) : null;
+  }
+  const candidates = (excludeId && pool.length > 1)
+    ? pool.filter((id) => id !== excludeId)
+    : pool;
+  return candidates[Math.floor(Math.random() * candidates.length)];
+}
+
+function paintThemeSwatch(container, swatches) {
+  if (!container) return;
+  const colors = Array.isArray(swatches) && swatches.length ? swatches.slice(0, 4) : ["#F4EFEA", "#FAF7F2", "#000000", "#FF6B4A"];
+  while (colors.length < 4) colors.push(colors[colors.length - 1]);
+  container.innerHTML = colors.map((hex) => `<span style="background:${hex}"></span>`).join("");
+}
+
+function closeThemePicker() {
+  const panel = document.getElementById("theme-picker-panel");
+  const btn = document.getElementById("header-theme-picker");
+  if (panel) panel.hidden = true;
+  if (btn) btn.setAttribute("aria-expanded", "false");
+}
+
+function renderThemePicker() {
+  const panel = document.getElementById("theme-picker-panel");
+  if (!panel) return;
+  const themes = window.CATALOG_THEMES || [];
+  const activeId = document.documentElement.getAttribute("data-theme");
+  const groups = [
+    { mode: "light", label: "Light board" },
+    { mode: "dark", label: "Dark board" }
+  ];
+  panel.innerHTML = groups.map((group) => {
+    const items = themes.filter((theme) => theme.mode === group.mode);
+    if (!items.length) return "";
+    return `
+      <div class="theme-picker-group">
+        <p class="theme-picker-group-label">${group.label}</p>
+        ${items.map((theme) => `
+          <button type="button" class="theme-picker-option${theme.id === activeId ? " is-active" : ""}" data-theme-id="${theme.id}">
+            <span class="theme-swatch-stack" aria-hidden="true">${(theme.swatches || []).slice(0, 4).map((hex) => `<span style="background:${hex}"></span>`).join("")}</span>
+            <span class="theme-picker-option-copy">
+              <strong>${theme.shortName || theme.id}</strong>
+              <span>${theme.label || theme.shortName || theme.id}</span>
+            </span>
+          </button>
+        `).join("")}
+      </div>
+    `;
+  }).join("");
+}
+
+function toggleThemePicker(event) {
+  if (event) event.stopPropagation();
+  const panel = document.getElementById("theme-picker-panel");
+  const btn = document.getElementById("header-theme-picker");
+  if (!panel) return;
+  const willOpen = panel.hidden;
+  if (willOpen) renderThemePicker();
+  panel.hidden = !willOpen;
+  if (btn) btn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+}
+
+function syncThemeToggle() {
+  const mode = document.documentElement.getAttribute("data-mode") === "dark" ? "dark" : "light";
+  const themeId = document.documentElement.getAttribute("data-theme");
+  const theme = typeof getCatalogThemeById === "function" ? getCatalogThemeById(themeId) : null;
+  const isDark = mode === "dark";
+
+  const modeBtn = document.getElementById("header-theme-toggle");
+  if (modeBtn) {
+    modeBtn.classList.toggle("active", isDark);
+    modeBtn.setAttribute("aria-pressed", isDark ? "true" : "false");
+    modeBtn.setAttribute("title", isDark ? "Roll a random light theme" : "Roll a random dark theme");
+    modeBtn.setAttribute("aria-label", isDark ? "Apply a random light theme" : "Apply a random dark theme");
+  }
+
+  const pickerBtn = document.getElementById("header-theme-picker");
+  const pickerLabel = document.getElementById("header-theme-picker-label");
+  if (pickerLabel) pickerLabel.textContent = (theme && theme.shortName) || "Theme";
+  if (pickerBtn) {
+    pickerBtn.setAttribute("title", `Catalog theme: ${(theme && theme.label) || themeId || "Theme"}`);
+    pickerBtn.classList.toggle("active", false);
+  }
+  paintThemeSwatch(document.getElementById("header-theme-swatch"), theme && theme.swatches);
+
+  const themeColor = document.getElementById("theme-color-meta");
+  if (themeColor) {
+    themeColor.setAttribute("content", (theme && theme.themeColor) || (isDark ? "#1E1A16" : "#FAF7F2"));
+  }
+
+  const panel = document.getElementById("theme-picker-panel");
+  if (panel && !panel.hidden) renderThemePicker();
+}
+
+function applyCatalogTheme(themeId, options = {}) {
+  const theme = typeof getCatalogThemeById === "function" ? getCatalogThemeById(themeId) : null;
+  const mode = theme ? theme.mode : (options.mode === "dark" ? "dark" : "light");
+  const id = theme ? theme.id : resolveThemeIdForMode(readCatalogThemeState(), mode);
+  const resolved = typeof getCatalogThemeById === "function" ? getCatalogThemeById(id) : null;
+  const nextMode = resolved ? resolved.mode : mode;
+  const nextId = resolved ? resolved.id : id;
+
+  document.documentElement.setAttribute("data-mode", nextMode);
+  document.documentElement.setAttribute("data-theme", nextId);
+  document.documentElement.style.colorScheme = nextMode;
+  document.documentElement.classList.add("theme-ready");
+
+  if (options.persist !== false) {
+    const state = readCatalogThemeState();
+    state.mode = nextMode;
+    state.themes[nextMode] = nextId;
+    state.explicit = options.explicit !== false;
+    persistCatalogThemeState(state);
+  }
+
+  syncThemeToggle();
+}
+
+function selectCatalogTheme(themeId) {
+  applyCatalogTheme(themeId);
+  closeThemePicker();
+  const theme = typeof getCatalogThemeById === "function" ? getCatalogThemeById(themeId) : null;
+  showToast(
+    `Theme: ${(theme && theme.label) || themeId}`,
+    theme && theme.mode === "dark" ? "☾" : "☼"
+  );
+}
+
+function toggleSiteThemeMode() {
+  const current = document.documentElement.getAttribute("data-mode") === "dark" ? "dark" : "light";
+  const next = current === "dark" ? "light" : "dark";
+  const state = readCatalogThemeState();
+  const lastInNextPool = state.themes && state.themes[next];
+  const nextId = pickRandomThemeId(next, lastInNextPool);
+  applyCatalogTheme(nextId);
+  closeThemePicker();
+  const theme = typeof getCatalogThemeById === "function" ? getCatalogThemeById(nextId) : null;
+  showToast(
+    next === "dark"
+      ? `Dark: ${(theme && theme.shortName) || nextId}`
+      : `Light: ${(theme && theme.shortName) || nextId}`,
+    next === "dark" ? "☾" : "☼"
+  );
+}
+
+function toggleSiteTheme() {
+  toggleSiteThemeMode();
+}
+
+function initSiteTheme() {
+  const state = readCatalogThemeState();
+  const themeId = resolveThemeIdForMode(state, state.mode);
+  applyCatalogTheme(themeId, { persist: false, mode: state.mode });
+  renderThemePicker();
+  closeThemePicker();
+
+  const pickerPanel = document.getElementById("theme-picker-panel");
+  if (pickerPanel) {
+    pickerPanel.addEventListener("click", (event) => {
+      const option = event.target.closest("[data-theme-id]");
+      if (!option) return;
+      event.stopPropagation();
+      selectCatalogTheme(option.getAttribute("data-theme-id"));
+    });
+  }
+
+  document.addEventListener("click", (event) => {
+    const picker = document.getElementById("theme-picker");
+    if (picker && !picker.contains(event.target)) closeThemePicker();
+  });
+
+  if (!window.matchMedia) return;
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+  const onSystemThemeChange = (event) => {
+    const current = readCatalogThemeState();
+    if (current.explicit) return;
+    const nextMode = event.matches ? "dark" : "light";
+    applyCatalogTheme(resolveThemeIdForMode(current, nextMode), { persist: false, explicit: false });
+  };
+  if (media.addEventListener) {
+    media.addEventListener("change", onSystemThemeChange);
+  } else if (media.addListener) {
+    media.addListener(onSystemThemeChange);
+  }
 }
 
 function triggerFeelingLucky() {
@@ -2490,6 +2751,8 @@ function updateFilterChipCounts() {
 // INITIALIZATION
 // -----------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
+  initSiteTheme();
+
   const savedCatalogState = readCatalogState();
   const restoredCatalog = applyRestoredCatalogState(savedCatalogState);
 
@@ -2550,6 +2813,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Keyboard shortcut: Escape closes modal, / focuses search
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
+      const pickerPanel = document.getElementById("theme-picker-panel");
+      if (pickerPanel && !pickerPanel.hidden) {
+        closeThemePicker();
+        return;
+      }
       closeSpecModal();
     } else if (e.key === "/" && document.activeElement !== searchInput) {
       if (document.activeElement && (document.activeElement.tagName === "INPUT" || document.activeElement.tagName === "TEXTAREA")) return;

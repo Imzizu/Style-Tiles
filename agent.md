@@ -3,6 +3,8 @@
 > **Purpose**: This document defines the strict architecture, aesthetic criteria, header requirements, catalog card preview mechanism, mobile layout rules, and Markdown Style Tile format for every design page created under the `Designs/` directory in the **Style Tiles** repository.
 > 
 > When creating a new design page, AI agents and developers **MUST** adhere to the rules, preview protocols, and template outlined below without exception.
+>
+> Catalog chrome theming is a **separate** system. Publishing a design page does **not** add it to the live theme pool on `index.html`. Only follow `theme-toggle.md` when the user explicitly asks to add a catalog theme (for example: “Read theme-toggle.md and add a new dark theme based on this style”).
 
 ---
 

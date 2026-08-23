@@ -1,0 +1,104 @@
+/* Catalog chrome theme: monolithic-hyper-editorial
+ * Mode: dark
+ * Source: Designs/monolithic-hyper-editorial.html
+ */
+html[data-theme="monolithic-hyper-editorial"] {
+  color-scheme: dark;
+
+  --surface-canvas:         #050505;
+  --surface-sheet:          #0E0F0E;
+  --surface-kraft:          #080908;
+  --surface-dark:           #040504;
+  --surface-hover:          #161816;
+
+  --ink-primary:            #FBF9F3;
+  --ink-secondary:          #8A9087;
+  --ink-muted:              #585B55;
+  --ink-inverted:           #FBF9F3;
+  --ink-on-bright:          #050505;
+  --ink-on-hot:             #050505;
+  --ink-code:               #D6D0CA;
+
+  --accent-burnt-orange:    #D4FF00;
+  --accent-orange-hover:    #FBF9F3;
+  --accent-mustard:         #D4FF00;
+  --accent-mustard-hover:   #FBF9F3;
+
+  --status-success:         #D4FF00;
+  --status-warning:         #7A8278;
+  --status-danger:          #E83D1B;
+  --status-info:            #585B55;
+
+  --font-display: "Fraunces", "GT Alpina Fine", "Georgia", serif;
+  --font-sans:    "Space Grotesk", "Sohne Mono", "Neue Haas Grotesk Display", "Inter", sans-serif;
+  --font-mono:    "Fragment Mono", "JetBrains Mono", monospace;
+
+  --radius-sharp:   0px;
+  --radius-tactile: 0px;
+  --radius-stamp:   0px;
+  --radius-pill:    0px;
+
+  --shadow-ink:        #1E201E;
+  --shadow-none:       0px 0px 0px transparent;
+  --shadow-sm:         2px 2px 0px var(--shadow-ink);
+  --shadow-base:       2px 2px 0px var(--shadow-ink);
+  --shadow-md:         3px 3px 0px var(--shadow-ink);
+  --shadow-lg:         3px 3px 0px var(--shadow-ink);
+  --shadow-accent-hot: 3px 3px 0px var(--accent-burnt-orange);
+  --shadow-accent-war: 3px 3px 0px var(--accent-mustard);
+  --shadow-modal:      3px 3px 0px var(--shadow-ink);
+  --header-lip:        0 1px 0 var(--border-ink);
+
+  --border-ink:         #1E201E;
+  --border-core:        1px solid var(--border-ink);
+  --border-hairline:    1px solid var(--border-ink);
+  --border-accent-hot:  1px solid var(--accent-burnt-orange);
+  --border-accent-warm: 1px solid var(--accent-mustard);
+  --divider-perforated: 1px dashed var(--border-ink);
+  --divider-dotted:     1px dotted var(--border-ink);
+  --focus-ring:         #585B55;
+  --grid-line:          rgba(251, 249, 243, 0.035);
+
+  --badge-orange-bg:      #232B00;
+  --badge-orange-ink:     #D4FF00;
+  --badge-mustard-bg:     #1E201E;
+  --badge-mustard-border: #585B55;
+  --badge-mustard-ink:    #FBF9F3;
+  --badge-success-bg:     #1A2200;
+  --chip-count-well:      rgba(251, 249, 243, 0.10);
+  --chip-count-active:    rgba(5, 5, 5, 0.25);
+  --show-more-count-bg:   rgba(251, 249, 243, 0.12);
+  --btn-dark-hover:       #141614;
+  --view-btn-active-hover:#141614;
+
+  --skeleton-board:       #0A0B0A;
+  --skeleton-grid:        #0E0F0E;
+  --skeleton-hatch:       rgba(251, 249, 243, 0.03);
+  --skeleton-ink:         rgba(251, 249, 243, 0.25);
+  --skeleton-nav:         #1E201E;
+  --skeleton-nav-left:    #2A2E2A;
+  --skeleton-dot:         #303430;
+  --skeleton-h1:          #2A2E2A;
+  --skeleton-p:           #1E201E;
+  --skeleton-btn:         #303430;
+  --skeleton-art:         #1E201E;
+  --skeleton-art-ink:     rgba(251, 249, 243, 0.30);
+  --skeleton-cell:        #1E201E;
+  --skeleton-line:        rgba(251, 249, 243, 0.10);
+  --skeleton-dash:        rgba(251, 249, 243, 0.15);
+  --skeleton-btn-border:  rgba(251, 249, 243, 0.20);
+}
+
+/* Scoped mechanical overrides for Monolithic Hyper-Editorial */
+html[data-theme="monolithic-hyper-editorial"] .brand-stamp {
+  color: var(--ink-on-hot);
+}
+
+html[data-theme="monolithic-hyper-editorial"] .modal-close-btn:hover {
+  color: var(--ink-on-hot);
+}
+
+html[data-theme="monolithic-hyper-editorial"] .live-dot,
+html[data-theme="monolithic-hyper-editorial"] .vibe-dot {
+  border-radius: 0px;
+}

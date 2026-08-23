@@ -1,20 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-mode="light" data-theme="archival-drafting">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#FAF7F2" id="theme-color-meta">
   <script>
     (function () {
       try {
         var raw = sessionStorage.getItem("styleTiles.catalogState.v1");
-        if (!raw) return;
-        var state = JSON.parse(raw);
-        if (!state || typeof state !== "object") return;
-        var shouldRestore = (typeof state.scrollY === "number" && state.scrollY > 0)
-          || (typeof state.visibleCount === "number" && state.visibleCount > 15);
-        if (!shouldRestore) return;
-        if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+        if (raw) {
+          var state = JSON.parse(raw);
+          if (state && typeof state === "object") {
+            var shouldRestore = (typeof state.scrollY === "number" && state.scrollY > 0)
+              || (typeof state.visibleCount === "number" && state.visibleCount > 15);
+            if (shouldRestore && "scrollRestoration" in history) history.scrollRestoration = "manual";
+          }
+        }
       } catch (err) {}
+      try {
+        var DEFAULTS = { light: "archival-drafting", dark: "monolithic-hyper-editorial" };
+        var mode = "light";
+        var themeId = DEFAULTS.light;
+        var v2 = null;
+        try { v2 = JSON.parse(localStorage.getItem("styleTiles.catalogTheme.v2") || "null"); } catch (e2) {}
+        if (v2 && (v2.mode === "light" || v2.mode === "dark")) {
+          mode = v2.mode;
+          themeId = (v2.themes && v2.themes[mode]) || DEFAULTS[mode];
+        } else {
+          var v1 = localStorage.getItem("styleTiles.theme");
+          if (v1 === "dark" || v1 === "light") mode = v1;
+          else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) mode = "dark";
+          themeId = DEFAULTS[mode];
+        }
+        document.documentElement.setAttribute("data-mode", mode);
+        document.documentElement.setAttribute("data-theme", themeId);
+        document.documentElement.style.colorScheme = mode;
+      } catch (e) {
+        document.documentElement.setAttribute("data-mode", "light");
+        document.documentElement.setAttribute("data-theme", "archival-drafting");
+      }
     })();
   </script>
   <title>Style Tiles — Visual Design Systems for AI Agents & Vibe Coders</title>
@@ -27,13 +52,16 @@
   <link rel="manifest" href="favicon/site.webmanifest">
   <link rel="shortcut icon" href="favicon/favicon.ico">
   
-  <!-- Google Fonts: Fraunces, Space Grotesk, JetBrains Mono, Fragment Mono, Newsreader, Inter, Courier Prime, Orbitron, DM Sans, Chivo Mono, IBM Plex Mono -->
+  <!-- Google Fonts: Bebas Neue, Fraunces, Space Grotesk, JetBrains Mono, Fragment Mono, Newsreader, Inter, Courier Prime, Orbitron, DM Sans, Chivo Mono, IBM Plex Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Chivo+Mono:ital,wght@0,400..800;1,400..800&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Fragment+Mono:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400..800;1,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Orbitron:wght@400..900&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chivo+Mono:ital,wght@0,400..800;1,400..800&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Fragment+Mono:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400..800;1,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Orbitron:wght@400..900&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
   
-  <!-- Stylesheet -->
+  <!-- Stylesheet + catalog chrome theme packs (see theme-toggle.md) -->
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="themes/archival-drafting.css">
+  <link rel="stylesheet" href="themes/monolithic-hyper-editorial.css">
+  <link rel="stylesheet" href="themes/neo-editorial-poster-brutalism.css">
 </head>
 <body>
 
@@ -74,6 +102,20 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
           <span class="mobile-label">Mobile</span>
         </button>
+        <button id="header-theme-toggle" class="view-btn theme-toggle" type="button" onclick="toggleSiteThemeMode()" title="Roll a random dark theme" aria-pressed="false" aria-label="Apply a random dark theme">
+          <span class="theme-toggle-icon" aria-hidden="true">
+            <svg class="theme-icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="theme-icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </span>
+          <span class="theme-label">Dark</span>
+        </button>
+        <div class="theme-picker" id="theme-picker">
+          <button id="header-theme-picker" class="view-btn" type="button" onclick="toggleThemePicker(event)" title="Choose catalog theme" aria-haspopup="dialog" aria-expanded="false" aria-controls="theme-picker-panel">
+            <span class="theme-swatch-stack" id="header-theme-swatch" aria-hidden="true"></span>
+            <span class="theme-picker-label" id="header-theme-picker-label">Manila</span>
+          </button>
+          <div class="theme-picker-panel" id="theme-picker-panel" role="dialog" aria-label="Catalog themes" hidden></div>
+        </div>
         <button class="btn btn-primary btn-sm btn-copy-master" onclick="copyMasterPrompt()" title="Copy the universal vibe-coding agent prompt">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           Copy Master Prompt
@@ -336,9 +378,10 @@
         <div class="footer-col">
           <h4>KEYBOARD SHORTCUTS</h4>
           <ul class="footer-links" style="font-family: var(--font-mono); font-size: 0.75rem;">
-            <li><kbd style="background:#EAE2D8; border:1px solid #000; padding:2px 6px; font-weight:700;">/</kbd> Focus Search Bar</li>
-            <li><kbd style="background:#EAE2D8; border:1px solid #000; padding:2px 6px; font-weight:700;">ESC</kbd> Close Active Modal</li>
-            <li><kbd style="background:#EAE2D8; border:1px solid #000; padding:2px 6px; font-weight:700;">CLICK SWATCH</kbd> Copy Hex Code</li>
+            <li><kbd>/</kbd> Focus Search Bar</li>
+            <li><kbd>ESC</kbd> Close Active Modal</li>
+            <li><kbd>CLICK SWATCH</kbd> Copy Hex Code</li>
+            <li><kbd>THEME</kbd> Header picker — catalog skins</li>
           </ul>
         </div>
 
@@ -351,7 +394,8 @@
     </div>
   </footer>
 
-  <!-- Main Application Script -->
+  <!-- Catalog theme registry, then application logic -->
+  <script src="themes/registry.js"></script>
   <script src="app.js" defer></script>
 </body>
 </html>
