@@ -1493,6 +1493,53 @@ const STYLE_TILES_DATA = [
     ],
     description: "Hydrated glassminimalism: high-key sky gradient #BFE3FD, liquid glass nav, gigantic condensed white Bebas display, and navy #0B2B63 punch CTAs with white-circle arrow badges. Ethereal wellness product — not Memphis play.",
     markdownSpec: null
+  },
+  {
+    id: "TILE-053",
+    slug: "aurora-glass-collab",
+    name: "Aurora Dark / Glass-Collab",
+    vibe: "Pitch Black #07070A • Frosted Glass 32px • Ambient Aurora Mesh • Electric Lime CTA • Warm Amber Multiplayer Presence",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      {
+        name: "Pitch Canvas",
+        hex: "#07070A"
+      },
+      {
+        name: "Glass Primary",
+        hex: "rgba(255, 255, 255, 0.08)"
+      },
+      {
+        name: "Electric Lime",
+        hex: "#B8F64B"
+      },
+      {
+        name: "Magenta Pulse",
+        hex: "#E12B7C"
+      },
+      {
+        name: "Hyper Teal",
+        hex: "#00E5FF"
+      },
+      {
+        name: "Warm Amber",
+        hex: "#FFC72C"
+      },
+      {
+        name: "Coral Red",
+        hex: "#FF4D4D"
+      }
+    ],
+    description: "High-end spatial collaboration system on pitch black #07070A canvas with 32px frosted glass surfaces, multi-spectral aurora mesh glow, high-energy electric lime CTAs, and warm amber multiplayer presence.",
+    markdownSpec: null
   }
 ];
 

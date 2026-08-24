@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurora Dark / Glass-Collab — Style Tile &amp; Design System (TILE-053)</title>
+  <meta name="description" content="Aurora Dark / Glass-Collab (TILE-053): A high-end multiplayer spatial collaboration design system. Pitch black canvas #07070A, 32px frosted glass blur, ambient aurora mesh glows, electric lime CTAs, and warm amber collaboration presence.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon/favicon.ico">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter, Instrument Serif (Hybrid Expressive Italics), JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       STYLE TILE: AURORA DARK / GLASS-COLLAB // TILE-053
+       High-End Spatial Collaboration & Frosted Glass Design System
+       ============================================================================= */
+
+    :root {
+      /* ------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * ------------------------------------------------------------------------ */
+      /* Base & Surfaces */
+      --bg-canvas:                 #07070A;
+      --surface-glass-primary:     rgba(255, 255, 255, 0.08);
+      --surface-glass-secondary:   rgba(18, 18, 26, 0.65);
+      --surface-glass-highlight:   rgba(255, 255, 255, 0.15);
+      --surface-solid-white:       #FFFFFF;
+
+      /* Mesh Ambient Glows */
+      --glow-magenta:              #E12B7C;
+      --glow-violet:               #6C38FF;
+      --glow-indigo:               #2D1B69;
+      --glow-teal:                 #00E5FF;
+      --glow-orange:               #FF8A00;
+
+      /* Signature Accents & Feedback */
+      --accent-lime:               #B8F64B;
+      --accent-lime-fg:            #0D1402;
+      --accent-lime-glow:          rgba(184, 246, 75, 0.45);
+
+      --accent-amber:              #FFC72C;
+      --accent-amber-fg:           #1A1300;
+      --accent-amber-glow:         rgba(255, 199, 44, 0.35);
+
+      --accent-coral:              #FF4D4D;
+      --accent-coral-fg:           #FFFFFF;
+      --accent-coral-glow:         rgba(255, 77, 77, 0.40);
+
+      /* Typography & Inks */
+      --text-primary:              #FFFFFF;
+      --text-secondary:            rgba(255, 255, 255, 0.72);
+      --text-tertiary:             rgba(255, 255, 255, 0.40);
+      --text-inverse:              #07070A;
+      --partner-monochrome:        rgba(255, 255, 255, 0.35);
+
+      /* Status Tokens */
+      --status-success:            #B8F64B;
+      --status-warning:            #FFC72C;
+      --status-danger:             #FF4D4D;
+      --status-info:               #00E5FF;
+
+      /* ------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * ------------------------------------------------------------------------ */
+      --font-sans:                 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+      --font-display:              'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+      --font-serif-italic:         'Instrument Serif', 'Newsreader', serif;
+      --font-mono:                 'JetBrains Mono', ui-monospace, monospace;
+
+      --text-hero-display:         700 clamp(2.5rem, 6.5vw, 4.0rem)/1.10 var(--font-display);
+      --text-hero-italic:          400 clamp(2.75rem, 7vw, 4.25rem)/1.10 var(--font-serif-italic);
+      --text-section-title:        600 24px/1.30 var(--font-display);
+      --text-body-lg:              400 16px/1.60 var(--font-sans);
+      --text-body-md:              500 14px/1.50 var(--font-sans);
+      --text-label-sm:             600 12px/1.20 var(--font-sans);
+      --text-cursor-tag:           700 11px/1.00 var(--font-mono);
+
+      /* ------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * ------------------------------------------------------------------------ */
+      --radius-none:               0px;
+      --radius-xs:                 6px;
+      --radius-sm:                 10px;
+      --radius-md:                 16px;
+      --radius-lg:                 24px;
+      --radius-full:               9999px;
+
+      /* ------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+       * ------------------------------------------------------------------------ */
+      --backdrop-nav:              blur(20px) saturate(160%);
+      --backdrop-card:             blur(32px) saturate(180%);
+      --shadow-floating-card:      0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 1px 1px rgba(255, 255, 255, 0.1) inset;
+      --shadow-tilt-left:          -12px 24px 48px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+      --shadow-tilt-right:         12px 24px 48px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+      --shadow-pill-glow:          0 0 24px 2px rgba(184, 246, 75, 0.35);
+      --shadow-cursor:             0 4px 12px rgba(0, 0, 0, 0.4);
+
+      /* 3D Perspective Transforms */
+      --transform-tilt-neg:        perspective(1000px) rotate(-4deg) translateZ(10px);
+      --transform-tilt-pos:        perspective(1000px) rotate(5deg) translateZ(10px);
+
+      /* ------------------------------------------------------------------------
+       * 5. SPACING SCALE
+       * ------------------------------------------------------------------------ */
+      --space-1:                   4px;
+      --space-2:                   8px;
+      --space-3:                   12px;
+      --space-4:                   16px;
+      --space-5:                   20px;
+      --space-6:                   24px;
+      --space-8:                   32px;
+      --space-10:                  40px;
+      --space-16:                  64px;
+      --space-24:                  96px;
+      --max-width:                 1280px;
+
+      /* ------------------------------------------------------------------------
+       * 6. BORDERS & DIVIDERS
+       * ------------------------------------------------------------------------ */
+      --border-glass-stroke:       1px solid rgba(255, 255, 255, 0.12);
+      --border-glass-subtle:       1px solid rgba(255, 255, 255, 0.06);
+      --border-nav-divider:        1px solid rgba(255, 255, 255, 0.16);
+
+      /* ------------------------------------------------------------------------
+       * 7. INTERACTIONS & TRANSITIONS
+       * ------------------------------------------------------------------------ */
+      --ease-smooth-spring:        cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-hover-bounce:         cubic-bezier(0.34, 1.56, 0.64, 1);
+      --transition-spring:         all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce:         transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* =============================================================================
+       BASE RESET & LAYOUT
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background-color: var(--bg-canvas);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Aurora Glow Canvas Background */
+    .aurora-mesh-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .aurora-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.45;
+      animation: auroraFloat 18s ease-in-out infinite alternate;
+      will-change: transform, opacity;
+    }
+
+    .aurora-blob-1 {
+      top: -10%;
+      left: 15%;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, var(--glow-violet) 0%, var(--glow-indigo) 70%, transparent 100%);
+      animation-duration: 22s;
+    }
+
+    .aurora-blob-2 {
+      top: 20%;
+      right: -5%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--glow-magenta) 0%, var(--glow-orange) 60%, transparent 100%);
+      animation-duration: 26s;
+      animation-delay: -5s;
+    }
+
+    .aurora-blob-3 {
+      bottom: 5%;
+      left: 20%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--glow-teal) 0%, var(--glow-violet) 65%, transparent 100%);
+      animation-duration: 20s;
+      animation-delay: -10s;
+    }
+
+    .aurora-blob-4 {
+      top: 60%;
+      right: 25%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, var(--glow-indigo) 0%, #170d3a 70%, transparent 100%);
+      animation-duration: 28s;
+      animation-delay: -15s;
+    }
+
+    @keyframes auroraFloat {
+      0% {
+        transform: translate(0px, 0px) scale(1) rotate(0deg);
+      }
+      50% {
+        transform: translate(40px, -30px) scale(1.08) rotate(15deg);
+      }
+      100% {
+        transform: translate(-30px, 40px) scale(0.94) rotate(-10deg);
+      }
+    }
+
+    ::selection {
+      background: var(--accent-lime);
+      color: var(--accent-lime-fg);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-lime);
+      outline-offset: 3px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    .page-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =============================================================================
+       MANDATORY HEADER COMPONENT
+       ============================================================================= */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: rgba(7, 7, 10, 0.75);
+      backdrop-filter: var(--backdrop-nav);
+      -webkit-backdrop-filter: var(--backdrop-nav);
+      border-bottom: var(--border-glass-stroke);
+      padding: var(--space-2) var(--space-6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      transition: var(--transition-spring);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--surface-glass-primary);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      border: var(--border-glass-stroke);
+      transition: var(--transition-spring);
+    }
+
+    .nav-back-link:hover {
+      color: var(--text-primary);
+      background: var(--surface-glass-highlight);
+      transform: translateX(-2px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      color: var(--accent-lime-fg);
+      background: var(--accent-lime);
+      border-radius: var(--radius-xs);
+      box-shadow: 0 0 12px rgba(184, 246, 75, 0.35);
+    }
+
+    .design-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .design-vibe-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent-amber);
+      background: rgba(255, 199, 44, 0.12);
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 199, 44, 0.25);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      border: var(--border-glass-stroke);
+      background: var(--surface-glass-primary);
+      color: var(--text-primary);
+      backdrop-filter: var(--backdrop-nav);
+      -webkit-backdrop-filter: var(--backdrop-nav);
+      transition: var(--transition-spring);
+    }
+
+    .btn-tile:hover {
+      background: var(--surface-glass-highlight);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .btn-tile.btn-copy {
+      background: var(--accent-lime);
+      color: var(--accent-lime-fg);
+      border-color: var(--accent-lime);
+      box-shadow: var(--shadow-pill-glow);
+    }
+
+    .btn-tile.btn-copy:hover {
+      transform: translateY(-1.5px) scale(1.02);
+      box-shadow: 0 0 32px 4px rgba(184, 246, 75, 0.5);
+    }
+
+    /* =============================================================================
+       HERO DISPLAY BANNER
+       ============================================================================= */
+    .hero-section {
+      padding: var(--space-16) 0 var(--space-10) 0;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-10);
+      align-items: center;
+    }
+
+    .hero-live-badge-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .presence-live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface-glass-secondary);
+      border: var(--border-glass-stroke);
+      backdrop-filter: var(--backdrop-card);
+      -webkit-backdrop-filter: var(--backdrop-card);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .active-live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: var(--accent-lime);
+      box-shadow: 0 0 8px var(--accent-lime);
+      animation: pulseLive 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes pulseLive {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.4);
+        opacity: 0.6;
+      }
+    }
+
+    .hero-avatar-stack {
+      display: flex;
+      align-items: center;
+      margin-left: 2px;
+    }
+
+    .hero-avatar-stack .avatar-item {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--bg-canvas);
+      margin-left: -6px;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .hero-title {
+      font: var(--text-hero-display);
+      letter-spacing: -0.035em;
+      color: var(--text-primary);
+      margin-bottom: var(--space-4);
+      line-height: 1.1;
+    }
+
+    .hero-title .serif-accent {
+      font-family: var(--font-serif-italic);
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: 0;
+      color: #FFFFFF;
+      background: linear-gradient(135deg, #FFFFFF 30%, rgba(255, 255, 255, 0.7) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      padding-left: 2px;
+    }
+
+    .hero-narrative {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin-bottom: var(--space-8);
+      letter-spacing: -0.01em;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .pill-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--accent-lime);
+      color: var(--accent-lime-fg);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-pill-glow);
+      transition: var(--transition-spring);
+    }
+
+    .pill-btn-primary:hover {
+      transform: translateY(-1.5px) scale(1.02);
+      box-shadow: 0 0 32px 4px rgba(184, 246, 75, 0.5);
+    }
+
+    .pill-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      background: var(--surface-glass-primary);
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      border: var(--border-glass-stroke);
+      backdrop-filter: var(--backdrop-card);
+      -webkit-backdrop-filter: var(--backdrop-card);
+      transition: var(--transition-spring);
+    }
+
+    .pill-btn-secondary:hover {
+      background: var(--surface-glass-highlight);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1.5px);
+    }
+
+    /* 40px Circular action buttons */
+    .hero-action-circle-suite {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 4px;
+    }
+
+    .circle-action-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.10);
+      border: var(--border-glass-stroke);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+      backdrop-filter: var(--backdrop-card);
+      -webkit-backdrop-filter: var(--backdrop-card);
+      transition: var(--transition-spring);
+    }
+
+    .circle-action-btn:hover {
+      background: var(--surface-glass-highlight);
+      transform: scale(1.08);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .circle-action-btn.btn-danger {
+      background: rgba(255, 77, 77, 0.2);
+      border-color: rgba(255, 77, 77, 0.4);
+      color: var(--accent-coral);
+    }
+
+    .circle-action-btn.btn-danger:hover {
+      background: var(--accent-coral);
+      color: #fff;
+      box-shadow: 0 0 16px rgba(255, 77, 77, 0.6);
+    }
+
+    /* HERO 3D TILT CARDS & MULTIPLAYER CURSOR STAGE */
+    .hero-stage-wrapper {
+      position: relative;
+      perspective: 1200px;
+    }
+
+    .hero-tilted-card {
+      background: var(--surface-glass-primary);
+      backdrop-filter: var(--backdrop-card);
+      -webkit-backdrop-filter: var(--backdrop-card);
+      border: var(--border-glass-stroke);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-floating-card);
+      position: relative;
+      transition: var(--transition-spring);
+      overflow: hidden;
+    }
+
+    .hero-tilted-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    }
+
+    .hero-tilted-card.card-left {
+      transform: var(--transform-tilt-neg);
+      margin-bottom: -40px;
+      z-index: 2;
+    }
+
+    .hero-tilted-card.card-right {
+      transform: var(--transform-tilt-pos);
+      background: var(--surface-glass-secondary);
+      margin-left: 30px;
+      z-index: 3;
+    }
+
+    .hero-tilted-card:hover {
+      transform: perspective(1000px) rotate(0deg) scale(1.02);
+      z-index: 10;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .card-meta-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-3);
+    }
+
+    .card-meta-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-tertiary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .card-live-collab-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    /* Multiplayer Cursors */
+    .multiplayer-cursor-pin {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      pointer-events: none;
+      z-index: 50;
+      transition: transform 0.15s ease-out;
+      filter: drop-shadow(var(--shadow-cursor));
+    }
+
+    .cursor-pointer-svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--accent-amber);
+      transform: rotate(-15deg);
+    }
+
+    .cursor-tag-label {
+      margin-top: 2px;
+      margin-left: 12px;
+      background: var(--accent-amber);
+      color: var(--accent-amber-fg);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-xs);
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .cursor-teal .cursor-pointer-svg { fill: var(--glow-teal); }
+    .cursor-teal .cursor-tag-label { background: var(--glow-teal); color: #00222a; }
+
+    /* =============================================================================
+       SECTION BLOCKS
+       ============================================================================= */
+    .section-block {
+      padding: var(--space-16) 0;
+      border-top: var(--border-glass-stroke);
+    }
+
+    .section-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: var(--space-8);
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .section-num-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-lime);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font: var(--text-section-title);
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      max-width: 520px;
+    }
+
+    /* =============================================================================
+       COLOR SWATCHES & PALETTE MATRIX
+       ============================================================================= */
+    .swatches-category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-6);
+      margin-bottom: var(--space-8);
+    }
+
+    .palette-group-card {
+      background: var(--surface-glass-primary);
+      backdrop-filter: var(--backdrop-card);
+      -webkit-backdrop-filter: var(--backdrop-card);
+      border: var(--border-glass-stroke);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+
+    .palette-group-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .swatch-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      background: rgba(18, 18, 26, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: var(--transition-spring);
+    }
+
+    .swatch-card:hover {
+      background: var(--surface-glass-highlight);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateX(3px);
+    }
+
+    .swatch-pill-preview {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-xs);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .swatch-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .swatch-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .swatch-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+
+    .swatch-copy-hint {
+      font-size: 10px;
+      color: var(--accent-lime);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .swatch-card:hover .swatch-copy-hint {
+      opacity: 1;
+    }
+
+    /* =============================================================================
+       TYPOGRAPHY SPECIMEN
+       ============================================================================= */
+    .typography-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      margin-bottom: var(--space-8);
+    }
+
+    .type-specimen-card {
+      background: var(--surface-glass-primary);
+      backdrop-filter: var(--backdrop-card);
+      -webkit-backdrop-filter: var(--backdrop-card);
+      border: var(--border-glass-stroke);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .font-meta-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-amber);
+      background: rgba(255, 199, 44, 0.1);
+      padding: 3px 8px;
+      border-radius: var(--radius-xs);
+      border: 1px solid rgba(255, 199, 44, 0.2);
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .type-scale-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .type-scale-item {
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .type-scale-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-bottom: 4px;
+    }
+
+    .specimen-hero-display {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      color: var(--text-primary);
+    }
+
+    .specimen-hero-italic {
+      font-family: var(--font-serif-italic);
+      font-size: 42px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--text-primary);
+    }
+
+    .specimen-section-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .specimen-body-lg {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .specimen-cursor-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-amber);
+    }
+
+    /* Live Type Tester */
+    .type-tester-box {
+      background: var(--surface-glass-secondary);
+      border: var(--border-glass-stroke);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-top: var(--space-6);
+    }
+
+    .type-tester-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tester-input-area {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.4;
+      resize: none;
+      min-height: 80px;
+    }
+
+    /* =============================================================================
+       COMPONENT ARCHETYPE GALLERY
+       ============================================================================= */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-6);
+    }
+
+    .component-tile-card {
+      background: var(--surface-glass-primary);
+      backdrop-filter: var(--backdrop-card);
+      -webkit-backdrop-filter: var(--backdrop-card);
+      border: var(--border-glass-stroke);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .component-tile-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .btn-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Form Fields */
+    .glass-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .glass-input-field {
+      width: 100%;
+      background: var(--surface-glass-secondary);
+      border: var(--border-glass-stroke);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px 10px 36px;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-family: var(--font-sans);
+      outline: none;
+      transition: var(--transition-spring);
+    }
+
+    .glass-input-field:focus {
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 12px rgba(184, 246, 75, 0.2);
+    }
+
+    .glass-input-icon {
+      position: absolute;
+      left: 12px;
+      color: var(--text-tertiary);
+      pointer-events: none;
+    }
+
+    /* Toggle Switch */
+    .switch-label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+    }
+
+    .glass-toggle {
+      width: 44px;
+      height: 24px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.1);
+      border: var(--border-glass-stroke);
+      position: relative;
+      cursor: pointer;
+      transition: var(--transition-spring);
+    }
+
+    .glass-toggle.active {
+      background: var(--accent-lime);
+      border-color: var(--accent-lime);
+    }
+
+    .toggle-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: var(--transition-spring);
+    }
+
+    .glass-toggle.active .toggle-thumb {
+      left: 22px;
+      background: #0D1402;
+    }
+
+    /* =============================================================================
+       LIVING MICRO-EXPERIENCE: AURORA COLLAB STUDIO
+       ============================================================================= */
+    .collab-studio-container {
+      background: rgba(12, 12, 18, 0.85);
+      backdrop-filter: var(--backdrop-card);
+      -webkit-backdrop-filter: var(--backdrop-card);
+      border: var(--border-glass-stroke);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-floating-card);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .studio-top-bar {
+      padding: 12px 20px;
+      background: rgba(7, 7, 10, 0.9);
+      border-bottom: var(--border-glass-stroke);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .studio-project-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .studio-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-lime-fg);
+      background: var(--accent-lime);
+      padding: 2px 8px;
+      border-radius: var(--radius-xs);
+    }
+
+    .studio-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .studio-call-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .studio-canvas-stage {
+      padding: 32px;
+      min-height: 420px;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(108, 56, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(225, 43, 124, 0.15) 0%, transparent 40%);
+    }
+
+    .canvas-widget-card {
+      background: var(--surface-glass-primary);
+      backdrop-filter: var(--backdrop-card);
+      -webkit-backdrop-filter: var(--backdrop-card);
+      border: var(--border-glass-stroke);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      position: relative;
+      transition: var(--transition-spring);
+    }
+
+    .canvas-widget-card:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .reaction-burst-container {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .reaction-pill-btn {
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.08);
+      border: var(--border-glass-stroke);
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-spring);
+    }
+
+    .reaction-pill-btn:hover {
+      background: var(--surface-glass-highlight);
+      transform: scale(1.1);
+    }
+
+    /* =============================================================================
+       STYLE TILE PROMPT CODE DRAWER & MODAL
+       ============================================================================= */
+    .spec-drawer-card {
+      background: var(--surface-glass-secondary);
+      border: var(--border-glass-stroke);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-top: var(--space-8);
+    }
+
+    .spec-drawer-header {
+      padding: 16px 24px;
+      background: rgba(7, 7, 10, 0.6);
+      border-bottom: var(--border-glass-stroke);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .spec-code-pre {
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      overflow-x: auto;
+      max-height: 480px;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 7, 10, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-dialog {
+      background: #0E0E14;
+      border: var(--border-glass-stroke);
+      border-radius: var(--radius-lg);
+      max-width: 900px;
+      width: 100%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.9);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: 16px 24px;
+      border-bottom: var(--border-glass-stroke);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      white-space: pre-wrap;
+    }
+
+    /* Toast */
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--accent-lime);
+      color: var(--accent-lime-fg);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 8px 24px rgba(184, 246, 75, 0.4);
+      z-index: 2000;
+      display: none;
+      animation: toastSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes toastSlideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* =============================================================================
+       MOBILE RESPONSIVENESS OVERRIDES (Section 6)
+       ============================================================================= */
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--space-8);
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 8vw, 2.75rem) !important;
+      }
+
+      .hero-stage-wrapper {
+        perspective: none !important;
+      }
+
+      .hero-tilted-card.card-left,
+      .hero-tilted-card.card-right {
+        transform: none !important;
+        margin: 0 0 16px 0 !important;
+      }
+
+      .typography-specimen-grid,
+      .studio-canvas-stage {
+        grid-template-columns: 1fr !important;
+      }
+
+      .specimen-hero-display {
+        font-size: 28px !important;
+      }
+
+      .specimen-hero-italic {
+        font-size: 32px !important;
+      }
+
+      .glass-input-field {
+        font-size: 16px !important; /* Prevents iOS auto-zoom */
+      }
+    }
+  </style>
+
+  <!-- Mandatory Mobile Safety Sheet -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- Background Ambient Aurora Glow Canvas -->
+  <div class="aurora-mesh-canvas" aria-hidden="true">
+    <div class="aurora-blob aurora-blob-1"></div>
+    <div class="aurora-blob aurora-blob-2"></div>
+    <div class="aurora-blob aurora-blob-3"></div>
+    <div class="aurora-blob aurora-blob-4"></div>
+  </div>
+
+  <!-- Mandatory Persistent Top Header -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code">TILE-053</span>
+      <span class="design-title">Aurora Dark / Glass-Collab</span>
+      <span class="design-vibe-tag">Quiet Luxury</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-aurora-glass-collab.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <div class="page-container">
+
+    <!-- HERO DISPLAY BANNER -->
+    <section class="hero-section">
+      <div class="hero-grid">
+        <div>
+          <!-- Live Collab Room Indicator -->
+          <div class="hero-live-badge-row">
+            <div class="presence-live-pill">
+              <span class="active-live-dot"></span>
+              <span>Spatial Room // Alpha-04</span>
+            </div>
+            <div class="hero-avatar-stack" title="3 Active Designers">
+              <div class="avatar-item" style="background: #E12B7C;">ER</div>
+              <div class="avatar-item" style="background: #6C38FF;">MK</div>
+              <div class="avatar-item" style="background: #00E5FF; color: #000;">ST</div>
+            </div>
+          </div>
+
+          <h1 class="hero-title">
+            Aurora Dark <span class="serif-accent">/ Glass-Collab</span>
+          </h1>
+
+          <p class="hero-narrative">
+            A luminous spatial collaboration language built on deep pitch-black foundations (#07070A), multi-spectral aurora mesh glows, 32px frosted glass surfaces, high-energy electric lime CTAs, and warm amber multiplayer presence.
+          </p>
+
+          <div class="hero-cta-group">
+            <button class="pill-btn-primary" type="button" onclick="copyTilePromptDirect()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Prompt for Agent
+            </button>
+
+            <a href="#living-demo" class="pill-btn-secondary">
+              Test Interactive Studio ↓
+            </a>
+
+            <div class="hero-action-circle-suite" aria-label="Room Call Actions">
+              <button class="circle-action-btn" title="Toggle Microphone" id="hero-btn-mic">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+              </button>
+              <button class="circle-action-btn" title="Share Canvas Screen" id="hero-btn-screen">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </button>
+              <button class="circle-action-btn btn-danger" title="Disconnect Session" id="hero-btn-disconnect">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-6-6 19.8 19.8 0 0 1-3.11-8.69A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Tilting Cards Showcase with Multiplayer Cursors -->
+        <div class="hero-stage-wrapper">
+          <!-- Card 1: Tilt Negative Left -->
+          <div class="hero-tilted-card card-left">
+            <div class="card-meta-header">
+              <span class="card-meta-tag">Canvas Layer // 01</span>
+              <span class="design-vibe-tag">Frosted 32px</span>
+            </div>
+            <h3 style="font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px;">Spatial Artboard</h3>
+            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
+              Luminous depth mapping with 12% white stroke hairlines and multi-spectrum aurora illumination.
+            </p>
+            <div class="card-live-collab-row">
+              <span class="presence-live-pill" style="font-size: 11px;">
+                <span class="active-live-dot"></span> Real-time Sync
+              </span>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">4k 120fps</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Tilt Positive Right -->
+          <div class="hero-tilted-card card-right">
+            <div class="card-meta-header">
+              <span class="card-meta-tag">Multiplayer Feed</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-amber);">3 cursors active</span>
+            </div>
+            <h3 style="font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px;">Collaborative State</h3>
+            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
+              Live token editing with instant spring transitions and tactile ambient bloom feedback.
+            </p>
+            <div style="margin-top: 14px; display: flex; gap: 8px;">
+              <button class="pill-btn-primary" style="padding: 6px 16px; font-size: 12px;">Push Token</button>
+              <button class="pill-btn-secondary" style="padding: 6px 14px; font-size: 12px;">Inspect</button>
+            </div>
+          </div>
+
+          <!-- Floating Amber Multiplayer Cursor Simulation -->
+          <div class="multiplayer-cursor-pin" style="top: 35%; right: 18%;">
+            <svg class="cursor-pointer-svg" viewBox="0 0 24 24">
+              <path d="M3 3l7 18 3-7 7-3L3 3z"/>
+            </svg>
+            <span class="cursor-tag-label">Elena R. (Editing)</span>
+          </div>
+
+          <!-- Floating Teal Multiplayer Cursor Simulation -->
+          <div class="multiplayer-cursor-pin cursor-teal" style="bottom: 12%; left: 8%;">
+            <svg class="cursor-pointer-svg" viewBox="0 0 24 24">
+              <path d="M3 3l7 18 3-7 7-3L3 3z"/>
+            </svg>
+            <span class="cursor-tag-label">Marcus K.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOR SWATCHES & PALETTE MATRIX -->
+    <section class="section-block" id="palette-section">
+      <div class="section-header-row">
+        <div>
+          <div class="section-num-tag">01 // Color Tokens</div>
+          <h2 class="section-title">Color Roles &amp; Palette Matrix</h2>
+        </div>
+        <p class="section-desc">
+          Click any swatch to copy its exact hex or RGBA token value. Built around deep pitch black, frosted glass overlays, multi-spectral aurora mesh, and high-contrast collaborative accents.
+        </p>
+      </div>
+
+      <div class="swatches-category-grid">
+        <!-- Base & Glass Surfaces -->
+        <div class="palette-group-card">
+          <div class="palette-group-title">
+            <span>Base &amp; Glass Surfaces</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">5 Tokens</span>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#07070A', 'Canvas')">
+            <div class="swatch-pill-preview" style="background: #07070A;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Canvas <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">#07070A · --bg-canvas</div>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('rgba(255, 255, 255, 0.08)', 'Surface Glass Primary')">
+            <div class="swatch-pill-preview" style="background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px);"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Glass Primary <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">rgba(255,255,255,0.08)</div>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('rgba(18, 18, 26, 0.65)', 'Surface Glass Secondary')">
+            <div class="swatch-pill-preview" style="background: rgba(18, 18, 26, 0.65);"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Glass Secondary <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">rgba(18,18,26,0.65)</div>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('rgba(255, 255, 255, 0.15)', 'Glass Highlight')">
+            <div class="swatch-pill-preview" style="background: rgba(255, 255, 255, 0.15);"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Glass Highlight <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">rgba(255,255,255,0.15)</div>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#FFFFFF', 'Solid White')">
+            <div class="swatch-pill-preview" style="background: #FFFFFF;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Solid White <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">#FFFFFF · --surface-solid</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Aurora Mesh Ambient Glows -->
+        <div class="palette-group-card">
+          <div class="palette-group-title">
+            <span>Aurora Mesh Ambient Glows</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">5 Spectrum Tokens</span>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#E12B7C', 'Magenta Pulse')">
+            <div class="swatch-pill-preview" style="background: #E12B7C; box-shadow: 0 0 10px #E12B7C;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Magenta Pulse <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">#E12B7C · --glow-magenta</div>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#6C38FF', 'Electric Violet')">
+            <div class="swatch-pill-preview" style="background: #6C38FF; box-shadow: 0 0 10px #6C38FF;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Electric Violet <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">#6C38FF · --glow-violet</div>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#2D1B69', 'Deep Indigo')">
+            <div class="swatch-pill-preview" style="background: #2D1B69;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Deep Indigo <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">#2D1B69 · --glow-indigo</div>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#00E5FF', 'Hyper Teal')">
+            <div class="swatch-pill-preview" style="background: #00E5FF; box-shadow: 0 0 10px #00E5FF;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Hyper Teal <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">#00E5FF · --glow-teal</div>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#FF8A00', 'Solar Orange')">
+            <div class="swatch-pill-preview" style="background: #FF8A00; box-shadow: 0 0 10px #FF8A00;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Solar Orange <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">#FF8A00 · --glow-orange</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accents & Collab Tokens -->
+        <div class="palette-group-card">
+          <div class="palette-group-title">
+            <span>Accents &amp; Presence</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">3 Core Accents</span>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#B8F64B', 'Electric Lime')">
+            <div class="swatch-pill-preview" style="background: #B8F64B; box-shadow: 0 0 10px #B8F64B;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Electric Lime <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">#B8F64B · Primary CTA</div>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#FFC72C', 'Warm Amber')">
+            <div class="swatch-pill-preview" style="background: #FFC72C; box-shadow: 0 0 10px #FFC72C;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Warm Amber <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">#FFC72C · Collab Tag</div>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#FF4D4D', 'Coral Red')">
+            <div class="swatch-pill-preview" style="background: #FF4D4D; box-shadow: 0 0 10px #FF4D4D;"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Coral Red <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">#FF4D4D · Destructive</div>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('rgba(255, 255, 255, 0.72)', 'Text Secondary')">
+            <div class="swatch-pill-preview" style="background: rgba(255, 255, 255, 0.72);"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Text Secondary <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">rgba(255,255,255,0.72)</div>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('rgba(255, 255, 255, 0.35)', 'Partner Monochrome')">
+            <div class="swatch-pill-preview" style="background: rgba(255, 255, 255, 0.35);"></div>
+            <div class="swatch-info">
+              <div class="swatch-name">Partner Mono <span class="swatch-copy-hint">Copy</span></div>
+              <div class="swatch-code">rgba(255,255,255,0.35)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY SPECIMEN -->
+    <section class="section-block" id="typography-section">
+      <div class="section-header-row">
+        <div>
+          <div class="section-num-tag">02 // Typeface System</div>
+          <h2 class="section-title">Typography &amp; Hybrid Expressive Italics</h2>
+        </div>
+        <p class="section-desc">
+          Pairing geometric clarity with expressive editorial flourishes. Plus Jakarta Sans / Inter for structured layout and Instrument Serif for dramatic hybrid italic accents.
+        </p>
+      </div>
+
+      <div class="typography-specimen-grid">
+        <!-- Display & Serifs -->
+        <div class="type-specimen-card">
+          <div class="font-meta-badge">Primary Display &amp; Italic Accent</div>
+          <div class="type-scale-list">
+            <div class="type-scale-item">
+              <div class="type-scale-meta">
+                <span>Hero Display · Plus Jakarta Sans</span>
+                <span>64px / 1.1 / 700 / -0.035em</span>
+              </div>
+              <div class="specimen-hero-display">Spatial Canvas</div>
+            </div>
+
+            <div class="type-scale-item">
+              <div class="type-scale-meta">
+                <span>Hero Italic Accent · Instrument Serif</span>
+                <span>68px / 1.1 / 400 italic</span>
+              </div>
+              <div class="specimen-hero-italic">Luminous Collaboration</div>
+            </div>
+
+            <div class="type-scale-item">
+              <div class="type-scale-meta">
+                <span>Section Title · Plus Jakarta Sans</span>
+                <span>24px / 1.3 / 600 / -0.02em</span>
+              </div>
+              <div class="specimen-section-title">Multiplayer Presence &amp; Cursors</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Body & Labels -->
+        <div class="type-specimen-card">
+          <div class="font-meta-badge">Body &amp; Micro-Meta</div>
+          <div class="type-scale-list">
+            <div class="type-scale-item">
+              <div class="type-scale-meta">
+                <span>Body Lg · Plus Jakarta Sans</span>
+                <span>16px / 1.6 / 400 / -0.01em</span>
+              </div>
+              <p class="specimen-body-lg">
+                Every component reflects high-fidelity glass refraction, responsive 3D tilt perspective, and instant multiplayer synchronization.
+              </p>
+            </div>
+
+            <div class="type-scale-item">
+              <div class="type-scale-meta">
+                <span>Body Md · Plus Jakarta Sans</span>
+                <span>14px / 1.5 / 500</span>
+              </div>
+              <p style="font-size: 14px; font-weight: 500; color: var(--text-secondary);">
+                Active presence indicators pulse at 2s intervals to denote real-time connectivity.
+              </p>
+            </div>
+
+            <div class="type-scale-item">
+              <div class="type-scale-meta">
+                <span>Cursor Tag · JetBrains Mono</span>
+                <span>11px / 1.0 / 700</span>
+              </div>
+              <span class="cursor-tag-label" style="display: inline-block;">Elena R. (Active Editing)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Editable Type Tester -->
+      <div class="type-tester-box">
+        <div class="type-tester-controls">
+          <span style="font-size: 12px; font-weight: 700; color: var(--text-primary);">Test Pangram Specimen:</span>
+          <button class="btn-tile" style="padding: 4px 10px; font-size: 11px;" onclick="setTypeWeight('400')">400 Regular</button>
+          <button class="btn-tile" style="padding: 4px 10px; font-size: 11px;" onclick="setTypeWeight('600')">600 Semibold</button>
+          <button class="btn-tile btn-copy" style="padding: 4px 10px; font-size: 11px;" onclick="setTypeWeight('700')">700 Bold</button>
+          <button class="btn-tile" style="padding: 4px 10px; font-size: 11px;" onclick="toggleSerifItalic()">Toggle Serif Italic</button>
+        </div>
+        <textarea id="live-type-tester" class="tester-input-area" rows="2" spellcheck="false">Sphinx of black quartz, judge my vow in luminous aurora glass.</textarea>
+      </div>
+    </section>
+
+    <!-- COMPONENT ARCHETYPE GALLERY -->
+    <section class="section-block" id="components-section">
+      <div class="section-header-row">
+        <div>
+          <div class="section-num-tag">03 // Component Archetypes</div>
+          <h2 class="section-title">Component System &amp; Interactive Tokens</h2>
+        </div>
+        <p class="section-desc">
+          Machined pill buttons, frosted inputs, 40px circular actions, live collaboration presence indicators, and glass depth panels.
+        </p>
+      </div>
+
+      <div class="components-grid">
+        <!-- Buttons & Actions -->
+        <div class="component-tile-card">
+          <div class="component-tile-title">
+            <span>Button Archetypes</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">Interactive</span>
+          </div>
+          <div class="btn-row">
+            <button class="pill-btn-primary" style="padding: 10px 20px; font-size: 13px;">Primary Lime</button>
+            <button class="pill-btn-secondary" style="padding: 10px 18px; font-size: 13px;">Frosted Glass</button>
+          </div>
+          <div class="btn-row">
+            <button class="pill-btn-primary" style="background: var(--accent-amber); color: var(--accent-amber-fg); box-shadow: 0 0 16px rgba(255,199,44,0.3); padding: 8px 16px; font-size: 12px;">Warm Amber</button>
+            <button class="pill-btn-secondary" style="border-color: rgba(255,77,77,0.3); color: var(--accent-coral); padding: 8px 16px; font-size: 12px;">Disconnect</button>
+          </div>
+          <div class="btn-row" style="margin-top: 4px;">
+            <button class="circle-action-btn" title="Mic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg></button>
+            <button class="circle-action-btn" title="Video"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></button>
+            <button class="circle-action-btn" title="Chat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></button>
+            <button class="circle-action-btn btn-danger" title="End Call"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+          </div>
+        </div>
+
+        <!-- Form Fields & Controls -->
+        <div class="component-tile-card">
+          <div class="component-tile-title">
+            <span>Inputs &amp; Switches</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">Form Elements</span>
+          </div>
+
+          <div class="glass-input-wrapper">
+            <svg class="glass-input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" class="glass-input-field" placeholder="Search spatial tokens..." value="Aurora Canvas // 2.0">
+          </div>
+
+          <div class="switch-label-row">
+            <div>
+              <div style="font-size: 13px; font-weight: 600; color: var(--text-primary);">Multiplayer Live Cursor</div>
+              <div style="font-size: 11px; color: var(--text-tertiary);">Broadcast coordinates to session</div>
+            </div>
+            <div class="glass-toggle active" id="toggle-cursor-sync" onclick="this.classList.toggle('active')">
+              <div class="toggle-thumb"></div>
+            </div>
+          </div>
+
+          <div class="switch-label-row">
+            <div>
+              <div style="font-size: 13px; font-weight: 600; color: var(--text-primary);">3D Card Perspective Tilt</div>
+              <div style="font-size: 11px; color: var(--text-tertiary);">Enable spatial elevation depth</div>
+            </div>
+            <div class="glass-toggle active" id="toggle-tilt-sync" onclick="this.classList.toggle('active')">
+              <div class="toggle-thumb"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Multiplayer Presence & Chips -->
+        <div class="component-tile-card">
+          <div class="component-tile-title">
+            <span>Presence &amp; Tag Chips</span>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary);">Collaborative</span>
+          </div>
+
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="presence-live-pill">
+              <span class="active-live-dot"></span> Live in Room
+            </span>
+            <span class="design-vibe-tag">
+              Amber Collab Tag
+            </span>
+            <span class="design-code">
+              64px Display
+            </span>
+          </div>
+
+          <div style="background: rgba(7, 7, 10, 0.4); padding: 12px; border-radius: var(--radius-sm); border: var(--border-glass-stroke);">
+            <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px;">Active Room Members</div>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="avatar-item" style="width: 28px; height: 28px; border-radius: 50%; background: #E12B7C; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff;">ER</div>
+                <div>
+                  <div style="font-size: 12px; font-weight: 700; color: #fff;">Elena Rostova</div>
+                  <div style="font-size: 10px; color: var(--accent-lime);">Lead Spatial Designer</div>
+                </div>
+              </div>
+              <span class="cursor-tag-label" style="margin: 0;">Host</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVING MICRO-EXPERIENCE: AURORA COLLAB STUDIO -->
+    <section class="section-block" id="living-demo">
+      <div class="section-header-row">
+        <div>
+          <div class="section-num-tag">04 // Living Micro-Experience</div>
+          <h2 class="section-title">Aurora Collab Studio — Spatial Canvas</h2>
+        </div>
+        <p class="section-desc">
+          A living multi-user spatial studio demonstrating real-time glass panels, collaborative reaction bursts, room presence toggles, and reactive feedback loops.
+        </p>
+      </div>
+
+      <div class="collab-studio-container" id="collab-canvas-box">
+        <!-- Studio Workspace Header -->
+        <div class="studio-top-bar">
+          <div class="studio-project-info">
+            <span class="studio-badge">LIVE V4.2</span>
+            <span class="studio-title">Aurora Dark // Design System Spec</span>
+            <span class="presence-live-pill" style="font-size: 11px;">
+              <span class="active-live-dot"></span> 4 Collaborators
+            </span>
+          </div>
+
+          <div class="studio-call-controls">
+            <button class="pill-btn-primary" style="padding: 6px 14px; font-size: 12px;" onclick="triggerToast('✓ Shared canvas invite copied')">
+              + Invite Peer
+            </button>
+            <button class="circle-action-btn" style="width: 32px; height: 32px;" title="Mute Mic" onclick="this.classList.toggle('btn-danger')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+            </button>
+            <button class="circle-action-btn btn-danger" style="width: 32px; height: 32px;" title="Leave Studio Room" onclick="triggerToast('Session disconnected')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Studio Interactive Canvas Stage -->
+        <div class="studio-canvas-stage">
+          <!-- Widget 1: Spatial Component Inspector -->
+          <div class="canvas-widget-card" id="studio-widget-left">
+            <div class="card-meta-header">
+              <span class="card-meta-tag">Artboard Layer #01</span>
+              <span class="presence-live-pill" style="font-size: 10px; padding: 2px 8px;">
+                <span class="active-live-dot"></span> Locked by Elena
+              </span>
+            </div>
+
+            <h3 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px;">Spatial Glass Card Module</h3>
+            <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 14px;">
+              32px backdrop blur with 180% saturation boost creates vivid contrast against multi-spectral aurora mesh orbs.
+            </p>
+
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="pill-btn-primary" style="padding: 6px 12px; font-size: 12px;" onclick="addReaction('⚡')">
+                Boost Blur
+              </button>
+              <button class="pill-btn-secondary" style="padding: 6px 12px; font-size: 12px;" onclick="triggerToast('✓ Token updated across canvas')">
+                Sync Changes
+              </button>
+            </div>
+
+            <div class="reaction-burst-container">
+              <button class="reaction-pill-btn" onclick="addReaction('🔥')">🔥 <span id="r-fire">12</span></button>
+              <button class="reaction-pill-btn" onclick="addReaction('✨')">✨ <span id="r-sparkle">24</span></button>
+              <button class="reaction-pill-btn" onclick="addReaction('🚀')">🚀 <span id="r-rocket">8</span></button>
+              <button class="reaction-pill-btn" onclick="addReaction('💚')">💚 <span id="r-lime">19</span></button>
+            </div>
+          </div>
+
+          <!-- Widget 2: Live Token Stream & Multiplayer Chat -->
+          <div class="canvas-widget-card" id="studio-widget-right">
+            <div class="card-meta-header">
+              <span class="card-meta-tag">Realtime Stream</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-lime);">0.4ms latency</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px;">
+              <div style="background: rgba(18, 18, 26, 0.6); padding: 10px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.06);">
+                <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--accent-amber); font-weight: 700; margin-bottom: 2px;">
+                  <span>Elena Rostova</span>
+                  <span>10:42 AM</span>
+                </div>
+                <div style="font-size: 12px; color: #fff;">Electric lime glow on button hover looks incredible with 32px backdrop blur.</div>
+              </div>
+
+              <div style="background: rgba(18, 18, 26, 0.6); padding: 10px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.06);">
+                <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--glow-teal); font-weight: 700; margin-bottom: 2px;">
+                  <span>Marcus K.</span>
+                  <span>10:43 AM</span>
+                </div>
+                <div style="font-size: 12px; color: #fff;">Agreed, Instrument Serif italics give the hero perfect expressive tension.</div>
+              </div>
+            </div>
+
+            <div class="glass-input-wrapper">
+              <input type="text" id="chat-input" class="glass-input-field" placeholder="Send collaborative note..." style="padding-left: 14px;" onkeydown="if(event.key==='Enter') sendCollabNote()">
+              <button class="pill-btn-primary" style="position: absolute; right: 4px; padding: 6px 12px; font-size: 11px;" onclick="sendCollabNote()">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STYLE TILE PROMPT CODE DRAWER (Section 5.6) -->
+    <section class="section-block" id="spec-section">
+      <div class="section-header-row">
+        <div>
+          <div class="section-num-tag">05 // AI Prompt Specification</div>
+          <h2 class="section-title">Transferable Style Tile Markdown Spec</h2>
+        </div>
+        <button class="btn-tile btn-copy" onclick="copyTilePromptDirect()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Markdown Style Tile
+        </button>
+      </div>
+
+      <div class="spec-drawer-card">
+        <div class="spec-drawer-header">
+          <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--text-primary);">
+            style-tile-aurora-glass-collab.md
+          </span>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--accent-lime);">
+            Ready for AI Prompt Injection
+          </span>
+        </div>
+        <pre class="spec-code-pre"><code id="spec-code-display">Loading specification...</code></pre>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- POPUP PREVIEW MODAL -->
+  <div class="modal-overlay" id="spec-modal" role="dialog" aria-modal="true" aria-label="Style Tile Markdown Spec">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="design-code">TILE-053</span>
+          <span style="font-size: 14px; font-weight: 700; color: #fff;">Aurora Dark / Glass-Collab Markdown Spec</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn-tile btn-copy" onclick="copyTilePromptDirect()">Copy Raw Spec</button>
+          <button class="circle-action-btn" style="width: 32px; height: 32px;" onclick="closeSpecModal()" title="Close">✕</button>
+        </div>
+      </div>
+      <div class="modal-body" id="modal-spec-display">Loading...</div>
+    </div>
+  </div>
+
+  <!-- FLOATING TOAST NOTIFICATION -->
+  <div class="toast-popup" id="toast-popup">✓ Copied to Clipboard!</div>
+
+  <!-- EMBEDDED STYLE TILE MARKDOWN (Single Source of Truth) -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Aurora Dark Glass-Collab
+  Construction: pitch black canvas • frosted glass blur • ambient mesh glow • electric lime pills • warm amber multiplayer cursors
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A deep pitch-black canvas (#07070A) illuminated by soft, multi-spectral aurora mesh glows (magenta, electric violet, deep indigo, hyper teal, solar orange). Surfaces are frosted glass layers (8% to 65% opacity with 32px backdrop blur) framed by crisp 12% white hairlines. Typography pairs a modern geometric sans with expressive italic serif display accents. High-energy electric lime (#B8F64B) commands primary actions, warm amber (#FFC72C) highlights real-time collaborative presence, and coral red (#FF4D4D) anchors destructive states.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #07070A; /* Deep pitch black base canvas */
+  --bg-surface-glass:       rgba(255, 255, 255, 0.08); /* Primary frosted glass panel */
+  --bg-surface-glass-sub:   rgba(18, 18, 26, 0.65); /* Secondary deep glass container */
+  --bg-surface-highlight:   rgba(255, 255, 255, 0.15); /* Hover & active glass highlight */
+  --bg-surface-solid:       #FFFFFF; /* Inverted solid white plates & active pills */
+
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF; /* High contrast reading text & headings */
+  --ink-secondary:          rgba(255, 255, 255, 0.72); /* Subtitles & descriptions */
+  --ink-tertiary:           rgba(255, 255, 255, 0.40); /* Placeholders & inactive icons */
+  --ink-inverse:            #07070A; /* Text on electric lime or solid white */
+  --ink-partner:            rgba(255, 255, 255, 0.35); /* Subtle partner & meta text */
+
+  /* Signature Accents & Collab Tokens */
+  --accent-primary:         #B8F64B; /* Electric lime primary CTA & active dot */
+  --accent-primary-fg:      #0D1402; /* Ink on primary action */
+  --accent-primary-glow:    rgba(184, 246, 75, 0.45); /* Primary button hover bloom */
+  --accent-collab:          #FFC72C; /* Warm amber multiplayer badges & cursor tags */
+  --accent-collab-fg:       #1A1300; /* Ink on amber badges */
+  --accent-danger:          #FF4D4D; /* Coral red destructive actions & disconnect */
+  --accent-danger-fg:       #FFFFFF; /* Ink on danger buttons */
+
+  /* Mesh Ambient Glows (for subtle background orbs & gradients) */
+  --glow-magenta:           #E12B7C;
+  --glow-violet:            #6C38FF;
+  --glow-indigo:            #2D1B69;
+  --glow-teal:              #00E5FF;
+  --glow-orange:            #FF8A00;
+
+  /* Status Tokens */
+  --status-success:         #B8F64B;
+  --status-warning:         #FFC72C;
+  --status-danger:          #FF4D4D;
+  --status-info:            #00E5FF;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display:      'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+--font-sans:         'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
+--font-serif-italic: 'Instrument Serif', 'Newsreader', serif;
+--font-mono:         'JetBrains Mono', monospace;
+
+/* Type Scale */
+--text-hero-display: 64px   / 1.10  var(--font-display);      /* Letter-spacing: -0.035em | Weight: 700 */
+--text-hero-italic:  68px   / 1.10  var(--font-serif-italic); /* Letter-spacing: 0em      | Weight: 400 italic */
+--text-h1:           36px   / 1.20  var(--font-display);      /* Letter-spacing: -0.025em | Weight: 700 */
+--text-h2:           24px   / 1.30  var(--font-display);      /* Letter-spacing: -0.02em  | Weight: 600 */
+--text-h3:           18px   / 1.40  var(--font-display);      /* Letter-spacing: -0.01em  | Weight: 600 */
+--text-body-lg:      16px   / 1.60  var(--font-sans);         /* Letter-spacing: -0.01em  | Weight: 400 */
+--text-body:         14px   / 1.50  var(--font-sans);         /* Letter-spacing: 0em      | Weight: 500 */
+--text-label:        12px   / 1.20  var(--font-sans);         /* Letter-spacing: 0.02em   | Weight: 600 */
+--text-cursor:       11px   / 1.00  var(--font-mono);         /* Letter-spacing: -0.01em  | Weight: 700 */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-xs:        6px;    /* Micro-badges, indicators, cursor tags */
+--radius-sm:        10px;   /* Inner rows, tag chips, input wells */
+--radius-md:        16px;   /* Floating sub-panels, dropdown menus */
+--radius-lg:        24px;   /* Interactive floating widgets & main cards */
+--radius-pill:      9999px; /* Pills, main CTAs, nav bars, avatar masks */
+
+/* Elevation & Shadows */
+--backdrop-glass-nav:  blur(20px) saturate(160%);
+--backdrop-glass-card: blur(32px) saturate(180%);
+--shadow-card:         0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 1px 1px rgba(255, 255, 255, 0.1) inset;
+--shadow-tilt-left:    -12px 24px 48px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+--shadow-tilt-right:   12px 24px 48px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+--shadow-cta-glow:     0 0 24px 2px rgba(184, 246, 75, 0.35);
+--shadow-cursor-chip:  0 4px 12px rgba(0, 0, 0, 0.4);
+
+/* Motion */
+--ease-spring:  cubic-bezier(0.16, 1, 0.3, 1);
+--ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1);
+--transition:   all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-glass:        1px solid rgba(255, 255, 255, 0.12);
+--border-glass-subtle: 1px solid rgba(255, 255, 255, 0.06);
+--border-nav-divider:  1px solid rgba(255, 255, 255, 0.16);
+--border-gradient:     linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.03) 100%);
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Primary CTA is a pill (9999px radius) filled with Electric Lime (#B8F64B), text #0D1402, and lime glow. On hover: translateY(-1.5px) scale(1.02) with 32px glow bloom. Secondary buttons use frosted glass (8% white) with 12% stroke. Danger buttons use Coral Red (#FF4D4D) or 12% red glass tint. Circular action buttons are 40px circles with centered 18px icons. Use the host's existing labels.
+- **Cards**: 24px border radius, frosted glass surface (rgba(255,255,255,0.08)), backdrop-filter blur(32px) saturate(180%), 1px solid rgba(255,255,255,0.12) border, and deep inset-stroke drop shadow. Sub-panels use 16px radius and 65% deep glass. Do not add index codes or fake meta.
+- **Inputs**: 10px radius, recessed glass wells (rgba(18, 18, 26, 0.65)), 1px solid rgba(255,255,255,0.12) border. Focus state elevates border to 30% white with subtle teal/lime glow. Font-size at least 16px.
+- **Navigation**: Floating frosted pill or bar with blur(20px) saturate(160%) and 12% white border. Active items snap to solid white (#FFFFFF) pill with black (#07070A) text and smooth spring transition. Inactive items use 72% white text. Do not add catalog codes or fake status readouts.
+- **Presence & Cursors** (if present): Active live indicator is a 7px #B8F64B dot pulsing 2s infinite. Multiplayer cursors use sharp top-left arrow pin with warm amber (#FFC72C) trailing label (11px bold, 6px radius).
+- **Icons**: Geometric monoline 1.75px stroke with round linecaps and linejoins.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No muddy opaque gray rectangles; glass must have backdrop-filter blur and subtle saturation boost.
+- No harsh 0px brutalist boxes or heavy comic borders.
+- No green/violet gaming RGB clashes; ambient mesh glows must remain smooth and deep.
+- No uppercase-only body text or micro sans captions below 11px.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    const markdownContent = document.getElementById("style-tile-markdown").textContent.trim();
+
+    // Populate code drawer and modal
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      toast.style.animation = "none";
+      void toast.offsetWidth;
+      toast.style.animation = "toastSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(() => { toast.style.display = "none"; }, 2200);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(() => {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied!";
+          setTimeout(() => { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(() => triggerToast("Clipboard unavailable"));
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      document.getElementById("spec-modal").classList.remove("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+
+    document.getElementById("btn-download-tile").addEventListener("click", () => {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-aurora-glass-collab.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-aurora-glass-collab.md");
+    });
+
+    document.getElementById("btn-preview-tile").addEventListener("click", () => {
+      document.getElementById("spec-modal").classList.add("active");
+    });
+
+    document.getElementById("spec-modal").addEventListener("click", (e) => {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    // Type Specimen Live Tester functions
+    function setTypeWeight(weight) {
+      const box = document.getElementById("live-type-tester");
+      if (box) box.style.fontWeight = weight;
+    }
+
+    function toggleSerifItalic() {
+      const box = document.getElementById("live-type-tester");
+      if (!box) return;
+      if (box.style.fontFamily.includes("Instrument Serif")) {
+        box.style.fontFamily = "var(--font-sans)";
+        box.style.fontStyle = "normal";
+      } else {
+        box.style.fontFamily = "var(--font-serif-italic)";
+        box.style.fontStyle = "italic";
+      }
+    }
+
+    // Interactive Demo Reactions
+    const reactions = { "🔥": 12, "✨": 24, "🚀": 8, "💚": 19 };
+    function addReaction(emoji) {
+      reactions[emoji] = (reactions[emoji] || 0) + 1;
+      if (emoji === "🔥") document.getElementById("r-fire").textContent = reactions[emoji];
+      if (emoji === "✨") document.getElementById("r-sparkle").textContent = reactions[emoji];
+      if (emoji === "🚀") document.getElementById("r-rocket").textContent = reactions[emoji];
+      if (emoji === "💚") document.getElementById("r-lime").textContent = reactions[emoji];
+      triggerToast(emoji + " Reaction broadcast to room!");
+    }
+
+    function sendCollabNote() {
+      const input = document.getElementById("chat-input");
+      if (!input || !input.value.trim()) return;
+      triggerToast("✓ Note shared with session");
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
