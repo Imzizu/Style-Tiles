@@ -1540,6 +1540,60 @@ const STYLE_TILES_DATA = [
     ],
     description: "High-end spatial collaboration system on pitch black #07070A canvas with 32px frosted glass surfaces, multi-spectral aurora mesh glow, high-energy electric lime CTAs, and warm amber multiplayer presence.",
     markdownSpec: null
+  },
+  {
+    id: "TILE-054",
+    slug: "neo-brutalist-folder-tab",
+    name: "Neo-Brutalist Tech & Folder-Tab System",
+    vibe: "Warm Chalk #EAEAE4 • Asymmetric Folder Tabs • Flame Orange & Cobalt • Flat Planar Slabs • Mechanical Snap",
+    vibeBadge: "Neo-Brutalism",
+    categories: ["brutalist"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Syne",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas Base", hex: "#EAEAE4" },
+      { name: "Surface White", hex: "#FFFFFF" },
+      { name: "Surface Subtle", hex: "#F4F4F0" },
+      { name: "Surface Inverse", hex: "#0C0C0C" },
+      { name: "Accent Flame", hex: "#FF4405" },
+      { name: "Accent Cobalt", hex: "#3438F5" },
+      { name: "Accent Acid", hex: "#E8F754" },
+      { name: "Accent Peach", hex: "#FFE7DE" },
+      { name: "Ink Primary", hex: "#0F0F0F" }
+    ],
+    description: "Tactile neo-brutalist engineering system on muted warm chalk #EAEAE4 with asymmetric folder-tab cards, flame orange #FF4405 CTAs that invert on hover, electric cobalt #3438F5 focal tiles, and axonometric wireframes.",
+    markdownSpec: null
+  },
+  {
+    id: "TILE-055",
+    slug: "artisanal-minimal",
+    name: "Artisanal Minimal / Ceramicist Modern",
+    vibe: "Chalk White Canvas • Deep Cobalt #27477D • Soft Glaze Halo #D8ECF8 • Raw Bisque Warmth • Hand-Drawn Script",
+    vibeBadge: "Minimalist & Monastic",
+    categories: ["minimalist"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Caveat",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Deep Cobalt", hex: "#27477D" },
+      { name: "Powder Sky", hex: "#D8ECF8" },
+      { name: "Chalk White", hex: "#FFFFFF" },
+      { name: "Porcelain White", hex: "#F8FAFC" },
+      { name: "Raw Bisque", hex: "#F9E7DD" },
+      { name: "Graphite Charcoal", hex: "#2A2E35" },
+      { name: "Washed Slate", hex: "#6F83A3" }
+    ],
+    description: "Ceramicist craft minimalism on bright chalk white #FFFFFF with deep cobalt #27477D ink, soft powder sky glaze halos #D8ECF8, raw bisque terracotta warmth #F9E7DD, and fluid script display typography.",
+    markdownSpec: null
   }
 ];
 
