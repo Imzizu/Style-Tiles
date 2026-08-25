@@ -2760,10 +2760,15 @@ function copyTilePrompt(tileId) {
 
 function copyMasterPrompt() {
   const promptEl = document.getElementById("master-prompt-code");
-  if (!promptEl) return;
+  const text = promptEl
+    ? promptEl.textContent.trim()
+    : "Implement this website using the following Style Tile as the design system:\n\n[PASTE_COPIED_STYLE_TILE_HERE]";
 
-  navigator.clipboard.writeText(promptEl.textContent.trim()).then(() => {
+  navigator.clipboard.writeText(text).then(() => {
     showToast("Master AI Prompt template copied!");
+  }).catch((err) => {
+    console.error("Clipboard error", err);
+    showToast("Could not copy master prompt", "!");
   });
 }
 
@@ -2880,6 +2885,26 @@ function updateFilterChipCounts() {
 // -----------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   initSiteTheme();
+
+  const demoVideo = document.querySelector(".demo-video-player");
+  if (demoVideo) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      demoVideo.removeAttribute("autoplay");
+      demoVideo.pause();
+    }
+
+    const toggleDemoPlayback = () => {
+      if (demoVideo.paused) demoVideo.play();
+      else demoVideo.pause();
+    };
+
+    demoVideo.addEventListener("click", toggleDemoPlayback);
+    demoVideo.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      toggleDemoPlayback();
+    });
+  }
 
   const savedCatalogState = readCatalogState();
   const restoredCatalog = applyRestoredCatalogState(savedCatalogState);

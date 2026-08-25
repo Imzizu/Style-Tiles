@@ -176,52 +176,12 @@
               </div>
             </div>
 
-            <!-- Right Hero Column: Interactive Agent Workflow Blueprint -->
-            <div class="agent-workflow-card" id="how-it-works">
-              <div class="workflow-header">
-                <span class="text-meta" style="color: var(--ink-primary);">AGENT WORKFLOW PROTOCOL</span>
-                <span class="badge badge-mustard">3-STEP INGESTION</span>
-              </div>
-
-              <div class="workflow-steps">
-                <div class="step-item">
-                  <div class="step-num">01</div>
-                  <div class="step-content">
-                    <strong>Pick a Visual Style</strong>
-                    <p>Scroll the catalog below to find the aesthetic vibe that fits your application.</p>
-                  </div>
-                </div>
-
-                <div class="step-item">
-                  <div class="step-num">02</div>
-                  <div class="step-content">
-                    <strong>Copy or Download Markdown Tile</strong>
-                    <p>Click "Copy Tile" on any card or open its page to download the `.md` token file.</p>
-                  </div>
-                </div>
-
-                <div class="step-item">
-                  <div class="step-num">03</div>
-                  <div class="step-content">
-                    <strong>Paste Directly to your Coding Agent</strong>
-                    <p>Provide the Style Tile block as part of your system prompt or initial prompt in Cursor / Claude / Antigravity.</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Quick Master Prompt Template -->
-              <div class="prompt-copy-box">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                  <span class="text-meta" style="color: var(--accent-burnt-orange);">MASTER AGENT INJECTION PROMPT</span>
-                </div>
-                <div class="prompt-code-snippet" id="master-prompt-code">Implement this website using the following Style Tile as the design system:
-
-[PASTE_COPIED_STYLE_TILE_HERE]</div>
-                <button class="btn btn-sm btn-mustard prompt-copy-btn" onclick="copyMasterPrompt()">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                  Copy Prompt Template
-                </button>
-              </div>
+            <!-- Right Hero Column: Workflow Demo Video -->
+            <div class="hero-demo-card" id="how-it-works">
+              <video class="demo-video-player" autoplay muted loop playsinline preload="auto" tabindex="0" aria-label="Demo of copying a Style Tile and pasting it into a coding agent. Click to pause or play.">
+                <source src="Assets/Demo.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+              </video>
             </div>
 
           </div>
@@ -380,7 +340,7 @@
         <div class="footer-col">
           <h4>ARCHIVE SPECIFICATION</h4>
           <ul class="footer-links">
-            <li><a href="#how-it-works">Agent Workflow Protocol</a></li>
+            <li><a href="#how-it-works">Workflow Demo Video</a></li>
             <li><a href="#catalog">Browse All Vibes</a></li>
           </ul>
         </div>

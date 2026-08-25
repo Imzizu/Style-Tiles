@@ -105,7 +105,7 @@ html[data-theme="pine-sage-luxury"] .hero-card {
   border-radius: 32px;
 }
 
-html[data-theme="pine-sage-luxury"] .agent-workflow-card {
+html[data-theme="pine-sage-luxury"] .hero-demo-card {
   border-radius: 20px;
 }
 
@@ -199,10 +199,6 @@ html[data-theme="pine-sage-luxury"] .theme-picker-option {
 
 html[data-theme="pine-sage-luxury"] .theme-picker-swatch {
   border-radius: 4px;
-}
-
-html[data-theme="pine-sage-luxury"] .step-num {
-  border-radius: 9999px;
 }
 
 html[data-theme="pine-sage-luxury"] .toast {

@@ -161,6 +161,7 @@ html.theme-ready body {
 html.theme-ready .site-header,
 html.theme-ready .masthead-strip,
 html.theme-ready .hero-card,
+html.theme-ready .hero-demo-card,
 html.theme-ready .controls-panel,
 html.theme-ready .design-card,
 html.theme-ready .site-footer,
@@ -874,87 +875,36 @@ html[data-mode="dark"] .theme-picker-option.is-active {
   margin-top: var(--space-2);
 }
 
-/* Interactive Agent Workflow Box in Hero */
-.agent-workflow-card {
-  background-color: var(--surface-kraft);
+/* Hero Demo Video — square presentation */
+.hero-demo-card {
+  background-color: var(--surface-dark);
   border: var(--border-core);
   box-shadow: var(--shadow-base);
-  padding: var(--space-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  position: relative;
-}
-
-.workflow-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: var(--border-hairline);
-  padding-bottom: var(--space-2);
-}
-
-.workflow-steps {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.step-item {
-  display: flex;
-  gap: var(--space-3);
-  align-items: flex-start;
-}
-
-.step-num {
-  width: 24px;
-  height: 24px;
-  background-color: var(--surface-dark);
-  color: var(--ink-inverted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  flex-shrink: 0;
-  border: 1px solid var(--border-ink);
-}
-
-.step-content strong {
-  font-family: var(--font-sans);
-  font-size: 0.9375rem;
-  display: block;
-  margin-bottom: 2px;
-}
-
-.step-content p {
-  font-size: 0.8125rem;
-  color: var(--ink-secondary);
-  line-height: 1.4;
-}
-
-.prompt-copy-box {
-  background-color: var(--surface-dark);
-  color: var(--ink-inverted);
-  border: var(--border-hairline);
-  padding: var(--space-3);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  line-height: 1.45;
-  position: relative;
-  overflow: hidden;
-}
-
-.prompt-code-snippet {
-  white-space: pre-wrap;
-  word-break: break-all;
-  color: var(--ink-code);
-}
-
-.prompt-copy-btn {
-  margin-top: var(--space-2);
   width: 100%;
+  max-width: 440px;
+  margin-left: auto;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  position: relative;
+  scroll-margin-top: 86px;
+}
+
+@media (max-width: 960px) {
+  .hero-demo-card {
+    max-width: 100%;
+    margin-left: 0;
+  }
+}
+
+.demo-video-player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  background-color: var(--surface-dark);
+  cursor: pointer;
 }
 
 /* -----------------------------------------------------------------------------
@@ -2206,8 +2156,27 @@ kbd,
     max-width: 280px;
   }
 
+  /* Keep the demo video; hide the desktop copy (hero-mobile already has it) */
   .hero-card {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .hero-card::before {
     display: none;
+  }
+
+  .hero-content {
+    display: none;
+  }
+
+  .hero-demo-card {
+    max-width: min(440px, 100%);
+    margin: 20px auto 0;
+    scroll-margin-top: 68px;
   }
 
   /* Catalog: search first, then designs */
