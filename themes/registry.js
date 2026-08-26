@@ -38,13 +38,13 @@ window.CATALOG_THEMES = [
     fonts: { display: "Bebas Neue", sans: "Inter", mono: "JetBrains Mono" }
   },
   {
-    id: "pine-sage-luxury",
+    id: "editorial-noir",
     mode: "dark",
-    shortName: "Pine & Sage",
-    label: "Pine & Sage Dark Luxury",
-    sourceTile: "greenwrap",
-    themeColor: "#121414",
-    swatches: ["#121414", "#063826", "#FFFFFF", "#9BC89E"],
+    shortName: "Noir",
+    label: "Editorial Noir",
+    sourceTile: "editorial-noir",
+    themeColor: "#080808",
+    swatches: ["#080808", "#18181B", "#FFFFFF", "#FF3823"],
     fonts: { display: "Plus Jakarta Sans", sans: "Plus Jakarta Sans", mono: "JetBrains Mono" }
   }
 ];
