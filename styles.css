@@ -807,17 +807,6 @@ html[data-mode="dark"] .theme-picker-option.is-active {
   overflow: hidden;
 }
 
-.hero-card::before {
-  content: "SPECIFICATION REGISTRY // DRAFTING LEDGER";
-  position: absolute;
-  top: 10px;
-  right: 16px;
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  color: var(--ink-muted);
-  letter-spacing: 0.1em;
-}
-
 .hero-grid {
   display: grid;
   grid-template-columns: 1.25fr 0.95fr;
