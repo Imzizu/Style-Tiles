@@ -104,32 +104,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "neo-memphis",
-    name: "Neo-Memphis Risograph Pop",
-    vibe: "Electric Halftone • Playful Geometry • Chunky 3D",
-    vibeBadge: "Playful & Pop",
-    categories: ["playful"],
-    theme: "Light",
-    hasPage: true,
-    fonts: {
-      display: "Clash Display",
-      sans: "Plus Jakarta Sans",
-      mono: "Space Mono"
-    },
-    palette: [
-      { name: "Warm Paper", hex: "#FFFDF5" },
-      { name: "Bubblegum Pink", hex: "#FFAAC8" },
-      { name: "Graphic Ink", hex: "#1A1824" },
-      { name: "Electric Cyan", hex: "#35A7FF" },
-      { name: "Cadmium Sun", hex: "#FFE600" },
-      { name: "Fluorescent Coral", hex: "#FF5964" },
-      { name: "Acid Lime", hex: "#00E599" },
-      { name: "Hyper Violet", hex: "#8B5CF6" }
-    ],
-    description: "Saturated risograph spot-ink explosions with pure multiply overlays, zero-blur hard offset drop shadows, authentic dual-drum misregistration, and high-energy playful brutalism.",
-    markdownSpec: null
-  },
-  {
     slug: "healthy-pets",
     name: "Healthy Pets, Happy Hearts",
     vibe: "Playful Neo-Retro • Organic Warmth • High-Contrast Editorial",
