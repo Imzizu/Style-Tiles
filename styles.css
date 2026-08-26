@@ -461,7 +461,8 @@ a {
   z-index: 1;
   max-width: 1360px;
   margin: 0 auto;
-  padding: 0 var(--space-6);
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
 }
 
 /* Masthead / Top Ticker */
@@ -525,7 +526,8 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-4) 0;
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
   gap: var(--space-4);
 }
 
@@ -832,6 +834,13 @@ html[data-mode="dark"] .theme-picker-option.is-active {
 
   #header-theme-toggle .theme-label,
   #header-theme-picker .theme-picker-label {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  #header-compact-toggle .compact-label,
+  #header-mobile-toggle .mobile-label {
     display: none;
   }
 }
