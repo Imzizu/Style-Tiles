@@ -3,9 +3,11 @@
    ============================================================================== */
 
 // Catalog Data Definition for Style Tiles
+// Identity is `slug`. Do NOT hardcode TILE-NNN — numbers are stamped from array
+// order by assignCatalogTileNumbers() so deleting or reordering a design
+// always yields TILE-001…TILE-00N with no gaps.
 const STYLE_TILES_DATA = [
   {
-    id: "TILE-001",
     slug: "editorial-brutalist",
     name: "Editorial Brutalist Gazette",
     vibe: "Archival Drafting • Neo-Brutalism • Tactile Risograph",
@@ -29,7 +31,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-002",
     slug: "monolithic-hyper-editorial",
     name: "System 07 // Monolithic Hyper-Editorial",
     vibe: "1970s Swiss Archival • Industrial Telemetry • Tactile Physics",
@@ -55,7 +56,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-003",
     slug: "cryptovista",
     name: "CryptoVista Neo-FinTech",
     vibe: "Neo-FinTech Minimalist • Monochromatic Structured • Parametric Clay",
@@ -81,7 +81,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-004",
     slug: "greenwrap",
     name: "Greenwrap Design System",
     vibe: "Modern Eco-Brutalist • Neo-Editorial • Organic Dark Mode",
@@ -105,7 +104,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-005",
     slug: "neo-memphis",
     name: "Neo-Memphis Risograph Pop",
     vibe: "Electric Halftone • Playful Geometry • Chunky 3D",
@@ -132,7 +130,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-006",
     slug: "healthy-pets",
     name: "Healthy Pets, Happy Hearts",
     vibe: "Playful Neo-Retro • Organic Warmth • High-Contrast Editorial",
@@ -156,7 +153,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-007",
     slug: "dark-tactical-editorial",
     name: "Dark Tactical Editorial / Cyber-Gothic",
     vibe: "Deep Obsidian • Cyber-Gothic Watermarks • 237° Telemetry • Engineered Brutalism",
@@ -183,7 +179,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-008",
     slug: "skybound",
     name: "Skybound Design System",
     vibe: "Cool Alabaster • Electric Lemon Lime • Modern Travel",
@@ -207,7 +202,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-009",
     slug: "warm-wabisabi",
     name: "Warm Wabi-Sabi Ledger",
     vibe: "Organic Minimalism • Tactile Craft • Serene Editorial",
@@ -233,7 +227,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-010",
     slug: "blueprint-hud",
     name: "Industrial Blueprint HUD",
     vibe: "Prussian Cyanotype • Ivory Vector Ink • ISO Title Block",
@@ -260,7 +253,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-011",
     slug: "fluid-bento-saas",
     name: "Fluid Bento // Soft SaaS",
     vibe: "Soft SaaS • Fluid Bento Architecture • Berry Accent",
@@ -286,7 +278,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-012",
     slug: "transform9-healthtech",
     name: "Transform9+ // Neo-Brutalist HealthTech",
     vibe: "High-Contrast Dark Mode • Precision HealthTech • Electric Lime & Cobalt",
@@ -311,7 +302,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-013",
     slug: "neo-brutalist-tech",
     name: "Neo-Brutalist Tech // Developer Tooling & Web3 Infrastructure",
     vibe: "Developer Tooling • Web3 Infrastructure • High-Voltage Accents",
@@ -336,7 +326,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-014",
     slug: "editorial-letterpress",
     name: "The Editorial Letterpress // Neo-Brutalist Craft Print",
     vibe: "Letterpress Craft • Historical Serif • High-Tactility Mechanical Depress",
@@ -361,7 +350,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-015",
     slug: "hyper-vibrant-geometric",
     name: "Modern Hyper-Vibrant Geometric",
     vibe: "Electric Iris • Blueprint Scaffolding • Squircle Flow & Rotational Geometry",
@@ -387,7 +375,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-016",
     slug: "architectural-brutalism",
     name: "Architectural Brutalism & Editorial Modernism",
     vibe: "Swiss International • Constructivist Tension • Vermilion & Ink Contrast",
@@ -412,7 +399,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-017",
     slug: "bio-clinical-editorial",
     name: "Bio-Clinical Technical Editorial",
     vibe: "Warm Bio-Ivory & Olive • Monospace Telemetry • Flat Swiss Minimalist • High-Density Clinical Architecture",
@@ -437,7 +423,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-018",
     slug: "neo-dark-tactile-fintech",
     name: "Neo-Dark Tactile FinTech / SaaS",
     vibe: "Ultra-Deep Void Black • Pinned Tactile Hardware • Ambient Aura Blends • Electric Chartreuse & Warm Ochre",
@@ -462,7 +447,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-019",
     slug: "editorial-chromatic-block",
     name: "Editorial Chromatic Block",
     vibe: "Tri-Tone Asymmetric Layout • Deep Indigo Anchor & Vivid Vermilion Rail • Warm Parchment Stage • Compressed Heavy Display Type",
@@ -487,7 +471,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-020",
     slug: "retro-postal-modernist",
     name: "Retro-Postal Modernist",
     vibe: "Philatelic Editorial • Scallop Punch-Out Perforations • Cobalt & Bubblegum Airmail Duotones • Condensed Poster Display & Grotesque Body",
@@ -512,7 +495,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-021",
     slug: "retro-pop-sunset",
     name: "Retro-Pop Sunset",
     vibe: "DTC High-Energy • 1970s Sunset Wave • Brand Crimson & Citrus Orange • Bubbly Display & Tactile Sticker Badges",
@@ -537,7 +519,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-022",
     slug: "editorial-high-contrast",
     name: "Editorial High-Contrast Minimalist",
     vibe: "Modern Commerce • International Safety Orange • Hairline Split Grids • Editorial Typographic Mashup • Stark Minimalist Monastic",
@@ -563,7 +544,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-023",
     slug: "industrial-acid-neo-grunge",
     name: "Industrial Acid // Neo-Grunge",
     vibe: "Acid Industrialism • Neo-Grunge Glitch • Redaction Tape • 8-Bit Checkerboards • High-Voltage Brutalism",
@@ -589,7 +569,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-024",
     slug: "nordic-botanical-tech",
     name: "Nordic Botanical Tech",
     vibe: "Deep Alpine Pine • Warm Linen • Acid Chartreuse • Asymmetric Geometry • Phyto-Genomic Telemetry",
@@ -615,7 +594,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-025",
     slug: "organic-luxe",
     name: "Organic Luxe",
     vibe: "Deep Roasted Cacao • Soft Oat Milk • Caramel Gold • Molten Fluid Geometry • Artisanal Confectionery",
@@ -642,7 +620,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-026",
     slug: "crimson-radiance",
     name: "Crimson Radiance / Lumina Tech",
     vibe: "Ultra-Deep Obsidian Canvas • Kinetic Crimson & Solar Orange Glows • Specular Glassmorphism • Multi-Strand Telemetry Waveforms",
@@ -669,7 +646,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-027",
     slug: "industrial-ghost-system",
     name: "Lab-01 / Industrial Ghost System",
     vibe: "Swiss Lab Metrology • Achromatic 90/10 Ratio • Ghost Blueprint Coordinate Frames • Tactile Floating Hardware Instruments",
@@ -695,7 +671,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-028",
     slug: "editorial-neo-humanist",
     name: "Editorial Neo-Humanist / Impact Refined",
     vibe: "Warm Oat Parchment • High-Impact Compressed Display • Vibrant Emerald Jade • Documentary Stacking • Subtle Tonal Shifts",
@@ -722,7 +697,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-029",
     slug: "vintage-modern-quirky-brutalism",
     name: "Vintage-Modern Editorial & Quirky Neo-Brutalism",
     vibe: "Warm Vanilla Newsprint • High-Energy Tangerine • Checkerboard Ribbons • Serrated Starbursts • 0px Razor Geometry • Playful Line Mascots",
@@ -749,7 +723,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-030",
     slug: "tactical-hyper-light",
     name: "Tactical Hyper-Light",
     vibe: "High-Performance Esport • Editorial Modernist • Aero Slate Canvas • Pulse Cyan Vector • 24px Media Frames • L4 Drag Controller",
@@ -777,7 +750,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-031",
     slug: "elenrn-design-system",
     name: "ELEnRN Design System",
     vibe: "Sophisticated Heritage • Modern Clarity • Deep Forest Emerald • Warm Terracotta • 30px Card Geometry • Pill Controls",
@@ -802,7 +774,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-032",
     slug: "neo-obsidian-acid-sunset",
     name: "Neo-Obsidian & Acid Sunset",
     vibe: "High-Contrast Dark Surface • Warm-to-Acid Kinetic Spectrum • Obsidian Canvas • 32px Squircle Shell • Micro-Precision Telemetry",
@@ -831,7 +802,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-033",
     slug: "luxe-maritime-cybernetic",
     name: "Luxe Maritime Cybernetic",
     vibe: "Cinematic Dark Glass • Deep Oceanic Abyss • Frosted Ice Pills • Crimson Hull Anchor • Electric Azure Halo • Titanium Chrome Display",
@@ -858,7 +828,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-034",
     slug: "neo-editorial-poster-brutalism",
     name: "Neo-Editorial / Poster Brutalism",
     vibe: "High-Contrast Condensed Display • Acid-Pop Vector Overlays • Utilitarian 0px Grid • Zine-Inspired Collage • Concrete Paper",
@@ -883,7 +852,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-035",
     slug: "neo-pop-playful-grotesque",
     name: "Neo-Pop Playful Grotesque",
     vibe: "Gen-Z Vibe • Soft Neo-Brutalist UI • Electric Lime • Soft Lilac • Bubblegum Pink • Spring Physics • 32px Squircle",
@@ -909,7 +877,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-036",
     slug: "earthen-minimalist-tactical-retro",
     name: "Earthen Minimalist / Tactical Retro",
     vibe: "Warm Bone Canvas • Military Olive • Electric Mustard • Flat Surface Nesting • Anton Condensed • Tactile Matte Micro-Depth",
@@ -935,7 +902,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-037",
     slug: "cyber-kinetic-motorsport",
     name: "Cyber-Kinetic Motorsport",
     vibe: "Hyper-Volt Neon Green • Atmospheric Void • 45° Chamfered Geometry • Electric Hypercar Telemetry • Chakra Petch Display • Share Tech Mono HUD • High-Performance Brutalism",
@@ -962,7 +928,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-038",
     slug: "humanist-warm-minimalism",
     name: "Humanist Warm-Minimalism",
     vibe: "Warm Oat Canvas • Rich Honey Caramel • Pitch Obsidian Type • Editorial Tech • 28px Bento Radii • Hatched Data Tracks • Plus Jakarta Sans & Syne • Ambient Diffused Lighting",
@@ -989,7 +954,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-039",
     slug: "warm-botanical-solar-terracotta",
     name: "Warm Botanical & Solar Terracotta",
     vibe: "Sun-Baked Terracotta • Radiant Marigold Gold • Frosted Ambient Glass • Deep Carbon Black • Sunlit Linen Cream • 36px Geometry • Plus Jakarta Sans & Inter • Solar Maceration HUD",
@@ -1016,7 +980,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-040",
     slug: "luminous-midnight",
     name: "Luminous Midnight",
     vibe: "Deep Obsidian Void • Electric Indigo & Royal Violet Mesh • Frosted Glass Capsules • Plus Jakarta Sans & Instrument Serif • Editorial SaaS • Ambient Depth",
@@ -1043,7 +1006,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-041",
     slug: "dramatic-chromatic-editorial",
     name: "Dramatic Chromatic Editorial",
     vibe: "Parisian Crimson • Deep Wine • Dark Oxblood Silhouette • High-Contrast Didone Display • Bleeding Typographic Layers • Strict 0px Parisian Fashion Tension",
@@ -1070,7 +1032,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-042",
     slug: "editorial-vintage-chic",
     name: "Editorial Vintage Chic",
     vibe: "Warm Alabaster Linen • Deep Carbon Ink • Vivid Terracotta • Dusty Salmon Ribbon • Playfair Display Serif • Tilted Marquee Tape • 0px Editorial Discipline",
@@ -1097,7 +1058,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-043",
     slug: "sartorial-editorial-modernism",
     name: "Sartorial Editorial Modernism",
     vibe: "Warm Bone & Antique Ivory • Deep Oxblood Burgundy • Charcoal Noir • Editorial Serif Display • Deconstructed Bento Mosaic • Sandstone Hairline Grid",
@@ -1124,7 +1084,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-044",
     slug: "editorial-noir",
     name: "Editorial Noir",
     vibe: "Deep Obsidian Backdrop • High-Voltage Electric Vermilion • Dual Sans & Serif Italic • 28px Bento Geometry • White Disc CTA Icon • Monochrome Neo-Agency",
@@ -1151,7 +1110,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-045",
     slug: "lavender-minimal",
     name: "Lavender Minimal",
     vibe: "Airy Periwinkle SaaS • Cool Slate Analytics • 20px Cards • 9999px Pills",
@@ -1194,7 +1152,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-046",
     slug: "ethos-void",
     name: "Ethos Void",
     vibe: "Abyss Black • Ice-Cyan Volumetric Light • Frost Glass • Syne Display • Quiet Atmosphere",
@@ -1237,7 +1194,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-047",
     slug: "warm-organic-bento",
     name: "Warm Organic Bento",
     vibe: "Warm Oat Canvas • Sunburst Orange • 24px Bento • Dot-Matrix Charts • Pastel Chips",
@@ -1280,7 +1236,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-048",
     slug: "cobalt-concrete",
     name: "Cobalt & Concrete",
     vibe: "Industrial Concrete • Electric Cobalt • 0px Modular Tiles • Optical Flatness • Swiss Grotesk",
@@ -1323,7 +1278,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-049",
     slug: "warm-earth-wellness",
     name: "Warm Earth Wellness",
     vibe: "Sandstone Canvas • Ceramic White • Espresso Ink • Pill CTAs • Botanical Seals",
@@ -1366,7 +1320,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-050",
     slug: "obsidian-kinetic",
     name: "Obsidian Kinetic",
     vibe: "Deep Void • Gloss White Pills • Neon Mint Status • 24px Modules • Tactile Dark Luxury",
@@ -1409,7 +1362,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-051",
     slug: "luxe-editorial",
     name: "Luxe Editorial",
     vibe: "Paper White • Bodoni Display • High-Contrast Monochrome • Frosted Glass Overlays • Fashion Folio",
@@ -1452,7 +1404,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-052",
     slug: "aero-aquatic",
     name: "Aero-Aquatic",
     vibe: "Sky Gradient • Hydrated Glass • Bebas Condensed • Navy Punch CTAs • Liquid Droplets",
@@ -1495,7 +1446,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-053",
     slug: "aurora-glass-collab",
     name: "Aurora Dark / Glass-Collab",
     vibe: "Pitch Black #07070A • Frosted Glass 32px • Ambient Aurora Mesh • Electric Lime CTA • Warm Amber Multiplayer Presence",
@@ -1542,7 +1492,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-054",
     slug: "neo-brutalist-folder-tab",
     name: "Neo-Brutalist Tech & Folder-Tab System",
     vibe: "Warm Chalk #EAEAE4 • Asymmetric Folder Tabs • Flame Orange & Cobalt • Flat Planar Slabs • Mechanical Snap",
@@ -1570,7 +1519,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    id: "TILE-055",
     slug: "artisanal-minimal",
     name: "Artisanal Minimal / Ceramicist Modern",
     vibe: "Chalk White Canvas • Deep Cobalt #27477D • Soft Glaze Halo #D8ECF8 • Raw Bisque Warmth • Hand-Drawn Script",
@@ -1596,6 +1544,24 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   }
 ];
+
+function formatCatalogTileId(index) {
+  return "TILE-" + String(index + 1).padStart(3, "0");
+}
+
+function assignCatalogTileNumbers(tiles) {
+  tiles.forEach((tile, index) => {
+    tile.id = formatCatalogTileId(index);
+  });
+  return tiles;
+}
+
+function findCatalogTile(key) {
+  if (!key) return null;
+  return STYLE_TILES_DATA.find((tile) => tile.slug === key || tile.id === key) || null;
+}
+
+assignCatalogTileNumbers(STYLE_TILES_DATA);
 
 // App State
 let currentCategory = "all";
@@ -1964,7 +1930,7 @@ function renderTileCard(tile) {
     : `Filter by ${themeVal} theme`;
 
   return `
-    <article class="design-card" data-id="${tile.id}">
+    <article class="design-card" data-id="${tile.slug}" data-tile-code="${tile.id}">
       <!-- Card Header with Vibe Filter Option Badge -->
       <div class="card-header-bar">
         <span class="card-code">${tile.id}</span>
@@ -2009,11 +1975,11 @@ function renderTileCard(tile) {
 
       <!-- Card Action Footer -->
       <div class="card-actions-bar">
-        <button class="btn btn-sm btn-mustard" onclick="openSpecModal('${tile.id}')" title="Inspect raw Markdown Style Tile">
+        <button class="btn btn-sm btn-mustard" onclick="openSpecModal('${tile.slug}')" title="Inspect raw Markdown Style Tile">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           Inspect Spec
         </button>
-        <button class="btn btn-sm btn-primary" onclick="copyTilePrompt('${tile.id}')" title="Copy Markdown prompt for AI coding agent">
+        <button class="btn btn-sm btn-primary" onclick="copyTilePrompt('${tile.slug}')" title="Copy Markdown prompt for AI coding agent">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           Copy Tile
         </button>
@@ -2738,8 +2704,8 @@ function focusSearch(event) {
 // -----------------------------------------------------------------------------
 // PROMPT & SPEC ACTIONS
 // -----------------------------------------------------------------------------
-function copyTilePrompt(tileId) {
-  const tile = STYLE_TILES_DATA.find(t => t.id === tileId);
+function copyTilePrompt(tileKey) {
+  const tile = findCatalogTile(tileKey);
   if (!tile) return;
 
   showToast(`Preparing ${tile.name} Style Tile…`, "…");
@@ -2783,8 +2749,8 @@ function copySwatchHex(hex, name) {
 // -----------------------------------------------------------------------------
 let activeModalTile = null;
 
-function openSpecModal(tileId) {
-  const tile = STYLE_TILES_DATA.find(t => t.id === tileId);
+function openSpecModal(tileKey) {
+  const tile = findCatalogTile(tileKey);
   if (!tile) return;
 
   activeModalTile = tile;

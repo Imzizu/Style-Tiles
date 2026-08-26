@@ -26,7 +26,7 @@
    - The **Style Tile Markdown** (`<script id="style-tile-markdown">`) is the opposite: it is a transferable visual language. It must not contain sample headlines, dummy nav, telemetry strings, ISO codes, industry stories, or "use it for [product type]" instructions. Those leak into client sites when an agent pastes the tile.
 
 4. **Split of concerns (do not collapse these)**:
-   - The catalog name (`TILE-00X`, `System 07 // …`, a fictional brand) is **museum-label metadata**. It lives in the catalog card, the showcase `<h1>`, and the header title block.
+   - The catalog name (`TILE-NNN`, `System 07 // …`, a fictional brand) is **museum-label metadata**. `TILE-NNN` is assigned **live from catalog order** (see §2.1). The design **name** lives in the catalog card, the showcase `<h1>`, and the header title block.
    - It must **not** appear as required UI copy in the Markdown prompt. Agents applying the tile to a real site must restyle existing chrome, not print the tile's name in the header.
 
 5. **Mandatory Live Preview on Catalog Cards**:
@@ -48,7 +48,7 @@ Every design page **MUST** include a persistent top navigation header containing
 
   <!-- 2. Design Title & Code -->
   <div class="header-title-block">
-    <span class="design-code">TILE-00X</span>
+    <span class="design-code" data-live-tile-code>TILE</span>
     <span class="design-title">[Design Name]</span>
     <span class="design-vibe-tag">[Official vibeBadge — e.g. Neo-Brutalism]</span>
   </div>
@@ -76,6 +76,24 @@ Every design page **MUST** include a persistent top navigation header containing
 </header>
 ```
 
+### 2.1 Live catalog tile number — do not hardcode
+
+`TILE-001`, `TILE-002`, … are **not accession codes you type**. They are computed from the order of entries in `STYLE_TILES_DATA` inside `app.js`:
+
+- First catalog entry → `TILE-001`
+- Second catalog entry → `TILE-002`
+- Delete or reorder an entry, and every later tile **renumbers on the next load**. There are never gaps (`001, 002, 003, 004, 006` is a bug).
+
+**Stable identity is `slug`** (`Designs/<slug>.html` and the `slug` field). That never changes when numbers compact.
+
+When creating a design:
+
+1. **Do not** set `id: "TILE-00X"` in `app.js`. Omit `id`. `assignCatalogTileNumbers()` stamps it at runtime.
+2. **Do not** type `TILE-007` (or any frozen number) into the design-page header, `<title>`, or as a permanent stamp.
+3. Put a placeholder in `.style-tile-header .design-code` (`TILE` is fine) with `data-live-tile-code`. `design-page-mobile.js` fetches catalog order and replaces it with the live `TILE-NNN` for this slug.
+4. Append new designs to the **end** of `STYLE_TILES_DATA` unless the user asks for a specific catalog position. The new tile receives the next sequential number automatically.
+5. Theatrical showcase copy may use the design **name**. It must not freeze a tile number as if it were a product SKU. Exact `TILE-###` stamps in `.design-code` or `[data-live-tile-code]` are overwritten live.
+
 ### Required Header JavaScript Logic
 Every design page must embed the exact raw markdown of its style tile inside a `<script id="style-tile-markdown" type="text/markdown">` block and bind event listeners:
 
@@ -96,12 +114,11 @@ Every design page must embed the exact raw markdown of its style tile inside a `
 When creating or publishing a design page in `Designs/<slug>.html`, the catalog entry in `STYLE_TILES_DATA` inside `app.js` **MUST** be updated to activate the live 16:9 preview and register its theme and vibe filter category:
 
 ### 1. Mandatory Schema for `STYLE_TILES_DATA` in `app.js`:
-Every design entry MUST include `theme`, `vibeBadge`, `hasPage: true`, and complete font/palette metadata:
+Every design entry MUST include `theme`, `vibeBadge`, `hasPage: true`, and complete font/palette metadata. **Do not include `id`.** Catalog order is the tile number (`tile.id` is assigned at runtime as `TILE-001`…`TILE-00N`).
 
 ```javascript
 {
-  id: "TILE-00X",
-  slug: "my-design-slug",
+  slug: "my-design-slug",           // <-- STABLE identity; also the HTML filename
   name: "My Design Name",
   vibe: "Keyword 1 • Keyword 2 • Keyword 3",
   vibeBadge: "Editorial & Archival", // <-- MANDATORY: exactly ONE official filter name
@@ -114,7 +131,7 @@ Every design entry MUST include `theme`, `vibeBadge`, `hasPage: true`, and compl
     ...
   ],
   description: "...",
-  markdownSpec: `...`
+  markdownSpec: null                 // fetched live from the design page
 }
 ```
 
@@ -379,7 +396,7 @@ Every new design page **MUST** be usable on a phone. Desktop-only layouts are no
 <script src="design-page-mobile.js"></script>
 ```
 
-   This file stacks the mandatory header, keeps the Catalog / Preview / Copy / Download controls on-screen, and prevents the page from spilling sideways. It is a floor, not the whole job — each page must still write its own mobile rules for its unique hero, grids, specimens, and demo.
+   This file stacks the mandatory header, keeps the Catalog / Preview / Copy / Download controls on-screen, prevents the page from spilling sideways, and **stamps the live `TILE-NNN` from catalog order** onto `.style-tile-header .design-code`. It is a floor, not the whole job — each page must still write its own mobile rules for its unique hero, grids, specimens, and demo.
 
 2. **Keep a proper viewport tag**:
 
@@ -416,9 +433,11 @@ When adding a new design:
   - [ ] Component skin has no example labels (`TELEMETRY`, `Book Now`, ISO/FREQ/MODE strings, etc.).
   - [ ] Forbidden list includes: never inject this tile's name, construction tags, or showcase copy into the host interface.
 - [ ] Update `app.js` `STYLE_TILES_DATA`:
+  - [ ] Do **not** set `id: "TILE-00X"`. Omit `id`. Append the entry (unless the user specifies position); the catalog assigns `TILE-NNN` from array order.
   - [ ] Set `theme: "Dark" | "Light" | "Dark/Light"`.
   - [ ] Set exactly one `vibeBadge` using the classification guide in Section 3 (judge construction, not marketing copy). Set `categories` to only the matching slug. Set the page header `.design-vibe-tag` to that same official string.
   - [ ] Set `hasPage: true` to activate the live 16:9 scaled design preview iframe.
+- [ ] Live tile number: header `.design-code` is a placeholder (`TILE`) with `data-live-tile-code`. Do not bake a frozen `TILE-007` into the header, `<title>`, or `app.js`. Confirm `design-page-mobile.js` is linked so the live number fills in.
 - [ ] Verify that the live 16:9 Design Page Preview displays and scales cleanly on the catalog card in `index.html` (testing Grid, Compact, and Editorial Spread views).
 - [ ] Test at phone (~390px), tablet (~768px), and desktop: no horizontal overflow, stacked layouts, readable type, and working header actions.
 - [ ] Test color contrast and keyboard accessibility.
