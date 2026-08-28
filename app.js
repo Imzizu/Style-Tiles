@@ -1543,6 +1543,30 @@ const STYLE_TILES_DATA = [
     ],
     description: "Industrial Dynamo: High-energy modern utility design language built on deep obsidian night slate (#111622) with electric safety orange (#FF4D1C) vector backdrops, high-visibility neon lime (#C8F532) pill CTAs, 9999px floating island navigation, and dynamic circular stamp badges.",
     markdownSpec: null
+  },
+  {
+    slug: "retro-futurist-analog-hud",
+    name: "Retro-Futurist Analog HUD",
+    vibe: "Muted Olive Canvas • 3D Specular Chrome • 4-Corner Viewfinder • Machine Monospace • Inversion Snaps",
+    vibeBadge: "Cyber & Blueprint",
+    categories: ["cyber"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Caveat",
+      sans: "Space Mono",
+      mono: "Space Mono"
+    },
+    palette: [
+      { name: "Primary Canvas", hex: "#C4C7BC" },
+      { name: "Canvas Tint", hex: "#AEB2A5" },
+      { name: "Ink Core", hex: "#232528" },
+      { name: "Ink Muted", hex: "#4A4D4E" },
+      { name: "Surface Invert", hex: "#111213" },
+      { name: "Accent Reflection", hex: "#E8EBE2" }
+    ],
+    description: "Retro-futurist analog HUD on muted olive-grey film base #C4C7BC with surrealist 3D specular chrome centerpiece #E8EBE2, 4-corner edge-anchored telemetry matrix, CRT monitor bezel frame, and rigid mechanical inversion snaps.",
+    markdownSpec: null
   }
 ];
 
