@@ -1516,6 +1516,33 @@ const STYLE_TILES_DATA = [
     ],
     description: "Ceramicist craft minimalism on bright chalk white #FFFFFF with deep cobalt #27477D ink, soft powder sky glaze halos #D8ECF8, raw bisque terracotta warmth #F9E7DD, and fluid script display typography.",
     markdownSpec: null
+  },
+  {
+    slug: "industrial-dynamo",
+    name: "Industrial Dynamo",
+    vibe: "Deep Obsidian Slate • Electric Safety Orange • High-Vis Neon Lime • 9999px Floating Nav Island • High-Voltage Energy Motifs",
+    vibeBadge: "Cyber & Blueprint",
+    categories: ["cyber"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Syne",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Night Slate Canvas", hex: "#111622" },
+      { name: "Floating Tinted Slate", hex: "#1A2232" },
+      { name: "Elevated Neutral Slate", hex: "#232D42" },
+      { name: "Recessed Well", hex: "#0C0F17" },
+      { name: "Electric Safety Orange", hex: "#FF4D1C" },
+      { name: "High-Vis Neon Lime", hex: "#C8F532" },
+      { name: "Pure White Text", hex: "#FFFFFF" },
+      { name: "Soft Slate Subcopy", hex: "#A0ABC0" },
+      { name: "Utility Muted Slate", hex: "#6B7A90" }
+    ],
+    description: "Industrial Dynamo: High-energy modern utility design language built on deep obsidian night slate (#111622) with electric safety orange (#FF4D1C) vector backdrops, high-visibility neon lime (#C8F532) pill CTAs, 9999px floating island navigation, and dynamic circular stamp badges.",
+    markdownSpec: null
   }
 ];
 

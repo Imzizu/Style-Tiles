@@ -1,0 +1,2764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industrial Dynamo — Style Tile &amp; Design System</title>
+  <meta name="description" content="Industrial Dynamo: High-Energy Modern Utility design system. Deep Obsidian Night Slate #111622, Electric Safety Orange #FF4D1C, High-Visibility Neon Lime #C8F532, 9999px floating pill navigation, 32px graphic radii, and dynamic circular stamp badges.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon.ico">
+
+  <!-- Google Fonts: Syne, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&family=JetBrains+Mono:ital,wght@0,400..800;1,400..800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       STYLE TILE: INDUSTRIAL DYNAMO (HIGH-ENERGY MODERN UTILITY)
+       ============================================================================= */
+
+    :root {
+      /* ------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * ------------------------------------------------------------------------ */
+      --color-bg-canvas:            #111622; /* Deep Obsidian / Night Slate */
+      --color-surface-floating:     #1A2232; /* Tinted Slate (Floating Nav / Containers) */
+      --color-surface-subtle:       #232D42; /* Elevated Component Neutral */
+      --color-surface-dark:         #0C0F17; /* Deep Recessed Wells */
+
+      --color-accent-primary:       #FF4D1C; /* Electric Safety Orange (Energy, Vector Art) */
+      --color-accent-primary-hover: #FF653B;
+      --color-accent-primary-glow:  rgba(255, 77, 28, 0.35);
+
+      --color-accent-secondary:     #C8F532; /* High-Visibility Neon Lime / Chartreuse (CTAs) */
+      --color-accent-secondary-hover:#D7FA5C;
+      --color-accent-secondary-fg:  #111622; /* Dark contrast ink for lime surfaces */
+      --color-accent-secondary-glow:rgba(200, 245, 50, 0.40);
+
+      --color-text-primary:         #FFFFFF; /* Pure Bright White (Headings & Bold Text) */
+      --color-text-secondary:       #A0ABC0; /* Soft Slate Gray (Body & Subcopy) */
+      --color-text-muted:           #6B7A90; /* Low-priority utility labels */
+
+      --color-border-subtle:        rgba(255, 255, 255, 0.08); /* Frosted containment */
+      --color-border-hover:         rgba(255, 255, 255, 0.20);
+      --color-border-ghost:         rgba(255, 255, 255, 0.14);
+
+      /* Status Tokens */
+      --status-success:             #C8F532;
+      --status-warning:             #FFB800;
+      --status-danger:              #FF4D1C;
+      --status-info:                #38BDF8;
+
+      /* ------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * ------------------------------------------------------------------------ */
+      --font-family-display:        "Syne", "Cabinet Grotesk", "Plus Jakarta Sans", sans-serif;
+      --font-family-body:           "Inter", "Plus Jakarta Sans", -apple-system, sans-serif;
+      --font-family-mono:           "JetBrains Mono", monospace;
+
+      /* ------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * ------------------------------------------------------------------------ */
+      --radius-pill:                9999px; /* Floating navbars, main CTA buttons, badges */
+      --radius-circle:              50%;    /* Arrow icon containers, floating badge stamps */
+      --radius-graphic-sm:          16px;   /* Minor interior corner cutouts */
+      --radius-graphic-lg:          32px;   /* Vector graphic backdrop corners */
+      --radius-input:               12px;
+
+      /* ------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+       * ------------------------------------------------------------------------ */
+      --layer-bg:                   0;
+      --layer-graphic-backdrop:     10;
+      --layer-subject-cutout:       20;
+      --layer-badge-floating:       30;
+      --layer-nav-sticky:           100;
+
+      --shadow-floating-pill:       0 20px 40px -10px rgba(0, 0, 0, 0.5);
+      --shadow-badge-stamp:         0 12px 30px rgba(0, 0, 0, 0.35);
+      --shadow-card:                0 16px 32px -8px rgba(0, 0, 0, 0.45);
+      --shadow-card-hover:          0 24px 48px -12px rgba(0, 0, 0, 0.60);
+      --blur-backdrop-frosted:      blur(12px);
+
+      /* ------------------------------------------------------------------------
+       * 5. SPACING & SPATIAL SCALE
+       * ------------------------------------------------------------------------ */
+      --spacing-unit:               8px;
+      --space-1:                    4px;
+      --space-2:                    8px;
+      --space-3:                    12px;
+      --space-4:                    16px;
+      --space-6:                    24px;
+      --space-8:                    32px;
+      --space-12:                   48px;
+      --space-16:                   64px;
+      --space-24:                   96px;
+      --max-width:                  1280px;
+
+      --nav-padding:                8px 12px 8px 24px;
+      --button-padding-pill:        12px 20px 12px 24px;
+
+      /* ------------------------------------------------------------------------
+       * 6. BORDERS & DIVIDERS
+       * ------------------------------------------------------------------------ */
+      --border-nav-island:          1px solid var(--color-border-subtle);
+      --border-nav-button-ghost:    1px solid rgba(255, 255, 255, 0.14);
+      --border-card:                1px solid var(--color-border-subtle);
+
+      /* ------------------------------------------------------------------------
+       * 7. INTERACTIONS & ANIMATION
+       * ------------------------------------------------------------------------ */
+      --ease-spring:                cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast:            0.15s ease-in-out;
+      --transition-base:            0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-slow:            0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* =============================================================================
+       BASE RESET & SETUP
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--color-bg-canvas);
+      color: var(--color-text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: var(--font-family-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      font-weight: 400;
+      color: var(--color-text-secondary);
+      background-color: var(--color-bg-canvas);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      padding-bottom: var(--space-16);
+    }
+
+    /* Ambient Industrial Grid Background Texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-size: 48px 48px;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      z-index: var(--layer-bg);
+    }
+
+    /* Subtle Radial Energy Vignette */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -20%;
+      right: -10%;
+      width: 70vw;
+      height: 70vw;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 77, 28, 0.07) 0%, rgba(200, 245, 50, 0.03) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: var(--layer-bg);
+      filter: blur(60px);
+    }
+
+    .layout-wrapper {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =============================================================================
+       MANDATORY HEADER BAR COMPONENT
+       ============================================================================= */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: var(--layer-nav-sticky);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 24px;
+      background: rgba(26, 34, 50, 0.85);
+      backdrop-filter: var(--blur-backdrop-frosted);
+      -webkit-backdrop-filter: var(--blur-backdrop-frosted);
+      border-bottom: var(--border-nav-island);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+      margin-bottom: 32px;
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      font-family: var(--font-family-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--color-border-subtle);
+      transition: var(--transition-base);
+    }
+
+    .nav-back-link:hover {
+      color: var(--color-text-primary);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--color-border-hover);
+      transform: translateX(-2px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .design-code {
+      font-family: var(--font-family-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      background: var(--color-surface-subtle);
+      color: var(--color-accent-secondary);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(200, 245, 50, 0.25);
+    }
+
+    .design-title {
+      font-family: var(--font-family-display);
+      font-size: 1.125rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-family-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--color-accent-primary);
+      background: rgba(255, 77, 28, 0.12);
+      border: 1px solid rgba(255, 77, 28, 0.25);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      font-family: var(--font-family-body);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition-base);
+      border: none;
+      outline: none;
+    }
+
+    .btn-preview {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border-ghost);
+    }
+
+    .btn-preview:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--color-border-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy {
+      background: var(--color-accent-secondary);
+      color: var(--color-accent-secondary-fg);
+      box-shadow: 0 4px 14px rgba(200, 245, 50, 0.25);
+    }
+
+    .btn-copy:hover {
+      background: var(--color-accent-secondary-hover);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 6px 20px rgba(200, 245, 50, 0.40);
+    }
+
+    .btn-download {
+      background: rgba(255, 77, 28, 0.15);
+      color: #FF8059;
+      border: 1px solid rgba(255, 77, 28, 0.30);
+    }
+
+    .btn-download:hover {
+      background: var(--color-accent-primary);
+      color: #FFFFFF;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px var(--color-accent-primary-glow);
+    }
+
+    /* =============================================================================
+       HERO DISPLAY BANNER (Asymmetric 2-Column Split: 50% Copy | 50% Graphic)
+       ============================================================================= */
+    .hero-section {
+      margin-bottom: var(--space-16);
+      padding: var(--space-8) 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .hero-tag-strip {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .status-badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-family-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-accent-secondary);
+      background: rgba(200, 245, 50, 0.10);
+      border: 1px solid rgba(200, 245, 50, 0.30);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--color-accent-secondary);
+      box-shadow: 0 0 10px var(--color-accent-secondary);
+      animation: pulse-glow 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.6; }
+    }
+
+    .utility-badge {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font-family-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--color-text-muted);
+      background: var(--color-surface-subtle);
+      border: 1px solid var(--color-border-subtle);
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    .hero-title {
+      font-family: var(--font-family-display);
+      font-size: clamp(2.5rem, 5vw, 4.25rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+      text-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-title .title-accent {
+      color: var(--color-accent-primary);
+      display: inline-block;
+      position: relative;
+    }
+
+    .hero-lead {
+      font-family: var(--font-family-body);
+      font-size: 1.125rem;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+      color: var(--color-text-secondary);
+      max-width: 540px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    /* Primary Action Button Archetype */
+    .btn-dynamo-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: var(--button-padding-pill);
+      background: var(--color-accent-secondary);
+      color: var(--color-accent-secondary-fg);
+      font-family: var(--font-family-body);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-floating-pill), 0 0 20px rgba(200, 245, 50, 0.25);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-dynamo-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      filter: brightness(1.08);
+      box-shadow: 0 24px 48px -10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(200, 245, 50, 0.45);
+    }
+
+    .btn-dynamo-primary .icon-circle-affordance {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-circle);
+      background: rgba(0, 0, 0, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-dynamo-primary:hover .icon-circle-affordance {
+      transform: translate(2px, -2px);
+    }
+
+    .btn-dynamo-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      background: rgba(26, 34, 50, 0.80);
+      color: var(--color-text-primary);
+      font-family: var(--font-family-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      border-radius: var(--radius-pill);
+      border: var(--border-nav-button-ghost);
+      backdrop-filter: var(--blur-backdrop-frosted);
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+
+    .btn-dynamo-ghost:hover {
+      background: var(--color-surface-subtle);
+      border-color: var(--color-border-hover);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+
+    /* Hero Telemetry Pill Bar */
+    .hero-telemetry-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--color-border-subtle);
+    }
+
+    .telemetry-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-surface-floating);
+      border: 1px solid var(--color-border-subtle);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-family-mono);
+      font-size: 0.75rem;
+    }
+
+    .telemetry-pill .label {
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+    }
+
+    .telemetry-pill .value {
+      color: var(--color-text-primary);
+      font-weight: 700;
+    }
+
+    .telemetry-pill.highlight .value {
+      color: var(--color-accent-primary);
+    }
+
+    /* Hero Graphic Composition Container (50% Right Column) */
+    .hero-graphic-stage {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Layer 10: Vector Graphic Backdrop Shape (Electric Safety Orange) */
+    .graphic-backdrop-layer {
+      position: absolute;
+      inset: 20px;
+      background: linear-gradient(135deg, #FF4D1C 0%, #E03504 100%);
+      border-radius: var(--radius-graphic-lg);
+      z-index: var(--layer-graphic-backdrop);
+      box-shadow: 0 30px 60px -15px rgba(255, 77, 28, 0.45);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.20);
+    }
+
+    /* Geometric High-Voltage Facet Overlay */
+    .graphic-backdrop-layer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.25) 0%, transparent 40%),
+        linear-gradient(45deg, rgba(0, 0, 0, 0.20) 25%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.20) 75%);
+      background-size: 100% 100%, 32px 32px;
+      opacity: 0.6;
+    }
+
+    /* Layer 20: Foreground Dynamo Core & Lightning Discharge */
+    .subject-cutout-layer {
+      position: relative;
+      z-index: var(--layer-subject-cutout);
+      width: 82%;
+      height: 82%;
+      background: var(--color-surface-floating);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.7);
+      backdrop-filter: var(--blur-backdrop-frosted);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .dynamo-core-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .dynamo-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dynamo-icon-box {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-graphic-sm);
+      background: var(--color-accent-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px var(--color-accent-primary-glow);
+    }
+
+    .dynamo-label-title {
+      font-family: var(--font-family-display);
+      font-size: 0.875rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .dynamo-label-sub {
+      font-family: var(--font-family-mono);
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Animated Kinetic Dynamo Vector Stage */
+    .dynamo-vector-display {
+      position: relative;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightning-svg-bolt {
+      width: 140px;
+      height: 140px;
+      filter: drop-shadow(0 0 20px rgba(255, 77, 28, 0.6));
+      animation: energy-pulse 3s infinite ease-in-out;
+    }
+
+    @keyframes energy-pulse {
+      0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 16px rgba(255, 77, 28, 0.5)); }
+      50% { transform: scale(1.06) rotate(1deg); filter: drop-shadow(0 0 32px rgba(200, 245, 50, 0.7)); }
+    }
+
+    .kinetic-orbit-ring {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      animation: rotate-continuous 25s linear infinite;
+    }
+
+    .kinetic-orbit-ring::after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-accent-secondary);
+      box-shadow: 0 0 12px var(--color-accent-secondary);
+    }
+
+    /* Dynamo Metrics Dashboard Strip */
+    .dynamo-metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      background: var(--color-surface-dark);
+      padding: 12px 14px;
+      border-radius: var(--radius-graphic-sm);
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    .metric-cell {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .metric-cell .kpi-label {
+      font-family: var(--font-family-mono);
+      font-size: 0.65rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+    }
+
+    .metric-cell .kpi-val {
+      font-family: var(--font-family-mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+    }
+
+    .metric-cell.accent .kpi-val {
+      color: var(--color-accent-secondary);
+    }
+
+    /* Layer 30: Floating Circular Stamp Badge with Rotating Radial SVG Text */
+    .floating-stamp-badge {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      width: 120px;
+      height: 120px;
+      border-radius: var(--radius-circle);
+      background: var(--color-surface-floating);
+      border: 2px solid var(--color-accent-secondary);
+      box-shadow: var(--shadow-badge-stamp), 0 0 24px rgba(200, 245, 50, 0.25);
+      z-index: var(--layer-badge-floating);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s var(--ease-spring);
+    }
+
+    .floating-stamp-badge:hover {
+      transform: scale(1.08) translateY(-4px);
+    }
+
+    .stamp-svg-wrap {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      animation: rotate-continuous 20s linear infinite;
+    }
+
+    .floating-stamp-badge:hover .stamp-svg-wrap {
+      animation-play-state: paused;
+    }
+
+    @keyframes rotate-continuous {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .stamp-svg-wrap text {
+      font-family: var(--font-family-display);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      fill: #FFFFFF;
+      text-transform: uppercase;
+    }
+
+    .stamp-core-icon {
+      position: relative;
+      z-index: 2;
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-circle);
+      background: var(--color-accent-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-accent-secondary-fg);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Floating Auxiliary Chip */
+    .floating-chip-bottom {
+      position: absolute;
+      bottom: -12px;
+      left: -12px;
+      background: var(--color-surface-subtle);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-floating-pill);
+      z-index: var(--layer-badge-floating);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-family-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .chip-indicator-orange {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--color-accent-primary);
+      box-shadow: 0 0 10px var(--color-accent-primary);
+    }
+
+    /* =============================================================================
+       SECTION BLOCKS & CONTAINERS
+       ============================================================================= */
+    .section-block {
+      margin-bottom: var(--space-16);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: var(--space-8);
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .section-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .section-tag {
+      font-family: var(--font-family-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent-primary);
+    }
+
+    .section-title {
+      font-family: var(--font-family-display);
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+    }
+
+    .section-description {
+      font-size: 0.95rem;
+      color: var(--color-text-secondary);
+      max-width: 460px;
+    }
+
+    /* =============================================================================
+       1. COLOR ROLES & PALETTE MATRIX
+       ============================================================================= */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch-card {
+      background: var(--color-surface-floating);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-graphic-sm);
+      overflow: hidden;
+      transition: var(--transition-base);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-border-hover);
+      box-shadow: var(--shadow-card);
+    }
+
+    .swatch-color-box {
+      height: 110px;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 12px;
+    }
+
+    .swatch-copy-pill {
+      opacity: 0;
+      transform: translateY(4px);
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      color: #FFFFFF;
+      font-family: var(--font-family-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 8px;
+      border-radius: var(--radius-pill);
+      transition: var(--transition-fast);
+      pointer-events: none;
+    }
+
+    .swatch-card:hover .swatch-copy-pill {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .swatch-info {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: var(--color-surface-floating);
+    }
+
+    .swatch-name {
+      font-family: var(--font-family-body);
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-family-mono);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+    }
+
+    .swatch-token {
+      font-family: var(--font-family-mono);
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+    }
+
+    /* =============================================================================
+       2. TYPOGRAPHY SYSTEM & SPECIMEN
+       ============================================================================= */
+    .type-specimen-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .type-card {
+      background: var(--color-surface-floating);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-graphic-lg);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .type-card-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .type-font-name {
+      font-family: var(--font-family-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--color-text-primary);
+      text-transform: uppercase;
+    }
+
+    .type-font-role {
+      font-family: var(--font-family-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-accent-secondary);
+      background: rgba(200, 245, 50, 0.1);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    .type-hierarchy-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .type-ladder-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-bottom: 18px;
+      border-bottom: 1px dashed var(--color-border-subtle);
+    }
+
+    .type-ladder-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .ladder-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-family-mono);
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+    }
+
+    .specimen-h1 {
+      font-family: var(--font-family-display);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+    }
+
+    .specimen-h2 {
+      font-family: var(--font-family-display);
+      font-size: 1.75rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+    }
+
+    .specimen-lead {
+      font-family: var(--font-family-body);
+      font-size: 1.125rem;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+      color: var(--color-text-secondary);
+    }
+
+    .specimen-body {
+      font-family: var(--font-family-body);
+      font-size: 0.9375rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--color-text-secondary);
+    }
+
+    .specimen-nav {
+      font-family: var(--font-family-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: var(--color-text-secondary);
+    }
+
+    .specimen-btn {
+      font-family: var(--font-family-body);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--color-accent-secondary);
+    }
+
+    .specimen-badge {
+      font-family: var(--font-family-display);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-accent-primary);
+    }
+
+    .specimen-mono {
+      font-family: var(--font-family-mono);
+      font-size: 0.8125rem;
+      color: var(--color-accent-secondary);
+    }
+
+    /* Live Type Tester */
+    .live-type-tester {
+      background: var(--color-surface-dark);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-graphic-sm);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .tester-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tester-input {
+      width: 100%;
+      background: var(--color-surface-floating);
+      border: 1px solid var(--color-border-subtle);
+      color: #FFFFFF;
+      padding: 14px 16px;
+      border-radius: var(--radius-input);
+      font-family: var(--font-family-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      outline: none;
+      transition: var(--transition-fast);
+    }
+
+    .tester-input:focus {
+      border-color: var(--color-accent-secondary);
+      box-shadow: 0 0 16px var(--color-accent-secondary-glow);
+    }
+
+    /* =============================================================================
+       3. COMPONENT ARCHETYPE GALLERY
+       ============================================================================= */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .component-panel {
+      background: var(--color-surface-floating);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-graphic-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .panel-title {
+      font-family: var(--font-family-display);
+      font-size: 1.125rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+    }
+
+    .panel-tag {
+      font-family: var(--font-family-mono);
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Button Showcase Matrix */
+    .button-group-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-dynamo-orange {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      background: var(--color-accent-primary);
+      color: #FFFFFF;
+      font-family: var(--font-family-body);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 10px 24px var(--color-accent-primary-glow);
+      transition: var(--transition-base);
+    }
+
+    .btn-dynamo-orange:hover {
+      background: var(--color-accent-primary-hover);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 14px 30px rgba(255, 77, 28, 0.55);
+    }
+
+    .btn-circle-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-circle);
+      background: var(--color-surface-subtle);
+      border: 1px solid var(--color-border-ghost);
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+
+    .btn-circle-icon:hover {
+      background: var(--color-accent-secondary);
+      color: var(--color-accent-secondary-fg);
+      border-color: var(--color-accent-secondary);
+      transform: translateY(-2px) rotate(45deg);
+      box-shadow: 0 6px 18px var(--color-accent-secondary-glow);
+    }
+
+    /* Floating Island Navigation Component Archetype */
+    .nav-island-archetype {
+      background: var(--color-surface-floating);
+      border: var(--border-nav-island);
+      border-radius: var(--radius-pill);
+      padding: var(--nav-padding);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-floating-pill);
+      backdrop-filter: var(--blur-backdrop-frosted);
+    }
+
+    .island-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-family-display);
+      font-size: 0.875rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .island-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      list-style: none;
+    }
+
+    .island-link {
+      font-family: var(--font-family-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color 0.15s ease-in-out;
+    }
+
+    .island-link:hover, .island-link.active {
+      color: var(--color-text-primary);
+    }
+
+    .island-link.active {
+      font-weight: 700;
+      color: var(--color-accent-secondary);
+    }
+
+    /* Form & Input Archetypes */
+    .form-group-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .input-pill-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-pill {
+      width: 100%;
+      background: var(--color-surface-dark);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 12px 50px 12px 20px;
+      color: #FFFFFF;
+      font-family: var(--font-family-body);
+      font-size: 1rem;
+      outline: none;
+      transition: var(--transition-base);
+    }
+
+    .input-pill:focus {
+      border-color: var(--color-accent-secondary);
+      box-shadow: 0 0 16px var(--color-accent-secondary-glow);
+    }
+
+    .input-action-btn {
+      position: absolute;
+      right: 6px;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-circle);
+      background: var(--color-accent-secondary);
+      color: var(--color-accent-secondary-fg);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .input-action-btn:hover {
+      transform: scale(1.06);
+    }
+
+    /* Toggle & Checkbox Controls */
+    .controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: var(--color-surface-dark);
+      border-radius: var(--radius-graphic-sm);
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    .control-label {
+      font-family: var(--font-family-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+
+    /* Custom Toggle Switch */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 26px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background-color: var(--color-surface-subtle);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-pill);
+      transition: 0.3s var(--ease-spring);
+    }
+
+    .toggle-slider::before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 4px;
+      bottom: 3px;
+      background-color: #FFFFFF;
+      border-radius: 50%;
+      transition: 0.3s var(--ease-spring);
+    }
+
+    .toggle-switch input:checked + .toggle-slider {
+      background-color: var(--color-accent-secondary);
+      border-color: var(--color-accent-secondary);
+    }
+
+    .toggle-switch input:checked + .toggle-slider::before {
+      transform: translateX(22px);
+      background-color: var(--color-accent-secondary-fg);
+    }
+
+    /* =============================================================================
+       4. LIVING MICRO-EXPERIENCE: DYNAMO GRID CONTROLLER
+       ============================================================================= */
+    .demo-container {
+      background: var(--color-surface-floating);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-graphic-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .demo-control-card {
+      background: var(--color-surface-dark);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-graphic-sm);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .demo-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .demo-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-family-display);
+      font-size: 1rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .slider-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .slider-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .slider-title {
+      font-family: var(--font-family-body);
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+    }
+
+    .slider-readout {
+      font-family: var(--font-family-mono);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--color-accent-secondary);
+    }
+
+    .dynamo-range-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: var(--radius-pill);
+      background: var(--color-surface-subtle);
+      outline: none;
+      transition: background 0.2s;
+    }
+
+    .dynamo-range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--color-accent-secondary);
+      cursor: pointer;
+      box-shadow: 0 0 14px var(--color-accent-secondary-glow);
+      transition: transform 0.2s ease;
+    }
+
+    .dynamo-range-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .grid-routing-matrix {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .substation-node {
+      background: var(--color-surface-floating);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+
+    .substation-node.active {
+      border-color: rgba(200, 245, 50, 0.40);
+      background: rgba(200, 245, 50, 0.06);
+    }
+
+    .node-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .node-name {
+      font-family: var(--font-family-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--color-text-muted);
+    }
+
+    .node-led {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4A5568;
+    }
+
+    .substation-node.active .node-led {
+      background: var(--color-accent-secondary);
+      box-shadow: 0 0 8px var(--color-accent-secondary);
+    }
+
+    .node-load {
+      font-family: var(--font-family-mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    /* Live Dynamic Visualizer Visual Stage */
+    .demo-visual-stage {
+      background: linear-gradient(135deg, #1A2232 0%, #111622 100%);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-graphic-sm);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      min-height: 280px;
+    }
+
+    .core-generator-ring {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 77, 28, 0.3);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.3s ease;
+    }
+
+    .core-generator-ring.overdrive {
+      border-color: var(--color-accent-secondary);
+      box-shadow: 0 0 30px rgba(200, 245, 50, 0.3);
+    }
+
+    .generator-center-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--color-accent-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      box-shadow: 0 0 24px var(--color-accent-primary-glow);
+      transition: transform 0.3s ease;
+    }
+
+    .overdrive-pulse {
+      animation: surge 1s infinite alternate ease-in-out;
+    }
+
+    @keyframes surge {
+      from { transform: scale(1); filter: brightness(1); }
+      to { transform: scale(1.12); filter: brightness(1.25); }
+    }
+
+    /* =============================================================================
+       5. STYLE TILE PROMPT CODE DRAWER & MODAL
+       ============================================================================= */
+    .spec-drawer-card {
+      background: var(--color-surface-floating);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-graphic-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .spec-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .spec-pre-box {
+      background: var(--color-surface-dark);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-graphic-sm);
+      padding: 20px;
+      max-height: 400px;
+      overflow-y: auto;
+      font-family: var(--font-family-mono);
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: var(--color-text-secondary);
+      white-space: pre-wrap;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 14, 23, 0.85);
+      backdrop-filter: blur(16px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 860px;
+      max-height: 85vh;
+      background: var(--color-surface-floating);
+      border: 1px solid var(--color-border-hover);
+      border-radius: var(--radius-graphic-lg);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modalSlideIn 0.25s var(--ease-spring);
+    }
+
+    @keyframes modalSlideIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+    }
+
+    .modal-close-btn:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Floating Toast */
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--color-accent-secondary);
+      color: var(--color-accent-secondary-fg);
+      font-family: var(--font-family-body);
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      display: none;
+    }
+
+    @keyframes toastSlideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =============================================================================
+       PAGE-SPECIFIC MOBILE RESPONSIVE TWEAKS (<= 768px)
+       ============================================================================= */
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .hero-graphic-stage {
+        height: 380px;
+      }
+
+      .type-specimen-container {
+        grid-template-columns: 1fr;
+      }
+
+      .demo-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .grid-routing-matrix {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-dynamo-primary {
+        justify-content: center;
+      }
+    }
+  </style>
+
+  <!-- Shared Mobile Safety Stylesheet & Catalog Tile-Number Resolver -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- ===========================================================================
+       MANDATORY HEADER BAR COMPONENT
+       =========================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back to Catalog -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Industrial Dynamo</span>
+      <span class="design-vibe-tag">Cyber &amp; Blueprint</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-industrial-dynamo.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <div class="layout-wrapper">
+
+    <!-- =========================================================================
+         HERO DISPLAY BANNER (Asymmetric 2-Column Split: 50% Copy | 50% Graphic)
+         ========================================================================= -->
+    <section class="hero-section">
+      <div class="hero-grid">
+        
+        <!-- Left Column: Copy & Core Actions (50%) -->
+        <div class="hero-content">
+          <div class="hero-tag-strip">
+            <div class="status-badge-live">
+              <span class="pulse-dot"></span>
+              240V Continuous Dynamo
+            </div>
+            <div class="utility-badge">System Architecture 09</div>
+          </div>
+
+          <h1 class="hero-title">
+            Industrial <span class="title-accent">Dynamo</span>
+          </h1>
+
+          <p class="hero-lead">
+            High-energy modern utility design language constructed on deep obsidian night slate (<span style="color:#FFF; font-family:var(--font-family-mono);">#111622</span>) with high-visibility neon lime (<span style="color:var(--color-accent-secondary); font-family:var(--font-family-mono);">#C8F532</span>) and electric safety orange (<span style="color:var(--color-accent-primary); font-family:var(--font-family-mono);">#FF4D1C</span>) vector dynamics. Engineered for high-voltage operational clarity, floating pill navigation, and 32px graphic corner geometry.
+          </p>
+
+          <div class="hero-cta-group">
+            <button class="btn-dynamo-primary" onclick="triggerToast('⚡ High-Voltage Dynamo Engaged!')">
+              <span>Engage System Voltage</span>
+              <span class="icon-circle-affordance">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </button>
+            <button class="btn-dynamo-ghost" onclick="copyTilePromptDirect()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Agent Prompt
+            </button>
+          </div>
+
+          <div class="hero-telemetry-bar">
+            <div class="telemetry-pill highlight">
+              <span class="label">Voltage:</span>
+              <span class="value">240V Dynamic</span>
+            </div>
+            <div class="telemetry-pill">
+              <span class="label">Efficiency:</span>
+              <span class="value">99.4% Grid</span>
+            </div>
+            <div class="telemetry-pill">
+              <span class="label">Geometry:</span>
+              <span class="value">9999px Pill // 32px Squircle</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Vector Graphic Composition (50%) -->
+        <div class="hero-graphic-stage">
+          
+          <!-- Layer 10: Bold Solid Electric Safety Orange Vector Backdrop -->
+          <div class="graphic-backdrop-layer"></div>
+
+          <!-- Layer 20: Foreground Subject Cutout (Dynamo Energy Core) -->
+          <div class="subject-cutout-layer">
+            <div class="dynamo-core-header">
+              <div class="dynamo-brand">
+                <div class="dynamo-icon-box">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <div>
+                  <div class="dynamo-label-title">Core Turbine V-9</div>
+                  <div class="dynamo-label-sub">GRID_ONLINE // FREQ_60HZ</div>
+                </div>
+              </div>
+              <span class="status-badge-live" style="padding: 3px 10px; font-size: 0.65rem;">ACTIVE</span>
+            </div>
+
+            <!-- Vector Lightning Bolt Energy Core -->
+            <div class="dynamo-vector-display">
+              <div class="kinetic-orbit-ring"></div>
+              <svg class="lightning-svg-bolt" viewBox="0 0 24 24" fill="none" stroke="#FF4D1C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="url(#orangeGradient)" />
+                <defs>
+                  <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FF4D1C"/>
+                    <stop offset="100%" stop-color="#FF8A00"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+
+            <div class="dynamo-metrics-strip">
+              <div class="metric-cell">
+                <span class="kpi-label">Turbine Output</span>
+                <span class="kpi-val">840 kW</span>
+              </div>
+              <div class="metric-cell accent">
+                <span class="kpi-label">Power Factor</span>
+                <span class="kpi-val">0.98 pf</span>
+              </div>
+              <div class="metric-cell">
+                <span class="kpi-label">Thermal Load</span>
+                <span class="kpi-val">42.8°C</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Layer 30: Floating Circular Stamp Badge with Continuous Radial SVG Text -->
+          <div class="floating-stamp-badge" title="High-Voltage Stamp (Click to toggle spin)" onclick="toggleStampSpin()">
+            <svg class="stamp-svg-wrap" viewBox="0 0 100 100">
+              <path id="stamp-circle-path" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+              <text>
+                <textPath href="#stamp-circle-path" startOffset="0%">
+                  • HIGH-VOLTAGE UTILITY • INDUSTRIAL DYNAMO •
+                </textPath>
+              </text>
+            </svg>
+            <div class="stamp-core-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </div>
+          </div>
+
+          <!-- Floating Auxiliary Chip -->
+          <div class="floating-chip-bottom">
+            <span class="chip-indicator-orange"></span>
+            <span>HIGH-VOLTAGE ENERGY</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         1. COLOR ROLES & PALETTE MATRIX
+         ========================================================================= -->
+    <section class="section-block" id="palette-section">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-tag">01 // Chromatic Architecture</span>
+          <h2 class="section-title">Color Roles &amp; Palette</h2>
+        </div>
+        <p class="section-description">
+          High-energy contrast matrix engineered with Deep Obsidian (#111622), high-visibility Neon Lime (#C8F532), and Electric Safety Orange (#FF4D1C). Click any swatch to copy its hex token.
+        </p>
+      </div>
+
+      <div class="palette-grid">
+        <!-- Canvas -->
+        <div class="swatch-card" onclick="copyHex('#111622', 'Night Slate Canvas')">
+          <div class="swatch-color-box" style="background-color: #111622; border-bottom: 1px solid rgba(255,255,255,0.08);">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Night Slate Canvas</span>
+            <span class="swatch-hex">#111622</span>
+            <span class="swatch-token">--color-bg-canvas</span>
+          </div>
+        </div>
+
+        <!-- Floating Surface -->
+        <div class="swatch-card" onclick="copyHex('#1A2232', 'Floating Tinted Slate')">
+          <div class="swatch-color-box" style="background-color: #1A2232; border-bottom: 1px solid rgba(255,255,255,0.08);">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Floating Tinted Slate</span>
+            <span class="swatch-hex">#1A2232</span>
+            <span class="swatch-token">--color-surface-floating</span>
+          </div>
+        </div>
+
+        <!-- Elevated Neutral -->
+        <div class="swatch-card" onclick="copyHex('#232D42', 'Elevated Neutral Slate')">
+          <div class="swatch-color-box" style="background-color: #232D42;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Elevated Component Slate</span>
+            <span class="swatch-hex">#232D42</span>
+            <span class="swatch-token">--color-surface-subtle</span>
+          </div>
+        </div>
+
+        <!-- Recessed Well -->
+        <div class="swatch-card" onclick="copyHex('#0C0F17', 'Deep Recessed Well')">
+          <div class="swatch-color-box" style="background-color: #0C0F17;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Recessed Well Canvas</span>
+            <span class="swatch-hex">#0C0F17</span>
+            <span class="swatch-token">--color-surface-dark</span>
+          </div>
+        </div>
+
+        <!-- Electric Safety Orange -->
+        <div class="swatch-card" onclick="copyHex('#FF4D1C', 'Electric Safety Orange')">
+          <div class="swatch-color-box" style="background-color: #FF4D1C;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Electric Safety Orange</span>
+            <span class="swatch-hex">#FF4D1C</span>
+            <span class="swatch-token">--color-accent-primary</span>
+          </div>
+        </div>
+
+        <!-- High-Vis Neon Lime -->
+        <div class="swatch-card" onclick="copyHex('#C8F532', 'High-Vis Neon Lime')">
+          <div class="swatch-color-box" style="background-color: #C8F532;">
+            <span class="swatch-copy-pill" style="background: rgba(0,0,0,0.85); color: #FFF;">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">High-Vis Neon Lime</span>
+            <span class="swatch-hex">#C8F532</span>
+            <span class="swatch-token">--color-accent-secondary</span>
+          </div>
+        </div>
+
+        <!-- Pure White -->
+        <div class="swatch-card" onclick="copyHex('#FFFFFF', 'Pure Bright White')">
+          <div class="swatch-color-box" style="background-color: #FFFFFF;">
+            <span class="swatch-copy-pill" style="background: rgba(0,0,0,0.85); color: #FFF;">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Pure Bright White</span>
+            <span class="swatch-hex">#FFFFFF</span>
+            <span class="swatch-token">--color-text-primary</span>
+          </div>
+        </div>
+
+        <!-- Soft Slate Subcopy -->
+        <div class="swatch-card" onclick="copyHex('#A0ABC0', 'Soft Slate Gray')">
+          <div class="swatch-color-box" style="background-color: #A0ABC0;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Soft Slate Subcopy</span>
+            <span class="swatch-hex">#A0ABC0</span>
+            <span class="swatch-token">--color-text-secondary</span>
+          </div>
+        </div>
+
+        <!-- Low-Priority Muted Slate -->
+        <div class="swatch-card" onclick="copyHex('#6B7A90', 'Utility Muted Slate')">
+          <div class="swatch-color-box" style="background-color: #6B7A90;">
+            <span class="swatch-copy-pill">Copy Hex</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-name">Utility Muted Slate</span>
+            <span class="swatch-hex">#6B7A90</span>
+            <span class="swatch-token">--color-text-muted</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         2. TYPOGRAPHY SYSTEM & SPECIMEN
+         ========================================================================= -->
+    <section class="section-block" id="typography-section">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-tag">02 // Typographic Hierarchy</span>
+          <h2 class="section-title">Typography System</h2>
+        </div>
+        <p class="section-description">
+          Syne 800 uppercase display paired with Inter body for multi-density legibility and JetBrains Mono for utility metrics.
+        </p>
+      </div>
+
+      <div class="type-specimen-container">
+        
+        <!-- Left: Typographic Ladder -->
+        <div class="type-card">
+          <div class="type-card-title">
+            <span class="type-font-name">Type Scale Ladder</span>
+            <span class="type-font-role">Syne + Inter + Mono</span>
+          </div>
+
+          <div class="type-hierarchy-ladder">
+            <!-- Display H1 -->
+            <div class="type-ladder-row">
+              <div class="ladder-meta">
+                <span>--type-display-h1 // Syne 800 Uppercase</span>
+                <span>clamp(2.5rem, 5vw, 4.25rem) / 1.08</span>
+              </div>
+              <div class="specimen-h1">DYNAMO VOLTAGE</div>
+            </div>
+
+            <!-- Display H2 -->
+            <div class="type-ladder-row">
+              <div class="ladder-meta">
+                <span>Display H2 // Syne 800 Uppercase</span>
+                <span>1.75rem / 1.20</span>
+              </div>
+              <div class="specimen-h2">HIGH-ENERGY UTILITY</div>
+            </div>
+
+            <!-- Lead Body -->
+            <div class="type-ladder-row">
+              <div class="ladder-meta">
+                <span>--type-body-lead // Inter 400</span>
+                <span>1.125rem / 1.60</span>
+              </div>
+              <p class="specimen-lead">
+                Constructed for high-energy operational software requiring rapid visual triage and tactile command feedback.
+              </p>
+            </div>
+
+            <!-- Nav Link & Button Label -->
+            <div class="type-ladder-row">
+              <div class="ladder-meta">
+                <span>--type-button-label // Inter 700</span>
+                <span>0.875rem / 0.02em</span>
+              </div>
+              <div style="display: flex; gap: 16px; align-items: center;">
+                <span class="specimen-btn">ENGAGE CORE GENERATOR ↗</span>
+                <span class="specimen-nav">System Telemetry</span>
+              </div>
+            </div>
+
+            <!-- Circular Badge Stamp Text -->
+            <div class="type-ladder-row">
+              <div class="ladder-meta">
+                <span>--type-circular-badge // Syne 800 Uppercase</span>
+                <span>0.75rem / 0.22em tracking</span>
+              </div>
+              <div class="specimen-badge">• 240V INDUSTRIAL POWER • CONTINUOUS UTILITY •</div>
+            </div>
+
+            <!-- Mono Meta -->
+            <div class="type-ladder-row">
+              <div class="ladder-meta">
+                <span>--font-family-mono // JetBrains Mono</span>
+                <span>0.8125rem / 1.40</span>
+              </div>
+              <div class="specimen-mono">FREQ_60.0HZ // REACTIVE_LOAD_0.84 // VOLT_240V</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Live Type Tester -->
+        <div class="type-card">
+          <div class="type-card-title">
+            <span class="type-font-name">Interactive Type Tester</span>
+            <span class="type-font-role">Real-Time Canvas</span>
+          </div>
+
+          <div class="live-type-tester">
+            <div class="tester-controls">
+              <div style="display:flex; gap:8px;">
+                <button class="btn-tile btn-preview" onclick="setTypeFamily('Syne')">Syne Display</button>
+                <button class="btn-tile btn-preview" onclick="setTypeFamily('Inter')">Inter Sans</button>
+                <button class="btn-tile btn-preview" onclick="setTypeFamily('JetBrains Mono')">JetBrains Mono</button>
+              </div>
+              <span id="font-size-label" style="font-family:var(--font-family-mono); font-size:0.75rem; color:var(--color-accent-secondary);">Size: 32px</span>
+            </div>
+
+            <input type="range" min="16" max="64" value="32" class="dynamo-range-slider" oninput="adjustTypeSize(this.value)">
+
+            <input type="text" id="live-type-input" class="tester-input" value="HIGH-VOLTAGE MODERN UTILITY" oninput="updateLiveText(this.value)">
+
+            <div id="live-type-output" style="font-family:'Syne', sans-serif; font-size:32px; font-weight:800; text-transform:uppercase; color:#FFFFFF; line-height:1.15; padding: 20px 0; word-break: break-word;">
+              HIGH-VOLTAGE MODERN UTILITY
+            </div>
+          </div>
+
+          <p style="font-size: 0.875rem; color: var(--color-text-secondary);">
+            The typographic pair balances structural heavy geometric display lettering with crisp ergonomic sans-serif body type, ensuring high scan speeds in high-density technical interfaces.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         3. COMPONENT ARCHETYPE GALLERY
+         ========================================================================= -->
+    <section class="section-block" id="components-section">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-tag">03 // Interface Archetypes</span>
+          <h2 class="section-title">Component System</h2>
+        </div>
+        <p class="section-description">
+          Floating pill buttons with 45° directional capsules, frosted nav islands, 32px graphic radii, and interactive form controls.
+        </p>
+      </div>
+
+      <div class="components-grid">
+        
+        <!-- Panel 1: Button Archetypes -->
+        <div class="component-panel">
+          <div class="panel-header">
+            <span class="panel-title">Button Actions</span>
+            <span class="panel-tag">Pills &amp; Circles</span>
+          </div>
+
+          <div class="button-group-showcase">
+            <!-- Primary Action -->
+            <button class="btn-dynamo-primary" style="width: 100%;">
+              <span>Primary Action CTA</span>
+              <span class="icon-circle-affordance">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </button>
+
+            <!-- Secondary Safety Orange Action -->
+            <div class="btn-row">
+              <button class="btn-dynamo-orange" style="flex: 1;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span>Vector Energy</span>
+              </button>
+
+              <button class="btn-dynamo-ghost" style="flex: 1;">
+                <span>Ghost Island</span>
+              </button>
+            </div>
+
+            <!-- Icon Circular Affordances -->
+            <div class="btn-row" style="margin-top: 8px;">
+              <button class="btn-circle-icon" title="High-Voltage Core Action">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </button>
+              <button class="btn-circle-icon" title="Directional Dispatch">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </button>
+              <button class="btn-circle-icon" title="System Settings">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              </button>
+              <button class="btn-circle-icon" title="Copy Identifier" onclick="copyHex('#C8F532', 'High-Vis Lime')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 2: Floating Nav Island Archetype -->
+        <div class="component-panel">
+          <div class="panel-header">
+            <span class="panel-title">Floating Nav Island</span>
+            <span class="panel-tag">9999px Blur Island</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <nav class="nav-island-archetype">
+              <div class="island-brand">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color:var(--color-accent-primary);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span>DYNAMO</span>
+              </div>
+              <ul class="island-links">
+                <li><a href="#demo-section" class="island-link active">Grid</a></li>
+                <li><a href="#palette-section" class="island-link">Palette</a></li>
+                <li><a href="#typography-section" class="island-link">Type</a></li>
+              </ul>
+              <button class="btn-dynamo-primary" style="padding: 6px 12px; font-size: 0.75rem;">
+                <span>Deploy</span>
+              </button>
+            </nav>
+
+            <p style="font-size: 0.8125rem; color: var(--color-text-secondary);">
+              Nav islands float above the content plane with 12px frosted backdrop blur, 9999px pill geometry, and 1px subtle boundary confinement.
+            </p>
+          </div>
+        </div>
+
+        <!-- Panel 3: Form Controls & Inputs -->
+        <div class="component-panel">
+          <div class="panel-header">
+            <span class="panel-title">Form Controls</span>
+            <span class="panel-tag">Pill Inputs &amp; Toggles</span>
+          </div>
+
+          <div class="form-group-showcase">
+            <div class="input-pill-container">
+              <input type="text" class="input-pill" placeholder="Search substation ID (e.g. #DYN-240)...">
+              <button class="input-action-btn" title="Search Substation">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </button>
+            </div>
+
+            <div class="controls-row">
+              <span class="control-label">Continuous Frequency Lock</span>
+              <label class="toggle-switch">
+                <input type="checkbox" checked onchange="triggerToast('⚡ Frequency Lock Updated')">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="controls-row">
+              <span class="control-label">Overdrive Auto-Cooling</span>
+              <label class="toggle-switch">
+                <input type="checkbox" onchange="triggerToast('❄️ Thermal Cooling Switched')">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. LIVING MICRO-EXPERIENCE: DYNAMO GRID CONTROLLER
+         ========================================================================= -->
+    <section class="section-block" id="demo-section">
+      <div class="section-header">
+        <div class="section-title-group">
+          <span class="section-tag">04 // Living Micro-Experience</span>
+          <h2 class="section-title">Dynamo Grid Controller</h2>
+        </div>
+        <p class="section-description">
+          An interactive high-voltage energy control station demonstrating the visual system in real-time. Adjust the generator wattage slider to trigger reactive voltage pulses.
+        </p>
+      </div>
+
+      <div class="demo-container">
+        <div class="demo-grid">
+          
+          <!-- Left: Controller Sliders & Substation Routing Matrix -->
+          <div class="demo-control-card">
+            <div class="demo-topbar">
+              <div class="demo-brand">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color:var(--color-accent-primary);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span>DYNAMO GRID CORE // 240V</span>
+              </div>
+              <span class="status-badge-live" id="grid-status-badge">
+                <span class="pulse-dot"></span>
+                GRID SYNCHRONIZED
+              </span>
+            </div>
+
+            <!-- Power Output Range Slider -->
+            <div class="slider-container">
+              <div class="slider-header">
+                <span class="slider-title">Generator Output Load</span>
+                <span class="slider-readout" id="generator-readout">840 kW</span>
+              </div>
+              <input type="range" id="power-slider" min="200" max="1500" value="840" class="dynamo-range-slider" oninput="updateGeneratorOutput(this.value)">
+            </div>
+
+            <!-- Substation Grid Routing Matrix -->
+            <div>
+              <span style="font-family:var(--font-family-body); font-size:0.8125rem; font-weight:700; color:var(--color-text-secondary); display:block; margin-bottom:8px;">
+                ACTIVE POWER DISTRIBUTION ROUTING
+              </span>
+              <div class="grid-routing-matrix">
+                <div class="substation-node active" id="node-alpha" onclick="toggleSubstation('alpha')">
+                  <div class="node-header">
+                    <span class="node-name">SUB-A (ALPHA)</span>
+                    <span class="node-led"></span>
+                  </div>
+                  <span class="node-load" id="load-alpha">320 kW</span>
+                </div>
+
+                <div class="substation-node active" id="node-beta" onclick="toggleSubstation('beta')">
+                  <div class="node-header">
+                    <span class="node-name">SUB-B (BETA)</span>
+                    <span class="node-led"></span>
+                  </div>
+                  <span class="node-load" id="load-beta">340 kW</span>
+                </div>
+
+                <div class="substation-node active" id="node-gamma" onclick="toggleSubstation('gamma')">
+                  <div class="node-header">
+                    <span class="node-name">CAPACITOR</span>
+                    <span class="node-led"></span>
+                  </div>
+                  <span class="node-load" id="load-gamma">180 kW</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Overdrive Trigger Action -->
+            <div style="display:flex; gap:12px; align-items:center;">
+              <button class="btn-dynamo-primary" id="btn-overdrive" onclick="toggleOverdrive()" style="flex:1;">
+                <span id="overdrive-text">ACTIVATE OVERDRIVE SURGE</span>
+                <span class="icon-circle-affordance">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Animated Reactor Core Visualizer -->
+          <div class="demo-visual-stage">
+            <div class="core-generator-ring" id="visual-reactor-ring">
+              <div class="generator-center-icon" id="visual-reactor-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+            </div>
+
+            <div style="margin-top: 24px; text-align: center;">
+              <div style="font-family: var(--font-family-display); font-size: 1.25rem; font-weight: 800; color: #FFFFFF; text-transform: uppercase;" id="live-voltage-label">
+                240.0 V CONTINUOUS
+              </div>
+              <div style="font-family: var(--font-family-mono); font-size: 0.8125rem; color: var(--color-text-secondary); margin-top: 4px;" id="live-harmonic-label">
+                THD: 0.12% // FREQUENCY: 60.00 Hz
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. STYLE TILE PROMPT CODE DRAWER
+         ========================================================================= -->
+    <section class="section-block" id="spec-section">
+      <div class="spec-drawer-card">
+        <div class="spec-header">
+          <div>
+            <h3 style="font-family:var(--font-family-display); font-size:1.25rem; font-weight:800; text-transform:uppercase; color:#FFFFFF;">
+              Style Tile Markdown Specification
+            </h3>
+            <p style="font-size:0.875rem; color:var(--color-text-secondary); margin-top:2px;">
+              Transferable machine-readable design skin. 1-click ready for AI prompt injection.
+            </p>
+          </div>
+          <button class="btn-dynamo-primary" onclick="copyTilePromptDirect()" style="padding: 8px 18px; font-size: 0.8125rem;">
+            <span>Copy Full Spec</span>
+            <span class="icon-circle-affordance" style="width:28px; height:28px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </span>
+          </button>
+        </div>
+
+        <pre class="spec-pre-box" id="spec-code-display"></pre>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===========================================================================
+       PREVIEW SPEC MODAL
+       =========================================================================== -->
+  <div id="spec-modal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="design-code">STYLE TILE</span>
+          <span style="font-family:var(--font-family-display); font-size:1.125rem; font-weight:800; text-transform:uppercase; color:#FFFFFF;">
+            Industrial Dynamo Spec
+          </span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <button class="btn-tile btn-copy" onclick="copyTilePromptDirect()">Copy Markdown</button>
+          <button class="modal-close-btn" onclick="closeSpecModal()" title="Close modal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <pre id="modal-spec-display" style="font-family:var(--font-family-mono); font-size:0.8125rem; line-height:1.5; color:var(--color-text-secondary); white-space:pre-wrap;"></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Feedback Popup -->
+  <div id="toast-popup" class="toast-popup"></div>
+
+  <!-- ===========================================================================
+       RAW MARKDOWN STYLE TILE DATA SOURCE (TRANSFERABLE MACHINE SKIN)
+       =========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Industrial Dynamo
+  Construction: obsidian slate • electric orange & neon lime • pill & circular geometry • clean-stroke iconography
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+High-energy modern utility aesthetic engineered on deep obsidian night slate (#111622) with frosted tinted slate surfaces (#1A2232, #232D42). High-visibility neon lime (#C8F532) powers primary action affordances with dark ink contrast (#111622), complemented by electric safety orange (#FF4D1C) vector backdrops and highlights. Form geometry is defined by sleek 9999px pill containers, circular icon capsules, 16px/32px corner radii, and 2px monoline stroke iconography.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Canvas & Elevated Surfaces */
+  --bg-canvas:              #111622; /* Deep Obsidian / Night Slate primary canvas */
+  --bg-surface:             #1A2232; /* Tinted Slate for floating containers & cards */
+  --bg-surface-subtle:      #232D42; /* Elevated component neutral & well panels */
+  --bg-surface-dark:        #0C0F17; /* Recessed dark container wells */
+
+  /* Signature Accents */
+  --accent-primary:         #FF4D1C; /* Electric Safety Orange (Energy, vector shapes, key highlights) */
+  --accent-primary-hover:   #FF653B; /* Safety orange interactive hover */
+  --accent-secondary:       #C8F532; /* High-Visibility Neon Lime / Chartreuse (Primary CTAs) */
+  --accent-secondary-hover: #D7FA5C; /* Neon lime hover brightness */
+  --accent-secondary-fg:    #111622; /* Dark contrast ink for lime surfaces */
+
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF; /* Pure Bright White for headings and emphasis */
+  --ink-secondary:          #A0ABC0; /* Soft Slate Gray for readable body and subcopy */
+  --ink-muted:              #6B7A90; /* Low-priority utility labels and captions */
+  --ink-inverted:           #111622; /* Dark ink on high-chroma accent surfaces */
+
+  /* Borders & Overlays */
+  --border-subtle:          rgba(255, 255, 255, 0.08); /* Frosted containment stroke */
+  --border-hover:           rgba(255, 255, 255, 0.20); /* Hover boundary definition */
+  --border-ghost:           rgba(255, 255, 255, 0.14); /* Ghost button borders */
+
+  /* Status Tokens */
+  --status-success:         #C8F532;
+  --status-warning:         #FFB800;
+  --status-danger:          #FF4D1C;
+  --status-info:            #38BDF8;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Syne", "Cabinet Grotesk", "Plus Jakarta Sans", sans-serif;
+--font-sans:    "Inter", "Plus Jakarta Sans", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", monospace;
+
+/* Type Scale */
+--text-display: clamp(2.5rem, 5vw, 4.25rem) / 1.08 var(--font-display); /* 800 | -0.02em | UPPERCASE */
+--text-h1:      2.5rem                      / 1.15 var(--font-display); /* 800 | -0.02em | UPPERCASE */
+--text-h2:      1.75rem                     / 1.25 var(--font-sans);    /* 700 | -0.01em */
+--text-h3:      1.25rem                     / 1.35 var(--font-sans);    /* 600 | normal */
+--text-lead:    1.125rem                    / 1.60 var(--font-sans);    /* 400 | -0.01em */
+--text-body:    1.0rem                      / 1.60 var(--font-sans);    /* 400 | normal */
+--text-nav:     0.875rem                    / 1.40 var(--font-sans);    /* 500 | 0.01em */
+--text-btn:     0.875rem                    / 1.20 var(--font-sans);    /* 700 | 0.02em */
+--text-badge:   0.75rem                     / 1.20 var(--font-display); /* 800 | 0.22em | UPPERCASE */
+--text-meta:    0.75rem                     / 1.40 var(--font-mono);    /* 500 | 0.05em */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-pill:        9999px; /* Floating navbars, main CTA buttons, badges */
+--radius-circle:      50%;    /* Arrow icon containers, floating badge stamps */
+--radius-graphic-sm:  16px;   /* Minor interior corner cutouts and sub-panels */
+--radius-graphic-lg:  32px;   /* Vector graphic backdrop corners and hero cards */
+
+/* Elevation & Shadows */
+--shadow-floating-pill: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+--shadow-badge-stamp:   0 12px 30px rgba(0, 0, 0, 0.35);
+--shadow-card:          0 16px 32px -8px rgba(0, 0, 0, 0.4);
+--backdrop-frosted:     blur(12px);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-nav-island:        1px solid var(--border-subtle);
+--border-nav-button-ghost:  1px solid var(--border-ghost);
+--border-card:              1px solid var(--border-subtle);
+--border-focus:             1px solid var(--border-hover);
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Primary buttons use a full pill radius (9999px), filled with High-Visibility Neon Lime (#C8F532) and dark ink (#111622). Hover applies translateY(-2px) scale(1.02) and brightness(1.08) with smooth 0.2s cubic-bezier(0.16, 1, 0.3, 1) spring physics. Optional 36px circular icon capsule within button uses rgba(0,0,0,0.12) fill and translates (2px, -2px) on hover. Secondary buttons use ghost styling with frosted subtle borders (rgba(255,255,255,0.14)) and pure white text. Use the host's existing labels.
+- **Cards**: Built with tinted slate surfaces (#1A2232 or #232D42), 16px to 32px graphic corner radii, 1px solid rgba(255,255,255,0.08) borders, and subtle deep drop shadows. Do not add index codes or fake meta.
+- **Inputs**: Dark well surfaces (#111622 or #1A2232), 12px to 9999px radius, 1px solid rgba(255,255,255,0.08) borders, and clear white text. Focus state elevates border to rgba(255,255,255,0.25) or neon lime glow. Font-size at least 16px.
+- **Navigation**: Floating island nav with 9999px pill geometry, tinted slate background (#1A2232), backdrop blur (12px), and frosted subtle border (rgba(255,255,255,0.08)). Links transition smoothly to pure white on hover. Do not add catalog codes or fake status readouts.
+- **Badges & Stamps**: Circular badge stamps (50% radius) feature radial text wrapping around a central core icon with continuous rotation (20s linear infinite, pause on hover). Compact badges use pill geometry with 800 weight uppercase tracking.
+- **Iconography**: 2px stroke width, round linecaps and joins, clean geometric linear style. Key motifs include 45° directional arrows (↗) and sharp high-voltage energy lightning vectors.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No flat washed-out gray low-contrast backgrounds; canvas must be deep night slate (#111622).
+- No standard sharp 0px brutalist boxes without intent; respect the specified 9999px pill and 16px/32px graphic corner radii.
+- No heavy comic drop shadows (4px 4px 0px #000); use deep floating shadows (0 20px 40px -10px rgba(0,0,0,0.5)).
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- ===========================================================================
+       JAVASCRIPT LOGIC & INTERACTIVITY
+       =========================================================================== -->
+  <script>
+    const markdownContent = document.getElementById("style-tile-markdown").textContent.trim();
+
+    // Populate drawer and modal displays
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      toast.style.animation = "none";
+      void toast.offsetWidth;
+      toast.style.animation = "toastSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(() => { toast.style.display = "none"; }, 2200);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(() => {
+        triggerToast("✓ Copied Style Tile to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied!";
+          setTimeout(() => { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(() => triggerToast("Clipboard unavailable"));
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      document.getElementById("spec-modal").classList.remove("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+
+    document.getElementById("btn-download-tile").addEventListener("click", () => {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-industrial-dynamo.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-industrial-dynamo.md");
+    });
+
+    document.getElementById("btn-preview-tile").addEventListener("click", () => {
+      document.getElementById("spec-modal").classList.add("active");
+    });
+
+    document.getElementById("spec-modal").addEventListener("click", (e) => {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    // Interactive Stamp Rotation Toggle
+    let isSpinning = true;
+    function toggleStampSpin() {
+      const wrap = document.querySelector(".stamp-svg-wrap");
+      if (!wrap) return;
+      isSpinning = !isSpinning;
+      wrap.style.animationPlayState = isSpinning ? "running" : "paused";
+      triggerToast(isSpinning ? "⚡ Stamp Rotation: Continuous" : "⏸ Stamp Rotation: Paused");
+    }
+
+    // Interactive Live Type Tester
+    function setTypeFamily(font) {
+      const output = document.getElementById("live-type-output");
+      const input = document.getElementById("live-type-input");
+      if (output) output.style.fontFamily = `"${font}", sans-serif`;
+      if (input) input.style.fontFamily = `"${font}", sans-serif`;
+      triggerToast(`Type family set to ${font}`);
+    }
+
+    function adjustTypeSize(size) {
+      const output = document.getElementById("live-type-output");
+      const label = document.getElementById("font-size-label");
+      if (output) output.style.fontSize = `${size}px`;
+      if (label) label.textContent = `Size: ${size}px`;
+    }
+
+    function updateLiveText(val) {
+      const output = document.getElementById("live-type-output");
+      if (output) output.textContent = val || "HIGH-VOLTAGE MODERN UTILITY";
+    }
+
+    // Interactive Dynamo Micro-Experience Controller
+    let isOverdrive = false;
+    const substations = { alpha: true, beta: true, gamma: true };
+
+    function updateGeneratorOutput(val) {
+      document.getElementById("generator-readout").textContent = `${val} kW`;
+      const numericVal = parseInt(val, 10);
+      
+      // Calculate distributed load
+      const activeCount = Object.values(substations).filter(Boolean).length;
+      if (activeCount > 0) {
+        const perNode = Math.round(numericVal / activeCount);
+        if (substations.alpha) document.getElementById("load-alpha").textContent = `${perNode} kW`;
+        if (substations.beta) document.getElementById("load-beta").textContent = `${perNode} kW`;
+        if (substations.gamma) document.getElementById("load-gamma").textContent = `${numericVal - perNode * (activeCount - 1)} kW`;
+      }
+
+      // Update visual voltage label
+      const calcVoltage = (220 + (numericVal / 1500) * 40).toFixed(1);
+      document.getElementById("live-voltage-label").textContent = `${calcVoltage} V CONTINUOUS`;
+    }
+
+    function toggleSubstation(name) {
+      substations[name] = !substations[name];
+      const el = document.getElementById(`node-${name}`);
+      if (el) el.classList.toggle("active", substations[name]);
+      
+      const loadEl = document.getElementById(`load-${name}`);
+      if (!substations[name] && loadEl) loadEl.textContent = "OFFLINE";
+      
+      const powerSlider = document.getElementById("power-slider");
+      if (powerSlider) updateGeneratorOutput(powerSlider.value);
+      
+      triggerToast(`Substation ${name.toUpperCase()} ${substations[name] ? "Engaged" : "Isolated"}`);
+    }
+
+    function toggleOverdrive() {
+      isOverdrive = !isOverdrive;
+      const ring = document.getElementById("visual-reactor-ring");
+      const icon = document.getElementById("visual-reactor-icon");
+      const btn = document.getElementById("btn-overdrive");
+      const text = document.getElementById("overdrive-text");
+      const badge = document.getElementById("grid-status-badge");
+      const slider = document.getElementById("power-slider");
+
+      if (isOverdrive) {
+        ring.classList.add("overdrive");
+        icon.classList.add("overdrive-pulse");
+        btn.style.background = "var(--color-accent-primary)";
+        btn.style.color = "#FFFFFF";
+        text.textContent = "⚡ OVERDRIVE ACTIVE (120%)";
+        badge.innerHTML = '<span class="pulse-dot" style="background:#FF4D1C; box-shadow:0 0 10px #FF4D1C;"></span> OVERDRIVE ENGAGED';
+        badge.style.color = "#FF4D1C";
+        badge.style.borderColor = "rgba(255, 77, 28, 0.4)";
+        slider.value = 1450;
+        updateGeneratorOutput(1450);
+        triggerToast("⚡ HIGH-VOLTAGE OVERDRIVE ACTIVATED!");
+      } else {
+        ring.classList.remove("overdrive");
+        icon.classList.remove("overdrive-pulse");
+        btn.style.background = "var(--color-accent-secondary)";
+        btn.style.color = "var(--color-accent-secondary-fg)";
+        text.textContent = "ACTIVATE OVERDRIVE SURGE";
+        badge.innerHTML = '<span class="pulse-dot"></span> GRID SYNCHRONIZED';
+        badge.style.color = "var(--color-accent-secondary)";
+        badge.style.borderColor = "rgba(200, 245, 50, 0.3)";
+        slider.value = 840;
+        updateGeneratorOutput(840);
+        triggerToast("✓ Standard Voltage Restored");
+      }
+    }
+  </script>
+</body>
+</html>
