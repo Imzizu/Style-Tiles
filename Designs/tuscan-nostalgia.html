@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuscan Nostalgia — Style Tile & Design System</title>
+  <meta name="description" content="Tuscan Nostalgia / Editorial Vintage Travel style tile: Sun-drenched Mediterranean, mid-century editorial typography, tactile impasto oil-paint textures, sharp geometric diagonals, and rich heritage warm-earth tones.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon.ico">
+
+  <!-- Google Fonts: Cormorant Garamond, Montserrat, Space Mono, Syne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@500;600;700;800;900&family=Space+Mono:wght@400;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       STYLE TILE: TUSCAN NOSTALGIA / EDITORIAL VINTAGE TRAVEL
+       ========================================================================== */
+
+    :root {
+      /* 1. Color Palette */
+      --tuscan-cream:           #EDE8DC;
+      --parchment-base:         #F5F2EA;
+      --warm-alabaster:         #E3DDD0;
+
+      --deep-cypress-olive:     #2B3828;
+      --terracotta-leather:     #A85C3A;
+      --sunlit-ochre:           #D99A4E;
+      --warm-sepia-shadow:      #382921;
+
+      --canvas-backdrop:        #181C16;
+      --surface-overlay:        rgba(237, 232, 220, 0.92);
+      --text-on-dark:           #EDE8DC;
+      --text-on-light:          #2B3828;
+
+      /* Functional mappings */
+      --bg-canvas:              var(--canvas-backdrop);
+      --bg-surface:             var(--parchment-base);
+      --bg-surface-alt:         var(--warm-alabaster);
+      --bg-cream:               var(--tuscan-cream);
+      --ink-primary:            var(--deep-cypress-olive);
+      --ink-secondary:          var(--warm-sepia-shadow);
+      --ink-light:              var(--tuscan-cream);
+      --accent-primary:         var(--terracotta-leather);
+      --accent-secondary:       var(--sunlit-ochre);
+      --accent-dark:            var(--deep-cypress-olive);
+
+      /* Typography */
+      --font-display:           "Syne", "Montserrat", "Druk Wide", sans-serif;
+      --font-editorial:         "Montserrat", "Futura PT", sans-serif;
+      --font-body:              "Cormorant Garamond", "Garamond Premiere Pro", "Caslon", serif;
+      --font-mono:              "Space Mono", "GT America Mono", "Courier New", monospace;
+
+      /* Geometry & Radii */
+      --radius-none:            0px;
+      --radius-train-window:    28px 28px 0px 0px;
+      --radius-pill:            9999px;
+      --radius-toggle:          4px;
+
+      /* Shadows */
+      --shadow-sm:              2px 2px 0px var(--warm-sepia-shadow);
+      --shadow-md:              5px 5px 0px var(--deep-cypress-olive);
+      --shadow-lg:              8px 10px 0px #1E261C;
+      --shadow-hard:            4px 5px 0px var(--warm-sepia-shadow);
+      --ambient-glow:           inset 0 0 60px rgba(217, 154, 78, 0.35);
+
+      /* Borders */
+      --border-hairline:        1px solid rgba(237, 232, 220, 0.4);
+      --border-structural:      3px solid var(--deep-cypress-olive);
+      --border-double:          6px double var(--tuscan-cream);
+
+      /* Zebra / Rail Stripe */
+      --stripe-rail: repeating-linear-gradient(
+        -35deg,
+        #2B3828 0px,
+        #2B3828 14px,
+        #EDE8DC 14px,
+        #EDE8DC 28px
+      );
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--canvas-backdrop);
+      color: var(--text-on-light);
+    }
+
+    body {
+      background-color: var(--canvas-backdrop);
+      color: var(--text-on-light);
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      line-height: 1.6;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Impasto Oil-Canvas Texture Overlay Simulation */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 99;
+      opacity: 0.15;
+      background-image: 
+        radial-gradient(#382921 0.75px, transparent 0.75px),
+        radial-gradient(#EDE8DC 0.75px, transparent 0.75px);
+      background-size: 6px 6px, 12px 12px;
+      background-position: 0 0, 3px 3px;
+      mix-blend-mode: multiply;
+    }
+
+    ::selection {
+      background-color: var(--terracotta-leather);
+      color: var(--tuscan-cream);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Page Framing (Letterbox Border) */
+    .viewport-frame {
+      padding: 32px;
+      max-width: 1440px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    /* ==========================================================================
+       HEADER BAR COMPONENT
+       ========================================================================== */
+    .style-tile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: var(--deep-cypress-olive);
+      border: 2px solid var(--tuscan-cream);
+      padding: 14px 24px;
+      color: var(--tuscan-cream);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-editorial);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--tuscan-cream);
+      padding: 6px 14px;
+      border: 1px solid rgba(237, 232, 220, 0.4);
+      background: rgba(0, 0, 0, 0.2);
+      transition: all 200ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .nav-back-link:hover {
+      background: var(--terracotta-leather);
+      border-color: var(--terracotta-leather);
+      transform: translate(-2px, -2px);
+      box-shadow: 3px 3px 0px var(--warm-sepia-shadow);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      background: var(--sunlit-ochre);
+      color: var(--warm-sepia-shadow);
+      padding: 4px 10px;
+      border-radius: var(--radius-toggle);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--tuscan-cream);
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-editorial);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      border: 1px dashed var(--sunlit-ochre);
+      color: var(--sunlit-ochre);
+      padding: 3px 8px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-editorial);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      background: var(--parchment-base);
+      color: var(--deep-cypress-olive);
+      border: 2px solid var(--deep-cypress-olive);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 200ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .btn-tile:hover {
+      background: var(--sunlit-ochre);
+      color: var(--warm-sepia-shadow);
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0px var(--warm-sepia-shadow);
+    }
+
+    .btn-tile:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px var(--warm-sepia-shadow);
+    }
+
+    .btn-tile.btn-copy {
+      background: var(--terracotta-leather);
+      color: var(--tuscan-cream);
+      border-color: var(--tuscan-cream);
+    }
+
+    .btn-tile.btn-copy:hover {
+      background: #bd6a44;
+      color: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       HERO POSTER & DISPLAY SECTION
+       ========================================================================== */
+    .hero-poster-container {
+      position: relative;
+      background: var(--parchment-base);
+      border: 4px solid var(--deep-cypress-olive);
+      padding: 48px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    /* Diagonal Graphic Accents */
+    .diagonal-stripes-accent {
+      position: absolute;
+      top: -30px;
+      right: -60px;
+      width: 240px;
+      height: 380px;
+      background: var(--stripe-rail);
+      transform: rotate(-26deg);
+      border: 3px solid var(--deep-cypress-olive);
+      box-shadow: var(--shadow-md);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .diagonal-slash-badge {
+      position: absolute;
+      bottom: 24px;
+      right: 32px;
+      background: var(--terracotta-leather);
+      color: var(--tuscan-cream);
+      padding: 12px 28px;
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 2px solid var(--deep-cypress-olive);
+      box-shadow: var(--shadow-md);
+      transform: rotate(-6deg);
+      z-index: 3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 920px;
+    }
+
+    .eyebrow-seal {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-editorial);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--terracotta-leather);
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--terracotta-leather);
+      padding-bottom: 4px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 8.5vw, 7.5rem);
+      font-weight: 900;
+      line-height: 0.88;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--tuscan-cream);
+      background-color: var(--deep-cypress-olive);
+      padding: 18px 24px;
+      display: inline-block;
+      border: 3px solid var(--warm-sepia-shadow);
+      text-shadow: var(--shadow-hard);
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-editorial);
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--terracotta-leather);
+      margin-bottom: 18px;
+    }
+
+    .hero-prose {
+      font-family: var(--font-body);
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: var(--deep-cypress-olive);
+      max-width: 720px;
+      margin-bottom: 32px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--terracotta-leather);
+      color: var(--tuscan-cream);
+      border: 3px solid var(--deep-cypress-olive);
+      padding: 14px 28px;
+      font-family: var(--font-editorial);
+      font-size: 0.875rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: all 200ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .btn-hero-primary:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0px var(--warm-sepia-shadow);
+      background: #b5633e;
+    }
+
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--tuscan-cream);
+      color: var(--deep-cypress-olive);
+      border: 3px solid var(--deep-cypress-olive);
+      padding: 14px 28px;
+      font-family: var(--font-editorial);
+      font-size: 0.875rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: all 200ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .btn-hero-secondary:hover {
+      background: var(--sunlit-ochre);
+      transform: translate(-3px, -3px);
+      box-shadow: 8px 8px 0px var(--warm-sepia-shadow);
+    }
+
+    /* ==========================================================================
+       SECTION COMMON STYLES
+       ========================================================================== */
+    .section-block {
+      background: var(--parchment-base);
+      border: 3px solid var(--deep-cypress-olive);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--deep-cypress-olive);
+      padding-bottom: 12px;
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--deep-cypress-olive);
+    }
+
+    .section-numeral {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--terracotta-leather);
+    }
+
+    /* ==========================================================================
+       COLOR PALETTE MATRIX
+       ========================================================================== */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .swatch-card {
+      border: 2px solid var(--deep-cypress-olive);
+      background: var(--tuscan-cream);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 200ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .swatch-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .swatch-color {
+      height: 110px;
+      width: 100%;
+      border-bottom: 2px solid var(--deep-cypress-olive);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 10px;
+    }
+
+    .swatch-hex-pill {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(0, 0, 0, 0.75);
+      color: #FFFFFF;
+      padding: 2px 8px;
+      border-radius: var(--radius-toggle);
+    }
+
+    .swatch-details {
+      padding: 16px;
+    }
+
+    .swatch-name {
+      font-family: var(--font-editorial);
+      font-size: 0.875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--deep-cypress-olive);
+      margin-bottom: 4px;
+    }
+
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--warm-sepia-shadow);
+    }
+
+    .swatch-role {
+      font-size: 0.875rem;
+      font-style: italic;
+      color: #555;
+      margin-top: 6px;
+    }
+
+    /* ==========================================================================
+       TYPOGRAPHY SPECIMEN LADDER
+       ========================================================================== */
+    .type-specimen-container {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 24px;
+      border-bottom: 1px solid var(--warm-alabaster);
+      padding-bottom: 24px;
+      align-items: center;
+    }
+
+    .type-meta-col {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--warm-sepia-shadow);
+      line-height: 1.6;
+    }
+
+    .type-meta-col strong {
+      font-family: var(--font-editorial);
+      font-size: 0.875rem;
+      color: var(--deep-cypress-olive);
+      display: block;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .type-sample-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.2rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--deep-cypress-olive);
+    }
+
+    .type-sample-eyebrow {
+      font-family: var(--font-editorial);
+      font-size: 0.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--terracotta-leather);
+    }
+
+    .type-sample-tagline {
+      font-family: var(--font-editorial);
+      font-size: 0.875rem;
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--deep-cypress-olive);
+    }
+
+    .type-sample-body {
+      font-family: var(--font-body);
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: var(--deep-cypress-olive);
+    }
+
+    .type-sample-mono {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      color: var(--warm-sepia-shadow);
+      letter-spacing: 0.05em;
+    }
+
+    /* Editable Pangram Sandbox */
+    .pangram-sandbox {
+      background: var(--tuscan-cream);
+      border: 2px solid var(--deep-cypress-olive);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pangram-label {
+      font-family: var(--font-editorial);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta-leather);
+      margin-bottom: 12px;
+    }
+
+    .pangram-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--deep-cypress-olive);
+      text-transform: uppercase;
+      line-height: 1.0;
+      outline: none;
+      resize: vertical;
+    }
+
+    /* ==========================================================================
+       COMPONENT ARCHETYPE GALLERY
+       ========================================================================== */
+    .component-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .comp-box {
+      background: var(--warm-alabaster);
+      border: 2px solid var(--deep-cypress-olive);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .comp-box-title {
+      font-family: var(--font-editorial);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta-leather);
+      border-bottom: 1px solid rgba(43, 56, 40, 0.2);
+      padding-bottom: 8px;
+      margin-bottom: 18px;
+    }
+
+    .btn-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-tuscan-primary {
+      background: var(--deep-cypress-olive);
+      color: var(--tuscan-cream);
+      border: 2px solid var(--deep-cypress-olive);
+      padding: 12px 20px;
+      font-family: var(--font-editorial);
+      font-size: 0.8125rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 200ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .btn-tuscan-primary:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--warm-sepia-shadow);
+      background: #364733;
+    }
+
+    .btn-tuscan-primary:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px var(--warm-sepia-shadow);
+    }
+
+    .btn-tuscan-leather {
+      background: var(--terracotta-leather);
+      color: var(--tuscan-cream);
+      border: 2px solid var(--deep-cypress-olive);
+      padding: 12px 20px;
+      font-family: var(--font-editorial);
+      font-size: 0.8125rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 200ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .btn-tuscan-leather:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--warm-sepia-shadow);
+      background: #be6842;
+    }
+
+    .btn-tuscan-pill {
+      background: var(--sunlit-ochre);
+      color: var(--warm-sepia-shadow);
+      border: 2px solid var(--deep-cypress-olive);
+      border-radius: var(--radius-pill);
+      padding: 10px 24px;
+      font-family: var(--font-editorial);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: all 200ms cubic-bezier(0.25, 1, 0.5, 1);
+      align-self: flex-start;
+    }
+
+    .btn-tuscan-pill:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0px var(--warm-sepia-shadow);
+      background: #e6a75a;
+    }
+
+    /* Form Controls */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      font-family: var(--font-editorial);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--deep-cypress-olive);
+    }
+
+    .form-input {
+      background: var(--parchment-base);
+      border: 2px solid var(--deep-cypress-olive);
+      padding: 10px 14px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: var(--deep-cypress-olive);
+      box-shadow: var(--shadow-sm);
+      outline: none;
+      transition: all 200ms ease;
+    }
+
+    .form-input:focus {
+      outline: 2px dashed var(--terracotta-leather);
+      outline-offset: 2px;
+      border-color: var(--terracotta-leather);
+    }
+
+    .rail-toggle-group {
+      display: flex;
+      border: 2px solid var(--deep-cypress-olive);
+      background: var(--parchment-base);
+    }
+
+    .rail-toggle-btn {
+      flex: 1;
+      padding: 8px 12px;
+      border: none;
+      background: transparent;
+      font-family: var(--font-editorial);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--deep-cypress-olive);
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+
+    .rail-toggle-btn.active {
+      background: var(--deep-cypress-olive);
+      color: var(--tuscan-cream);
+    }
+
+    /* ==========================================================================
+       LIVING MICRO-EXPERIENCE: VINTAGE TRAIN / TUSCAN EXPEDITION BOARD
+       ========================================================================== */
+    .living-demo-card {
+      background: var(--tuscan-cream);
+      border: 4px solid var(--deep-cypress-olive);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .train-window-viewport {
+      background: linear-gradient(180deg, #A85C3A 0%, #D99A4E 50%, #2B3828 100%);
+      border-radius: var(--radius-train-window);
+      margin: 24px;
+      padding: 40px;
+      border: 4px solid var(--deep-cypress-olive);
+      box-shadow: var(--ambient-glow), var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: var(--tuscan-cream);
+    }
+
+    /* Scenery Diagonal Silhouette */
+    .train-window-viewport::after {
+      content: "";
+      position: absolute;
+      bottom: -40px;
+      left: -20px;
+      right: -20px;
+      height: 180px;
+      background: var(--deep-cypress-olive);
+      clip-path: polygon(0 40%, 30% 20%, 65% 55%, 100% 15%, 100% 100%, 0% 100%);
+      pointer-events: none;
+    }
+
+    .train-compartment-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
+      z-index: 3;
+    }
+
+    .train-badge-pill {
+      background: var(--tuscan-cream);
+      color: var(--deep-cypress-olive);
+      border: 2px solid var(--deep-cypress-olive);
+      padding: 6px 18px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-editorial);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .train-stamp-disc {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--terracotta-leather);
+      color: var(--tuscan-cream);
+      border: 2px dashed var(--tuscan-cream);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.1;
+      transform: rotate(12deg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .train-window-headline {
+      position: relative;
+      z-index: 3;
+      margin: 32px 0 20px;
+    }
+
+    .train-window-headline h3 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      text-shadow: 3px 4px 0px var(--warm-sepia-shadow);
+      color: var(--tuscan-cream);
+    }
+
+    .train-window-headline p {
+      font-family: var(--font-editorial);
+      font-size: 0.9375rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sunlit-ochre);
+      margin-top: 8px;
+    }
+
+    .expedition-itinerary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 0 24px 24px;
+    }
+
+    .itinerary-card {
+      background: var(--parchment-base);
+      border: 2px solid var(--deep-cypress-olive);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .itinerary-card.featured {
+      border: 3px solid var(--terracotta-leather);
+      background: #FAF7F0;
+    }
+
+    .itinerary-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--terracotta-leather);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .itinerary-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--deep-cypress-olive);
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .itinerary-desc {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.5;
+      color: var(--deep-cypress-olive);
+      margin-bottom: 16px;
+    }
+
+    .itinerary-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-editorial);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terracotta-leather);
+      cursor: pointer;
+    }
+
+    .itinerary-action:hover {
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       CODE SPEC PROMPT DRAWER & MODAL
+       ========================================================================== */
+    .prompt-spec-box {
+      background: var(--canvas-backdrop);
+      border: 3px solid var(--tuscan-cream);
+      padding: 28px;
+      color: var(--tuscan-cream);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .prompt-spec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(237, 232, 220, 0.3);
+      padding-bottom: 12px;
+    }
+
+    .prompt-spec-title {
+      font-family: var(--font-editorial);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sunlit-ochre);
+    }
+
+    .spec-code-pre {
+      background: #0E110D;
+      border: 1px solid rgba(237, 232, 220, 0.2);
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      color: var(--tuscan-cream);
+      overflow-x: auto;
+      max-height: 480px;
+      white-space: pre-wrap;
+    }
+
+    /* Spec Modal Overlay */
+    .spec-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(24, 28, 22, 0.85);
+      z-index: 1000;
+      padding: 24px;
+      overflow-y: auto;
+      backdrop-filter: blur(4px);
+    }
+
+    .spec-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .spec-modal-dialog {
+      background: var(--parchment-base);
+      border: 4px solid var(--deep-cypress-olive);
+      max-width: 900px;
+      width: 100%;
+      box-shadow: var(--shadow-lg);
+      padding: 32px;
+      position: relative;
+    }
+
+    .spec-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--deep-cypress-olive);
+      color: var(--tuscan-cream);
+      border: none;
+      padding: 6px 12px;
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Toast Notification */
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--deep-cypress-olive);
+      color: var(--tuscan-cream);
+      border: 2px solid var(--sunlit-ochre);
+      padding: 12px 20px;
+      font-family: var(--font-editorial);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-md);
+      display: none;
+      z-index: 2000;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .viewport-frame {
+        padding: 16px;
+        gap: 24px;
+      }
+      .hero-poster-container {
+        padding: 24px;
+      }
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .diagonal-stripes-accent {
+        display: none;
+      }
+      .train-window-viewport {
+        margin: 12px;
+        padding: 24px;
+      }
+    }
+  </style>
+
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <div class="viewport-frame">
+
+    <!-- 1. MANDATORY HEADER BAR COMPONENT -->
+    <header class="style-tile-header">
+      <!-- Back to Catalog -->
+      <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+        <span class="icon">←</span> Catalog
+      </a>
+
+      <!-- Title & Vibe Tag -->
+      <div class="header-title-block">
+        <span class="design-code" data-live-tile-code>TILE</span>
+        <span class="design-title">Tuscan Nostalgia</span>
+        <span class="design-vibe-tag">Editorial & Archival</span>
+      </div>
+
+      <!-- Header Action Suite -->
+      <div class="header-actions">
+        <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Preview Style Tile
+        </button>
+
+        <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Style Tile
+        </button>
+
+        <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-tuscan-nostalgia.md">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Style Tile
+        </button>
+      </div>
+    </header>
+
+    <!-- 2. HERO DISPLAY BANNER -->
+    <section class="hero-poster-container">
+      <div class="diagonal-stripes-accent"></div>
+      <div class="diagonal-slash-badge">Grand Tour Express</div>
+
+      <div class="hero-content">
+        <div class="eyebrow-seal">
+          <span>✦ Editorial Vintage Travel</span>
+          <span>•</span>
+          <span>Mid-Century Riviera</span>
+        </div>
+
+        <h1 class="hero-title">Tuscan Nostalgia</h1>
+        
+        <div class="hero-subtitle">Sun-Drenched Mediterranean • Heavy Editorial Typography • Warm Earth Tones</div>
+        
+        <p class="hero-prose">
+          A tactile journey through sunlit cypress groves, weathered Italian rail compartments, and mid-century luxury editorial layouts. Structured by crisp geometric diagonals, high-impact poster letterforms, and warm impasto canvas textures.
+        </p>
+
+        <div class="hero-cta-group">
+          <button class="btn-hero-primary" onclick="copyTilePromptDirect()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Agent Prompt
+          </button>
+          <a href="#demo-section" class="btn-hero-secondary">
+            Explore Experience ↓
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. COLOR PALETTE MATRIX -->
+    <section class="section-block">
+      <div class="section-header">
+        <h2 class="section-title">Color Roles & Palette</h2>
+        <span class="section-numeral">01 / PALETTE MATRIX</span>
+      </div>
+
+      <div class="palette-grid">
+        <!-- Tuscan Cream -->
+        <div class="swatch-card" onclick="copyHex('#EDE8DC', 'Tuscan Cream')">
+          <div class="swatch-color" style="background-color: #EDE8DC;">
+            <span class="swatch-hex-pill">#EDE8DC</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Tuscan Cream</div>
+            <div class="swatch-var">--tuscan-cream</div>
+            <div class="swatch-role">Primary display text & clean contrast canvas</div>
+          </div>
+        </div>
+
+        <!-- Parchment Base -->
+        <div class="swatch-card" onclick="copyHex('#F5F2EA', 'Parchment Base')">
+          <div class="swatch-color" style="background-color: #F5F2EA;">
+            <span class="swatch-hex-pill">#F5F2EA</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Parchment Base</div>
+            <div class="swatch-var">--parchment-base</div>
+            <div class="swatch-role">High-surface cards & container backgrounds</div>
+          </div>
+        </div>
+
+        <!-- Warm Alabaster -->
+        <div class="swatch-card" onclick="copyHex('#E3DDD0', 'Warm Alabaster')">
+          <div class="swatch-color" style="background-color: #E3DDD0;">
+            <span class="swatch-hex-pill">#E3DDD0</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Warm Alabaster</div>
+            <div class="swatch-var">--warm-alabaster</div>
+            <div class="swatch-role">Soft container fills & structural card dividers</div>
+          </div>
+        </div>
+
+        <!-- Deep Cypress Olive -->
+        <div class="swatch-card" onclick="copyHex('#2B3828', 'Deep Cypress Olive')">
+          <div class="swatch-color" style="background-color: #2B3828;">
+            <span class="swatch-hex-pill">#2B3828</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Deep Cypress Olive</div>
+            <div class="swatch-var">--deep-cypress-olive</div>
+            <div class="swatch-role">Primary structural framing & dark stripes</div>
+          </div>
+        </div>
+
+        <!-- Terracotta Leather -->
+        <div class="swatch-card" onclick="copyHex('#A85C3A', 'Terracotta Leather')">
+          <div class="swatch-color" style="background-color: #A85C3A;">
+            <span class="swatch-hex-pill">#A85C3A</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Terracotta Leather</div>
+            <div class="swatch-var">--terracotta-leather</div>
+            <div class="swatch-role">Hero focal warmth, luggage & leather tones</div>
+          </div>
+        </div>
+
+        <!-- Sunlit Ochre -->
+        <div class="swatch-card" onclick="copyHex('#D99A4E', 'Sunlit Ochre')">
+          <div class="swatch-color" style="background-color: #D99A4E;">
+            <span class="swatch-hex-pill">#D99A4E</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Sunlit Ochre</div>
+            <div class="swatch-var">--sunlit-ochre</div>
+            <div class="swatch-role">Highlights & ambient golden-hour glow</div>
+          </div>
+        </div>
+
+        <!-- Warm Sepia Shadow -->
+        <div class="swatch-card" onclick="copyHex('#382921', 'Warm Sepia Shadow')">
+          <div class="swatch-color" style="background-color: #382921;">
+            <span class="swatch-hex-pill">#382921</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Warm Sepia Shadow</div>
+            <div class="swatch-var">--warm-sepia-shadow</div>
+            <div class="swatch-role">Hard typographic drop shadows & deep accents</div>
+          </div>
+        </div>
+
+        <!-- Canvas Backdrop -->
+        <div class="swatch-card" onclick="copyHex('#181C16', 'Canvas Backdrop')">
+          <div class="swatch-color" style="background-color: #181C16;">
+            <span class="swatch-hex-pill">#181C16</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Canvas Backdrop</div>
+            <div class="swatch-var">--canvas-backdrop</div>
+            <div class="swatch-role">Outer cinematic letterbox boundary</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TYPOGRAPHY SYSTEM SPECIMEN -->
+    <section class="section-block">
+      <div class="section-header">
+        <h2 class="section-title">Typography System</h2>
+        <span class="section-numeral">02 / TYPE LADDER</span>
+      </div>
+
+      <div class="type-specimen-container">
+        <!-- Hero Display -->
+        <div class="type-row">
+          <div class="type-meta-col">
+            <strong>Hero Display</strong>
+            Syne / Ultra-Bold 900<br>
+            Line-height: 0.88<br>
+            Tracking: -0.03em
+          </div>
+          <div class="type-sample-display">
+            RIVIERA EXPRESS
+          </div>
+        </div>
+
+        <!-- Eyebrow Badge -->
+        <div class="type-row">
+          <div class="type-meta-col">
+            <strong>Eyebrow Badge</strong>
+            Montserrat / Bold 700<br>
+            Line-height: 1.2<br>
+            Tracking: 0.22em UPPER
+          </div>
+          <div class="type-sample-eyebrow">
+            ✦ VINTAGE LUXURY COACH • CARROZZA DI PRIMA CLASSE ✦
+          </div>
+        </div>
+
+        <!-- Brand Tagline -->
+        <div class="type-row">
+          <div class="type-meta-col">
+            <strong>Brand Tagline</strong>
+            Montserrat / Semi-Bold 600<br>
+            Line-height: 1.3<br>
+            Tracking: 0.18em UPPER
+          </div>
+          <div class="type-sample-tagline">
+            JOURNEY THROUGH THE GOLDEN VALLEYS OF CHIANTI & VAL D'ORCIA
+          </div>
+        </div>
+
+        <!-- Body Prose -->
+        <div class="type-row">
+          <div class="type-meta-col">
+            <strong>Body Prose</strong>
+            Cormorant Garamond / 400<br>
+            Line-height: 1.6<br>
+            Tracking: 0.01em
+          </div>
+          <div class="type-sample-body">
+            The midday sun settles across the terraced olive groves, casting rich sepia shadows beneath stone archways. Hand-stitched saddle leather catches the ambient ochre light as the express train winds through cypress-lined hillsides.
+          </div>
+        </div>
+
+        <!-- Heritage Mono -->
+        <div class="type-row">
+          <div class="type-meta-col">
+            <strong>Heritage Mono</strong>
+            Space Mono / Regular 400<br>
+            Line-height: 1.4<br>
+            Tracking: 0.05em
+          </div>
+          <div class="type-sample-mono">
+            SECTOR: TUSCANY // ROUTE: FIRENZE-SIENA-ORVIETO // CABIN: 04-B
+          </div>
+        </div>
+
+        <!-- Interactive Pangram Sandbox -->
+        <div class="pangram-sandbox">
+          <div class="pangram-label">Interactive Display Type Sandbox (Type to Test)</div>
+          <input type="text" class="pangram-input" value="FIRENZE S.M. NOVELLA 1958">
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. COMPONENT ARCHETYPE GALLERY -->
+    <section class="section-block">
+      <div class="section-header">
+        <h2 class="section-title">Component Archetypes</h2>
+        <span class="section-numeral">03 / UI ARTIFACTS</span>
+      </div>
+
+      <div class="component-matrix">
+        <!-- Button Suite -->
+        <div class="comp-box">
+          <div class="comp-box-title">Tactile Button Suite</div>
+          <div class="btn-stack">
+            <button class="btn-tuscan-primary">Book First Class Berth</button>
+            <button class="btn-tuscan-leather">Download Heritage Itinerary</button>
+            <button class="btn-tuscan-pill">✦ Luxury Seal</button>
+          </div>
+        </div>
+
+        <!-- Input & Form Fields -->
+        <div class="comp-box">
+          <div class="comp-box-title">Form Controls & Fields</div>
+          <div class="form-group">
+            <label class="form-label">Passenger Name</label>
+            <input type="text" class="form-input" value="A. V. Bencivenni" placeholder="Enter passenger name...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Cabin Class Selection</label>
+            <div class="rail-toggle-group">
+              <button class="rail-toggle-btn active">First Class</button>
+              <button class="rail-toggle-btn">Couchette</button>
+              <button class="rail-toggle-btn">Salon</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rail Divider & Badge Samples -->
+        <div class="comp-box">
+          <div class="comp-box-title">Patterns & Geometric Accents</div>
+          <div style="height: 48px; background: var(--stripe-rail); border: 2px solid var(--deep-cypress-olive); box-shadow: var(--shadow-sm); margin-bottom: 16px;"></div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span style="background: var(--terracotta-leather); color: var(--tuscan-cream); padding: 4px 10px; font-family: var(--font-editorial); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid var(--deep-cypress-olive);">EXPRESS</span>
+            <span style="background: var(--sunlit-ochre); color: var(--warm-sepia-shadow); padding: 4px 10px; font-family: var(--font-editorial); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid var(--deep-cypress-olive);">VINTAGE 1958</span>
+            <span style="background: var(--deep-cypress-olive); color: var(--tuscan-cream); padding: 4px 10px; font-family: var(--font-editorial); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; border: 1px solid var(--deep-cypress-olive);">SIENA LINE</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. LIVING MICRO-EXPERIENCE: VINTAGE TRAIN EXPEDITION -->
+    <section id="demo-section" class="section-block">
+      <div class="section-header">
+        <h2 class="section-title">Living Micro-Experience</h2>
+        <span class="section-numeral">04 / EXPEDITION DISPATCH</span>
+      </div>
+
+      <div class="living-demo-card">
+        <!-- Perspective Window Viewport -->
+        <div class="train-window-viewport">
+          <div class="train-compartment-header">
+            <span class="train-badge-pill">Carrozza No. 07 · Compartimento Privato</span>
+            <div class="train-stamp-disc">
+              <span>EST.</span>
+              <span style="font-size: 0.8125rem;">1958</span>
+              <span>ITALIA</span>
+            </div>
+          </div>
+
+          <div class="train-window-headline">
+            <p>✦ GRAND TOUR DI TOSCANA ✦</p>
+            <h3>TRAMONTO A SAN GIMIGNANO</h3>
+            <p>Departure: 17:45 · Golden Hour Panorama Express</p>
+          </div>
+        </div>
+
+        <!-- Itinerary Cards Grid -->
+        <div class="expedition-itinerary-grid">
+          <div class="itinerary-card featured">
+            <div class="itinerary-meta">
+              <span>STAGE 01</span>
+              <span>18:30 CEST</span>
+            </div>
+            <h4 class="itinerary-title">Val d'Orcia Crest</h4>
+            <p class="itinerary-desc">Traversing limestone ridges and isolated stone farmsteads as the low sun illuminates rows of ancient cypress.</p>
+            <span class="itinerary-action" onclick="triggerToast('✓ Stage 01 details verified')">Inspect Sector Log →</span>
+          </div>
+
+          <div class="itinerary-card">
+            <div class="itinerary-meta">
+              <span>STAGE 02</span>
+              <span>20:15 CEST</span>
+            </div>
+            <h4 class="itinerary-title">Montalcino Vineyard Stop</h4>
+            <p class="itinerary-desc">Evening provisioning stop beside historic hillside cellars with private tasting in the vintage salon car.</p>
+            <span class="itinerary-action" onclick="triggerToast('✓ Stage 02 details verified')">Inspect Sector Log →</span>
+          </div>
+
+          <div class="itinerary-card">
+            <div class="itinerary-meta">
+              <span>STAGE 03</span>
+              <span>22:00 CEST</span>
+            </div>
+            <h4 class="itinerary-title">Siena Stazione Terminus</h4>
+            <p class="itinerary-desc">Arrival under illuminated brick campaniles with luxury luggage porterage directly to Villa Medicea.</p>
+            <span class="itinerary-action" onclick="triggerToast('✓ Stage 03 details verified')">Inspect Sector Log →</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. STYLE TILE PROMPT CODE DRAWER -->
+    <section class="prompt-spec-box">
+      <div class="prompt-spec-header">
+        <div class="prompt-spec-title">Style Tile AI Prompt Specification</div>
+        <button class="btn-tile btn-copy" onclick="copyTilePromptDirect()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Prompt
+        </button>
+      </div>
+      <pre id="spec-code-display" class="spec-code-pre"></pre>
+    </section>
+
+  </div>
+
+  <!-- SPEC MODAL DIALOG -->
+  <div id="spec-modal" class="spec-modal" onclick="closeSpecModalOnOutside(event)">
+    <div class="spec-modal-dialog">
+      <button class="spec-modal-close" onclick="closeSpecModal()">✕ CLOSE</button>
+      <div class="section-header" style="margin-top: 10px;">
+        <h3 class="section-title" style="font-size: 1.5rem;">Tuscan Nostalgia Specification</h3>
+        <span class="section-numeral">MARKDOWN PROMPT</span>
+      </div>
+      <pre id="modal-spec-display" class="spec-code-pre" style="max-height: 540px;"></pre>
+      <div style="margin-top: 16px; display: flex; justify-content: flex-end; gap: 10px;">
+        <button class="btn-tile btn-copy" onclick="copyTilePromptDirect()">Copy to Clipboard</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast-popup" class="toast-popup">✓ Copied to Clipboard!</div>
+
+  <!-- ==========================================================================
+       EMBEDDED STYLE TILE MARKDOWN (AI PROMPT SPECIFICATION)
+       ========================================================================== */
+  -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Tuscan Nostalgia / Editorial Vintage Travel
+  Construction: sun-drenched warm earth • mid-century editorial type • 0px diagonal slices • hard sepia shadows
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Sun-drenched Mediterranean warmth anchored by mid-century luxury editorial typography, deep cypress-olive structural framing, and rich terracotta accents. Crisp 0px rectangular surfaces interact with kinetic diagonal geometry, tactile impasto canvas overlays, and hard-offset sepia drop shadows.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #181C16; /* Outer letterbox backdrop */
+  --bg-surface:             #F5F2EA; /* Parchment base cards & panels */
+  --bg-surface-alt:         #E3DDD0; /* Warm alabaster wells & dividers */
+  --bg-surface-dark:        #2B3828; /* Deep cypress olive inverted containers */
+
+  /* Inks & Typography */
+  --ink-primary:            #2B3828; /* Deep cypress olive high-contrast reading text */
+  --ink-secondary:          #382921; /* Warm sepia shadow & secondary headings */
+  --ink-muted:              #766E65; /* Muted vintage captions */
+  --ink-inverted:           #EDE8DC; /* Tuscan cream text on dark surfaces */
+
+  /* Signature Accents */
+  --accent-primary:         #A85C3A; /* Terracotta leather call-to-action */
+  --accent-primary-hover:   #8E4C2E; /* Deep burnt terracotta */
+  --accent-secondary:       #D99A4E; /* Sunlit ochre highlights */
+  --accent-tertiary:        #EDE8DC; /* Tuscan cream contrast badge */
+
+  /* Status Tokens */
+  --status-success:         #2B3828;
+  --status-warning:         #D99A4E;
+  --status-danger:          #A85C3A;
+  --status-info:            #4A6B5B;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Antique Olive Nord", "Druk Wide", "Syne", "Futura Bold Display", sans-serif;
+--font-sans:    "Futura PT", "Montserrat", "Century Gothic", sans-serif;
+--font-serif:   "Garamond Premiere Pro", "Cormorant Garamond", "Caslon", serif;
+--font-mono:    "Space Mono", "GT America Mono", "Courier New", monospace;
+
+/* Type Scale */
+--text-display: clamp(3.5rem, 9vw, 8rem) / 0.88 var(--font-display); /* Weight: 900 | Tracking: -0.03em | UPPERCASE */
+--text-h1:      clamp(2.5rem, 5vw, 4.5rem) / 0.95 var(--font-display); /* Weight: 900 | Tracking: -0.02em | UPPERCASE */
+--text-h2:      clamp(1.5rem, 3vw, 2.5rem) / 1.10 var(--font-display); /* Weight: 800 | UPPERCASE */
+--text-h3:      1.25rem / 1.25 var(--font-sans);                       /* Weight: 700 | Tracking: 0.12em | UPPERCASE */
+--text-body:    1.125rem / 1.60 var(--font-serif);                     /* Weight: 400 | Tracking: 0.01em */
+--text-body-sm: 0.9375rem / 1.50 var(--font-serif);                    /* Weight: 400 */
+--text-meta:    0.75rem / 1.20 var(--font-sans);                       /* Weight: 700 | Tracking: 0.22em | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 0px;    /* Strict sharp corners for cards and containers */
+--radius-pill:    9999px; /* Floating action seals and luxury pill badges */
+--radius-toggle:  4px;    /* Subtle toggle switches */
+
+/* Elevation & Shadows */
+--shadow-sm:      2px 2px 0px #382921;
+--shadow-md:      5px 5px 0px #2B3828;
+--shadow-lg:      8px 10px 0px #1E261C;
+--shadow-hard:    4px 5px 0px #382921;
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        2px solid #2B3828;
+--border-hairline:    1px solid rgba(237, 232, 220, 0.4);
+--border-structural:  3px solid #2B3828;
+--divider-style:      1px solid #E3DDD0;
+
+/* Diagonal & Rail Patterns */
+--pattern-rail-stripe: repeating-linear-gradient(-35deg, #2B3828 0px, #2B3828 14px, #EDE8DC 14px, #EDE8DC 28px);
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Sharp 0px corners, 2-3px solid #2B3828 borders, hard-offset box shadows (5px 5px 0px #2B3828). Terracotta leather (#A85C3A) or Deep Cypress (#2B3828) fills with #EDE8DC uppercase bold type. Hover: transform(-2px, -2px) with 7px 7px shadow. Active: transform(2px, 2px) with 1px 1px shadow. Use the host's existing labels.
+- **Pill Seals / Badges**: 9999px radius, Sunlit Ochre (#D99A4E) or Tuscan Cream (#EDE8DC) with wide uppercase tracking (0.22em).
+- **Cards**: Parchment Base (#F5F2EA) or Warm Alabaster (#E3DDD0) fills with 2px solid #2B3828 borders and hard-offset sepia drop shadows. Do not add fake index codes or invented timestamps.
+- **Inputs**: Parchment base fill, 2px solid #2B3828 border, font-size at least 16px. Focus: 2px dashed #A85C3A with 4px offset.
+- **Navigation**: Deep cypress bar with Tuscan cream text and 2px solid structural borders. Restyle existing navigation links.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No gaussian blur shadows or generic soft SaaS elevation cards.
+- No cold blue, neon violet, or hyper-acid tech accents.
+- No bubbly 16px-24px rounded corners on primary cards and structural elements.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    const markdownContent = document.getElementById("style-tile-markdown").textContent.trim();
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      window.clearTimeout(triggerToast._t);
+      triggerToast._t = window.setTimeout(function () {
+        toast.style.display = "none";
+      }, 2200);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.innerHTML = "<span>✓ Copied to Clipboard!</span>";
+          window.setTimeout(function () {
+            copyBtn.innerHTML = original;
+          }, 2000);
+        }
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-tuscan-nostalgia.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-tuscan-nostalgia.md");
+    });
+
+    document.getElementById("btn-preview-tile").addEventListener("click", function () {
+      document.getElementById("spec-modal").classList.add("active");
+    });
+
+    function closeSpecModal() {
+      document.getElementById("spec-modal").classList.remove("active");
+    }
+
+    function closeSpecModalOnOutside(e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    }
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    // Toggle switch logic in UI demo
+    document.querySelectorAll(".rail-toggle-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        btn.parentElement.querySelectorAll(".rail-toggle-btn").forEach(function (b) {
+          b.classList.remove("active");
+        });
+        btn.classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>

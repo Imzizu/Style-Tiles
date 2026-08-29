@@ -1544,6 +1544,32 @@ const STYLE_TILES_DATA = [
     ],
     description: "Retro-futurist analog HUD on muted olive-grey film base #C4C7BC with surrealist 3D specular chrome centerpiece #E8EBE2, 4-corner edge-anchored telemetry matrix, CRT monitor bezel frame, and rigid mechanical inversion snaps.",
     markdownSpec: null
+  },
+  {
+    slug: "tuscan-nostalgia",
+    name: "Tuscan Nostalgia",
+    vibe: "Sun-Drenched Mediterranean • Heavy Editorial Typography • Impasto Oil-Paint • Sharp Geometric Diagonals • Rich Heritage Warm-Earth",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Syne / Antique Olive",
+      sans: "Montserrat / Futura PT",
+      mono: "Space Mono"
+    },
+    palette: [
+      { name: "Tuscan Cream", hex: "#EDE8DC" },
+      { name: "Parchment Base", hex: "#F5F2EA" },
+      { name: "Warm Alabaster", hex: "#E3DDD0" },
+      { name: "Deep Cypress Olive", hex: "#2B3828" },
+      { name: "Terracotta Leather", hex: "#A85C3A" },
+      { name: "Sunlit Ochre", hex: "#D99A4E" },
+      { name: "Warm Sepia Shadow", hex: "#382921" },
+      { name: "Canvas Backdrop", hex: "#181C16" }
+    ],
+    description: "Tuscan Nostalgia: Sun-drenched Mediterranean vintage travel editorial on parchment and Tuscan cream (#EDE8DC, #F5F2EA) framed by deep cypress-olive (#2B3828) borders, terracotta leather (#A85C3A) focal warmth, kinetic -26deg railway diagonals, and bold poster typography.",
+    markdownSpec: null
   }
 ];
 
