@@ -8,26 +8,29 @@
 // always yields TILE-001…TILE-00N with no gaps.
 const STYLE_TILES_DATA = [
   {
-    slug: "editorial-brutalist",
-    name: "Editorial Brutalist Gazette",
-    vibe: "Archival Drafting • Neo-Brutalism • Tactile Risograph",
-    vibeBadge: "Neo-Brutalism",
-    categories: ["brutalist"],
+    slug: "editorial-vintage-chic",
+    name: "Editorial Vintage Chic",
+    vibe: "Warm Alabaster Linen • Deep Carbon Ink • Vivid Terracotta • Dusty Salmon Ribbon • Playfair Display Serif • Tilted Marquee Tape • 0px Editorial Discipline",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
     theme: "Light",
     hasPage: true,
     fonts: {
-      display: "Fraunces",
-      sans: "Space Grotesk",
+      display: "Playfair Display",
+      sans: "Inter",
       mono: "JetBrains Mono"
     },
     palette: [
-      { name: "Canvas", hex: "#F4EFEA" },
-      { name: "Sheet", hex: "#FAF7F2" },
-      { name: "Dark", hex: "#141312" },
-      { name: "Orange", hex: "#FF6B4A" },
-      { name: "Mustard", hex: "#FFD166" }
+      { name: "Warm Alabaster Linen", hex: "#FBF9F6" },
+      { name: "Deep Carbon Ink Black", hex: "#141312" },
+      { name: "Vivid Terracotta Badge", hex: "#EE582B" },
+      { name: "Dusty Salmon Ribbon", hex: "#F5BAA7" },
+      { name: "Diffused Peach Glow", hex: "#F5DDD2" },
+      { name: "Warm Beige Secondary", hex: "#F3EFEA" },
+      { name: "Muted Warm Slate Body", hex: "#6B6661" },
+      { name: "Faded Clay Overlay", hex: "#EAD6CD" }
     ],
-    description: "High-contrast stark ink on warm Manila parchment with physical 4px zero-blur drop shadows, perforated tear lines, and editorial serifs.",
+    description: "Editorial Vintage Chic: Warm alabaster linen background (#FBF9F6), deep carbon ink black (#141312), vivid terracotta accents (#EE582B), and dusty salmon tilted marquee tape (-3.2deg), framed by high-contrast Didone serifs and strict 0px rectangular geometry.",
     markdownSpec: null
   },
   {
@@ -1003,32 +1006,6 @@ const STYLE_TILES_DATA = [
       { name: "Light Hairline Overlay", hex: "rgba(255, 255, 255, 0.08)" }
     ],
     description: "Luxury Editorial / Dramatic Chromatic Minimalism: Saturated Parisian crimson (#9E0D12), deep wine (#7D080C), dark oxblood Didone watermark letterforms bleeding off-screen, pure white micro-metadata, and razor-sharp architectural 0-2px geometry.",
-    markdownSpec: null
-  },
-  {
-    slug: "editorial-vintage-chic",
-    name: "Editorial Vintage Chic",
-    vibe: "Warm Alabaster Linen • Deep Carbon Ink • Vivid Terracotta • Dusty Salmon Ribbon • Playfair Display Serif • Tilted Marquee Tape • 0px Editorial Discipline",
-    vibeBadge: "Editorial & Archival",
-    categories: ["editorial"],
-    theme: "Light",
-    hasPage: true,
-    fonts: {
-      display: "Playfair Display",
-      sans: "Inter",
-      mono: "JetBrains Mono"
-    },
-    palette: [
-      { name: "Warm Alabaster Linen", hex: "#FBF9F6" },
-      { name: "Deep Carbon Ink Black", hex: "#141312" },
-      { name: "Vivid Terracotta Badge", hex: "#EE582B" },
-      { name: "Dusty Salmon Ribbon", hex: "#F5BAA7" },
-      { name: "Diffused Peach Glow", hex: "#F5DDD2" },
-      { name: "Warm Beige Secondary", hex: "#F3EFEA" },
-      { name: "Muted Warm Slate Body", hex: "#6B6661" },
-      { name: "Faded Clay Overlay", hex: "#EAD6CD" }
-    ],
-    description: "Editorial Vintage Chic: Warm alabaster linen background (#FBF9F6), deep carbon ink black (#141312), vivid terracotta accents (#EE582B), and dusty salmon tilted marquee tape (-3.2deg), framed by high-contrast Didone serifs and strict 0px rectangular geometry.",
     markdownSpec: null
   },
   {

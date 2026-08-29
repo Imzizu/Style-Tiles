@@ -15,7 +15,7 @@
    - **For AI Agents (the Style Tile Markdown)**: It is a machine-readable **visual skin**. It is copied into other products. It must describe construction (color, type, geometry, motion) and must **never** dictate, invent, or replace the host site's content.
 
 2. **Self-Contained & Zero-Build**:
-   - Each design page lives as an individual HTML file inside the `Designs/` folder: `Designs/<design-slug>.html` (e.g. `Designs/cyber-terminal.html`, `Designs/editorial-brutalist.html`, `Designs/swiss-international.html`).
+   - Each design page lives as an individual HTML file inside the `Designs/` folder: `Designs/<design-slug>.html` (e.g. `Designs/cyber-terminal.html`, `Designs/editorial-vintage-chic.html`, `Designs/swiss-international.html`).
    - Use standard Vanilla HTML5, Vanilla CSS (in a `<style>` tag or paired stylesheet), and Vanilla JavaScript (in a `<script>` tag). No external bundlers or node build steps required.
    - Google Fonts may be imported via `<link>` or `@import`.
    - SVG icons should be inline or standard monoline glyphs.

@@ -12,7 +12,7 @@ window.CATALOG_THEMES = [
     mode: "light",
     shortName: "Manila",
     label: "Archival Drafting",
-    sourceTile: "editorial-brutalist",
+    sourceTile: null,
     themeColor: "#FAF7F2",
     swatches: ["#F4EFEA", "#FAF7F2", "#000000", "#FF6B4A"],
     fonts: { display: "Fraunces", sans: "Space Grotesk", mono: "JetBrains Mono" }
