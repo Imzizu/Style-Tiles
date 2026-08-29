@@ -90,7 +90,7 @@ When creating a design:
 
 1. **Do not** set `id: "TILE-00X"` in `app.js`. Omit `id`. `assignCatalogTileNumbers()` stamps it at runtime.
 2. **Do not** type `TILE-007` (or any frozen number) into the design-page header, `<title>`, or as a permanent stamp.
-3. Put a placeholder in `.style-tile-header .design-code` (`TILE` is fine) with `data-live-tile-code`. `design-page-mobile.js` fetches catalog order and replaces it with the live `TILE-NNN` for this slug.
+3. Put a placeholder in `.style-tile-header .design-code` (`TILE` is required, do not hardcode numbers) with `data-live-tile-code`. `design-page-mobile.js` loads the catalog order from `catalog-data.js` and dynamically replaces it with the correct live `TILE-NNN` for this slug.
 4. Append new designs to the **end** of `STYLE_TILES_DATA` unless the user asks for a specific catalog position. The new tile receives the next sequential number automatically.
 5. Theatrical showcase copy may use the design **name**. It must not freeze a tile number as if it were a product SKU. Exact `TILE-###` stamps in `.design-code` or `[data-live-tile-code]` are overwritten live.
 
@@ -437,7 +437,8 @@ When adding a new design:
   - [ ] Set `theme: "Dark" | "Light" | "Dark/Light"`.
   - [ ] Set exactly one `vibeBadge` using the classification guide in Section 3 (judge construction, not marketing copy). Set `categories` to only the matching slug. Set the page header `.design-vibe-tag` to that same official string.
   - [ ] Set `hasPage: true` to activate the live 16:9 scaled design preview iframe.
-- [ ] Live tile number: header `.design-code` is a placeholder (`TILE`) with `data-live-tile-code`. Do not bake a frozen `TILE-007` into the header, `<title>`, or `app.js`. Confirm `design-page-mobile.js` is linked so the live number fills in.
+- [ ] Live tile number: header `.design-code` is a placeholder (`TILE`) with `data-live-tile-code`. Do not bake a frozen `TILE-007` into the header, `<title>`, or anywhere else. Use `TILE` with `data-live-tile-code` or let `design-page-mobile.js` dynamically replace `TILE` in the `<title>`. Confirm `design-page-mobile.js` is linked so the live number fills in from `catalog-data.js`.
 - [ ] Verify that the live 16:9 Design Page Preview displays and scales cleanly on the catalog card in `index.html` (testing Grid, Compact, and Editorial Spread views).
 - [ ] Test at phone (~390px), tablet (~768px), and desktop: no horizontal overflow, stacked layouts, readable type, and working header actions.
 - [ ] Test color contrast and keyboard accessibility.
+

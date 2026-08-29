@@ -27,8 +27,8 @@
   }
 })();
 
-// Stamp the live catalog TILE-NNN from STYLE_TILES_DATA order in app.js.
-// Header codes are never a permanent accession number â€” deleting or
+// Stamp the live catalog TILE-NNN from STYLE_TILES_DATA order in catalog-data.js.
+// Header codes are never a permanent accession number — deleting or
 // reordering a catalog entry compacts the sequence on the next load.
 (function () {
   function currentSlug() {
@@ -36,33 +36,6 @@
     var file = path.split("/").pop() || "";
     try { file = decodeURIComponent(file); } catch (e) {}
     return file.replace(/\.html?$/i, "");
-  }
-
-  function catalogScriptUrl() {
-    var scripts = document.getElementsByTagName("script");
-    for (var i = 0; i < scripts.length; i++) {
-      var src = scripts[i].src || scripts[i].getAttribute("src") || "";
-      if (src.indexOf("design-page-mobile.js") !== -1) {
-        try {
-          return new URL("../app.js", scripts[i].src || src).href;
-        } catch (e) {
-          return "../app.js";
-        }
-      }
-    }
-    return "../app.js";
-  }
-
-  function extractCatalogSlugs(source) {
-    var start = source.indexOf("const STYLE_TILES_DATA");
-    if (start < 0) start = 0;
-    var end = source.indexOf("\n];", start);
-    var block = end < 0 ? source.slice(start) : source.slice(start, end);
-    var slugs = [];
-    var re = /slug:\s*"([^"]+)"/g;
-    var match;
-    while ((match = re.exec(block))) slugs.push(match[1]);
-    return slugs;
   }
 
   function formatCatalogTileId(index) {
@@ -82,34 +55,43 @@
       var el = stamps[j];
       if (el.closest && el.closest(".style-tile-header")) continue;
       var text = (el.textContent || "").trim();
-      if (el.hasAttribute("data-live-tile-code") || /^TILE-\d+$/i.test(text)) {
+      if (el.hasAttribute("data-live-tile-code") || /^TILE-\d*$/i.test(text)) {
         el.textContent = code;
       }
     }
-    if (document.title && /TILE-\d+/i.test(document.title)) {
-      document.title = document.title.replace(/TILE-\d+/gi, code);
+    if (document.title && /TILE-\d*/i.test(document.title)) {
+      document.title = document.title.replace(/TILE-\d*/gi, code);
+    }
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && /TILE-\d*/i.test(metaDesc.content)) {
+      metaDesc.content = metaDesc.content.replace(/TILE-\d*/gi, code);
     }
   }
 
-  function resolveLiveTileCode() {
+  function processCatalogData() {
     var slug = currentSlug();
-    if (!slug) return;
-    fetch(catalogScriptUrl(), { cache: "no-cache" })
-      .then(function (res) { return res.ok ? res.text() : Promise.reject(new Error("catalog fetch failed")); })
-      .then(function (source) {
-        var slugs = extractCatalogSlugs(source);
-        var index = slugs.indexOf(slug);
-        if (index === -1) return;
-        applyLiveTileCode(formatCatalogTileId(index));
-      })
-      .catch(function () {
-        // Keep whatever placeholder or fallback is in the markup.
-      });
+    if (!slug || !window.STYLE_TILES_DATA) return;
+    var index = window.STYLE_TILES_DATA.findIndex(function(t) { return t.slug === slug; });
+    if (index === -1) return;
+    applyLiveTileCode(formatCatalogTileId(index));
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", resolveLiveTileCode);
-  } else {
-    resolveLiveTileCode();
+  function resolveLiveTileCode() {
+    if (window.STYLE_TILES_DATA) {
+      processCatalogData();
+      return;
+    }
+    var script = document.createElement("script");
+    script.src = "../catalog-data.js";
+    script.onload = function() {
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", processCatalogData);
+      } else {
+        processCatalogData();
+      }
+    };
+    document.head.appendChild(script);
   }
+
+  resolveLiveTileCode();
 })();

@@ -23,7 +23,7 @@
 
   <style>
     /* ==========================================================================
-       01. DESIGN SYSTEM TOKENS & ROLES (TILE-020: RETRO-POSTAL MODERNIST)
+       01. DESIGN SYSTEM TOKENS & ROLES (TILE: RETRO-POSTAL MODERNIST)
        ========================================================================== */
     :root {
       /* Canvas & Surfaces */
@@ -1616,7 +1616,7 @@
             </p>
 
             <div class="hero-actions-row">
-              <button class="btn-postal-primary" onclick="copyTilePrompt('TILE-020')">
+              <button class="btn-postal-primary" onclick="copyTilePrompt('TILE')">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 Copy Prompt for Agent
               </button>
@@ -2250,7 +2250,7 @@
           <span class="section-num">04 // MACHINE SPECIFICATION</span>
           <h2 class="section-heading">Style Tile Prompt Specification</h2>
         </div>
-        <button class="btn-postal-primary" style="font-size:14px; padding:8px 16px;" onclick="copyTilePrompt('TILE-020')">
+        <button class="btn-postal-primary" style="font-size:14px; padding:8px 16px;" onclick="copyTilePrompt('TILE')">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
           Copy Full Markdown Prompt
         </button>
@@ -2284,7 +2284,7 @@
       <div class="spec-modal-footer">
         <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-subtle);">Format: Markdown Design System Token Spec</span>
         <div style="display:flex; gap:8px;">
-          <button class="btn-tile btn-copy" onclick="copyTilePrompt('TILE-020')">Copy Markdown</button>
+          <button class="btn-tile btn-copy" onclick="copyTilePrompt('TILE')">Copy Markdown</button>
           <button class="btn-tile btn-download" onclick="downloadSpecFile()">Download .md</button>
         </div>
       </div>
@@ -2523,7 +2523,7 @@ White 8px rims may frame media inside a scalloped card. Icons: 1.75-2px geometri
     }
 
     // Header Button Bindings (agent.md Section 2)
-    document.getElementById("btn-copy-tile").addEventListener("click", () => copyTilePrompt("TILE-020"));
+    document.getElementById("btn-copy-tile").addEventListener("click", () => copyTilePrompt("TILE"));
     document.getElementById("btn-download-tile").addEventListener("click", downloadSpecFile);
     document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
 
@@ -2643,3 +2643,4 @@ White 8px rims may frame media inside a scalloped card. Icons: 1.75-2px geometri
   </script>
 </body>
 </html>
+
