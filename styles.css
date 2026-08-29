@@ -1082,6 +1082,39 @@ html[data-mode="dark"] .view-btn.active:hover {
   border-color: var(--ink-primary);
 }
 
+/* Disabled / Locked Toggle Button (Turned ON in Grey) */
+.view-btn:disabled,
+.view-btn.is-locked,
+.view-btn[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+.view-btn.active:disabled,
+.view-btn.active.is-locked,
+.view-btn.active[aria-disabled="true"],
+.view-btn.active:disabled:hover,
+.view-btn.active.is-locked:hover,
+.view-btn.active[aria-disabled="true"]:hover {
+  background-color: #4A4744 !important;
+  color: #FAF7F2 !important;
+  border-color: #4A4744 !important;
+  cursor: not-allowed !important;
+  opacity: 0.95;
+}
+
+html[data-mode="dark"] .view-btn.active:disabled,
+html[data-mode="dark"] .view-btn.active.is-locked,
+html[data-mode="dark"] .view-btn.active[aria-disabled="true"],
+html[data-mode="dark"] .view-btn.active:disabled:hover,
+html[data-mode="dark"] .view-btn.active.is-locked:hover,
+html[data-mode="dark"] .view-btn.active[aria-disabled="true"]:hover {
+  background-color: #5C5C5C !important;
+  color: #E2E2E2 !important;
+  border-color: #5C5C5C !important;
+  cursor: not-allowed !important;
+  opacity: 0.95;
+}
+
 /* Category Filter Chips Bar */
 .filter-chips-bar {
   display: flex;
@@ -1383,6 +1416,7 @@ html[data-mode="dark"] .view-btn.active:hover {
 .catalog-grid.preview-mobile .card-preview-live,
 .catalog-grid.preview-mobile .skeleton-screen-wrapper {
   aspect-ratio: 2 / 3;
+  border-bottom: none;
 }
 
 .catalog-grid.is-mobile-preview .card-preview-iframe,
@@ -1391,16 +1425,16 @@ html[data-mode="dark"] .view-btn.active:hover {
   height: 585px;
 }
 
-.catalog-grid.is-mobile-preview .card-actions-bar,
-.catalog-grid.preview-mobile .card-actions-bar {
-  padding: var(--space-2) var(--space-3);
-  gap: var(--space-1);
+.catalog-grid.is-mobile-preview .design-card,
+.catalog-grid.preview-mobile .design-card {
+  overflow: hidden;
 }
 
-.catalog-grid.is-mobile-preview .card-actions-bar .btn,
-.catalog-grid.preview-mobile .card-actions-bar .btn {
-  padding: 0.35rem 0.5rem;
-  font-size: 0.6875rem;
+.catalog-grid.is-mobile-preview .card-body,
+.catalog-grid.is-mobile-preview .card-actions-bar,
+.catalog-grid.preview-mobile .card-body,
+.catalog-grid.preview-mobile .card-actions-bar {
+  display: none;
 }
 
 @media (max-width: 1100px) {

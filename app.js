@@ -1573,6 +1573,7 @@ let userToggledCompact = false;
 const isMobileViewport = () => typeof window !== "undefined" && window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
 let isCompactMode = isMobileViewport(); // Default OFF on desktop (> 768px), default ON on mobile (<= 768px)
 let isMobilePreviewMode = false; // Toggle for 2:3 mobile viewport preview (OFF by default)
+const isCompactLocked = () => isMobilePreviewMode || isMobileViewport();
 let isLuckyMode = false;
 let luckyTiles = [];
 const CATALOG_PAGE_SIZE = 15;
@@ -2264,12 +2265,15 @@ function restoreFocalAnchor(anchor) {
 
 function applyViewSettings() {
   const grid = document.getElementById("catalog-grid");
+  const locked = isCompactLocked();
+  const effectiveCompact = locked || isCompactMode;
+
   if (grid) {
     const isSplit = isLuckyMode || (currentLayoutMode === "split");
     grid.classList.toggle("view-split", isSplit);
     grid.classList.toggle("view-editorial", isSplit);
-    grid.classList.toggle("is-compact", isCompactMode);
-    grid.classList.toggle("view-compact", isCompactMode);
+    grid.classList.toggle("is-compact", effectiveCompact);
+    grid.classList.toggle("view-compact", effectiveCompact);
     grid.classList.toggle("is-mobile-preview", isMobilePreviewMode);
     grid.classList.toggle("preview-mobile", isMobilePreviewMode);
   }
@@ -2286,8 +2290,18 @@ function applyViewSettings() {
   // Update header compact toggle button
   const compactBtn = document.getElementById("header-compact-toggle");
   if (compactBtn) {
-    compactBtn.classList.toggle("active", isCompactMode);
-    compactBtn.setAttribute("aria-pressed", isCompactMode ? "true" : "false");
+    compactBtn.classList.toggle("active", effectiveCompact);
+    compactBtn.classList.toggle("is-locked", locked);
+    compactBtn.setAttribute("aria-pressed", effectiveCompact ? "true" : "false");
+    if (locked) {
+      compactBtn.setAttribute("aria-disabled", "true");
+      compactBtn.disabled = true;
+      compactBtn.title = "Compact mode is locked ON in mobile view";
+    } else {
+      compactBtn.removeAttribute("aria-disabled");
+      compactBtn.disabled = false;
+      compactBtn.title = isCompactMode ? "Toggle Compact Mode (Hide details, show preview only)" : "Toggle Compact Mode (Show full specifications)";
+    }
   }
 
   // Update header mobile preview toggle button
@@ -2319,6 +2333,10 @@ function setViewMode(mode) {
 }
 
 function toggleCompactMode() {
+  if (isCompactLocked()) {
+    showToast("Compact mode is required in mobile view", "ℹ");
+    return;
+  }
   userToggledCompact = true;
   const anchor = getFocalCardAnchor();
   isCompactMode = !isCompactMode;
@@ -2342,7 +2360,7 @@ function toggleMobilePreviewMode() {
   }
   persistCatalogState();
   showToast(
-    isMobilePreviewMode ? "Mobile Viewport Preview: ON (2:3 Ratio)" : "Mobile Viewport Preview: OFF (16:9 Ratio)",
+    isMobilePreviewMode ? "Mobile Viewport Preview: ON (2:3 Ratio • Compact)" : "Mobile Viewport Preview: OFF (16:9 Ratio)",
     isMobilePreviewMode ? "📱" : "💻"
   );
 }
@@ -2914,16 +2932,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", syncSearchPlaceholder);
   }
 
-  // Responsive default for compact mode (switches between desktop default and mobile default if user hasn't explicitly toggled)
+  // Responsive handling for compact mode when crossing the mobile/desktop viewport breakpoint
   const mobileMediaQuery = window.matchMedia("(max-width: 768px)");
-  const handleViewportChange = (e) => {
-    if (!userToggledCompact) {
-      const shouldBeCompact = e.matches;
-      if (isCompactMode !== shouldBeCompact) {
-        isCompactMode = shouldBeCompact;
-        applyViewSettings();
-      }
-    }
+  const handleViewportChange = () => {
+    applyViewSettings();
   };
   if (mobileMediaQuery.addEventListener) {
     mobileMediaQuery.addEventListener("change", handleViewportChange);
