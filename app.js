@@ -44,6 +44,7 @@ let persistCatalogScrollTimer = null;
 const markdownSpecCache = new Map();
 const PREVIEW_LOAD_MAX = 4;
 let previewLoadActive = 0;
+let previewLoadGeneration = 0;
 const previewLoadQueue = [];
 let previewObserver = null;
 
@@ -210,7 +211,18 @@ function resizeCardIframes() {
   document.querySelectorAll(".card-preview-live").forEach(scalePreviewIframe);
 }
 
-function onPreviewIframeLoad(iframe) {
+function resetPreviewLoader() {
+  previewLoadQueue.length = 0;
+  previewLoadActive = 0;
+  previewLoadGeneration += 1;
+  if (previewObserver) {
+    previewObserver.disconnect();
+    previewObserver = null;
+  }
+}
+
+function onPreviewIframeLoad(iframe, generation) {
+  if (generation !== previewLoadGeneration) return;
   previewLoadActive = Math.max(0, previewLoadActive - 1);
   if (iframe && iframe.isConnected) {
     hideIframeHeader(iframe);
@@ -231,8 +243,9 @@ function pumpPreviewQueue() {
     const src = iframe.getAttribute("data-src");
     if (!src) continue;
     previewLoadActive += 1;
+    const generation = previewLoadGeneration;
     iframe.addEventListener("load", function () {
-      onPreviewIframeLoad(iframe);
+      onPreviewIframeLoad(iframe, generation);
     }, { once: true });
     iframe.src = src;
   }
@@ -252,7 +265,7 @@ function ensurePreviewObserver() {
       if (!entry.isIntersecting) return;
       const iframe = entry.target.querySelector(".card-preview-iframe[data-src]");
       if (iframe) enqueuePreviewIframe(iframe);
-      previewObserver.unobserve(entry.target);
+      if (previewObserver) previewObserver.unobserve(entry.target);
     });
   }, { root: null, rootMargin: "800px 0px", threshold: 0.01 });
   return previewObserver;
@@ -495,8 +508,7 @@ function renderCatalog(options = {}) {
   if (!gridContainer) return;
 
   if (isLuckyMode && luckyTiles && luckyTiles.length === 2) {
-    previewLoadQueue.length = 0;
-    if (previewObserver) previewObserver.disconnect();
+    resetPreviewLoader();
     gridContainer.innerHTML = luckyTiles.map(renderTileCard).join("");
     updateDisplayedCount(2, 2);
     updateShowMoreBar(0);
@@ -516,8 +528,7 @@ function renderCatalog(options = {}) {
   updateDisplayedCount(Math.min(catalogVisibleCount, filtered.length), filtered.length);
 
   if (filtered.length === 0) {
-    previewLoadQueue.length = 0;
-    if (previewObserver) previewObserver.disconnect();
+    resetPreviewLoader();
     const queryDesc = currentSearchQuery ? `"${currentSearchQuery}"` : (currentCategory !== "all" ? `the "${currentCategory}" filter` : "the selected filters");
     gridContainer.innerHTML = `
       <div style="grid-column: 1 / -1; padding: 48px; text-align: center; background: var(--surface-sheet); border: var(--border-core); box-shadow: var(--shadow-base);">
@@ -532,8 +543,7 @@ function renderCatalog(options = {}) {
   }
 
   const visibleTiles = filtered.slice(0, catalogVisibleCount);
-  previewLoadQueue.length = 0;
-  if (previewObserver) previewObserver.disconnect();
+  resetPreviewLoader();
   gridContainer.innerHTML = visibleTiles.map(renderTileCard).join("");
   updateShowMoreBar(filtered.length);
 
