@@ -1562,6 +1562,28 @@ const STYLE_TILES_DATA = [
     ],
     description: "Tuscan Nostalgia: Sun-drenched Mediterranean vintage travel editorial on parchment and Tuscan cream (#EDE8DC, #F5F2EA) framed by deep cypress-olive (#2B3828) borders, terracotta leather (#A85C3A) focal warmth, kinetic -26deg railway diagonals, and bold poster typography.",
     markdownSpec: null
+  },
+  {
+    slug: "hyper-infra",
+    name: "HYPER-INFRA",
+    vibe: "Neo-Terminal Tech Minimalism • Obsidian Canvas • Stark White Slabs • Electric Lime Signal",
+    vibeBadge: "Cyber & Blueprint",
+    categories: ["cyber"],
+    theme: "Dark/Light",
+    hasPage: true,
+    fonts: { display: "Geist", sans: "Geist", mono: "Geist Mono" },
+    palette: [
+      { name: "Deep Matte Obsidian", hex: "#0A0B0D" },
+      { name: "Stark White Card", hex: "#FFFFFF" },
+      { name: "Jet Black Terminal", hex: "#18191B" },
+      { name: "Light Neutral Tint", hex: "#F4F4F6" },
+      { name: "Electric Lime", hex: "#63FF00" },
+      { name: "Lime Hover", hex: "#54DC00" },
+      { name: "Charcoal Ink", hex: "#111214" },
+      { name: "Graphite Secondary", hex: "#525866" }
+    ],
+    description: "Neo-terminal tech minimalism: deep matte obsidian canvas, stark white floating cards, jet-black recessed shells, Geist typography, geometric mono-line controls, and electric lime reserved for live state, focus, selection, and primary action.",
+    markdownSpec: null
   }
 ];
 if (typeof window !== 'undefined') window.STYLE_TILES_DATA = STYLE_TILES_DATA;

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HYPER-INFRA — Neo-Terminal Tech Minimalism</title>
+<meta name="description" content="HYPER-INFRA: neo-terminal tech minimalism style tile with obsidian canvas, stark white modules, jet-black terminal shells, and electric lime status accents.">
+<link rel="icon" href="../favicon.ico"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="design-page-mobile.css">
+<style>
+:root{--canvas:#0A0B0D;--card:#FFF;--terminal:#18191B;--subtle:#F4F4F6;--lime:#63FF00;--lime-hover:#54DC00;--glow:rgba(99,255,0,.15);--ink:#111214;--muted:#525866;--dark:#EDEDF0;--param:#D4D4D8;--dots:#71717A;--line:#E4E4E7;--white-line:rgba(255,255,255,.08);--display:'Geist',sans-serif;--body:'Geist',sans-serif;--mono:'Geist Mono',monospace;--r-card:24px;--r-inner:12px;--r-tab:4px;--pill:9999px;--ease:cubic-bezier(.16,1,.3,1);--shadow:0 20px 40px -12px rgba(0,0,0,.45)}
+*{box-sizing:border-box}html{background:var(--canvas);scroll-behavior:smooth}body{margin:0;background:var(--canvas);color:var(--dark);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased}::selection{background:var(--lime);color:var(--canvas)}:focus-visible{outline:2px solid var(--lime);outline-offset:2px}button,a{font:inherit}a{color:inherit;text-decoration:none}
+.style-tile-header{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:16px;justify-content:space-between;padding:12px 20px;background:rgba(10,11,13,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--white-line);flex-wrap:wrap}.nav-back-link,.btn-tile{display:inline-flex;align-items:center;gap:8px;font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--white-line);padding:9px 12px;transition:transform .18s var(--ease),background .18s var(--ease),color .18s var(--ease)}.nav-back-link:hover,.btn-tile:hover{transform:translateY(-2px);background:var(--lime);color:var(--canvas)}.header-title-block{display:flex;align-items:center;gap:12px;min-width:0;flex:1}.design-code{font:600 11px var(--mono);color:var(--canvas);background:var(--lime);padding:4px 7px;border-radius:var(--r-tab)}.design-title{font:500 16px var(--display);letter-spacing:-.02em}.design-vibe-tag{font:500 10px var(--mono);color:var(--param);border-left:1px solid var(--white-line);padding-left:12px}.header-actions{display:flex;gap:8px;flex-wrap:wrap}.btn-copy{background:var(--lime);color:var(--canvas);border-color:var(--lime)}.btn-download{color:var(--lime);border-color:var(--lime)}
+.page-wrap{max-width:1180px;margin:auto;padding:48px 24px 96px}.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:stretch;margin-bottom:48px}.hero-copy{background:var(--card);color:var(--ink);border-radius:var(--r-card);padding:36px;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between;min-height:450px}.eyebrow,.kicker{font:600 11px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}.eyebrow span{color:var(--lime-hover)}h1{font:500 clamp(3rem,7vw,5.5rem)/1.02 var(--display);letter-spacing:-.065em;margin:24px 0 16px}h1 em{font-style:normal;color:var(--lime-hover)}.hero-copy p{max-width:42ch;color:var(--muted);font-size:16px;line-height:1.5;margin:0}.hero-actions{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap}.action{border:0;border-radius:var(--pill);padding:12px 16px;background:var(--lime);color:var(--canvas);font:600 12px var(--mono);cursor:pointer;transition:transform .18s var(--ease),background .18s var(--ease)}.action:hover{transform:translateY(-2px);background:var(--lime-hover)}.action.secondary{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.terminal{background:var(--terminal);border-radius:var(--r-inner);padding:24px;box-shadow:var(--shadow);border:1px solid var(--white-line);display:flex;flex-direction:column;min-height:450px}.chrome{display:flex;gap:6px;padding-bottom:22px;border-bottom:1px solid var(--white-line)}.dot{width:7px;height:7px;background:var(--dots);border-radius:50%}.dot.active{background:var(--lime)}.terminal pre{font:500 14px/1.75 var(--mono);white-space:pre-wrap;color:var(--param);margin:28px 0}.terminal .command{color:var(--lime)}.terminal .cursor{display:inline-block;width:8px;height:16px;background:var(--lime);vertical-align:-2px;animation:blink 1s steps(2,end) infinite}@keyframes blink{50%{opacity:0}}.terminal-footer{margin-top:auto;display:flex;justify-content:space-between;color:var(--dots);font:11px var(--mono);border-top:1px solid var(--white-line);padding-top:16px}
+.section{background:var(--card);color:var(--ink);border-radius:var(--r-card);padding:36px;margin-bottom:24px;box-shadow:var(--shadow)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:24px}.section h2{font:500 28px/1.25 var(--display);letter-spacing:-.035em;margin:6px 0 0}.section-head p{font:11px var(--mono);color:var(--muted);margin:0}.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.swatch{border:1px solid var(--line);background:var(--subtle);padding:0;text-align:left;cursor:pointer;transition:transform .18s var(--ease)}.swatch:hover{transform:translateY(-2px)}.swatch-color{height:92px;border-bottom:1px solid var(--line)}.swatch-info{padding:12px}.swatch strong{display:block;font-size:13px}.swatch code{font:11px var(--mono);color:var(--muted)}.type-grid,.component-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.type-sample{border:1px solid var(--line);padding:24px}.type-sample h3{font:500 40px/1.15 var(--display);letter-spacing:-.035em;margin:0 0 12px}.type-sample p{margin:0;color:var(--muted)}.type-sample code{font:500 14px var(--mono)}.component{background:var(--terminal);color:var(--dark);border-radius:var(--r-inner);padding:24px}.component h3{font:500 18px var(--display);margin:0 0 16px}.component p{color:var(--param);font-size:14px;margin:0 0 18px}.field{border:1px solid var(--white-line);padding:12px;color:var(--dots);font:14px var(--mono);margin-bottom:12px}.status{display:inline-flex;align-items:center;gap:8px;border-radius:var(--pill);padding:7px 10px;background:var(--glow);color:var(--lime);font:600 11px var(--mono)}.rule-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.rule{background:var(--subtle);padding:16px;border-radius:var(--r-tab)}.rule b{font:600 11px var(--mono);color:var(--lime-hover);display:block;margin-bottom:6px}.rule span{font-size:14px;color:var(--muted)}
+#spec-modal{display:none;position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.7);padding:32px;align-items:center;justify-content:center}.modal-card{max-width:760px;max-height:80vh;overflow:auto;background:var(--terminal);border:1px solid var(--white-line);border-radius:var(--r-inner);padding:24px;box-shadow:var(--shadow)}.modal-card pre{white-space:pre-wrap;color:var(--param);font:13px/1.6 var(--mono)}.modal-close{float:right;background:transparent;color:var(--lime);border:1px solid var(--lime);padding:6px 10px;cursor:pointer;font:11px var(--mono)}#toast{position:fixed;right:20px;bottom:20px;background:var(--lime);color:var(--canvas);padding:12px 16px;border-radius:var(--pill);font:600 12px var(--mono);opacity:0;transform:translateY(8px);transition:.2s var(--ease);z-index:30}#toast.show{opacity:1;transform:none}
+@media(max-width:760px){.style-tile-header{align-items:flex-start}.header-title-block{order:2;flex-basis:100%}.header-actions{order:3}.page-wrap{padding:24px 16px 64px}.hero,.type-grid,.component-grid{grid-template-columns:1fr}.hero-copy,.terminal,.section{padding:24px}.hero-copy,.terminal{min-height:0}.swatches{grid-template-columns:repeat(2,1fr)}.rule-list{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:8px}}
+</style>
+<script src="design-page-mobile.js"></script>
+</head>
+<body>
+<header class="style-tile-header"><a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog"><span>←</span> Catalog</a><div class="header-title-block"><span class="design-code" data-live-tile-code>TILE</span><span class="design-title">HYPER-INFRA</span><span class="design-vibe-tag">Cyber &amp; Blueprint</span></div><div class="header-actions"><button id="btn-preview-tile" class="btn-tile">Preview Style Tile</button><button id="btn-copy-tile" class="btn-tile btn-copy">Copy Style Tile</button><button id="btn-download-tile" class="btn-tile btn-download">Download Style Tile</button></div></header>
+<main class="page-wrap"><section class="hero"><div class="hero-copy"><div><div class="eyebrow">Visual language / <span>active</span></div><h1>HYPER-<br><em>INFRA</em></h1><p>Neo-terminal tech minimalism built from stark surface contrast, modular white slabs, and a jet-black command shell. Electric lime is reserved for live state, focus, and action.</p></div><div class="hero-actions"><button class="action" onclick="copyTile()">Copy visual language</button><a class="action secondary" href="#palette">Inspect system ↓</a></div></div><div class="terminal"><div class="chrome"><i class="dot active"></i><i class="dot"></i><i class="dot"></i></div><pre><span class="command">$ initialize --visual-language</span>
+
+surface.canvas       #0A0B0D
+surface.card.primary #FFFFFF
+surface.card.terminal#18191B
+accent.electric-lime #63FF00
+
+<span class="command">$ status --ready</span>
+<span class="command">▌</span></pre><div class="terminal-footer"><span>GEIST MONO / 14PX</span><span>READY</span></div></div></section>
+<section class="section" id="palette"><div class="section-head"><div><div class="kicker">01 / Material</div><h2>Color roles &amp; palette</h2></div><p>CLICK SWATCH TO COPY</p></div><div class="swatches"><button class="swatch" onclick="copyHex('#0A0B0D')"><div class="swatch-color" style="background:#0A0B0D"></div><div class="swatch-info"><strong>Canvas</strong><code>#0A0B0D</code></div></button><button class="swatch" onclick="copyHex('#FFFFFF')"><div class="swatch-color" style="background:#FFFFFF"></div><div class="swatch-info"><strong>Primary card</strong><code>#FFFFFF</code></div></button><button class="swatch" onclick="copyHex('#18191B')"><div class="swatch-color" style="background:#18191B"></div><div class="swatch-info"><strong>Terminal</strong><code>#18191B</code></div></button><button class="swatch" onclick="copyHex('#F4F4F6')"><div class="swatch-color" style="background:#F4F4F6"></div><div class="swatch-info"><strong>Subtle tint</strong><code>#F4F4F6</code></div></button><button class="swatch" onclick="copyHex('#63FF00')"><div class="swatch-color" style="background:#63FF00"></div><div class="swatch-info"><strong>Electric lime</strong><code>#63FF00</code></div></button></div></section>
+<section class="section"><div class="section-head"><div><div class="kicker">02 / Signal</div><h2>Typography system</h2></div><p>GEIST / GEIST MONO</p></div><div class="type-grid"><div class="type-sample"><code>DISPLAY L / 40PX / 500</code><h3>Infrastructure<br>with intent.</h3><p>Geist display uses tight tracking and medium weight for crisp, optical headlines.</p></div><div class="type-sample"><code>CODE / 14PX / 500</code><h3 style="font-family:var(--mono);font-size:22px;line-height:1.4;letter-spacing:0">surface.card<br>accent.lime</h3><p>Geist Mono carries tokens, technical labels, and terminal content.</p></div></div></section>
+<section class="section"><div class="section-head"><div><div class="kicker">03 / Modules</div><h2>Component skins</h2></div><p>EXISTING LABELS ONLY</p></div><div class="component-grid"><div class="component"><h3>Terminal shell</h3><p>Use jet-black recessed containers with 12px inner radii, a fine white border ring, and compact hardware dots.</p><div class="field">Input / existing label</div><span class="status"><i class="dot active"></i> Active state</span></div><div class="component"><h3>Primary surface</h3><p>Use white cards as high-contrast floating slabs with 24px outer radii and a restrained deep shadow.</p><button class="action">Existing action</button></div></div></section>
+<section class="section"><div class="section-head"><div><div class="kicker">04 / Mechanics</div><h2>Geometry &amp; feedback</h2></div><p>150–200MS / SNAPPY</p></div><div class="rule-list"><div class="rule"><b>RADIUS</b><span>24px outer cards / 12px inner shells / 4px tabs / pill controls.</span></div><div class="rule"><b>DEPTH</b><span>Flat white surfaces over obsidian, with one 0 20px 40px shadow.</span></div><div class="rule"><b>MOTION</b><span>Actionable modules shift upward 2px with a mechanical ease curve.</span></div></div></section></main>
+<div id="spec-modal"><div class="modal-card"><button class="modal-close" onclick="closeModal()">CLOSE</button><pre id="modal-copy"></pre></div></div><div id="toast" role="status"></div>
+<script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Neo-Terminal Tech Minimalism
+  Construction: obsidian canvas • stark white slabs • recessed terminal • electric lime
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome, telemetry strings, system codes, decorative status lines, sample headlines, or dummy navigation.
+4. Map existing components onto the visual rules below. Keep component types; change only visual treatment.
+5. If a decorative motif requires new copy, omit it.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Use a deep matte obsidian canvas (#0A0B0D) as the structural ground. Set primary cards in stark white with deep charcoal ink, and place recessed modules in jet black (#18191B). Electric lime (#63FF00) is a single high-voltage signal reserved for active states, focus, selection, and primary actions.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  --bg-canvas: #0A0B0D;
+  --bg-surface: #FFFFFF;
+  --bg-surface-alt: #F4F4F6;
+  --bg-surface-dark: #18191B;
+  --ink-primary: #111214;
+  --ink-secondary: #525866;
+  --ink-muted: #71717A;
+  --ink-inverted: #EDEDF0;
+  --accent-primary: #63FF00;
+  --accent-primary-hover: #54DC00;
+  --accent-glow: rgba(99, 255, 0, 0.15);
+  --rule: #E4E4E7;
+  --rule-dark: rgba(255, 255, 255, 0.08);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY
+ * -------------------------------------------------------------------------- */
+Use Geist for display and body text, with Geist Mono for code and technical metadata. Display L is 40px, 1.15 line-height, -0.035em tracking, weight 500. Display M is 28px, 1.25 line-height, -0.025em tracking, weight 500. Body is 16px, 1.5 line-height, -0.01em tracking. Code is 14px, 1.4 line-height, weight 500. Micro labels are 11px, 1.2 line-height, +0.02em tracking, weight 600.
+
+/* -----------------------------------------------------------------------------
+ * 4. GEOMETRY, ELEVATION & SPACING
+ * -------------------------------------------------------------------------- */
+Use 24px outer card radii, 12px embedded panel radii, 4px tabs, and 9999px pills. Use a 0 20px 40px -12px rgba(0,0,0,0.45) floating shadow and a 1px rgba(255,255,255,0.08) ambient ring. Follow a 4px / 8px cadence: 4, 8, 12, 16, 24, 36, 48px.
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & ICONOGRAPHY
+ * -------------------------------------------------------------------------- */
+Use hairline #E4E4E7 dividers on light surfaces and rgba(255,255,255,0.08) borders in terminal shells. Use monoline geometric icons with 1.75–2px strokes, sharp vertices, and triple 6px terminal control dots. Avoid decorative gradients, purple neon, heavy blur, and unstructured pills.
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN
+ * -------------------------------------------------------------------------- */
+Restyle the host's existing navigation, cards, buttons, inputs, tabs, and status elements using the roles above while preserving their existing labels and meaning. Primary actions use electric lime with obsidian text; secondary actions are transparent or white with hairline borders. Terminal modules use jet-black surfaces, muted parameter text, lime commands, and a 1s blinking cursor only where a cursor already exists conceptually.
+
+/* -----------------------------------------------------------------------------
+ * 7. INTERACTION
+ * -------------------------------------------------------------------------- */
+Use 150–200ms cubic-bezier(0.16, 1, 0.3, 1) transitions. Actionable modules may translate upward by 2px on hover. Use a 2px electric-lime focus ring with 2px offset. Selection uses electric lime background with obsidian text.
+</script>
+<script>
+const markdown=()=>document.getElementById('style-tile-markdown').textContent.trim();const toast=(m)=>{const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000)};function copyHex(v){navigator.clipboard?.writeText(v);toast('Copied '+v)}function copyTile(){navigator.clipboard?.writeText(markdown());toast('Style tile copied')}function closeModal(){document.getElementById('spec-modal').style.display='none'}document.getElementById('btn-copy-tile').onclick=copyTile;document.getElementById('btn-preview-tile').onclick=()=>{document.getElementById('modal-copy').textContent=markdown();document.getElementById('spec-modal').style.display='flex'};document.getElementById('btn-download-tile').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([markdown()],{type:'text/markdown;charset=utf-8'}));a.download='style-tile-hyper-infra.md';a.click();URL.revokeObjectURL(a.href);toast('Download started')};document.getElementById('spec-modal').onclick=e=>{if(e.target.id==='spec-modal')closeModal()};
+</script></body></html>
+
+<!-- End of style tile -->
