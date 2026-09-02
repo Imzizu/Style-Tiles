@@ -1562,6 +1562,33 @@ const STYLE_TILES_DATA = [
     ],
     description: "Tuscan Nostalgia: Sun-drenched Mediterranean vintage travel editorial on parchment and Tuscan cream (#EDE8DC, #F5F2EA) framed by deep cypress-olive (#2B3828) borders, terracotta leather (#A85C3A) focal warmth, kinetic -26deg railway diagonals, and bold poster typography.",
     markdownSpec: null
+  },
+  {
+    slug: "curated-field-guide",
+    name: "Curated Field Guide",
+    vibe: "Warm Linen Parchment • Utilitarian Modern Moleskine • Geometric Sans Numbers • Burnt Terracotta • Saffron Amber Callouts • Flat Paper Baseline",
+    vibeBadge: "Minimalist & Monastic",
+    categories: ["minimalist"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Satoshi / General Sans",
+      sans: "Plus Jakarta Sans / Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Warm Linen Canvas", hex: "#FAF8F5" },
+      { name: "Deeper Sand Surface", hex: "#F2EFEB" },
+      { name: "Matte Charcoal Inverse", hex: "#121212" },
+      { name: "Deep Charcoal Ink", hex: "#141413" },
+      { name: "Warm Graphite Stone", hex: "#7A746B" },
+      { name: "Burnt Terracotta", hex: "#DE5333" },
+      { name: "Warm Saffron Amber", hex: "#E5A42E" },
+      { name: "Ghost Ochre", hex: "#DCD6CA" },
+      { name: "Hairline Divider", hex: "#EAE5DC" }
+    ],
+    description: "Curated Field Guide: Tactile minimalist and utilitarian modern Moleskine design system built on warm linen parchment (#FAF8F5) with subtle sand cards (#F2EFEB), high-contrast matte charcoal floating pill CTAs (#121212), bold 32px geometric step numerals, warm saffron amber callouts (#E5A42E), and burnt terracotta accent indicators (#DE5333).",
+    markdownSpec: null
   }
 ];
 if (typeof window !== 'undefined') window.STYLE_TILES_DATA = STYLE_TILES_DATA;

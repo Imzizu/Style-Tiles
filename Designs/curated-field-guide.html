@@ -1,0 +1,2826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curated Field Guide — Style Tile & Design System</title>
+  <meta name="description" content="Curated Field Guide (TILE): Warm editorial, utilitarian, and tactile minimalist design system. Warm linen canvas (#FAF8F5), subtle sand surfaces (#F2EFEB), matte charcoal floating CTA (#121212), bold 32px geometric numerals, burnt terracotta (#DE5333), and saffron ochre callouts (#E5A42E).">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon.ico">
+
+  <!-- Fonts: Satoshi & General Sans (via Fontshare), Plus Jakarta Sans, Inter, JetBrains Mono (via Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,800,700,600,500,400&f[]=general-sans@700,600,500,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       STYLE TILE: CURATED FIELD GUIDE
+       Tone: Warm Editorial, Utilitarian, Tactile Minimalist, Modern Moleskine
+       ============================================================================= */
+
+    :root {
+      /* ---------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * --------------------------------------------------------------------------- */
+      /* Canvas & Surfaces */
+      --surface-canvas:         #FAF8F5; /* Warm linen/parchment background */
+      --surface-subtle:         #F2EFEB; /* Slightly deeper sand for cards/pills */
+      --surface-elevated:       #FFFFFF; /* Pure clean sheet elevation */
+      --surface-inverse:        #121212; /* True dark charcoal/matte black for FAB & Primary CTA */
+
+      /* Content & Text */
+      --text-primary:           #141413; /* Deep charcoal-ink; soft contrast against cream */
+      --text-secondary:         #7A746B; /* Warm graphite/stone for metadata and addresses */
+      --text-muted:             #AAA49A; /* Inactive tab states, secondary subtext */
+      --text-inverse:           #FFFFFF; /* White on dark surfaces */
+
+      /* Accent & Semantic Signals */
+      --accent-primary:         #DE5333; /* Burnt terracotta / warm vermilion (active line, badges) */
+      --accent-primary-hover:   #C44325; /* Deeper terracotta on hover */
+      --accent-primary-subtle:  rgba(222, 83, 51, 0.08); /* Terracotta tint */
+      --accent-amber:           #E5A42E; /* Warm saffron / ochre (active step numbers, ratings) */
+      --accent-amber-subtle:    rgba(229, 164, 46, 0.12); /* Saffron tint */
+      --accent-step-inactive:   #DCD6CA; /* Ghost ochre / soft bone (inactive step numbers) */
+      --accent-callout-border:  #E5A42E; /* Left indicator bar for quest/tip blocks */
+      --accent-green:           #4A7C59; /* Forest moss green for completed/verified stamps */
+
+      /* Lines & Dividers */
+      --border-hairline:        #EAE5DC; /* 1px subtle divider between timeline items */
+      --border-subtle:          #DDD6C9; /* Pill container borders, input outlines */
+      --border-strong:          #141413; /* Solid high-contrast structural frame */
+
+      /* ---------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * --------------------------------------------------------------------------- */
+      --font-display:           "Satoshi", "General Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-sans:              "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono:              "JetBrains Mono", "SF Mono", Consolas, monospace;
+
+      /* Hierarchy Tokens */
+      --text-step-display:      700 32px/1.0 var(--font-display);
+      --text-h1:                700 20px/1.2 var(--font-display);
+      --text-h2:                700 15px/1.2 var(--font-sans);
+      --text-tab-inactive:      500 15px/1.2 var(--font-sans);
+      --text-overline:          700 11px/1.2 var(--font-display);
+      --text-meta:              600 12px/1.3 var(--font-sans);
+      --text-body:              400 13px/1.45 var(--font-sans);
+      --text-button:            700 15px/1.0 var(--font-sans);
+
+      /* ---------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * --------------------------------------------------------------------------- */
+      --radius-sm:              4px;      /* Micro badges, inline tags */
+      --radius-md:              8px;      /* Sub-cards, transit info modules, inputs */
+      --radius-lg:              14px;     /* Content grouping blocks, primary panels */
+      --radius-full:            9999px;   /* Floating CTA pill button, status capsules */
+
+      /* ---------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+       * --------------------------------------------------------------------------- */
+      --shadow-none:            none;     /* Flat, paper-like baseline */
+      --shadow-subtle:          0 1px 3px rgba(20, 20, 19, 0.04);
+      --shadow-floating-cta:    0 8px 24px rgba(18, 18, 18, 0.18), 0 2px 6px rgba(18, 18, 18, 0.08);
+      --shadow-floating-active: 0 2px 8px rgba(18, 18, 18, 0.22);
+
+      --z-index-sticky-nav:     10;
+      --z-index-header:         100;
+      --z-index-bottom-cta:     50;
+      --z-index-modal:          1000;
+
+      /* ---------------------------------------------------------------------------
+       * 5. SPACING & SPATIAL SCALE (4px / 8px Base Grid)
+       * --------------------------------------------------------------------------- */
+      --space-2xs:              4px;      /* Icon-to-text spacing, rating gaps */
+      --space-xs:               8px;      /* Sub-label to headline padding */
+      --space-sm:               12px;     /* Internal callout block padding */
+      --space-md:               16px;     /* Standard screen edge gutters */
+      --space-lg:               24px;     /* Spacing between milestone item blocks */
+      --space-xl:               32px;     /* Section separator clearance */
+      --space-2xl:              48px;
+      --space-3xl:              64px;
+
+      /* ---------------------------------------------------------------------------
+       * 6. BORDERS & DIVIDERS
+       * --------------------------------------------------------------------------- */
+      --divider-horizontal:     1px solid var(--border-hairline);
+      --indicator-tab-active:   3px solid var(--accent-primary);
+      --callout-accent-left:    3px solid var(--accent-amber);
+      --tag-outline:            1px solid var(--border-subtle);
+
+      /* ---------------------------------------------------------------------------
+       * 7. TRANSITIONS & TIMING
+       * --------------------------------------------------------------------------- */
+      --ease-moleskine:          cubic-bezier(0.25, 1, 0.5, 1);
+      --duration-fast:          160ms;
+      --duration-normal:        240ms;
+    }
+
+    /* =============================================================================
+       BASE RESET & DOCUMENT SETUP
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--surface-canvas);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 400;
+      color: var(--text-primary);
+      background-color: var(--surface-canvas);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      padding-bottom: 96px; /* 88px safe area padding at scroll bottom */
+    }
+
+    /* =============================================================================
+       MANDATORY HEADER BAR (agent.md Specification)
+       ============================================================================= */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: var(--z-index-header);
+      background: rgba(250, 248, 245, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 24px;
+      gap: 16px;
+      transition: background-color var(--duration-normal) var(--ease-moleskine);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      transition: all var(--duration-fast) var(--ease-moleskine);
+    }
+
+    .nav-back-link:hover {
+      color: var(--text-primary);
+      background-color: #E8E3DC;
+      border-color: #CEC6B6;
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+      background-color: var(--surface-subtle);
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      background: var(--accent-primary-subtle);
+      border: 1px solid rgba(222, 83, 51, 0.25);
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 12px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      border: 1px solid var(--border-subtle);
+      background-color: var(--surface-subtle);
+      color: var(--text-primary);
+      transition: all var(--duration-fast) var(--ease-moleskine);
+      white-space: nowrap;
+    }
+
+    .btn-tile:hover {
+      background-color: #E8E3DC;
+      border-color: #CEC6B6;
+      transform: translateY(-1px);
+    }
+
+    .btn-tile:active {
+      transform: scale(0.97);
+    }
+
+    .btn-tile.btn-copy {
+      background-color: var(--surface-inverse);
+      color: var(--text-inverse);
+      border-color: var(--surface-inverse);
+    }
+
+    .btn-tile.btn-copy:hover {
+      background-color: #262626;
+      border-color: #262626;
+      color: var(--text-inverse);
+    }
+
+    /* =============================================================================
+       LAYOUT CONTAINERS & EDITORIAL GRID
+       ============================================================================= */
+    .layout-wrapper {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+    }
+
+    .section-block {
+      padding: var(--space-2xl) 0;
+      border-bottom: var(--divider-horizontal);
+    }
+
+    .section-block:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-header-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .section-num-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      max-width: 60ch;
+      margin-top: 4px;
+    }
+
+    /* =============================================================================
+       1. HERO DISPLAY BANNER
+       ============================================================================= */
+    .hero-container {
+      padding: var(--space-2xl) 0 var(--space-xl);
+      border-bottom: var(--divider-horizontal);
+      background: radial-gradient(circle at 85% 15%, rgba(229, 164, 46, 0.07) 0%, transparent 60%),
+                  radial-gradient(circle at 10% 85%, rgba(222, 83, 51, 0.05) 0%, transparent 50%);
+    }
+
+    .hero-meta-strip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-tag {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+    }
+
+    .hero-tag.tag-terracotta {
+      background-color: var(--accent-primary-subtle);
+      border-color: rgba(222, 83, 51, 0.25);
+      color: var(--accent-primary);
+    }
+
+    .hero-tag.tag-amber {
+      background-color: var(--accent-amber-subtle);
+      border-color: rgba(229, 164, 46, 0.3);
+      color: #9E6B0E;
+    }
+
+    .hero-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.2vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: var(--space-md);
+      max-width: 22ch;
+    }
+
+    .hero-lead-box {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+      margin-bottom: var(--space-xl);
+    }
+
+    .hero-lead-text {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .hero-lead-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .hero-moleskine-card {
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      position: relative;
+    }
+
+    .hero-moleskine-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      bottom: 14px;
+      width: 3px;
+      background-color: var(--accent-amber);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    .card-meta-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      padding-left: 6px;
+    }
+
+    .card-note-body {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      padding-left: 6px;
+    }
+
+    .card-note-body strong {
+      color: var(--text-primary);
+    }
+
+    .hero-action-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Primary Sticky / Floating Pill Action */
+    .btn-fab-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--surface-inverse);
+      color: var(--text-inverse);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.0;
+      padding: 14px 28px;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-floating-cta);
+      transition: transform var(--duration-fast) var(--ease-moleskine),
+                  box-shadow var(--duration-fast) var(--ease-moleskine),
+                  background-color var(--duration-fast);
+      text-decoration: none;
+    }
+
+    .btn-fab-primary:hover {
+      background-color: #262626;
+      box-shadow: 0 12px 30px rgba(18, 18, 18, 0.24), 0 4px 8px rgba(18, 18, 18, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .btn-fab-primary:active {
+      transform: scale(0.97);
+      box-shadow: var(--shadow-floating-active);
+    }
+
+    .btn-sand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--surface-subtle);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 13px 22px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--duration-fast) var(--ease-moleskine);
+    }
+
+    .btn-sand-pill:hover {
+      background-color: #E8E3DC;
+      border-color: #CEC6B6;
+      transform: translateY(-1px);
+    }
+
+    .btn-sand-pill:active {
+      transform: scale(0.97);
+    }
+
+    .link-interactive {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      transition: opacity var(--duration-fast);
+      border: none;
+      background: none;
+      padding: 4px 8px;
+    }
+
+    .link-interactive:hover {
+      opacity: 0.8;
+    }
+
+    .link-interactive:active {
+      opacity: 0.65;
+    }
+
+    /* =============================================================================
+       2. COLOR ROLES & PALETTE MATRIX
+       ============================================================================= */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .swatch-card {
+      background-color: var(--surface-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      padding: var(--space-sm);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-moleskine);
+      position: relative;
+    }
+
+    .swatch-card:hover {
+      border-color: var(--border-subtle);
+      background-color: var(--surface-subtle);
+      transform: translateY(-2px);
+    }
+
+    .swatch-card:active {
+      transform: scale(0.98);
+    }
+
+    .swatch-color-box {
+      width: 100%;
+      height: 64px;
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-xs);
+      border: 1px solid rgba(20, 20, 19, 0.08);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 6px 8px;
+    }
+
+    .swatch-hex-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.88);
+      color: #141413;
+      backdrop-filter: blur(4px);
+    }
+
+    .swatch-card[data-inverse="true"] .swatch-hex-pill {
+      background: rgba(20, 20, 19, 0.75);
+      color: #FAF8F5;
+    }
+
+    .swatch-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .swatch-role {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+
+    /* =============================================================================
+       3. TYPOGRAPHY SYSTEM SPECIMEN
+       ============================================================================= */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      margin-bottom: var(--space-xl);
+    }
+
+    .type-family-card {
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+    }
+
+    .type-family-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .type-family-name {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .type-alphabet-sample {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-md);
+      word-break: break-all;
+    }
+
+    .type-meta-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-top: 1px solid var(--border-hairline);
+      padding-top: var(--space-sm);
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    /* Type Scale Ladder */
+    .type-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      background-color: var(--surface-canvas);
+      overflow: hidden;
+    }
+
+    .type-ladder-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: 1px solid var(--border-hairline);
+      align-items: center;
+      gap: var(--space-md);
+      transition: background-color var(--duration-fast);
+    }
+
+    .type-ladder-row:last-child {
+      border-bottom: none;
+    }
+
+    .type-ladder-row:hover {
+      background-color: var(--surface-subtle);
+    }
+
+    .ladder-token {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .ladder-token-name {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .ladder-token-spec {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .ladder-sample {
+      color: var(--text-primary);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Live Interactive Pangram Box */
+    .type-tester-box {
+      margin-top: var(--space-xl);
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+    }
+
+    .type-tester-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .editable-text-field {
+      width: 100%;
+      background: var(--surface-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      font-family: var(--font-sans);
+      font-size: 18px;
+      line-height: 1.4;
+      color: var(--text-primary);
+      resize: vertical;
+      min-height: 90px;
+      outline: none;
+      transition: border-color var(--duration-fast);
+    }
+
+    .editable-text-field:focus {
+      border-color: var(--accent-primary);
+    }
+
+    /* =============================================================================
+       4. COMPONENT ARCHETYPE GALLERY
+       ============================================================================= */
+    .components-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+    }
+
+    .component-group-card {
+      background-color: var(--surface-canvas);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .component-group-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .component-group-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .button-archetypes-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    /* Form Controls */
+    .form-control-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .field-input-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .field-label {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .moleskine-input {
+      width: 100%;
+      background-color: var(--surface-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      font-family: var(--font-sans);
+      font-size: 16px; /* iOS zoom prevention */
+      color: var(--text-primary);
+      outline: none;
+      transition: all var(--duration-fast) var(--ease-moleskine);
+    }
+
+    .moleskine-input:focus {
+      border-color: var(--text-primary);
+      box-shadow: 0 0 0 2px rgba(20, 20, 19, 0.1);
+    }
+
+    .moleskine-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* Custom Checkbox & Radio */
+    .checkbox-row, .radio-row, .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 13px;
+      color: var(--text-primary);
+    }
+
+    .custom-checkbox {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      background-color: var(--surface-canvas);
+      cursor: pointer;
+      display: grid;
+      place-content: center;
+      transition: all var(--duration-fast);
+      position: relative;
+    }
+
+    .custom-checkbox:checked {
+      background-color: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .custom-checkbox:checked::after {
+      content: "✓";
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .custom-toggle {
+      width: 36px;
+      height: 20px;
+      background-color: var(--accent-step-inactive);
+      border-radius: var(--radius-full);
+      padding: 2px;
+      cursor: pointer;
+      transition: background-color var(--duration-fast);
+      position: relative;
+    }
+
+    .custom-toggle.active {
+      background-color: var(--surface-inverse);
+    }
+
+    .custom-toggle-thumb {
+      width: 16px;
+      height: 16px;
+      background-color: #FFFFFF;
+      border-radius: var(--radius-full);
+      transition: transform var(--duration-fast) var(--ease-moleskine);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .custom-toggle.active .custom-toggle-thumb {
+      transform: translateX(16px);
+    }
+
+    /* Micro Badges & Tags */
+    .badge-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--surface-subtle);
+      color: var(--text-primary);
+    }
+
+    .badge-capsule.badge-terracotta {
+      background-color: var(--accent-primary-subtle);
+      border-color: rgba(222, 83, 51, 0.3);
+      color: var(--accent-primary);
+    }
+
+    .badge-capsule.badge-amber {
+      background-color: var(--accent-amber-subtle);
+      border-color: rgba(229, 164, 46, 0.35);
+      color: #9E6B0E;
+    }
+
+    .badge-capsule.badge-pill {
+      border-radius: var(--radius-full);
+      padding: 4px 10px;
+    }
+
+    /* Rating Indicator Component */
+    .rating-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+      background-color: var(--surface-subtle);
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .star-icon {
+      color: var(--accent-amber);
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    /* Transit Walk Indicator */
+    .walk-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+      background-color: var(--surface-canvas);
+    }
+
+    .walk-arrow {
+      font-size: 12px;
+      line-height: 1;
+      color: var(--text-secondary);
+    }
+
+    /* Two-Column Milestone Item Archetype */
+    .milestone-node {
+      display: flex;
+      gap: var(--space-md);
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .milestone-node:last-child {
+      border-bottom: none;
+    }
+
+    .milestone-num-col {
+      width: 44px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--accent-step-inactive);
+      transition: color var(--duration-fast);
+    }
+
+    .step-number.active {
+      color: var(--accent-amber);
+    }
+
+    .step-number.completed {
+      color: var(--accent-green);
+    }
+
+    .milestone-content-col {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .milestone-overline {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+    }
+
+    .milestone-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text-primary);
+    }
+
+    .milestone-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      flex-wrap: wrap;
+    }
+
+    .milestone-body {
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--text-secondary);
+    }
+
+    /* Nested Tip Callout Block */
+    .callout-tip-block {
+      background-color: var(--surface-subtle);
+      border-radius: var(--radius-md);
+      padding: var(--space-sm);
+      border-left: var(--callout-accent-left);
+      margin-top: 4px;
+    }
+
+    .callout-tip-title {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .callout-tip-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* =============================================================================
+       5. LIVING MICRO-EXPERIENCE // KYOTO EXPEDITION FIELD GUIDE
+       ============================================================================= */
+    .demo-frame {
+      background-color: var(--surface-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      position: relative;
+    }
+
+    .demo-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .demo-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .demo-overline {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+    }
+
+    .demo-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Animated Sliding Tabs */
+    .field-tabs-nav {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      border-bottom: 1px solid var(--border-hairline);
+      margin: var(--space-md) 0 var(--space-lg);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .field-tabs-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .field-tab-btn {
+      background: none;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--text-muted);
+      padding: 10px 4px 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color var(--duration-fast);
+      position: relative;
+    }
+
+    .field-tab-btn.active {
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Sliding Active Indicator Line */
+    .field-tab-slider {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      height: 3px;
+      background-color: var(--accent-primary);
+      border-radius: 3px 3px 0 0;
+      transition: transform var(--duration-normal) var(--ease-moleskine),
+                  width var(--duration-normal) var(--ease-moleskine);
+    }
+
+    /* Filter Chips Bar */
+    .demo-filters-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-md);
+    }
+
+    .filter-pills-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .demo-filter-chip {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--duration-fast);
+    }
+
+    .demo-filter-chip:hover {
+      color: var(--text-primary);
+      border-color: #BDB5A4;
+    }
+
+    .demo-filter-chip.active {
+      background-color: var(--surface-inverse);
+      border-color: var(--surface-inverse);
+      color: var(--text-inverse);
+    }
+
+    .demo-progress-chip {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background-color: var(--surface-subtle);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* Timeline Container */
+    .timeline-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .timeline-item-block {
+      background-color: var(--surface-canvas);
+      transition: all var(--duration-fast);
+    }
+
+    .timeline-item-interactive {
+      cursor: pointer;
+      border-radius: var(--radius-md);
+      padding: var(--space-xs) var(--space-xs) var(--space-xs) 0;
+      transition: background-color var(--duration-fast);
+    }
+
+    .timeline-item-interactive:hover {
+      background-color: var(--surface-subtle);
+    }
+
+    .transit-connector-row {
+      display: flex;
+      align-items: center;
+      padding-left: 44px;
+      margin: var(--space-xs) 0;
+    }
+
+    /* Interactive Field Note Form */
+    .add-note-drawer {
+      margin-top: var(--space-lg);
+      padding-top: var(--space-md);
+      border-top: 1px dashed var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .add-note-row {
+      display: flex;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    /* =============================================================================
+       FLOATING STICKY ACTION BUTTON (Spec Section 8)
+       ============================================================================= */
+    .floating-action-bar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: var(--z-index-bottom-cta);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: calc(100% - 32px);
+      max-width: 480px;
+      pointer-events: none;
+    }
+
+    .floating-action-bar .btn-fab-primary {
+      pointer-events: auto;
+      width: 100%;
+    }
+
+    /* =============================================================================
+       6. STYLE TILE PROMPT CODE DRAWER
+       ============================================================================= */
+    .spec-drawer-card {
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+    }
+
+    .spec-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-xs);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .spec-code-pre {
+      background-color: #121212;
+      color: #FAF8F5;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.5;
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+      max-height: 480px;
+      border: 1px solid #282828;
+    }
+
+    /* =============================================================================
+       SPEC INSPECTION MODAL
+       ============================================================================= */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(20, 20, 19, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: var(--z-index-modal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--duration-normal) var(--ease-moleskine);
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-sheet {
+      background-color: var(--surface-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 820px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
+      transform: translateY(16px) scale(0.98);
+      transition: transform var(--duration-normal) var(--ease-moleskine);
+      overflow: hidden;
+    }
+
+    .modal-backdrop.open .modal-sheet {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--surface-subtle);
+    }
+
+    .modal-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      transition: all var(--duration-fast);
+    }
+
+    .modal-close-btn:hover {
+      background-color: #E8E3DC;
+      color: var(--text-primary);
+    }
+
+    .modal-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-footer {
+      padding: var(--space-md) var(--space-lg);
+      border-top: 1px solid var(--border-hairline);
+      background-color: var(--surface-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* =============================================================================
+       TOAST NOTIFICATIONS
+       ============================================================================= */
+    .toast-container {
+      position: fixed;
+      bottom: 84px;
+      right: 24px;
+      z-index: 1050;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast-popup {
+      background-color: var(--surface-inverse);
+      color: var(--text-inverse);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all var(--duration-normal) var(--ease-moleskine);
+      pointer-events: auto;
+    }
+
+    .toast-popup.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =============================================================================
+       PAGE FOOTER
+       ============================================================================= */
+    .page-footer {
+      padding: var(--space-xl) 0;
+      border-top: var(--divider-horizontal);
+      margin-top: var(--space-2xl);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+
+    /* =============================================================================
+       RESPONSIVE & MOBILE BREAKPOINTS (agent.md Section 6)
+       ============================================================================= */
+    @media (max-width: 768px) {
+      .hero-lead-box {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .components-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .type-ladder-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .section-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      .swatches-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <!-- Shared Mobile Safety Sheet (agent.md Section 6) -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- ===========================================================================
+       1. MANDATORY TOP NAVIGATION HEADER BAR (agent.md Section 2)
+       =========================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Curated Field Guide</span>
+      <span class="design-vibe-tag">Minimalist & Monastic</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download curated-field-guide.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================================================================
+         1. HERO DISPLAY BANNER
+         ========================================================================= -->
+    <section class="hero-container">
+      <div class="layout-wrapper">
+        <div class="hero-meta-strip">
+          <span class="hero-tag tag-terracotta">WARM EDITORIAL</span>
+          <span class="hero-tag">UTILITARIAN</span>
+          <span class="hero-tag tag-amber">TACTILE MINIMALIST</span>
+          <span class="hero-tag">MODERN MOLESKINE</span>
+          <span class="badge-capsule badge-pill">FLAT PAPER BASELINE</span>
+        </div>
+
+        <h1 class="hero-heading">Curated Field Guide</h1>
+
+        <div class="hero-lead-box">
+          <div>
+            <p class="hero-lead-text">
+              A tactile, utilitarian design language inspired by physical field notebooks, artisanal travel gazettes, and curated expedition journals. Built on a warm linen parchment baseline (<code>#FAF8F5</code>), muted sand sub-surfaces (<code>#F2EFEB</code>), high-contrast matte charcoal CTA buttons (<code>#121212</code>), and bold geometric display numerals in warm saffron amber (<code>#E5A42E</code>) and burnt terracotta (<code>#DE5333</code>).
+            </p>
+            <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <span class="badge-capsule">44px Number Column</span>
+              <span class="badge-capsule">Hairline Dividers</span>
+              <span class="badge-capsule">Micro Badges</span>
+              <span class="badge-capsule">Zero Blur Baseline</span>
+            </div>
+          </div>
+
+          <div class="hero-moleskine-card">
+            <div class="card-meta-row">
+              <span>FIELD SPEC // REGISTRY</span>
+              <span id="live-time-chip">2026-09-01 UTC</span>
+            </div>
+            <p class="card-note-body">
+              <strong>Construction Philosophy:</strong> Flat paper substrate without heavy drop shadows. Visual depth is achieved exclusively through high-contrast floating pill CTAs, 3px indicator lines, and geometric step numerals.
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-action-row">
+          <button class="btn-fab-primary" onclick="copyHeaderTile()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Prompt for AI Agent
+          </button>
+          <a href="#living-demo" class="btn-sand-pill">
+            <span>Explore Living Expedition Demo</span>
+            <span style="font-weight: 700;">↓</span>
+          </a>
+          <button class="link-interactive" onclick="openSpecModal()">
+            Inspect Raw Spec ↗
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         2. COLOR SWATCHES & PALETTE MATRIX
+         ========================================================================= -->
+    <section class="section-block" id="palette-section">
+      <div class="layout-wrapper">
+        <div class="section-header-row">
+          <div>
+            <span class="section-num-tag">01 // COLOR ROLES & TOKEN MATRIX</span>
+            <h2 class="section-title">Color Roles & Palette</h2>
+            <p class="section-desc">Click any swatch to copy its hexadecimal token directly to your clipboard.</p>
+          </div>
+          <span class="badge-capsule">10 Color Tokens</span>
+        </div>
+
+        <div class="swatches-grid">
+          <!-- Canvas Base -->
+          <div class="swatch-card" onclick="copySwatchHex('#FAF8F5', '--surface-canvas')">
+            <div class="swatch-color-box" style="background-color: #FAF8F5;">
+              <span class="swatch-hex-pill">#FAF8F5</span>
+            </div>
+            <div class="swatch-title">
+              <span>Warm Linen Canvas</span>
+              <span style="font-size: 11px; opacity: 0.6;">COPY</span>
+            </div>
+            <div class="swatch-var">--surface-canvas</div>
+            <div class="swatch-role">Warm unbleached linen and parchment application baseline.</div>
+          </div>
+
+          <!-- Subtle Sand Surface -->
+          <div class="swatch-card" onclick="copySwatchHex('#F2EFEB', '--surface-subtle')">
+            <div class="swatch-color-box" style="background-color: #F2EFEB;">
+              <span class="swatch-hex-pill">#F2EFEB</span>
+            </div>
+            <div class="swatch-title">
+              <span>Deeper Sand Surface</span>
+              <span style="font-size: 11px; opacity: 0.6;">COPY</span>
+            </div>
+            <div class="swatch-var">--surface-subtle</div>
+            <div class="swatch-role">Slightly deeper sand for sub-cards, pills, and callout wells.</div>
+          </div>
+
+          <!-- Inverse Surface -->
+          <div class="swatch-card" data-inverse="true" onclick="copySwatchHex('#121212', '--surface-inverse')">
+            <div class="swatch-color-box" style="background-color: #121212;">
+              <span class="swatch-hex-pill">#121212</span>
+            </div>
+            <div class="swatch-title">
+              <span>Matte Charcoal Inverse</span>
+              <span style="font-size: 11px; opacity: 0.6;">COPY</span>
+            </div>
+            <div class="swatch-var">--surface-inverse</div>
+            <div class="swatch-role">True dark charcoal / matte black for floating FAB & primary actions.</div>
+          </div>
+
+          <!-- Primary Text -->
+          <div class="swatch-card" data-inverse="true" onclick="copySwatchHex('#141413', '--text-primary')">
+            <div class="swatch-color-box" style="background-color: #141413;">
+              <span class="swatch-hex-pill">#141413</span>
+            </div>
+            <div class="swatch-title">
+              <span>Deep Charcoal Ink</span>
+              <span style="font-size: 11px; opacity: 0.6;">COPY</span>
+            </div>
+            <div class="swatch-var">--text-primary</div>
+            <div class="swatch-role">Deep charcoal-ink for headings; soft contrast against cream linen.</div>
+          </div>
+
+          <!-- Secondary Text -->
+          <div class="swatch-card" onclick="copySwatchHex('#7A746B', '--text-secondary')">
+            <div class="swatch-color-box" style="background-color: #7A746B;">
+              <span class="swatch-hex-pill" style="color: #FAF8F5; background: rgba(20,20,19,0.7);">#7A746B</span>
+            </div>
+            <div class="swatch-title">
+              <span>Warm Graphite Stone</span>
+              <span style="font-size: 11px; opacity: 0.6;">COPY</span>
+            </div>
+            <div class="swatch-var">--text-secondary</div>
+            <div class="swatch-role">Warm graphite and stone for metadata, addresses, and body copy.</div>
+          </div>
+
+          <!-- Muted Text -->
+          <div class="swatch-card" onclick="copySwatchHex('#AAA49A', '--text-muted')">
+            <div class="swatch-color-box" style="background-color: #AAA49A;">
+              <span class="swatch-hex-pill">#AAA49A</span>
+            </div>
+            <div class="swatch-title">
+              <span>Ghost Stone Inactive</span>
+              <span style="font-size: 11px; opacity: 0.6;">COPY</span>
+            </div>
+            <div class="swatch-var">--text-muted</div>
+            <div class="swatch-role">Inactive tab states, secondary subtext, and placeholders.</div>
+          </div>
+
+          <!-- Burnt Terracotta Accent -->
+          <div class="swatch-card" onclick="copySwatchHex('#DE5333', '--accent-primary')">
+            <div class="swatch-color-box" style="background-color: #DE5333;">
+              <span class="swatch-hex-pill" style="color: #FAF8F5; background: rgba(20,20,19,0.6);">#DE5333</span>
+            </div>
+            <div class="swatch-title">
+              <span>Burnt Terracotta</span>
+              <span style="font-size: 11px; opacity: 0.6;">COPY</span>
+            </div>
+            <div class="swatch-var">--accent-primary</div>
+            <div class="swatch-role">Warm vermilion for active tab indicators, badges, and focus accents.</div>
+          </div>
+
+          <!-- Warm Saffron Ochre -->
+          <div class="swatch-card" onclick="copySwatchHex('#E5A42E', '--accent-amber')">
+            <div class="swatch-color-box" style="background-color: #E5A42E;">
+              <span class="swatch-hex-pill" style="color: #FAF8F5; background: rgba(20,20,19,0.6);">#E5A42E</span>
+            </div>
+            <div class="swatch-title">
+              <span>Warm Saffron Ochre</span>
+              <span style="font-size: 11px; opacity: 0.6;">COPY</span>
+            </div>
+            <div class="swatch-var">--accent-amber</div>
+            <div class="swatch-role">Active display step numbers, rating stars, and callout left bars.</div>
+          </div>
+
+          <!-- Ghost Ochre Step Inactive -->
+          <div class="swatch-card" onclick="copySwatchHex('#DCD6CA', '--accent-step-inactive')">
+            <div class="swatch-color-box" style="background-color: #DCD6CA;">
+              <span class="swatch-hex-pill">#DCD6CA</span>
+            </div>
+            <div class="swatch-title">
+              <span>Ghost Ochre Step</span>
+              <span style="font-size: 11px; opacity: 0.6;">COPY</span>
+            </div>
+            <div class="swatch-var">--accent-step-inactive</div>
+            <div class="swatch-role">Ghost ochre and soft bone for inactive step numbers.</div>
+          </div>
+
+          <!-- Hairline Divider -->
+          <div class="swatch-card" onclick="copySwatchHex('#EAE5DC', '--border-hairline')">
+            <div class="swatch-color-box" style="background-color: #EAE5DC;">
+              <span class="swatch-hex-pill">#EAE5DC</span>
+            </div>
+            <div class="swatch-title">
+              <span>Hairline Divider</span>
+              <span style="font-size: 11px; opacity: 0.6;">COPY</span>
+            </div>
+            <div class="swatch-var">--border-hairline</div>
+            <div class="swatch-role">1px subtle structural divider between timeline items and headers.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         3. TYPOGRAPHY & TYPEFACE SPECIMEN
+         ========================================================================= -->
+    <section class="section-block" id="typography-section">
+      <div class="layout-wrapper">
+        <div class="section-header-row">
+          <div>
+            <span class="section-num-tag">02 // TYPOGRAPHIC HIERARCHY</span>
+            <h2 class="section-title">Typography & Typeface System</h2>
+            <p class="section-desc">Geometric neo-grotesque numerals paired with humanist grotesques for utilitarian clarity.</p>
+          </div>
+          <span class="badge-capsule">Satoshi + Plus Jakarta Sans</span>
+        </div>
+
+        <div class="type-specimen-grid">
+          <div class="type-family-card">
+            <span class="type-family-tag">HEADLINES & NUMBERS // GEOMETRIC SANS</span>
+            <h3 class="type-family-name">Satoshi / General Sans</h3>
+            <p class="type-alphabet-sample" style="font-family: var(--font-display);">
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+              abcdefghijklmnopqrstuvwxyz<br>
+              0123456789 (Step Display 32px)
+            </p>
+            <div class="type-meta-list">
+              <div><strong>Role:</strong> Display Step Numbers (32px / 700), Item Titles (20px / 700), Overlines (11px / 700)</div>
+              <div><strong>Properties:</strong> Crisp geometric terminals, high legibility, -0.03em display letter-spacing</div>
+            </div>
+          </div>
+
+          <div class="type-family-card">
+            <span class="type-family-tag">BODY & UI // HUMANIST GROTESQUE</span>
+            <h3 class="type-family-name" style="font-family: var(--font-sans);">Plus Jakarta Sans / Inter</h3>
+            <p class="type-alphabet-sample" style="font-family: var(--font-sans);">
+              ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+              abcdefghijklmnopqrstuvwxyz<br>
+              0123456789 &amp; @ # $ % ! ?
+            </p>
+            <div class="type-meta-list">
+              <div><strong>Role:</strong> Navigation Tabs (15px / 500-700), Metadata (12px / 600), Body Copy (13px / 400)</div>
+              <div><strong>Properties:</strong> Open counters, neutral texture, comfortable 1.45 line-height</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Type Scale Ladder -->
+        <div class="type-ladder">
+          <div class="type-ladder-row">
+            <div class="ladder-token">
+              <span class="ladder-token-name">Display Step Numbers</span>
+              <span class="ladder-token-spec">32px / 700 / lh 1.0</span>
+            </div>
+            <div class="ladder-sample" style="font-family: var(--font-display); font-size: 32px; font-weight: 700; line-height: 1.0; letter-spacing: -0.03em; color: var(--accent-amber);">
+              01 &nbsp; 02 &nbsp; 03 &nbsp; 04 &nbsp; 08
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="ladder-token">
+              <span class="ladder-token-name">Item Title (H1)</span>
+              <span class="ladder-token-spec">20px / 700 / lh 1.2</span>
+            </div>
+            <div class="ladder-sample" style="font-family: var(--font-display); font-size: 20px; font-weight: 700; line-height: 1.2;">
+              Kiyomizu-dera Pagoda &amp; Morning Mist Trail
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="ladder-token">
+              <span class="ladder-token-name">Active Date / Header</span>
+              <span class="ladder-token-spec">15px / 700 / lh 1.2</span>
+            </div>
+            <div class="ladder-sample" style="font-family: var(--font-sans); font-size: 15px; font-weight: 700; line-height: 1.2;">
+              Tuesday, 14 October · Historic Higashiyama Corridor
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="ladder-token">
+              <span class="ladder-token-name">Inactive Nav Tab</span>
+              <span class="ladder-token-spec">15px / 500 / lh 1.2</span>
+            </div>
+            <div class="ladder-sample" style="font-family: var(--font-sans); font-size: 15px; font-weight: 500; line-height: 1.2; color: var(--text-muted);">
+              Day 02 · Arashiyama Bamboo Ridge
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="ladder-token">
+              <span class="ladder-token-name">Category Overline</span>
+              <span class="ladder-token-spec">11px / 700 / tr 0.10em</span>
+            </div>
+            <div class="ladder-sample" style="font-family: var(--font-display); font-size: 11px; font-weight: 700; line-height: 1.2; letter-spacing: 0.10em; text-transform: uppercase; color: var(--accent-primary);">
+              CRAFT WORKSHOP · STONEWARE CERAMICS
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="ladder-token">
+              <span class="ladder-token-name">Metadata Tracker</span>
+              <span class="ladder-token-spec">12px / 600 / lh 1.3</span>
+            </div>
+            <div class="ladder-sample" style="font-family: var(--font-sans); font-size: 12px; font-weight: 600; line-height: 1.3; color: var(--text-secondary);">
+              08:30 AM · 45 MIN VISIT · 420M SOUTH
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="ladder-token">
+              <span class="ladder-token-name">Body / Tip Note</span>
+              <span class="ladder-token-spec">13px / 400 / lh 1.45</span>
+            </div>
+            <div class="ladder-sample" style="font-family: var(--font-sans); font-size: 13px; font-weight: 400; line-height: 1.45; color: var(--text-secondary);">
+              Master ceramicist demonstrates hand-fluted iron-gall tea bowls using ancient Takayama clay.
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Interactive Pangram Box -->
+        <div class="type-tester-box">
+          <div class="type-tester-controls">
+            <span class="field-label">Interactive Field Journal Type Tester</span>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <button class="btn-tile" onclick="changeTesterFont('display')">Satoshi Display</button>
+              <button class="btn-tile" onclick="changeTesterFont('sans')">Plus Jakarta Sans</button>
+              <button class="btn-tile" onclick="changeTesterFont('mono')">JetBrains Mono</button>
+            </div>
+          </div>
+          <textarea id="live-type-input" class="editable-text-field" spellcheck="false">Step 01: The quiet morning path weaves through ancient cedar forests and hand-hewn flagstone trails.</textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. COMPONENT ARCHETYPE GALLERY
+         ========================================================================= -->
+    <section class="section-block" id="components-section">
+      <div class="layout-wrapper">
+        <div class="section-header-row">
+          <div>
+            <span class="section-num-tag">03 // COMPONENT ARCHETYPES</span>
+            <h2 class="section-title">Component Archetypes &amp; Micro-Patterns</h2>
+            <p class="section-desc">Modular UI components engineered with 4px/8px/14px radii and tactile feedback.</p>
+          </div>
+          <span class="badge-capsule">Tactile UI Kit</span>
+        </div>
+
+        <div class="components-grid">
+          <!-- Button & Action Suite -->
+          <div class="component-group-card">
+            <div class="component-group-title">
+              <span>Buttons &amp; Actions</span>
+              <span class="component-group-tag">Hover &amp; Pressed Feedback</span>
+            </div>
+            <div class="button-archetypes-row">
+              <button class="btn-fab-primary" style="padding: 10px 20px; font-size: 14px;">
+                Start the Day
+              </button>
+              <button class="btn-sand-pill" style="padding: 9px 16px; font-size: 13px;">
+                Secondary Action
+              </button>
+              <button class="link-interactive">
+                Open Coordinates ↗
+              </button>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center; margin-top: 4px;">
+              <span class="walk-indicator">
+                <span class="walk-arrow">↓</span> WALK 4 MIN (280M)
+              </span>
+              <span class="rating-pill">
+                <span class="star-icon">★</span> 4.9 (840)
+              </span>
+            </div>
+          </div>
+
+          <!-- Form Controls -->
+          <div class="component-group-card">
+            <div class="component-group-title">
+              <span>Inputs &amp; Selectors</span>
+              <span class="component-group-tag">16px iOS Compliant</span>
+            </div>
+            <div class="form-control-stack">
+              <div class="field-input-wrap">
+                <label class="field-label">Field Search / Milestone Tag</label>
+                <input type="text" class="moleskine-input" placeholder="Search waypoint or artisan studio..." value="Higashiyama Ceramic Atelier">
+              </div>
+              <div style="display: flex; gap: 16px; align-items: center; margin-top: 4px;">
+                <label class="checkbox-row">
+                  <input type="checkbox" class="custom-checkbox" checked>
+                  <span>Mark Visited</span>
+                </label>
+                <div class="toggle-row" onclick="toggleCustomSwitch(this)">
+                  <div class="custom-toggle active">
+                    <div class="custom-toggle-thumb"></div>
+                  </div>
+                  <span>Audio Compass</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Badges & Chips -->
+          <div class="component-group-card">
+            <div class="component-group-title">
+              <span>Micro Badges &amp; Status</span>
+              <span class="component-group-tag">--radius-sm: 4px &amp; Full Pill</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+              <span class="badge-capsule badge-terracotta">ACTIVE EXPEDITION</span>
+              <span class="badge-capsule badge-amber">EST. 1642</span>
+              <span class="badge-capsule">CRAFT WORKSHOP</span>
+              <span class="badge-capsule badge-pill">9999px Capsule</span>
+              <span class="badge-capsule" style="color: var(--accent-green); border-color: rgba(74, 124, 89, 0.3);">✓ COMPLETED</span>
+            </div>
+          </div>
+
+          <!-- Nested Tip Callout Box -->
+          <div class="component-group-card">
+            <div class="component-group-title">
+              <span>Nested Tip / Guide Callout</span>
+              <span class="component-group-tag">3px Left Amber Border</span>
+            </div>
+            <div class="callout-tip-block">
+              <div class="callout-tip-title">FIELD NOTE // ARCHIVAL TIP</div>
+              <p class="callout-tip-text">
+                The garden courtyard opens only between 08:30 and 11:00 AM. Inquire with the senior tea master at the flagstone entrance.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. LIVING MICRO-EXPERIENCE // KYOTO EXPEDITION JOURNAL
+         ========================================================================= -->
+    <section class="section-block" id="living-demo">
+      <div class="layout-wrapper">
+        <div class="section-header-row">
+          <div>
+            <span class="section-num-tag">04 // LIVING MICRO-EXPERIENCE</span>
+            <h2 class="section-title">Kyoto Field Expedition Journal &amp; Walking Compass</h2>
+            <p class="section-desc">Fully interactive day itinerary demonstrating two-column milestone nodes, sliding tabs, and tactile stamps.</p>
+          </div>
+          <span class="badge-capsule badge-terracotta">INTERACTIVE DEMO</span>
+        </div>
+
+        <div class="demo-frame">
+          <!-- Demo Header -->
+          <div class="demo-header-bar">
+            <div class="demo-title-block">
+              <span class="demo-overline">EXPEDITION ITINERARY // 3-DAY CURATION</span>
+              <h3 class="demo-title">Kyoto Heritage &amp; Artisan Traverse</h3>
+            </div>
+            <div class="demo-progress-chip" id="demo-progress-text">
+              1 / 4 WAYPOINTS VISITED (25%)
+            </div>
+          </div>
+
+          <!-- Sliding Tab Navigation -->
+          <div class="field-tabs-nav" id="field-tabs-container">
+            <button class="field-tab-btn active" data-tab="day1" onclick="switchFieldTab('day1', this)">
+              DAY 01 · GION &amp; TEMPLE TRAILS
+            </button>
+            <button class="field-tab-btn" data-tab="day2" onclick="switchFieldTab('day2', this)">
+              DAY 02 · ARASHIYAMA BAMBOO RIDGE
+            </button>
+            <button class="field-tab-btn" data-tab="day3" onclick="switchFieldTab('day3', this)">
+              DAY 03 · HIGASHIYAMA CRAFT
+            </button>
+            <button class="field-tab-btn" data-tab="notes" onclick="switchFieldTab('notes', this)">
+              FIELD NOTES (<span id="notes-counter">3</span>)
+            </button>
+            <div class="field-tab-slider" id="field-tab-slider"></div>
+          </div>
+
+          <!-- Filters Row -->
+          <div class="demo-filters-row">
+            <div class="filter-pills-group">
+              <button class="demo-filter-chip active" data-filter="all" onclick="filterMilestones('all', this)">All Stops</button>
+              <button class="demo-filter-chip" data-filter="coffee" onclick="filterMilestones('coffee', this)">Coffee &amp; Roastery</button>
+              <button class="demo-filter-chip" data-filter="heritage" onclick="filterMilestones('heritage', this)">Cultural Heritage</button>
+              <button class="demo-filter-chip" data-filter="craft" onclick="filterMilestones('craft', this)">Ceramic &amp; Craft</button>
+            </div>
+            <span class="text-meta" style="color: var(--text-secondary);">TAP MILESTONE TO LOG VISIT</span>
+          </div>
+
+          <!-- Milestones Itinerary List -->
+          <div class="timeline-container" id="timeline-list">
+            <!-- Milestone 01 -->
+            <div class="timeline-item-block" data-type="coffee">
+              <div class="milestone-node timeline-item-interactive" onclick="toggleMilestoneVisited(this, '01')">
+                <div class="milestone-num-col">
+                  <span class="step-number active">01</span>
+                </div>
+                <div class="milestone-content-col">
+                  <span class="milestone-overline">COFFEE &amp; ROASTERY</span>
+                  <h4 class="milestone-title">% Arabica Kyoto Higashiyama</h4>
+                  <div class="milestone-meta-row">
+                    <span>08:30 AM</span>
+                    <span>·</span>
+                    <span>45 MIN VISIT</span>
+                    <span>·</span>
+                    <span class="rating-pill"><span class="star-icon">★</span> 4.9 (1,240)</span>
+                  </div>
+                  <p class="milestone-body">
+                    Minimalist timber espresso bar situated at the base of the five-story Yasaka Pagoda. Single-origin Ethiopian drip prepared on custom Slayer machines.
+                  </p>
+                  <div class="callout-tip-block">
+                    <div class="callout-tip-title">EXPEDITION TIP</div>
+                    <p class="callout-tip-text">Arrive before 09:00 to secure the wooden bench facing the cobblestone pagoda alleyway.</p>
+                  </div>
+                  <div style="margin-top: 6px;">
+                    <a href="javascript:void(0)" class="link-interactive" onclick="event.stopPropagation(); showToast('Opened Coordinates: 34.9986° N, 135.7797° E', '⌖');">Open Coordinates ↗</a>
+                  </div>
+                </div>
+              </div>
+              <div class="transit-connector-row">
+                <span class="walk-indicator"><span class="walk-arrow">↓</span> WALK 7 MIN · 520M TOWARDS NINENZAKA</span>
+              </div>
+            </div>
+
+            <!-- Milestone 02 -->
+            <div class="timeline-item-block" data-type="heritage">
+              <div class="milestone-node timeline-item-interactive" onclick="toggleMilestoneVisited(this, '02')">
+                <div class="milestone-num-col">
+                  <span class="step-number">02</span>
+                </div>
+                <div class="milestone-content-col">
+                  <span class="milestone-overline">CULTURAL HERITAGE</span>
+                  <h4 class="milestone-title">Ninenzaka &amp; Sannenzaka Flagstone Paths</h4>
+                  <div class="milestone-meta-row">
+                    <span>09:30 AM</span>
+                    <span>·</span>
+                    <span>60 MIN WALK</span>
+                    <span>·</span>
+                    <span class="rating-pill"><span class="star-icon">★</span> 4.8 (3,890)</span>
+                  </div>
+                  <p class="milestone-body">
+                    Ancient pedestrian paths flanked by preserved Edo-era machiya townhouses, traditional incense artisans, and cedarwood tea pavilions.
+                  </p>
+                  <div class="callout-tip-block">
+                    <div class="callout-tip-title">FIELD NOTE</div>
+                    <p class="callout-tip-text">Notice the subtle family crests carved into the wooden eaves above the 18th-century bamboo fan studio.</p>
+                  </div>
+                  <div style="margin-top: 6px;">
+                    <a href="javascript:void(0)" class="link-interactive" onclick="event.stopPropagation(); showToast('Opened Heritage Route Map', '🗺');">Open Historical Route ↗</a>
+                  </div>
+                </div>
+              </div>
+              <div class="transit-connector-row">
+                <span class="walk-indicator"><span class="walk-arrow">↓</span> WALK 4 MIN · 280M SOUTH</span>
+              </div>
+            </div>
+
+            <!-- Milestone 03 -->
+            <div class="timeline-item-block" data-type="craft">
+              <div class="milestone-node timeline-item-interactive" onclick="toggleMilestoneVisited(this, '03')">
+                <div class="milestone-num-col">
+                  <span class="step-number">03</span>
+                </div>
+                <div class="milestone-content-col">
+                  <span class="milestone-overline">CERAMIC &amp; CRAFT</span>
+                  <h4 class="milestone-title">Asahiyaki &amp; Kiyomizu Potter Atelier</h4>
+                  <div class="milestone-meta-row">
+                    <span>10:45 AM</span>
+                    <span>·</span>
+                    <span>90 MIN WORKSHOP</span>
+                    <span>·</span>
+                    <span class="rating-pill"><span class="star-icon">★</span> 5.0 (420)</span>
+                  </div>
+                  <p class="milestone-body">
+                    16th-generation wood-fired stoneware studio specializing in unglazed tea jars, matcha chawan, and iron-gall celadon teaware.
+                  </p>
+                  <div class="callout-tip-block">
+                    <div class="callout-tip-title">TACTILE LOG</div>
+                    <p class="callout-tip-text">Master potter demonstrates spiral carving techniques on local Uji river clay bodies.</p>
+                  </div>
+                  <div style="margin-top: 6px;">
+                    <a href="javascript:void(0)" class="link-interactive" onclick="event.stopPropagation(); showToast('Loaded Pottery Studio Catalog', '🏺');">View Atelier Archive ↗</a>
+                  </div>
+                </div>
+              </div>
+              <div class="transit-connector-row">
+                <span class="walk-indicator"><span class="walk-arrow">↓</span> WALK 12 MIN · 890M TO OTOWA WATERFALL</span>
+              </div>
+            </div>
+
+            <!-- Milestone 04 -->
+            <div class="timeline-item-block" data-type="heritage">
+              <div class="milestone-node timeline-item-interactive" onclick="toggleMilestoneVisited(this, '04')">
+                <div class="milestone-num-col">
+                  <span class="step-number">04</span>
+                </div>
+                <div class="milestone-content-col">
+                  <span class="milestone-overline">CULTURAL HERITAGE</span>
+                  <h4 class="milestone-title">Kiyomizu-dera Wooden Stage &amp; Sanctuary</h4>
+                  <div class="milestone-meta-row">
+                    <span>12:30 PM</span>
+                    <span>·</span>
+                    <span>75 MIN VISIT</span>
+                    <span>·</span>
+                    <span class="rating-pill"><span class="star-icon">★</span> 4.9 (5,120)</span>
+                  </div>
+                  <p class="milestone-body">
+                    Iconic temple hall cantilevered over the wooded hillside with interlocking keyaki timber joints built without nails.
+                  </p>
+                  <div style="margin-top: 6px;">
+                    <a href="javascript:void(0)" class="link-interactive" onclick="event.stopPropagation(); showToast('Sanctuary Guide Loaded', '⛩');">Sanctuary Audio Guide ↗</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add Note Inline Form -->
+          <div class="add-note-drawer">
+            <span class="field-label">Add Field Note / Expedition Discovery</span>
+            <div class="add-note-row">
+              <input type="text" id="new-note-input" class="moleskine-input" placeholder="Type an observation (e.g. Hidden moss staircase behind pagoda)...">
+              <button class="btn-tile" style="padding: 10px 18px; font-weight: 700;" onclick="submitFieldNote()">
+                Log Note +
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. STYLE TILE PROMPT CODE DRAWER (Populated dynamically)
+         ========================================================================= -->
+    <section class="section-block" id="spec-section">
+      <div class="layout-wrapper">
+        <div class="spec-drawer-card">
+          <div class="spec-drawer-header">
+            <div>
+              <span class="section-num-tag">05 // MACHINE-READABLE PROMPT SPEC</span>
+              <h3 class="section-title">Transferable Style Tile Markdown</h3>
+            </div>
+            <button class="btn-tile btn-copy" onclick="copyHeaderTile()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Style Tile Prompt
+            </button>
+          </div>
+          <pre class="spec-code-pre"><code id="visible-markdown-code">Loading Style Tile Specification...</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===========================================================================
+       FLOATING STICKY ACTION BUTTON (Spec Section 8)
+       =========================================================================== -->
+  <div class="floating-action-bar">
+    <button class="btn-fab-primary" onclick="triggerStickyFabAction()">
+      <span>Start the Day (3 Stops Remaining)</span>
+      <span style="font-weight: 700;">↓</span>
+    </button>
+  </div>
+
+  <!-- ===========================================================================
+       ARCHIVAL SPEC INSPECTION MODAL
+       =========================================================================== -->
+  <div class="modal-backdrop" id="spec-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-tile-title">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="design-code" data-live-tile-code>TILE</span>
+          <span class="design-title" id="modal-tile-title">Curated Field Guide — Style Tile Spec</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeSpecModal()" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <p class="text-meta" style="margin-bottom: 8px; color: var(--text-secondary);">RAW MARKDOWN SPECIFICATION (AGENT INGESTION READY):</p>
+        <pre class="spec-code-pre"><code id="modal-markdown-content"></code></pre>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-tile" onclick="downloadHeaderTile()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download .md
+        </button>
+        <button class="btn-tile btn-copy" onclick="copyHeaderTile()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Prompt
+        </button>
+        <button class="btn-tile" onclick="closeSpecModal()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Page Footer -->
+  <footer class="page-footer">
+    <div class="layout-wrapper footer-inner">
+      <div>
+        <strong>Curated Field Guide</strong> · Warm Editorial &amp; Utilitarian Style Tile
+      </div>
+      <div>
+        <span>Registered in Style Tiles Archive</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===========================================================================
+       RAW MARKDOWN STYLE TILE SPECIFICATION (agent.md Section 4)
+       =========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Curated Field Guide
+  Construction: warm linen parchment • utilitarian geometry • neo-grotesque numbers • burnt terracotta accents
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A warm, utilitarian editorial aesthetic engineered around paper-like baseline surfaces (#FAF8F5), subtle sand card containers (#F2EFEB), and high-contrast charcoal ink (#141413). Typographic hierarchy is anchored by crisp neo-grotesque display numerals and clear, unadorned grotesque sans body type. Structural definition relies on hairline borders (#EAE5DC) and flat depth, accented by burnt terracotta (#DE5333) active indicator strokes and warm saffron ochre (#E5A42E) callout bars.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Canvas & Surfaces */
+  --surface-canvas:         #FAF8F5; /* Warm linen/parchment background */
+  --surface-subtle:         #F2EFEB; /* Slightly deeper sand for cards/pills */
+  --surface-inverse:        #121212; /* True dark charcoal/matte black for CTA and FAB */
+
+  /* Content & Text */
+  --text-primary:           #141413; /* Deep charcoal-ink; soft contrast against cream */
+  --text-secondary:         #7A746B; /* Warm graphite/stone for metadata and addresses */
+  --text-muted:             #AAA49A; /* Inactive tab states, secondary subtext */
+  --text-inverse:           #FFFFFF; /* White on dark surfaces */
+
+  /* Accent & Semantic Signals */
+  --accent-primary:         #DE5333; /* Burnt terracotta / warm vermilion (active line, badges) */
+  --accent-amber:           #E5A42E; /* Warm saffron / ochre (active step numbers, ratings) */
+  --accent-step-inactive:   #DCD6CA; /* Ghost ochre / soft bone (inactive step numbers) */
+  --accent-callout-border:  #E5A42E; /* Left indicator bar for quest/tip blocks */
+
+  /* Lines & Dividers */
+  --border-hairline:        #EAE5DC; /* 1px subtle divider between timeline items */
+  --border-subtle:          #DDD6C9; /* Pill container borders */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Satoshi", "General Sans", -apple-system, sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", monospace;
+
+/* Type Scale */
+--text-step-display: 2.00rem   / 1.00  var(--font-display); /* 32px | Weight: 700 | Letter-spacing: -0.03em */
+--text-h1:           1.25rem   / 1.20  var(--font-display); /* 20px | Weight: 700 | Color: --text-primary */
+--text-h2:           0.9375rem / 1.20  var(--font-sans);    /* 15px | Weight: 700 | Color: --text-primary */
+--text-tab-inactive: 0.9375rem / 1.20  var(--font-sans);    /* 15px | Weight: 500 | Color: --text-muted */
+--text-overline:     0.6875rem / 1.20  var(--font-display); /* 11px | Weight: 700 | Tracking: 0.10em | UPPERCASE */
+--text-meta:         0.75rem   / 1.30  var(--font-sans);    /* 12px | Weight: 600 | Color: --text-secondary */
+--text-body:         0.8125rem / 1.45  var(--font-sans);    /* 13px | Weight: 400 | Color: --text-secondary */
+--text-button:       0.9375rem / 1.00  var(--font-sans);    /* 15px | Weight: 700 | Color: --text-inverse */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-sm:                4px;      /* Micro badges, inline tags */
+--radius-md:                8px;      /* Sub-cards, transit info modules */
+--radius-lg:                14px;     /* Content grouping blocks */
+--radius-full:              9999px;   /* Floating CTA pill button, status capsules */
+
+/* Elevation & Shadows */
+--shadow-none:              none;     /* Flat baseline; content rests directly on canvas */
+--shadow-floating-cta:      0 8px 24px rgba(18, 18, 18, 0.18), 0 2px 6px rgba(18, 18, 18, 0.08);
+--shadow-floating-active:   0 2px 8px rgba(18, 18, 18, 0.22);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--divider-horizontal:       1px solid var(--border-hairline);
+--indicator-tab-active:     3px solid var(--accent-primary);
+--callout-accent-left:      3px solid var(--accent-amber);
+--tag-outline:              1px solid var(--border-subtle);
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Primary floating action buttons use `--surface-inverse` (#121212) fill, `--text-inverse` typography, full pill radius (9999px), and `--shadow-floating-cta`. Active state scales to 0.97 with reduced elevation. Secondary and ghost actions use subtle sand surfaces (#F2EFEB) with 1px border (#DDD6C9) and 8px radius. Use the host's existing labels.
+- **Cards & Modules**: Resting directly on linen canvas with zero shadow. Sub-cards and nested modules use `--surface-subtle` (#F2EFEB), `--radius-md` (8px), or `--radius-lg` (14px) with hairline dividers (`--border-hairline`). Do not add index codes or fake metadata.
+- **Callout & Tip Blocks**: Nested containers with `--surface-subtle` background, 8px radius, and a prominent 3px solid left accent bar in `--accent-amber` (#E5A42E).
+- **Navigation & Tabs**: Clean horizontal tab lists. Active tab displays `--text-primary` with a 3px solid `--accent-primary` (#DE5333) underline that smoothly slides (`cubic-bezier(0.25, 1, 0.5, 1)`, 240ms). Inactive tabs render in `--text-muted` (#AAA49A).
+- **Milestone & Sequence Nodes**: Two-column layout with fixed 44px left number column featuring 32px Satoshi numerals (active in `--accent-amber`, inactive in `--accent-step-inactive`) and 1fr content column separated by a hairline divider.
+- **Interactive Links**: Underlined text with trailing micro-arrow northeast (↗); active/pressed state reduces opacity to 0.65.
+- **Badges & Tags**: Micro-capsule or 4px radius tags with 11px uppercase tracked typography, 1px subtle borders, and terracotta or subtle sand fills.
+- **Inputs & Controls**: Form elements styled with `--surface-canvas` background, 1px `--border-subtle` outline, 8px radius, 16px minimum text size on mobile, and warm terracotta focus ring.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No heavy blurred drop shadows or multi-tiered floating card elevation layers.
+- No saturated neon glows, glossy glassmorphism, or multi-color mesh gradient fills.
+- No oversized rounded cartoon pill containers for primary structural cards (pills reserved for floating CTAs and status capsules).
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- ===========================================================================
+       PAGE INTERACTION & LOGIC SCRIPT
+       =========================================================================== -->
+  <script>
+    // 1. Spec Retrieval Helper
+    function getMarkdownSpec() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    // 2. Toast System
+    function showToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast-popup";
+      toast.innerHTML = `<span style="color: var(--accent-primary); font-weight: 800;">${icon}</span><span>${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 240);
+      }, 2400);
+    }
+
+    // 3. Header Action Handlers
+    function copyHeaderTile() {
+      const spec = getMarkdownSpec();
+      navigator.clipboard.writeText(spec).then(() => {
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const orig = btn.innerHTML;
+          btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Copied!`;
+          setTimeout(() => { btn.innerHTML = orig; }, 2000);
+        }
+        showToast("Copied Style Tile Markdown to clipboard!", "✓");
+      }).catch(err => {
+        console.error("Clipboard copy failed:", err);
+      });
+    }
+
+    function downloadHeaderTile() {
+      const spec = getMarkdownSpec();
+      const blob = new Blob([spec], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "curated-field-guide.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded curated-field-guide.md", "↓");
+    }
+
+    // 4. Modal Sheet Logic
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      const content = document.getElementById("modal-markdown-content");
+      if (content) content.textContent = getMarkdownSpec();
+      if (modal) modal.classList.add("open");
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      if (modal) modal.classList.remove("open");
+    }
+
+    // 5. Swatch Copy Helper
+    function copySwatchHex(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${hex} (${varName})`, "🎨");
+      });
+    }
+
+    // 6. Interactive Type Tester
+    function changeTesterFont(type) {
+      const input = document.getElementById("live-type-input");
+      if (!input) return;
+      if (type === "display") input.style.fontFamily = "var(--font-display)";
+      else if (type === "sans") input.style.fontFamily = "var(--font-sans)";
+      else if (type === "mono") input.style.fontFamily = "var(--font-mono)";
+      showToast(`Switched font to ${type}`, "Aa");
+    }
+
+    // 7. Custom Switch Helper
+    function toggleCustomSwitch(el) {
+      const toggle = el.querySelector(".custom-toggle");
+      if (toggle) {
+        toggle.classList.toggle("active");
+        const isActive = toggle.classList.contains("active");
+        showToast(`Audio Compass ${isActive ? "Enabled" : "Muted"}`, "🧭");
+      }
+    }
+
+    // 8. Sliding Tab Bar Implementation (Spec Section 8)
+    function updateTabSlider() {
+      const activeBtn = document.querySelector(".field-tab-btn.active");
+      const slider = document.getElementById("field-tab-slider");
+      if (!activeBtn || !slider) return;
+
+      slider.style.width = `${activeBtn.offsetWidth}px`;
+      slider.style.transform = `translateX(${activeBtn.offsetLeft}px)`;
+    }
+
+    function switchFieldTab(tabKey, btn) {
+      document.querySelectorAll(".field-tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      updateTabSlider();
+
+      const timeline = document.getElementById("timeline-list");
+      if (!timeline) return;
+
+      if (tabKey === "day1") {
+        timeline.innerHTML = `
+          <div class="timeline-item-block" data-type="coffee">
+            <div class="milestone-node timeline-item-interactive" onclick="toggleMilestoneVisited(this, '01')">
+              <div class="milestone-num-col">
+                <span class="step-number active">01</span>
+              </div>
+              <div class="milestone-content-col">
+                <span class="milestone-overline">COFFEE &amp; ROASTERY</span>
+                <h4 class="milestone-title">% Arabica Kyoto Higashiyama</h4>
+                <div class="milestone-meta-row">
+                  <span>08:30 AM</span><span>·</span><span>45 MIN VISIT</span><span>·</span>
+                  <span class="rating-pill"><span class="star-icon">★</span> 4.9 (1,240)</span>
+                </div>
+                <p class="milestone-body">Minimalist timber espresso bar situated at the base of the Yasaka Pagoda. Single-origin drip on custom Slayer machines.</p>
+                <div class="callout-tip-block">
+                  <div class="callout-tip-title">EXPEDITION TIP</div>
+                  <p class="callout-tip-text">Arrive before 09:00 to secure the wooden bench facing the cobblestone pagoda alleyway.</p>
+                </div>
+                <div style="margin-top: 6px;">
+                  <a href="javascript:void(0)" class="link-interactive" onclick="event.stopPropagation(); showToast('Opened Coordinates: 34.9986° N, 135.7797° E', '⌖');">Open Coordinates ↗</a>
+                </div>
+              </div>
+            </div>
+            <div class="transit-connector-row"><span class="walk-indicator"><span class="walk-arrow">↓</span> WALK 7 MIN · 520M TOWARDS NINENZAKA</span></div>
+          </div>
+
+          <div class="timeline-item-block" data-type="heritage">
+            <div class="milestone-node timeline-item-interactive" onclick="toggleMilestoneVisited(this, '02')">
+              <div class="milestone-num-col">
+                <span class="step-number">02</span>
+              </div>
+              <div class="milestone-content-col">
+                <span class="milestone-overline">CULTURAL HERITAGE</span>
+                <h4 class="milestone-title">Ninenzaka &amp; Sannenzaka Flagstone Paths</h4>
+                <div class="milestone-meta-row">
+                  <span>09:30 AM</span><span>·</span><span>60 MIN WALK</span><span>·</span>
+                  <span class="rating-pill"><span class="star-icon">★</span> 4.8 (3,890)</span>
+                </div>
+                <p class="milestone-body">Ancient pedestrian paths flanked by preserved Edo-era machiya townhouses, traditional incense artisans, and cedarwood tea pavilions.</p>
+                <div class="callout-tip-block">
+                  <div class="callout-tip-title">FIELD NOTE</div>
+                  <p class="callout-tip-text">Notice the subtle family crests carved into the wooden eaves above the 18th-century bamboo fan studio.</p>
+                </div>
+                <div style="margin-top: 6px;">
+                  <a href="javascript:void(0)" class="link-interactive" onclick="event.stopPropagation(); showToast('Opened Heritage Route Map', '🗺');">Open Historical Route ↗</a>
+                </div>
+              </div>
+            </div>
+            <div class="transit-connector-row"><span class="walk-indicator"><span class="walk-arrow">↓</span> WALK 4 MIN · 280M SOUTH</span></div>
+          </div>
+
+          <div class="timeline-item-block" data-type="craft">
+            <div class="milestone-node timeline-item-interactive" onclick="toggleMilestoneVisited(this, '03')">
+              <div class="milestone-num-col">
+                <span class="step-number">03</span>
+              </div>
+              <div class="milestone-content-col">
+                <span class="milestone-overline">CERAMIC &amp; CRAFT</span>
+                <h4 class="milestone-title">Asahiyaki &amp; Kiyomizu Potter Atelier</h4>
+                <div class="milestone-meta-row">
+                  <span>10:45 AM</span><span>·</span><span>90 MIN WORKSHOP</span><span>·</span>
+                  <span class="rating-pill"><span class="star-icon">★</span> 5.0 (420)</span>
+                </div>
+                <p class="milestone-body">16th-generation wood-fired stoneware studio specializing in unglazed tea jars, matcha chawan, and iron-gall celadon teaware.</p>
+                <div class="callout-tip-block">
+                  <div class="callout-tip-title">TACTILE LOG</div>
+                  <p class="callout-tip-text">Master potter demonstrates spiral carving techniques on local Uji river clay bodies.</p>
+                </div>
+                <div style="margin-top: 6px;">
+                  <a href="javascript:void(0)" class="link-interactive" onclick="event.stopPropagation(); showToast('Loaded Pottery Studio Catalog', '🏺');">View Atelier Archive ↗</a>
+                </div>
+              </div>
+            </div>
+            <div class="transit-connector-row"><span class="walk-indicator"><span class="walk-arrow">↓</span> WALK 12 MIN · 890M TO OTOWA WATERFALL</span></div>
+          </div>
+
+          <div class="timeline-item-block" data-type="heritage">
+            <div class="milestone-node timeline-item-interactive" onclick="toggleMilestoneVisited(this, '04')">
+              <div class="milestone-num-col">
+                <span class="step-number">04</span>
+              </div>
+              <div class="milestone-content-col">
+                <span class="milestone-overline">CULTURAL HERITAGE</span>
+                <h4 class="milestone-title">Kiyomizu-dera Wooden Stage &amp; Sanctuary</h4>
+                <div class="milestone-meta-row">
+                  <span>12:30 PM</span><span>·</span><span>75 MIN VISIT</span><span>·</span>
+                  <span class="rating-pill"><span class="star-icon">★</span> 4.9 (5,120)</span>
+                </div>
+                <p class="milestone-body">Iconic temple hall cantilevered over the wooded hillside with interlocking keyaki timber joints built without nails.</p>
+                <div style="margin-top: 6px;">
+                  <a href="javascript:void(0)" class="link-interactive" onclick="event.stopPropagation(); showToast('Sanctuary Guide Loaded', '⛩');">Sanctuary Audio Guide ↗</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        showToast("Loaded Day 01 Itinerary", "📍");
+      } else if (tabKey === "day2") {
+        timeline.innerHTML = `
+          <div class="timeline-item-block" data-type="heritage">
+            <div class="milestone-node timeline-item-interactive" onclick="toggleMilestoneVisited(this, '01')">
+              <div class="milestone-num-col"><span class="step-number active">01</span></div>
+              <div class="milestone-content-col">
+                <span class="milestone-overline">BOTANICAL RIDGE</span>
+                <h4 class="milestone-title">Sagano Bamboo Grove Dawn Traverse</h4>
+                <div class="milestone-meta-row"><span>06:45 AM</span><span>·</span><span>50 MIN WALK</span><span>·</span><span class="rating-pill"><span class="star-icon">★</span> 4.9 (2,400)</span></div>
+                <p class="milestone-body">Towering green bamboo stalks creating an acoustic canopy in the morning wind. Best experienced before morning light breaks.</p>
+              </div>
+            </div>
+            <div class="transit-connector-row"><span class="walk-indicator"><span class="walk-arrow">↓</span> WALK 5 MIN · 320M NORTH</span></div>
+          </div>
+          <div class="timeline-item-block" data-type="craft">
+            <div class="milestone-node timeline-item-interactive" onclick="toggleMilestoneVisited(this, '02')">
+              <div class="milestone-num-col"><span class="step-number">02</span></div>
+              <div class="milestone-content-col">
+                <span class="milestone-overline">TRADITIONAL JOINERY</span>
+                <h4 class="milestone-title">Okochi Sanso Villa Woodwork Pavilions</h4>
+                <div class="milestone-meta-row"><span>08:15 AM</span><span>·</span><span>60 MIN EXPLORATION</span></div>
+                <p class="milestone-body">Architectural pavilions overlooking Mount Hiei with meticulously preserved mortise-and-tenon cedar lattices.</p>
+              </div>
+            </div>
+          </div>
+        `;
+        showToast("Loaded Day 02 Itinerary", "🎋");
+      } else if (tabKey === "day3") {
+        timeline.innerHTML = `
+          <div class="timeline-item-block" data-type="craft">
+            <div class="milestone-node timeline-item-interactive" onclick="toggleMilestoneVisited(this, '01')">
+              <div class="milestone-num-col"><span class="step-number active">01</span></div>
+              <div class="milestone-content-col">
+                <span class="milestone-overline">CERAMIC &amp; KILN</span>
+                <h4 class="milestone-title">Gojo-zaka Climbing Kiln Remains</h4>
+                <div class="milestone-meta-row"><span>09:00 AM</span><span>·</span><span>45 MIN VISIT</span></div>
+                <p class="milestone-body">Historic multi-chamber noborigama kiln slope where master ceramicists fired unglazed teaware for four centuries.</p>
+              </div>
+            </div>
+          </div>
+        `;
+        showToast("Loaded Day 03 Itinerary", "🏺");
+      } else if (tabKey === "notes") {
+        timeline.innerHTML = `
+          <div class="timeline-item-block">
+            <div class="callout-tip-block" style="margin-bottom: 12px;">
+              <div class="callout-tip-title">FIELD NOTE #01 · HIGASHIYAMA</div>
+              <p class="callout-tip-text">Single cultivar Sencha available at the corner machiya near Yasaka Shrine. Ask for the autumn roast.</p>
+            </div>
+            <div class="callout-tip-block" style="margin-bottom: 12px;">
+              <div class="callout-tip-title">FIELD NOTE #02 · FLAGSTONE PASSAGE</div>
+              <p class="callout-tip-text">Hidden stone stairwell leads to private rock garden behind the ceramic gallery. Open after 10 AM.</p>
+            </div>
+            <div class="callout-tip-block" style="margin-bottom: 12px;">
+              <div class="callout-tip-title">FIELD NOTE #03 · TOOL OBSERVATION</div>
+              <p class="callout-tip-text">Hand-forged pruning shears by master smith Banshu Hamono on display at the woodcraft stall.</p>
+            </div>
+          </div>
+        `;
+        showToast("Loaded Field Notes", "📝");
+      }
+      updateVisitedProgress();
+    }
+
+    // 9. Milestone Filter Logic
+    function filterMilestones(type, btn) {
+      document.querySelectorAll(".demo-filter-chip").forEach(c => c.classList.remove("active"));
+      btn.classList.add("active");
+
+      const items = document.querySelectorAll(".timeline-item-block");
+      let visibleCount = 0;
+      items.forEach(item => {
+        const itemType = item.getAttribute("data-type");
+        if (type === "all" || itemType === type) {
+          item.style.display = "";
+          visibleCount++;
+        } else {
+          item.style.display = "none";
+        }
+      });
+      showToast(`Filtered: showing ${visibleCount} stops`, "⌖");
+    }
+
+    // 10. Milestone Interactive Visit Stamp
+    function toggleMilestoneVisited(nodeEl, stepNum) {
+      const stepNumberEl = nodeEl.querySelector(".step-number");
+      const isCompleted = stepNumberEl.classList.contains("completed");
+
+      if (isCompleted) {
+        stepNumberEl.classList.remove("completed");
+        stepNumberEl.textContent = stepNum;
+        showToast(`Unmarked Stop ${stepNum}`, "↺");
+      } else {
+        stepNumberEl.classList.add("completed");
+        stepNumberEl.innerHTML = `<span style="font-size: 24px; color: var(--accent-green);">✓</span>`;
+        showToast(`Logged Stop ${stepNum} as Visited!`, "✓");
+      }
+      updateVisitedProgress();
+    }
+
+    function updateVisitedProgress() {
+      const totalSteps = document.querySelectorAll(".milestone-node").length;
+      const completedSteps = document.querySelectorAll(".step-number.completed").length;
+      const progressEl = document.getElementById("demo-progress-text");
+      if (progressEl && totalSteps > 0) {
+        const pct = Math.round((completedSteps / totalSteps) * 100);
+        progressEl.textContent = `${completedSteps} / ${totalSteps} WAYPOINTS VISITED (${pct}%)`;
+      }
+    }
+
+    // 11. New Field Note Submission
+    function submitFieldNote() {
+      const input = document.getElementById("new-note-input");
+      if (!input || !input.value.trim()) return;
+
+      const noteText = input.value.trim();
+      const timeline = document.getElementById("timeline-list");
+      if (timeline) {
+        const noteBlock = document.createElement("div");
+        noteBlock.className = "timeline-item-block";
+        noteBlock.innerHTML = `
+          <div class="callout-tip-block" style="margin-top: 8px;">
+            <div class="callout-tip-title">USER FIELD LOG // JUST NOW</div>
+            <p class="callout-tip-text">${noteText}</p>
+          </div>
+        `;
+        timeline.prepend(noteBlock);
+      }
+
+      const counter = document.getElementById("notes-counter");
+      if (counter) {
+        counter.textContent = parseInt(counter.textContent || "3", 10) + 1;
+      }
+
+      input.value = "";
+      showToast("Logged custom field note!", "✍️");
+    }
+
+    // 12. Floating CTA Action
+    function triggerStickyFabAction() {
+      showToast("Expedition Started! Tracking first waypoint...", "🧭");
+      const demo = document.getElementById("living-demo");
+      if (demo) demo.scrollIntoView({ behavior: "smooth" });
+    }
+
+    // 13. Live UTC Clock
+    function updateLiveClock() {
+      const chip = document.getElementById("live-time-chip");
+      if (!chip) return;
+      const now = new Date();
+      const utcStr = now.toISOString().replace("T", " ").substring(0, 19) + " UTC";
+      chip.textContent = utcStr;
+    }
+
+    // 14. Document Initialization
+    document.addEventListener("DOMContentLoaded", () => {
+      // Header button bindings
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyHeaderTile);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadHeaderTile);
+
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      // Populate visible Markdown block
+      const visibleCode = document.getElementById("visible-markdown-code");
+      if (visibleCode) visibleCode.textContent = getMarkdownSpec();
+
+      // Initialize Tab Slider
+      updateTabSlider();
+      window.addEventListener("resize", updateTabSlider);
+
+      // Start live clock
+      updateLiveClock();
+      setInterval(updateLiveClock, 1000);
+
+      // Modal key & backdrop listeners
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
