@@ -1513,30 +1513,7 @@ const STYLE_TILES_DATA = [
     description: "Industrial Dynamo: High-energy modern utility design language built on deep obsidian night slate (#111622) with electric safety orange (#FF4D1C) vector backdrops, high-visibility neon lime (#C8F532) pill CTAs, 9999px floating island navigation, and dynamic circular stamp badges.",
     markdownSpec: null
   },
-  {
-    slug: "retro-futurist-analog-hud",
-    name: "Retro-Futurist Analog HUD",
-    vibe: "Muted Olive Canvas • 3D Specular Chrome • 4-Corner Viewfinder • Machine Monospace • Inversion Snaps",
-    vibeBadge: "Cyber & Blueprint",
-    categories: ["cyber"],
-    theme: "Light",
-    hasPage: true,
-    fonts: {
-      display: "Caveat",
-      sans: "Space Mono",
-      mono: "Space Mono"
-    },
-    palette: [
-      { name: "Primary Canvas", hex: "#C4C7BC" },
-      { name: "Canvas Tint", hex: "#AEB2A5" },
-      { name: "Ink Core", hex: "#232528" },
-      { name: "Ink Muted", hex: "#4A4D4E" },
-      { name: "Surface Invert", hex: "#111213" },
-      { name: "Accent Reflection", hex: "#E8EBE2" }
-    ],
-    description: "Retro-futurist analog HUD on muted olive-grey film base #C4C7BC with surrealist 3D specular chrome centerpiece #E8EBE2, 4-corner edge-anchored telemetry matrix, CRT monitor bezel frame, and rigid mechanical inversion snaps.",
-    markdownSpec: null
-  },
+
   {
     slug: "tuscan-nostalgia",
     name: "Tuscan Nostalgia",
@@ -1589,6 +1566,40 @@ const STYLE_TILES_DATA = [
     ],
     description: "Curated Field Guide: Tactile minimalist and utilitarian modern Moleskine design system built on warm linen parchment (#FAF8F5) with subtle sand cards (#F2EFEB), high-contrast matte charcoal floating pill CTAs (#121212), bold 32px geometric step numerals, warm saffron amber callouts (#E5A42E), and burnt terracotta accent indicators (#DE5333).",
     markdownSpec: null
+  },
+
+  {
+    slug: "botanical-heritage-press",
+    name: "Botanical Heritage & Press",
+    vibe: "19th-Century Naturalist Ledger • Intaglio Spruce Ink • Mineral Rag Paper • Letterpress Deboss",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Libre Baskerville",
+      sans: "Plus Jakarta Sans",
+      mono: "Plus Jakarta Sans"
+    },
+    palette: [
+      { name: "Pale Sage Canvas", hex: "#CCD7D1" },
+      { name: "Paper Card Sheet", hex: "#DCE4DF" },
+      { name: "Paper Muted Recess", hex: "#BFCCC5" },
+      { name: "Intaglio Spruce Primary", hex: "#1D352B" },
+      { name: "Deep Pine Moss", hex: "#2C4B3E" },
+      { name: "Diluted Spruce Line", hex: "#506E62" },
+      { name: "Ghost Ink Watermark", hex: "#8A9F96" },
+      { name: "Stamped Cinnabar Press", hex: "#E75B54" },
+      { name: "Washed Coral Tint", hex: "#F29792" }
+    ],
+    description: "Botanical Heritage & Press: 19th-century naturalist ledger aesthetic constructed on mineral-washed rag paper (#CCD7D1) and elevated specimen sheets (#DCE4DF), printed with intaglio spruce ink (#1D352B), double ledger rules, and stamped cinnabar pressmarks (#E75B54).",
+    markdownSpec: null
   }
+
+  // === AGENT_APPEND_TILE_HERE ===
+  // Paste the next catalog object ABOVE this comment.
+  // Add a comma after the previous entry's closing `}`.
+  // Schema and vibeBadge table: Agent/agent.md §0 and §3.
+  // Do not set `id`. Set hasPage: true. Do not register Agent/style-tile-skeleton.html.
 ];
 if (typeof window !== 'undefined') window.STYLE_TILES_DATA = STYLE_TILES_DATA;
