@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Lilac // TILE</title>
+  <meta name="description" content="Academic Lilac / Modern Editorial: Atmospheric cool lavender-tinted wash surfaces paired with regal twilight indigo serifs, charcoal readability, royal iris violet interactive accents, and planar tactile depth.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Google Fonts: Newsreader (Editorial Display Serif), Inter (Clean UI Sans), JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------------------------------------------------------
+     * ACADEMIC LILAC / MODERN EDITORIAL DESIGN SYSTEM
+     * ---------------------------------------------------------------------- */
+    :root {
+      /* Surfaces & Backgrounds */
+      --bg-canvas:              #F4F3F8; /* Atmospheric cool lavender-tinted milk wash */
+      --bg-surface:             #FAF9FD; /* Elevated sheet / clean soft chalk */
+      --bg-surface-alt:         #ECE8F5; /* Secondary panel well / subtle lilac tint */
+      --bg-surface-dark:        #382D6B; /* Deep regal twilight indigo */
+
+      /* Inks & Typography */
+      --ink-primary:            #2D2C34; /* Charcoal slate; high-contrast readability */
+      --ink-display:            #382D6B; /* Deep regal twilight indigo */
+      --ink-secondary:          #4E4B59; /* Sub-headings and secondary feature copy */
+      --ink-muted:              #6D6B78; /* Ash mauve; secondary sub-labels & legal */
+      --ink-inverted:           #FFFFFF; /* Pure optical white */
+
+      /* Signature Accents */
+      --accent-primary:         #5C48A2; /* Royal iris violet (Primary CTA fill & art) */
+      --accent-primary-hover:   #4A3886; /* Deepened iris (Pressed / hover active state) */
+      --accent-secondary:       #8E7DC8; /* Secondary lilac iris */
+      --accent-tertiary:        #DCD7EE; /* Soft wisteria highlight badge */
+
+      /* Status Tokens */
+      --status-success:         #2F6F4E;
+      --status-warning:         #94581C;
+      --status-danger:          #9B2C3B;
+      --status-info:            #3D5A99;
+
+      /* Utility & Scrim */
+      --icon-neutral:           #1F1E24; /* Crisp midnight for utility controls */
+      --backdrop-scrim:         rgba(18, 16, 26, 0.45); /* Soft warm-dark blur veil */
+
+      /* Typography */
+      --font-display:           "Newsreader", "Editorial Serif", Georgia, serif;
+      --font-sans:              "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono:              "JetBrains Mono", ui-monospace, monospace;
+
+      /* Geometry & Border Radii */
+      --radius-default:         10px;
+      --radius-subtle:          8px;
+      --radius-pill:            9999px;
+      --radius-sheet:           28px 28px 0 0;
+      --radius-circle:          50%;
+
+      /* Elevation & Depth (Planar tactile depth) */
+      --shadow-base:            0px 2px 8px -2px rgba(34, 25, 66, 0.06);
+      --shadow-sheet:           0px 12px 48px -8px rgba(34, 25, 66, 0.16);
+      --shadow-floating-cta:    0px 4px 12px -2px rgba(92, 72, 162, 0.25);
+      --shadow-active-depress:  0px 1px 3px 0px rgba(92, 72, 162, 0.18);
+      --shadow-hover:           0px 6px 16px -3px rgba(92, 72, 162, 0.22);
+      --shadow-active:          0px 1px 3px 0px rgba(92, 72, 162, 0.18);
+
+      /* Borders & Dividers */
+      --border-core:            1px solid rgba(60, 50, 95, 0.14);
+      --border-hairline:        1px solid rgba(60, 50, 95, 0.08);
+      --border-accent:          1px solid rgba(92, 72, 162, 0.28);
+      --header-height:          64px;
+
+      /* Stroke widths */
+      --stroke-hero-pen:        1.75px;
+      --stroke-utility-icon:    1.50px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      line-height: 1.5;
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    /* -------------------------------------------------------------------------
+     * MANDATORY HEADER BAR
+     * ---------------------------------------------------------------------- */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 12px 24px;
+      background: rgba(250, 249, 253, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: var(--border-hairline);
+      box-shadow: 0 1px 3px rgba(34, 25, 66, 0.03);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 8px 14px;
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface);
+      transition: all 160ms ease;
+    }
+
+    .nav-back-link:hover {
+      background: var(--bg-surface-alt);
+      color: var(--accent-primary);
+      border-color: var(--border-accent);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-subtle);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink-display);
+      letter-spacing: -0.01em;
+      overflow-wrap: anywhere;
+    }
+
+    .design-vibe-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid rgba(92, 72, 162, 0.22);
+      border-radius: var(--radius-pill);
+      color: var(--accent-primary);
+      background: rgba(92, 72, 162, 0.06);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      transition: all 160ms ease;
+    }
+
+    .btn-tile:hover {
+      background: var(--bg-surface-alt);
+      border-color: var(--border-accent);
+      color: var(--accent-primary);
+    }
+
+    .btn-copy {
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      border-color: var(--accent-primary);
+      box-shadow: var(--shadow-floating-cta);
+    }
+
+    .btn-copy:hover {
+      background: var(--accent-primary-hover);
+      border-color: var(--accent-primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy:active {
+      transform: scale(0.98);
+      box-shadow: var(--shadow-active-depress);
+    }
+
+    /* -------------------------------------------------------------------------
+     * MAIN LAYOUT & CORE SECTIONS
+     * ---------------------------------------------------------------------- */
+    .layout-wrapper {
+      width: min(1140px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 40px 0 96px;
+    }
+
+    .section-block {
+      margin-top: 64px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-kicker::after {
+      content: "";
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent-primary);
+      opacity: 0.35;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6.5vw, 4.2rem);
+      font-weight: 500;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--ink-display);
+      overflow-wrap: anywhere;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--ink-display);
+      margin-bottom: 12px;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--ink-display);
+      margin-bottom: 8px;
+    }
+
+    /* -------------------------------------------------------------------------
+     * HERO BANNER
+     * ---------------------------------------------------------------------- */
+    .hero-banner {
+      position: relative;
+      background: var(--bg-surface);
+      border: var(--border-hairline);
+      border-radius: 24px;
+      padding: clamp(32px, 5vw, 56px);
+      box-shadow: var(--shadow-sheet);
+      overflow: hidden;
+    }
+
+    .hero-banner-inner {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .chip {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      color: var(--ink-muted);
+      background: var(--bg-surface-alt);
+      font-weight: 500;
+    }
+
+    .chip-accent {
+      background: rgba(92, 72, 162, 0.08);
+      border-color: rgba(92, 72, 162, 0.25);
+      color: var(--accent-primary);
+    }
+
+    .hero-lead {
+      margin: 20px 0 28px;
+      max-width: 58ch;
+      color: var(--ink-primary);
+      font-size: 1.06rem;
+      line-height: 1.62;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    /* Hero Architectural Wireframe Vector */
+    .hero-vector-panel {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(235, 232, 245, 0.75), rgba(250, 249, 253, 0.95));
+      border: var(--border-hairline);
+      border-radius: 18px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8), var(--shadow-base);
+    }
+
+    .hero-illustration-svg {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      stroke: var(--accent-primary);
+      stroke-width: var(--stroke-hero-pen);
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* -------------------------------------------------------------------------
+     * BUTTONS & INTERACTION STYLES
+     * ---------------------------------------------------------------------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px; /* 48px minimum touch target */
+      padding: 0 24px;
+      font-size: 15px;
+      line-height: 1.0;
+      font-weight: 600;
+      letter-spacing: 0.005em;
+      cursor: pointer;
+      border-radius: var(--radius-pill);
+      border: none;
+      background: var(--bg-surface-alt);
+      color: var(--ink-primary);
+      transition: background 120ms ease-out, transform 120ms ease-out, box-shadow 120ms ease-out, opacity 120ms ease-out;
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .btn:hover {
+      background: #E0DBEF;
+      color: var(--ink-display);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      box-shadow: var(--shadow-floating-cta);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-primary-hover);
+      color: var(--ink-inverted);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+      background: var(--accent-primary-hover);
+      box-shadow: var(--shadow-active-depress);
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface);
+      color: var(--ink-display);
+      border: var(--border-core);
+      box-shadow: var(--shadow-base);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-surface-alt);
+      border-color: var(--border-accent);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--accent-primary);
+      border: 1px solid rgba(92, 72, 162, 0.2);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(92, 72, 162, 0.08);
+      border-color: var(--accent-primary);
+    }
+
+    .btn-danger {
+      background: var(--status-danger);
+      color: #FFFFFF;
+    }
+
+    .btn-danger:hover {
+      background: #842330;
+    }
+
+    .text-link {
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 160ms ease;
+    }
+
+    .text-link:hover, .text-link:active {
+      opacity: 0.65;
+    }
+
+    /* -------------------------------------------------------------------------
+     * COLOR SWATCHES SECTION
+     * ---------------------------------------------------------------------- */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      border: var(--border-hairline);
+      border-radius: var(--radius-default);
+      overflow: hidden;
+      background: var(--bg-surface);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      box-shadow: var(--shadow-base);
+      transition: transform 140ms ease, box-shadow 140ms ease;
+    }
+
+    .swatch-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px -4px rgba(34, 25, 66, 0.1);
+    }
+
+    .swatch-chip {
+      height: 76px;
+      border-bottom: var(--border-hairline);
+      position: relative;
+    }
+
+    .swatch-meta {
+      padding: 12px 14px;
+    }
+
+    .swatch-name {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink-display);
+      margin-bottom: 2px;
+    }
+
+    .swatch-var, .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      display: block;
+    }
+
+    .swatch-hex {
+      font-weight: 600;
+      color: var(--accent-primary);
+      margin-top: 2px;
+    }
+
+    /* -------------------------------------------------------------------------
+     * TYPOGRAPHY SPECIMEN SECTION
+     * ---------------------------------------------------------------------- */
+    .type-specimen-card {
+      background: var(--bg-surface);
+      border: var(--border-hairline);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: var(--shadow-base);
+    }
+
+    .type-stack { display: grid; gap: 20px; }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: var(--border-hairline);
+      align-items: baseline;
+      min-width: 0;
+    }
+
+    .type-row:last-child {
+      border-bottom: none;
+    }
+
+    .type-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      font-weight: 600;
+    }
+
+    .type-label-detail {
+      display: block;
+      font-size: 0.68rem;
+      color: var(--accent-primary);
+      font-weight: 400;
+      margin-top: 4px;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .text-display {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 2.75rem);
+      font-weight: 500;
+      line-height: 1.20;
+      letter-spacing: -0.015em;
+      color: var(--ink-display);
+    }
+
+    .text-h1 {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--ink-display);
+    }
+
+    .text-feature {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.45;
+      letter-spacing: -0.005em;
+      color: var(--ink-primary);
+    }
+
+    .text-micro {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.30;
+      letter-spacing: 0em;
+      color: var(--ink-display);
+    }
+
+    .text-auxiliary {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.40;
+      letter-spacing: 0.01em;
+      color: var(--ink-muted);
+    }
+
+    .text-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .live-type-box {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: var(--border-hairline);
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 16px;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-canvas);
+      color: var(--ink-display);
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .live-type-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(92, 72, 162, 0.15);
+    }
+
+    /* -------------------------------------------------------------------------
+     * COMPONENT ARCHETYPES
+     * ---------------------------------------------------------------------- */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .component-card {
+      padding: 24px;
+      background: var(--bg-surface);
+      border: var(--border-hairline);
+      border-radius: 18px;
+      box-shadow: var(--shadow-base);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .btn-row, .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-display);
+      margin-bottom: 6px;
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 14px;
+      font-size: 16px;
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      transition: all 160ms ease;
+    }
+
+    .text-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(92, 72, 162, 0.15);
+      background: #FFFFFF;
+    }
+
+    /* Checkpoint monoline circle with check hook */
+    .checkpoint-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 15px;
+      line-height: 1.45;
+      color: var(--ink-primary);
+    }
+
+    .checkpoint-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: var(--radius-circle);
+      border: 1.5px solid var(--accent-primary);
+      background: var(--bg-surface);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 140ms ease;
+    }
+
+    .checkpoint-badge svg {
+      width: 13px;
+      height: 13px;
+      stroke: var(--ink-inverted);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      opacity: 0;
+      transform: scale(0.6);
+      transition: all 140ms ease;
+    }
+
+    .checkpoint-item input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .checkpoint-item input[type="checkbox"]:checked + .checkpoint-badge {
+      background: var(--accent-primary);
+    }
+
+    .checkpoint-item input[type="checkbox"]:checked + .checkpoint-badge svg {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Toggle switch */
+    .toggle {
+      position: relative;
+      width: 48px;
+      height: 26px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      background: var(--accent-tertiary);
+      cursor: pointer;
+      transition: background 160ms ease;
+    }
+
+    .toggle[aria-pressed="true"] {
+      background: var(--accent-primary);
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toggle[aria-pressed="true"]::after {
+      transform: translateX(22px);
+    }
+
+    /* Chip Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      border-radius: var(--radius-subtle);
+      background: rgba(92, 72, 162, 0.08);
+      color: var(--accent-primary);
+      border: 1px solid rgba(92, 72, 162, 0.2);
+      font-weight: 600;
+    }
+
+    /* -------------------------------------------------------------------------
+     * LIVING DEMO: ACADEMIC MONOGRAPH & CURATED DISPATCH DRAWER
+     * Demonstrates: 28px top-corner sheet, planar depth, wireframe motif,
+     * monoline checkpoints, 9999px floating CTA pill, 8pt scale
+     * ---------------------------------------------------------------------- */
+    .demo-container {
+      background: #E8E5F2;
+      border: var(--border-hairline);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow-base);
+    }
+
+    .academic-drawer-sheet {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--bg-surface);
+      border-radius: 28px 28px 28px 28px;
+      box-shadow: var(--shadow-sheet);
+      overflow: hidden;
+      border: 1px solid rgba(60, 50, 95, 0.08);
+      position: relative;
+      animation: drawerRise 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes drawerRise {
+      from { transform: translateY(24px); opacity: 0.8; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .sheet-handle-bar {
+      display: flex;
+      justify-content: center;
+      padding: 12px 0 4px;
+    }
+
+    .sheet-handle {
+      width: 40px;
+      height: 4px;
+      background: rgba(60, 50, 95, 0.16);
+      border-radius: var(--radius-pill);
+    }
+
+    .sheet-header {
+      padding: 16px 28px 20px;
+      border-bottom: var(--border-hairline);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .sheet-folio-meta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .sheet-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      line-height: 1.25;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      color: var(--ink-display);
+    }
+
+    .sheet-dismiss-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-circle);
+      border: 1px solid rgba(60, 50, 95, 0.12);
+      background: var(--bg-canvas);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--icon-neutral);
+      flex-shrink: 0;
+      transition: background 140ms ease;
+    }
+
+    .sheet-dismiss-btn:hover {
+      background: var(--bg-surface-alt);
+    }
+
+    .sheet-body {
+      padding: 24px 28px;
+    }
+
+    .sheet-graphic-motif {
+      border: var(--border-hairline);
+      border-radius: 14px;
+      background: linear-gradient(180deg, #F6F4FA 0%, #EFEBF7 100%);
+      padding: 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .sheet-motif-icon {
+      width: 80px;
+      height: 80px;
+      flex-shrink: 0;
+    }
+
+    .sheet-motif-text {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink-secondary);
+    }
+
+    .sheet-motif-text strong {
+      color: var(--ink-display);
+      font-family: var(--font-display);
+      font-size: 15px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .sheet-feature-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 16px; /* 16px (space-4) feature stack item separation */
+      margin-bottom: 24px;
+    }
+
+    .sheet-feature-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px; /* 12px (space-3) checkmark to label gap */
+      padding: 10px 12px;
+      border-radius: 10px;
+      transition: background 140ms ease;
+    }
+
+    .sheet-feature-row:hover {
+      background: var(--bg-canvas);
+    }
+
+    .feature-text-block {
+      flex: 1;
+    }
+
+    .feature-headline {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.30;
+      color: var(--ink-display);
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-description {
+      font-size: 15px;
+      line-height: 1.45;
+      letter-spacing: -0.005em;
+      color: var(--ink-primary);
+    }
+
+    .sheet-action-footer {
+      padding: 20px 28px 24px;
+      background: var(--bg-surface);
+      border-top: var(--border-hairline);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sheet-cta-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .sheet-cta-primary {
+      flex: 1;
+      height: 48px;
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-pill);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.005em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: var(--shadow-floating-cta);
+      cursor: pointer;
+      border: none;
+      transition: transform 120ms ease-out, background 120ms ease-out, box-shadow 120ms ease-out;
+    }
+
+    .sheet-cta-primary:hover {
+      background: var(--accent-primary-hover);
+      box-shadow: 0 6px 16px -2px rgba(92, 72, 162, 0.35);
+    }
+
+    .sheet-cta-primary:active {
+      transform: scale(0.98);
+      box-shadow: var(--shadow-active-depress);
+    }
+
+    .sheet-legal-text {
+      font-size: 12px; /* Auxiliary / Legal 12px */
+      line-height: 1.40;
+      letter-spacing: 0.01em;
+      color: var(--ink-muted);
+      text-align: center;
+    }
+
+    /* -------------------------------------------------------------------------
+     * SPEC DRAWER CARD & MODAL
+     * ---------------------------------------------------------------------- */
+    .spec-drawer-card {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow-sheet);
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 480px;
+      padding: 20px;
+      background: #251D47;
+      color: #E6E2F5;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border-radius: var(--radius-subtle);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: var(--backdrop-scrim);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal-content-card {
+      width: min(880px, 100%);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-surface);
+      border: var(--border-core);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px -12px rgba(18, 16, 26, 0.35);
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 24px;
+      border-bottom: var(--border-hairline);
+    }
+
+    .modal-footer {
+      border-bottom: 0;
+      border-top: var(--border-hairline);
+      justify-content: flex-end;
+    }
+
+    .modal-body {
+      padding: 20px 24px;
+      overflow: auto;
+      flex: 1;
+    }
+
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      border: var(--border-core);
+      background: var(--bg-surface);
+      cursor: pointer;
+      border-radius: var(--radius-pill);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--icon-neutral);
+      transition: background 140ms ease;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--bg-surface-alt);
+    }
+
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3000;
+      padding: 12px 20px;
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-sheet);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* -------------------------------------------------------------------------
+     * RESPONSIVE LAYOUT (<= 768px)
+     * ---------------------------------------------------------------------- */
+    @media (max-width: 768px) {
+      .layout-wrapper {
+        width: calc(100% - 24px);
+        padding: 20px 0 64px;
+      }
+      .hero-banner-inner {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .swatches-grid, .components-grid {
+        grid-template-columns: 1fr;
+      }
+      .btn-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn, .btn-tile {
+        white-space: normal;
+      }
+      .sheet-header {
+        padding: 14px 18px;
+      }
+      .sheet-body {
+        padding: 18px;
+      }
+      .sheet-action-footer {
+        padding: 16px 18px;
+      }
+      .sheet-graphic-motif {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+      }
+      .toast-popup {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet. Must remain immediately after this page's <style>. -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- MANDATORY HEADER -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Academic Lilac</span>
+      <!-- MUST equal catalog vibeBadge exactly -->
+      <span class="design-vibe-tag">Editorial & Archival</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+      <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+      <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-academic-lilac.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- SLOT 1: HERO DISPLAY BANNER -->
+    <section class="hero-banner" id="hero-section">
+      <div class="hero-banner-inner">
+        <div>
+          <p class="section-kicker">Visual Specification</p>
+          <div class="hero-meta">
+            <span class="chip chip-accent">Atmospheric Lilac Wash</span>
+            <span class="chip">Regal Twilight Indigo</span>
+            <span class="chip">Modern Editorial</span>
+            <span class="chip">Light</span>
+          </div>
+          <h1>Academic Lilac</h1>
+          <p class="hero-lead">
+            An elevated editorial system uniting cool lavender-tinted wash surfaces with sharp literary serifs and planar, tactile depth. Built for thoughtful dispatches, scholarly collections, and high-clarity knowledge environments.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">
+              Copy Prompt for Agent
+            </button>
+            <a class="btn btn-secondary" href="#demo-section">
+              Explore Living Demo
+            </a>
+            <a class="btn btn-ghost" href="#components-section">
+              View Components
+            </a>
+          </div>
+        </div>
+
+        <!-- Architectural Isometric Wireframe Contour Art Motif -->
+        <div class="hero-vector-panel">
+          <svg class="hero-illustration-svg" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+            <!-- Isometric labyrinthian wireframe vector contour -->
+            <polygon points="120,24 212,76 212,180 120,232 28,180 28,76" stroke="rgba(92, 72, 162, 0.28)" stroke-width="1.2" />
+            <!-- Inner continuous architectural lines -->
+            <path d="M120,24 L120,128 L212,180" />
+            <path d="M120,128 L28,180" />
+            <!-- Isometric nested planes -->
+            <polyline points="74,50 120,76 166,50" />
+            <polyline points="166,50 166,102 212,128" />
+            <polyline points="74,50 74,102 28,128" />
+            <!-- Stepped contour labyrinth -->
+            <path d="M120,76 L120,178" />
+            <polyline points="74,154 120,178 166,154" />
+            <polyline points="74,102 120,128 166,102" />
+            <!-- Academic open book / architectural portal reference -->
+            <path d="M96,64 Q120,52 144,64 L144,140 Q120,128 96,140 Z" stroke="#5C48A2" stroke-width="1.75" />
+            <line x1="120" y1="58" x2="120" y2="134" stroke="#5C48A2" stroke-width="1.75" />
+            <!-- Orbiting delicate hairline ring -->
+            <ellipse cx="120" cy="128" rx="86" ry="48" stroke="rgba(92, 72, 162, 0.2)" stroke-dasharray="3 3" />
+            <circle cx="120" cy="24" r="3.5" fill="#5C48A2" />
+            <circle cx="212" cy="76" r="3.5" fill="#5C48A2" />
+            <circle cx="28" cy="180" r="3.5" fill="#5C48A2" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 2: COLOR ROLES & PALETTE MATRIX -->
+    <section class="section-block" id="palette-section">
+      <p class="section-kicker">01 // Chromatic System</p>
+      <h2>Color Roles & Palette</h2>
+      <p style="color:var(--ink-secondary); margin-bottom:20px; max-width:65ch;">
+        Atmospheric cool lavender-tinted surfaces form a restful, printable field. Deep regal twilight indigo commands display authority, while royal iris violet delivers high-confidence tactile touch targets.
+      </p>
+      <div class="swatches-grid" id="swatch-grid">
+        <!-- Injected dynamically by JS -->
+      </div>
+    </section>
+
+    <!-- SLOT 3: TYPOGRAPHY & TYPEFACE SPECIMEN -->
+    <section class="section-block" id="typography-section">
+      <p class="section-kicker">02 // Type Scale & Hierarchy</p>
+      <h2>Typography System</h2>
+      <div class="type-specimen-card">
+        <div class="type-stack">
+          <div class="type-row">
+            <div>
+              <span class="type-label">Display Family</span>
+              <span class="type-label-detail">Newsreader / 500</span>
+            </div>
+            <p class="text-display">Academic Lilac & Modern Editorial</p>
+          </div>
+
+          <div class="type-row">
+            <div>
+              <span class="type-label">Hero / Headline</span>
+              <span class="type-label-detail">26px / 1.25 / -0.015em</span>
+            </div>
+            <p class="text-h1">The architecture of literary discipline and printed thought</p>
+          </div>
+
+          <div class="type-row">
+            <div>
+              <span class="type-label">Section Feature</span>
+              <span class="type-label-detail">15px / 1.45 / -0.005em</span>
+            </div>
+            <p class="text-feature">
+              High-contrast literary serifs paired with clean neo-grotesque structural typography provide an enduring academic posture without compromising contemporary digital legibility.
+            </p>
+          </div>
+
+          <div class="type-row">
+            <div>
+              <span class="type-label">Micro Headline</span>
+              <span class="type-label-detail">14px / 1.30 / SemiBold 600</span>
+            </div>
+            <p class="text-micro">INDEX REFERENCE // FOLIO IV • DEPARTMENT DISPATCH</p>
+          </div>
+
+          <div class="type-row">
+            <div>
+              <span class="type-label">Auxiliary / Legal</span>
+              <span class="type-label-detail">12px / 1.40 / Regular 400</span>
+            </div>
+            <p class="text-auxiliary">
+              © Open Monograph Initiative. All citations cross-referenced with persistent digital object identifiers under editorial review board governance.
+            </p>
+          </div>
+
+          <div class="type-row">
+            <div>
+              <span class="type-label">Primary CTA</span>
+              <span class="type-label-detail">15px / 1.00 / SemiBold 600</span>
+            </div>
+            <p style="font-size:15px; font-weight:600; letter-spacing:0.005em; color:var(--accent-primary);">
+              Request Archival Access →
+            </p>
+          </div>
+        </div>
+
+        <div class="live-type-box">
+          <label class="field-label" for="live-type-tester-input">Live Editorial Type Tester</label>
+          <input class="live-type-input" id="live-type-tester-input" type="text" value="An architectural inquiry into contemporary planar layout systems." />
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 4: COMPONENT ARCHETYPE GALLERY -->
+    <section class="section-block" id="components-section">
+      <p class="section-kicker">03 // Interactive Archetypes</p>
+      <h2>Component Archetypes</h2>
+      <div class="components-grid">
+
+        <!-- Button Suite -->
+        <article class="component-card">
+          <h3>Interactive Buttons</h3>
+          <p class="text-auxiliary">Full pill geometry (9999px) with 48px touch minimum and scale(0.98x) depress feedback.</p>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="button">Primary Pill</button>
+            <button class="btn btn-secondary" type="button">Secondary</button>
+            <button class="btn btn-ghost" type="button">Ghost Iris</button>
+            <button class="btn btn-danger" type="button">Critical</button>
+          </div>
+        </article>
+
+        <!-- Input Fields & Selectors -->
+        <article class="component-card">
+          <h3>Form Controls</h3>
+          <div>
+            <label class="field-label" for="demo-input">Monograph Query or DOI</label>
+            <input class="text-input" id="demo-input" type="text" placeholder="e.g. 10.1080/epistemology.2026.04" autocomplete="off" />
+          </div>
+          <div class="control-row" style="margin-top: 8px;">
+            <button class="toggle" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle peer review visibility"></button>
+            <span style="font-size:14px; font-weight:500; color:var(--ink-secondary);">Include Annotations</span>
+            <span class="badge">Peer Reviewed</span>
+          </div>
+        </article>
+
+        <!-- Monoline Checkpoints & Indicators -->
+        <article class="component-card">
+          <h3>Checkpoints & Indicators</h3>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <label class="checkpoint-item">
+              <input type="checkbox" checked />
+              <span class="checkpoint-badge">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <span>Double-blind editorial validation confirmed</span>
+            </label>
+            <label class="checkpoint-item">
+              <input type="checkbox" checked />
+              <span class="checkpoint-badge">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <span>Planar sheet geometry (28px top radius)</span>
+            </label>
+            <label class="checkpoint-item">
+              <input type="checkbox" />
+              <span class="checkpoint-badge">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </span>
+              <span>Deposit into open institutional depository</span>
+            </label>
+          </div>
+        </article>
+
+        <!-- Elevation & Planar Card -->
+        <article class="component-card">
+          <h3>Elevation & Planar Hierarchy</h3>
+          <p class="text-feature" style="color:var(--ink-secondary);">
+            Tactile, print-inspired depth avoids skeuomorphic gloss. Soft multi-stop indigo shadows anchor floating cards cleanly on cool lavender surfaces.
+          </p>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto; padding-top:12px; border-top:var(--border-hairline);">
+            <span class="text-meta">Level 1 // Sheet Body</span>
+            <a href="#demo-section" class="text-link" style="font-size:14px; font-weight:600;">Inspect Sheet →</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SLOT 5: LIVING MICRO-EXPERIENCE / LANDING DEMO -->
+    <section class="section-block" id="demo-section">
+      <p class="section-kicker">04 // Living Micro-Experience</p>
+      <h2>Academic Editorial Drawer Experience</h2>
+      <p style="color:var(--ink-secondary); margin-bottom:24px; max-width:65ch;">
+        A real-world mobile drawer & desktop sheet demonstrating the 28px top radius, continuous contour wireframe vector, monoline checkpoints, 8pt spacing ladder, and 9999px floating CTA.
+      </p>
+
+      <div class="demo-container">
+        <div class="academic-drawer-sheet" id="interactive-sheet">
+          <div class="sheet-handle-bar">
+            <div class="sheet-handle"></div>
+          </div>
+
+          <div class="sheet-header">
+            <div>
+              <p class="sheet-folio-meta">Monograph Dispatch • Series XII</p>
+              <h3 class="sheet-title">Comparative Epistemology & Architectural Typology</h3>
+            </div>
+            <button class="sheet-dismiss-btn" type="button" aria-label="Dismiss sheet" onclick="toggleSheetDemo()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+
+          <div class="sheet-body">
+            <!-- Architectural wireframe motif container -->
+            <div class="sheet-graphic-motif">
+              <svg class="sheet-motif-icon" viewBox="0 0 80 80" fill="none" stroke="#5C48A2" stroke-width="1.75">
+                <rect x="12" y="12" width="56" height="56" rx="8" stroke="rgba(92, 72, 162, 0.3)" />
+                <path d="M12 28H68M28 28V68" />
+                <circle cx="48" cy="48" r="14" stroke="#5C48A2" />
+                <polyline points="42 48 46 52 54 44" stroke="#5C48A2" />
+              </svg>
+              <div class="sheet-motif-text">
+                <strong>Curated Department Digest</strong>
+                All chapters rendered in high-contrast Newsreader serifs with hairline dividers (1px solid rgba(60, 50, 95, 0.08)) and 8pt vertical rhythm.
+              </div>
+            </div>
+
+            <!-- Feature Stack Items with Monoline Circular Checkpoints -->
+            <div class="sheet-feature-stack">
+              <div class="sheet-feature-row">
+                <span class="checkpoint-badge" style="background:var(--accent-primary);">
+                  <svg viewBox="0 0 24 24" style="opacity:1; transform:scale(1);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <div class="feature-text-block">
+                  <div class="feature-headline">
+                    Primary Surface Milk Wash (#F4F3F8)
+                    <span class="badge" style="font-size:0.65rem; padding:2px 6px;">Atmospheric</span>
+                  </div>
+                  <p class="feature-description">
+                    Provides a cool, reflective foundation that softens eye strain while sustaining editorial elegance.
+                  </p>
+                </div>
+              </div>
+
+              <div class="sheet-feature-row">
+                <span class="checkpoint-badge" style="background:var(--accent-primary);">
+                  <svg viewBox="0 0 24 24" style="opacity:1; transform:scale(1);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <div class="feature-text-block">
+                  <div class="feature-headline">
+                    Regal Indigo Display Ink (#382D6B)
+                  </div>
+                  <p class="feature-description">
+                    Sharp, authoritative headlines anchored in deep twilight purple to distinguish titles from slate body text (#2D2C34).
+                  </p>
+                </div>
+              </div>
+
+              <div class="sheet-feature-row">
+                <span class="checkpoint-badge" style="background:var(--accent-primary);">
+                  <svg viewBox="0 0 24 24" style="opacity:1; transform:scale(1);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <div class="feature-text-block">
+                  <div class="feature-headline">
+                    Floating Royal Iris CTA (#5C48A2)
+                  </div>
+                  <p class="feature-description">
+                    Full pill touch target with multi-stop elevation shadow and 120ms ease-out depress feedback.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sheet-action-footer">
+            <div class="sheet-cta-row">
+              <button class="sheet-cta-primary" type="button" onclick="triggerToast('✓ Monograph dossier confirmed')">
+                Confirm Archival Reading
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </button>
+              <button class="btn btn-secondary" type="button" onclick="copyTilePromptDirect()" title="Copy prompt for agent">
+                Copy Style
+              </button>
+            </div>
+            <p class="sheet-legal-text">
+              By confirming, archival metadata is indexed in accordance with institutional open-access mandates.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 6: STYLE TILE SPECIFICATION CODE DRAWER -->
+    <section class="section-block spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-head">
+        <div>
+          <span class="section-kicker" style="color:var(--accent-secondary);">Machine Token Specification</span>
+          <h2 style="margin:0; color:#FFFFFF;">Academic Lilac Style Spec</h2>
+        </div>
+        <button class="btn btn-secondary" type="button" onclick="copyTilePromptDirect()">
+          Copy Markdown Spec
+        </button>
+      </div>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+    </section>
+
+  </main>
+
+  <!-- SPEC PREVIEW MODAL -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title" style="font-family:var(--font-display); font-size:1.2rem; color:var(--ink-display);">Academic Lilac // Style Tile Specification</strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">Copied to Clipboard</div>
+
+  <!--
+    SOURCE OF TRUTH for Copy / Download / Preview.
+    Adheres strictly to §4 of Agent/agent.md.
+  -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Academic Lilac / Modern Editorial
+  Construction: lavender milk wash • regal indigo serifs • planar tactile sheets • royal iris pills
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A modern literary editorial aesthetic rendered on cool atmospheric lavender wash surfaces (#F4F3F8) and elevated chalk containers (#FAF9FD). Typography pairs high-contrast, literary serifs in deep regal twilight indigo (#382D6B) with crisp neo-grotesque charcoal slate body text (#2D2C34). Interactive elements utilize royal iris violet (#5C48A2) with full pill geometry, tactile planar layer depth without skeuomorphic gloss, hairline borders, and fluid 320ms drawer animations.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F4F3F8; /* Primary atmospheric cool lavender-tinted milk wash */
+  --bg-surface:             #FAF9FD; /* Elevated sheet / clean soft chalk */
+  --bg-surface-alt:         #ECE8F5; /* Secondary panels, wells, sidebars */
+  --bg-surface-dark:        #382D6B; /* Deep regal twilight indigo */
+
+  /* Inks & Typography */
+  --ink-primary:            #2D2C34; /* Charcoal slate; high-contrast readability */
+  --ink-display:            #382D6B; /* Deep regal twilight indigo for headlines */
+  --ink-secondary:          #4E4B59; /* Subtitles, secondary copy */
+  --ink-muted:              #6D6B78; /* Ash mauve; secondary sub-labels & legal */
+  --ink-inverted:           #FFFFFF; /* Pure optical white */
+
+  /* Signature Accents */
+  --accent-primary:         #5C48A2; /* Royal iris violet (Primary CTA fill & art) */
+  --accent-primary-hover:   #4A3886; /* Deepened iris (Pressed / hover active state) */
+  --accent-secondary:       #8E7DC8; /* Supporting visual highlight */
+  --accent-tertiary:        #DCD7EE; /* Accent badges or energetic highlights */
+
+  /* Status Tokens */
+  --status-success:         #2F6F4E;
+  --status-warning:         #94581C;
+  --status-danger:          #9B2C3B;
+  --status-info:            #3D5A99;
+
+  /* Utility Controls & Veil */
+  --icon-neutral:           #1F1E24; /* Crisp midnight for utility controls */
+  --backdrop-scrim:         rgba(18, 16, 26, 0.45); /* Soft warm-dark blur veil */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Newsreader", "Editorial Serif", "Tiempos Headline", Georgia, serif;
+--font-sans:    "Inter", "Söhne", "SF Pro Text", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
+
+/* Type Scale */
+--text-hero:     26px     / 1.25  var(--font-display); /* Letter-spacing: -0.015em | Weight: 500 */
+--text-feature:  15px     / 1.45  var(--font-sans);    /* Letter-spacing: -0.005em | Weight: 400 */
+--text-micro:    14px     / 1.30  var(--font-sans);    /* Letter-spacing: 0em      | Weight: 600 */
+--text-legal:    12px     / 1.40  var(--font-sans);    /* Letter-spacing: 0.01em   | Weight: 400 */
+--text-cta:      15px     / 1.00  var(--font-sans);    /* Letter-spacing: 0.005em  | Weight: 600 */
+--text-body:     1.0rem   / 1.60  var(--font-sans);    /* Letter-spacing: 0em      | Weight: 400 */
+--text-meta:     0.75rem  / 1.40  var(--font-mono);    /* Letter-spacing: 0.06em   | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-sheet:    28px 28px 0px 0px; /* Modal & bottom sheet drawer */
+--radius-default:  10px;               /* Input fields & inline cards */
+--radius-subtle:   8px;                /* Inline chips & small containers */
+--radius-pill:     9999px;             /* Primary CTA & search pills */
+--radius-circle:   50%;                /* Checkmark enclosures */
+
+/* Elevation & Shadows */
+--shadow-level0:   none;                                               /* Base scrim flat translucent wash */
+--shadow-level1:   0px 12px 48px -8px rgba(34, 25, 66, 0.16);         /* Sheet body & elevated modals */
+--shadow-level2:   0px 4px 12px -2px rgba(92, 72, 162, 0.25);          /* Floating primary CTA */
+--shadow-depress:  0px 1px 3px 0px rgba(92, 72, 162, 0.18);           /* Active depress state */
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-hairline:     1px solid rgba(60, 50, 95, 0.08); /* Hairline editorial dividers */
+--border-core:         1px solid rgba(60, 50, 95, 0.14); /* Standard structural boundary */
+--stroke-hero-pen:     1.75px;                            /* Uniform vector line illustration */
+--stroke-utility-icon: 1.50px;                            /* Optical stroke width */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Primary buttons use solid flooded background #5C48A2 with white text, full pill geometry (9999px), 48px minimum height, and subtle floating shadow (0px 4px 12px -2px rgba(92, 72, 162, 0.25)). On active press: scale down to 0.98x with background #4A3886 over 120ms ease-out. Secondary buttons use surface #FAF9FD with 1px solid rgba(60, 50, 95, 0.14) border. Ghost buttons use transparent background with #5C48A2 text. Use the host's existing labels.
+- **Cards & Sheets**: Containers use clean soft chalk #FAF9FD with hairline borders (1px solid rgba(60, 50, 95, 0.08)) and planar level 1 shadow (0px 12px 48px -8px rgba(34, 25, 66, 0.16)). Bottom sheets and modal drawers use 28px top radii with 320ms cubic-bezier(0.16, 1, 0.3, 1) ease-out translateY entry.
+- **Inputs**: Form inputs feature 8px-10px border radius, background #F4F3F8, 16px minimum font size, and 48px touch target height. On focus, illuminate with 1px border #5C48A2 and 3px focus ring rgba(92, 72, 162, 0.15).
+- **Navigation & Links**: Text links feature smooth opacity fade (1.0 to 0.65 on tap/hover) without underlines. Navigation bars feature translucent chalk wash (rgba(250, 249, 253, 0.92)) with 16px backdrop-blur and 1px hairline bottom divider.
+- **Checkmarks & Indicators**: Circular badge anchors (50% border radius) bounding a clear centered monoline check hook.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No skeuomorphic glossy gradients, 3D gel buttons, or glassmorphic neon glow.
+- No heavy zero-blur harsh brutalist offset drop shadows (e.g. 4px 4px 0 #000).
+- No unstyled browser default form controls or sharp 0px corners on interactive pills.
+- No saturated primary colors; keep the palette anchored in cool atmospheric lavender, deep regal indigo, and royal iris.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- Mandatory Script Suite -->
+  <script>
+    const DESIGN_SLUG = "academic-lilac";
+
+    const DESIGN_PALETTE = [
+      { name: "Primary Surface", hex: "#F4F3F8", cssVar: "--bg-canvas" },
+      { name: "Container Base", hex: "#FAF9FD", cssVar: "--bg-surface" },
+      { name: "Display Indigo", hex: "#382D6B", cssVar: "--ink-display" },
+      { name: "Body Charcoal", hex: "#2D2C34", cssVar: "--ink-primary" },
+      { name: "Ash Mauve", hex: "#6D6B78", cssVar: "--ink-muted" },
+      { name: "Royal Iris", hex: "#5C48A2", cssVar: "--accent-primary" },
+      { name: "Deep Iris", hex: "#4A3886", cssVar: "--accent-primary-hover" },
+      { name: "Optical White", hex: "#FFFFFF", cssVar: "--ink-inverted" },
+      { name: "Midnight Icon", hex: "#1F1E24", cssVar: "--icon-neutral" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex;
+        btn.innerHTML =
+          '<span class="swatch-chip" style="background:' + swatch.hex + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + "</span>" +
+            '<span class="swatch-var">' + swatch.cssVar + "</span> " +
+            '<span class="swatch-hex">' + swatch.hex + "</span>" +
+          "</span>";
+        btn.addEventListener("click", function () { copyHex(swatch.hex, swatch.name); });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () { toast.style.display = "none"; }, 2200);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(function () { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+      });
+    }
+
+    function toggleSheetDemo() {
+      const sheet = document.getElementById("interactive-sheet");
+      if (!sheet) return;
+      sheet.style.transition = "transform 320ms cubic-bezier(0.16, 1, 0.3, 1), opacity 320ms ease";
+      sheet.style.transform = "translateY(20px)";
+      sheet.style.opacity = "0.5";
+      setTimeout(function () {
+        sheet.style.transform = "translateY(0)";
+        sheet.style.opacity = "1";
+        triggerToast("Drawer reset");
+      }, 350);
+    }
+  </script>
+</body>
+</html>

@@ -1675,6 +1675,33 @@ const STYLE_TILES_DATA = [
     ],
     description: "Modern Clinical Editorial: Approachable, serene clinical minimalism built on warm linen and ecru surfaces (#FAF9F5 / #F5F4EE) with mineral sage bands (#DFE7E2), precise charcoal typography (#1A1A18), editorial terracotta accents (#C36746), and botanical green badging (#196941).",
     markdownSpec: null
+  },
+  {
+    slug: "academic-lilac",
+    name: "Academic Lilac",
+    vibe: "Modern Editorial • Atmospheric Lilac • Deep Indigo • Planar Tactile",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Newsreader",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Primary Surface", hex: "#F4F3F8" },
+      { name: "Container Base", hex: "#FAF9FD" },
+      { name: "Display Indigo", hex: "#382D6B" },
+      { name: "Body Charcoal", hex: "#2D2C34" },
+      { name: "Ash Mauve", hex: "#6D6B78" },
+      { name: "Royal Iris", hex: "#5C48A2" },
+      { name: "Deep Iris", hex: "#4A3886" },
+      { name: "Optical White", hex: "#FFFFFF" },
+      { name: "Midnight Icon", hex: "#1F1E24" }
+    ],
+    description: "Academic Lilac / Modern Editorial: Atmospheric cool lavender-tinted wash surfaces (#F4F3F8 / #FAF9FD) paired with regal twilight indigo display typography (#382D6B), high-contrast charcoal body text (#2D2C34), royal iris violet interactive actions (#5C48A2), and planar, tactile, print-inspired depth.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
