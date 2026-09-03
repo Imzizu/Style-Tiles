@@ -1594,6 +1594,87 @@ const STYLE_TILES_DATA = [
     ],
     description: "Botanical Heritage & Press: 19th-century naturalist ledger aesthetic constructed on mineral-washed rag paper (#CCD7D1) and elevated specimen sheets (#DCE4DF), printed with intaglio spruce ink (#1D352B), double ledger rules, and stamped cinnabar pressmarks (#E75B54).",
     markdownSpec: null
+  },
+  {
+    slug: "neo-swiss-editorial",
+    name: "Neo-Swiss Editorial",
+    vibe: "Modernist Monochrome • Swiss Grotesk • Planar Split • Signal Vermilion",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Inter",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas Primary", hex: "#FFFFFF" },
+      { name: "Canvas Secondary", hex: "#E5E5E7" },
+      { name: "Ink Primary", hex: "#0A0A0A" },
+      { name: "Ink Secondary", hex: "#9E9EA3" },
+      { name: "Ink Tertiary", hex: "#6B7280" },
+      { name: "Accent Vermilion", hex: "#FF2800" },
+      { name: "Accent Forest", hex: "#204739" },
+      { name: "Stroke Subtle", hex: "#D8D8DC" },
+      { name: "Stroke Prominent", hex: "#0A0A0A" }
+    ],
+    description: "Neo-Swiss Editorial: High-density modernist monochrome system on dual white and cool stone canvases (#FFFFFF / #E5E5E7) with ultra-rationalist Swiss grotesk typography, flat zero-elevation planar contrast, hairline rules, and vivid vermilion signal accents (#FF2800).",
+  },
+  {
+    slug: "autonomous-tech-dark",
+    name: "Autonomous Tech Dark",
+    vibe: "Technical Minimalism • Dark Surface • Precision B2B • Kinetic Green",
+    vibeBadge: "Minimalist & Monastic",
+    categories: ["minimalist"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Inter",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas Base", hex: "#0A0B0D" },
+      { name: "Surface Layer 1", hex: "#121417" },
+      { name: "Surface Layer 2", hex: "#181B1F" },
+      { name: "Content Primary", hex: "#F4F4F6" },
+      { name: "Content Secondary", hex: "#8B8F9A" },
+      { name: "Content Tertiary", hex: "#4F535E" },
+      { name: "Kinetic Green", hex: "#34D399" },
+      { name: "Tag Cyan", hex: "#38BDF8" },
+      { name: "Tag Violet", hex: "#C084FC" },
+      { name: "Tag Amber", hex: "#FB923C" }
+    ],
+    description: "Autonomous Tech Dark: High-density technical minimalism on deep carbon surfaces (#0A0B0D / #121417 / #181B1F) with diffuse translucent occlusion, hairline boundaries, disciplined Inter typography, and vivid kinetic-green focus accents (#34D399).",
+    markdownSpec: null
+  },
+  {
+    slug: "modern-clinical-editorial",
+    name: "Modern Clinical Editorial",
+    vibe: "Warm Minimalism • Clinical Tactile • Botanical Accents",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Sofia Sans",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas Warm", hex: "#FAF9F5" },
+      { name: "Container Warm", hex: "#F5F4EE" },
+      { name: "Container Tinted", hex: "#DFE7E2" },
+      { name: "Text Primary", hex: "#1A1A18" },
+      { name: "Text Secondary", hex: "#6E6D66" },
+      { name: "Terracotta", hex: "#C36746" },
+      { name: "Sage Green", hex: "#196941" },
+      { name: "Warm Amber", hex: "#C88A38" },
+      { name: "Slate Blue", hex: "#4D6B82" }
+    ],
+    description: "Modern Clinical Editorial: Approachable, serene clinical minimalism built on warm linen and ecru surfaces (#FAF9F5 / #F5F4EE) with mineral sage bands (#DFE7E2), precise charcoal typography (#1A1A18), editorial terracotta accents (#C36746), and botanical green badging (#196941).",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
