@@ -1,0 +1,2834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Letterpress — Style Tile</title>
+  <meta name="description" content="The Editorial Letterpress (Neo-Brutalist Craft Print) design system style tile. High-tactility print-shop aesthetic blending historical editorial typography (Fraunces & IBM Plex Mono) with neo-brutalist structure, fibrous paper washes, and mechanical depress states.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon.ico">
+
+  <!-- Google Fonts: Fraunces, Plus Jakarta Sans, IBM Plex Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       01. DESIGN SYSTEM TOKENS & ROLES
+       ========================================================================== */
+    :root {
+      /* Primary Surfaces (Paper & Fiber) */
+      --paper-base:             #F0E2C4; /* Primary body canvas background */
+      --paper-deep:             #E3CF9F; /* Hover states, secondary backdrop fills */
+      --cream-surface:          #FBF4E3; /* Elevated card, modal, and panel canvas */
+      --warm-field:             #F8EFD8; /* Inset inputs, code containers, text areas */
+      --paper-vellum:           #F4E8CF; /* Subtle nested wells and badge backdrops */
+
+      /* Ink & Contrast (Linework & Typography) */
+      --ink-prime:              #1A140E; /* High-contrast structural borders, deep headings, shadows */
+      --ink-soft:               #3D3428; /* Primary reading body text, secondary headings */
+      --lead-muted:             #6B5D4A; /* Captions, folios, counters, placeholder hints */
+      --ink-inverted:           #FBF4E3; /* Contrast text on prime ink containers */
+
+      /* Accents & Functional Semantics */
+      --oxblood-prime:          #8E2A1B; /* Primary actions, brand marks, destructive/error highlights */
+      --oxblood-deep:           #6C1D12; /* Primary button active/hover state */
+      --mustard-gold:           #C9A227; /* Focus rings, status badges, text selection highlight */
+      --terracotta:             #C45C26; /* Secondary warm accents, alert notes */
+      --forest-press:           #1F3D32; /* Success states, active toggles, completed steps */
+
+      /* Typography Stacks */
+      --font-display:           "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      --font-sans:              "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono:              "IBM Plex Mono", "Consolas", monospace;
+
+      /* Scale & Line Heights */
+      --lh-tight:               1.10;
+      --lh-heading:             1.15;
+      --lh-body:                1.55;
+      --lh-code:                1.50;
+
+      /* Corner Geometry (Border Radii) */
+      --radius-sharp:           0px;   /* Panels, modals, headers, floating dock */
+      --radius-micro:           2px;   /* Standard cards, inputs, buttons, badge stamps */
+      --radius-pill:            50%;   /* Radio buttons, round indices, indicator dots */
+
+      /* Elevation & Shadows (Hard Flat-Offset, Pure #1A140E, No Blur) */
+      --shadow-base:            0px 0px 0 #1A140E;
+      --shadow-sm:              4px 4px 0 #1A140E;
+      --shadow-panel:           6px 6px 0 #1A140E;
+      --shadow-modal:           10px 10px 0 #1A140E;
+      --shadow-status:          5px 5px 0 #C9A227;
+      --shadow-error:           6px 6px 0 #8E2A1B;
+      --shadow-inset:           inset 4px 4px 0 rgba(26, 20, 14, 0.06);
+
+      /* Ink Linework */
+      --border-heavy:           3px solid #1A140E;
+      --border-sub:             2px solid #1A140E;
+      --border-hairline:        1px solid #1A140E;
+      --border-focus:           3px solid #C9A227;
+
+      /* Spacing Scale (4px / 8px Spatial Cadence) */
+      --space-2xs:              4px;
+      --space-xs:               8px;
+      --space-sm:               12px;
+      --space-md:               16px;
+      --space-lg:               24px;
+      --space-xl:               32px;
+      --space-2xl:              48px;
+      --space-3xl:              64px;
+
+      /* Max Container Width */
+      --max-width:              1120px;
+
+      /* Interaction & Transitions */
+      --ease-mechanical:        cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-depress:     transform 100ms var(--ease-mechanical), box-shadow 100ms var(--ease-mechanical), background-color 150ms ease;
+    }
+
+    /* ==========================================================================
+       02. RESET & DOCUMENT TEXTURE PHYSICS
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--paper-base);
+      color: var(--ink-soft);
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: var(--lh-body);
+      color: var(--ink-soft);
+      background-color: var(--paper-base);
+      /* Atmospheric Paper Wash */
+      background-image: 
+        radial-gradient(1200px 700px at 8% -10%, rgba(201, 162, 39, 0.28), transparent 55%),
+        radial-gradient(900px 600px at 110% 8%, rgba(142, 42, 27, 0.16), transparent 50%),
+        linear-gradient(180deg, #F6EAD0 0%, #F0E2C4 38%, #E8D4A6 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Paper Fiber Noise Overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.22;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.10 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 0.45 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.7'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+
+    /* Text Selection Highlight (Mustard Gold) */
+    ::selection {
+      background-color: var(--mustard-gold);
+      color: var(--ink-prime);
+    }
+
+    .layout-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       03. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ========================================================================== */
+    .style-tile-header {
+      background-color: var(--cream-surface);
+      border-bottom: var(--border-heavy);
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      box-shadow: 0 4px 0 rgba(26, 20, 14, 0.08);
+      padding: var(--space-sm) var(--space-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-prime);
+      text-decoration: none;
+      padding: 7px 14px;
+      background: var(--paper-base);
+      border: var(--border-sub);
+      border-radius: var(--radius-micro);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-depress);
+    }
+
+    .nav-back-link:hover {
+      background: var(--paper-deep);
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 var(--ink-prime);
+    }
+
+    .nav-back-link:active {
+      transform: translate(4px, 4px);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .nav-back-link:focus-visible {
+      outline: var(--border-focus);
+      outline-offset: 2px;
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background: var(--ink-prime);
+      color: var(--cream-surface);
+      padding: 4px 8px;
+      border-radius: var(--radius-micro);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--ink-prime);
+      letter-spacing: -0.02em;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--oxblood-prime);
+      background: var(--warm-field);
+      border: 1px solid var(--oxblood-prime);
+      padding: 3px 8px;
+      border-radius: var(--radius-micro);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 8px 14px;
+      background: var(--cream-surface);
+      color: var(--ink-prime);
+      border: var(--border-sub);
+      border-radius: var(--radius-micro);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition-depress);
+      user-select: none;
+    }
+
+    .btn-tile:hover {
+      background: var(--paper-deep);
+    }
+
+    .btn-tile:active {
+      transform: translate(4px, 4px);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .btn-tile:focus-visible {
+      outline: var(--border-focus);
+      outline-offset: 2px;
+    }
+
+    .btn-tile.btn-copy {
+      background: var(--oxblood-prime);
+      color: var(--cream-surface);
+      border-color: var(--ink-prime);
+    }
+
+    .btn-tile.btn-copy:hover {
+      background: var(--oxblood-deep);
+    }
+
+    .btn-tile.btn-preview {
+      background: var(--mustard-gold);
+      color: var(--ink-prime);
+    }
+
+    .btn-tile.btn-preview:hover {
+      background: #B89220;
+    }
+
+    /* ==========================================================================
+       04. CORNER REGISTRATION BRACKETS & ORNAMENTAL RECTANGLES
+       ========================================================================== */
+    .card-registration {
+      position: relative;
+      background: var(--cream-surface);
+      border: var(--border-heavy);
+      border-radius: var(--radius-micro);
+      box-shadow: var(--shadow-panel);
+      padding: var(--space-lg);
+    }
+
+    /* 12px x 12px Registration Bracket Marks */
+    .reg-tl, .reg-tr, .reg-bl, .reg-br {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .reg-tl {
+      top: -3px;
+      left: -3px;
+      border-top: 3px solid var(--oxblood-prime);
+      border-left: 3px solid var(--oxblood-prime);
+    }
+
+    .reg-tr {
+      top: -3px;
+      right: -3px;
+      border-top: 3px solid var(--oxblood-prime);
+      border-right: 3px solid var(--oxblood-prime);
+    }
+
+    .reg-bl {
+      bottom: -3px;
+      left: -3px;
+      border-bottom: 3px solid var(--oxblood-prime);
+      border-left: 3px solid var(--oxblood-prime);
+    }
+
+    .reg-br {
+      bottom: -3px;
+      right: -3px;
+      border-bottom: 3px solid var(--oxblood-prime);
+      border-right: 3px solid var(--oxblood-prime);
+    }
+
+    /* Folio Header & Stamp Rows */
+    .folio-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--lead-muted);
+      border-bottom: var(--border-hairline);
+      padding-bottom: var(--space-xs);
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    .folio-stamp {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 3px 8px;
+      background: var(--warm-field);
+      border: 1px solid var(--ink-prime);
+      color: var(--ink-prime);
+      border-radius: var(--radius-micro);
+    }
+
+    .stamp-oxblood {
+      background: var(--oxblood-prime);
+      color: var(--cream-surface);
+      border-color: var(--ink-prime);
+    }
+
+    .stamp-mustard {
+      background: var(--mustard-gold);
+      color: var(--ink-prime);
+      border-color: var(--ink-prime);
+    }
+
+    .stamp-forest {
+      background: var(--forest-press);
+      color: var(--cream-surface);
+      border-color: var(--ink-prime);
+    }
+
+    /* ==========================================================================
+       05. HERO DISPLAY SECTION
+       ========================================================================== */
+    .hero-section {
+      padding: var(--space-2xl) 0 var(--space-xl);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: var(--space-xl);
+      align-items: stretch;
+    }
+
+    .hero-main {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-badges-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5.5vw, 68px);
+      font-weight: 800;
+      line-height: var(--lh-tight);
+      letter-spacing: -0.03em;
+      color: var(--ink-prime);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-title span.italic-craft {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--oxblood-prime);
+    }
+
+    .hero-lede {
+      font-size: 18px;
+      line-height: var(--lh-body);
+      color: var(--ink-soft);
+      margin-bottom: var(--space-lg);
+      max-width: 680px;
+    }
+
+    .hero-lede strong {
+      color: var(--ink-prime);
+      font-weight: 600;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    /* Tactile Depress Buttons */
+    .btn-depress {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 12px 22px;
+      border: var(--border-heavy);
+      border-radius: var(--radius-micro);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition-depress);
+      user-select: none;
+    }
+
+    .btn-depress:hover {
+      background: var(--paper-deep);
+      transform: translate(-1px, -1px);
+      box-shadow: 5px 5px 0 var(--ink-prime);
+    }
+
+    .btn-depress:active {
+      transform: translate(4px, 4px);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .btn-depress:focus-visible {
+      outline: var(--border-focus);
+      outline-offset: 2px;
+    }
+
+    .btn-depress.btn-primary-oxblood {
+      background: var(--oxblood-prime);
+      color: var(--cream-surface);
+      border-color: var(--ink-prime);
+    }
+
+    .btn-depress.btn-primary-oxblood:hover {
+      background: var(--oxblood-deep);
+    }
+
+    .btn-depress.btn-secondary-cream {
+      background: var(--cream-surface);
+      color: var(--ink-prime);
+    }
+
+    .btn-depress.btn-mustard {
+      background: var(--mustard-gold);
+      color: var(--ink-prime);
+    }
+
+    .btn-depress.btn-forest {
+      background: var(--forest-press);
+      color: var(--cream-surface);
+    }
+
+    /* Hero Letterpress Stamp Mark Card (Side Box) */
+    .hero-sidebar-card {
+      background: var(--warm-field);
+      border: var(--border-heavy);
+      border-radius: var(--radius-micro);
+      box-shadow: var(--shadow-panel);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .brand-mark-box {
+      width: 56px;
+      height: 56px;
+      background: var(--oxblood-prime);
+      border: var(--border-heavy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream-surface);
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .craft-spec-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      border-top: var(--border-hairline);
+      border-bottom: var(--border-hairline);
+      padding: var(--space-sm) 0;
+      margin: var(--space-sm) 0;
+    }
+
+    .craft-spec-list li {
+      display: flex;
+      justify-content: space-between;
+      color: var(--lead-muted);
+    }
+
+    .craft-spec-list li strong {
+      color: var(--ink-prime);
+    }
+
+    .press-cylinder-loader {
+      width: 100%;
+      height: 8px;
+      background: var(--paper-base);
+      border: 1px solid var(--ink-prime);
+      border-radius: var(--radius-micro);
+      overflow: hidden;
+      position: relative;
+      margin-top: var(--space-xs);
+    }
+
+    .press-cylinder-bar {
+      height: 100%;
+      width: 68%;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--oxblood-prime),
+        var(--oxblood-prime) 8px,
+        var(--mustard-gold) 8px,
+        var(--mustard-gold) 16px
+      );
+      transition: width 0.25s ease-in-out;
+      animation: sweepLoader 12s linear infinite;
+    }
+
+    @keyframes sweepLoader {
+      0% { background-position: 0 0; }
+      100% { background-position: 200px 0; }
+    }
+
+    /* ==========================================================================
+       06. SECTION WRAPPER & HEADINGS
+       ========================================================================== */
+    .spec-section {
+      padding: var(--space-xl) 0;
+    }
+
+    .section-header-strip {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      border-bottom: var(--border-heavy);
+      padding-bottom: var(--space-xs);
+      margin-bottom: var(--space-lg);
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.5vw, 32px);
+      font-weight: 700;
+      color: var(--ink-prime);
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .section-num {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--oxblood-prime);
+      background: var(--warm-field);
+      border: 1px solid var(--ink-prime);
+      padding: 2px 8px;
+      border-radius: var(--radius-micro);
+    }
+
+    .section-meta-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--lead-muted);
+    }
+
+    /* ==========================================================================
+       07. COLOR ROLES & PALETTE MATRIX (agent.md Section 5.2)
+       ========================================================================== */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .swatch-card {
+      background: var(--cream-surface);
+      border: var(--border-sub);
+      border-radius: var(--radius-micro);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-sm);
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition-depress);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .swatch-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--ink-prime);
+      background: var(--warm-field);
+    }
+
+    .swatch-card:active {
+      transform: translate(4px, 4px);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .swatch-chip {
+      height: 64px;
+      width: 100%;
+      border: var(--border-hairline);
+      border-radius: var(--radius-micro);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 6px;
+    }
+
+    .swatch-chip-hex {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 6px;
+      background: rgba(26, 20, 14, 0.85);
+      color: var(--cream-surface);
+      border-radius: var(--radius-micro);
+      letter-spacing: 0.05em;
+    }
+
+    .swatch-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .swatch-name {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-prime);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--oxblood-prime);
+    }
+
+    .swatch-role {
+      font-size: 12px;
+      color: var(--lead-muted);
+      line-height: 1.35;
+    }
+
+    .swatch-click-hint {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--lead-muted);
+      margin-top: 4px;
+      text-align: right;
+    }
+
+    /* ==========================================================================
+       08. TYPOGRAPHY SYSTEM SPECIMEN (agent.md Section 5.3)
+       ========================================================================== */
+    .typography-deck {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .font-specimen-card {
+      background: var(--cream-surface);
+      border: var(--border-heavy);
+      border-radius: var(--radius-micro);
+      box-shadow: var(--shadow-panel);
+      padding: var(--space-lg);
+    }
+
+    .font-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-sm);
+    }
+
+    .font-sample-display {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.12;
+      color: var(--ink-prime);
+      margin-bottom: var(--space-sm);
+    }
+
+    .font-sample-sans {
+      font-family: var(--font-sans);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--ink-prime);
+      margin-bottom: var(--space-sm);
+    }
+
+    .font-sample-mono {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.40;
+      color: var(--oxblood-prime);
+      margin-bottom: var(--space-sm);
+    }
+
+    /* Type Scale Ladder Table */
+    .type-ladder-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-sans);
+      background: var(--cream-surface);
+      border: var(--border-heavy);
+      box-shadow: var(--shadow-panel);
+    }
+
+    .type-ladder-table th,
+    .type-ladder-table td {
+      border: var(--border-hairline);
+      padding: var(--space-sm) var(--space-md);
+      text-align: left;
+    }
+
+    .type-ladder-table th {
+      background: var(--warm-field);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ink-prime);
+    }
+
+    .type-ladder-table td.role-cell {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--oxblood-prime);
+      white-space: nowrap;
+    }
+
+    .type-ladder-table td.family-cell {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--lead-muted);
+    }
+
+    .type-ladder-table td.preview-cell {
+      color: var(--ink-prime);
+    }
+
+    /* Live Editable Typeset Pangram Box */
+    .pangram-testing-box {
+      margin-top: var(--space-lg);
+      background: var(--warm-field);
+      border: var(--border-heavy);
+      box-shadow: var(--shadow-panel);
+      padding: var(--space-lg);
+    }
+
+    .pangram-controls {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .slider-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-prime);
+    }
+
+    .slider-group input[type="range"] {
+      accent-color: var(--oxblood-prime);
+      cursor: pointer;
+    }
+
+    .pangram-editable-output {
+      font-family: var(--font-display);
+      font-size: 32px;
+      line-height: 1.25;
+      font-weight: 700;
+      color: var(--ink-prime);
+      background: var(--cream-surface);
+      border: var(--border-sub);
+      padding: var(--space-md);
+      min-height: 90px;
+      outline: none;
+      border-radius: var(--radius-micro);
+    }
+
+    .pangram-editable-output:focus {
+      outline: var(--border-focus);
+    }
+
+    /* ==========================================================================
+       09. COMPONENT ARCHETYPES & INTERACTION GALLERY (agent.md Section 5.4)
+       ========================================================================== */
+    .archetype-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .archetype-card {
+      background: var(--cream-surface);
+      border: var(--border-heavy);
+      border-radius: var(--radius-micro);
+      box-shadow: var(--shadow-panel);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      position: relative;
+    }
+
+    .archetype-card.card-error-state {
+      border-color: var(--oxblood-prime);
+      box-shadow: var(--shadow-error);
+      background: #FFF5F2;
+    }
+
+    .archetype-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink-prime);
+      border-bottom: var(--border-hairline);
+      padding-bottom: var(--space-2xs);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .component-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    /* Inset Fields & Floating Label Inputs */
+    .floating-field-group {
+      position: relative;
+      margin-top: var(--space-xs);
+    }
+
+    .floating-input {
+      width: 100%;
+      height: 48px;
+      background: var(--warm-field);
+      border: var(--border-sub);
+      border-radius: var(--radius-micro);
+      padding: 18px var(--space-sm) 4px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--ink-prime);
+      box-shadow: var(--shadow-inset);
+      outline: none;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .floating-input:focus {
+      outline: var(--border-focus);
+      background: var(--cream-surface);
+    }
+
+    .floating-label {
+      position: absolute;
+      top: 14px;
+      left: var(--space-sm);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: var(--lead-muted);
+      pointer-events: none;
+      transition: all 120ms ease;
+    }
+
+    .floating-input:focus ~ .floating-label,
+    .floating-input:not(:placeholder-shown) ~ .floating-label {
+      top: 4px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--oxblood-prime);
+    }
+
+    /* Choice Tile Radios & Checkboxes */
+    .choice-tile-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .choice-tile {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--warm-field);
+      border: var(--border-sub);
+      border-radius: var(--radius-micro);
+      padding: var(--space-sm);
+      cursor: pointer;
+      transition: var(--transition-depress);
+      user-select: none;
+    }
+
+    .choice-tile:hover {
+      background: var(--paper-deep);
+    }
+
+    .choice-tile.selected {
+      background: var(--ink-prime);
+      color: var(--cream-surface);
+      border-color: var(--ink-prime);
+      box-shadow: 4px 4px 0 var(--mustard-gold);
+    }
+
+    .choice-tile.selected .choice-label {
+      color: var(--cream-surface);
+    }
+
+    .choice-tile.selected .choice-sub {
+      color: var(--paper-deep);
+    }
+
+    .choice-dot {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--ink-prime);
+      border-radius: var(--radius-pill);
+      background: var(--cream-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 100ms ease;
+    }
+
+    .choice-tile.selected .choice-dot {
+      border-color: var(--cream-surface);
+      background: var(--mustard-gold);
+    }
+
+    .choice-dot-inner {
+      width: 8px;
+      height: 8px;
+      border-radius: var(--radius-pill);
+      background: var(--ink-prime);
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 100ms ease;
+    }
+
+    .choice-tile.selected .choice-dot-inner {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Mechanical Toggle Switch */
+    .mechanical-toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-xs) 0;
+    }
+
+    .toggle-track {
+      width: 52px;
+      height: 28px;
+      background: var(--warm-field);
+      border: var(--border-sub);
+      border-radius: var(--radius-micro);
+      position: relative;
+      cursor: pointer;
+      transition: background-color 150ms ease;
+    }
+
+    .toggle-track.active {
+      background: var(--forest-press);
+    }
+
+    .toggle-thumb {
+      width: 22px;
+      height: 20px;
+      background: var(--cream-surface);
+      border: var(--border-sub);
+      border-radius: var(--radius-micro);
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      box-shadow: 2px 2px 0 var(--ink-prime);
+      transition: transform 120ms var(--ease-mechanical);
+    }
+
+    .toggle-track.active .toggle-thumb {
+      transform: translateX(24px);
+      background: var(--mustard-gold);
+    }
+
+    /* Error Validation Text */
+    .error-kicker-text {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--oxblood-prime);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ==========================================================================
+       10. LIVING MICRO-EXPERIENCE: THE LETTERPRESS IMPRESSION STUDIO (agent.md Section 5.5)
+       ========================================================================== */
+    .studio-panel {
+      background: var(--cream-surface);
+      border: var(--border-heavy);
+      border-radius: var(--radius-micro);
+      box-shadow: var(--shadow-panel);
+      padding: var(--space-lg);
+      position: relative;
+    }
+
+    .studio-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: var(--space-xl);
+    }
+
+    .studio-controls {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .studio-control-block {
+      background: var(--warm-field);
+      border: var(--border-sub);
+      border-radius: var(--radius-micro);
+      padding: var(--space-sm);
+    }
+
+    .studio-block-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ink-prime);
+      margin-bottom: var(--space-xs);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Stock Chips */
+    .chip-selector-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2xs);
+    }
+
+    .chip-btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 10px;
+      background: var(--cream-surface);
+      border: var(--border-hairline);
+      border-radius: var(--radius-micro);
+      cursor: pointer;
+      text-align: center;
+      transition: var(--transition-depress);
+    }
+
+    .chip-btn:hover {
+      background: var(--paper-deep);
+    }
+
+    .chip-btn.active {
+      background: var(--ink-prime);
+      color: var(--cream-surface);
+      border-color: var(--ink-prime);
+    }
+
+    /* Proof Sheet Canvas Display */
+    .proof-canvas-container {
+      background: #E8D8B6;
+      border: var(--border-heavy);
+      border-radius: var(--radius-micro);
+      box-shadow: var(--shadow-inset);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 460px;
+    }
+
+    .proof-sheet {
+      width: 100%;
+      max-width: 540px;
+      background: var(--paper-base);
+      border: 2px solid var(--ink-prime);
+      box-shadow: 6px 6px 0 rgba(26, 20, 14, 0.4);
+      padding: var(--space-xl);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .proof-sheet.stock-manila {
+      background: #F0E2C4;
+    }
+
+    .proof-sheet.stock-vellum {
+      background: #FAF2DF;
+    }
+
+    .proof-sheet.stock-cream {
+      background: #FBF7EC;
+    }
+
+    /* Rolling Press Cylinder Sweep Effect */
+    .press-cylinder-sweep {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(26, 20, 14, 0.08) 45%,
+        rgba(142, 42, 27, 0.3) 50%,
+        rgba(26, 20, 14, 0.12) 55%,
+        transparent 100%
+      );
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .press-cylinder-sweep.active-sweep {
+      animation: pressCylinderRoll 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    @keyframes pressCylinderRoll {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .proof-header {
+      border-bottom: 2px solid var(--ink-prime);
+      padding-bottom: var(--space-xs);
+      margin-bottom: var(--space-md);
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--oxblood-prime);
+      letter-spacing: 0.1em;
+    }
+
+    .proof-headline {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.12;
+      color: var(--ink-prime);
+      margin-bottom: var(--space-sm);
+      letter-spacing: -0.02em;
+    }
+
+    .proof-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 18px;
+      line-height: 1.45;
+      color: var(--oxblood-prime);
+      border-left: 3px solid var(--oxblood-prime);
+      padding-left: var(--space-sm);
+      margin: var(--space-md) 0;
+    }
+
+    .proof-body {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.60;
+      color: var(--ink-soft);
+    }
+
+    .proof-footer {
+      border-top: 1px dashed var(--ink-prime);
+      padding-top: var(--space-xs);
+      margin-top: var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--lead-muted);
+    }
+
+    /* Press Run Ledger Table */
+    .ledger-table-wrapper {
+      margin-top: var(--space-lg);
+      border: var(--border-heavy);
+      background: var(--cream-surface);
+      box-shadow: var(--shadow-panel);
+      overflow-x: auto;
+    }
+
+    .ledger-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .ledger-table th, .ledger-table td {
+      padding: 10px 14px;
+      border-bottom: var(--border-hairline);
+      text-align: left;
+    }
+
+    .ledger-table th {
+      background: var(--warm-field);
+      font-weight: 700;
+      color: var(--ink-prime);
+      letter-spacing: 0.08em;
+    }
+
+    .ledger-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ==========================================================================
+       11. STYLE TILE PROMPT CODE DRAWER (agent.md Section 5.6)
+       ========================================================================== */
+    .code-spec-drawer {
+      background: var(--ink-prime);
+      color: var(--cream-surface);
+      border: var(--border-heavy);
+      box-shadow: var(--shadow-panel);
+      padding: var(--space-lg);
+      border-radius: var(--radius-micro);
+      position: relative;
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(251, 244, 227, 0.2);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    .drawer-title {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--mustard-gold);
+      letter-spacing: 0.1em;
+    }
+
+    .code-scroll-box {
+      max-height: 480px;
+      overflow-y: auto;
+      background: #110D09;
+      border: 1px solid rgba(251, 244, 227, 0.15);
+      border-radius: var(--radius-micro);
+      padding: var(--space-md);
+    }
+
+    .code-scroll-box pre {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.55;
+      color: #E8D8B6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* ==========================================================================
+       12. MODAL & TOAST NOTIFICATION SYSTEM
+       ========================================================================== */
+    .spec-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(26, 20, 14, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+
+    .spec-modal-backdrop.open {
+      display: flex;
+    }
+
+    .spec-modal-window {
+      background: var(--cream-surface);
+      border: var(--border-heavy);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-modal);
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      animation: modalPop 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalPop {
+      0% { transform: scale(0.96) translateY(8px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    .modal-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-md) var(--space-lg);
+      background: var(--warm-field);
+      border-bottom: var(--border-heavy);
+    }
+
+    .modal-title-text {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink-prime);
+    }
+
+    .modal-close-btn {
+      background: var(--cream-surface);
+      border: var(--border-sub);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 2px 2px 0 var(--ink-prime);
+      transition: var(--transition-depress);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--oxblood-prime);
+      color: var(--cream-surface);
+    }
+
+    .modal-close-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .modal-content-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      background: var(--warm-field);
+    }
+
+    .modal-content-body pre {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink-prime);
+      white-space: pre-wrap;
+    }
+
+    .modal-footer-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      background: var(--cream-surface);
+      border-top: var(--border-heavy);
+    }
+
+    /* Floating Toast */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast-message {
+      background: var(--cream-surface);
+      border: var(--border-heavy);
+      color: var(--ink-prime);
+      padding: 12px 18px;
+      box-shadow: var(--shadow-status);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: auto;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast-message.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-icon {
+      color: var(--oxblood-prime);
+      font-size: 14px;
+    }
+
+    /* ==========================================================================
+       13. FOOTER
+       ========================================================================== */
+    .site-footer {
+      border-top: var(--border-heavy);
+      background: var(--warm-field);
+      padding: var(--space-xl) 0;
+      margin-top: var(--space-3xl);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--lead-muted);
+    }
+
+    /* ==========================================================================
+       14. PAGE-SPECIFIC RESPONSIVENESS (agent.md Section 6)
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .typography-deck {
+        grid-template-columns: 1fr;
+      }
+      .studio-layout {
+        grid-template-columns: 1fr;
+      }
+      .pangram-controls {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .card-registration {
+        padding: var(--space-md);
+      }
+    }
+  </style>
+
+  <!-- Mandatory Mobile Safety Sheet (agent.md Section 6) -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .layout-wrapper, .folio-sheet, .hero-section {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+      .hero-section {
+        padding-top: 16px !important;
+        padding-bottom: 20px !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+      .card-registration.hero-main {
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+      .reg-tl, .reg-tr, .reg-bl, .reg-br { display: none !important; }
+      .hero-grid { gap: 16px !important; }
+      .hero-sidebar-card { padding: 12px 0 !important; border: none !important; box-shadow: none !important; }
+      .hero-cta-group {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .hero-cta-group a, .hero-cta-group button {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .hero-title, .hero-lede { overflow-wrap: anywhere; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       01. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ========================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">The Letterpress</span>
+      <span class="design-vibe-tag">Editorial & Archival</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-the-letterpress.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+    <!-- ==========================================================================
+         02. HERO DISPLAY SECTION
+         ========================================================================== -->
+    <section class="hero-section">
+      <div class="hero-grid">
+        
+        <!-- Main Hero Column -->
+        <div class="card-registration hero-main">
+          <!-- 12px Corner Registration Brackets -->
+          <div class="reg-tl"></div><div class="reg-tr"></div><div class="reg-bl"></div><div class="reg-br"></div>
+
+          <div>
+            <div class="folio-strip">
+              <span>FOLIO NO. 14 // SPECIFICATION SHEET</span>
+              <div style="display: flex; gap: 6px;">
+                <span class="folio-stamp stamp-oxblood">[ FIRST EDITION ]</span>
+                <span class="folio-stamp stamp-mustard">[ 100% FIBER RAG ]</span>
+              </div>
+            </div>
+
+            <div class="hero-badges-row">
+              <span class="folio-stamp">[ EDITORIAL & ARCHIVAL ]</span>
+              <span class="folio-stamp">[ NEO-BRUTALIST STRUCTURE ]</span>
+              <span class="folio-stamp">[ MECHANICAL DEPRESS ]</span>
+            </div>
+
+            <h1 class="hero-title">
+              The Editorial <span class="italic-craft">Letterpress</span>
+            </h1>
+
+            <p class="hero-lede">
+              A high-tactility, print-shop aesthetic blending historical editorial typography (<strong>Fraunces</strong> & <strong>IBM Plex Mono</strong>) with bold neo-brutalist structure. High-contrast inked linework, warm fibrous paper washes, tactile mechanical depress states, and offset flat-drop shadow geometry create a physical, artisanal artifact for editorial publishing and craft computing.
+            </p>
+          </div>
+
+          <div class="hero-cta-group">
+            <button class="btn-depress btn-primary-oxblood" onclick="copyHeaderTile()">
+              <span>Copy Style Tile for Agent</span>
+              <span>→</span>
+            </button>
+            <a href="#studio" class="btn-depress btn-secondary-cream">
+              <span>Test Impression Studio</span>
+              <span>↓</span>
+            </a>
+            <button class="btn-depress btn-mustard" onclick="openSpecModal()">
+              <span>Inspect Token Spec</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sidebar Craft Mark & Mechanical Telemetry -->
+        <aside class="hero-sidebar-card">
+          <div class="reg-tl"></div><div class="reg-tr"></div><div class="reg-bl"></div><div class="reg-br"></div>
+
+          <div>
+            <div class="brand-mark-box">P</div>
+            <div class="folio-strip" style="border: none; padding: 0; margin-bottom: 8px;">
+              <span style="color: var(--ink-prime); font-weight: 700;">PRINT-SHOP TELEMETRY</span>
+              <span class="folio-stamp stamp-forest">ACTIVE</span>
+            </div>
+            
+            <ul class="craft-spec-list">
+              <li><span>PRESS CALIBRATION:</span> <strong>HEIDELBERG 10x15</strong></li>
+              <li><span>INK FORMULATION:</span> <strong>CARBON BLACK #1A140E</strong></li>
+              <li><span>PAPER SUBSTRATE:</span> <strong>MANILA COTTON 320GSM</strong></li>
+              <li><span>MECHANICAL DEPRESS:</span> <strong>4PX ZERO-BLUR</strong></li>
+              <li><span>CORNER RADII:</span> <strong>2PX HARD MICRO</strong></li>
+            </ul>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--lead-muted);">
+              <span>PLATE CYLINDER FEED</span>
+              <span id="hero-feed-val">68% / READY</span>
+            </div>
+            <div class="press-cylinder-loader">
+              <div class="press-cylinder-bar" id="hero-loader-bar"></div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         03. COLOR ROLES & PALETTE MATRIX (agent.md Section 5.2)
+         ========================================================================== -->
+    <section class="spec-section" id="palette">
+      <div class="section-header-strip">
+        <h2 class="section-title">
+          <span class="section-num">01</span>
+          <span>Color Roles & Inking Palette Matrix</span>
+        </h2>
+        <span class="section-meta-tag">Click any swatch to copy Hex / CSS Token</span>
+      </div>
+
+      <div class="palette-grid">
+        <!-- Paper Base -->
+        <div class="swatch-card" onclick="copyColor('#F0E2C4', '--paper-base')">
+          <div class="swatch-chip" style="background-color: #F0E2C4;">
+            <span class="swatch-chip-hex" style="color: #1A140E; background: rgba(251,244,227,0.9);">#F0E2C4</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Paper Base <span class="folio-stamp">CANVAS</span></div>
+            <span class="swatch-var">--paper-base</span>
+            <span class="swatch-role">Primary body canvas background and paper wash</span>
+          </div>
+          <span class="swatch-click-hint">Click to Copy</span>
+        </div>
+
+        <!-- Paper Deep -->
+        <div class="swatch-card" onclick="copyColor('#E3CF9F', '--paper-deep')">
+          <div class="swatch-chip" style="background-color: #E3CF9F;">
+            <span class="swatch-chip-hex" style="color: #1A140E; background: rgba(251,244,227,0.9);">#E3CF9F</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Paper Deep <span class="folio-stamp">HOVER</span></div>
+            <span class="swatch-var">--paper-deep</span>
+            <span class="swatch-role">Hover states, secondary backdrop fills, active tiles</span>
+          </div>
+          <span class="swatch-click-hint">Click to Copy</span>
+        </div>
+
+        <!-- Cream Surface -->
+        <div class="swatch-card" onclick="copyColor('#FBF4E3', '--cream-surface')">
+          <div class="swatch-chip" style="background-color: #FBF4E3;">
+            <span class="swatch-chip-hex" style="color: #1A140E; background: rgba(240,226,196,0.9);">#FBF4E3</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Cream Surface <span class="folio-stamp">CARD</span></div>
+            <span class="swatch-var">--cream-surface</span>
+            <span class="swatch-role">Elevated card, modal, and panel canvas substrate</span>
+          </div>
+          <span class="swatch-click-hint">Click to Copy</span>
+        </div>
+
+        <!-- Warm Field -->
+        <div class="swatch-card" onclick="copyColor('#F8EFD8', '--warm-field')">
+          <div class="swatch-chip" style="background-color: #F8EFD8;">
+            <span class="swatch-chip-hex" style="color: #1A140E; background: rgba(240,226,196,0.9);">#F8EFD8</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Warm Field <span class="folio-stamp">WELL</span></div>
+            <span class="swatch-var">--warm-field</span>
+            <span class="swatch-role">Inset inputs, code containers, well trays</span>
+          </div>
+          <span class="swatch-click-hint">Click to Copy</span>
+        </div>
+
+        <!-- Prime Ink -->
+        <div class="swatch-card" onclick="copyColor('#1A140E', '--ink-prime')">
+          <div class="swatch-chip" style="background-color: #1A140E;">
+            <span class="swatch-chip-hex">#1A140E</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Prime Ink <span class="folio-stamp stamp-oxblood">CORE</span></div>
+            <span class="swatch-var">--ink-prime</span>
+            <span class="swatch-role">High-contrast structural borders, deep headings, shadows</span>
+          </div>
+          <span class="swatch-click-hint">Click to Copy</span>
+        </div>
+
+        <!-- Soft Ink -->
+        <div class="swatch-card" onclick="copyColor('#3D3428', '--ink-soft')">
+          <div class="swatch-chip" style="background-color: #3D3428;">
+            <span class="swatch-chip-hex">#3D3428</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Soft Ink <span class="folio-stamp">BODY</span></div>
+            <span class="swatch-var">--ink-soft</span>
+            <span class="swatch-role">Primary reading body text, secondary headings</span>
+          </div>
+          <span class="swatch-click-hint">Click to Copy</span>
+        </div>
+
+        <!-- Lead Muted -->
+        <div class="swatch-card" onclick="copyColor('#6B5D4A', '--lead-muted')">
+          <div class="swatch-chip" style="background-color: #6B5D4A;">
+            <span class="swatch-chip-hex">#6B5D4A</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Lead Muted <span class="folio-stamp">META</span></div>
+            <span class="swatch-var">--lead-muted</span>
+            <span class="swatch-role">Captions, folios, counters, placeholder hints</span>
+          </div>
+          <span class="swatch-click-hint">Click to Copy</span>
+        </div>
+
+        <!-- Oxblood Prime -->
+        <div class="swatch-card" onclick="copyColor('#8E2A1B', '--oxblood-prime')">
+          <div class="swatch-chip" style="background-color: #8E2A1B;">
+            <span class="swatch-chip-hex">#8E2A1B</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Oxblood Prime <span class="folio-stamp stamp-oxblood">CTA</span></div>
+            <span class="swatch-var">--oxblood-prime</span>
+            <span class="swatch-role">Primary actions, brand marks, error highlights</span>
+          </div>
+          <span class="swatch-click-hint">Click to Copy</span>
+        </div>
+
+        <!-- Oxblood Deep -->
+        <div class="swatch-card" onclick="copyColor('#6C1D12', '--oxblood-deep')">
+          <div class="swatch-chip" style="background-color: #6C1D12;">
+            <span class="swatch-chip-hex">#6C1D12</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Oxblood Deep <span class="folio-stamp stamp-oxblood">ACTIVE</span></div>
+            <span class="swatch-var">--oxblood-deep</span>
+            <span class="swatch-role">Primary button active and pressed states</span>
+          </div>
+          <span class="swatch-click-hint">Click to Copy</span>
+        </div>
+
+        <!-- Mustard Gold -->
+        <div class="swatch-card" onclick="copyColor('#C9A227', '--mustard-gold')">
+          <div class="swatch-chip" style="background-color: #C9A227;">
+            <span class="swatch-chip-hex" style="color: #1A140E; background: rgba(251,244,227,0.9);">#C9A227</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Mustard Gold <span class="folio-stamp stamp-mustard">FOCUS</span></div>
+            <span class="swatch-var">--mustard-gold</span>
+            <span class="swatch-role">Focus rings, status badges, selection highlight</span>
+          </div>
+          <span class="swatch-click-hint">Click to Copy</span>
+        </div>
+
+        <!-- Terracotta -->
+        <div class="swatch-card" onclick="copyColor('#C45C26', '--terracotta')">
+          <div class="swatch-chip" style="background-color: #C45C26;">
+            <span class="swatch-chip-hex">#C45C26</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Terracotta <span class="folio-stamp">ALERT</span></div>
+            <span class="swatch-var">--terracotta</span>
+            <span class="swatch-role">Secondary warm accents, alert notes, caution</span>
+          </div>
+          <span class="swatch-click-hint">Click to Copy</span>
+        </div>
+
+        <!-- Forest Press -->
+        <div class="swatch-card" onclick="copyColor('#1F3D32', '--forest-press')">
+          <div class="swatch-chip" style="background-color: #1F3D32;">
+            <span class="swatch-chip-hex">#1F3D32</span>
+          </div>
+          <div class="swatch-info">
+            <div class="swatch-name">Forest Press <span class="folio-stamp stamp-forest">OK</span></div>
+            <span class="swatch-var">--forest-press</span>
+            <span class="swatch-role">Success states, active toggles, completed steps</span>
+          </div>
+          <span class="swatch-click-hint">Click to Copy</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         04. TYPOGRAPHY SYSTEM & SPECIMEN (agent.md Section 5.3)
+         ========================================================================== -->
+    <section class="spec-section" id="typography">
+      <div class="section-header-strip">
+        <h2 class="section-title">
+          <span class="section-num">02</span>
+          <span>Typography System & Typeface Specimens</span>
+        </h2>
+        <span class="section-meta-tag">Fraunces • Plus Jakarta Sans • IBM Plex Mono</span>
+      </div>
+
+      <div class="typography-deck">
+        <!-- Display Serif Specimen -->
+        <div class="font-specimen-card">
+          <div class="font-badge-row">
+            <span class="folio-stamp stamp-oxblood">DISPLAY & HEADINGS</span>
+            <span class="folio-stamp">SERIF 800/700</span>
+          </div>
+          <div class="font-sample-display">
+            Fraunces Display
+          </div>
+          <p style="font-family: var(--font-display); font-size: 18px; line-height: 1.4; color: var(--ink-soft); margin-bottom: 12px;">
+            ABCDEFGHIJKLMN OPQRSTUVWXYZ<br>
+            abcdefghijklmn opqrstuvwxyz 0123456789
+          </p>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--lead-muted);">
+            Stack: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif
+          </div>
+        </div>
+
+        <!-- Sans & Mono Specimens -->
+        <div class="font-specimen-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="font-badge-row">
+              <span class="folio-stamp">INTERFACE & BODY</span>
+              <span class="folio-stamp">SANS 400/600/700</span>
+            </div>
+            <div class="font-sample-sans">
+              Plus Jakarta Sans Interface
+            </div>
+            <p style="font-family: var(--font-sans); font-size: 14px; color: var(--ink-soft); margin-bottom: 14px;">
+              Engineered for crystalline UI legibility, deck narratives, button CTAs, and dense form labels.
+            </p>
+          </div>
+
+          <div style="border-top: var(--border-hairline); padding-top: 12px;">
+            <div class="font-badge-row">
+              <span class="folio-stamp stamp-mustard">MACHINE MONO</span>
+              <span class="folio-stamp">IBM PLEX MONO 400/600</span>
+            </div>
+            <div class="font-sample-mono">
+              $ ibm-plex-mono --typeset-proof
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Type Scale Hierarchy Ladder -->
+      <table class="type-ladder-table">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Family & Weight</th>
+            <th>Size / Line Height</th>
+            <th>Tracking</th>
+            <th>Live Preview Specimen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="role-cell">Display / H1</td>
+            <td class="family-cell">Fraunces (800)</td>
+            <td class="family-cell">48px – 86px / 1.10</td>
+            <td class="family-cell">-0.03em</td>
+            <td class="preview-cell" style="font-family: var(--font-display); font-size: 26px; font-weight: 800;">The Editorial Letterpress</td>
+          </tr>
+          <tr>
+            <td class="role-cell">Section / H2</td>
+            <td class="family-cell">Fraunces (700)</td>
+            <td class="family-cell">26px – 34px / 1.15</td>
+            <td class="family-cell">-0.02em</td>
+            <td class="preview-cell" style="font-family: var(--font-display); font-size: 20px; font-weight: 700;">Plate Inking & Type Foundry</td>
+          </tr>
+          <tr>
+            <td class="role-cell">Deck / Lede</td>
+            <td class="family-cell">Plus Jakarta Sans (400)</td>
+            <td class="family-cell">17px – 18px / 1.55</td>
+            <td class="family-cell">normal</td>
+            <td class="preview-cell" style="font-family: var(--font-sans); font-size: 15px; font-weight: 400;">A tactile neo-brutalist print aesthetic for modern codebases.</td>
+          </tr>
+          <tr>
+            <td class="role-cell">Body Regular</td>
+            <td class="family-cell">Plus Jakarta Sans (400)</td>
+            <td class="family-cell">15px – 17px / 1.55</td>
+            <td class="family-cell">normal</td>
+            <td class="preview-cell" style="font-family: var(--font-sans); font-size: 14px; font-weight: 400;">Linework and ink shadows simulate physical letterpress forms.</td>
+          </tr>
+          <tr>
+            <td class="role-cell">Button / CTA</td>
+            <td class="family-cell">Plus Jakarta Sans (700)</td>
+            <td class="family-cell">12px – 13px / 1.00</td>
+            <td class="family-cell">+0.05em (UP)</td>
+            <td class="preview-cell" style="font-family: var(--font-sans); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--oxblood-prime);">CONFIRM DISPATCH PROOF</td>
+          </tr>
+          <tr>
+            <td class="role-cell">Folio / Kicker</td>
+            <td class="family-cell">IBM Plex Mono (600)</td>
+            <td class="family-cell">11px – 13px / 1.00</td>
+            <td class="family-cell">+0.15em (UP)</td>
+            <td class="preview-cell" style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--lead-muted);">FOLIO NO. 14 // SPECIFICATION</td>
+          </tr>
+          <tr>
+            <td class="role-cell">Input & Code</td>
+            <td class="family-cell">IBM Plex Mono (400)</td>
+            <td class="family-cell">13px – 14px / 1.50</td>
+            <td class="family-cell">normal</td>
+            <td class="preview-cell" style="font-family: var(--font-mono); font-size: 13px; color: var(--forest-press);">box-shadow: 4px 4px 0 #1A140E;</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Live Editable Pangram Sandbox -->
+      <div class="pangram-testing-box">
+        <div class="folio-strip">
+          <span>INTERACTIVE TYPESET PANGRAM SANDBOX</span>
+          <span class="folio-stamp">[ LIVE EDITABLE ]</span>
+        </div>
+
+        <div class="pangram-controls">
+          <div class="slider-group">
+            <span>FONT SIZE:</span>
+            <input type="range" id="pangram-size" min="18" max="56" value="32" oninput="updatePangramSize(this.value)">
+            <span id="pangram-size-val">32px</span>
+          </div>
+          
+          <div class="chip-selector-group">
+            <button class="chip-btn active" onclick="setPangramFont('Fraunces', this)">Fraunces Display</button>
+            <button class="chip-btn" onclick="setPangramFont('Plus Jakarta Sans', this)">Plus Jakarta Sans</button>
+            <button class="chip-btn" onclick="setPangramFont('IBM Plex Mono', this)">IBM Plex Mono</button>
+          </div>
+        </div>
+
+        <div class="pangram-editable-output" id="pangram-output" contenteditable="true" spellcheck="false">
+          The quick brown fox jumps over the lazy dog. 0123456789.
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         05. COMPONENT ARCHETYPE GALLERY (agent.md Section 5.4)
+         ========================================================================== -->
+    <section class="spec-section" id="archetypes">
+      <div class="section-header-strip">
+        <h2 class="section-title">
+          <span class="section-num">03</span>
+          <span>Component Archetypes & Interaction Mechanics</span>
+        </h2>
+        <span class="section-meta-tag">Tactile Depress States & Mechanical Feedback</span>
+      </div>
+
+      <div class="archetype-grid">
+        
+        <!-- Button Suite Card -->
+        <div class="archetype-card">
+          <div class="reg-tl"></div><div class="reg-tr"></div><div class="reg-bl"></div><div class="reg-br"></div>
+          <div class="archetype-title">
+            <span>Tactile Buttons</span>
+            <span class="folio-stamp">4PX SHADOW DEPRESS</span>
+          </div>
+
+          <p style="font-size: 13px; color: var(--lead-muted);">
+            Buttons feature a physical 4px drop shadow that snaps to 0px on mechanical click.
+          </p>
+
+          <div class="component-row">
+            <button class="btn-depress btn-primary-oxblood" onclick="showToast('Primary Oxblood Depressed!')">Oxblood CTA</button>
+            <button class="btn-depress btn-secondary-cream" onclick="showToast('Cream Surface Pressed!')">Cream Surface</button>
+          </div>
+
+          <div class="component-row">
+            <button class="btn-depress btn-mustard" onclick="showToast('Mustard Accent Triggered!')">Mustard Gold</button>
+            <button class="btn-depress btn-forest" onclick="showToast('Forest Press Confirmed!')">Forest Success</button>
+          </div>
+        </div>
+
+        <!-- Inset Fields & Floating Inputs -->
+        <div class="archetype-card">
+          <div class="reg-tl"></div><div class="reg-tr"></div><div class="reg-bl"></div><div class="reg-br"></div>
+          <div class="archetype-title">
+            <span>Floating Label Inputs</span>
+            <span class="folio-stamp stamp-oxblood">INSET CAVITY</span>
+          </div>
+
+          <div class="floating-field-group">
+            <input type="text" id="demo-inp-1" class="floating-input" placeholder=" " value="Gutenberg Craft Edition">
+            <label for="demo-inp-1" class="floating-label">EDITION TITLE</label>
+          </div>
+
+          <div class="floating-field-group">
+            <input type="text" id="demo-inp-2" class="floating-input" placeholder=" ">
+            <label for="demo-inp-2" class="floating-label">PRESS OPERATOR ID</label>
+          </div>
+
+          <div class="mechanical-toggle-row">
+            <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 600;">AUTOPRESS SINK ROLLER</span>
+            <div class="toggle-track active" id="demo-toggle" onclick="toggleMechanicalSwitch(this)">
+              <div class="toggle-thumb"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Choice Tiles & Selection Radios -->
+        <div class="archetype-card">
+          <div class="reg-tl"></div><div class="reg-tr"></div><div class="reg-bl"></div><div class="reg-br"></div>
+          <div class="archetype-title">
+            <span>Inverted Choice Tiles</span>
+            <span class="folio-stamp stamp-mustard">[ CHOICE ]</span>
+          </div>
+
+          <div class="choice-tile-group">
+            <div class="choice-tile selected" onclick="selectChoiceTile(this, 'choice-grp-1')">
+              <div>
+                <div class="choice-label" style="font-family: var(--font-sans); font-size: 14px; font-weight: 700;">Hand-Set Metal Type</div>
+                <div class="choice-sub" style="font-family: var(--font-mono); font-size: 11px;">Fraunces 800 Heavy Cast Lead</div>
+              </div>
+              <div class="choice-dot"><div class="choice-dot-inner"></div></div>
+            </div>
+
+            <div class="choice-tile" onclick="selectChoiceTile(this, 'choice-grp-1')">
+              <div>
+                <div class="choice-label" style="font-family: var(--font-sans); font-size: 14px; font-weight: 700;">Polymer Relief Matrix</div>
+                <div class="choice-sub" style="font-family: var(--font-mono); font-size: 11px;">0.95mm Relief Depth Inking</div>
+              </div>
+              <div class="choice-dot"><div class="choice-dot-inner"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error State Card Flipping to Oxblood -->
+        <div class="archetype-card card-error-state" id="error-demo-card">
+          <div class="reg-tl"></div><div class="reg-tr"></div><div class="reg-bl"></div><div class="reg-br"></div>
+          <div class="archetype-title">
+            <span style="color: var(--oxblood-prime);">Validation State</span>
+            <span class="folio-stamp stamp-oxblood">[ ! ERROR ]</span>
+          </div>
+
+          <p style="font-size: 13px; color: var(--ink-soft);">
+            Error states flip card borders, focus rings, and drop shadows directly to <strong>Oxblood #8E2A1B</strong> with an error kicker prefix.
+          </p>
+
+          <div class="error-kicker-text">
+            <span>[!] ERROR:</span>
+            <span>CYLINDER PRESSURE EXCEEDS 420 PSI</span>
+          </div>
+
+          <button class="btn-depress btn-primary-oxblood" style="width: 100%;" onclick="toggleErrorStateDemo()">
+            Toggle Error / Valid State
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         06. LIVING MICRO-EXPERIENCE: LETTERPRESS IMPRESSION STUDIO (agent.md Section 5.5)
+         ========================================================================== -->
+    <section class="spec-section" id="studio">
+      <div class="section-header-strip">
+        <h2 class="section-title">
+          <span class="section-num">04</span>
+          <span>Living Micro-Experience // Proof Impression Studio</span>
+        </h2>
+        <span class="section-meta-tag">Interactive Heidelberg Letterpress Simulator</span>
+      </div>
+
+      <div class="studio-panel">
+        <div class="reg-tl"></div><div class="reg-tr"></div><div class="reg-bl"></div><div class="reg-br"></div>
+
+        <div class="folio-strip">
+          <span>PRESS RUN NO. 4882 // ACTIVE WORKBENCH</span>
+          <div style="display: flex; gap: 8px;">
+            <span class="folio-stamp stamp-oxblood" id="studio-impression-badge">IMPRESSION: 001</span>
+            <span class="folio-stamp stamp-forest">ONLINE</span>
+          </div>
+        </div>
+
+        <div class="studio-layout">
+          
+          <!-- Studio Left Configuration Controls -->
+          <div class="studio-controls">
+            
+            <!-- Paper Substrate -->
+            <div class="studio-control-block">
+              <div class="studio-block-title">
+                <span>01. PAPER STOCK</span>
+                <span id="val-stock">MANILA 320G</span>
+              </div>
+              <div class="chip-selector-group">
+                <button class="chip-btn active" onclick="setProofStock('manila', 'MANILA 320G', this)">Manila 320g</button>
+                <button class="chip-btn" onclick="setProofStock('vellum', 'VELLUM 280G', this)">Vellum 280g</button>
+                <button class="chip-btn" onclick="setProofStock('cream', 'CREAM RAG', this)">Cream Rag</button>
+              </div>
+            </div>
+
+            <!-- Inking Formulation -->
+            <div class="studio-control-block">
+              <div class="studio-block-title">
+                <span>02. INKING MATRIX</span>
+                <span id="val-ink">OXBLOOD DUO</span>
+              </div>
+              <div class="chip-selector-group">
+                <button class="chip-btn active" onclick="setProofInk('oxblood', 'OXBLOOD DUO', this)">Oxblood Duo</button>
+                <button class="chip-btn" onclick="setProofInk('prime', 'PRIME BLACK', this)">Prime Black</button>
+                <button class="chip-btn" onclick="setProofInk('forest', 'FOREST SPLIT', this)">Forest Split</button>
+              </div>
+            </div>
+
+            <!-- Plate Edition Content -->
+            <div class="studio-control-block">
+              <div class="studio-block-title">
+                <span>03. PLATE COMPOSITION</span>
+              </div>
+              <select id="select-plate-edition" class="floating-input" style="height: 40px; padding: 4px 8px; font-size: 12px; margin-bottom: 8px;" onchange="changePlateEdition(this.value)">
+                <option value="1">EDITION 01: The Typography Manifesto</option>
+                <option value="2">EDITION 02: Principles of Craft Computing</option>
+                <option value="3">EDITION 03: Gutenberg to Silicon Vibe</option>
+              </select>
+            </div>
+
+            <!-- Trigger Action -->
+            <button class="btn-depress btn-primary-oxblood" style="padding: 16px; font-size: 14px;" onclick="runLetterpressImpression()">
+              <span>⚡ RUN MECHANICAL IMPRESSION</span>
+            </button>
+
+          </div>
+
+          <!-- Studio Right Rendered Proof Sheet Canvas -->
+          <div class="proof-canvas-container">
+            <div class="press-cylinder-sweep" id="press-sweep-layer"></div>
+
+            <div class="proof-sheet stock-manila" id="proof-render-sheet">
+              <div class="reg-tl"></div><div class="reg-tr"></div><div class="reg-bl"></div><div class="reg-br"></div>
+
+              <div class="proof-header">
+                <span id="proof-folio-label">FOLIO XIV • FIRST IMPRESSION</span>
+                <span id="proof-time-label">HEIDELBERG PROOF</span>
+              </div>
+
+              <h2 class="proof-headline" id="proof-headline-el">
+                The Typography Manifesto
+              </h2>
+
+              <p class="proof-quote" id="proof-quote-el">
+                "Good type is physical. Every stroke leaves an indentation in paper fiber that light can carve into shadow."
+              </p>
+
+              <p class="proof-body" id="proof-body-el">
+                Letterpress computing rejects the frictionless void of flat design. By pairing deep editorial serif weights with hard neo-brutalist mechanical anchors, we restore tactile gravity to interactive software.
+              </p>
+
+              <div class="proof-footer">
+                <span>REGISTERED AT PRINT LAB // ED. 2026.08</span>
+                <span id="proof-run-count">PULL #001 OF 500</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Ledger Table -->
+        <div class="ledger-table-wrapper">
+          <table class="ledger-table">
+            <thead>
+              <tr>
+                <th>RUN ID</th>
+                <th>SUBSTRATE</th>
+                <th>INK MATRIX</th>
+                <th>PRESSURE</th>
+                <th>STATUS</th>
+              </tr>
+            </thead>
+            <tbody id="ledger-rows">
+              <tr>
+                <td><code>#IMP-4882-01</code></td>
+                <td>Manila Cotton 320gsm</td>
+                <td>Oxblood Duo-Tone</td>
+                <td>380 PSI</td>
+                <td><span class="folio-stamp stamp-forest">COMMITTED</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         07. STYLE TILE PROMPT CODE DRAWER (agent.md Section 5.6)
+         ========================================================================== -->
+    <section class="spec-section" id="spec-drawer">
+      <div class="section-header-strip">
+        <h2 class="section-title">
+          <span class="section-num">05</span>
+          <span>Style Tile Markdown Prompt Specification</span>
+        </h2>
+        <span class="section-meta-tag">Agent-Ready Design Tokens</span>
+      </div>
+
+      <div class="code-spec-drawer">
+        <div class="drawer-header">
+          <div class="drawer-title">
+            <span>[ SYSTEM PROMPT: STYLE TILE TILE ]</span>
+          </div>
+          <button class="btn-depress btn-mustard" style="padding: 6px 12px; font-size: 11px;" onclick="copyHeaderTile()">
+            <span>Copy Full Markdown</span>
+          </button>
+        </div>
+
+        <div class="code-scroll-box">
+          <pre id="visible-markdown-code">Loading Style Tile Markdown...</pre>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       08. FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="layout-wrapper footer-inner">
+      <div>
+        <strong>STYLE TILES // TILE</strong> — The Editorial Letterpress (Neo-Brutalist Craft Print)
+      </div>
+      <div>
+        Google Antigravity Design Registry • Built for AI Agents & Vibe Coders
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       09. SPEC MODAL PREVIEW (agent.md Section 2)
+       ========================================================================== -->
+  <div class="spec-modal-backdrop" id="spec-modal-backdrop">
+    <div class="spec-modal-window">
+      <div class="modal-header-bar">
+        <div class="modal-title-text">
+          <span>TILE // The Letterpress Style Tile</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeSpecModal()" title="Close Modal">✕</button>
+      </div>
+
+      <div class="modal-content-body">
+        <pre id="modal-markdown-body">Loading markdown...</pre>
+      </div>
+
+      <div class="modal-footer-bar">
+        <button class="btn-depress btn-secondary-cream" onclick="closeSpecModal()">Close</button>
+        <button class="btn-depress btn-primary-oxblood" onclick="copyHeaderTile()">Copy Raw Markdown</button>
+        <button class="btn-depress btn-mustard" onclick="downloadHeaderTile()">Download .md</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ==========================================================================
+       10. EXACT RAW MARKDOWN SPEC EMBEDDED (agent.md Section 2)
+       ========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Editorial Letterpress
+  Construction: fibrous paper • hard-offset ink • Fraunces display • 0-2px radii • oxblood & mustard
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Warm fibrous paper is the canvas: a cream-gold field (#F0E2C4) washed with mustard and oxblood radials, then a multiply-blended fiber grain. Structure is letterpress-hard: 1-3px ink-plate borders (#1A140E), 0-2px radii, and zero-blur flat-offset shadows in the same ink. Display type is Fraunces at 700-800 with tight negative tracking; body is Plus Jakarta Sans; meta is IBM Plex Mono, uppercase, wide tracking. Interaction is mechanical: idle controls sit on a 4px ink offset; press translates 4px into the shadow until it collapses.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F0E2C4; /* Warm fibrous paper canvas */
+  --bg-surface:             #FBF4E3; /* Elevated cream panels */
+  --bg-surface-alt:         #F8EFD8; /* Recessed wells and input fields */
+  --bg-surface-dark:        #1A140E; /* Inverted ink-plate containers */
+
+  /* Inks & Typography */
+  --ink-primary:            #1A140E; /* Structural ink, display headings, shadows */
+  --ink-secondary:          #3D3428; /* Primary reading text */
+  --ink-muted:              #6B5D4A; /* Captions, placeholders, quiet meta */
+  --ink-inverted:           #FBF4E3; /* Cream ink on dark plates */
+
+  /* Signature Accents */
+  --accent-primary:         #8E2A1B; /* Oxblood fill for primary actions */
+  --accent-primary-hover:   #6C1D12; /* Deepened oxblood press */
+  --accent-secondary:       #C9A227; /* Mustard focus, selection, status offset */
+  --accent-tertiary:        #C45C26; /* Terracotta secondary warmth */
+
+  /* Status Tokens */
+  --status-success:         #1F3D32; /* Forest press */
+  --status-warning:         #C9A227; /* Mustard */
+  --status-danger:          #8E2A1B; /* Oxblood */
+  --status-info:            #C45C26; /* Terracotta */
+
+  /* Extra original surface inks */
+  --paper-base:             #F0E2C4;
+  --paper-deep:             #E3CF9F; /* Hover fill on paper controls */
+  --cream-surface:          #FBF4E3;
+  --warm-field:             #F8EFD8;
+  --ink-plate:              #1A140E;
+  --ink-prime:              #1A140E;
+  --ink-soft:               #3D3428;
+  --lead-muted:             #6B5D4A;
+  --oxblood-prime:          #8E2A1B;
+  --oxblood-deep:           #6C1D12;
+  --mustard-gold:           #C9A227;
+  --terracotta:             #C45C26;
+  --forest-press:           #1F3D32;
+  --paper-wash: radial-gradient(1200px 700px at 8% -10%, rgba(201,162,39,0.28), transparent 55%), radial-gradient(900px 600px at 110% 8%, rgba(142,42,27,0.16), transparent 50%), linear-gradient(180deg, #F6EAD0 0%, #F0E2C4 38%, #E8D4A6 100%);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+--font-sans:    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+--font-mono:    "IBM Plex Mono", "Consolas", monospace;
+
+--text-display: clamp(48px, 6vw, 86px) / 1.10 var(--font-display); /* Weight: 800 | Tracking: -0.03em */
+--text-h1:      clamp(34px, 4vw, 48px) / 1.12 var(--font-display); /* Weight: 800 | Tracking: -0.03em */
+--text-h2:      clamp(26px, 3vw, 34px) / 1.15 var(--font-display); /* Weight: 700 | Tracking: -0.02em */
+--text-h3:      20px                   / 1.25 var(--font-display); /* Weight: 700 | Tracking: -0.01em */
+--text-body:    15px-17px              / 1.55 var(--font-sans);    /* Weight: 400 | Tracking: normal */
+--text-body-sm: 15px-17px              / 1.55 var(--font-sans);    /* Weight: 600 | Tracking: normal | emphasis cut */
+--text-meta:    11px-13px              / 1.00 var(--font-mono);    /* Weight: 600 | Tracking: +0.15em | UPPERCASE */
+
+--text-lede:    17px-18px              / 1.55 var(--font-sans);    /* Weight: 400 */
+--text-cta:     12px-13px              / 1.00 var(--font-sans);    /* Weight: 700 | Tracking: +0.05em | UPPERCASE */
+--text-folio:   11px-13px              / 1.00 var(--font-mono);    /* Weight: 600 | Tracking: +0.15em | UPPERCASE */
+--text-code:    13px-14px              / 1.50 var(--font-mono);    /* Weight: 400 */
+--text-stamp:   10px-11px              / 1.00 var(--font-mono);    /* Weight: 600 | Tracking: +0.12em | UPPERCASE */
+
+Display serif is optical and heavy, with slight italic allowed only where the host already uses emphasis. Meta never becomes a second headline voice. Do not replace host words with specimen pangrams or folio theatre.
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-sharp:       0px;      /* Panels, modals, headers, docks */
+--radius-default:     2px;      /* Cards, inputs, buttons, chips */
+--radius-subtle:      2px;
+--radius-pill:        50%;      /* Radio dots and round indices only */
+
+--shadow-base:        0px 0px 0 #1A140E;
+--shadow-sm:          4px 4px 0 #1A140E;
+--shadow-panel:       6px 6px 0 #1A140E;
+--shadow-modal:       10px 10px 0 #1A140E;
+--shadow-status:      5px 5px 0 #C9A227;
+--shadow-error:       6px 6px 0 #8E2A1B;
+--shadow-inset:       inset 4px 4px 0 rgba(26,20,14,0.06);
+--shadow-hover:       4px 4px 0 #1A140E;
+--shadow-active:      0px 0px 0 transparent;
+
+All elevation is hard flat-offset in pure #1A140E (or mustard/oxblood for status). No blur. Optional 12px x 12px corner registration brackets may overlay card corners as silent geometry; omit them if they would need labels to read.
+
+--ease-mechanical:    cubic-bezier(0.16, 1, 0.3, 1);
+Press motion: transform 100ms mechanical + box-shadow 100ms; fill color 150ms ease.
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        3px solid #1A140E;
+--border-heavy:       3px solid #1A140E;
+--border-sub:         2px solid #1A140E;
+--border-hairline:    1px solid #1A140E;
+--border-focus:       3px solid #C9A227;
+--divider-style:      1px solid #1A140E;
+
+Focus uses a 3px mustard enclosure with 2px outline-offset. Selection highlight is mustard gold on ink.
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 2px radius, 2px ink border, uppercase sans at 12-13px / +0.05em. Idle sits on `box-shadow: 4px 4px 0 #1A140E` with `transform: translate(0, 0)`. Primary fill is oxblood #8E2A1B with cream ink; hover deepens to #6C1D12. Ghost/secondary fill is cream or paper-deep #E3CF9F on hover. Active: `transform: translate(4px, 4px); box-shadow: 0px 0px 0 transparent`. Focus: `outline: 3px solid #C9A227; outline-offset: 2px`. Keep the host's existing labels.
+- **Cards**: Cream #FBF4E3 (or paper) with 2-3px ink borders, 2px radius, 6px 6px 0 ink offset. Padding on an 8px cadence. Inset wells use #F8EFD8 plus inset 4px ink wash. Error skin flips border and offset to oxblood (`6px 6px 0 #8E2A1B`). Do not add index codes, folios, or print-shop meta the host lacks.
+- **Inputs**: 2px radius, 2px ink border, warm-field fill, inset shadow. Placeholder and idle label in #6B5D4A. Font-size at least 16px. On focus, border/outline becomes 3px mustard; floating labels (only if the host already floats labels) rise to 11px uppercase mono in oxblood. Checkboxes and radios: 2px ink stroke; checked state inverts to #1A140E fill with cream mark. Toggles use forest #1F3D32 when on.
+- **Navigation**: Restyle existing items as ink-bordered paper chips or a sharp 0px ink bar. Active item inverts to ink plate with cream type, or oxblood underline. No catalog codes, clocks, or fake issue numbers.
+- **Badges / chips / toggles**: 2px radius (not pills except round radio dots), 2px ink border, mono uppercase at 10-11px / +0.12em. Success chips forest-on-cream; warning mustard offset; danger oxblood. Toast popups may use `5px 5px 0 #C9A227`. Progress, if present, may use a hard left-to-right press-strip sweep; do not add a loader the host does not have.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No soft blurry box shadows or colored neon glows.
+- No pill-shaped bento shells; radii stay 0px or 2px except round radio dots.
+- No gradient fills on display type.
+- No cold blue-gray or OLED cyber canvases.
+- No unbordered floating cards; every elevated surface carries ink linework and a hard offset.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- ==========================================================================
+       11. INTERACTIVE SYSTEM LOGIC
+       ========================================================================== -->
+  <script>
+    // 1. Toast Notification Utility
+    function showToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+      
+      const toast = document.createElement("div");
+      toast.className = "toast-message";
+      toast.innerHTML = `<span class="toast-icon">${icon}</span> <span>${message}</span>`;
+      container.appendChild(toast);
+      
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+      
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 200);
+      }, 2400);
+    }
+
+    // 2. Markdown Extraction Helpers
+    function getMarkdownSpec() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    // 3. Header Action 1: Copy Style Tile
+    function copyHeaderTile() {
+      const md = getMarkdownSpec();
+      navigator.clipboard.writeText(md).then(() => {
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const originalHTML = btn.innerHTML;
+          btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Copied Style Tile!`;
+          setTimeout(() => {
+            btn.innerHTML = originalHTML;
+          }, 2000);
+        }
+        showToast("Raw Style Tile Markdown copied to clipboard!", "📋");
+      }).catch(err => {
+        showToast("Error copying to clipboard: " + err, "✕");
+      });
+    }
+
+    // 4. Header Action 2: Download Style Tile
+    function downloadHeaderTile() {
+      const md = getMarkdownSpec();
+      const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-the-letterpress.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-the-letterpress.md", "💾");
+    }
+
+    // 5. Header Action 3: Preview Spec Modal
+    function openSpecModal() {
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      const bodyEl = document.getElementById("modal-markdown-body");
+      if (bodyEl) bodyEl.textContent = getMarkdownSpec();
+      if (backdrop) backdrop.classList.add("open");
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+    }
+
+    // 6. Swatch Color Copy Utility
+    function copyColor(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${hex} (${varName}) to clipboard!`, "🎨");
+      });
+    }
+
+    // 7. Pangram Controls
+    function updatePangramSize(val) {
+      const out = document.getElementById("pangram-output");
+      const valDisp = document.getElementById("pangram-size-val");
+      if (out) out.style.fontSize = val + "px";
+      if (valDisp) valDisp.textContent = val + "px";
+    }
+
+    function setPangramFont(fontFamily, btn) {
+      const out = document.getElementById("pangram-output");
+      if (out) out.style.fontFamily = `"${fontFamily}", serif`;
+      
+      const parent = btn.parentNode;
+      parent.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    }
+
+    // 8. Mechanical Toggle Switch
+    function toggleMechanicalSwitch(track) {
+      track.classList.toggle("active");
+      const state = track.classList.contains("active") ? "ENGAGED" : "DISENGAGED";
+      showToast(`Mechanical Roller Sink: ${state}`);
+    }
+
+    // 9. Inverted Choice Tile Selection
+    function selectChoiceTile(selectedTile, groupClass) {
+      const parent = selectedTile.parentNode;
+      parent.querySelectorAll(".choice-tile").forEach(t => t.classList.remove("selected"));
+      selectedTile.classList.add("selected");
+      showToast("Selected: " + selectedTile.querySelector(".choice-label").textContent);
+    }
+
+    // 10. Error State Demo Toggle
+    function toggleErrorStateDemo() {
+      const card = document.getElementById("error-demo-card");
+      if (!card) return;
+      card.classList.toggle("card-error-state");
+      const isError = card.classList.contains("card-error-state");
+      showToast(isError ? "Card Error State Active (Oxblood #8E2A1B)" : "Card Restored to Neutral State");
+    }
+
+    // 11. Living Micro-Experience: Impression Studio Simulator
+    let impressionCount = 1;
+    const editionsData = {
+      "1": {
+        title: "The Typography Manifesto",
+        quote: `"Good type is physical. Every stroke leaves an indentation in paper fiber that light can carve into shadow."`,
+        body: `Letterpress computing rejects the frictionless void of flat design. By pairing deep editorial serif weights with hard neo-brutalist mechanical anchors, we restore tactile gravity to interactive software.`
+      },
+      "2": {
+        title: "Principles of Craft Computing",
+        quote: `"The tools we build shape the thoughts we think. Build them with permanence, weight, and visible mechanical joints."`,
+        body: `When code manifests with the material presence of a hand-printed proof, every pixel earns its place. Zero-blur shadows, high-contrast borders, and warm linen canvas establish clear architectural authority.`
+      },
+      "3": {
+        title: "Gutenberg to Silicon Vibe",
+        quote: `"From movable metal type to agentic prompt synthesis: the human thirst for structured legibility remains constant."`,
+        body: `We bridge historical printing press craftsmanship with cutting-edge AI architecture. Style Tiles encode precise visual DNA so that autonomous agents generate interfaces with authentic soul.`
+      }
+    };
+
+    function setProofStock(stockKey, stockName, btn) {
+      const sheet = document.getElementById("proof-render-sheet");
+      const label = document.getElementById("val-stock");
+      if (sheet) {
+        sheet.className = `proof-sheet stock-${stockKey}`;
+      }
+      if (label) label.textContent = stockName;
+
+      btn.parentNode.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      showToast(`Stock changed to ${stockName}`);
+    }
+
+    function setProofInk(inkKey, inkName, btn) {
+      const label = document.getElementById("val-ink");
+      const headline = document.getElementById("proof-headline-el");
+      const quote = document.getElementById("proof-quote-el");
+      if (label) label.textContent = inkName;
+
+      if (headline && quote) {
+        if (inkKey === "prime") {
+          headline.style.color = "var(--ink-prime)";
+          quote.style.color = "var(--ink-prime)";
+          quote.style.borderColor = "var(--ink-prime)";
+        } else if (inkKey === "forest") {
+          headline.style.color = "var(--forest-press)";
+          quote.style.color = "var(--forest-press)";
+          quote.style.borderColor = "var(--forest-press)";
+        } else {
+          headline.style.color = "var(--ink-prime)";
+          quote.style.color = "var(--oxblood-prime)";
+          quote.style.borderColor = "var(--oxblood-prime)";
+        }
+      }
+
+      btn.parentNode.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      showToast(`Inking formulation set to ${inkName}`);
+    }
+
+    function changePlateEdition(editionKey) {
+      const data = editionsData[editionKey];
+      if (!data) return;
+
+      const head = document.getElementById("proof-headline-el");
+      const quote = document.getElementById("proof-quote-el");
+      const body = document.getElementById("proof-body-el");
+
+      if (head) head.textContent = data.title;
+      if (quote) quote.textContent = data.quote;
+      if (body) body.textContent = data.body;
+
+      showToast(`Composition updated to: ${data.title}`);
+    }
+
+    function runLetterpressImpression() {
+      const sweep = document.getElementById("press-sweep-layer");
+      const badge = document.getElementById("studio-impression-badge");
+      const countEl = document.getElementById("proof-run-count");
+      const sheet = document.getElementById("proof-render-sheet");
+      const heroLoader = document.getElementById("hero-loader-bar");
+
+      if (sweep) {
+        sweep.classList.remove("active-sweep");
+        void sweep.offsetWidth; // Trigger reflow
+        sweep.classList.add("active-sweep");
+      }
+
+      if (sheet) {
+        sheet.style.transform = "scale(0.985)";
+        setTimeout(() => {
+          sheet.style.transform = "scale(1)";
+        }, 300);
+      }
+
+      impressionCount++;
+      const formatted = String(impressionCount).padStart(3, "0");
+      if (badge) badge.textContent = `IMPRESSION: ${formatted}`;
+      if (countEl) countEl.textContent = `PULL #${formatted} OF 500`;
+
+      // Update hero cylinder bar
+      if (heroLoader) {
+        const pct = Math.min(100, 68 + impressionCount * 4);
+        heroLoader.style.width = pct + "%";
+        const feedVal = document.getElementById("hero-feed-val");
+        if (feedVal) feedVal.textContent = `${pct}% / READY`;
+      }
+
+      // Add to ledger
+      const stock = document.getElementById("val-stock").textContent;
+      const ink = document.getElementById("val-ink").textContent;
+      const ledger = document.getElementById("ledger-rows");
+      if (ledger) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><code>#IMP-4882-${formatted}</code></td>
+          <td>${stock}</td>
+          <td>${ink}</td>
+          <td>${Math.floor(375 + Math.random() * 20)} PSI</td>
+          <td><span class="folio-stamp stamp-forest">COMMITTED</span></td>
+        `;
+        ledger.prepend(tr);
+      }
+
+      showToast(`Impression #${formatted} rolled across plate cylinder!`, "⚡");
+    }
+
+    // 12. DOM Initialization
+    document.addEventListener("DOMContentLoaded", () => {
+      // Wire Header buttons
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyHeaderTile);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadHeaderTile);
+
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      // Populate bottom visible code box
+      const visibleCode = document.getElementById("visible-markdown-code");
+      if (visibleCode) visibleCode.textContent = getMarkdownSpec();
+
+      // Keyboard & modal dismiss
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+

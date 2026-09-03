@@ -1,0 +1,2839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chalk &amp; Tab — Style Tile</title>
+  <meta name="description" content="Neo-Brutalist Tech &amp; Folder-Tab System (TILE): Tactile engineering design system on muted warm chalk canvas #EAEAE4 with asymmetric folder-tab cards, flame orange #FF4405, cobalt blue #3438F5, and axonometric wireframes.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon.ico">
+
+  <!-- Google Fonts: Syne, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=JetBrains+Mono:ital,wght@0,400..800;1,400..800&family=Syne:ital,wght@0,700..800;1,700..800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       STYLE TILE: NEO-BRUTALIST TECH & FOLDER-TAB SYSTEM // TILE
+       Tactile Neo-Brutalism, Asymmetric Tabs, Duotone Isometric Wireframes
+       ============================================================================= */
+
+    :root {
+      /* ------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * ------------------------------------------------------------------------ */
+      /* Surface & Canvas */
+      --canvas-base:             #EAEAE4; /* Muted warm chalk / tactile parchment */
+      --surface-white:           #FFFFFF; /* Crisp card highlights & base modules */
+      --surface-subtle:          #F4F4F0; /* Soft tinted module backing */
+      --surface-inverse:         #0C0C0C; /* Deep obsidian for high-contrast slabs */
+
+      /* Brand & Accent Spectrum */
+      --accent-flame:            #FF4405; /* Primary action / energetic orange */
+      --accent-flame-hover:      #E03A00;
+      --accent-cobalt:           #3438F5; /* Electric royal blue / focal cards */
+      --accent-cobalt-hover:     #282CD0;
+      --accent-acid:             #E8F754; /* High-vis yellow-lime / status highlight */
+      --accent-peach:            #FFE7DE; /* Soft social/stat pill tint */
+
+      /* Inks & Typography */
+      --ink-primary:             #0F0F0F; /* High-legibility deep carbon */
+      --ink-secondary:           #6B6B66; /* Balanced editorial grey */
+      --ink-muted:               #9E9E98; /* Metadata, timestamps, captions */
+      --ink-inverse:             #FFFFFF; /* Text on accent and dark containers */
+
+      /* Status Tokens */
+      --status-success:          #E8F754;
+      --status-warning:          #FF4405;
+      --status-info:             #3438F5;
+      --status-neutral:          #9E9E98;
+
+      /* ------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * ------------------------------------------------------------------------ */
+      --font-display:            'Syne', 'Inter', -apple-system, sans-serif;
+      --font-sans:               'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono:               'JetBrains Mono', monospace;
+
+      /* Typographic Contrast Rule: Bold uppercase paired with alternating high-slant italics */
+      --text-display-lg:         800 clamp(2.5rem, 5.5vw, 4.5rem)/0.96 var(--font-display);
+      --text-display-md:         800 clamp(1.75rem, 3.5vw, 2.75rem)/1.04 var(--font-display);
+      --text-section-title:      700 24px/1.20 var(--font-display);
+      --text-numeric:            700 32px/1.00 var(--font-mono);
+      --text-body-reg:           450 15px/1.45 var(--font-sans);
+      --text-micro-label:        600 11px/1.30 var(--font-mono);
+
+      /* ------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * ------------------------------------------------------------------------ */
+      --radius-pill:             9999px; /* Buttons, badges, micro action chips */
+      --radius-card-standard:    24px;   /* Regular inner containers & media tiles */
+      --radius-card-large:       32px;   /* Major canvas section wrappers */
+      --radius-micro:            8px;    /* Icon containers, small stat arrows */
+      --radius-tab-notch:        28px;   /* Asymmetric folder tab top notch */
+
+      /* ------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+       * ------------------------------------------------------------------------ */
+      /* Pure flat dimensional planes (No soft diffusion shadows) */
+      --layer-0:                 var(--canvas-base);
+      --layer-1:                 var(--surface-white);
+      --layer-2:                 var(--surface-subtle);
+      --layer-3:                 var(--surface-inverse);
+      --micro-highlight:         inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+      /* ------------------------------------------------------------------------
+       * 5. SPACING SCALE
+       * ------------------------------------------------------------------------ */
+      --space-2xs:               4px;
+      --space-xs:                8px;
+      --space-sm:                12px;
+      --space-md:                20px;
+      --space-lg:                32px;
+      --space-xl:                48px;
+      --space-2xl:               80px;
+      --max-width:               1280px;
+
+      /* ------------------------------------------------------------------------
+       * 6. BORDERS & DIVIDERS
+       * ------------------------------------------------------------------------ */
+      --border-subtle:           1px solid rgba(0, 0, 0, 0.08);
+      --border-accent:           1.5px solid #0F0F0F;
+      --border-grid:             1px solid #E2E2DC;
+
+      /* ------------------------------------------------------------------------
+       * 7. INTERACTIONS & FEEDBACK RULES
+       * ------------------------------------------------------------------------ */
+      --timing-snap:             200ms;
+      --ease-mechanical:         cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-snap:         all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* =============================================================================
+       BASE RESET & DOCUMENT SETUP
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--canvas-base);
+      color: var(--ink-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 450;
+      color: var(--ink-primary);
+      background-color: var(--canvas-base);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      padding-bottom: var(--space-2xl);
+    }
+
+    /* Subtle Architectural Grid Texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+      z-index: 0;
+    }
+
+    .layout-wrapper {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =============================================================================
+       MANDATORY HEADER BAR COMPONENT
+       ============================================================================= */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 24px;
+      background-color: var(--surface-white);
+      border-bottom: 1.5px solid var(--ink-primary);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      text-decoration: none;
+      padding: 8px 16px;
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--ink-primary);
+      border-radius: var(--radius-pill);
+      transition: var(--transition-snap);
+    }
+
+    .nav-back-link:hover {
+      background-color: var(--ink-primary);
+      color: var(--ink-inverse);
+      transform: translateY(-1px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: nowrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background-color: var(--surface-inverse);
+      color: var(--accent-acid);
+      border-radius: var(--radius-pill);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      text-transform: uppercase;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      background-color: var(--accent-peach);
+      color: var(--accent-flame);
+      border: 1px solid rgba(255, 68, 5, 0.2);
+      border-radius: var(--radius-pill);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: var(--transition-snap);
+      border: 1.5px solid var(--ink-primary);
+      text-decoration: none;
+    }
+
+    .btn-preview {
+      background-color: var(--surface-subtle);
+      color: var(--ink-primary);
+    }
+
+    .btn-preview:hover {
+      background-color: var(--ink-primary);
+      color: var(--ink-inverse);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy {
+      background-color: var(--accent-flame);
+      color: var(--ink-inverse);
+      border-color: var(--accent-flame);
+      box-shadow: var(--micro-highlight);
+    }
+
+    .btn-copy:hover {
+      background-color: var(--ink-primary);
+      border-color: var(--ink-primary);
+      transform: translateY(-1px);
+    }
+
+    .btn-download {
+      background-color: var(--accent-acid);
+      color: var(--ink-primary);
+      border-color: var(--ink-primary);
+    }
+
+    .btn-download:hover {
+      background-color: var(--ink-primary);
+      color: var(--ink-inverse);
+      transform: translateY(-1px);
+    }
+
+    /* =============================================================================
+       FOLDER-TAB ASYMMETRIC SYSTEM
+       ============================================================================= */
+    .folder-tab-container {
+      position: relative;
+      margin-top: 32px;
+    }
+
+    /* Folder Tab Header Bar */
+    .folder-tab-bar {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      padding-left: 12px;
+      margin-bottom: -1px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .folder-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px 10px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background-color: #DFDFD8;
+      color: var(--ink-secondary);
+      border: 1px solid var(--border-grid);
+      border-bottom: none;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      cursor: pointer;
+      transition: var(--transition-snap);
+      user-select: none;
+    }
+
+    .folder-tab:hover {
+      background-color: #E2E2DB;
+      color: var(--ink-primary);
+    }
+
+    .folder-tab.active {
+      background-color: var(--surface-white);
+      color: var(--ink-primary);
+      border-color: rgba(0, 0, 0, 0.08);
+      border-top: 2px solid var(--accent-flame);
+      padding-top: 14px;
+      font-weight: 800;
+    }
+
+    .folder-tab-tag {
+      font-size: 9px;
+      padding: 2px 6px;
+      border-radius: var(--radius-pill);
+      background-color: rgba(0, 0, 0, 0.06);
+    }
+
+    .folder-tab.active .folder-tab-tag {
+      background-color: var(--accent-flame);
+      color: var(--ink-inverse);
+    }
+
+    /* Folder Card Main Wrapper with Asymmetric Chamfer / Stepped Cutout */
+    .folder-card {
+      background-color: var(--surface-white);
+      border: var(--border-subtle);
+      border-radius: var(--radius-card-large);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .folder-card-tabbed {
+      border-top-left-radius: 0;
+    }
+
+    /* Stepped Top-Right Notch Cutout Silhouette */
+    .folder-tab-notch {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background-color: var(--canvas-base);
+      padding: 8px 16px 12px 20px;
+      border-bottom-left-radius: var(--radius-tab-notch);
+      border-left: var(--border-subtle);
+      border-bottom: var(--border-subtle);
+      z-index: 5;
+    }
+
+    .notch-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background-color: var(--surface-inverse);
+      color: var(--accent-acid);
+      border-radius: var(--radius-pill);
+    }
+
+    /* =============================================================================
+       SECTION 1: HERO DISPLAY BANNER
+       ============================================================================= */
+    .hero-section {
+      padding: 40px 0 24px;
+    }
+
+    .hero-master-card {
+      background-color: var(--surface-white);
+      border: var(--border-subtle);
+      border-radius: var(--radius-card-large);
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-top-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .hero-chips-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--ink-primary);
+      background-color: var(--surface-subtle);
+      color: var(--ink-primary);
+    }
+
+    .pill-chip-flame {
+      background-color: var(--accent-flame);
+      color: var(--ink-inverse);
+      border-color: var(--accent-flame);
+    }
+
+    .pill-chip-cobalt {
+      background-color: var(--accent-cobalt);
+      color: var(--ink-inverse);
+      border-color: var(--accent-cobalt);
+    }
+
+    .pill-chip-acid {
+      background-color: var(--accent-acid);
+      color: var(--ink-primary);
+      border-color: var(--ink-primary);
+    }
+
+    .hero-grid-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-title-area {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Typographic Contrast Rule: Bold uppercase paired with alternating high-slant italics */
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 0.98;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .hero-h1 em {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 800;
+      color: var(--accent-flame);
+      padding: 0 4px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-h1 span.cobalt-highlight {
+      color: var(--accent-cobalt);
+      font-style: italic;
+    }
+
+    .hero-lead-text {
+      font-family: var(--font-sans);
+      font-size: 17px;
+      line-height: 1.5;
+      font-weight: 450;
+      color: var(--ink-secondary);
+      max-width: 580px;
+    }
+
+    .hero-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Interactive Buttons */
+    .btn-main-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 12px 28px;
+      border-radius: var(--radius-pill);
+      background-color: var(--accent-flame);
+      color: var(--ink-inverse);
+      border: 1.5px solid var(--accent-flame);
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: var(--micro-highlight);
+      transition: var(--transition-snap);
+    }
+
+    .btn-main-cta:hover {
+      background-color: var(--ink-primary);
+      border-color: var(--ink-primary);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      background-color: transparent;
+      color: var(--ink-primary);
+      border: var(--border-accent);
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition-snap);
+    }
+
+    .btn-ghost-pill:hover {
+      background-color: var(--ink-primary);
+      color: var(--ink-inverse);
+      transform: translateY(-1px);
+    }
+
+    .hero-stat-card {
+      background-color: var(--surface-subtle);
+      border: var(--border-subtle);
+      border-radius: var(--radius-card-standard);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+
+    /* Isometric Technical Wireframe Hero Tile */
+    .hero-wireframe-preview {
+      background: linear-gradient(135deg, #FFE7DE 0%, #F4F4F0 100%);
+      border: 1.5px solid var(--ink-primary);
+      border-radius: 20px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .wireframe-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .wireframe-art-box {
+      width: 100%;
+      height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* =============================================================================
+       SECTION 2: COLOR ROLES & PALETTE MATRIX
+       ============================================================================= */
+    .section-block {
+      margin-top: 48px;
+    }
+
+    .section-header-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: var(--border-grid);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-heading em {
+      font-style: italic;
+      color: var(--accent-flame);
+    }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-muted);
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .palette-group-card {
+      background-color: var(--surface-white);
+      border: var(--border-subtle);
+      border-radius: var(--radius-card-standard);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .palette-group-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .swatches-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .swatch-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 12px;
+      background-color: var(--surface-subtle);
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      cursor: pointer;
+      transition: var(--transition-snap);
+      user-select: none;
+    }
+
+    .swatch-item:hover {
+      background-color: var(--surface-white);
+      border-color: var(--ink-primary);
+      transform: translateX(4px);
+    }
+
+    .swatch-pill {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .swatch-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .swatch-name {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .swatch-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .swatch-hex {
+      font-weight: 700;
+      color: var(--ink-secondary);
+    }
+
+    /* =============================================================================
+       SECTION 3: TYPOGRAPHY SYSTEM
+       ============================================================================= */
+    .type-specimen-card {
+      background-color: var(--surface-white);
+      border: var(--border-subtle);
+      border-radius: var(--radius-card-large);
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .type-ladder-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .type-ladder-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--surface-subtle);
+      align-items: baseline;
+    }
+
+    .type-meta-col {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .type-role-name {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .type-metrics-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .type-sample-display-lg {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+      line-height: 0.96;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .type-sample-display-md {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.75rem);
+      line-height: 1.04;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .type-sample-section {
+      font-family: var(--font-display);
+      font-size: 24px;
+      line-height: 1.20;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+    }
+
+    .type-sample-numeric {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      line-height: 1.00;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--accent-cobalt);
+    }
+
+    .type-sample-body {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 450;
+      color: var(--ink-secondary);
+      max-width: 680px;
+    }
+
+    .type-sample-micro {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.30;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    /* Typographic Contrast Rule Box */
+    .type-contrast-box {
+      background-color: var(--surface-inverse);
+      color: var(--ink-inverse);
+      border-radius: var(--radius-card-standard);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contrast-formula-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent-acid);
+      text-transform: uppercase;
+    }
+
+    .contrast-specimen-line {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .contrast-specimen-line em {
+      font-style: italic;
+      color: var(--accent-flame);
+      padding: 0 4px;
+    }
+
+    /* Interactive Type Tester */
+    .type-tester-container {
+      background-color: var(--surface-subtle);
+      border: var(--border-subtle);
+      border-radius: var(--radius-card-standard);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .type-tester-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .type-tester-input {
+      width: 100%;
+      background-color: var(--surface-white);
+      border: var(--border-accent);
+      border-radius: 16px;
+      padding: 16px 20px;
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink-primary);
+      text-transform: uppercase;
+      outline: none;
+      transition: var(--transition-snap);
+    }
+
+    .type-tester-input:focus {
+      border-color: var(--accent-flame);
+      background-color: #FFFFFF;
+    }
+
+    /* =============================================================================
+       SECTION 4: COMPONENT ARCHETYPE GALLERY
+       ============================================================================= */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .component-card {
+      background-color: var(--surface-white);
+      border: var(--border-subtle);
+      border-radius: var(--radius-card-standard);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .component-card-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--surface-subtle);
+    }
+
+    /* Button Suite */
+    .button-group-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-cobalt {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      background-color: var(--accent-cobalt);
+      color: var(--ink-inverse);
+      border: 1.5px solid var(--accent-cobalt);
+      cursor: pointer;
+      transition: var(--transition-snap);
+    }
+
+    .btn-cobalt:hover {
+      background-color: var(--ink-primary);
+      border-color: var(--ink-primary);
+      transform: translateY(-1px);
+    }
+
+    .btn-acid {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      background-color: var(--accent-acid);
+      color: var(--ink-primary);
+      border: 1.5px solid var(--ink-primary);
+      cursor: pointer;
+      transition: var(--transition-snap);
+    }
+
+    .btn-acid:hover {
+      background-color: var(--ink-primary);
+      color: var(--ink-inverse);
+      transform: translateY(-1px);
+    }
+
+    .btn-icon-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-pill);
+      background-color: var(--ink-primary);
+      color: var(--ink-inverse);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-snap);
+    }
+
+    .btn-icon-circle:hover {
+      background-color: var(--accent-flame);
+      transform: rotate(45deg);
+    }
+
+    .btn-icon-circle-white {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-pill);
+      background-color: var(--surface-white);
+      color: var(--ink-primary);
+      border: 1.5px solid var(--ink-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-snap);
+    }
+
+    .btn-icon-circle-white:hover {
+      background-color: var(--ink-primary);
+      color: var(--ink-inverse);
+      transform: translateX(2px);
+    }
+
+    /* Form Controls & Inputs */
+    .form-group-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .custom-input-pill {
+      width: 100%;
+      background-color: var(--surface-subtle);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: var(--radius-pill);
+      padding: 12px 20px;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--ink-primary);
+      outline: none;
+      transition: var(--transition-snap);
+    }
+
+    .custom-input-pill:focus {
+      border: var(--border-accent);
+      background-color: #FFFFFF;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 4px;
+    }
+
+    .toggle-label {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    /* Custom Toggle Switch */
+    .switch-ui {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 28px;
+    }
+
+    .switch-ui input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider-track {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background-color: var(--surface-subtle);
+      border: 1.5px solid var(--ink-primary);
+      border-radius: var(--radius-pill);
+      transition: var(--transition-snap);
+    }
+
+    .slider-track::before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: var(--ink-primary);
+      border-radius: 50%;
+      transition: var(--transition-snap);
+    }
+
+    .switch-ui input:checked + .slider-track {
+      background-color: var(--accent-acid);
+    }
+
+    .switch-ui input:checked + .slider-track::before {
+      transform: translateX(20px);
+      background-color: var(--ink-primary);
+    }
+
+    /* Custom Checkbox */
+    .checkbox-pill-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .checkbox-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: 1.5px solid var(--ink-primary);
+      background-color: var(--surface-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-snap);
+      flex-shrink: 0;
+    }
+
+    .checkbox-box.checked {
+      background-color: var(--accent-flame);
+      border-color: var(--accent-flame);
+      color: var(--ink-inverse);
+    }
+
+    /* Asymmetric Folder Card Showcase */
+    .mini-folder-card {
+      background-color: var(--surface-white);
+      border: var(--border-subtle);
+      border-radius: 20px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mini-folder-notch {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: var(--canvas-base);
+      padding: 6px 14px 8px 16px;
+      border-bottom-left-radius: 20px;
+      border-left: var(--border-subtle);
+      border-bottom: var(--border-subtle);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--accent-flame);
+    }
+
+    /* Duotone Isometric Wireframe Graphic Card */
+    .duotone-wireframe-card {
+      background: linear-gradient(145deg, var(--accent-flame) 0%, #D43500 100%);
+      border: 1.5px solid var(--ink-primary);
+      border-radius: var(--radius-card-standard);
+      padding: 24px;
+      color: var(--ink-inverse);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .duotone-wireframe-card svg line,
+    .duotone-wireframe-card svg path,
+    .duotone-wireframe-card svg polygon {
+      stroke: #FFFFFF;
+      stroke-width: 1.5;
+    }
+
+    /* Obsidian Slabs */
+    .obsidian-slab-card {
+      background-color: var(--surface-inverse);
+      border-radius: var(--radius-card-standard);
+      padding: 24px;
+      color: var(--ink-inverse);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* =============================================================================
+       SECTION 5: LIVING MICRO-EXPERIENCE // FOLDER-TAB PROTOCOL DASHBOARD
+       ============================================================================= */
+    .demo-section {
+      margin-top: 48px;
+    }
+
+    .demo-master-wrapper {
+      position: relative;
+    }
+
+    .demo-folder-card {
+      background-color: var(--surface-white);
+      border: var(--border-subtle);
+      border-radius: var(--radius-card-large);
+      border-top-left-radius: 0;
+      padding: 36px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .demo-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--surface-subtle);
+    }
+
+    .demo-identity {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .demo-icon-disc {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-pill);
+      background-color: var(--accent-flame);
+      color: var(--ink-inverse);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .demo-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-app-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .demo-app-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .demo-controls-suite {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Metric Tiles Grid */
+    .metrics-row-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .metric-tile {
+      background-color: var(--surface-subtle);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 18px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: var(--transition-snap);
+      cursor: pointer;
+    }
+
+    .metric-tile:hover {
+      background-color: #FFFFFF;
+      border-color: var(--ink-primary);
+      transform: translateY(-2px);
+    }
+
+    .metric-top-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-secondary);
+      text-transform: uppercase;
+    }
+
+    .metric-number-val {
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.1;
+    }
+
+    .metric-trend-pill {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+    }
+
+    .trend-up {
+      background-color: var(--accent-acid);
+      color: var(--ink-primary);
+    }
+
+    .trend-flame {
+      background-color: var(--accent-peach);
+      color: var(--accent-flame);
+    }
+
+    /* Interactive Viewport Panes */
+    .demo-pane-view {
+      display: none;
+    }
+
+    .demo-pane-view.active-pane {
+      display: block;
+      animation: fadeInSnap 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeInSnap {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .topology-viewport-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 24px;
+    }
+
+    .isometric-canvas-card {
+      background-color: var(--surface-subtle);
+      border: 1.5px solid var(--ink-primary);
+      border-radius: var(--radius-card-standard);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .canvas-overlay-tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background-color: var(--surface-white);
+      border: 1px solid var(--ink-primary);
+      border-radius: var(--radius-pill);
+      z-index: 10;
+    }
+
+    .node-telemetry-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .node-row-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background-color: var(--surface-subtle);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 14px;
+      transition: var(--transition-snap);
+      cursor: pointer;
+    }
+
+    .node-row-item:hover, .node-row-item.active-node {
+      background-color: var(--surface-white);
+      border-color: var(--ink-primary);
+      transform: translateX(3px);
+    }
+
+    .node-info-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .node-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-acid);
+      box-shadow: 0 0 0 2px var(--ink-primary);
+    }
+
+    .node-title-code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .node-tag-status {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      background-color: var(--surface-inverse);
+      color: var(--ink-inverse);
+    }
+
+    /* Command Console Bar */
+    .command-dispatch-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--surface-subtle);
+      border: 1.5px solid var(--ink-primary);
+      border-radius: var(--radius-pill);
+      padding: 6px 6px 6px 18px;
+    }
+
+    .command-input-field {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--ink-primary);
+      outline: none;
+    }
+
+    .btn-dispatch {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      background-color: var(--accent-flame);
+      color: var(--ink-inverse);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-snap);
+    }
+
+    .btn-dispatch:hover {
+      background-color: var(--ink-primary);
+    }
+
+    /* =============================================================================
+       SECTION 6: STYLE TILE PROMPT CODE DRAWER
+       ============================================================================= */
+    .spec-drawer-card {
+      background-color: var(--surface-inverse);
+      color: var(--ink-inverse);
+      border-radius: var(--radius-card-large);
+      padding: 36px;
+      margin-top: 48px;
+      position: relative;
+    }
+
+    .spec-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .spec-drawer-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--ink-inverse);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .spec-code-pre {
+      background-color: #050505;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #D6D6CE;
+      overflow-x: auto;
+      max-height: 480px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* =============================================================================
+       MODAL & FLOATING TOAST
+       ============================================================================= */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(15, 15, 15, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content-card {
+      background-color: var(--surface-white);
+      border: 2px solid var(--ink-primary);
+      border-radius: var(--radius-card-large);
+      width: 100%;
+      max-width: 860px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1.5px solid var(--ink-primary);
+      background-color: var(--surface-subtle);
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .modal-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1.5px solid var(--ink-primary);
+      background-color: var(--surface-white);
+      color: var(--ink-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      transition: var(--transition-snap);
+    }
+
+    .modal-close-btn:hover {
+      background-color: var(--ink-primary);
+      color: var(--ink-inverse);
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: var(--ink-primary);
+      color: var(--ink-inverse);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--accent-acid);
+      z-index: 3000;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    @keyframes toastSlideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* =============================================================================
+       PAGE-SPECIFIC MOBILE RESPONSIVENESS (< 768px)
+       ============================================================================= */
+    @media (max-width: 768px) {
+      .hero-master-card {
+        padding: 24px 18px;
+        border-radius: 20px;
+      }
+
+      .hero-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .folder-tab-bar {
+        padding-left: 0;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .folder-tab {
+        padding: 10px 16px 8px;
+        font-size: 11px;
+        white-space: nowrap;
+      }
+
+      .folder-tab-notch {
+        position: static;
+        border-bottom-left-radius: 0;
+        border-left: none;
+        border-bottom: var(--border-subtle);
+        margin-bottom: 16px;
+        justify-content: space-between;
+      }
+
+      .type-ladder-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .components-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topology-viewport-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .demo-folder-card {
+        padding: 20px 16px;
+        border-radius: 20px;
+      }
+
+      .spec-drawer-card {
+        padding: 24px 18px;
+        border-radius: 20px;
+      }
+    }
+  </style>
+
+  <!-- Mobile Safety Stylesheet & Script (agent.md Section 6) -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- =============================================================================
+       MANDATORY HEADER BAR COMPONENT
+       ============================================================================= -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Chalk &amp; Tab</span>
+      <span class="design-vibe-tag">Neo-Brutalism</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-chalk-and-tab.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- =============================================================================
+         SECTION 1: HERO DISPLAY BANNER
+         ============================================================================= -->
+    <section class="hero-section">
+      <div class="hero-master-card">
+        
+        <!-- Top Status Bar & Chips -->
+        <div class="hero-top-strip">
+          <div class="hero-chips-group">
+            <span class="pill-chip pill-chip-flame">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1.1 0 2 .9 2 2v1.1C17.6 7.8 20 11.6 20 16c0 4.4-3.6 8-8 8s-8-3.6-8-8c0-4.4 2.4-8.2 6-10.9V4c0-1.1.9-2 2-2z"/></svg>
+              #FLAME-ORANGE
+            </span>
+            <span class="pill-chip pill-chip-cobalt">#COBALT-3438F5</span>
+            <span class="pill-chip pill-chip-acid">#ACID-LIME</span>
+            <span class="pill-chip">#ASYMMETRIC-TABS</span>
+            <span class="pill-chip">#WARM-CHALK</span>
+          </div>
+          <span class="notch-badge">SYSTEM 054 // PRODUCTION SPEC</span>
+        </div>
+
+        <div class="hero-grid-layout">
+          <!-- Hero Title & Narrative -->
+          <div class="hero-title-area">
+            <h1 class="hero-h1">
+              NEO-BRUTALIST <em>[TECH]</em> &amp; FOLDER-TAB <span class="cobalt-highlight">SYSTEM</span>
+            </h1>
+            <p class="hero-lead-text">
+              A high-precision tactile design system engineered on warm chalk canvas (#EAEAE4), featuring asymmetric stepped folder tabs, high-energy flame orange (#FF4405) action CTAs that invert on hover, electric cobalt (#3438F5) focal cards, and crisp axonometric wireframes.
+            </p>
+            <div class="hero-actions-row">
+              <button class="btn-main-cta" onclick="copyTilePromptDirect()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy Prompt for AI Agent
+              </button>
+              <a href="#demo-section" class="btn-ghost-pill">
+                Explore Interactive Demo ↓
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Graphic & Architecture Specimen -->
+          <div class="hero-stat-card">
+            <div class="hero-wireframe-preview">
+              <div class="wireframe-header">
+                <span class="type-sample-micro" style="color: var(--accent-flame);">AXONOMETRIC TOPOLOGY</span>
+                <span class="notch-badge" style="background-color: var(--accent-flame); color: #fff;">LIVE SHARD</span>
+              </div>
+              <div class="wireframe-art-box">
+                <!-- Hard-Edge Isometric Wireframe Graphic (Vector SVG) -->
+                <svg width="180" height="120" viewBox="0 0 180 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Central Isometric Server Cube -->
+                  <polygon points="90,15 140,42 90,70 40,42" fill="#FFFFFF" stroke="#0F0F0F" stroke-width="1.75"/>
+                  <polygon points="40,42 90,70 90,105 40,77" fill="#F4F4F0" stroke="#0F0F0F" stroke-width="1.75"/>
+                  <polygon points="90,70 140,42 140,77 90,105" fill="#EAEAE4" stroke="#0F0F0F" stroke-width="1.75"/>
+                  
+                  <!-- Top Stepped Layer -->
+                  <polygon points="90,25 125,44 90,63 55,44" fill="#FF4405" stroke="#0F0F0F" stroke-width="1.5"/>
+                  
+                  <!-- Axonometric Connectors -->
+                  <line x1="90" y1="15" x2="90" y2="5" stroke="#3438F5" stroke-width="2" stroke-dasharray="3 3"/>
+                  <line x1="140" y1="42" x2="165" y2="55" stroke="#3438F5" stroke-width="2"/>
+                  <line x1="40" y1="42" x2="15" y2="55" stroke="#3438F5" stroke-width="2"/>
+                  
+                  <!-- Status Indicator Discs -->
+                  <circle cx="165" cy="55" r="4" fill="#E8F754" stroke="#0F0F0F" stroke-width="1.5"/>
+                  <circle cx="15" cy="55" r="4" fill="#E8F754" stroke="#0F0F0F" stroke-width="1.5"/>
+                  <circle cx="90" cy="5" r="4" fill="#3438F5" stroke="#0F0F0F" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px; font-weight: 700;">
+                <span>LATENCY: 1.2MS</span>
+                <span style="color: var(--accent-cobalt);">STATUS: ONLINE</span>
+              </div>
+            </div>
+
+            <!-- Quick Specs Row -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div style="background-color: #FFFFFF; padding: 12px; border-radius: 12px; border: var(--border-subtle);">
+                <div style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); font-weight: 700;">CANVAS ELEVATION</div>
+                <div style="font-family: var(--font-mono); font-size: 16px; font-weight: 800; color: var(--ink-primary);">FLAT PLANAR</div>
+              </div>
+              <div style="background-color: #FFFFFF; padding: 12px; border-radius: 12px; border: var(--border-subtle);">
+                <div style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); font-weight: 700;">TAB SILHOUETTE</div>
+                <div style="font-family: var(--font-mono); font-size: 16px; font-weight: 800; color: var(--accent-flame);">28PX NOTCH</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================================
+         SECTION 2: COLOR ROLES & PALETTE MATRIX
+         ============================================================================= -->
+    <section class="section-block" id="palette-section">
+      <div class="section-header-row">
+        <h2 class="section-heading">
+          <span class="section-num">01 //</span> COLOR ROLES &amp; <em>PALETTE MATRIX</em>
+        </h2>
+        <span class="type-sample-micro" style="color: var(--ink-muted);">CLICK ANY SWATCH TO COPY HEX CODE</span>
+      </div>
+
+      <div class="palette-grid">
+        
+        <!-- Group 1: Surfaces & Canvas -->
+        <div class="palette-group-card">
+          <div class="palette-group-title">
+            <span>Surfaces &amp; Canvas</span>
+            <span>4 ROLES</span>
+          </div>
+          <div class="swatches-stack">
+            <div class="swatch-item" onclick="copyHex('#EAEAE4', 'Canvas Base')">
+              <div class="swatch-pill" style="background-color: #EAEAE4;"></div>
+              <div class="swatch-details">
+                <span class="swatch-name">Canvas Base</span>
+                <div class="swatch-meta">
+                  <span>--canvas-base</span>
+                  <span class="swatch-hex">#EAEAE4</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="swatch-item" onclick="copyHex('#FFFFFF', 'Surface White')">
+              <div class="swatch-pill" style="background-color: #FFFFFF;"></div>
+              <div class="swatch-details">
+                <span class="swatch-name">Surface White</span>
+                <div class="swatch-meta">
+                  <span>--surface-white</span>
+                  <span class="swatch-hex">#FFFFFF</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="swatch-item" onclick="copyHex('#F4F4F0', 'Surface Subtle')">
+              <div class="swatch-pill" style="background-color: #F4F4F0;"></div>
+              <div class="swatch-details">
+                <span class="swatch-name">Surface Subtle</span>
+                <div class="swatch-meta">
+                  <span>--surface-subtle</span>
+                  <span class="swatch-hex">#F4F4F0</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="swatch-item" onclick="copyHex('#0C0C0C', 'Surface Inverse')">
+              <div class="swatch-pill" style="background-color: #0C0C0C;"></div>
+              <div class="swatch-details">
+                <span class="swatch-name">Surface Inverse</span>
+                <div class="swatch-meta">
+                  <span>--surface-inverse</span>
+                  <span class="swatch-hex">#0C0C0C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group 2: Brand & Accent Spectrum -->
+        <div class="palette-group-card">
+          <div class="palette-group-title">
+            <span>Brand &amp; Accent</span>
+            <span>4 COLORS</span>
+          </div>
+          <div class="swatches-stack">
+            <div class="swatch-item" onclick="copyHex('#FF4405', 'Accent Flame')">
+              <div class="swatch-pill" style="background-color: #FF4405;"></div>
+              <div class="swatch-details">
+                <span class="swatch-name">Accent Flame</span>
+                <div class="swatch-meta">
+                  <span>--accent-flame</span>
+                  <span class="swatch-hex">#FF4405</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="swatch-item" onclick="copyHex('#3438F5', 'Accent Cobalt')">
+              <div class="swatch-pill" style="background-color: #3438F5;"></div>
+              <div class="swatch-details">
+                <span class="swatch-name">Accent Cobalt</span>
+                <div class="swatch-meta">
+                  <span>--accent-cobalt</span>
+                  <span class="swatch-hex">#3438F5</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="swatch-item" onclick="copyHex('#E8F754', 'Accent Acid')">
+              <div class="swatch-pill" style="background-color: #E8F754;"></div>
+              <div class="swatch-details">
+                <span class="swatch-name">Accent Acid</span>
+                <div class="swatch-meta">
+                  <span>--accent-acid</span>
+                  <span class="swatch-hex">#E8F754</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="swatch-item" onclick="copyHex('#FFE7DE', 'Accent Peach')">
+              <div class="swatch-pill" style="background-color: #FFE7DE;"></div>
+              <div class="swatch-details">
+                <span class="swatch-name">Accent Peach</span>
+                <div class="swatch-meta">
+                  <span>--accent-peach</span>
+                  <span class="swatch-hex">#FFE7DE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group 3: Inks & Typography -->
+        <div class="palette-group-card">
+          <div class="palette-group-title">
+            <span>Inks &amp; Inverses</span>
+            <span>4 INKS</span>
+          </div>
+          <div class="swatches-stack">
+            <div class="swatch-item" onclick="copyHex('#0F0F0F', 'Ink Primary')">
+              <div class="swatch-pill" style="background-color: #0F0F0F;"></div>
+              <div class="swatch-details">
+                <span class="swatch-name">Ink Primary</span>
+                <div class="swatch-meta">
+                  <span>--ink-primary</span>
+                  <span class="swatch-hex">#0F0F0F</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="swatch-item" onclick="copyHex('#6B6B66', 'Ink Secondary')">
+              <div class="swatch-pill" style="background-color: #6B6B66;"></div>
+              <div class="swatch-details">
+                <span class="swatch-name">Ink Secondary</span>
+                <div class="swatch-meta">
+                  <span>--ink-secondary</span>
+                  <span class="swatch-hex">#6B6B66</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="swatch-item" onclick="copyHex('#9E9E98', 'Ink Muted')">
+              <div class="swatch-pill" style="background-color: #9E9E98;"></div>
+              <div class="swatch-details">
+                <span class="swatch-name">Ink Muted</span>
+                <div class="swatch-meta">
+                  <span>--ink-muted</span>
+                  <span class="swatch-hex">#9E9E98</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="swatch-item" onclick="copyHex('#FFFFFF', 'Ink Inverse')">
+              <div class="swatch-pill" style="background-color: #FFFFFF;"></div>
+              <div class="swatch-details">
+                <span class="swatch-name">Ink Inverse</span>
+                <div class="swatch-meta">
+                  <span>--ink-inverse</span>
+                  <span class="swatch-hex">#FFFFFF</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================================
+         SECTION 3: TYPOGRAPHY SYSTEM & SPECIMENS
+         ============================================================================= -->
+    <section class="section-block" id="typography-section">
+      <div class="section-header-row">
+        <h2 class="section-heading">
+          <span class="section-num">02 //</span> TYPOGRAPHY &amp; <em>CONTRAST RULES</em>
+        </h2>
+        <span class="type-sample-micro" style="color: var(--ink-muted);">SYNE (DISPLAY) • INTER (BODY) • JETBRAINS MONO</span>
+      </div>
+
+      <div class="type-specimen-card">
+        
+        <!-- Typographic Contrast Rule Box -->
+        <div class="type-contrast-box">
+          <span class="contrast-formula-label">Signature Typographic Formula</span>
+          <div class="contrast-specimen-line">
+            THE <em>[INTERNET]</em> OF CHAINS // ASYMMETRIC <em>[KINETICS]</em>
+          </div>
+          <p style="font-family: var(--font-sans); font-size: 14px; color: #CCCCCC; max-width: 650px;">
+            Rule: Bold uppercase sans-serif paired with alternating high-slant italics to generate editorial tension and rhythmic visual emphasis.
+          </p>
+        </div>
+
+        <!-- Hierarchy Ladder -->
+        <div class="type-ladder-list">
+          
+          <div class="type-ladder-row">
+            <div class="type-meta-col">
+              <span class="type-role-name">Display Large</span>
+              <span class="type-metrics-tag">72px / 96% / 800 (Extrabold)</span>
+            </div>
+            <div class="type-sample-display-lg">
+              SYSTEM <em>CHASSIS</em>
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-meta-col">
+              <span class="type-role-name">Display Medium</span>
+              <span class="type-metrics-tag">44px / 104% / 800 (Extrabold)</span>
+            </div>
+            <div class="type-sample-display-md">
+              FOLDER-TAB <em>CONTROLS</em>
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-meta-col">
+              <span class="type-role-name">Section Headers</span>
+              <span class="type-metrics-tag">24px / 120% / 700 (Bold)</span>
+            </div>
+            <div class="type-sample-section">
+              DISTRIBUTED PROTOCOL RUNNERS
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-meta-col">
+              <span class="type-role-name">Metric Numerics</span>
+              <span class="type-metrics-tag">32px / 100% / 700 (Mono Tabular)</span>
+            </div>
+            <div class="type-sample-numeric">
+              99.984% // 1,420 TPS
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-meta-col">
+              <span class="type-role-name">Body Regular</span>
+              <span class="type-metrics-tag">15px / 145% / 450 (Book)</span>
+            </div>
+            <div class="type-sample-body">
+              The modular architecture encapsulates high-throughput compute shards into tactile tabbed surfaces, providing instantaneous visual feedback and mechanical precision across distributed interfaces.
+            </div>
+          </div>
+
+          <div class="type-ladder-row">
+            <div class="type-meta-col">
+              <span class="type-role-name">Micro / Labels</span>
+              <span class="type-metrics-tag">11px / 130% / 600 (Caps +0.06em)</span>
+            </div>
+            <div class="type-sample-micro">
+              STATUS: VALIDATED // LATENCY: 0.8MS // PEERS: 42
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Live Interactive Type Tester -->
+        <div class="type-tester-container">
+          <div class="type-tester-controls">
+            <span class="type-role-name">Interactive Type Tester</span>
+            <div style="display: flex; gap: 8px;">
+              <button class="pill-chip" onclick="setTypeTesterWeight(800)">800 Extrabold</button>
+              <button class="pill-chip" onclick="setTypeTesterWeight(700)">700 Bold</button>
+              <button class="pill-chip" onclick="toggleTypeTesterItalic()">Toggle Italic</button>
+            </div>
+          </div>
+          <input type="text" id="live-type-input" class="type-tester-input" value="THE [INTERNET] OF CHAINS // ASYMMETRIC KINETICS">
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================================
+         SECTION 4: COMPONENT ARCHETYPE GALLERY
+         ============================================================================= -->
+    <section class="section-block" id="components-section">
+      <div class="section-header-row">
+        <h2 class="section-heading">
+          <span class="section-num">03 //</span> COMPONENT <em>ARCHETYPE GALLERY</em>
+        </h2>
+        <span class="type-sample-micro" style="color: var(--ink-muted);">PILL GEOMETRY • MECHANICAL FEEDBACK • ASYMMETRIC NOTCHES</span>
+      </div>
+
+      <div class="components-grid">
+        
+        <!-- Card 1: Button Suite -->
+        <div class="component-card">
+          <div class="component-card-title">
+            <span>Button &amp; CTA Matrix</span>
+            <span>INTERACTIVE</span>
+          </div>
+
+          <div class="button-group-stack">
+            <button class="btn-main-cta" onclick="triggerToast('Primary Action Triggered')">
+              Primary Action
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            
+            <button class="btn-cobalt" onclick="triggerToast('Cobalt Focus Triggered')">
+              Cobalt Focal
+            </button>
+
+            <button class="btn-acid" onclick="triggerToast('High-Vis Action Triggered')">
+              High-Vis Lime
+            </button>
+
+            <button class="btn-ghost-pill" onclick="triggerToast('Ghost Pill Triggered')">
+              Ghost Pill
+            </button>
+
+            <button class="btn-icon-circle" title="45° Mechanical Rotate" onclick="triggerToast('Dispatched Shard')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+
+            <button class="btn-icon-circle-white" title="2px Push Forward" onclick="triggerToast('Pushed Step')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 2: Interactive Form Controls -->
+        <div class="component-card">
+          <div class="component-card-title">
+            <span>Controls &amp; Inputs</span>
+            <span>TACTILE</span>
+          </div>
+
+          <div class="form-group-stack">
+            <input type="text" class="custom-input-pill" placeholder="Enter node endpoint or address...">
+            
+            <div class="toggle-row">
+              <span class="toggle-label">Telemetry Live Stream</span>
+              <label class="switch-ui">
+                <input type="checkbox" checked onchange="triggerToast('Telemetry stream toggled')">
+                <span class="slider-track"></span>
+              </label>
+            </div>
+
+            <div style="display: flex; gap: 16px; margin-top: 4px;">
+              <div class="checkbox-pill-item" onclick="toggleCustomCheck(this)">
+                <div class="checkbox-box checked" id="check-1">✓</div>
+                <span class="toggle-label" style="font-size: 13px;">Auto-Rebalance</span>
+              </div>
+
+              <div class="checkbox-pill-item" onclick="toggleCustomCheck(this)">
+                <div class="checkbox-box" id="check-2"></div>
+                <span class="toggle-label" style="font-size: 13px;">Strict Sharding</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Asymmetric Folder Tab Card Archetype -->
+        <div class="component-card">
+          <div class="component-card-title">
+            <span>Asymmetric Folder Tab Silhouette</span>
+            <span>28PX NOTCH</span>
+          </div>
+
+          <div class="mini-folder-card">
+            <div class="mini-folder-notch">NOTCH // 28PX</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <span class="type-role-name">MODULAR COMPONENT WELL</span>
+              <p style="font-size: 13px; color: var(--ink-secondary);">
+                Stepped top-right cutout creating a tactile folder tab silhouette with flat dimensional contrast.
+              </p>
+              <div style="display: flex; gap: 8px; margin-top: 8px;">
+                <span class="pill-chip" style="font-size: 10px; padding: 4px 8px;">#CONTAINER</span>
+                <span class="pill-chip pill-chip-flame" style="font-size: 10px; padding: 4px 8px;">#NOTCH-TOP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Duotone Wireframe Graphic Card -->
+        <div class="duotone-wireframe-card">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; letter-spacing: 0.08em;">DUOTONE HARD-EDGE GRAPHIC</span>
+            <span style="background: #FFFFFF; color: #FF4405; font-family: var(--font-mono); font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 9999px;">1.5PX VECTOR</span>
+          </div>
+
+          <!-- Axonometric Isometric Pipeline Illustration -->
+          <svg width="100%" height="80" viewBox="0 0 300 80" fill="none">
+            <!-- Isometric Grid Paths -->
+            <polygon points="50,15 110,15 80,65 20,65" fill="rgba(255,255,255,0.15)"/>
+            <polygon points="130,15 190,15 160,65 100,65" fill="rgba(255,255,255,0.25)"/>
+            <polygon points="210,15 270,15 240,65 180,65" fill="rgba(255,255,255,0.15)"/>
+            <line x1="20" y1="65" x2="280" y2="65" stroke-dasharray="4 4"/>
+            <line x1="50" y1="15" x2="270" y2="15"/>
+            <circle cx="80" cy="65" r="5" fill="#E8F754" stroke="#000" stroke-width="1.5"/>
+            <circle cx="160" cy="65" r="5" fill="#FFFFFF" stroke="#000" stroke-width="1.5"/>
+            <circle cx="240" cy="65" r="5" fill="#E8F754" stroke="#000" stroke-width="1.5"/>
+          </svg>
+
+          <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 11px;">
+            <span>VECTOR LINEWORK: 1.5PX</span>
+            <span>PERSPECTIVE: AXONOMETRIC</span>
+          </div>
+        </div>
+
+        <!-- Card 5: Obsidian Slabs -->
+        <div class="obsidian-slab-card">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent-acid);">HIGH-CONTRAST INVERSE SLAB</span>
+            <span style="font-family: var(--font-mono); font-size: 10px; background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 9999px;">#0C0C0C</span>
+          </div>
+          <p style="font-family: var(--font-sans); font-size: 13px; color: #A0A09A;">
+            Deep obsidian background used for high-impact visual anchors, technical terminals, and status consoles.
+          </p>
+          <div style="display: flex; gap: 8px;">
+            <span class="pill-chip pill-chip-acid" style="font-size: 10px; padding: 4px 10px;">ACTIVE OK</span>
+            <span class="pill-chip" style="background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2); font-size: 10px;">SLAB 03</span>
+          </div>
+        </div>
+
+        <!-- Card 6: Pill Badges & Chips -->
+        <div class="component-card">
+          <div class="component-card-title">
+            <span>Pills &amp; Micro Indicators</span>
+            <span>LEVEL 3 FLOATING</span>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span class="pill-chip pill-chip-flame">Action Pill</span>
+            <span class="pill-chip pill-chip-cobalt">Cobalt Pill</span>
+            <span class="pill-chip pill-chip-acid">High-Vis Pill</span>
+            <span class="pill-chip" style="background-color: var(--accent-peach); color: var(--accent-flame); border-color: var(--accent-flame);">Peach Tint</span>
+            <span class="pill-chip">Standard Pill</span>
+            <span class="pill-chip" style="background-color: var(--surface-inverse); color: #FFF;">Dark Carbon</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================================
+         SECTION 5: LIVING MICRO-EXPERIENCE // FOLDER-TAB PROTOCOL DASHBOARD
+         ============================================================================= -->
+    <section class="demo-section" id="demo-section">
+      <div class="section-header-row">
+        <h2 class="section-heading">
+          <span class="section-num">04 //</span> LIVING MICRO-EXPERIENCE: <em>FOLDER-TAB ENGINE</em>
+        </h2>
+        <span class="type-sample-micro" style="color: var(--ink-muted);">INTERACTIVE PROTOTYPE • ASYMMETRIC TABS • LIVE SHARD TELEMETRY</span>
+      </div>
+
+      <div class="demo-master-wrapper">
+        
+        <!-- Interactive Asymmetric Folder Tab Header -->
+        <div class="folder-tab-bar">
+          <div class="folder-tab active" id="tab-btn-1" onclick="switchDemoTab(1)">
+            <span>01 // Cluster Nodes</span>
+            <span class="folder-tab-tag">4 ACTIVE</span>
+          </div>
+          <div class="folder-tab" id="tab-btn-2" onclick="switchDemoTab(2)">
+            <span>02 // Pipeline Runners</span>
+            <span class="folder-tab-tag">99.9%</span>
+          </div>
+          <div class="folder-tab" id="tab-btn-3" onclick="switchDemoTab(3)">
+            <span>03 // Isometric Topology</span>
+            <span class="folder-tab-tag">2D/3D</span>
+          </div>
+        </div>
+
+        <!-- Master Card Body Attached to Active Tab -->
+        <div class="demo-folder-card">
+          
+          <!-- Top Control Strip inside Card -->
+          <div class="demo-top-bar">
+            <div class="demo-identity">
+              <div class="demo-icon-disc">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              </div>
+              <div class="demo-title-wrap">
+                <span class="demo-app-title">PROTOCOL NODE ENGINE // V4</span>
+                <span class="demo-app-sub">REGION: EU-CENTRAL // CONSENSUS: ASYMMETRIC RAFT</span>
+              </div>
+            </div>
+
+            <div class="demo-controls-suite">
+              <button class="btn-main-cta" style="padding: 8px 18px; font-size: 12px;" onclick="triggerToast('✓ Deployed new consensus shard!')">
+                + Deploy Shard
+              </button>
+              <button class="btn-ghost-pill" style="padding: 8px 16px; font-size: 12px;" onclick="triggerToast('✓ Cache flushed across 4 nodes')">
+                Purge Cache
+              </button>
+            </div>
+          </div>
+
+          <!-- Live Metrics Grid -->
+          <div class="metrics-row-grid">
+            <div class="metric-tile" onclick="triggerToast('Throughput metric refreshed')">
+              <div class="metric-top-meta">
+                <span>Throughput</span>
+                <span class="metric-trend-pill trend-up">+14.2%</span>
+              </div>
+              <div class="metric-number-val" id="metric-tps">1,482 TPS</div>
+              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted);">Peak: 2,100 TPS</div>
+            </div>
+
+            <div class="metric-tile" onclick="triggerToast('Latency matrix OK')">
+              <div class="metric-top-meta">
+                <span>Consensus Latency</span>
+                <span class="metric-trend-pill trend-up">0.8 ms</span>
+              </div>
+              <div class="metric-number-val" style="color: var(--accent-cobalt);">0.84 MS</div>
+              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted);">99th percentile</div>
+            </div>
+
+            <div class="metric-tile" onclick="triggerToast('Memory utilization stable')">
+              <div class="metric-top-meta">
+                <span>Memory Pool</span>
+                <span class="metric-trend-pill trend-flame">WARN 78%</span>
+              </div>
+              <div class="metric-number-val" style="color: var(--accent-flame);">14.2 GB</div>
+              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted);">Limit: 18.0 GB</div>
+            </div>
+
+            <div class="metric-tile" onclick="triggerToast('Validation state confirmed')">
+              <div class="metric-top-meta">
+                <span>Active Shards</span>
+                <span class="metric-trend-pill trend-up">SYNCED</span>
+              </div>
+              <div class="metric-number-val" style="color: var(--ink-primary);">12 / 12</div>
+              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted);">Zero re-orgs</div>
+            </div>
+          </div>
+
+          <!-- Pane 1: Cluster Nodes -->
+          <div class="demo-pane-view active-pane" id="pane-1">
+            <div class="topology-viewport-grid">
+              
+              <!-- Left: Isometric Visualizer Canvas -->
+              <div class="isometric-canvas-card">
+                <span class="canvas-overlay-tag">LIVE AXONOMETRIC MESH</span>
+                
+                <div style="height: 220px; display: flex; align-items: center; justify-content: center; position: relative;">
+                  <!-- Dynamic SVG Isometric Cluster Graph -->
+                  <svg width="340" height="200" viewBox="0 0 340 200" fill="none">
+                    <!-- Central Hub Cube -->
+                    <g transform="translate(130, 60)">
+                      <polygon points="40,0 80,20 40,40 0,20" fill="#FF4405" stroke="#0F0F0F" stroke-width="2"/>
+                      <polygon points="0,20 40,40 40,70 0,50" fill="#E03A00" stroke="#0F0F0F" stroke-width="2"/>
+                      <polygon points="40,40 80,20 80,50 40,70" fill="#C03200" stroke="#0F0F0F" stroke-width="2"/>
+                    </g>
+
+                    <!-- Left Node Cube -->
+                    <g transform="translate(30, 110)">
+                      <polygon points="30,0 60,15 30,30 0,15" fill="#3438F5" stroke="#0F0F0F" stroke-width="1.5"/>
+                      <polygon points="0,15 30,30 30,50 0,35" fill="#282CD0" stroke="#0F0F0F" stroke-width="1.5"/>
+                      <polygon points="30,30 60,15 60,35 30,50" fill="#1C20B0" stroke="#0F0F0F" stroke-width="1.5"/>
+                    </g>
+
+                    <!-- Right Node Cube -->
+                    <g transform="translate(230, 110)">
+                      <polygon points="30,0 60,15 30,30 0,15" fill="#E8F754" stroke="#0F0F0F" stroke-width="1.5"/>
+                      <polygon points="0,15 30,30 30,50 0,35" fill="#D4E440" stroke="#0F0F0F" stroke-width="1.5"/>
+                      <polygon points="30,30 60,15 60,35 30,50" fill="#BCC830" stroke="#0F0F0F" stroke-width="1.5"/>
+                    </g>
+
+                    <!-- Top Node Cube -->
+                    <g transform="translate(140, 5)">
+                      <polygon points="30,0 60,15 30,30 0,15" fill="#FFFFFF" stroke="#0F0F0F" stroke-width="1.5"/>
+                      <polygon points="0,15 30,30 30,45 0,30" fill="#F4F4F0" stroke="#0F0F0F" stroke-width="1.5"/>
+                      <polygon points="30,30 60,15 60,30 30,45" fill="#EAEAE4" stroke="#0F0F0F" stroke-width="1.5"/>
+                    </g>
+
+                    <!-- Connector Lines -->
+                    <line x1="170" y1="100" x2="60" y2="125" stroke="#0F0F0F" stroke-width="2" stroke-dasharray="4 3"/>
+                    <line x1="170" y1="100" x2="260" y2="125" stroke="#0F0F0F" stroke-width="2" stroke-dasharray="4 3"/>
+                    <line x1="170" y1="60" x2="170" y2="35" stroke="#0F0F0F" stroke-width="2"/>
+                  </svg>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.06); font-family: var(--font-mono); font-size: 11px;">
+                  <span style="font-weight: 700;">ACTIVE PEERS: 42</span>
+                  <span style="color: var(--accent-flame); font-weight: 800;">AUTO-ROUTING ENABLED</span>
+                </div>
+              </div>
+
+              <!-- Right: Interactive Node List -->
+              <div class="node-telemetry-list">
+                <div class="node-row-item active-node" onclick="selectNode(this, 'SHARD-01 // PRIMARY', '1.2ms', '100%')">
+                  <div class="node-info-left">
+                    <div class="node-status-dot"></div>
+                    <div>
+                      <div class="node-title-code">SHARD-01 // PRIMARY</div>
+                      <div style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted);">IP: 10.24.1.108 • EU-WEST</div>
+                    </div>
+                  </div>
+                  <span class="node-tag-status" style="background-color: var(--accent-flame);">LEADER</span>
+                </div>
+
+                <div class="node-row-item" onclick="selectNode(this, 'SHARD-02 // FOLLOWER', '0.8ms', '99.8%')">
+                  <div class="node-info-left">
+                    <div class="node-status-dot" style="background-color: var(--accent-cobalt);"></div>
+                    <div>
+                      <div class="node-title-code">SHARD-02 // FOLLOWER</div>
+                      <div style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted);">IP: 10.24.1.109 • US-EAST</div>
+                    </div>
+                  </div>
+                  <span class="node-tag-status">SYNCED</span>
+                </div>
+
+                <div class="node-row-item" onclick="selectNode(this, 'SHARD-03 // VALIDATOR', '1.6ms', '99.4%')">
+                  <div class="node-info-left">
+                    <div class="node-status-dot" style="background-color: var(--accent-acid);"></div>
+                    <div>
+                      <div class="node-title-code">SHARD-03 // VALIDATOR</div>
+                      <div style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted);">IP: 10.24.1.110 • AP-SOUTH</div>
+                    </div>
+                  </div>
+                  <span class="node-tag-status">SYNCED</span>
+                </div>
+
+                <div class="node-row-item" onclick="selectNode(this, 'SHARD-04 // BACKUP', '2.1ms', '98.9%')">
+                  <div class="node-info-left">
+                    <div class="node-status-dot" style="background-color: var(--ink-muted);"></div>
+                    <div>
+                      <div class="node-title-code">SHARD-04 // STANDBY</div>
+                      <div style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted);">IP: 10.24.1.111 • US-WEST</div>
+                    </div>
+                  </div>
+                  <span class="node-tag-status" style="background-color: var(--surface-subtle); color: var(--ink-primary);">STANDBY</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Pane 2: Pipeline Runners -->
+          <div class="demo-pane-view" id="pane-2">
+            <div style="background-color: var(--surface-subtle); border-radius: var(--radius-card-standard); padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+              <span class="type-role-name">PIPELINE EXECUTION QUEUE</span>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: flex; justify-content: space-between; padding: 12px; background: #FFF; border-radius: 12px; border: var(--border-subtle);">
+                  <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 700;">JOB-894 // CONSENSUS SNAPSHOT</span>
+                  <span class="pill-chip pill-chip-acid" style="font-size: 10px; padding: 2px 8px;">COMPLETED</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 12px; background: #FFF; border-radius: 12px; border: var(--border-subtle);">
+                  <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 700;">JOB-895 // STATE MERKLE ROOT SYNC</span>
+                  <span class="pill-chip pill-chip-flame" style="font-size: 10px; padding: 2px 8px;">RUNNING (64%)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pane 3: Isometric Topology -->
+          <div class="demo-pane-view" id="pane-3">
+            <div style="background-color: var(--surface-inverse); color: #FFF; border-radius: var(--radius-card-standard); padding: 28px; display: flex; flex-direction: column; gap: 16px;">
+              <div style="display: flex; justify-content: space-between;">
+                <span class="type-role-name" style="color: var(--accent-acid);">AXONOMETRIC MATRIX INSPECTOR</span>
+                <span style="font-family: var(--font-mono); font-size: 11px;">PROJECTION: ISOMETRIC 30°</span>
+              </div>
+              <p style="font-size: 14px; color: #AAA;">
+                Axonometric wireframes render complex multi-shard topologies with zero perspective distortion, maintaining rigid mathematical proportion across data layers.
+              </p>
+              <div style="display: flex; gap: 10px;">
+                <button class="pill-chip pill-chip-acid" onclick="triggerToast('Perspective locked to 30°')">Lock 30°</button>
+                <button class="pill-chip" style="background: rgba(255,255,255,0.1); color: #fff;" onclick="triggerToast('Exploded wireframe view toggled')">Exploded View</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Interactive Command Console -->
+          <div class="command-dispatch-bar">
+            <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--accent-flame);">&gt;</span>
+            <input type="text" id="cmd-input" class="command-input-field" placeholder="Type command e.g. 'benchmark --tps' or 'shard --add'..." onkeydown="if(event.key==='Enter') executeCommand()">
+            <button class="btn-dispatch" onclick="executeCommand()">
+              Dispatch ↵
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =============================================================================
+         SECTION 6: STYLE TILE PROMPT CODE DRAWER
+         ============================================================================= -->
+    <section class="spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-header">
+        <div class="spec-drawer-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <span>TRANSFERABLE STYLE TILE SPECIFICATION</span>
+        </div>
+        <button class="btn-main-cta" style="padding: 8px 18px; font-size: 12px;" onclick="copyTilePromptDirect()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Markdown Spec
+        </button>
+      </div>
+      <p style="font-family: var(--font-sans); font-size: 13px; color: #9E9E98; margin-bottom: 16px;">
+        Machine-readable visual language prompt formatted according to <code>agent.md</code> guidelines. Paste directly into AI coding models to restyle interfaces without injecting sample copy or fake chrome.
+      </p>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification...</code></pre>
+    </section>
+
+  </main>
+
+  <!-- =============================================================================
+       SPEC INSPECTION MODAL DIALOG
+       ============================================================================= -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Style Tile Specification Modal">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <div class="modal-title">STYLE TILE // CHALK &amp; TAB (TILE)</div>
+        <button class="modal-close-btn" onclick="closeSpecModal()" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification...</code></pre>
+      </div>
+      <div style="padding: 16px 24px; border-top: 1px solid var(--border-grid); display: flex; justify-content: flex-end; gap: 8px; background-color: var(--surface-subtle);">
+        <button class="btn-ghost-pill" style="padding: 8px 16px; font-size: 12px;" onclick="closeSpecModal()">Close</button>
+        <button class="btn-main-cta" style="padding: 8px 18px; font-size: 12px;" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING INTERACTIVE TOAST -->
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">✓ Copied to Clipboard!</div>
+
+  <!-- =============================================================================
+       EMBEDDED STYLE TILE MARKDOWN (agent.md Standard Schema)
+       ============================================================================= -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Neo-Brutalist Tech & Folder-Tab System
+  Construction: warm chalk canvas • asymmetric folder tabs • flame orange & cobalt • flat dimensional planes
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A tactile neo-brutalist engineering system defined by warm chalk canvas #EAEAE4, crisp white contoured master cards, and an asymmetric folder-tab silhouette. Bold uppercase headings alternate with high-slant italics, punctuated by high-energy flame orange #FF4405, cobalt #3438F5, and acid lime #E8F754. Elevation relies on pure flat dimensional planes with subtle structural borders and snappy mechanical interactions rather than soft blur shadows.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --canvas-base:            #EAEAE4; /* Muted warm chalk global canvas */
+  --surface-white:          #FFFFFF; /* Crisp card highlights & base modules */
+  --surface-subtle:         #F4F4F0; /* Soft tinted module backing */
+  --surface-inverse:        #0C0C0C; /* Deep obsidian for high-contrast slabs */
+
+  /* Inks & Typography */
+  --ink-primary:            #0F0F0F; /* High-legibility deep carbon */
+  --ink-secondary:          #6B6B66; /* Balanced editorial grey */
+  --ink-muted:              #9E9E98; /* Metadata, timestamps, captions */
+  --ink-inverse:            #FFFFFF; /* Inverted contrast text on dark/accent surfaces */
+
+  /* Brand & Accent Spectrum */
+  --accent-flame:           #FF4405; /* Primary action / energetic orange */
+  --accent-cobalt:          #3438F5; /* Electric royal blue / focal cards */
+  --accent-acid:            #E8F754; /* High-vis yellow-lime / status highlight */
+  --accent-peach:           #FFE7DE; /* Soft social/stat pill tint */
+
+  /* Status Tokens */
+  --status-success:         #E8F754; /* High-vis yellow-lime */
+  --status-warning:         #FF4405; /* Flame orange */
+  --status-info:            #3438F5; /* Cobalt blue */
+  --status-neutral:         #9E9E98; /* Muted stone */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: 'Syne', 'Inter', -apple-system, sans-serif;
+--font-sans:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+--font-mono:    'JetBrains Mono', monospace;
+
+/* Type Scale & Hierarchy */
+--text-display-lg: clamp(2.5rem, 5.5vw, 4.5rem) / 0.96 var(--font-display); /* Weight: 800 | Tracking: -0.03em | UPPERCASE */
+--text-display-md: clamp(1.75rem, 3.5vw, 2.75rem) / 1.04 var(--font-display); /* Weight: 800 | Tracking: -0.02em */
+--text-section:    1.5rem  / 1.20 var(--font-display); /* Weight: 700 | Tracking: -0.01em */
+--text-numeric:    2.0rem  / 1.00 var(--font-mono);    /* Weight: 700 | Tabular figures */
+--text-body:       0.9375rem / 1.45 var(--font-sans);  /* Weight: 450 | Normal tracking */
+--text-micro:      0.6875rem / 1.30 var(--font-mono);  /* Weight: 600 | Tracking: +0.06em | UPPERCASE */
+
+/* Typographic Contrast Rule: Bold uppercase sans-serif paired with alternating high-slant italics */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-pill:          9999px; /* Buttons, badges, micro action chips */
+--radius-card-standard: 24px;   /* Regular inner containers & media tiles */
+--radius-card-large:    32px;   /* Major canvas section wrappers */
+--radius-micro:         8px;    /* Icon containers, small stat arrows */
+--radius-tab-notch:     28px;   /* Asymmetric top-right folder tab notch */
+
+/* Architectural Layering: Pure flat dimensional planes (No soft diffusion shadows) */
+--layer-0: #EAEAE4; /* Base canvas */
+--layer-1: #FFFFFF; /* Contoured master cards */
+--layer-2: #F4F4F0; /* Nested sub-blocks or vibrant solid fills */
+--layer-3: solid 1px stroke offset with high-contrast pill badges
+--micro-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-subtle: 1px solid rgba(0, 0, 0, 0.08); /* Card boundaries & stat boxes */
+--border-accent: 1.5px solid #0F0F0F;           /* Interactive pill outlines */
+--border-grid:   1px solid #E2E2DC;             /* Internal dashboard separators */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Primary actions use Flame Orange (#FF4405) with white ink (#FFFFFF) and 9999px pill radius. On hover: invert to dark carbon (#0F0F0F) or translateY(-1px) with cubic-bezier(0.16, 1, 0.3, 1) mechanical snap. Ghost pill buttons use transparent fill with 1.5px solid #0F0F0F border; on hover invert to solid #0F0F0F background with #FFFFFF text. Micro arrow buttons use 28px-36px rounded square/pill discs that rotate 45° or push 2px on hover. Use the host's existing labels.
+- **Cards & Modules**: 24px or 32px border radius, crisp white (#FFFFFF) or tinted backing (#F4F4F0) with 1px subtle border (rgba(0,0,0,0.08)). Signature containers use an asymmetric folder tab top notch (stepped cutout tab at top right). Do not add fake telemetry or index codes.
+- **Inputs & Controls**: 9999px pill or 12px rounded input wells in #F4F4F0 with 1px border. Focus state activates a crisp 1.5px #0F0F0F outline. Font size must be at least 16px. Checkboxes and radios use geometric round-corner containers with high-contrast active fill.
+- **Navigation & Tabs**: Asymmetric tabbed headers or pill segment bars. Active tabs snap to solid #FFFFFF or #FF4405 with dark carbon or white text. Inactive tabs use muted ink (#6B6B66) on #EAEAE4 or transparent backing. Do not add catalog codes or fake status readouts.
+- **Iconography & Graphics**: 1.5px-2px geometric strokes with rounded caps, encapsulated in 28px-36px circular or pill discs. Technical illustrations use hard-edge isometric axonometric wireframes with sharp vector lines and high-contrast duotone fills.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No soft blurry gaussian drop shadows; use clean planar stacking and crisp 1px/1.5px borders.
+- No dull uniform typography; always balance uppercase extrabold sans-serif with high-slant italics.
+- No muddy gray borders; stick to pure #EAEAE4 canvas, #FFFFFF surfaces, #F4F4F0 wells, and #0F0F0F carbon ink.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- =============================================================================
+       JAVASCRIPT INTERACTIONS & LOGIC
+       ============================================================================= -->
+  <script>
+    const markdownContent = document.getElementById("style-tile-markdown").textContent.trim();
+
+    // Populate spec displays at runtime
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    // Toast feedback function
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      toast.style.animation = "none";
+      void toast.offsetWidth;
+      toast.style.animation = "toastSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1)";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(() => { toast.style.display = "none"; }, 2200);
+    }
+
+    // Copy Raw Markdown
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(() => {
+        triggerToast("✓ Copied Style Tile to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied!";
+          setTimeout(() => { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(() => triggerToast("Clipboard unavailable"));
+    }
+
+    // Copy Hex Color
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    // Modal Control
+    function closeSpecModal() {
+      document.getElementById("spec-modal").classList.remove("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+
+    document.getElementById("btn-download-tile").addEventListener("click", () => {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-chalk-and-tab.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-chalk-and-tab.md");
+    });
+
+    document.getElementById("btn-preview-tile").addEventListener("click", () => {
+      document.getElementById("spec-modal").classList.add("active");
+    });
+
+    document.getElementById("spec-modal").addEventListener("click", (e) => {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    // Type Specimen Live Tester functions
+    function setTypeTesterWeight(weight) {
+      const input = document.getElementById("live-type-input");
+      if (input) input.style.fontWeight = weight;
+    }
+
+    function toggleTypeTesterItalic() {
+      const input = document.getElementById("live-type-input");
+      if (!input) return;
+      input.style.fontStyle = input.style.fontStyle === "italic" ? "normal" : "italic";
+    }
+
+    // Custom checkbox toggle
+    function toggleCustomCheck(el) {
+      const box = el.querySelector(".checkbox-box");
+      if (!box) return;
+      box.classList.toggle("checked");
+      box.textContent = box.classList.contains("checked") ? "✓" : "";
+      triggerToast("Setting updated");
+    }
+
+    // Interactive Demo Folder Tabs
+    function switchDemoTab(tabIndex) {
+      document.querySelectorAll(".folder-tab").forEach(tab => tab.classList.remove("active"));
+      document.querySelectorAll(".demo-pane-view").forEach(pane => pane.classList.remove("active-pane"));
+
+      const activeTab = document.getElementById("tab-btn-" + tabIndex);
+      const activePane = document.getElementById("pane-" + tabIndex);
+      if (activeTab) activeTab.classList.add("active");
+      if (activePane) activePane.classList.add("active-pane");
+    }
+
+    // Select Node in list
+    function selectNode(rowEl, nodeName, latency, uptime) {
+      document.querySelectorAll(".node-row-item").forEach(r => r.classList.remove("active-node"));
+      rowEl.classList.add("active-node");
+      triggerToast("Selected " + nodeName + " (Lat: " + latency + ")");
+    }
+
+    // Command Dispatch
+    function executeCommand() {
+      const cmdInput = document.getElementById("cmd-input");
+      if (!cmdInput || !cmdInput.value.trim()) return;
+      const cmd = cmdInput.value.trim();
+      triggerToast("✓ Executed: " + cmd);
+      cmdInput.value = "";
+
+      // Randomize TPS slightly for tactile feedback
+      const tpsEl = document.getElementById("metric-tps");
+      if (tpsEl) {
+        const rand = 1400 + Math.floor(Math.random() * 200);
+        tpsEl.textContent = rand.toLocaleString() + " TPS";
+      }
+    }
+  </script>
+</body>
+</html>
+

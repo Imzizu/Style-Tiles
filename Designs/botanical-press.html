@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Botanical Press // TILE</title>
+  <meta name="description" content="19th-century naturalist ledger aesthetic featuring mineral-washed sage paper, intaglio spruce ink, relief letterpress rules, and stamped cinnabar pressmarks.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Google Fonts: Libre Baskerville (Display), EB Garamond (Body), Plus Jakarta Sans (Utilitarian Grotesque), Pinyon Script (Flourish) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       STYLE TILE: BOTANICAL HERITAGE & PRESS
+       Aesthetic: 19th-century naturalist ledger, letterpress ink, mineral-washed paper.
+       ========================================================================== */
+    :root {
+      /* Surfaces & Paper Layers */
+      --bg-canvas:              #CCD7D1; /* Pale sage / mineral-washed rag paper canvas */
+      --bg-surface:             #DCE4DF; /* Elevated sheet / highlighted document layer */
+      --bg-surface-alt:         #BFCCC5; /* Recessed paper well / debossed container */
+      --bg-surface-dark:        #1D352B; /* Deep intaglio spruce inverted ground */
+      --bg-overlay:             rgba(204, 215, 209, 0.88); /* Frosted paper sheen overlay */
+
+      /* Inks & Typography */
+      --ink-primary:            #1D352B; /* Deep blackened spruce / heavy intaglio ink */
+      --ink-secondary:          #2C4B3E; /* Deep pine moss / secondary headlines */
+      --ink-muted:              #506E62; /* Diluted spruce / captions & ledger lines */
+      --ink-faint:              #8A9F96; /* Ghost ink / watermarks & timestamps */
+      --ink-inverted:           #F4F7F5; /* Bleached rag vellum on dark ink */
+
+      /* Signature Accents */
+      --accent-primary:         #E75B54; /* Sun-bleached terracotta / stamped linocut cinnabar */
+      --accent-primary-hover:   #D44A43; /* Burnished cinnabar press state */
+      --accent-secondary:       #F29792; /* Washed coral / subtle highlight state */
+      --accent-tertiary:        #F6D5D2; /* Dilute pigment / tag background */
+
+      /* Utility & Status */
+      --focus-ring:             #E75B54;
+      --status-danger:          #C3423B;
+      --status-success:         #2C4B3E;
+      --status-warning:         #B8860B;
+      --status-info:            #3B6B78;
+
+      /* Typography Systems */
+      --font-display-serif:     'Libre Baskerville', 'Caslon Pro', 'Baskerville', Georgia, serif;
+      --font-util-sans:         'Plus Jakarta Sans', 'Grotesque 1890', 'Gill Sans', 'Trade Gothic', sans-serif;
+      --font-flourish-script:   'Pinyon Script', 'Copperplate Script', 'Snell Roundhand', cursive;
+      --font-body-serif:        'EB Garamond', 'Plantin', 'Adobe Caslon', 'Garamond', Georgia, serif;
+
+      /* Compatibility aliases */
+      --font-display:           var(--font-display-serif);
+      --font-sans:              var(--font-util-sans);
+      --font-mono:              var(--font-util-sans);
+
+      /* Corner Geometry (Border Radii) */
+      --radius-none:            0px;
+      --radius-default:         0px;     /* Sharp guillotine-cut paper edges */
+      --radius-subtle:          1.5px;   /* Micro-softened corners for interactive buttons */
+      --radius-ticket:          3px;     /* Cards, vouchers, labels */
+      --radius-pill:            0px;     /* Anti-pill rule: preserves antiquarian aesthetic */
+
+      /* Elevation & Depth */
+      --shadow-flat:            none;
+      --shadow-base:            0 1px 2px rgba(29, 53, 43, 0.08), 0 3px 6px rgba(29, 53, 43, 0.04);
+      --shadow-hover:           0 4px 12px rgba(29, 53, 43, 0.08), 0 1px 3px rgba(29, 53, 43, 0.05);
+      --shadow-active:          inset 0 1px 2px rgba(29, 53, 43, 0.20);
+      --letterpress-deboss:     0 1px 0 rgba(255, 255, 255, 0.45), 0 -1px 0 rgba(0, 0, 0, 0.15);
+
+      /* Borders & Dividers */
+      --border-hairline:        1px solid rgba(29, 53, 43, 0.20);
+      --border-core:            1px solid #1D352B;
+      --border-heavy-rule:      2px solid #1D352B;
+      --border-ledger-double:   3px double rgba(29, 53, 43, 0.35);
+      --border-callout-bracket: 1px solid #E75B54;
+
+      --header-height:          64px;
+      --content-transition:     all 180ms cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-body-serif);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-canvas);
+      background-image: 
+        radial-gradient(rgba(29, 53, 43, 0.035) 1px, transparent 0),
+        radial-gradient(rgba(29, 53, 43, 0.025) 1px, transparent 0);
+      background-size: 24px 24px, 12px 12px;
+      background-position: 0 0, 6px 6px;
+      color: var(--ink-primary);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    /* -------------------------------------------------------------------------
+       MANDATORY HEADER BAR
+       ---------------------------------------------------------------------- */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 12px 28px;
+      background: var(--bg-surface);
+      border-bottom: var(--border-ledger-double);
+      box-shadow: 0 1px 3px rgba(29, 53, 43, 0.08);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 6px 14px;
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-family: var(--font-util-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-surface);
+      transition: var(--content-transition);
+    }
+
+    .nav-back-link:hover {
+      background: var(--bg-surface-alt);
+      color: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .nav-back-link:active {
+      transform: translateY(1px);
+      box-shadow: var(--shadow-active);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-util-sans);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-none);
+      border: 1px solid var(--ink-primary);
+    }
+
+    .design-title {
+      font-family: var(--font-display-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      text-shadow: var(--letterpress-deboss);
+      overflow-wrap: anywhere;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-util-sans);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border: 1px solid var(--accent-primary);
+      background: var(--accent-tertiary);
+      color: var(--accent-primary);
+      border-radius: var(--radius-none);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      font-family: var(--font-util-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      transition: var(--content-transition);
+    }
+
+    .btn-tile:hover {
+      background: var(--bg-surface-alt);
+      color: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .btn-tile:active {
+      transform: translateY(1px);
+      box-shadow: var(--shadow-active);
+    }
+
+    .btn-copy {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      border-color: var(--ink-primary);
+    }
+
+    .btn-copy:hover {
+      background: var(--ink-secondary);
+      border-color: var(--ink-secondary);
+      color: #fff;
+    }
+
+    /* -------------------------------------------------------------------------
+       LAYOUT & EDITORIAL GRID
+       ---------------------------------------------------------------------- */
+    .layout-wrapper {
+      width: min(1140px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 44px 0 96px;
+    }
+
+    .section-block {
+      margin-top: 72px;
+      position: relative;
+    }
+
+    .section-kicker {
+      font-family: var(--font-util-sans);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-kicker::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(29, 53, 43, 0.2);
+    }
+
+    h1, h2, h3 {
+      color: var(--ink-primary);
+    }
+
+    h2 {
+      font-family: var(--font-display-serif);
+      font-size: clamp(1.5rem, 3.2vw, 2.0rem);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      text-shadow: var(--letterpress-deboss);
+    }
+
+    /* -------------------------------------------------------------------------
+       HERO BANNER
+       ---------------------------------------------------------------------- */
+    .hero-banner {
+      background: var(--bg-surface);
+      border: var(--border-heavy-rule);
+      border-radius: var(--radius-ticket);
+      box-shadow: var(--shadow-base);
+      padding: clamp(28px, 5vw, 48px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border: var(--border-hairline);
+      pointer-events: none;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .chip {
+      font-family: var(--font-util-sans);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: var(--border-hairline);
+      border-radius: var(--radius-none);
+      color: var(--ink-secondary);
+      background: var(--bg-canvas);
+    }
+
+    .chip-accent {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+      background: var(--accent-tertiary);
+    }
+
+    .hero-title {
+      font-family: var(--font-display-serif);
+      font-size: clamp(2.25rem, 6.5vw, 3.75rem);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-shadow: var(--letterpress-deboss);
+      margin-bottom: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .hero-script-flourish {
+      font-family: var(--font-flourish-script);
+      font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+      color: var(--accent-primary);
+      line-height: 1.3;
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-lead {
+      max-width: 68ch;
+      color: var(--ink-secondary);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    /* -------------------------------------------------------------------------
+       BUTTONS & PRESS CONTROLS
+       ---------------------------------------------------------------------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 8px 18px;
+      font-family: var(--font-util-sans);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: var(--radius-subtle);
+      border: var(--border-core);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      text-decoration: none;
+      transition: var(--content-transition);
+    }
+
+    .btn:hover {
+      background: var(--bg-surface-alt);
+      color: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+      box-shadow: var(--shadow-active);
+    }
+
+    .btn-primary {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      border-color: var(--ink-primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--ink-secondary);
+      border-color: var(--ink-secondary);
+      color: #fff;
+    }
+
+    .btn-press-cinnabar {
+      background: var(--accent-primary);
+      color: #ffffff;
+      border-color: var(--accent-primary);
+    }
+
+    .btn-press-cinnabar:hover {
+      background: var(--accent-primary-hover);
+      border-color: var(--accent-primary-hover);
+      color: #ffffff;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--border-hairline);
+      color: var(--ink-secondary);
+    }
+
+    .btn-ghost:hover {
+      background: var(--bg-surface);
+      color: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .btn-danger {
+      background: var(--status-danger);
+      color: #ffffff;
+      border-color: var(--status-danger);
+    }
+
+    .btn-danger:hover {
+      background: #A8342E;
+      border-color: #A8342E;
+      color: #ffffff;
+    }
+
+    .btn-accent {
+      background: var(--accent-tertiary);
+      color: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .btn-accent:hover {
+      background: var(--accent-secondary);
+      color: var(--ink-primary);
+    }
+
+    /* -------------------------------------------------------------------------
+       SWATCHES GRID (SLOT 2)
+       ---------------------------------------------------------------------- */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 14px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      border: var(--border-core);
+      border-radius: var(--radius-none);
+      overflow: hidden;
+      background: var(--bg-surface);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      box-shadow: var(--shadow-base);
+      transition: var(--content-transition);
+    }
+
+    .swatch-item:hover {
+      border-color: var(--accent-primary);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-1px);
+    }
+
+    .swatch-item:active {
+      transform: translateY(1px);
+      box-shadow: var(--shadow-active);
+    }
+
+    .swatch-chip {
+      height: 70px;
+      border-bottom: var(--border-hairline);
+      position: relative;
+    }
+
+    .swatch-chip::after {
+      content: "";
+      position: absolute;
+      bottom: 4px;
+      right: 6px;
+      font-family: var(--font-util-sans);
+      font-size: 0.5625rem;
+      letter-spacing: 0.1em;
+      opacity: 0.35;
+      text-transform: uppercase;
+    }
+
+    .swatch-meta {
+      padding: 10px 12px;
+      background: var(--bg-surface);
+    }
+
+    .swatch-name {
+      display: block;
+      font-family: var(--font-display-serif);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 2px;
+    }
+
+    .swatch-var {
+      display: block;
+      font-family: var(--font-util-sans);
+      font-size: 0.6875rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .swatch-hex {
+      font-family: var(--font-util-sans);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--accent-primary);
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    /* -------------------------------------------------------------------------
+       TYPOGRAPHY SPECIMEN (SLOT 3)
+       ---------------------------------------------------------------------- */
+    .type-specimen-card {
+      background: var(--bg-surface);
+      border: var(--border-core);
+      border-radius: var(--radius-ticket);
+      box-shadow: var(--shadow-base);
+      padding: clamp(20px, 3vw, 32px);
+    }
+
+    .type-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: var(--border-hairline);
+      align-items: baseline;
+      min-width: 0;
+    }
+
+    .type-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .type-label {
+      font-family: var(--font-util-sans);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .text-display-xl {
+      font-family: var(--font-display-serif);
+      font-size: clamp(2.2rem, 5vw, 3.25rem);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-shadow: var(--letterpress-deboss);
+    }
+
+    .text-display-md {
+      font-family: var(--font-display-serif);
+      font-size: clamp(1.4rem, 3vw, 2.0rem);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-shadow: var(--letterpress-deboss);
+    }
+
+    .text-accent-script {
+      font-family: var(--font-flourish-script);
+      font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+      font-weight: 400;
+      line-height: 1.3;
+      letter-spacing: 0.02em;
+      color: var(--ink-secondary);
+    }
+
+    .text-label-subhead {
+      font-family: var(--font-util-sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+    }
+
+    .text-body-spec {
+      font-family: var(--font-body-serif);
+      font-size: 1.0rem;
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+      color: var(--ink-primary);
+      max-width: 65ch;
+    }
+
+    .text-meta-spec {
+      font-family: var(--font-util-sans);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 16px;
+      font-family: var(--font-display-serif);
+      font-size: 1.25rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      transition: var(--content-transition);
+    }
+
+    .live-type-input:focus {
+      outline: 1px solid var(--accent-primary);
+      outline-offset: 3px;
+      background: var(--bg-surface);
+    }
+
+    /* -------------------------------------------------------------------------
+       COMPONENTS GALLERY (SLOT 4)
+       ---------------------------------------------------------------------- */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .component-card {
+      padding: 24px;
+      background: var(--bg-surface);
+      border: var(--border-core);
+      border-radius: var(--radius-ticket);
+      box-shadow: var(--shadow-base);
+      min-width: 0;
+      position: relative;
+    }
+
+    .component-card h3 {
+      font-family: var(--font-display-serif);
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: var(--border-ledger-double);
+    }
+
+    .btn-row, .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .field-label {
+      display: block;
+      font-family: var(--font-util-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: var(--ink-secondary);
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 14px;
+      font-family: var(--font-body-serif);
+      font-size: 16px; /* Prevents iOS zoom */
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      transition: var(--content-transition);
+    }
+
+    .text-input:focus {
+      outline: 1px solid var(--accent-primary);
+      outline-offset: 3px;
+      background: var(--bg-surface);
+    }
+
+    .custom-checkbox-wrap, .custom-radio-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-family: var(--font-util-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    .custom-checkbox-wrap input, .custom-radio-wrap input {
+      accent-color: var(--accent-primary);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 22px;
+      border: 1px solid var(--ink-primary);
+      border-radius: var(--radius-none);
+      background: var(--bg-surface-alt);
+      cursor: pointer;
+      transition: var(--content-transition);
+    }
+
+    .toggle[aria-pressed="true"] {
+      background: var(--ink-primary);
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: var(--radius-none);
+      background: var(--accent-primary);
+      transition: transform 160ms ease;
+    }
+
+    .toggle[aria-pressed="true"]::after {
+      transform: translateX(22px);
+      background: var(--ink-inverted);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      font-family: var(--font-util-sans);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid var(--ink-primary);
+      border-radius: var(--radius-none);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+    }
+
+    .badge-accent {
+      border-color: var(--accent-primary);
+      background: var(--accent-tertiary);
+      color: var(--accent-primary);
+    }
+
+    .specimen-voucher-card {
+      border: var(--border-hairline);
+      background: var(--bg-canvas);
+      padding: 14px;
+      border-radius: var(--radius-none);
+      position: relative;
+    }
+
+    .specimen-voucher-card::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      border: 1px dashed rgba(29, 53, 43, 0.25);
+      pointer-events: none;
+    }
+
+    /* -------------------------------------------------------------------------
+       LIVING MICRO-EXPERIENCE (SLOT 5)
+       ---------------------------------------------------------------------- */
+    .demo-card {
+      padding: clamp(24px, 4vw, 36px);
+      background: var(--bg-surface);
+      border: var(--border-heavy-rule);
+      border-radius: var(--radius-ticket);
+      box-shadow: var(--shadow-base);
+      position: relative;
+    }
+
+    .demo-card::before {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border: var(--border-hairline);
+      pointer-events: none;
+    }
+
+    .demo-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: var(--border-ledger-double);
+      margin-bottom: 24px;
+    }
+
+    .demo-folio-title {
+      font-family: var(--font-display-serif);
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .demo-ledger-badge {
+      font-family: var(--font-util-sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid var(--ink-primary);
+      background: var(--bg-canvas);
+    }
+
+    .demo-grid-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .demo-plate-column {
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      padding: 24px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 380px;
+    }
+
+    /* Mounting paper corner triangles */
+    .demo-plate-column::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 14px;
+      height: 14px;
+      border-top: 2px solid var(--ink-primary);
+      border-left: 2px solid var(--ink-primary);
+    }
+
+    .demo-plate-column::after {
+      content: "";
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      width: 14px;
+      height: 14px;
+      border-bottom: 2px solid var(--ink-primary);
+      border-right: 2px solid var(--ink-primary);
+    }
+
+    .specimen-illustration {
+      width: 160px;
+      height: 180px;
+      margin: 10px 0;
+      color: var(--ink-primary);
+    }
+
+    .specimen-latin-name {
+      font-family: var(--font-flourish-script);
+      font-size: 1.75rem;
+      color: var(--ink-primary);
+      line-height: 1.2;
+      margin-top: 8px;
+    }
+
+    .specimen-authority {
+      font-family: var(--font-util-sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .specimen-stamp-seal {
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border: 1px solid var(--accent-primary);
+      background: var(--accent-tertiary);
+      color: var(--accent-primary);
+      font-family: var(--font-util-sans);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      box-shadow: 0 1px 2px rgba(231, 91, 84, 0.2);
+      transition: var(--content-transition);
+    }
+
+    .demo-controls-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .demo-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .demo-tabs {
+      display: flex;
+      gap: 6px;
+      border-bottom: var(--border-core);
+      padding-bottom: 8px;
+    }
+
+    .demo-tab-btn {
+      background: transparent;
+      border: none;
+      font-family: var(--font-util-sans);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      padding: 6px 10px;
+      cursor: pointer;
+      transition: var(--content-transition);
+    }
+
+    .demo-tab-btn.active {
+      color: var(--ink-primary);
+      background: var(--bg-surface-alt);
+      border-bottom: 2px solid var(--accent-primary);
+    }
+
+    .demo-notes-input {
+      width: 100%;
+      min-height: 80px;
+      padding: 10px 12px;
+      font-family: var(--font-body-serif);
+      font-size: 16px;
+      line-height: 1.5;
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      resize: vertical;
+    }
+
+    .demo-notes-input:focus {
+      outline: 1px solid var(--accent-primary);
+      outline-offset: 3px;
+      background: var(--bg-surface);
+    }
+
+    .demo-meta-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.75rem;
+      margin-top: 6px;
+    }
+
+    .demo-meta-table td {
+      padding: 6px 0;
+      border-bottom: var(--border-hairline);
+    }
+
+    .demo-meta-table td:first-child {
+      font-family: var(--font-util-sans);
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      width: 45%;
+    }
+
+    .demo-meta-table td:last-child {
+      font-family: var(--font-body-serif);
+      color: var(--ink-primary);
+      font-weight: 600;
+    }
+
+    /* -------------------------------------------------------------------------
+       SPEC DRAWER & MODAL
+       ---------------------------------------------------------------------- */
+    .spec-drawer-card {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-ticket);
+      border: 1px solid var(--ink-primary);
+      padding: clamp(20px, 3vw, 28px);
+      box-shadow: var(--shadow-base);
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(244, 247, 245, 0.2);
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 520px;
+      padding: 18px;
+      background: #11221B;
+      color: #E2ECE6;
+      font-family: var(--font-util-sans);
+      font-size: 0.75rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid rgba(244, 247, 245, 0.15);
+      border-radius: var(--radius-none);
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(29, 53, 43, 0.7);
+      backdrop-filter: blur(2px);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content-card {
+      width: min(880px, 100%);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-surface);
+      border: var(--border-heavy-rule);
+      border-radius: var(--radius-ticket);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+      overflow: hidden;
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 20px;
+      border-bottom: var(--border-ledger-double);
+      background: var(--bg-surface);
+    }
+
+    .modal-footer {
+      border-bottom: 0;
+      border-top: var(--border-ledger-double);
+      justify-content: flex-end;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow: auto;
+      flex: 1;
+      background: var(--bg-canvas);
+    }
+
+    .modal-body .spec-code-pre {
+      background: #11221B;
+      color: #E2ECE6;
+    }
+
+    .modal-close-btn {
+      width: 34px;
+      height: 34px;
+      border: var(--border-core);
+      background: var(--bg-surface);
+      cursor: pointer;
+      border-radius: var(--radius-subtle);
+      font-size: 1rem;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--content-transition);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--accent-primary);
+      color: #ffffff;
+      border-color: var(--accent-primary);
+    }
+
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3000;
+      padding: 12px 20px;
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      font-family: var(--font-util-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: 1px solid var(--accent-primary);
+      box-shadow: 0 4px 12px rgba(29, 53, 43, 0.25);
+    }
+
+    /* -------------------------------------------------------------------------
+       MANDATORY MOBILE SAFETY & REFLOW
+       ---------------------------------------------------------------------- */
+    @media (max-width: 768px) {
+      .layout-wrapper {
+        width: calc(100% - 24px);
+        padding: 20px 0 64px;
+      }
+      .style-tile-header {
+        flex-wrap: wrap;
+        padding: 10px 16px;
+        gap: 12px;
+      }
+      .header-title-block {
+        order: 1;
+        width: 100%;
+        gap: 8px;
+      }
+      .nav-back-link {
+        order: 0;
+      }
+      .header-actions {
+        order: 2;
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+      .hero-banner {
+        padding: 24px 18px;
+      }
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .swatches-grid, .components-grid, .demo-grid-layout {
+        grid-template-columns: 1fr;
+      }
+      .hero-actions, .btn-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn, .btn-tile {
+        white-space: normal;
+        text-align: center;
+      }
+      .toast-popup {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet. Must remain immediately after this page's <style>. -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- MANDATORY HEADER COMPONENT -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Botanical Press</span>
+      <!-- MUST equal catalog vibeBadge exactly: "Editorial & Archival" -->
+      <span class="design-vibe-tag">Editorial &amp; Archival</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+      <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+      <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-botanical-press.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- SLOT 1: HERO DISPLAY BANNER -->
+    <section class="hero-banner" id="hero-section">
+      <p class="section-kicker">Herbarium Specimen Folio • Serie XIX • Intaglio Press</p>
+      <div class="hero-meta">
+        <span class="chip chip-accent">Editorial &amp; Archival</span>
+        <span class="chip">Naturalist Ledger</span>
+        <span class="chip">Intaglio Spruce</span>
+        <span class="chip">Mineral Rag Paper</span>
+        <span class="chip">Light</span>
+      </div>
+      <h1 class="hero-title">Botanical Heritage &amp; Press</h1>
+      <p class="hero-script-flourish">A taxonomic study in intaglio spruce, mineral rag paper, and relief letterpress craft</p>
+      <p class="hero-lead">
+        Rooted in the physical gravitas of 19th-century naturalist ledgers and botanical specimen folios. Every container functions as an elevated rag-cotton sheet with guillotine-cut geometry, structured by double-ruled ledger dividers, deep blackened spruce ink, and sun-bleached cinnabar linocut pressmarks.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Prompt for Agent</button>
+        <a class="btn btn-ghost" href="#components-section">Explore Naturalist Archetypes</a>
+        <a class="btn btn-press-cinnabar" href="#demo-section">Inspect Herbarium Ledger</a>
+      </div>
+    </section>
+
+    <!-- SLOT 2: COLOR SWATCHES & PALETTE MATRIX -->
+    <section class="section-block" id="palette-section">
+      <p class="section-kicker">01 // Pigment Formulations &amp; Inks</p>
+      <h2>Color roles &amp; Mineral Inks</h2>
+      <div class="swatches-grid" id="swatch-grid">
+        <!-- Filled dynamically by DESIGN_PALETTE via JavaScript -->
+      </div>
+    </section>
+
+    <!-- SLOT 3: TYPOGRAPHY SPECIMEN -->
+    <section class="section-block" id="typography-section">
+      <p class="section-kicker">02 // Metal Type &amp; Optical Tracking</p>
+      <h2>Typography &amp; Letterpress Hierarchy</h2>
+      <div class="type-specimen-card">
+        <div class="type-stack">
+          <div class="type-row">
+            <span class="type-label">Display XL</span>
+            <p class="text-display-xl">HERBARIUM BOTANICA</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Display MD</span>
+            <p class="text-display-md">TAXONOMIC LEDGER COMPENDIUM</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Flourish Script</span>
+            <p class="text-accent-script">Dryopteris filix-mas &amp; Pinus sylvestris — Pressed alpine specimens, anno 1884</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Label Subhead</span>
+            <p class="text-label-subhead">ACCESSION CATALOGUE // SECTION IV: PTERIDOPHYTA</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Body Regular</span>
+            <p class="text-body-spec">
+              Specimens collected across high alpine moraines are preserved between mineral-washed rag-cotton blotters. Deep intaglio ink settles into the textured laid paper with microscopic tooth, establishing an enduring typographic register free from synthetic sheen or digital ornamentation.
+            </p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Metadata Mono</span>
+            <p class="text-meta-spec">SPECIMEN NO. 1884-FLORA // TABULA XLII // ROYAL BOTANICAL COMPENDIUM</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Live Tester</span>
+            <input class="live-type-input" id="live-type-tester-input" type="text" value="NATURALIST SPECIMEN FOLIO 1884" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 4: COMPONENT ARCHETYPE GALLERY -->
+    <section class="section-block" id="components-section">
+      <p class="section-kicker">03 // Tactile Elements &amp; Pressware</p>
+      <h2>Component Archetypes</h2>
+      <div class="components-grid">
+        <article class="component-card">
+          <h3>Buttons &amp; Press</h3>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="button">Intaglio Spruce</button>
+            <button class="btn btn-press-cinnabar" type="button">Cinnabar Stamp</button>
+            <button class="btn" type="button">Paper Slip</button>
+            <button class="btn btn-ghost" type="button">Hairline Ghost</button>
+            <button class="btn btn-danger" type="button">Cochineal Red</button>
+          </div>
+        </article>
+
+        <article class="component-card">
+          <h3>Ledger Input</h3>
+          <label class="field-label" for="demo-input">Taxonomic Classification</label>
+          <input class="text-input" id="demo-input" type="text" placeholder="e.g. Cryptogamia Musci" autocomplete="off" />
+        </article>
+
+        <article class="component-card">
+          <h3>Selectors &amp; Marks</h3>
+          <div class="control-row">
+            <label class="custom-checkbox-wrap"><input type="checkbox" checked /> Voucher Logged</label>
+            <label class="custom-radio-wrap"><input type="radio" name="demo-radio" checked /> Folio A</label>
+            <label class="custom-radio-wrap"><input type="radio" name="demo-radio" /> Folio B</label>
+            <button class="toggle" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle press imprint"></button>
+            <span class="badge">SPECIMEN</span>
+            <span class="badge badge-accent">VERIFIED</span>
+          </div>
+        </article>
+
+        <article class="component-card">
+          <h3>Specimen Voucher</h3>
+          <div class="specimen-voucher-card">
+            <p class="text-label-subhead" style="margin-bottom:4px;">FOLIO SHEET NO. 842</p>
+            <p class="text-body-spec" style="font-size:0.875rem;">Guillotine-cut paper edges with 0px corner radii, double ledger rule boundaries, and mineral rag paper substrate.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SLOT 5: LIVING MICRO-EXPERIENCE -->
+    <section class="section-block" id="demo-section">
+      <p class="section-kicker">04 // Living Micro-Experience</p>
+      <h2>The Naturalist's Herbarium Ledger</h2>
+      <div class="demo-card">
+        <div class="demo-header-bar">
+          <div>
+            <h3 class="demo-folio-title" style="border:none;margin:0;padding:0;">ACCESSION FOLIO // ALPINE PTERIDOPHYTA</h3>
+            <span class="text-meta-spec">RECORDED IN THE SUB-ALPINE VALLEY OF VALAIS • ANNO 1884</span>
+          </div>
+          <span class="demo-ledger-badge">LEDGER NO. XIX-4482</span>
+        </div>
+
+        <div class="demo-grid-layout">
+          <!-- Specimen Display Plate -->
+          <div class="demo-plate-column">
+            <!-- Monoline relief-cut botanical SVG illustration -->
+            <svg class="specimen-illustration" viewBox="0 0 100 120" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="square">
+              <!-- Central Stem -->
+              <path d="M50 115 C50 85 48 35 50 8" />
+              <!-- Fronds -->
+              <path d="M50 95 C65 92 78 80 82 72 M50 95 C35 92 22 80 18 72" />
+              <path d="M50 78 C68 74 84 62 86 52 M50 78 C32 74 16 62 14 52" />
+              <path d="M50 60 C66 54 80 42 82 32 M50 60 C34 54 20 42 18 32" />
+              <path d="M50 42 C64 36 74 26 76 18 M50 42 C36 36 26 26 24 18" />
+              <path d="M50 25 C60 20 66 14 68 8 M50 25 C40 20 34 14 32 8" />
+              <!-- Leaflet Teeth -->
+              <path d="M60 88 L64 82 M70 85 L73 78 M40 88 L36 82 M30 85 L27 78" />
+              <path d="M62 70 L67 64 M72 67 L76 60 M38 70 L33 64 M28 67 L24 60" />
+            </svg>
+
+            <p class="specimen-latin-name" id="demo-specimen-name">Dryopteris filix-mas</p>
+            <p class="specimen-authority">(L.) Schott — Male Fern</p>
+            
+            <div class="specimen-stamp-seal" id="demo-stamp-seal">
+              <span>❖</span> SEAL OF BOTANICAL SURVEY <span>❖</span>
+            </div>
+          </div>
+
+          <!-- Specimen Ledger Controls -->
+          <div class="demo-controls-column">
+            <div class="demo-tabs">
+              <button class="demo-tab-btn active" type="button" onclick="selectSpecimen(event, 'fern')">Pteridophyta</button>
+              <button class="demo-tab-btn" type="button" onclick="selectSpecimen(event, 'conifer')">Pinophyta</button>
+              <button class="demo-tab-btn" type="button" onclick="selectSpecimen(event, 'moss')">Bryophyta</button>
+            </div>
+
+            <div class="demo-field-group">
+              <label class="field-label" for="demo-field-notes">Field Observation Ledger</label>
+              <textarea class="demo-notes-input" id="demo-field-notes" rows="3">Pressed specimen in prime vegetative vigor. Rhizome stout, ascending, densely clothed in lustrous brown scales. Intaglio pigment test: positive.</textarea>
+            </div>
+
+            <table class="demo-meta-table">
+              <tbody>
+                <tr>
+                  <td>Herbarium Sheet</td>
+                  <td id="meta-sheet">Rag-Cotton 280gsm</td>
+                </tr>
+                <tr>
+                  <td>Collection Elevation</td>
+                  <td id="meta-elevation">1,840 Metres A.S.L.</td>
+                </tr>
+                <tr>
+                  <td>Drying Regime</td>
+                  <td id="meta-regime">Mineral Press (48 Hrs)</td>
+                </tr>
+                <tr>
+                  <td>Voucher Status</td>
+                  <td id="meta-status" style="color:var(--accent-primary);">Catalogued &amp; Verified</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="hero-actions" style="margin-top:8px;">
+              <button class="btn btn-press-cinnabar" type="button" onclick="stampSpecimen()">Stamp Imprint</button>
+              <button class="btn btn-primary" type="button" onclick="logAccession()">Log Accession Entry</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 6: STYLE TILE PROMPT CODE DRAWER -->
+    <section class="section-block spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-head">
+        <h2 style="margin:0;color:inherit;">Style Tile specification</h2>
+        <button class="btn btn-accent" type="button" onclick="copyTilePromptDirect()">Copy Markdown Spec</button>
+      </div>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+    </section>
+
+  </main>
+
+  <!-- SPEC PREVIEW MODAL -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title" style="font-family:var(--font-display-serif);text-transform:uppercase;letter-spacing:0.08em;">Botanical Press // Style Tile Spec</strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">Copied to Clipboard</div>
+
+  <!--
+    SOURCE OF TRUTH for Copy / Download / Preview.
+    Section 0 must stay verbatim.
+    No sample headlines, fake chrome, industries, or TILE-NNN stamps.
+  -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Botanical Heritage & Press
+  Construction: mineral-washed rag paper • intaglio spruce ink • guillotine-cut geometry • letterpress deboss
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A physical, tactile editorial language rooted in 19th-century naturalist folio ledgers and intaglio letterpress printing. Surfaces evoke mineral-washed pale sage rag paper overlaid with elevated specimen cards, while typography relies on optical letterpress tracking in classical serifs contrasted with utilitarian grotesque caps and cursive botanical scripts. Construction enforces sharp guillotine-cut paper edges with 0px to 3px ticket radii, hairline ink rules, double-ledger dividers, and physical paper-press translations in place of diffuse drop shadows or bouncy transitions.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #CCD7D1; /* Pale sage / mineral-washed rag paper canvas */
+  --bg-surface:             #DCE4DF; /* Elevated sheet / highlighted document layer */
+  --bg-surface-alt:         #BFCCC5; /* Recessed paper well / debossed container */
+  --bg-surface-dark:        #1D352B; /* Deep intaglio spruce inverted container */
+  --bg-overlay:             rgba(204, 215, 209, 0.85); /* Frosted paper sheen overlay */
+
+  /* Inks & Typography */
+  --ink-primary:            #1D352B; /* Deep blackened spruce / heavy intaglio ink */
+  --ink-secondary:          #2C4B3E; /* Deep pine moss / secondary headlines */
+  --ink-muted:              #506E62; /* Diluted spruce / captions & ledger lines */
+  --ink-faint:              #8A9F96; /* Ghost ink / watermarks & timestamps */
+  --ink-inverted:           #F4F7F5; /* Bleached rag vellum text on dark ink */
+
+  /* Signature Accents */
+  --accent-primary:         #E75B54; /* Sun-bleached terracotta / stamped linocut ink */
+  --accent-primary-hover:   #D44A43; /* Burnished cinnabar press state */
+  --accent-secondary:       #F29792; /* Washed coral / subtle highlight state */
+  --accent-tertiary:        #F6D5D2; /* Dilute pigment / tag background */
+
+  /* Status Tokens */
+  --status-success:         #2C4B3E; /* Pine moss herbarium mark */
+  --status-warning:         #B8860B; /* Antiquarian amber wash */
+  --status-danger:          #C3423B; /* Deep cochineal press red */
+  --status-info:            #3B6B78; /* Mineral cyanotype wash */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: 'Libre Baskerville', 'Caslon Pro', 'Baskerville', Georgia, serif;
+--font-sans:    'Plus Jakarta Sans', 'Grotesque 1890', 'Gill Sans', 'Trade Gothic', sans-serif;
+--font-serif:   'EB Garamond', 'Plantin', 'Adobe Caslon', 'Garamond', Georgia, serif;
+--font-script:  'Pinyon Script', 'Copperplate Script', 'Snell Roundhand', cursive;
+--font-mono:    'Plus Jakarta Sans', 'Grotesque 1890', monospace;
+
+/* Type Scale */
+--text-display: 3.25rem   / 1.10  var(--font-display); /* Letter-spacing: 0.08em | Weight: 500 | UPPERCASE | Letterpress optical tracking */
+--text-h1:      2.0rem    / 1.20  var(--font-display); /* Letter-spacing: 0.06em | Weight: 500 | UPPERCASE */
+--text-h2:      1.375rem  / 1.30  var(--font-script);  /* Letter-spacing: 0.02em | Weight: 400 | Italic flourish */
+--text-h3:      0.875rem  / 1.40  var(--font-sans);    /* Letter-spacing: 0.22em | Weight: 600 | UPPERCASE ledger label */
+--text-body:    1.0rem    / 1.65  var(--font-serif);   /* Letter-spacing: 0.01em | Weight: 400 | Naturalist body */
+--text-body-sm: 0.875rem  / 1.55  var(--font-serif);   /* Letter-spacing: 0.01em | Weight: 400 */
+--text-meta:    0.6875rem / 1.20  var(--font-sans);    /* Letter-spacing: 0.28em | Weight: 500 | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 0px;    /* Sharp guillotine-cut paper edges */
+--radius-soft:    1.5px;  /* Micro-softened corners for interactive buttons */
+--radius-ticket:  3px;    /* Specimen cards, vouchers, document labels */
+--radius-pill:    0px;    /* Anti-pill rule: zero radii preserves antiquarian ledger aesthetic */
+
+/* Elevation & Depth */
+--shadow-flat:           none;
+--shadow-paper-slip:     0 1px 2px rgba(29, 53, 43, 0.08), 0 3px 6px rgba(29, 53, 43, 0.04);
+--shadow-specimen-card:  0 4px 12px rgba(29, 53, 43, 0.08), 0 1px 3px rgba(29, 53, 43, 0.05);
+--shadow-pressed:        inset 0 1px 2px rgba(29, 53, 43, 0.20);
+--text-deboss:           0 1px 0 rgba(255, 255, 255, 0.45), 0 -1px 0 rgba(0, 0, 0, 0.15);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-hairline:    1px solid rgba(29, 53, 43, 0.20);
+--border-solid-ink:   1px solid #1D352B;
+--border-heavy-rule:  2px solid #1D352B;
+--border-ledger:      3px double rgba(29, 53, 43, 0.35);
+--border-bracket:     1px solid #E75B54;
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Render as tactile paper slips with 1.5px radius and solid 1px ink borders (var(--border-solid-ink)). Primary buttons use deep intaglio spruce (#1D352B) fill with inverted vellum text (#F4F7F5), or stamped cinnabar (#E75B54). Hover shifts background to washed paper (#DCE4DF) or burnished cinnabar with crisp ink response. Active pressed state applies 1px Y-axis translation and flat inset shadow (inset 0 1px 2px rgba(29, 53, 43, 0.2)). Use host's existing labels.
+- **Cards & Containers**: Style as elevated specimen sheets with 0px or 3px ticket-cut corners, bound by hairline rules or ledger-double borders (3px double rgba(29, 53, 43, 0.35)). Surfaces use paper-card (#DCE4DF) on canvas (#CCD7D1) with subtle level-1 paper slip shadows. Do not add index codes or fake metadata.
+- **Inputs & Form Controls**: Flat paper wells (#BFCCC5 or #CCD7D1) bordered by 1px solid ink rules with 1.5px corner radius. Focus state displays 1px solid cinnabar ring (#E75B54) with 3px offset. Typography set in utilitarian sans or body serif at minimum 16px to prevent viewport zoom. Checkboxes and toggles use rectangular guillotine geometry and cinnabar checkmarks.
+- **Navigation & Headers**: Fixed or sticky ledger header with double-rule bottom border (3px double rgba(29, 53, 43, 0.35)). Navigation links rendered in uppercase utilitarian grotesque (var(--font-sans)) with wide tracking (0.22em). Hover reveals cinnabar underlines or washed paper slip backgrounds. Restyle existing items without injecting fake numbering or issue codes.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No pill-shaped radii (9999px) or high border-radii on buttons, badges, or cards; keep edges guillotine-sharp (0px–3px).
+- No soft, diffuse, high-blur Gaussian box shadows; depth must rely solely on crisp paper layers, ink deboss, or subtle paper slips.
+- No saturated digital cyan, electric neon, or synthetic purple gradients.
+- No bouncy, elastic spring animations; transitions must be crisp and mechanical (180ms cubic-bezier).
+- No frosted glassmorphism, blur backdrops, or futuristic holographic sheen.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <script>
+    // Stable slug identity for Botanical Heritage & Press
+    const DESIGN_SLUG = "botanical-press";
+
+    // Palette matrix for Slot 2
+    const DESIGN_PALETTE = [
+      { name: "Pale Sage Canvas", hex: "#CCD7D1", cssVar: "--bg-canvas" },
+      { name: "Paper Card Sheet", hex: "#DCE4DF", cssVar: "--bg-surface" },
+      { name: "Paper Muted Well", hex: "#BFCCC5", cssVar: "--bg-surface-alt" },
+      { name: "Intaglio Spruce", hex: "#1D352B", cssVar: "--ink-primary" },
+      { name: "Deep Pine Moss", hex: "#2C4B3E", cssVar: "--ink-secondary" },
+      { name: "Diluted Spruce", hex: "#506E62", cssVar: "--ink-muted" },
+      { name: "Ghost Ink Mark", hex: "#8A9F96", cssVar: "--ink-faint" },
+      { name: "Stamped Cinnabar", hex: "#E75B54", cssVar: "--accent-primary" },
+      { name: "Washed Coral", hex: "#F29792", cssVar: "--accent-secondary" },
+      { name: "Cinnabar Wash", hex: "#F6D5D2", cssVar: "--accent-tertiary" },
+      { name: "Inverted Vellum", hex: "#F4F7F5", cssVar: "--ink-inverted" },
+      { name: "Cochineal Red", hex: "#C3423B", cssVar: "--status-danger" },
+      { name: "Antiquarian Amber", hex: "#B8860B", cssVar: "--status-warning" },
+      { name: "Cyanotype Wash", hex: "#3B6B78", cssVar: "--status-info" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    // Runtime population of drawer and modal specs
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    // Palette swatches population
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex + " (" + swatch.name + ")";
+        btn.innerHTML =
+          '<span class="swatch-chip" style="background:' + swatch.hex + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + "</span>" +
+            '<span class="swatch-var">' + swatch.cssVar + "</span>" +
+            '<span class="swatch-hex">' + swatch.hex + "</span>" +
+          "</span>";
+        btn.addEventListener("click", function () { copyHex(swatch.hex, swatch.name); });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () { toast.style.display = "none"; }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(function () { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    // Interactive switch
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+        triggerToast(on ? "Press Imprint: Active" : "Press Imprint: Muted");
+      });
+    }
+
+    // Interactive Demo Botanical Switching
+    const botanicalData = {
+      fern: {
+        name: "Dryopteris filix-mas",
+        auth: "(L.) Schott — Male Fern",
+        sheet: "Rag-Cotton 280gsm",
+        elevation: "1,840 Metres A.S.L.",
+        regime: "Mineral Press (48 Hrs)",
+        notes: "Pressed specimen in prime vegetative vigor. Rhizome stout, ascending, densely clothed in lustrous brown scales. Intaglio pigment test: positive."
+      },
+      conifer: {
+        name: "Pinus cembra",
+        auth: "L. — Swiss Stone Pine",
+        sheet: "Mineral Rag 320gsm",
+        elevation: "2,150 Metres A.S.L.",
+        regime: "Woodblock Clamp (72 Hrs)",
+        notes: "Needles in bundles of five, stiff, margins serrulate with stomatal lines. Cones ovate-elliptic, resinous scent retained after pressing."
+      },
+      moss: {
+        name: "Sphagnum capillifolium",
+        auth: "(Ehrh.) Hedw. — Peat Moss",
+        sheet: "Cotton Vellum 240gsm",
+        elevation: "1,620 Metres A.S.L.",
+        regime: "Blotter Desiccation (24 Hrs)",
+        notes: "Forms tight red-tinted mounds on sub-alpine bog. Stem cortex distinct, branch leaves imbricate to patent with hyaline chlorophyllose cells."
+      }
+    };
+
+    function selectSpecimen(evt, type) {
+      const item = botanicalData[type];
+      if (!item) return;
+      document.querySelectorAll('.demo-tab-btn').forEach(btn => btn.classList.remove('active'));
+      if (evt && evt.currentTarget) {
+        evt.currentTarget.classList.add('active');
+      }
+
+      document.getElementById('demo-specimen-name').textContent = item.name;
+      document.querySelector('.specimen-authority').textContent = item.auth;
+      document.getElementById('meta-sheet').textContent = item.sheet;
+      document.getElementById('meta-elevation').textContent = item.elevation;
+      document.getElementById('meta-regime').textContent = item.regime;
+      document.getElementById('demo-field-notes').value = item.notes;
+      triggerToast("Loaded: " + item.name);
+    }
+
+    function stampSpecimen() {
+      const seal = document.getElementById('demo-stamp-seal');
+      seal.style.transform = "scale(1.08)";
+      setTimeout(() => { seal.style.transform = "scale(1)"; }, 200);
+      triggerToast("✓ Cinnabar Seal Applied to Folio Plate");
+    }
+
+    function logAccession() {
+      triggerToast("✓ Folio Registered in Herbarium Ledger");
+    }
+  </script>
+</body>
+</html>

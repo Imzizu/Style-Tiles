@@ -1,0 +1,2940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aero Tactical — Style Tile</title>
+  <meta name="description" content="Tactical Hyper-Light: High-performance esport & editorial modernist design system. Aero slate canvas (#F1F5F9), Abyss Navy (#051226), Pulse Cyan (#00F0FF), 24px media cards, HUD compass rulers, and L4 drag controller.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon.ico">
+  
+  <!-- Google Fonts: Bebas Neue (Display), Plus Jakarta Sans (Body), Space Grotesk (HUD), JetBrains Mono (Telemetry) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* =============================================================================
+       STYLE TILE // SPECIFICATION SYSTEM: "TACTICAL HYPER-LIGHT" (TILE)
+       Aesthetic: High-Performance Esport / Editorial Modernist UI
+       ============================================================================= */
+
+    :root {
+      /* ---------------------------------------------------------------------------
+       * 01. COLOR ROLES & TOKEN PALETTE
+       * --------------------------------------------------------------------------- */
+      --bg-canvas:              #F1F5F9; /* "Aero Slate" — Primary page background */
+      --bg-ghost:               #E2E8F0; /* "Ghost Slate" — Oversized background watermarks */
+      --bg-surface-dark:        #051226; /* "Abyss Navy" — Navigation bars, input backgrounds */
+      --bg-surface-elevated:    #0A1D38; /* "Deep Void" — Card overlays, active wells */
+      --bg-surface-white:       #FFFFFF; /* "Pure Light" — High-contrast container surface */
+      --bg-surface-alt:         #E8EEF5; /* Recessed tactical wells & telemetry strips */
+
+      /* Kinetic Brand Accents */
+      --brand-electric:         #00F0FF; /* "Pulse Cyan" — Primary CTA, drag pills, reticles */
+      --brand-electric-hover:   #33F3FF; /* "Hyper Cyan" — Hover & active glow states */
+      --brand-electric-glow:    rgba(0, 240, 255, 0.45); /* Phosphor luminescent spread */
+      --brand-electric-faint:   rgba(0, 240, 255, 0.12);
+
+      /* Inks & Typography */
+      --text-primary:           #051226; /* "Abyss Navy" — Hero headlines, high-emphasis text */
+      --text-secondary:         #334155; /* "Slate Core" — Body copy, descriptions */
+      --text-inverse:           #FFFFFF; /* "Pure White" — Text on dark containers & imagery */
+      --text-muted:             #64748B; /* "Muted Steel" — Input placeholders, metadata */
+
+      /* Semantic & Ratings */
+      --semantic-success:       #00B67A; /* "Trust Green" — Verification badges & Trustpilot */
+      --semantic-warning:       #FF5A00; /* "Review Amber" — Star ratings & review badges */
+      --semantic-danger:        #FF2A55; /* "Apex Red" — Critical alerts & elimination flags */
+
+      /* Tactical Borders & Dividers */
+      --border-subtle:          rgba(5, 18, 38, 0.08); /* "Navy Hairline" — Structural dividers */
+      --border-dark:            #051226;               /* Solid 1px flush container border */
+      --border-electric:        rgba(0, 240, 255, 0.35);/* Cyan vector guide outline */
+
+      /* ---------------------------------------------------------------------------
+       * 02. TYPOGRAPHY SYSTEM
+       * --------------------------------------------------------------------------- */
+      --font-display:           "Bebas Neue", "Space Grotesk", sans-serif;
+      --font-sans:              "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+      --font-hud:               "Space Grotesk", "Plus Jakarta Sans", sans-serif;
+      --font-mono:              "JetBrains Mono", "Chivo Mono", monospace;
+
+      /* ---------------------------------------------------------------------------
+       * 03. CORNER GEOMETRY (BORDER RADII)
+       * --------------------------------------------------------------------------- */
+      --radius-xs:              2px;    /* Technical compass ticks, sub-pixel indicators */
+      --radius-sm:              4px;    /* Search button append, tag chips */
+      --radius-md:              8px;    /* Input containers, dropdown menus */
+      --radius-xl:              24px;   /* Primary media cards, showcase carousel frames */
+      --radius-pill:            9999px; /* Floating drag token, primary action buttons, badges */
+
+      /* ---------------------------------------------------------------------------
+       * 04. ELEVATION, DEPTH & LAYERING
+       * --------------------------------------------------------------------------- */
+      --shadow-card:            0 16px 36px -12px rgba(5, 18, 38, 0.25);
+      --shadow-drag-token:      0 0 24px rgba(0, 240, 255, 0.45), 0 8px 16px rgba(5, 18, 38, 0.20);
+      --shadow-drag-active:     0 0 32px rgba(51, 243, 255, 0.70), 0 12px 24px rgba(5, 18, 38, 0.30);
+      --shadow-glow-cyan:       0 0 24px rgba(0, 240, 255, 0.45);
+      --shadow-glow-cyan-hover: 0 0 32px rgba(51, 243, 255, 0.65);
+
+      /* ---------------------------------------------------------------------------
+       * 05. SPACING & SPATIAL SCALE (8-Point Metric)
+       * --------------------------------------------------------------------------- */
+      --space-2:                4px;
+      --space-4:                8px;
+      --space-6:                12px;
+      --space-8:                16px;
+      --space-12:               24px;
+      --space-16:               32px;
+      --space-24:               48px;
+      --space-32:               64px;
+
+      /* Transitions */
+      --trans-tactical:         cubic-bezier(0.16, 1, 0.3, 1) 300ms;
+      --trans-instant:          all 120ms ease;
+    }
+
+    /* =============================================================================
+       BASE RESET & BACKGROUND SUBSTRATE
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      line-height: 1.5;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+      background-color: var(--brand-electric);
+      color: var(--bg-surface-dark);
+    }
+
+    /* =============================================================================
+       L1 OVERSIZED WATERMARK TYPOGRAPHY
+       ============================================================================= */
+    .tactical-watermark {
+      position: fixed;
+      top: 25%;
+      left: -5%;
+      width: 110vw;
+      font-family: var(--font-display);
+      font-size: clamp(8rem, 20vw, 22rem);
+      font-weight: 900;
+      color: rgba(5, 18, 38, 0.035);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 0.8;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      white-space: nowrap;
+    }
+
+    .tactical-watermark-secondary {
+      position: fixed;
+      bottom: 5%;
+      right: -10%;
+      font-family: var(--font-display);
+      font-size: clamp(6rem, 16vw, 18rem);
+      font-weight: 900;
+      color: rgba(0, 240, 255, 0.025);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      white-space: nowrap;
+    }
+
+    /* Layout Wrapper */
+    .layout-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* =============================================================================
+       1. MANDATORY TOP NAVIGATION HEADER (agent.md Standard)
+       ============================================================================= */
+    .style-tile-header {
+      background-color: var(--bg-surface-dark);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+      color: var(--text-inverse);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      box-shadow: 0 4px 20px rgba(5, 18, 38, 0.35);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--brand-electric);
+      text-decoration: none;
+      font-family: var(--font-hud);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: var(--trans-instant);
+      padding: 6px 12px;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: var(--radius-sm);
+      background-color: rgba(0, 240, 255, 0.05);
+    }
+
+    .nav-back-link:hover {
+      background-color: var(--brand-electric);
+      color: var(--bg-surface-dark);
+      box-shadow: var(--shadow-glow-cyan);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .design-code {
+      background-color: var(--brand-electric);
+      color: var(--bg-surface-dark);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: var(--radius-xs);
+      letter-spacing: 0.08em;
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-inverse);
+    }
+
+    .design-vibe-tag {
+      background-color: var(--bg-surface-elevated);
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: var(--font-hud);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--bg-surface-elevated);
+      color: var(--text-inverse);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      font-family: var(--font-hud);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--trans-instant);
+    }
+
+    .btn-tile:hover {
+      border-color: var(--brand-electric);
+      color: var(--brand-electric);
+      box-shadow: 0 0 16px rgba(0, 240, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .btn-tile.btn-copy {
+      background-color: var(--brand-electric);
+      color: var(--bg-surface-dark);
+      border-color: var(--brand-electric);
+      font-weight: 800;
+    }
+
+    .btn-tile.btn-copy:hover {
+      background-color: var(--brand-electric-hover);
+      box-shadow: var(--shadow-glow-cyan-hover);
+      color: var(--bg-surface-dark);
+    }
+
+    /* =============================================================================
+       06. COMPASS / HUD RULER & TELEMETRY MASTHEAD
+       ============================================================================= */
+    .hud-ruler-container {
+      background-color: var(--bg-surface-white);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 8px 0;
+      position: relative;
+      user-select: none;
+    }
+
+    .hud-ruler-track {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      height: 20px;
+    }
+
+    .ruler-tick-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ruler-tick {
+      width: 2px;
+      height: 6px;
+      background-color: var(--text-muted);
+      border-radius: var(--radius-xs);
+    }
+
+    .ruler-tick.major {
+      height: 12px;
+      background-color: var(--text-primary);
+      width: 2px;
+    }
+
+    .ruler-coord {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.12em;
+      padding: 0 4px;
+    }
+
+    .ruler-coord.highlight {
+      color: var(--brand-electric);
+      background-color: var(--bg-surface-dark);
+      padding: 1px 6px;
+      border-radius: var(--radius-xs);
+    }
+
+    /* Top Telemetry Strip */
+    .telemetry-strip {
+      background-color: var(--bg-surface-dark);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+      color: var(--text-muted);
+      padding: 6px 0;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    .telemetry-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .telemetry-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .telemetry-dot {
+      width: 6px;
+      height: 6px;
+      background-color: var(--brand-electric);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--brand-electric);
+      animation: pulseDot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* =============================================================================
+       HERO DISPLAY BANNER
+       ============================================================================= */
+    .hero-section {
+      padding: 64px 0 48px;
+      position: relative;
+    }
+
+    .hero-top-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tactical-chip {
+      background-color: var(--bg-surface-dark);
+      color: var(--brand-electric);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      font-family: var(--font-hud);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+    }
+
+    .tactical-chip.badge-amber {
+      background-color: rgba(255, 90, 0, 0.1);
+      color: var(--semantic-warning);
+      border-color: rgba(255, 90, 0, 0.3);
+    }
+
+    .tactical-chip.badge-green {
+      background-color: rgba(0, 182, 122, 0.1);
+      color: var(--semantic-success);
+      border-color: rgba(0, 182, 122, 0.3);
+    }
+
+    .hero-main-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.75rem, 8.5vw, 6.5rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    .hero-main-title .accent-cyan {
+      color: var(--brand-electric);
+      background-color: var(--bg-surface-dark);
+      padding: 0 12px;
+      display: inline-block;
+      box-shadow: 4px 4px 0 var(--border-subtle);
+    }
+
+    .hero-lead-text {
+      font-size: clamp(1.125rem, 2vw, 1.25rem);
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      color: var(--text-secondary);
+      max-width: 820px;
+      margin-bottom: 32px;
+    }
+
+    .hero-action-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    /* Primary Electric Action Button */
+    .btn-electric-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: var(--brand-electric);
+      color: var(--bg-surface-dark);
+      border: 1px solid var(--brand-electric);
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      box-shadow: var(--shadow-glow-cyan);
+      transition: var(--trans-tactical);
+      text-decoration: none;
+    }
+
+    .btn-electric-primary:hover {
+      background-color: var(--brand-electric-hover);
+      box-shadow: var(--shadow-glow-cyan-hover);
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .btn-electric-primary:active {
+      transform: scale(0.97);
+    }
+
+    .btn-dark-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: var(--bg-surface-dark);
+      color: var(--text-inverse);
+      border: 1px solid var(--border-dark);
+      font-family: var(--font-hud);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 14px 24px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--trans-instant);
+      text-decoration: none;
+    }
+
+    .btn-dark-secondary:hover {
+      background-color: var(--bg-surface-elevated);
+      border-color: var(--brand-electric);
+      color: var(--brand-electric);
+      box-shadow: 0 4px 16px rgba(5, 18, 38, 0.25);
+    }
+
+    /* Section Directional Caret Gravity Anchor */
+    .section-directional-anchor {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin: 32px 0 16px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .caret-down {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-surface-white);
+      border: 1px solid var(--border-subtle);
+      border-radius: 50%;
+      color: var(--text-primary);
+      box-shadow: 0 2px 8px rgba(5, 18, 38, 0.06);
+      animation: bounceCaret 2s infinite ease-in-out;
+    }
+
+    @keyframes bounceCaret {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+
+    /* =============================================================================
+       01. COLOR ROLES & TOKEN MATRIX SECTION
+       ============================================================================= */
+    .section-card {
+      background-color: var(--bg-surface-white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      margin-bottom: 48px;
+      box-shadow: 0 4px 24px rgba(5, 18, 38, 0.04);
+      position: relative;
+    }
+
+    .section-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .section-title-group h2 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      line-height: 1.0;
+    }
+
+    .section-title-group p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .section-meta-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* Swatches Grid */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch-card {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--trans-tactical);
+      position: relative;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(5, 18, 38, 0.12);
+      border-color: var(--brand-electric);
+    }
+
+    .swatch-color-box {
+      height: 80px;
+      width: 100%;
+      position: relative;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 8px;
+    }
+
+    .swatch-copy-hint {
+      background-color: rgba(5, 18, 38, 0.85);
+      color: var(--brand-electric);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: var(--radius-xs);
+      opacity: 0;
+      transition: opacity 150ms ease;
+    }
+
+    .swatch-card:hover .swatch-copy-hint {
+      opacity: 1;
+    }
+
+    .swatch-info {
+      padding: 12px;
+    }
+
+    .swatch-name {
+      font-family: var(--font-hud);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-primary);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .swatch-role {
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      line-height: 1.3;
+    }
+
+    .swatch-token-name {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      background-color: var(--bg-surface-white);
+      padding: 2px 6px;
+      border-radius: var(--radius-xs);
+      display: inline-block;
+      margin-top: 6px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* =============================================================================
+       02. TYPOGRAPHY SYSTEM & INTERACTIVE SPECIMEN
+       ============================================================================= */
+    .type-ladder-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .type-ladder-item {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      align-items: baseline;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      gap: 24px;
+    }
+
+    .type-spec-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .type-spec-meta strong {
+      color: var(--text-primary);
+      font-family: var(--font-hud);
+      font-size: 13px;
+      display: block;
+      margin-bottom: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    .type-spec-preview {
+      color: var(--text-primary);
+    }
+
+    /* Type Scale Specific Classes */
+    .t-display-xl {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 6vw, 5.0rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .t-display-md {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.00;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+
+    .t-nav-link {
+      font-family: var(--font-hud);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.20;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .t-body-lead {
+      font-family: var(--font-sans);
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 1.40;
+      letter-spacing: -0.01em;
+    }
+
+    .t-body-base {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.50;
+      letter-spacing: 0.00em;
+    }
+
+    .t-hud-ticks {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.00;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .t-button-pill {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.00;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Live Pangram Tester */
+    .pangram-tester-box {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+
+    .tester-controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tester-font-pills {
+      display: flex;
+      gap: 8px;
+    }
+
+    .font-pill-btn {
+      background-color: var(--bg-surface-white);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      font-family: var(--font-hud);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: var(--trans-instant);
+    }
+
+    .font-pill-btn.active, .font-pill-btn:hover {
+      background-color: var(--bg-surface-dark);
+      color: var(--brand-electric);
+      border-color: var(--bg-surface-dark);
+    }
+
+    .tester-slider-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .tester-slider {
+      accent-color: var(--brand-electric);
+      cursor: pointer;
+    }
+
+    .pangram-input {
+      width: 100%;
+      background-color: var(--bg-surface-white);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      font-family: var(--font-display);
+      font-size: 32px;
+      line-height: 1.1;
+      color: var(--text-primary);
+      resize: vertical;
+      min-height: 100px;
+      outline: none;
+      transition: var(--trans-instant);
+    }
+
+    .pangram-input:focus {
+      outline: 2px solid var(--brand-electric);
+      outline-offset: 2px;
+    }
+
+    /* =============================================================================
+       03. COMPONENT ARCHETYPE GALLERY
+       ============================================================================= */
+    .archetypes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .archetype-box {
+      background-color: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+
+    .archetype-title {
+      font-family: var(--font-hud);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .archetype-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Button Showcase */
+    .btn-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Tactical Search Input Shell (Solid 1px #051226 flush border with Cyan append) */
+    .tactical-search-shell {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background-color: var(--bg-surface-dark);
+      box-shadow: 0 4px 12px rgba(5, 18, 38, 0.08);
+      transition: var(--trans-instant);
+    }
+
+    .tactical-search-shell:focus-within {
+      outline: 2px solid var(--brand-electric);
+      outline-offset: 2px;
+    }
+
+    .tactical-search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 12px 16px;
+      color: var(--text-inverse);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      outline: none;
+    }
+
+    .tactical-search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .tactical-search-append {
+      background-color: var(--brand-electric);
+      color: var(--bg-surface-dark);
+      border: none;
+      padding: 0 16px;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--trans-instant);
+    }
+
+    .tactical-search-append:hover {
+      background-color: var(--brand-electric-hover);
+      box-shadow: var(--shadow-glow-cyan);
+    }
+
+    /* Review & Trustpilot Badges */
+    .badge-item-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .trustpilot-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: rgba(0, 182, 122, 0.1);
+      border: 1px solid var(--semantic-success);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-hud);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--semantic-success);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .rating-stars-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px; /* Uniform 4px kerning for micro-stars */
+      background-color: var(--bg-surface-dark);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+    }
+
+    .micro-star {
+      color: var(--semantic-warning);
+      font-size: 13px;
+      line-height: 1;
+    }
+
+    .rating-score {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-inverse);
+      margin-left: 6px;
+    }
+
+    /* Tactical Checkbox and Switch */
+    .interactive-check-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .tactical-check-box {
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid var(--border-dark);
+      border-radius: var(--radius-xs);
+      background-color: var(--bg-surface-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--trans-instant);
+    }
+
+    .tactical-check-box.checked {
+      background-color: var(--brand-electric);
+      border-color: var(--brand-electric);
+      color: var(--bg-surface-dark);
+    }
+
+    .tactical-switch {
+      width: 44px;
+      height: 24px;
+      background-color: var(--bg-surface-dark);
+      border-radius: var(--radius-pill);
+      padding: 2px;
+      position: relative;
+      cursor: pointer;
+      transition: var(--trans-instant);
+    }
+
+    .tactical-switch-thumb {
+      width: 20px;
+      height: 20px;
+      background-color: var(--text-muted);
+      border-radius: 50%;
+      transition: transform 200ms ease, background-color 200ms ease;
+    }
+
+    .tactical-switch.active .tactical-switch-thumb {
+      transform: translateX(20px);
+      background-color: var(--brand-electric);
+      box-shadow: 0 0 8px var(--brand-electric);
+    }
+
+    /* =============================================================================
+       04. ELEVATION & DEPTH PERSPECTIVE STACK
+       ============================================================================= */
+    .elevation-stack {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .elevation-level-card {
+      background-color: var(--bg-surface-white);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      text-align: center;
+      position: relative;
+      transition: var(--trans-tactical);
+    }
+
+    .elevation-level-card.l0 { background-color: var(--bg-canvas); }
+    .elevation-level-card.l1 { background-color: var(--bg-ghost); }
+    .elevation-level-card.l3 { box-shadow: var(--shadow-card); border-color: transparent; }
+    .elevation-level-card.l4 {
+      box-shadow: var(--shadow-drag-token);
+      border: 1px solid var(--brand-electric);
+      background-color: var(--bg-surface-dark);
+      color: var(--text-inverse);
+    }
+    .elevation-level-card.l5 {
+      background-color: var(--bg-surface-dark);
+      color: var(--text-inverse);
+      box-shadow: 0 20px 48px rgba(5, 18, 38, 0.4);
+    }
+
+    .elevation-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--brand-electric);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    /* =============================================================================
+       05. LIVING MICRO-EXPERIENCE: ESPORT MATCH COMMAND & MEDIA CAROUSEL
+       ============================================================================= */
+    .showcase-container {
+      background-color: var(--bg-surface-dark);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      border-radius: var(--radius-xl);
+      padding: 36px 32px;
+      color: var(--text-inverse);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(5, 18, 38, 0.5);
+      margin-bottom: 48px;
+    }
+
+    .showcase-top-hud {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .showcase-title-block h3 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-inverse);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .showcase-title-block p {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: var(--font-hud);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 4px;
+    }
+
+    .showcase-hud-stats {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .hud-stat-box {
+      background-color: var(--bg-surface-elevated);
+      border: 1px solid rgba(0, 240, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .hud-stat-label {
+      color: var(--text-muted);
+      font-size: 9px;
+      letter-spacing: 0.10em;
+    }
+
+    .hud-stat-val {
+      color: var(--brand-electric);
+      font-weight: 700;
+    }
+
+    /* Live Tactical Search & Filter Bar */
+    .showcase-filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .carousel-search-box {
+      max-width: 360px;
+      width: 100%;
+    }
+
+    .carousel-view-toggles {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .carousel-tag-btn {
+      background-color: var(--bg-surface-elevated);
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: var(--font-hud);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: var(--trans-instant);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .carousel-tag-btn.active, .carousel-tag-btn:hover {
+      background-color: var(--brand-electric);
+      color: var(--bg-surface-dark);
+      border-color: var(--brand-electric);
+    }
+
+    /* CAROUSEL WRAPPER & DRAGGABLE CONTAINER */
+    .carousel-viewport-wrapper {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .media-carousel-track {
+      display: flex;
+      gap: 24px; /* SPACE-16 (32px / 24px) */
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 16px 8px 32px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .media-carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .media-carousel-track.is-dragging {
+      cursor: grabbing;
+      scroll-behavior: auto;
+    }
+
+    /* L3 PRIMARY MEDIA CARDS (24px Corner Geometry) */
+    .media-card {
+      flex: 0 0 320px;
+      height: 420px;
+      background-color: var(--bg-surface-elevated);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-xl); /* 24px radius-xl */
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), filter 300ms cubic-bezier(0.16, 1, 0.3, 1), border-color 300ms ease;
+    }
+
+    .media-card:hover {
+      transform: scale(1.03);
+      filter: brightness(1.10);
+      border-color: var(--brand-electric);
+      box-shadow: 0 20px 48px rgba(0, 240, 255, 0.25);
+    }
+
+    /* Card Dark Vignette Top-to-Bottom Gradient Overlay */
+    .media-card-bg-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5, 18, 38, 0.1) 0%, rgba(5, 18, 38, 0.6) 50%, rgba(5, 18, 38, 0.96) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Graphic pattern within cards */
+    .card-vector-backdrop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      opacity: 0.25;
+      background-size: cover;
+      background-position: center;
+      transition: transform 500ms ease;
+    }
+
+    .media-card:hover .card-vector-backdrop {
+      transform: scale(1.08);
+    }
+
+    .card-top-badges {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      right: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 2;
+    }
+
+    .card-tier-pill {
+      background-color: rgba(5, 18, 38, 0.85);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      color: var(--brand-electric);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+    }
+
+    .card-live-pill {
+      background-color: var(--semantic-danger);
+      color: #FFFFFF;
+      font-family: var(--font-hud);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-division {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--brand-electric);
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text-inverse);
+      margin-bottom: 8px;
+    }
+
+    .card-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 10px;
+      margin-top: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .card-meta-row strong {
+      color: var(--text-inverse);
+    }
+
+    /* FLOATING L4 DRAGGABLE CONTROLLER TOKEN (radius-pill) */
+    .drag-controller-token {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 180px;
+      height: 44px;
+      background-color: var(--brand-electric);
+      color: var(--bg-surface-dark);
+      border-radius: var(--radius-pill); /* radius-pill 9999px */
+      box-shadow: var(--shadow-drag-token);
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      cursor: grab;
+      user-select: none;
+      margin: 0 auto;
+      transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+      position: relative;
+    }
+
+    .drag-controller-token:hover {
+      background-color: var(--brand-electric-hover);
+      box-shadow: var(--shadow-drag-active);
+    }
+
+    .drag-controller-token:active, .drag-controller-token.is-grabbing {
+      cursor: grabbing;
+      transform: scale(0.95);
+      box-shadow: var(--shadow-drag-active);
+    }
+
+    /* Radial ripple effect on drag controller */
+    .drag-controller-token::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid rgba(0, 240, 255, 0.6);
+      opacity: 0;
+      animation: dragRipple 2.5s infinite ease-out;
+      pointer-events: none;
+    }
+
+    @keyframes dragRipple {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      100% { transform: scale(1.25); opacity: 0; }
+    }
+
+    /* =============================================================================
+       06. STYLE TILE PROMPT CODE DRAWER
+       ============================================================================= */
+    .code-spec-drawer {
+      background-color: var(--bg-surface-dark);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      color: var(--text-inverse);
+      margin-bottom: 64px;
+    }
+
+    .drawer-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .drawer-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--brand-electric);
+    }
+
+    .code-container {
+      background-color: #020914;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      overflow-x: auto;
+      max-height: 400px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--brand-electric) #020914;
+    }
+
+    .code-container pre {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #D1D5DB;
+      white-space: pre-wrap;
+    }
+
+    /* =============================================================================
+       SPEC INSPECTION MODAL (agent.md Standard)
+       ============================================================================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(5, 18, 38, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-sheet {
+      background-color: var(--bg-surface-dark);
+      border: 1.5px solid var(--brand-electric);
+      border-radius: var(--radius-xl);
+      max-width: 860px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0, 240, 255, 0.35);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--brand-electric);
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 24px;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+      transition: var(--trans-instant);
+    }
+
+    .modal-close-btn:hover {
+      color: var(--brand-electric);
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    /* TOAST NOTIFICATION */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: var(--bg-surface-dark);
+      border: 1px solid var(--brand-electric);
+      color: var(--text-inverse);
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-hud);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      box-shadow: var(--shadow-glow-cyan);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 2000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .toast-container.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* =============================================================================
+       RESPONSIVE & MOBILE RULES
+       ============================================================================= */
+    @media (max-width: 768px) {
+      .hero-main-title {
+        font-size: clamp(2.5rem, 10vw, 3.75rem);
+      }
+
+      .type-ladder-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .section-card {
+        padding: 24px 16px;
+      }
+
+      .showcase-container {
+        padding: 24px 16px;
+      }
+
+      .media-card {
+        flex: 0 0 270px;
+        height: 380px;
+      }
+
+      .ruler-coord:nth-child(even) {
+        display: none;
+      }
+    }
+  </style>
+
+  <!-- Mandatory Mobile Safety Sheet from agent.md -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .tactical-watermark, .tactical-watermark-secondary { display: none !important; }
+      .hud-ruler-container { display: none !important; }
+      .telemetry-strip { padding: 8px 16px !important; }
+      .telemetry-inner {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 6px 14px !important;
+      }
+      .telemetry-item { font-size: 9px !important; }
+      .telemetry-item:nth-child(n+4) { display: none !important; }
+      .layout-container { padding-left: 16px !important; padding-right: 16px !important; }
+      .hero-section, .hero-wrap { padding: 16px 0 24px !important; }
+      .hero-main-title { font-size: clamp(2.1rem, 11vw, 2.8rem) !important; }
+      .section-card, .showcase-container {
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+        background: transparent !important;
+      }
+      .hero-action-bar {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 10px !important;
+      }
+      .hero-action-bar a, .hero-action-bar button {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .hero-top-meta { flex-wrap: wrap !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- L1 Oversized Typography Ghost Watermarks -->
+  <div class="tactical-watermark">HYPER-LIGHT // SPEED 99.8%</div>
+  <div class="tactical-watermark-secondary">TACTICAL ESPORT</div>
+
+  <!-- ==========================================================================
+       1. MANDATORY TOP NAVIGATION HEADER (agent.md Standard)
+       ========================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span>←</span> CATALOG
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Aero Tactical</span>
+      <span class="design-vibe-tag">Cyber & Blueprint</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile" onclick="openSpecModal()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Preview Style Tile</span>
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt" onclick="copyHeaderTile()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span id="header-copy-label">Copy Style Tile</span>
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-aero-tactical.md" onclick="downloadHeaderTile()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Download Style Tile</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       06. COMPASS / HUD RULER & TELEMETRY STRIP
+       ========================================================================== -->
+  <aside class="telemetry-strip">
+    <div class="layout-container telemetry-inner">
+      <div class="telemetry-item">
+        <span class="telemetry-dot"></span>
+        <span>TELEMETRY_LINK: <strong>ARMED // 240 FPS</strong></span>
+      </div>
+      <div class="telemetry-item">
+        <span>LATENCY: <strong style="color: var(--brand-electric);">0.4 MS</strong></span>
+        <span style="color: rgba(255,255,255,0.2);">|</span>
+        <span>WCAG RATIO: <strong style="color: var(--semantic-success);">18.4:1 AAA</strong></span>
+        <span style="color: rgba(255,255,255,0.2);">|</span>
+        <span>DEPTH STACK: <strong>L0–L5 ACTIVE</strong></span>
+      </div>
+      <div class="telemetry-item">
+        <span>SYS_CLOCK: <strong id="live-telemetry-clock">2026-08-18 19:00:00 UTC</strong></span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Technical Compass / HUD Ruler -->
+  <div class="hud-ruler-container" aria-hidden="true">
+    <div class="layout-container hud-ruler-track">
+      <span class="ruler-coord highlight">N 00°00'</span>
+      <div class="ruler-tick-group">
+        <span class="ruler-tick major"></span><span class="ruler-tick"></span><span class="ruler-tick"></span><span class="ruler-tick"></span><span class="ruler-tick major"></span>
+      </div>
+      <span class="ruler-coord">NE 45°</span>
+      <div class="ruler-tick-group">
+        <span class="ruler-tick major"></span><span class="ruler-tick"></span><span class="ruler-tick"></span><span class="ruler-tick"></span><span class="ruler-tick major"></span>
+      </div>
+      <span class="ruler-coord highlight">E 90°</span>
+      <div class="ruler-tick-group">
+        <span class="ruler-tick major"></span><span class="ruler-tick"></span><span class="ruler-tick"></span><span class="ruler-tick"></span><span class="ruler-tick major"></span>
+      </div>
+      <span class="ruler-coord">SE 135°</span>
+      <div class="ruler-tick-group">
+        <span class="ruler-tick major"></span><span class="ruler-tick"></span><span class="ruler-tick"></span><span class="ruler-tick"></span><span class="ruler-tick major"></span>
+      </div>
+      <span class="ruler-coord highlight">S 180°</span>
+    </div>
+  </div>
+
+  <main>
+    <!-- ==========================================================================
+         HERO DISPLAY BANNER
+         ========================================================================== -->
+    <section class="hero-section">
+      <div class="layout-container">
+        
+        <div class="hero-top-meta">
+          <span class="tactical-chip">ESPORT TELEMETRY UI</span>
+          <span class="tactical-chip">EDITORIAL MODERNIST</span>
+          <span class="tactical-chip badge-amber">★ 4.96 APEX RATED</span>
+          <span class="tactical-chip badge-green">✓ TRUSTPILOT VERIFIED</span>
+        </div>
+
+        <h1 class="hero-main-title">
+          TACTICAL <span class="accent-cyan">HYPER-LIGHT</span>
+        </h1>
+
+        <p class="hero-lead-text">
+          A high-performance design architecture fusing the kinetic precision of esport telemetry HUDs with the compositional clarity of editorial modernism. Built on Aero Slate (#F1F5F9) canvas with Abyss Navy anchors (#051226) and Pulse Cyan (#00F0FF) kinetic vector ink.
+        </p>
+
+        <div class="hero-action-bar">
+          <a href="#micro-experience" class="btn-electric-primary" onclick="triggerTacticalSound('pulse')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Launch Interactive Carousel</span>
+          </a>
+          <button class="btn-dark-secondary" onclick="copyHeaderTile()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy Prompt for AI Agent</span>
+          </button>
+        </div>
+
+        <!-- Section Directional Caret Anchor -->
+        <div class="section-directional-anchor">
+          <span>INTERACTIVE SHOWCASE DIRECTORY</span>
+          <div class="caret-down">▼</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         01. COLOR ROLES & TOKEN PALETTE MATRIX
+         ========================================================================== -->
+    <section class="layout-container">
+      <div class="section-card">
+        
+        <div class="section-header-row">
+          <div class="section-title-group">
+            <h2>01. Color Roles & Token Palette</h2>
+            <p>Harmonious HSL token spectrum engineered for tactical contrast and phosphor luminescence.</p>
+          </div>
+          <span class="section-meta-tag">[ SPEC_SYSTEM: 13 COLOR ROLES ]</span>
+        </div>
+
+        <div class="swatches-grid">
+          
+          <!-- Base Canvas -->
+          <div class="swatch-card" onclick="copyHex('#F1F5F9', '--bg-canvas')">
+            <div class="swatch-color-box" style="background-color: #F1F5F9;">
+              <span class="swatch-copy-hint">CLICK TO COPY</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Aero Slate</div>
+              <div class="swatch-hex">#F1F5F9</div>
+              <div class="swatch-role">Base Canvas / Primary Page Background</div>
+              <div class="swatch-token-name">--bg-canvas</div>
+            </div>
+          </div>
+
+          <!-- Ghost Accent -->
+          <div class="swatch-card" onclick="copyHex('#E2E8F0', '--bg-ghost')">
+            <div class="swatch-color-box" style="background-color: #E2E8F0;">
+              <span class="swatch-copy-hint">CLICK TO COPY</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Ghost Slate</div>
+              <div class="swatch-hex">#E2E8F0</div>
+              <div class="swatch-role">Oversized Typography Watermarks</div>
+              <div class="swatch-token-name">--bg-ghost</div>
+            </div>
+          </div>
+
+          <!-- Surface Dark -->
+          <div class="swatch-card" onclick="copyHex('#051226', '--bg-surface-dark')">
+            <div class="swatch-color-box" style="background-color: #051226;">
+              <span class="swatch-copy-hint" style="background-color: rgba(255,255,255,0.2); color: #00F0FF;">CLICK TO COPY</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Abyss Navy</div>
+              <div class="swatch-hex">#051226</div>
+              <div class="swatch-role">Nav Bars, Shells & Input Wells</div>
+              <div class="swatch-token-name">--bg-surface-dark</div>
+            </div>
+          </div>
+
+          <!-- Surface Elevation -->
+          <div class="swatch-card" onclick="copyHex('#0A1D38', '--bg-surface-elevated')">
+            <div class="swatch-color-box" style="background-color: #0A1D38;">
+              <span class="swatch-copy-hint" style="background-color: rgba(255,255,255,0.2); color: #00F0FF;">CLICK TO COPY</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Deep Void</div>
+              <div class="swatch-hex">#0A1D38</div>
+              <div class="swatch-role">Elevated Card Overlays & Active Wells</div>
+              <div class="swatch-token-name">--bg-surface-elevated</div>
+            </div>
+          </div>
+
+          <!-- Brand Electric -->
+          <div class="swatch-card" onclick="copyHex('#00F0FF', '--brand-electric')">
+            <div class="swatch-color-box" style="background-color: #00F0FF; box-shadow: inset 0 0 20px rgba(0,0,0,0.15);">
+              <span class="swatch-copy-hint">CLICK TO COPY</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Pulse Cyan</div>
+              <div class="swatch-hex">#00F0FF</div>
+              <div class="swatch-role">Primary CTA, Drag Pills & Reticles</div>
+              <div class="swatch-token-name">--brand-electric</div>
+            </div>
+          </div>
+
+          <!-- Brand Electric Hover -->
+          <div class="swatch-card" onclick="copyHex('#33F3FF', '--brand-electric-hover')">
+            <div class="swatch-color-box" style="background-color: #33F3FF;">
+              <span class="swatch-copy-hint">CLICK TO COPY</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Hyper Cyan</div>
+              <div class="swatch-hex">#33F3FF</div>
+              <div class="swatch-role">Hover & Active Luminescent Glows</div>
+              <div class="swatch-token-name">--brand-electric-hover</div>
+            </div>
+          </div>
+
+          <!-- Text Primary -->
+          <div class="swatch-card" onclick="copyHex('#051226', '--text-primary')">
+            <div class="swatch-color-box" style="background-color: #051226;">
+              <span class="swatch-copy-hint" style="color: #00F0FF;">CLICK TO COPY</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Abyss Navy Text</div>
+              <div class="swatch-hex">#051226</div>
+              <div class="swatch-role">Hero Headlines & High-Emphasis Text</div>
+              <div class="swatch-token-name">--text-primary</div>
+            </div>
+          </div>
+
+          <!-- Text Secondary -->
+          <div class="swatch-card" onclick="copyHex('#334155', '--text-secondary')">
+            <div class="swatch-color-box" style="background-color: #334155;">
+              <span class="swatch-copy-hint" style="color: #FFFFFF;">CLICK TO COPY</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Slate Core</div>
+              <div class="swatch-hex">#334155</div>
+              <div class="swatch-role">Body Copy, Explanations & Narrative</div>
+              <div class="swatch-token-name">--text-secondary</div>
+            </div>
+          </div>
+
+          <!-- Text Inverse -->
+          <div class="swatch-card" onclick="copyHex('#FFFFFF', '--text-inverse')">
+            <div class="swatch-color-box" style="background-color: #FFFFFF; border: 1px solid #E2E8F0;">
+              <span class="swatch-copy-hint">CLICK TO COPY</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Pure White</div>
+              <div class="swatch-hex">#FFFFFF</div>
+              <div class="swatch-role">Text on Dark Containers & Imagery</div>
+              <div class="swatch-token-name">--text-inverse</div>
+            </div>
+          </div>
+
+          <!-- Text Muted -->
+          <div class="swatch-card" onclick="copyHex('#64748B', '--text-muted')">
+            <div class="swatch-color-box" style="background-color: #64748B;">
+              <span class="swatch-copy-hint" style="color: #FFFFFF;">CLICK TO COPY</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Muted Steel</div>
+              <div class="swatch-hex">#64748B</div>
+              <div class="swatch-role">Input Placeholders & HUD Metadata</div>
+              <div class="swatch-token-name">--text-muted</div>
+            </div>
+          </div>
+
+          <!-- Semantic Success -->
+          <div class="swatch-card" onclick="copyHex('#00B67A', '--semantic-success')">
+            <div class="swatch-color-box" style="background-color: #00B67A;">
+              <span class="swatch-copy-hint" style="color: #FFFFFF;">CLICK TO COPY</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Trust Green</div>
+              <div class="swatch-hex">#00B67A</div>
+              <div class="swatch-role">Trustpilot Badges & Match Verification</div>
+              <div class="swatch-token-name">--semantic-success</div>
+            </div>
+          </div>
+
+          <!-- Semantic Warning -->
+          <div class="swatch-card" onclick="copyHex('#FF5A00', '--semantic-warning')">
+            <div class="swatch-color-box" style="background-color: #FF5A00;">
+              <span class="swatch-copy-hint" style="color: #FFFFFF;">CLICK TO COPY</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-name">Review Amber</div>
+              <div class="swatch-hex">#FF5A00</div>
+              <div class="swatch-role">Star Ratings & Esport Apex Badges</div>
+              <div class="swatch-token-name">--semantic-warning</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         02. TYPOGRAPHY SYSTEM SPECIMEN
+         ========================================================================== -->
+    <section class="layout-container">
+      <div class="section-card">
+        
+        <div class="section-header-row">
+          <div class="section-title-group">
+            <h2>02. Typography System</h2>
+            <p>Precise editorial rhythm with high-contrast tactical display tracking.</p>
+          </div>
+          <span class="section-meta-tag">[ DISPLAY: BEBAS NEUE // BODY: PLUS JAKARTA SANS ]</span>
+        </div>
+
+        <div class="type-ladder-list">
+          
+          <!-- Display-XL -->
+          <div class="type-ladder-item">
+            <div class="type-spec-meta">
+              <strong>Display-XL</strong>
+              <span>Bebas Neue / 900</span><br>
+              <span>72px–96px / LH 0.92</span><br>
+              <span>Tracking +0.02em / UPPERCASE</span>
+            </div>
+            <div class="type-spec-preview t-display-xl">
+              APEX VELOCITY 240
+            </div>
+          </div>
+
+          <!-- Display-MD -->
+          <div class="type-ladder-item">
+            <div class="type-spec-meta">
+              <strong>Display-MD</strong>
+              <span>Bebas Neue / 800</span><br>
+              <span>36px–48px / LH 1.00</span><br>
+              <span>Tracking +0.01em / UPPERCASE</span>
+            </div>
+            <div class="type-spec-preview t-display-md">
+              TACTICAL MATCH COMMAND
+            </div>
+          </div>
+
+          <!-- Nav Link -->
+          <div class="type-ladder-item">
+            <div class="type-spec-meta">
+              <strong>Nav Link</strong>
+              <span>Space Grotesk / 700</span><br>
+              <span>13px–14px / LH 1.20</span><br>
+              <span>Tracking +0.06em / UPPERCASE</span>
+            </div>
+            <div class="type-spec-preview t-nav-link">
+              <span>OVERVIEW</span>
+              <span style="color: var(--brand-electric);">•</span>
+              <span>TELEMETRY</span>
+              <span style="color: var(--brand-electric);">•</span>
+              <span>ROSTER</span>
+              <span style="color: var(--brand-electric);">•</span>
+              <span>SPECTATE [ LIVE ]</span>
+            </div>
+          </div>
+
+          <!-- Body-Lead -->
+          <div class="type-ladder-item">
+            <div class="type-spec-meta">
+              <strong>Body-Lead</strong>
+              <span>Plus Jakarta Sans / 600</span><br>
+              <span>18px–20px / LH 1.40</span><br>
+              <span>Tracking -0.01em / Sentence</span>
+            </div>
+            <div class="type-spec-preview t-body-lead">
+              Every millisecond of latency is surfaced in real-time telemetry, synchronizing tactical decisions across distributed squads with zero cognitive friction.
+            </div>
+          </div>
+
+          <!-- Body-Base -->
+          <div class="type-ladder-item">
+            <div class="type-spec-meta">
+              <strong>Body-Base</strong>
+              <span>Plus Jakarta Sans / 400</span><br>
+              <span>15px–16px / LH 1.50</span><br>
+              <span>Tracking +0.00em / Sentence</span>
+            </div>
+            <div class="type-spec-preview t-body-base">
+              Tactical Hyper-Light balances the visual urgency of competitive esports with the editorial discipline of modern Swiss typography. The solid Abyss Navy containers ground high-velocity cyan vector highlights without visual clutter.
+            </div>
+          </div>
+
+          <!-- HUD / Ticks -->
+          <div class="type-ladder-item">
+            <div class="type-spec-meta">
+              <strong>HUD / Ticks</strong>
+              <span>JetBrains Mono / 700</span><br>
+              <span>10px–11px / LH 1.00</span><br>
+              <span>Tracking +0.12em / UPPERCASE</span>
+            </div>
+            <div class="type-spec-preview t-hud-ticks">
+              [LATENCY: 0.4MS] // [PACKET_LOSS: 0.00%] // [SYNC_RATE: 1000HZ] // [GRID: SE_45]
+            </div>
+          </div>
+
+          <!-- Button / Pill -->
+          <div class="type-ladder-item">
+            <div class="type-spec-meta">
+              <strong>Button / Pill</strong>
+              <span>Bebas Neue / 700</span><br>
+              <span>14px–16px / LH 1.00</span><br>
+              <span>Tracking +0.08em / UPPERCASE</span>
+            </div>
+            <div class="type-spec-preview t-button-pill">
+              <span style="background-color: var(--brand-electric); color: var(--bg-surface-dark); padding: 8px 16px; border-radius: var(--radius-pill); box-shadow: var(--shadow-glow-cyan);">
+                ‹ DRAG TO INSPECT ›
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Interactive Live Pangram Tester -->
+        <div class="pangram-tester-box">
+          <div class="tester-controls-bar">
+            <div class="tester-font-pills">
+              <button class="font-pill-btn active" onclick="switchPangramFont('display', this)">Bebas Neue (Display)</button>
+              <button class="font-pill-btn" onclick="switchPangramFont('hud', this)">Space Grotesk (HUD)</button>
+              <button class="font-pill-btn" onclick="switchPangramFont('sans', this)">Plus Jakarta Sans (Body)</button>
+              <button class="font-pill-btn" onclick="switchPangramFont('mono', this)">JetBrains Mono (Mono)</button>
+            </div>
+            <div class="tester-slider-group">
+              <span>FONT SIZE:</span>
+              <input type="range" class="tester-slider" id="pangram-size-slider" min="16" max="64" value="32" oninput="updatePangramSize(this.value)">
+              <span id="pangram-size-label">32PX</span>
+            </div>
+          </div>
+          <textarea class="pangram-input" id="pangram-text-area" spellcheck="false">HIGH-VELOCITY ESPORT TELEMETRY & TACTICAL HYPER-LIGHT 2026</textarea>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         03. COMPONENT ARCHETYPE GALLERY & INTERACTION RULES
+         ========================================================================== -->
+    <section class="layout-container">
+      <div class="section-card">
+        
+        <div class="section-header-row">
+          <div class="section-title-group">
+            <h2>03. Component Archetype Gallery</h2>
+            <p>Tactile inputs, electric action buttons, Trustpilot badges, and elevation layers.</p>
+          </div>
+          <span class="section-meta-tag">[ INTERACTION: GLOW SPREADS & GRAB CONTROLS ]</span>
+        </div>
+
+        <div class="archetypes-grid">
+          
+          <!-- Buttons Archetype -->
+          <div class="archetype-box">
+            <div class="archetype-title">
+              <span>ACTION BUTTONS</span>
+              <span class="t-hud-ticks">HOVER GLOW EXPANDS</span>
+            </div>
+            <div class="archetype-content">
+              <div class="btn-row">
+                <button class="btn-electric-primary" onclick="triggerTacticalSound('pulse')">
+                  <span>Pulse Cyan CTA</span>
+                </button>
+                <button class="btn-dark-secondary" onclick="triggerTacticalSound('click')">
+                  <span>Abyss Navy</span>
+                </button>
+              </div>
+              <div class="btn-row">
+                <div class="drag-controller-token" style="margin: 0; width: auto; padding: 0 20px;">
+                  <span>‹ DRAG PILL ›</span>
+                </div>
+                <button class="nav-back-link" style="margin: 0;">
+                  <span>Ghost Action</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tactical Input Shell -->
+          <div class="archetype-box">
+            <div class="archetype-title">
+              <span>TACTICAL INPUT SHELL</span>
+              <span class="t-hud-ticks">1PX FLUSH BORDER</span>
+            </div>
+            <div class="archetype-content">
+              <div class="tactical-search-shell">
+                <input type="text" class="tactical-search-input" placeholder="Search loadouts, squads, or maps...">
+                <button class="tactical-search-append" onclick="triggerTacticalSound('click')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <span>Search</span>
+                </button>
+              </div>
+              <p style="font-size: 12px; color: var(--text-muted);">
+                Solid 1px #051226 flush boundary with integrated Cyan search append. Focus-visible emits a 2px Cyan outline.
+              </p>
+            </div>
+          </div>
+
+          <!-- Ratings & Verification Badges -->
+          <div class="archetype-box">
+            <div class="archetype-title">
+              <span>RATINGS & VERIFICATION</span>
+              <span class="t-hud-ticks">4PX KERNING STARS</span>
+            </div>
+            <div class="archetype-content">
+              <div class="badge-item-row">
+                <div class="trustpilot-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <span>Trustpilot Excellent</span>
+                </div>
+                <div class="rating-stars-box">
+                  <span class="micro-star">★</span>
+                  <span class="micro-star">★</span>
+                  <span class="micro-star">★</span>
+                  <span class="micro-star">★</span>
+                  <span class="micro-star">★</span>
+                  <span class="rating-score">4.96</span>
+                </div>
+              </div>
+              <div class="interactive-check-row" onclick="toggleTacticalCheck(this)">
+                <div class="tactical-check-box checked">✓</div>
+                <span style="font-size: 13px; font-weight: 600; color: var(--text-primary);">Anti-Cheat Sensor Armed</span>
+              </div>
+              <div class="interactive-check-row" onclick="toggleTacticalSwitch(this)">
+                <div class="tactical-switch active">
+                  <div class="tactical-switch-thumb"></div>
+                </div>
+                <span style="font-size: 13px; font-weight: 600; color: var(--text-primary);">Real-time Telemetry Stream</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Depth & Elevation Stacks -->
+        <div style="margin-top: 32px;">
+          <div class="archetype-title">
+            <span>ELEVATION, DEPTH & LAYERING MATRIX (L0 TO L5)</span>
+            <span class="t-hud-ticks">Z-INDEX STACKING</span>
+          </div>
+          <div class="elevation-stack">
+            <div class="elevation-level-card l0">
+              <span class="elevation-tag">L0 // z-0</span>
+              <strong style="font-size: 13px;">Aero Canvas</strong>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">#F1F5F9 solid base</div>
+            </div>
+            <div class="elevation-level-card l1">
+              <span class="elevation-tag">L1 // z-1</span>
+              <strong style="font-size: 13px;">Watermark</strong>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">4% navy typography</div>
+            </div>
+            <div class="elevation-level-card" style="background-color: #FFFFFF;">
+              <span class="elevation-tag">L2 // z-10</span>
+              <strong style="font-size: 13px;">Content Tier</strong>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Standard UI blocks</div>
+            </div>
+            <div class="elevation-level-card l3">
+              <span class="elevation-tag">L3 // z-20</span>
+              <strong style="font-size: 13px;">Media Cards</strong>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">24px radius + vignette</div>
+            </div>
+            <div class="elevation-level-card l4">
+              <span class="elevation-tag">L4 // z-30</span>
+              <strong style="font-size: 13px; color: #FFFFFF;">Floating Token</strong>
+              <div style="font-size: 11px; color: var(--brand-electric); margin-top: 4px;">Cyan phosphor glow</div>
+            </div>
+            <div class="elevation-level-card l5">
+              <span class="elevation-tag">L5 // z-50</span>
+              <strong style="font-size: 13px; color: #FFFFFF;">Global Modals</strong>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Backdrop blur + overlay</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         05. LIVING MICRO-EXPERIENCE: ESPORT MATCH COMMAND & MEDIA CAROUSEL
+         ========================================================================== -->
+    <section class="layout-container" id="micro-experience">
+      <div class="showcase-container">
+        
+        <div class="showcase-top-hud">
+          <div class="showcase-title-block">
+            <h3>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand-electric)" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              APEX LEAGUE // MATCH COMMAND
+            </h3>
+            <p>High-Performance Esport Roster & Tournament Stream Showcase</p>
+          </div>
+
+          <div class="showcase-hud-stats">
+            <div class="hud-stat-box">
+              <span class="hud-stat-label">MATCH STATUS</span>
+              <span class="hud-stat-val" style="color: var(--semantic-danger);">LIVE [ROUND 04]</span>
+            </div>
+            <div class="hud-stat-box">
+              <span class="hud-stat-label">SPECTATORS</span>
+              <span class="hud-stat-val">148,290</span>
+            </div>
+            <div class="hud-stat-box">
+              <span class="hud-stat-label">PING / TICK</span>
+              <span class="hud-stat-val">8ms / 128-tick</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter & Search Controls -->
+        <div class="showcase-filter-bar">
+          <div class="carousel-search-box">
+            <div class="tactical-search-shell">
+              <input type="text" id="carousel-filter-input" class="tactical-search-input" placeholder="Filter squad roster by name or role..." oninput="filterCarouselCards(this.value)">
+              <button class="tactical-search-append">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="carousel-view-toggles">
+            <button class="carousel-tag-btn active" onclick="filterByTier('all', this)">All Operatives</button>
+            <button class="carousel-tag-btn" onclick="filterByTier('Assault', this)">Assault</button>
+            <button class="carousel-tag-btn" onclick="filterByTier('Recon', this)">Recon</button>
+            <button class="carousel-tag-btn" onclick="filterByTier('Tactical', this)">Tactical</button>
+          </div>
+        </div>
+
+        <!-- Draggable Horizontal Media Carousel -->
+        <div class="carousel-viewport-wrapper">
+          <div class="media-carousel-track" id="media-carousel">
+            
+            <!-- Card 01 -->
+            <div class="media-card" data-tier="Assault" data-name="VALKYRIE-09 // CYBER PHOENIX">
+              <div class="media-card-bg-gradient"></div>
+              <div class="card-vector-backdrop" style="background: radial-gradient(circle, #00F0FF 0%, transparent 70%);"></div>
+              <div class="card-top-badges">
+                <span class="card-tier-pill">ASSAULT // APEX SQUAD</span>
+                <span class="card-live-pill">MVP 1.84 K/D</span>
+              </div>
+              <div class="card-content">
+                <div class="card-division">DIVISION 01 // SEATTLE MAJOR</div>
+                <h4 class="card-title">VALKYRIE-09 CYBER PHOENIX</h4>
+                <div class="card-meta-row">
+                  <span>WIN RATE: <strong>78.4%</strong></span>
+                  <span>ACCURACY: <strong>94.2%</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 02 -->
+            <div class="media-card" data-tier="Recon" data-name="SPECTRE-X // VOID HUNTER">
+              <div class="media-card-bg-gradient"></div>
+              <div class="card-vector-backdrop" style="background: radial-gradient(circle, #33F3FF 0%, transparent 70%);"></div>
+              <div class="card-top-badges">
+                <span class="card-tier-pill">RECON // TELEMETRY</span>
+                <span class="card-live-pill" style="background-color: var(--semantic-success);">READY</span>
+              </div>
+              <div class="card-content">
+                <div class="card-division">DIVISION 01 // TOKYO MASTERS</div>
+                <h4 class="card-title">SPECTRE-X VOID HUNTER</h4>
+                <div class="card-meta-row">
+                  <span>FIRST BLOOD: <strong>62%</strong></span>
+                  <span>DAMAGE/RD: <strong>188</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 03 -->
+            <div class="media-card" data-tier="Tactical" data-name="KINETIC-04 // IRON BASTION">
+              <div class="media-card-bg-gradient"></div>
+              <div class="card-vector-backdrop" style="background: radial-gradient(circle, #00B67A 0%, transparent 70%);"></div>
+              <div class="card-top-badges">
+                <span class="card-tier-pill">TACTICAL // DEFENSE</span>
+                <span class="card-live-pill" style="background-color: var(--semantic-warning);">IN ACTION</span>
+              </div>
+              <div class="card-content">
+                <div class="card-division">DIVISION 02 // BERLIN INVITATIONAL</div>
+                <h4 class="card-title">KINETIC-04 IRON BASTION</h4>
+                <div class="card-meta-row">
+                  <span>CLUTCH RATE: <strong>71.5%</strong></span>
+                  <span>DEFENSE: <strong>99.1%</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 04 -->
+            <div class="media-card" data-tier="Assault" data-name="HYPER-DRIVE // PULSE RUNNER">
+              <div class="media-card-bg-gradient"></div>
+              <div class="card-vector-backdrop" style="background: radial-gradient(circle, #00F0FF 0%, transparent 70%);"></div>
+              <div class="card-top-badges">
+                <span class="card-tier-pill">ASSAULT // INFILTRATOR</span>
+                <span class="card-live-pill">MVP 2.10 K/D</span>
+              </div>
+              <div class="card-content">
+                <div class="card-division">DIVISION 01 // REYKJAVIK CLASH</div>
+                <h4 class="card-title">HYPER-DRIVE PULSE RUNNER</h4>
+                <div class="card-meta-row">
+                  <span>VELOCITY: <strong>320 KM/H</strong></span>
+                  <span>HEADSHOT: <strong>84%</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 05 -->
+            <div class="media-card" data-tier="Recon" data-name="CIPHER-77 // SHADOW MATRIX">
+              <div class="media-card-bg-gradient"></div>
+              <div class="card-vector-backdrop" style="background: radial-gradient(circle, #33F3FF 0%, transparent 70%);"></div>
+              <div class="card-top-badges">
+                <span class="card-tier-pill">RECON // SIGNAL APEX</span>
+                <span class="card-live-pill" style="background-color: var(--semantic-success);">READY</span>
+              </div>
+              <div class="card-content">
+                <div class="card-division">DIVISION 03 // SEOUL GRAND FINALS</div>
+                <h4 class="card-title">CIPHER-77 SHADOW MATRIX</h4>
+                <div class="card-meta-row">
+                  <span>INTEL SCORE: <strong>99.8</strong></span>
+                  <span>ASSISTS: <strong>342</strong></span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Floating L4 Draggable Interactive Pill Token -->
+        <div class="drag-controller-token" id="drag-token" title="Click and drag horizontally across the carousel">
+          <span>‹ DRAG TO GLIDE ›</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         06. STYLE TILE PROMPT CODE DRAWER & MACHINE SPEC
+         ========================================================================== -->
+    <section class="layout-container">
+      <div class="code-spec-drawer">
+        <div class="drawer-top-bar">
+          <div>
+            <span class="t-hud-ticks" style="color: var(--brand-electric);">AI AGENT DESIGN VAULT // TILE</span>
+            <div class="drawer-title">STYLE TILE SPECIFICATION MARKDOWN</div>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-tile btn-copy" onclick="copyHeaderTile()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Copy Full Prompt</span>
+            </button>
+            <button class="btn-tile" onclick="downloadHeaderTile()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download .md</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="code-container">
+          <pre><code id="visible-markdown-code"></code></pre>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       MODAL INSPECTION SHEET (agent.md Standard)
+       ========================================================================== -->
+  <div class="modal-backdrop" id="spec-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <div class="modal-title" id="modal-title">STYLE TILE // AERO TACTICAL (TILE)</div>
+        <button class="modal-close-btn" onclick="closeSpecModal()" title="Close spec modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre style="font-family: var(--font-mono); font-size: 12px; color: #D1D5DB; line-height: 1.6; white-space: pre-wrap;" id="modal-markdown-content"></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-tile" onclick="closeSpecModal()">Close</button>
+        <button class="btn-tile btn-copy" onclick="copyHeaderTile()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy Style Tile</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tactical Toast Notification -->
+  <div class="toast-container" id="tactical-toast">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-electric)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toast-message">Style Tile copied to clipboard!</span>
+  </div>
+
+  <!-- ==========================================================================
+       RAW MARKDOWN STYLE TILE DATA EMBED
+       ========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Tactical Hyper-Light
+  Construction: aero slate • abyss navy • pulse cyan • 24px media frames • condensed Bebas
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A high-key aero-slate canvas (#F1F5F9) anchored by abyss-navy structure (#051226)
+and a single pulse-cyan vector (#00F0FF). Display type is condensed uppercase
+Bebas; body is a geometric sans. Media frames sit at 24px radius with a top-to-bottom
+navy vignette; action controls are cyan pills with phosphor glow. Depth is a crisp
+L0–L5 stack of slate, ghost watermarks, cards, and luminescent floats — not muddy gray.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F1F5F9; /* Aero slate */
+  --bg-surface:             #FFFFFF; /* High-contrast light plate */
+  --bg-surface-alt:         #E8EEF5; /* Recessed wells */
+  --bg-surface-dark:        #051226; /* Abyss navy */
+
+  --bg-ghost:               #E2E8F0; /* Ghost slate */
+  --bg-surface-elevated:    #0A1D38; /* Deep void overlays */
+  --bg-surface-white:       #FFFFFF;
+
+  /* Inks & Typography */
+  --ink-primary:            #051226; /* Abyss navy headlines */
+  --ink-secondary:          #334155; /* Slate body */
+  --ink-muted:              #64748B; /* Muted steel */
+  --ink-inverted:           #FFFFFF;
+
+  --text-primary:           #051226;
+  --text-secondary:         #334155;
+  --text-inverse:           #FFFFFF;
+  --text-muted:             #64748B;
+
+  /* Signature Accents */
+  --accent-primary:         #00F0FF; /* Pulse cyan */
+  --accent-primary-hover:   #33F3FF; /* Hyper cyan */
+  --accent-secondary:       #051226;
+  --accent-tertiary:        #00B67A;
+
+  --brand-electric:         #00F0FF;
+  --brand-electric-hover:   #33F3FF;
+  --brand-electric-glow:    rgba(0, 240, 255, 0.45);
+
+  /* Status Tokens */
+  --status-success:         #00B67A;
+  --status-warning:         #FF5A00;
+  --status-danger:          #FF2A55;
+  --status-info:            #00F0FF;
+
+  /* Borders */
+  --border-subtle:          rgba(5, 18, 38, 0.08);
+  --border-dark:            #051226;
+  --border-electric:        rgba(0, 240, 255, 0.35);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Bebas Neue", "Space Grotesk", sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-hud:     "Space Grotesk", "Plus Jakarta Sans", sans-serif;
+--font-mono:    "JetBrains Mono", "Chivo Mono", monospace;
+
+--text-display: clamp(4.0rem, 7.5vw, 6.0rem) / 0.92 var(--font-display); /* Weight 900 | tracking +0.02em | UPPERCASE | 72–96px */
+--text-h1:      clamp(2.25rem, 4.0vw, 3.0rem) / 1.00 var(--font-display); /* Weight 800 | tracking +0.01em | UPPERCASE | 36–48px */
+--text-h2:      1.25rem / 1.40 var(--font-sans); /* Weight 600 | tracking -0.01em | 18–20px lead */
+--text-h3:      0.875rem / 1.20 var(--font-hud); /* Weight 700 | tracking +0.06em | UPPERCASE | 13–14px */
+--text-body:    1.0rem / 1.50 var(--font-sans);  /* Weight 400 | 15–16px */
+--text-body-sm: 0.9375rem / 1.50 var(--font-sans);
+--text-meta:    0.6875rem / 1.00 var(--font-mono); /* Weight 700 | tracking +0.12em | UPPERCASE | 10–11px */
+
+--text-button:  0.875rem / 1.00 var(--font-display); /* Weight 700 | tracking +0.08em | UPPERCASE | 14–16px */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 24px; /* Primary media cards */
+--radius-subtle:  8px;  /* Inputs, menus */
+--radius-pill:    9999px;
+
+--radius-xs: 2px;
+--radius-sm: 4px;
+--radius-md: 8px;
+--radius-xl: 24px;
+
+--shadow-base:   0 16px 36px -12px rgba(5, 18, 38, 0.25);
+--shadow-hover:  0 0 32px rgba(0, 240, 255, 0.45), 0 8px 16px rgba(5, 18, 38, 0.20);
+--shadow-active: 0 0 24px rgba(0, 240, 255, 0.45), 0 8px 16px rgba(5, 18, 38, 0.20);
+
+/* Depth stack (visual layers, not required chrome):
+   L0 z-0  solid #F1F5F9
+   L1 z-1  oversized display letterforms at 4% opacity #051226 (graphic watermark only; do not invent words)
+   L2 z-10 layout, text, inputs
+   L3 z-20 cards: 0 16px 36px -12px rgba(5, 18, 38, 0.25) + top-to-bottom dark vignette on media
+   L4 z-30 cyan phosphor float: 0 0 24px rgba(0, 240, 255, 0.45), 0 8px 16px rgba(5, 18, 38, 0.20)
+   L5 z-50 modals, sticky headers, tooltips */
+
+--space-2:  4px;
+--space-4:  8px;
+--space-6:  12px;
+--space-8:  16px;
+--space-12: 24px;
+--space-16: 32px;
+--space-24: 48px;
+--space-32: 64px;
+
+--ease-snap: cubic-bezier(0.16, 1, 0.3, 1);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:     1px solid #051226;
+--border-hairline: 1px solid rgba(5, 18, 38, 0.08);
+--divider-style:   1px solid rgba(5, 18, 38, 0.08);
+
+/* Optional graphic: 1px hairline with 2px x 6px tick marks as a ruler motif.
+   Do not add compass letters or coordinate labels the host does not already have.
+   A center chevron caret may sit as a purely geometric gravity mark. */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Pill 9999px, Bebas/display 14–16px uppercase +0.08em. Primary fill #00F0FF,
+  ink #051226. Hover: #33F3FF, glow spread 24px to 32px. Pressed: scale(0.95).
+  Search/append controls: 4px radius cyan block if the host already has a search action.
+  Use the host's existing labels.
+- **Cards**: 24px radius media frames, white or navy wells, L3 shadow, dark gradient vignette
+  on imagery. Hover: scale(1.03), brightness +10%, 300ms cubic-bezier(0.16, 1, 0.3, 1).
+  Do not add drag tokens, HUD readouts, or index codes the host lacks. If a control already
+  floats, skin it with L4 cyan phosphor — do not invent a new draggable token.
+- **Inputs**: 8px radius (or navy pill shell), 1px solid #051226, font-size >= 16px,
+  placeholder #64748B. Focus-visible: 2px solid #00F0FF, offset 2px.
+- **Navigation**: Existing items in Space Grotesk 13–14px / 700 / +0.06em / uppercase,
+  on abyss navy or aero slate. Do not add clocks, frequencies, or status readouts.
+- **Badges / chips**: 4px or 9999px; cyan or navy. Geometric micro-stars for ratings only
+  if the host already shows ratings (solid fill, 4px kerning).
+- **Icons**: Geometric, 2.0px stroke, sharp corners with slight optical rounding.
+  Sizes 16 / 20 / 24px.
+- **Idle motion**: Subtle horizontal parallax on pointer X, if motion is already present.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No generic purple or violet gradients on dark themes.
+- No unbordered floating cards lacking the 24px radius or L3 vignette structure.
+- No biscuit pills with pulsing dots above the main heading.
+- No icon-stuffed bento boxes with arbitrary symbols.
+- No muddy low-contrast grayscale without the #051226 / #00F0FF / #F1F5F9 tension.
+- No blurry uncalibrated drop shadows; use L3 navy occlusion or L4 cyan phosphor.
+- Do not mandate esport HUD chrome, compass legends, or floating drag tokens as content.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC & INTERACTION ENGINE
+       ========================================================================== -->
+  <script>
+    // Audio Synth for Tactical Feedback
+    let audioCtx = null;
+    function triggerTacticalSound(type) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        const now = audioCtx.currentTime;
+
+        if (type === 'pulse') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(880, now);
+          osc.frequency.exponentialRampToValueAtTime(1760, now + 0.08);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+          osc.start(now);
+          osc.stop(now + 0.08);
+        } else if (type === 'click') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(440, now);
+          gain.gain.setValueAtTime(0.05, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+          osc.start(now);
+          osc.stop(now + 0.04);
+        }
+      } catch (e) {}
+    }
+
+    // Markdown Spec Retrieval
+    function getMarkdownSpec() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    // Toast System
+    function showToast(msg) {
+      const toast = document.getElementById("tactical-toast");
+      const msgEl = document.getElementById("toast-message");
+      if (toast && msgEl) {
+        msgEl.textContent = msg;
+        toast.classList.add("show");
+        clearTimeout(window._toastTimer);
+        window._toastTimer = setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2200);
+      }
+    }
+
+    // Copy Tile Action
+    function copyHeaderTile() {
+      const text = getMarkdownSpec();
+      navigator.clipboard.writeText(text).then(() => {
+        const copyLabel = document.getElementById("header-copy-label");
+        if (copyLabel) {
+          const original = copyLabel.textContent;
+          copyLabel.textContent = "✓ Copied!";
+          setTimeout(() => { copyLabel.textContent = original; }, 2000);
+        }
+        triggerTacticalSound('pulse');
+        showToast("✓ Tactical Hyper-Light Style Tile copied to clipboard!");
+      }).catch(err => {
+        showToast("Press Ctrl+C to copy");
+      });
+    }
+
+    // Download Tile Action
+    function downloadHeaderTile() {
+      const text = getMarkdownSpec();
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-aero-tactical.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerTacticalSound('click');
+      showToast("Downloading style-tile-aero-tactical.md");
+    }
+
+    // Open/Close Spec Modal
+    function openSpecModal() {
+      const md = getMarkdownSpec();
+      document.getElementById("modal-markdown-content").textContent = md;
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+      triggerTacticalSound('click');
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+      triggerTacticalSound('click');
+    }
+
+    // Swatch Hex Copy
+    function copyHex(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerTacticalSound('click');
+        showToast(`Copied ${varName} (${hex}) to clipboard!`);
+      });
+    }
+
+    // Pangram Font Switcher
+    function switchPangramFont(fontType, btn) {
+      document.querySelectorAll(".font-pill-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const input = document.getElementById("pangram-text-area");
+      if (!input) return;
+
+      if (fontType === 'display') input.style.fontFamily = 'var(--font-display)';
+      if (fontType === 'hud') input.style.fontFamily = 'var(--font-hud)';
+      if (fontType === 'sans') input.style.fontFamily = 'var(--font-sans)';
+      if (fontType === 'mono') input.style.fontFamily = 'var(--font-mono)';
+
+      triggerTacticalSound('click');
+    }
+
+    function updatePangramSize(val) {
+      const input = document.getElementById("pangram-text-area");
+      const label = document.getElementById("pangram-size-label");
+      if (input) input.style.fontSize = `${val}px`;
+      if (label) label.textContent = `${val}PX`;
+    }
+
+    // Interactive Archetype Toggles
+    function toggleTacticalCheck(row) {
+      const box = row.querySelector(".tactical-check-box");
+      if (box) {
+        box.classList.toggle("checked");
+        box.textContent = box.classList.contains("checked") ? "✓" : "";
+        triggerTacticalSound('click');
+      }
+    }
+
+    function toggleTacticalSwitch(row) {
+      const sw = row.querySelector(".tactical-switch");
+      if (sw) {
+        sw.classList.toggle("active");
+        triggerTacticalSound('pulse');
+      }
+    }
+
+    // Carousel Draggable Drag Token & Mouse Physics
+    const carousel = document.getElementById("media-carousel");
+    const dragToken = document.getElementById("drag-token");
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    function initCarouselDrag() {
+      if (!carousel) return;
+
+      // Mouse drag on carousel
+      carousel.addEventListener("mousedown", (e) => {
+        isDown = true;
+        carousel.classList.add("is-dragging");
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+      });
+
+      carousel.addEventListener("mouseleave", () => {
+        isDown = false;
+        carousel.classList.remove("is-dragging");
+      });
+
+      carousel.addEventListener("mouseup", () => {
+        isDown = false;
+        carousel.classList.remove("is-dragging");
+      });
+
+      carousel.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        carousel.scrollLeft = scrollLeft - walk;
+      });
+
+      // Drag controller token interactive gliding
+      if (dragToken) {
+        dragToken.addEventListener("mousedown", (e) => {
+          isDown = true;
+          dragToken.classList.add("is-grabbing");
+          carousel.classList.add("is-dragging");
+          startX = e.pageX;
+          scrollLeft = carousel.scrollLeft;
+          triggerTacticalSound('click');
+        });
+
+        window.addEventListener("mouseup", () => {
+          if (isDown) {
+            isDown = false;
+            dragToken.classList.remove("is-grabbing");
+            carousel.classList.remove("is-dragging");
+          }
+        });
+
+        window.addEventListener("mousemove", (e) => {
+          if (!isDown) return;
+          const walk = (e.pageX - startX) * 2.0;
+          carousel.scrollLeft = scrollLeft + walk;
+        });
+      }
+    }
+
+    // Filter Carousel by Tier
+    function filterByTier(tier, btn) {
+      document.querySelectorAll(".carousel-tag-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const cards = document.querySelectorAll(".media-card");
+      cards.forEach(c => {
+        if (tier === 'all' || c.getAttribute("data-tier") === tier) {
+          c.style.display = 'flex';
+        } else {
+          c.style.display = 'none';
+        }
+      });
+      triggerTacticalSound('click');
+    }
+
+    // Filter Carousel by Search Query
+    function filterCarouselCards(query) {
+      const q = query.toLowerCase().trim();
+      const cards = document.querySelectorAll(".media-card");
+      cards.forEach(c => {
+        const name = (c.getAttribute("data-name") || "").toLowerCase();
+        const tier = (c.getAttribute("data-tier") || "").toLowerCase();
+        if (!q || name.includes(q) || tier.includes(q)) {
+          c.style.display = 'flex';
+        } else {
+          c.style.display = 'none';
+        }
+      });
+    }
+
+    // Initialization
+    document.addEventListener("DOMContentLoaded", () => {
+      initCarouselDrag();
+
+      // Populate Visible Markdown Block
+      const codeBlock = document.getElementById("visible-markdown-code");
+      if (codeBlock) codeBlock.textContent = getMarkdownSpec();
+
+      // Keyboard handler
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+
+      // Modal backdrop click
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      // Live Telemetry UTC Clock
+      function updateClock() {
+        const el = document.getElementById("live-telemetry-clock");
+        if (el) {
+          const now = new Date();
+          el.textContent = now.toISOString().replace("T", " ").substring(0, 19) + " UTC";
+        }
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
+    });
+  </script>
+</body>
+</html>
+

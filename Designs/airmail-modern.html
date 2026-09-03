@@ -1,0 +1,2646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airmail Modern — Style Tile</title>
+  <meta name="description" content="Retro-Postal Modernist (Philatelic Editorial) design system: Tactile mid-century postal aesthetics, unbleached parchment canvas (#F5ECE1), electric cobalt (#0062FF) & bubblegum pink (#FF66B2), scalloped stamp perforations, and condensed poster typography.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon.ico">
+
+  <!-- Google Fonts: Bebas Neue, Plus Jakarta Sans, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       01. DESIGN SYSTEM TOKENS & ROLES (TILE: RETRO-POSTAL MODERNIST)
+       ========================================================================== */
+    :root {
+      /* Canvas & Surfaces */
+      --canvas-bg-parchment:   #F5ECE1; /* Warm newsprint / unbleached ecru */
+      --surface-card-white:    #FFFFFF; /* Pure paper white (stamps & inputs) */
+      --surface-subtle-tint:   #EDE3D5; /* Recessed container fill */
+
+      /* Brand & Accents */
+      --accent-electric-blue:  #0062FF; /* High-chroma postal cobalt */
+      --accent-electric-hover: #004EDB; /* Cobalt hover tone (brightness 95%) */
+      --accent-bubblegum-pink: #FF66B2; /* Vibrant stamp magenta / rose */
+      --accent-pink-hover:     #E8509E; /* Bubblegum hover tone */
+      --accent-cyan-sky:       #38BDF8; /* Airmail gradient highlight */
+
+      /* Typography & Inks */
+      --text-primary:          #0A0A0C; /* Deep carbon black (high contrast) */
+      --text-secondary:        #4A4844; /* Warm graphite for body copy */
+      --text-subtle:           #8A857D; /* Muted captions, placeholders */
+      --text-inverse:          #FFFFFF; /* Crisp white on saturated fills */
+
+      /* Status Semantics */
+      --status-airmail:        #0062FF;
+      --status-registered:     #FF66B2;
+      --status-customs:        #D97706;
+      --status-dispatched:     #059669;
+
+      /* Illustrative Duotones & Gradients */
+      --gradient-blue-dusk:    linear-gradient(180deg, #0045B5 0%, #0077FF 60%, #60A5FA 100%);
+      --gradient-pink-dawn:    linear-gradient(180deg, #FF458F 0%, #FF6FB5 55%, #FDE2ED 100%);
+      --gradient-airmail-edge: repeating-linear-gradient(135deg, #0062FF 0, #0062FF 15px, #FFFFFF 15px, #FFFFFF 25px, #FF66B2 25px, #FF66B2 40px, #FFFFFF 40px, #FFFFFF 50px);
+      --gradient-stamp-gold:   linear-gradient(135deg, #E2B567 0%, #F5D77F 50%, #C49742 100%);
+
+      /* Typography Stacks */
+      --font-display: 'Bebas Neue', 'Impact', sans-serif;
+      --font-body:    'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono:    'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
+
+      /* Corner Geometry (Border Radii) */
+      --radius-sharp:   2px;   /* Stamp inner frame corners, stamp outer substrate */
+      --radius-input:   6px;   /* UI search modules, input containers */
+      --radius-button:  8px;   /* Action triggers, standalone buttons */
+      --radius-pill:    999px; /* Inline graphic pills, floating decorative shapes */
+      --radius-cross:   4px;   /* Inline plus (+) and asterisk glyph rounded caps */
+
+      /* Elevation & Depth (Tactile Paper Aesthetic) */
+      --shadow-flat:    none;
+      --shadow-input:   0px 1px 3px rgba(10, 10, 12, 0.05);
+      --shadow-stamp:   0px 10px 24px -4px rgba(45, 35, 20, 0.14), 0px 2px 6px -1px rgba(45, 35, 20, 0.08);
+      --shadow-lifted:  0px 18px 36px -6px rgba(45, 35, 20, 0.22), 0px 4px 10px -2px rgba(45, 35, 20, 0.10);
+      --shadow-pressed: 0px 2px 6px rgba(45, 35, 20, 0.08);
+
+      /* Spacing Scale (4px Base Grid) */
+      --space-2xs: 4px;
+      --space-xs:  8px;
+      --space-sm:  12px;
+      --space-md:  16px;
+      --space-lg:  24px;
+      --space-xl:  40px;
+      --space-2xl: 64px;
+
+      /* Borders & Dividers */
+      --border-hairline:  1px solid rgba(10, 10, 12, 0.08);
+      --border-contrast:  1.5px solid #0A0A0C;
+      --border-stamp-rim: 8px solid #FFFFFF;
+      --divider-sheet:    dotted 2px rgba(0, 0, 0, 0.25);
+
+      /* Motion & Physics */
+      --transition-snap: 180ms ease-out;
+      --transition-lift: 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* Dimensions */
+      --max-width: 1280px;
+    }
+
+    /* ==========================================================================
+       02. RESET & DOCUMENT TEXTURE PHYSICS
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--canvas-bg-parchment);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      background-color: var(--canvas-bg-parchment);
+      /* Subtle newsprint parchment grain */
+      background-image: 
+        radial-gradient(1000px 500px at 15% 0%, rgba(0, 98, 255, 0.04), transparent 70%),
+        radial-gradient(800px 600px at 85% 15%, rgba(255, 102, 178, 0.04), transparent 60%),
+        radial-gradient(rgba(10, 10, 12, 0.035) 1px, transparent 0);
+      background-size: 100% 100%, 100% 100%, 24px 24px;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background-color: var(--accent-electric-blue);
+      color: var(--text-inverse);
+    }
+
+    :focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--surface-card-white), 0 0 0 4px var(--accent-electric-blue);
+    }
+
+    .layout-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       03. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ========================================================================== */
+    .style-tile-header {
+      background-color: var(--surface-card-white);
+      border-bottom: 2px solid var(--text-primary);
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      padding: 10px var(--space-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      box-shadow: 0 2px 10px rgba(45, 35, 20, 0.06);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+      text-decoration: none;
+      padding: 6px 12px;
+      background: var(--surface-subtle-tint);
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-button);
+      box-shadow: 1px 2px 0 var(--text-primary);
+      transition: all var(--transition-snap);
+    }
+
+    .nav-back-link:hover {
+      background-color: var(--accent-electric-blue);
+      color: var(--text-inverse);
+      transform: translateY(-1px);
+      box-shadow: 2px 3px 0 var(--text-primary);
+    }
+
+    .nav-back-link:active {
+      transform: translate(1px, 1px);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      background-color: var(--text-primary);
+      color: var(--text-inverse);
+      border-radius: var(--radius-sharp);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-electric-blue);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background-color: rgba(0, 98, 255, 0.08);
+      border: 1px solid rgba(0, 98, 255, 0.25);
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 7px 14px;
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-button);
+      background: var(--surface-subtle-tint);
+      color: var(--text-primary);
+      cursor: pointer;
+      box-shadow: 1px 2px 0 var(--text-primary);
+      transition: all var(--transition-snap);
+    }
+
+    .btn-tile:hover {
+      background-color: var(--accent-electric-blue);
+      color: var(--text-inverse);
+      transform: translateY(-1px);
+      box-shadow: 2px 3px 0 var(--text-primary);
+    }
+
+    .btn-tile:active {
+      transform: translate(1px, 1px);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .btn-tile.btn-copy {
+      background-color: var(--accent-bubblegum-pink);
+      color: var(--text-inverse);
+      border-color: var(--text-primary);
+    }
+
+    .btn-tile.btn-copy:hover {
+      background-color: var(--accent-pink-hover);
+    }
+
+    /* ==========================================================================
+       04. AUTHENTIC PHILATELIC GRAPHICS & STAMP SCALLOP ENGINE
+       ========================================================================== */
+    /* Stamp Card with Scalloped Perforations */
+    .stamp-container {
+      position: relative;
+      background: var(--surface-card-white);
+      padding: 10px;
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-stamp);
+      transition: transform var(--transition-lift), box-shadow var(--transition-lift);
+      cursor: pointer;
+      display: inline-flex;
+      flex-direction: column;
+      user-select: none;
+    }
+
+    /* Outer Scallop Mask Effect via SVG / Radial Gradient pseudo elements */
+    .stamp-scalloped {
+      position: relative;
+      background: var(--surface-card-white);
+      padding: 14px;
+      border-radius: 2px;
+      box-shadow: var(--shadow-stamp);
+      transition: transform var(--transition-lift), box-shadow var(--transition-lift);
+      filter: drop-shadow(0 8px 18px rgba(45, 35, 20, 0.12));
+    }
+
+    .stamp-container:hover, .stamp-scalloped:hover {
+      transform: translateY(-8px) rotate(0deg) scale(1.02) !important;
+      box-shadow: var(--shadow-lifted);
+      z-index: 20;
+    }
+
+    .stamp-container:active, .stamp-scalloped:active {
+      transform: scale(0.98) !important;
+    }
+
+    /* Individual Stamp Art Substrate */
+    .stamp-art-frame {
+      border: 1px solid rgba(10, 10, 12, 0.15);
+      background: var(--surface-subtle-tint);
+      padding: 8px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stamp-inner-artwork {
+      height: 140px;
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 12px;
+      position: relative;
+      overflow: hidden;
+      color: var(--text-inverse);
+    }
+
+    /* Stamp Postmark / Cancellation Stamp */
+    .postmark-stamp {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      z-index: 10;
+      mix-blend-mode: multiply;
+      opacity: 0.85;
+    }
+
+    .postmark-circle {
+      width: 80px;
+      height: 80px;
+      border: 2px solid rgba(0, 98, 255, 0.75);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 8px;
+      font-weight: 800;
+      color: rgba(0, 98, 255, 0.85);
+      text-transform: uppercase;
+      line-height: 1.1;
+      padding: 6px;
+      transform: rotate(-12deg);
+      position: relative;
+    }
+
+    .postmark-wavy-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      position: absolute;
+      right: -55px;
+      top: 25px;
+      width: 50px;
+    }
+
+    .postmark-wave {
+      height: 2px;
+      background: rgba(0, 98, 255, 0.75);
+      border-radius: 1px;
+    }
+
+    /* Airmail Edge Banner Strip */
+    .airmail-strip {
+      height: 12px;
+      background: var(--gradient-airmail-edge);
+      border-radius: var(--radius-sharp);
+      width: 100%;
+    }
+
+    /* Sheet Tear Perforation Rule */
+    .sheet-tear-divider {
+      height: 2px;
+      width: 100%;
+      background-image: radial-gradient(circle, rgba(10, 10, 12, 0.35) 1.2px, transparent 1.2px);
+      background-size: 7px 100%;
+      margin: var(--space-xl) 0;
+    }
+
+    /* Inline Editorial Typography Glyphs */
+    .inline-pill {
+      display: inline-block;
+      vertical-align: middle;
+      width: 28px;
+      height: 14px;
+      background: var(--accent-electric-blue);
+      border-radius: var(--radius-pill);
+      margin: 0 4px;
+    }
+
+    .inline-plus {
+      display: inline-block;
+      vertical-align: middle;
+      font-family: var(--font-display);
+      color: var(--accent-bubblegum-pink);
+      font-size: 1.1em;
+      margin: 0 2px;
+    }
+
+    .inline-asterisk {
+      display: inline-block;
+      vertical-align: middle;
+      color: var(--accent-electric-blue);
+      font-size: 1.2em;
+      margin: 0 3px;
+    }
+
+    .coinage-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1.5px solid var(--text-primary);
+      background: var(--surface-card-white);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--text-primary);
+      box-shadow: 1px 1px 0 var(--text-primary);
+    }
+
+    /* ==========================================================================
+       05. SECTION: HERO EDITORIAL BOARD
+       ========================================================================== */
+    .hero-section {
+      padding: var(--space-xl) 0 var(--space-2xl);
+      position: relative;
+    }
+
+    .hero-container {
+      background: var(--surface-subtle-tint);
+      border: 2px solid var(--text-primary);
+      border-radius: var(--radius-button);
+      box-shadow: 0 12px 32px -6px rgba(45, 35, 20, 0.16);
+      padding: var(--space-2xl) var(--space-xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-airmail-trim {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: var(--gradient-airmail-edge);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+
+    .hero-meta-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-pill);
+      background: var(--surface-card-white);
+      color: var(--text-primary);
+    }
+
+    .hero-badge.badge-cobalt {
+      background: var(--accent-electric-blue);
+      color: var(--text-inverse);
+      border-color: var(--text-primary);
+    }
+
+    .hero-badge.badge-pink {
+      background: var(--accent-bubblegum-pink);
+      color: var(--text-inverse);
+      border-color: var(--text-primary);
+    }
+
+    .hero-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 7vw, 84px);
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-lead-text {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-lg);
+      max-width: 620px;
+    }
+
+    .hero-actions-row {
+      display: flex;
+      gap: var(--space-sm);
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn-postal-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--accent-electric-blue);
+      color: var(--text-inverse);
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      border: 2px solid var(--text-primary);
+      border-radius: var(--radius-button);
+      cursor: pointer;
+      box-shadow: 2px 3px 0 var(--text-primary);
+      transition: all var(--transition-snap);
+      text-decoration: none;
+    }
+
+    .btn-postal-primary:hover {
+      background-color: var(--accent-electric-hover);
+      transform: translateY(-2px);
+      box-shadow: 3px 5px 0 var(--text-primary);
+    }
+
+    .btn-postal-primary:active {
+      transform: translate(2px, 2px);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .btn-postal-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--surface-card-white);
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 12px 22px;
+      border: 2px solid var(--text-primary);
+      border-radius: var(--radius-button);
+      cursor: pointer;
+      box-shadow: 2px 3px 0 var(--text-primary);
+      transition: all var(--transition-snap);
+      text-decoration: none;
+    }
+
+    .btn-postal-secondary:hover {
+      background-color: var(--surface-subtle-tint);
+      transform: translateY(-2px);
+      box-shadow: 3px 5px 0 var(--text-primary);
+    }
+
+    .btn-postal-secondary:active {
+      transform: translate(2px, 2px);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    /* Hero Stamp Cluster Visual */
+    .hero-stamp-cluster {
+      position: relative;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cluster-stamp-1 {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      width: 190px;
+      transform: rotate(-4deg);
+      z-index: 10;
+    }
+
+    .cluster-stamp-2 {
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
+      width: 200px;
+      transform: rotate(3.5deg);
+      z-index: 12;
+    }
+
+    .cluster-stamp-3 {
+      position: absolute;
+      top: 50px;
+      right: 50px;
+      width: 160px;
+      transform: rotate(-1.5deg);
+      z-index: 8;
+    }
+
+    .cluster-postmark-floating {
+      position: absolute;
+      top: 15px;
+      left: 170px;
+      z-index: 15;
+      transform: rotate(8deg);
+      pointer-events: none;
+    }
+
+    /* ==========================================================================
+       06. SECTION: COLOR ROLES & PALETTE MATRIX
+       ========================================================================== */
+    .section-title-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: var(--space-lg);
+      border-bottom: 2px solid var(--text-primary);
+      padding-bottom: 8px;
+    }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--accent-electric-blue);
+      letter-spacing: 0.08em;
+    }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 42px);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+      text-transform: uppercase;
+    }
+
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .swatch-card {
+      background: var(--surface-card-white);
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-sharp);
+      padding: 10px;
+      box-shadow: 2px 3px 0 var(--text-primary);
+      cursor: pointer;
+      transition: all var(--transition-snap);
+      position: relative;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 3px 6px 0 var(--text-primary);
+    }
+
+    .swatch-card:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0 var(--text-primary);
+    }
+
+    .swatch-color-box {
+      height: 90px;
+      border-radius: var(--radius-sharp);
+      border: 1px solid rgba(10, 10, 12, 0.12);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 8px 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .swatch-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .swatch-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-subtle);
+    }
+
+    .swatch-role {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .duotone-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .duotone-card {
+      background: var(--surface-card-white);
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-sharp);
+      padding: 14px;
+      box-shadow: 2px 3px 0 var(--text-primary);
+    }
+
+    .duotone-bar {
+      height: 70px;
+      border-radius: var(--radius-sharp);
+      border: 1px solid rgba(10, 10, 12, 0.15);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-inverse);
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    }
+
+    /* ==========================================================================
+       07. SECTION: TYPOGRAPHY SYSTEM & SPECIMEN TESTER
+       ========================================================================== */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .type-card {
+      background: var(--surface-card-white);
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-sharp);
+      padding: var(--space-lg);
+      box-shadow: 2px 3px 0 var(--text-primary);
+    }
+
+    .type-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .ladder-item {
+      border-bottom: 1px dashed rgba(10, 10, 12, 0.15);
+      padding-bottom: 12px;
+    }
+
+    .ladder-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-electric-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .ladder-text-hero {
+      font-family: var(--font-display);
+      font-size: 56px;
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .ladder-text-sub {
+      font-family: var(--font-display);
+      font-size: 32px;
+      line-height: 1.05;
+      letter-spacing: 0.00em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .ladder-text-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      line-height: 1.20;
+      letter-spacing: +0.06em;
+      text-transform: uppercase;
+      color: var(--accent-electric-blue);
+    }
+
+    .ladder-text-body {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.55;
+      letter-spacing: -0.01em;
+      color: var(--text-secondary);
+    }
+
+    .ladder-text-stat {
+      font-family: var(--font-display);
+      font-size: 40px;
+      line-height: 1.00;
+      color: var(--accent-bubblegum-pink);
+    }
+
+    .ladder-text-micro {
+      font-family: var(--font-body);
+      font-size: 11.5px;
+      line-height: 1.30;
+      letter-spacing: +0.02em;
+      font-weight: 600;
+      color: var(--text-subtle);
+    }
+
+    /* Live Type Tester Module */
+    .type-tester-box {
+      background: var(--surface-subtle-tint);
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-button);
+      padding: var(--space-lg);
+      margin-top: var(--space-md);
+    }
+
+    .tester-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid rgba(10, 10, 12, 0.12);
+    }
+
+    .tester-font-toggles {
+      display: flex;
+      gap: 6px;
+    }
+
+    .tester-toggle-btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 10px;
+      border: 1.5px solid var(--text-primary);
+      background: var(--surface-card-white);
+      color: var(--text-primary);
+      border-radius: var(--radius-button);
+      cursor: pointer;
+      box-shadow: 1px 1px 0 var(--text-primary);
+    }
+
+    .tester-toggle-btn.active {
+      background: var(--accent-electric-blue);
+      color: var(--text-inverse);
+    }
+
+    .tester-slider-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tester-slider {
+      accent-color: var(--accent-electric-blue);
+      cursor: pointer;
+    }
+
+    .tester-output {
+      width: 100%;
+      min-height: 100px;
+      background: var(--surface-card-white);
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-input);
+      padding: var(--space-md);
+      font-family: var(--font-display);
+      font-size: 42px;
+      line-height: 1.05;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      outline: none;
+      resize: vertical;
+    }
+
+    /* ==========================================================================
+       08. SECTION: COMPONENT ARCHETYPE GALLERY
+       ========================================================================== */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+
+    .comp-archetype-card {
+      background: var(--surface-card-white);
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-sharp);
+      padding: var(--space-lg);
+      box-shadow: 2px 3px 0 var(--text-primary);
+    }
+
+    .comp-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+    }
+
+    .btn-pink {
+      background: var(--accent-bubblegum-pink);
+      color: var(--text-inverse);
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-button);
+      padding: 9px 18px;
+      font-family: var(--font-display);
+      font-size: 16px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 1px 2px 0 var(--text-primary);
+      transition: all var(--transition-snap);
+    }
+
+    .btn-pink:hover {
+      background: var(--accent-pink-hover);
+      transform: translateY(-2px);
+      box-shadow: 2px 4px 0 var(--text-primary);
+    }
+
+    .btn-pill-action {
+      background: var(--surface-subtle-tint);
+      color: var(--text-primary);
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-pill);
+      padding: 6px 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      box-shadow: 1px 2px 0 var(--text-primary);
+      transition: all var(--transition-snap);
+    }
+
+    .btn-pill-action:hover {
+      background: var(--accent-electric-blue);
+      color: var(--text-inverse);
+      transform: translateY(-1px);
+    }
+
+    /* Form Fields */
+    .postal-input-group {
+      margin-bottom: var(--space-md);
+      position: relative;
+    }
+
+    .postal-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .postal-input {
+      width: 100%;
+      height: 44px;
+      background: var(--surface-card-white);
+      border: 1.5px solid rgba(10, 10, 12, 0.2);
+      border-radius: var(--radius-input);
+      padding: 0 14px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--text-primary);
+      transition: all var(--transition-snap);
+      box-shadow: var(--shadow-input);
+    }
+
+    .postal-input:focus {
+      border: 1.5px solid var(--accent-electric-blue);
+      outline: none;
+    }
+
+    .postal-input-pill {
+      border-radius: var(--radius-pill);
+      padding-left: 18px;
+    }
+
+    /* Toggles & Radios */
+    .checkbox-row, .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .postal-checkbox {
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-sharp);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-card-white);
+      transition: all var(--transition-snap);
+    }
+
+    .postal-checkbox.checked {
+      background: var(--accent-electric-blue);
+      color: var(--text-inverse);
+    }
+
+    /* Airmail Envelope Card Preview */
+    .airmail-card {
+      background: var(--surface-card-white);
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-sharp);
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-stamp);
+    }
+
+    .airmail-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .airmail-corner-tag {
+      background: var(--accent-electric-blue);
+      color: var(--text-inverse);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sharp);
+    }
+
+    /* ==========================================================================
+       09. SECTION: LIVING DEMO - PHILATELIC & AIRMAIL DISPATCH BUREAU
+       ========================================================================== */
+    .bureau-container {
+      background: var(--surface-subtle-tint);
+      border: 2px solid var(--text-primary);
+      border-radius: var(--radius-button);
+      box-shadow: 0 14px 36px -8px rgba(45, 35, 20, 0.18);
+      padding: var(--space-xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bureau-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--text-primary);
+      padding-bottom: var(--space-md);
+      margin-bottom: var(--space-xl);
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .bureau-title-group h3 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .bureau-title-group p {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-subtle);
+      margin-top: 2px;
+    }
+
+    .bureau-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .bureau-tab-btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 7px 14px;
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-button);
+      background: var(--surface-card-white);
+      color: var(--text-primary);
+      cursor: pointer;
+      box-shadow: 1px 2px 0 var(--text-primary);
+      transition: all var(--transition-snap);
+    }
+
+    .bureau-tab-btn.active {
+      background: var(--accent-electric-blue);
+      color: var(--text-inverse);
+    }
+
+    .bureau-tab-btn:hover:not(.active) {
+      background: var(--canvas-bg-parchment);
+      transform: translateY(-1px);
+    }
+
+    .bureau-layout-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-xl);
+    }
+
+    /* Stamp Collection Showcase Grid */
+    .stamps-collection-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .stamp-item-card {
+      background: var(--surface-card-white);
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-sharp);
+      padding: 10px;
+      box-shadow: var(--shadow-stamp);
+      transition: transform var(--transition-lift), box-shadow var(--transition-lift);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .stamp-item-card:hover {
+      transform: translateY(-6px) rotate(0deg) scale(1.02);
+      box-shadow: var(--shadow-lifted);
+      z-index: 10;
+    }
+
+    .stamp-item-art {
+      height: 120px;
+      border-radius: 2px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: var(--text-inverse);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stamp-art-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-display);
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .stamp-art-denomination {
+      font-family: var(--font-display);
+      font-size: 32px;
+      line-height: 0.9;
+    }
+
+    .stamp-art-motif {
+      font-family: var(--font-display);
+      font-size: 16px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .stamp-item-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    /* Airmail Parcel Dispatch Calculator & Franking Generator */
+    .dispatch-calculator-card {
+      background: var(--surface-card-white);
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-sharp);
+      padding: var(--space-lg);
+      box-shadow: 3px 4px 0 var(--text-primary);
+      position: relative;
+    }
+
+    .calc-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .frank-label-preview {
+      background: var(--canvas-bg-parchment);
+      border: 2px dashed rgba(10, 10, 12, 0.35);
+      border-radius: var(--radius-sharp);
+      padding: var(--space-md);
+      margin: var(--space-md) 0;
+      position: relative;
+    }
+
+    .frank-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      border-bottom: 1.5px solid var(--text-primary);
+      padding-bottom: 6px;
+    }
+
+    .frank-stamp-box {
+      width: 70px;
+      height: 85px;
+      background: var(--accent-electric-blue);
+      border: 1px solid var(--text-primary);
+      border-radius: 2px;
+      color: var(--text-inverse);
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-family: var(--font-display);
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      box-shadow: 1px 2px 0 var(--text-primary);
+    }
+
+    .frank-barcode {
+      height: 36px;
+      background: repeating-linear-gradient(90deg, #0A0A0C 0, #0A0A0C 2px, transparent 2px, transparent 4px, #0A0A0C 4px, #0A0A0C 7px, transparent 7px, transparent 9px);
+      margin-top: 12px;
+    }
+
+    /* ==========================================================================
+       10. SECTION: STYLE TILE PROMPT CODE DRAWER (agent.md Section 5)
+       ========================================================================== */
+    .spec-drawer-section {
+      margin: var(--space-2xl) 0;
+    }
+
+    .spec-code-container {
+      background: var(--text-primary);
+      color: #E2E8F0;
+      border: 2px solid var(--text-primary);
+      border-radius: var(--radius-button);
+      box-shadow: 3px 5px 0 rgba(10, 10, 12, 0.4);
+      overflow: hidden;
+    }
+
+    .spec-code-header {
+      background: #18181B;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .spec-code-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #A1A1AA;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .spec-code-pre {
+      padding: var(--space-md) var(--space-lg);
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      line-height: 1.55;
+      overflow-x: auto;
+      max-height: 480px;
+      white-space: pre;
+    }
+
+    /* ==========================================================================
+       11. MODAL SPEC INSPECTOR (agent.md Section 2)
+       ========================================================================== */
+    .spec-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 10, 12, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease;
+    }
+
+    .spec-modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .spec-modal-card {
+      background: var(--surface-card-white);
+      border: 2px solid var(--text-primary);
+      border-radius: var(--radius-button);
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .spec-modal-header {
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: 2px solid var(--text-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface-subtle-tint);
+    }
+
+    .spec-modal-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      background: #0A0A0C;
+      color: #E2E8F0;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      line-height: 1.55;
+      white-space: pre;
+    }
+
+    .spec-modal-footer {
+      padding: var(--space-sm) var(--space-lg);
+      border-top: 2px solid var(--text-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface-subtle-tint);
+    }
+
+    .btn-close-modal {
+      background: transparent;
+      border: 1.5px solid var(--text-primary);
+      border-radius: var(--radius-button);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .btn-close-modal:hover {
+      background: var(--accent-bubblegum-pink);
+      color: var(--text-inverse);
+    }
+
+    /* ==========================================================================
+       12. TOAST NOTIFICATION ENGINE
+       ========================================================================== */
+    #toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--text-primary);
+      color: var(--text-inverse);
+      padding: 10px 18px;
+      border-radius: var(--radius-button);
+      border: 1.5px solid var(--accent-electric-blue);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      transform: translateY(12px);
+      opacity: 0;
+      transition: all 180ms ease-out;
+      pointer-events: auto;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ==========================================================================
+       13. PAGE-SPECIFIC RESPONSIVE OVERRIDES
+       ========================================================================== */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+      .hero-stamp-cluster {
+        height: 280px;
+      }
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+      .bureau-layout-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-container {
+        padding: var(--space-lg) var(--space-md);
+      }
+      .stamps-collection-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-stamp-cluster {
+        display: none;
+      }
+    }
+  </style>
+
+  <!-- Shared Mobile Safety Sheet -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       01. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ========================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Airmail Modern</span>
+      <span class="design-vibe-tag">Editorial & Archival</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download airmail-modern.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+    <!-- ==========================================================================
+         02. HERO DISPLAY BANNER (agent.md Section 5)
+         ========================================================================== -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-airmail-trim"></div>
+
+        <div class="hero-grid">
+          <!-- Left Hero Column -->
+          <div class="hero-content">
+            <div class="hero-meta-strip">
+              <span class="hero-badge badge-cobalt">STAMP SPECIMEN NO. 020</span>
+              <span class="hero-badge badge-pink">PAR AVION / AIRMAIL</span>
+              <span class="hero-badge">ISSUE: PHILATELIC MODERN</span>
+            </div>
+
+            <h1 class="hero-h1">
+              Retro-Postal<br>
+              Modernist <span class="inline-pill"></span> <span class="inline-asterisk">✱</span>
+            </h1>
+
+            <p class="hero-lead-text">
+              A high-chroma philatelic design system uniting mid-century postal aesthetics with modernist editorial precision. Featuring warm unbleached parchment canvas, high-chroma postal cobalt, bubblegum stamp rose, scalloped stamp perforations, and physical rotational tilts.
+            </p>
+
+            <div class="hero-actions-row">
+              <button class="btn-postal-primary" onclick="copyTilePrompt('TILE')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy Prompt for Agent
+              </button>
+              <a href="#demo-bureau" class="btn-postal-secondary">
+                Explore Dispatch Bureau ↓
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Hero Column: Stamp Cluster Display -->
+          <div class="hero-stamp-cluster">
+            <!-- Stamp 1: Trans-Atlantic Aeronautic -->
+            <div class="stamp-container cluster-stamp-1" title="Aeronautic 50c Airmail Specimen">
+              <div class="stamp-art-frame">
+                <div class="stamp-inner-artwork" style="background: var(--gradient-blue-dusk);">
+                  <div style="display:flex; justify-content:space-between; font-family:var(--font-display); font-size:12px; letter-spacing:0.06em;">
+                    <span>AIR MAIL</span>
+                    <span>50¢</span>
+                  </div>
+                  <div style="text-align:center;">
+                    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" style="margin:0 auto;"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z"/></svg>
+                    <div style="font-family:var(--font-display); font-size:14px; letter-spacing:0.06em; margin-top:4px;">TRANS-ATLANTIC</div>
+                  </div>
+                  <div style="font-family:var(--font-mono); font-size:8px; letter-spacing:0.08em; text-align:center; opacity:0.8;">DISPATCH 1964</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stamp 2: Bubblegum Rose Edition -->
+            <div class="stamp-container cluster-stamp-2" title="Royal Botanical 25p Stamp">
+              <div class="stamp-art-frame">
+                <div class="stamp-inner-artwork" style="background: var(--gradient-pink-dawn);">
+                  <div style="display:flex; justify-content:space-between; font-family:var(--font-display); font-size:12px; letter-spacing:0.06em;">
+                    <span>REGISTERED</span>
+                    <span>25p</span>
+                  </div>
+                  <div style="text-align:center;">
+                    <div style="font-size:28px; line-height:1;">🌸</div>
+                    <div style="font-family:var(--font-display); font-size:15px; letter-spacing:0.06em; margin-top:2px;">FLORA EDITORIAL</div>
+                  </div>
+                  <div style="font-family:var(--font-mono); font-size:8px; letter-spacing:0.08em; text-align:center; opacity:0.8;">GENEVA • NO. 882</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Postmark cancellation stamp -->
+            <div class="postmark-stamp cluster-postmark-floating">
+              <div class="postmark-circle">
+                <span>PAR AVION</span>
+                <span style="font-size:10px; margin:2px 0;">18 AUG 2026</span>
+                <span>ZURICH AIRPORT</span>
+                <div class="postmark-wavy-lines">
+                  <div class="postmark-wave"></div>
+                  <div class="postmark-wave"></div>
+                  <div class="postmark-wave"></div>
+                  <div class="postmark-wave"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         03. COLOR ROLES & PALETTE MATRIX (agent.md Section 5)
+         ========================================================================== -->
+    <section class="palette-section" id="palette-matrix">
+      <div class="section-title-bar">
+        <div>
+          <span class="section-num">01 // COLOR SPECIFICATION</span>
+          <h2 class="section-heading">Tactile Newsprint & Airmail Inks</h2>
+        </div>
+        <span style="font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--text-subtle);">CLICK SWATCH TO COPY TOKEN</span>
+      </div>
+
+      <div class="swatches-grid">
+        <!-- Canvas Parchment -->
+        <div class="swatch-card" onclick="copySwatchHex('#F5ECE1', '--canvas-bg-parchment')">
+          <div class="swatch-color-box" style="background-color: #F5ECE1; color: #0A0A0C;">
+            <span>#F5ECE1</span>
+            <span>BG</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Parchment Newsprint</div>
+            <div class="swatch-var">--canvas-bg-parchment</div>
+            <div class="swatch-role">Primary newsprint canvas background</div>
+          </div>
+        </div>
+
+        <!-- Surface Card White -->
+        <div class="swatch-card" onclick="copySwatchHex('#FFFFFF', '--surface-card-white')">
+          <div class="swatch-color-box" style="background-color: #FFFFFF; color: #0A0A0C; border: 1px solid rgba(10,10,12,0.18);">
+            <span>#FFFFFF</span>
+            <span>SURFACE</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Pure Paper White</div>
+            <div class="swatch-var">--surface-card-white</div>
+            <div class="swatch-role">Elevated stamps, input containers, modals</div>
+          </div>
+        </div>
+
+        <!-- Subtle Tint -->
+        <div class="swatch-card" onclick="copySwatchHex('#EDE3D5', '--surface-subtle-tint')">
+          <div class="swatch-color-box" style="background-color: #EDE3D5; color: #0A0A0C;">
+            <span>#EDE3D5</span>
+            <span>WELL</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Recessed Tint</div>
+            <div class="swatch-var">--surface-subtle-tint</div>
+            <div class="swatch-role">Recessed wells, secondary containers</div>
+          </div>
+        </div>
+
+        <!-- Electric Cobalt -->
+        <div class="swatch-card" onclick="copySwatchHex('#0062FF', '--accent-electric-blue')">
+          <div class="swatch-color-box" style="background-color: #0062FF; color: #FFFFFF;">
+            <span>#0062FF</span>
+            <span>BRAND</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Electric Postal Blue</div>
+            <div class="swatch-var">--accent-electric-blue</div>
+            <div class="swatch-role">High-chroma postal cobalt & CTA trigger</div>
+          </div>
+        </div>
+
+        <!-- Bubblegum Pink -->
+        <div class="swatch-card" onclick="copySwatchHex('#FF66B2', '--accent-bubblegum-pink')">
+          <div class="swatch-color-box" style="background-color: #FF66B2; color: #FFFFFF;">
+            <span>#FF66B2</span>
+            <span>STAMP</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Bubblegum Stamp Rose</div>
+            <div class="swatch-var">--accent-bubblegum-pink</div>
+            <div class="swatch-role">Vibrant stamp rose / registered highlights</div>
+          </div>
+        </div>
+
+        <!-- Cyan Sky -->
+        <div class="swatch-card" onclick="copySwatchHex('#38BDF8', '--accent-cyan-sky')">
+          <div class="swatch-color-box" style="background-color: #38BDF8; color: #0A0A0C;">
+            <span>#38BDF8</span>
+            <span>AIRMAIL</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Cyan Sky</div>
+            <div class="swatch-var">--accent-cyan-sky</div>
+            <div class="swatch-role">Airmail gradient highlights & accents</div>
+          </div>
+        </div>
+
+        <!-- Carbon Black -->
+        <div class="swatch-card" onclick="copySwatchHex('#0A0A0C', '--text-primary')">
+          <div class="swatch-color-box" style="background-color: #0A0A0C; color: #FFFFFF;">
+            <span>#0A0A0C</span>
+            <span>INK PRIME</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Deep Carbon Black</div>
+            <div class="swatch-var">--text-primary</div>
+            <div class="swatch-role">High-contrast structural typography & ink</div>
+          </div>
+        </div>
+
+        <!-- Warm Graphite -->
+        <div class="swatch-card" onclick="copySwatchHex('#4A4844', '--text-secondary')">
+          <div class="swatch-color-box" style="background-color: #4A4844; color: #FFFFFF;">
+            <span>#4A4844</span>
+            <span>BODY INK</span>
+          </div>
+          <div class="swatch-details">
+            <div class="swatch-name">Warm Graphite</div>
+            <div class="swatch-var">--text-secondary</div>
+            <div class="swatch-role">Warm editorial body copy ink</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Duotone Gradient Scales -->
+      <div class="duotone-matrix">
+        <div class="duotone-card">
+          <div class="duotone-bar" style="background: var(--gradient-blue-dusk);">
+            BLUE DUSK GRADIENT
+          </div>
+          <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-secondary);">
+            linear-gradient(180deg, #0045B5 0%, #0077FF 60%, #60A5FA 100%)
+          </div>
+        </div>
+
+        <div class="duotone-card">
+          <div class="duotone-bar" style="background: var(--gradient-pink-dawn);">
+            PINK DAWN GRADIENT
+          </div>
+          <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-secondary);">
+            linear-gradient(180deg, #FF458F 0%, #FF6FB5 55%, #FDE2ED 100%)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="sheet-tear-divider"></div>
+
+    <!-- ==========================================================================
+         04. TYPOGRAPHY SYSTEM & SPECIMEN TESTER (agent.md Section 5)
+         ========================================================================== -->
+    <section class="typography-section" id="typography-system">
+      <div class="section-title-bar">
+        <div>
+          <span class="section-num">02 // TYPOGRAPHY HIERARCHY</span>
+          <h2 class="section-heading">Poster Condensed & Grotesque Body</h2>
+        </div>
+        <span style="font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--text-subtle);">BEBAS NEUE + PLUS JAKARTA SANS</span>
+      </div>
+
+      <div class="type-specimen-grid">
+        <!-- Scale Ladder -->
+        <div class="type-card">
+          <div class="type-ladder">
+            <div class="ladder-item">
+              <div class="ladder-meta">
+                <span>Display Hero (700 Condensed)</span>
+                <span>64px–88px / LH 0.92</span>
+              </div>
+              <div class="ladder-text-hero">AIRMAIL DISPATCH</div>
+            </div>
+
+            <div class="ladder-item">
+              <div class="ladder-meta">
+                <span>Display Sub (700 Condensed)</span>
+                <span>28px–36px / LH 1.05</span>
+              </div>
+              <div class="ladder-text-sub">PHILATELIC COLLECTION SERIES</div>
+            </div>
+
+            <div class="ladder-item">
+              <div class="ladder-meta">
+                <span>Title / Label (600 Semi)</span>
+                <span>14px–16px / LH 1.20</span>
+              </div>
+              <div class="ladder-text-title">REGISTERED INTERNATIONAL POSTAL UNION</div>
+            </div>
+
+            <div class="ladder-item">
+              <div class="ladder-meta">
+                <span>Body Regular (400 Grotesque)</span>
+                <span>14px–15px / LH 1.55</span>
+              </div>
+              <div class="ladder-text-body">
+                Every dispatched letter carries the tactile presence of hand-sorted mail, authentic perforated stamps, and postal ink cancellations across continents.
+              </div>
+            </div>
+
+            <div class="ladder-item">
+              <div class="ladder-meta">
+                <span>Stat Number (700 Condensed)</span>
+                <span>36px–44px / LH 1.00</span>
+              </div>
+              <div class="ladder-text-stat">£48.50 <span style="font-size:16px; font-family:var(--font-mono); color:var(--text-primary);">RATED</span></div>
+            </div>
+
+            <div class="ladder-item" style="border-bottom:none;">
+              <div class="ladder-meta">
+                <span>Micro Metric (500 Grotesque)</span>
+                <span>11px–12px / LH 1.30</span>
+              </div>
+              <div class="ladder-text-micro">Standard Gauge: 14 Perf Holes per 20mm Span</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Type Tester -->
+        <div class="type-card">
+          <div style="font-family:var(--font-display); font-size:22px; margin-bottom:8px; text-transform:uppercase;">
+            Interactive Type Specimen Tester
+          </div>
+          <p style="font-size:13px; color:var(--text-secondary); margin-bottom:12px;">
+            Test custom editorial pangrams, tracking dynamics, and font stack behaviors across sizes.
+          </p>
+
+          <div class="type-tester-box">
+            <div class="tester-controls">
+              <div class="tester-font-toggles">
+                <button class="tester-toggle-btn active" id="btn-font-display" onclick="setTesterFont('display')">Bebas Neue</button>
+                <button class="tester-toggle-btn" id="btn-font-body" onclick="setTesterFont('body')">Plus Jakarta</button>
+                <button class="tester-toggle-btn" id="btn-font-mono" onclick="setTesterFont('mono')">JetBrains</button>
+              </div>
+
+              <div class="tester-slider-group">
+                <span id="type-size-val">42px</span>
+                <input type="range" class="tester-slider" min="16" max="72" value="42" oninput="updateTesterSize(this.value)">
+              </div>
+            </div>
+
+            <textarea id="tester-output" class="tester-output" spellcheck="false">DISPATCH AIRMAIL 1964 • ZURICH POSTAL UNION</textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="sheet-tear-divider"></div>
+
+    <!-- ==========================================================================
+         05. COMPONENT ARCHETYPE GALLERY (agent.md Section 5)
+         ========================================================================== -->
+    <section class="components-section" id="component-gallery">
+      <div class="section-title-bar">
+        <div>
+          <span class="section-num">03 // COMPONENT ARCHETYPES</span>
+          <h2 class="section-heading">Tactile UI Controls & Stamps</h2>
+        </div>
+        <span style="font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--text-subtle);">SNAPPY 180MS EDITORIAL FEEDBACK</span>
+      </div>
+
+      <div class="components-grid">
+        <!-- Interactive Buttons & Pill Triggers -->
+        <div class="comp-archetype-card">
+          <div class="comp-title">
+            <span>Action Triggers & Buttons</span>
+            <span class="coinage-badge">1</span>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn-postal-primary" style="font-size:14px; padding:8px 16px;">
+              Primary Cobalt
+            </button>
+            <button class="btn-pink">
+              Pink Stamp Action
+            </button>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn-postal-secondary" style="font-size:14px; padding:8px 16px;">
+              Secondary Ecru
+            </button>
+            <button class="btn-pill-action">
+              + Priority Badge
+            </button>
+            <button class="btn-pill-action" style="background:var(--accent-cyan-sky); color:#0A0A0C;">
+              ✈ Par Avion
+            </button>
+          </div>
+
+          <div style="margin-top:16px; padding-top:12px; border-top:1px dashed rgba(10,10,12,0.15);">
+            <div style="font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--text-subtle); margin-bottom:8px;">INLINE EDITORIAL BADGES</div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+              <span class="coinage-badge">£</span>
+              <span class="coinage-badge">$</span>
+              <span class="coinage-badge">¥</span>
+              <span class="hero-badge badge-cobalt">AIRMAIL CL. 1</span>
+              <span class="hero-badge badge-pink">REGISTERED</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Controls & Search Modules -->
+        <div class="comp-archetype-card">
+          <div class="comp-title">
+            <span>Input Controls & Fields</span>
+            <span class="coinage-badge">2</span>
+          </div>
+
+          <div class="postal-input-group">
+            <label class="postal-label">Consignment / Dispatch ID</label>
+            <input type="text" class="postal-input" placeholder="e.g. DISPATCH-GENEVA-8821" value="GB-AIR-2026-991A">
+          </div>
+
+          <div class="postal-input-group">
+            <label class="postal-label">Recipient Postal Box (Pill Container)</label>
+            <input type="text" class="postal-input postal-input-pill" placeholder="Enter recipient postal address...">
+          </div>
+
+          <div style="margin-top:12px; display:flex; gap:16px; flex-wrap:wrap;">
+            <div class="checkbox-row" onclick="toggleCheckbox(this)">
+              <div class="postal-checkbox checked">✓</div>
+              <span>Require Certified Signature</span>
+            </div>
+
+            <div class="checkbox-row" onclick="toggleCheckbox(this)">
+              <div class="postal-checkbox"></div>
+              <span>Customs Declaration Sheet</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Airmail Envelope Preview Card -->
+        <div class="comp-archetype-card">
+          <div class="comp-title">
+            <span>Airmail Dispatch Envelope</span>
+            <span class="coinage-badge">3</span>
+          </div>
+
+          <div class="airmail-card">
+            <div class="airmail-strip" style="margin-bottom:12px;"></div>
+
+            <div class="airmail-card-header">
+              <div>
+                <span class="airmail-corner-tag">BY AIR MAIL // PAR AVION</span>
+                <div style="font-family:var(--font-mono); font-size:10px; color:var(--text-subtle); margin-top:4px;">DISPATCH REF: NY-ZUR-482</div>
+              </div>
+
+              <!-- Stamp on envelope -->
+              <div class="stamp-container" style="width:75px; padding:6px; transform:rotate(2deg);" title="Click to inspect stamp">
+                <div class="stamp-art-frame">
+                  <div class="stamp-inner-artwork" style="height:60px; background:var(--accent-electric-blue); padding:4px;">
+                    <div style="display:flex; justify-content:space-between; font-size:8px;">
+                      <span>POST</span>
+                      <span>15¢</span>
+                    </div>
+                    <div style="text-align:center; font-family:var(--font-display); font-size:10px;">AIRMAIL</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="font-family:var(--font-mono); font-size:12px; line-height:1.4; color:var(--text-primary); padding:8px 0;">
+              <strong>TO: ARCHIVAL DESIGN REGISTRY</strong><br>
+              Department of Digital Typography<br>
+              482 Postal Lane, Zurich, CH-8001
+            </div>
+
+            <div class="sheet-tear-divider" style="margin:8px 0;"></div>
+
+            <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:10px; color:var(--text-subtle);">
+              <span>WEIGHT: 24.5g</span>
+              <span>RATE: PRIORITY EXPRESS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="sheet-tear-divider"></div>
+
+    <!-- ==========================================================================
+         06. LIVING DEMO: PHILATELIC & AIRMAIL DISPATCH BUREAU (agent.md Section 5)
+         ========================================================================== -->
+    <section class="bureau-section" id="demo-bureau">
+      <div class="bureau-container">
+        <div class="bureau-topbar">
+          <div class="bureau-title-group">
+            <h3>Philatelic Dispatch Bureau & Archive</h3>
+            <p>LIVING DEMO: STAMP SPECIMEN CATALOG, POSTAL RATES & FRANKING ENGINE</p>
+          </div>
+
+          <div class="bureau-tabs">
+            <button class="bureau-tab-btn active" onclick="filterBureauSeries('all', this)">All Series</button>
+            <button class="bureau-tab-btn" onclick="filterBureauSeries('aero', this)">Aeronautic</button>
+            <button class="bureau-tab-btn" onclick="filterBureauSeries('flora', this)">Botanical</button>
+            <button class="bureau-tab-btn" onclick="filterBureauSeries('metro', this)">Metropolis</button>
+          </div>
+        </div>
+
+        <div class="bureau-layout-grid">
+          <!-- Left: Stamp Series Gallery -->
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-md);">
+              <span style="font-family:var(--font-display); font-size:18px; text-transform:uppercase;">Archival Stamp Specimens</span>
+              <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-subtle);">HOVER FOR TACTILE LIFT</span>
+            </div>
+
+            <div class="stamps-collection-grid" id="stamps-grid">
+              <!-- Stamp 1 -->
+              <div class="stamp-item-card" data-series="aero" style="transform: rotate(-2deg);" onclick="selectStampInspect('Trans-Atlantic Aeronautic', '50¢', 'Cobalt Airmail 1964')">
+                <div class="stamp-art-frame">
+                  <div class="stamp-item-art" style="background: var(--gradient-blue-dusk);">
+                    <div class="stamp-art-header">
+                      <span>AIRMAIL</span>
+                      <span class="stamp-art-denomination">50¢</span>
+                    </div>
+                    <div>
+                      <div class="stamp-art-motif">AERONAUTIC 1964</div>
+                      <div style="font-family:var(--font-mono); font-size:8px; opacity:0.8;">TRANS-ATLANTIC DISPATCH</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="stamp-item-footer">
+                  <span>SERIES: AERO-01</span>
+                  <span>PERF: 14x14</span>
+                </div>
+              </div>
+
+              <!-- Stamp 2 -->
+              <div class="stamp-item-card" data-series="flora" style="transform: rotate(2.5deg);" onclick="selectStampInspect('Nordic Botanical Rose', '25p', 'Flora Geneva 1972')">
+                <div class="stamp-art-frame">
+                  <div class="stamp-item-art" style="background: var(--gradient-pink-dawn);">
+                    <div class="stamp-art-header">
+                      <span>BOTANICAL</span>
+                      <span class="stamp-art-denomination">25p</span>
+                    </div>
+                    <div>
+                      <div class="stamp-art-motif">ROSA ALPINA</div>
+                      <div style="font-family:var(--font-mono); font-size:8px; opacity:0.8;">GENEVA HERBARIUM</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="stamp-item-footer">
+                  <span>SERIES: FLORA-08</span>
+                  <span>PERF: 13.5x14</span>
+                </div>
+              </div>
+
+              <!-- Stamp 3 -->
+              <div class="stamp-item-card" data-series="metro" style="transform: rotate(-1.5deg);" onclick="selectStampInspect('Modernist Metropolis', '80¥', 'Tokyo Postal Architecture')">
+                <div class="stamp-art-frame">
+                  <div class="stamp-item-art" style="background: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);">
+                    <div class="stamp-art-header">
+                      <span>METROPOLIS</span>
+                      <span class="stamp-art-denomination" style="color:var(--accent-cyan-sky);">80¥</span>
+                    </div>
+                    <div>
+                      <div class="stamp-art-motif" style="color:var(--accent-cyan-sky);">URBAN GRID</div>
+                      <div style="font-family:var(--font-mono); font-size:8px; opacity:0.8;">SHINJUKU CENTRAL</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="stamp-item-footer">
+                  <span>SERIES: METRO-04</span>
+                  <span>PERF: 14x14</span>
+                </div>
+              </div>
+
+              <!-- Stamp 4 -->
+              <div class="stamp-item-card" data-series="aero" style="transform: rotate(3deg);" onclick="selectStampInspect('Orbital Satellite Airmail', '£1.20', 'Space Telemetry 1999')">
+                <div class="stamp-art-frame">
+                  <div class="stamp-item-art" style="background: linear-gradient(180deg, #0062FF 0%, #FF66B2 100%);">
+                    <div class="stamp-art-header">
+                      <span>TELEMETRY</span>
+                      <span class="stamp-art-denomination">£1.20</span>
+                    </div>
+                    <div>
+                      <div class="stamp-art-motif">ORBITAL DISPATCH</div>
+                      <div style="font-family:var(--font-mono); font-size:8px; opacity:0.8;">SATELLITE BEACON</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="stamp-item-footer">
+                  <span>SERIES: AERO-09</span>
+                  <span>PERF: 14x14</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Parcel Dispatch Calculator & Franking Label -->
+          <div>
+            <div class="dispatch-calculator-card">
+              <div class="calc-title">
+                <span>Franking & Rate Calculator</span>
+                <span class="hero-badge badge-cobalt">LIVE DISPATCH</span>
+              </div>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
+                <div class="postal-input-group" style="margin-bottom:0;">
+                  <label class="postal-label">Destination Bureau</label>
+                  <select id="calc-dest" class="postal-input" onchange="calculatePostage()">
+                    <option value="geneva">Geneva (CH) • Par Avion</option>
+                    <option value="tokyo">Tokyo (JP) • Trans-Pacific</option>
+                    <option value="london">London (GB) • Royal Mail</option>
+                    <option value="newyork">New York (US) • Air Express</option>
+                  </select>
+                </div>
+
+                <div class="postal-input-group" style="margin-bottom:0;">
+                  <label class="postal-label">Dispatch Class</label>
+                  <select id="calc-class" class="postal-input" onchange="calculatePostage()">
+                    <option value="priority">Priority Airmail (1-Day)</option>
+                    <option value="registered">Registered Courier (2-Day)</option>
+                    <option value="standard">Standard Dispatch (5-Day)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Weight Slider -->
+              <div style="margin:14px 0;">
+                <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:11px; font-weight:700; margin-bottom:4px;">
+                  <span>PARCEL WEIGHT</span>
+                  <span id="calc-weight-label" style="color:var(--accent-electric-blue);">45.0 grams</span>
+                </div>
+                <input type="range" id="calc-weight" class="tester-slider" style="width:100%;" min="10" max="500" value="45" oninput="updateWeight(this.value)">
+              </div>
+
+              <!-- Generated Franking Label -->
+              <div class="frank-label-preview" id="frank-label">
+                <div class="frank-header">
+                  <div>
+                    <strong style="font-family:var(--font-display); font-size:16px; letter-spacing:0.04em;">INTERNATIONAL AIRMAIL DISPATCH</strong>
+                    <div style="font-family:var(--font-mono); font-size:10px; color:var(--text-subtle);" id="frank-consignment">NO. CH-8829-2026-AUG</div>
+                  </div>
+                </div>
+
+                <div class="frank-stamp-box">
+                  <div style="font-size:9px;">POSTAGE</div>
+                  <div style="font-size:22px; line-height:1;" id="frank-rate-val">£6.80</div>
+                  <div style="font-size:8px;">PAID</div>
+                </div>
+
+                <div style="font-family:var(--font-mono); font-size:11px; line-height:1.4; max-width:260px;">
+                  <span style="color:var(--text-subtle);">DESTINATION:</span><br>
+                  <strong id="frank-dest-text">GENEVA POSTAL TERMINAL, SWITZERLAND</strong><br>
+                  CLASS: <span id="frank-class-text">PRIORITY AIRMAIL</span>
+                </div>
+
+                <div class="frank-barcode"></div>
+              </div>
+
+              <!-- Dispatch Action Buttons -->
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;">
+                <button class="btn-postal-primary" style="font-size:15px; padding:10px 18px;" onclick="dispatchParcel()">
+                  ✓ Frank & Dispatch Parcel
+                </button>
+                <button class="btn-postal-secondary" style="font-size:15px; padding:10px 16px;" onclick="applyRubberStamp()">
+                  Apply Postmark Stamp
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         07. STYLE TILE PROMPT CODE DRAWER (agent.md Section 5)
+         ========================================================================== -->
+    <section class="spec-drawer-section">
+      <div class="section-title-bar">
+        <div>
+          <span class="section-num">04 // MACHINE SPECIFICATION</span>
+          <h2 class="section-heading">Style Tile Prompt Specification</h2>
+        </div>
+        <button class="btn-postal-primary" style="font-size:14px; padding:8px 16px;" onclick="copyTilePrompt('TILE')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Full Markdown Prompt
+        </button>
+      </div>
+
+      <div class="spec-code-container">
+        <div class="spec-code-header">
+          <span class="spec-code-title">style-tile-airmail-modern.md</span>
+          <span style="font-family:var(--font-mono); font-size:10px; color:#71717A;">AI AGENT READY • UTF-8</span>
+        </div>
+        <pre class="spec-code-pre" id="markdown-display-pre"></pre>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       08. MODAL SPEC INSPECTOR (agent.md Section 2)
+       ========================================================================== -->
+  <div id="spec-modal-backdrop" class="spec-modal-backdrop" role="dialog" aria-modal="true">
+    <div class="spec-modal-card">
+      <div class="spec-modal-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="design-code" id="modal-tile-code" data-live-tile-code>TILE</span>
+          <span class="design-title" id="modal-tile-title">Airmail Modern</span>
+        </div>
+        <button class="btn-close-modal" onclick="closeSpecModal()" title="Close modal (Esc)">✕</button>
+      </div>
+
+      <div class="spec-modal-body" id="modal-markdown-content"></div>
+
+      <div class="spec-modal-footer">
+        <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-subtle);">Format: Markdown Design System Token Spec</span>
+        <div style="display:flex; gap:8px;">
+          <button class="btn-tile btn-copy" onclick="copyTilePrompt('TILE')">Copy Markdown</button>
+          <button class="btn-tile btn-download" onclick="downloadSpecFile()">Download .md</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- ==========================================================================
+       09. RAW EMBEDDED MARKDOWN SPECIFICATION (agent.md Section 2)
+       ========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Retro-Postal Modernist
+  Construction: ecru paper • cobalt & magenta • scalloped edges • condensed caps • paper lift
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Warm newsprint ecru (#F5ECE1) with white paper cards and a recessed #EDE3D5 tint. Accents are high-chroma cobalt (#0062FF) and bubblegum magenta (#FF66B2), with cyan (#38BDF8) as a sky highlight. Display is condensed bold caps (Bebas Neue / Druk Wide) at 64-88px / 0.92; body is Plus Jakarta Sans. Cards may carry scalloped punch-out masks (6px circular cutouts every 14px) and a slight paper tilt -- these are edge treatments, not captions, values, or cancellation marks. Depth is warm-brown paper lift, not neon glow.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F5ECE1; /* Warm newsprint / unbleached ecru */
+  --bg-surface:             #FFFFFF; /* Paper white */
+  --bg-surface-alt:         #EDE3D5; /* Recessed tint */
+  --bg-surface-dark:        #0A0A0C; /* Carbon inverse */
+
+  /* Inks & Typography */
+  --ink-primary:            #0A0A0C; /* Carbon black */
+  --ink-secondary:          #4A4844; /* Warm graphite */
+  --ink-muted:              #8A857D; /* Quiet captions */
+  --ink-inverted:           #FFFFFF;
+
+  /* Signature Accents */
+  --accent-primary:         #0062FF; /* Electric cobalt */
+  --accent-primary-hover:   #004EDB; /* Deep cobalt */
+  --accent-secondary:       #FF66B2; /* Bubblegum magenta */
+  --accent-tertiary:        #38BDF8; /* Cyan sky */
+
+  /* Status Tokens (mapped from original hexes) */
+  --status-success:         #0062FF;
+  --status-warning:         #FF66B2;
+  --status-danger:          #FF458F;
+  --status-info:            #38BDF8;
+
+  /* Extra original tokens */
+  --canvas-bg-parchment:    #F5ECE1;
+  --surface-card-white:     #FFFFFF;
+  --surface-subtle-tint:    #EDE3D5;
+  --accent-electric-blue:   #0062FF;
+  --accent-bubblegum-pink:  #FF66B2;
+  --accent-cyan-sky:        #38BDF8;
+  --gradient-blue-dusk:     linear-gradient(180deg, #0045B5 0%, #0077FF 60%, #60A5FA 100%);
+  --gradient-pink-dawn:     linear-gradient(180deg, #FF458F 0%, #FF6FB5 55%, #FDE2ED 100%);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Bebas Neue", "Druk Wide", "Impact", sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, sans-serif;
+--font-mono:    "Plus Jakarta Sans", "Inter", monospace;
+
+--text-display: 64px-88px / 0.92 var(--font-display); /* Weight: 700 | Tracking: -0.01em | UPPERCASE */
+--text-h1:      28px-36px / 1.05 var(--font-display); /* Weight: 700 | Tracking: 0 | UPPERCASE */
+--text-h2:      14px-16px / 1.20 var(--font-display); /* Weight: 600 | Tracking: +0.06em | UPPERCASE */
+--text-h3:      14px-16px / 1.20 var(--font-display); /* Weight: 600 | UPPERCASE */
+--text-body:    14px-15px / 1.55 var(--font-sans);    /* Weight: 400 | Tracking: -0.01em */
+--text-body-sm: 11px-12px / 1.30 var(--font-sans);    /* Weight: 500 | Tracking: +0.02em */
+--text-meta:    11px-12px / 1.30 var(--font-sans);    /* Weight: 500 | Tracking: +0.02em */
+
+Large condensed numerals (36-44px / 1.0 / 700) may skin existing stats. Do not add denomination marks, postmarks, or specimen headlines.
+
+Inline geometric accents (solid cobalt pills, magenta plus, 8-point asterisks) may sit inside existing headings as shapes only.
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-sharp:   2px;
+--radius-default: 8px;
+--radius-subtle:  2px;
+--radius-input:   6px;
+--radius-button:  8px;
+--radius-cross:   4px;
+--radius-pill:    999px;
+
+--shadow-flat:    none;
+--shadow-input:   0px 1px 3px rgba(10, 10, 12, 0.05);
+--shadow-stamp:   0px 10px 24px -4px rgba(45, 35, 20, 0.14), 0px 2px 6px -1px rgba(45, 35, 20, 0.08);
+--shadow-lifted:  0px 18px 36px -6px rgba(45, 35, 20, 0.22), 0px 4px 10px -2px rgba(45, 35, 20, 0.10);
+--shadow-base:    0px 10px 24px -4px rgba(45, 35, 20, 0.14), 0px 2px 6px -1px rgba(45, 35, 20, 0.08);
+--shadow-hover:   0px 18px 36px -6px rgba(45, 35, 20, 0.22), 0px 4px 10px -2px rgba(45, 35, 20, 0.10);
+--shadow-active:  none;
+
+Scallop punch-out: 6px circular cutout repeating every 14px along card outer edges (CSS radial mask). Use as an edge, never as a caption field.
+Sheet-tear divider: 2px dots, 6px pitch, rgba(0, 0, 0, 0.25).
+Optional slight tilt on cards (-3deg to +4deg). Hover flattens to 0deg.
+
+Spacing: 4 / 8 / 12 / 16 / 24 / 40 / 64px.
+
+Hover motion: 220ms cubic-bezier(0.34, 1.56, 0.64, 1). Micro: 180ms ease-out.
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:       1.5px solid #0A0A0C;
+--border-hairline:   1px solid rgba(10, 10, 12, 0.08);
+--border-contrast:   1.5px solid #0A0A0C;
+--border-stamp-rim:  8px solid #FFFFFF;
+--divider-style:     2px dotted rgba(0, 0, 0, 0.25);
+
+White 8px rims may frame media inside a scalloped card. Icons: 1.75-2px geometric stroke with solid fills. Do not add currency-symbol badges.
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 8px radius. Primary: #0062FF fill, white type; hover #004EDB; active `scale(0.96)`. Secondary: white or ecru, 1.5px carbon border. Magenta may fill an alternate existing button, not a new one. Keep host labels.
+- **Cards**: White on ecru, 2px inner radius, optional scalloped outer mask, warm paper shadow. Default may tilt -3deg to +4deg. Hover: `translateY(-8px) rotate(0deg) scale(1.02)` with lifted shadow. Active: `scale(0.98)`. Do not add stamp values, series names, or cancellation type.
+- **Inputs**: 6px (or pill if the host already pills), white well, hairline inner divider, quiet input shadow. Font-size at least 16px. Focus: `1.5px solid #0062FF`, no glow. Placeholder #8A857D.
+- **Navigation**: Restyle existing items as 8px cobalt or carbon chips on ecru. Active: cobalt fill, white caps. No catalog codes or fake postmarks.
+- **Badges / chips / toggles**: 2-8px or 999px. Cobalt, magenta, or cyan fills. Geometric plus/asterisk ornaments only if they replace existing icons -- never as required copy.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No purple neon on dark backgrounds.
+- No untracked giant type; condensed caps need optical leading.
+- No 32px nested bubble cards; paper geometry stays 2-8px plus optional pills.
+- No biscuit headline pills with pulsing dots.
+- No rainbow gradient keyword fills on type.
+- No textureless plastic flats; keep paper fiber, ecru canvas, and warm lift.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- ==========================================================================
+       10. JAVASCRIPT LOGIC & INTERACTIONS
+       ========================================================================== -->
+  <script>
+    // Toast Notification System
+    function showToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `<span style="color:var(--accent-cyan-sky);">${icon}</span><span>${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => toast.classList.add("show"));
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 200);
+      }, 2400);
+    }
+
+    // Markdown Spec Retrieval
+    function getRawMarkdown() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    // Populate bottom code drawer on load
+    document.addEventListener("DOMContentLoaded", () => {
+      const pre = document.getElementById("markdown-display-pre");
+      if (pre) pre.textContent = getRawMarkdown();
+    });
+
+    // Copy Prompt Function
+    function copyTilePrompt(tileId) {
+      const md = getRawMarkdown();
+      const prompt = `Implement this website using the following Style Tile as the design system:\n\n${md}`;
+      navigator.clipboard.writeText(prompt).then(() => {
+        showToast("Copied Retro-Postal Modernist Style Tile to clipboard!");
+      }).catch(err => {
+        console.error("Clipboard error:", err);
+      });
+    }
+
+    // Copy Swatch Hex Token
+    function copySwatchHex(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${varName} (${hex}) to clipboard!`);
+      });
+    }
+
+    // Modal Handling
+    function openSpecModal() {
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      const content = document.getElementById("modal-markdown-content");
+      if (content) content.textContent = getRawMarkdown();
+      if (backdrop) backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    function downloadSpecFile() {
+      const md = getRawMarkdown();
+      const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "style-tile-airmail-modern.md";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-airmail-modern.md!");
+    }
+
+    // Header Button Bindings (agent.md Section 2)
+    document.getElementById("btn-copy-tile").addEventListener("click", () => copyTilePrompt("TILE"));
+    document.getElementById("btn-download-tile").addEventListener("click", downloadSpecFile);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+
+    // Modal Backdrop & Escape Key Listeners
+    const backdrop = document.getElementById("spec-modal-backdrop");
+    if (backdrop) {
+      backdrop.addEventListener("click", (e) => {
+        if (e.target === backdrop) closeSpecModal();
+      });
+    }
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    // Interactive Type Tester
+    function updateTesterSize(val) {
+      const output = document.getElementById("tester-output");
+      const label = document.getElementById("type-size-val");
+      if (output) output.style.fontSize = val + "px";
+      if (label) label.textContent = val + "px";
+    }
+
+    function setTesterFont(type) {
+      const output = document.getElementById("tester-output");
+      const btns = document.querySelectorAll(".tester-toggle-btn");
+      btns.forEach(b => b.classList.remove("active"));
+
+      if (type === "display") {
+        output.style.fontFamily = "var(--font-display)";
+        output.style.textTransform = "uppercase";
+        document.getElementById("btn-font-display").classList.add("active");
+      } else if (type === "body") {
+        output.style.fontFamily = "var(--font-body)";
+        output.style.textTransform = "none";
+        document.getElementById("btn-font-body").classList.add("active");
+      } else if (type === "mono") {
+        output.style.fontFamily = "var(--font-mono)";
+        output.style.textTransform = "none";
+        document.getElementById("btn-font-mono").classList.add("active");
+      }
+    }
+
+    // Checkbox UI Toggle
+    function toggleCheckbox(elem) {
+      const box = elem.querySelector(".postal-checkbox");
+      if (!box) return;
+      box.classList.toggle("checked");
+      box.textContent = box.classList.contains("checked") ? "✓" : "";
+    }
+
+    // Bureau Stamp Filter
+    function filterBureauSeries(series, btn) {
+      const cards = document.querySelectorAll(".stamp-item-card");
+      cards.forEach(c => {
+        if (series === "all" || c.dataset.series === series) {
+          c.style.display = "block";
+        } else {
+          c.style.display = "none";
+        }
+      });
+      document.querySelectorAll(".bureau-tab-btn").forEach(b => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+    }
+
+    function selectStampInspect(name, denom, series) {
+      showToast(`Selected Stamp: "${name}" (${denom}) • ${series}`);
+    }
+
+    // Postage Calculation Engine
+    function calculatePostage() {
+      const dest = document.getElementById("calc-dest").value;
+      const cls = document.getElementById("calc-class").value;
+      const weight = parseFloat(document.getElementById("calc-weight").value) || 45;
+
+      let baseRate = 2.50;
+      if (dest === "tokyo") baseRate = 5.20;
+      if (dest === "newyork") baseRate = 4.80;
+      if (dest === "geneva") baseRate = 3.60;
+
+      let classMultiplier = 1.0;
+      if (cls === "priority") classMultiplier = 1.8;
+      if (cls === "registered") classMultiplier = 1.4;
+
+      const total = (baseRate * classMultiplier + (weight / 50) * 1.10).toFixed(2);
+      
+      const rateEl = document.getElementById("frank-rate-val");
+      if (rateEl) rateEl.textContent = `£${total}`;
+
+      const destText = document.getElementById("frank-dest-text");
+      const classText = document.getElementById("frank-class-text");
+      if (destText) {
+        if (dest === "geneva") destText.textContent = "GENEVA POSTAL TERMINAL, SWITZERLAND";
+        if (dest === "tokyo") destText.textContent = "TOKYO CENTRAL DISPATCH, JAPAN";
+        if (dest === "london") destText.textContent = "ROYAL MAIL SORTING OFFICE, LONDON";
+        if (dest === "newyork") destText.textContent = "JFK AIRMAIL HUB, NEW YORK, USA";
+      }
+      if (classText) {
+        classText.textContent = cls.toUpperCase();
+      }
+    }
+
+    function updateWeight(val) {
+      const label = document.getElementById("calc-weight-label");
+      if (label) label.textContent = `${parseFloat(val).toFixed(1)} grams`;
+      calculatePostage();
+    }
+
+    function dispatchParcel() {
+      const consignment = "CH-" + Math.floor(1000 + Math.random() * 9000) + "-2026-AUG";
+      document.getElementById("frank-consignment").textContent = "NO. " + consignment;
+      showToast(`Parcel Franked & Dispatched! Ref: ${consignment}`);
+    }
+
+    function applyRubberStamp() {
+      showToast("Applied Official Postal Cancellation Stamp!");
+    }
+  </script>
+</body>
+</html>
+

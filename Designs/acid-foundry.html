@@ -1,0 +1,2953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acid Foundry — Style Tile</title>
+  <meta name="description" content="Industrial Acid // Neo-Grunge (TILE): High-voltage brutalist design system featuring pitch-black void canvas (#080808), electric neon magenta (#FF2A85), redaction tape fills, 8-bit checkerboard dividers, and 0ms instant 1-to-1 inversion physics.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon.ico">
+
+  <!-- Google Fonts: Rubik Glitch, Syne (800), Barlow Condensed (700, 900), Space Mono (400, 700), Space Grotesk, VT323 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,700;1,900&family=Rubik+Glitch&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Syne:wght@700;800;900&family=VT323&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       01. DESIGN SYSTEM SPECIFICATION & TOKENS (TILE: INDUSTRIAL ACID / NEO-GRUNGE)
+       ========================================================================== */
+    :root {
+      /* 1. Color Roles & Palette */
+      --color-bg-base:              #080808; /* Primary canvas & void backdrops */
+      --color-bg-surface:           #121212; /* Card containers & sub-modules */
+      --color-bg-surface-alt:       #181818; /* Secondary panels, wells, sidebars */
+      --color-bg-surface-elevated:  #202020; /* Elevated module layer */
+      
+      --color-accent-neon:          #FF2A85; /* Primary electric highlight & duotone tint */
+      --color-accent-hot:           #E60067; /* Pressed states, dense tape fills */
+      --color-tape-fill:            #FF2A85; /* Solid high-contrast text blocks */
+      
+      --color-text-primary:         #FFFFFF; /* High-legibility technical text */
+      --color-text-muted:           #8F8F8F; /* Metadata, footnotes, labels */
+      --color-text-inverted:        #080808; /* High contrast on neon surfaces */
+      
+      --color-border-subtle:        #242424; /* Structural gridlines & framing */
+      --color-border-accent:        #FF2A85; /* Active states / focal cards */
+      --color-border-hot:           #E60067;
+
+      /* Contextual / Semantic Status Signals */
+      --status-success:             #00FF66; /* Acid Terminal Green */
+      --status-warning:             #FFE600; /* Toxic Hazard Yellow */
+      --status-danger:              #FF2A85; /* Neon Magenta / Overdrive */
+      --status-info:                #00F0FF; /* High-Ion Cyan */
+
+      /* 2. Typography Stacks */
+      --font-display:               "Syne", "Rubik Glitch", "Barlow Condensed", sans-serif;
+      --font-glitch:                "Rubik Glitch", "Syne", sans-serif;
+      --font-header:                "Barlow Condensed", "Syne", sans-serif;
+      --font-mono:                  "Space Mono", "VT323", "Courier Prime", monospace;
+      --font-sans:                  "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-pixel:                 "VT323", monospace;
+
+      /* 3. Corner Geometry (Strict Brutalist: 0px Universally) */
+      --radius-none:                0px;
+      --radius-tape:                0px;
+
+      /* 4. Elevation & Shadows */
+      --shadow-brutalist:           4px 4px 0px #FF2A85;
+      --shadow-brutalist-hot:       4px 4px 0px #E60067;
+      --shadow-brutalist-dark:      4px 4px 0px #242424;
+      --shadow-brutalist-white:     4px 4px 0px #FFFFFF;
+      --shadow-active:              0px 0px 0px transparent;
+
+      /* 5. Spacing Scale (4px Base Grid) */
+      --space-2xs:                  4px;
+      --space-xs:                   8px;
+      --space-sm:                   12px;
+      --space-md:                   16px;
+      --space-lg:                   24px;
+      --space-xl:                   48px;
+      --space-2xl:                  80px;
+
+      /* 6. Dividers & Patterns */
+      --border-hairline:            1px solid var(--color-border-subtle);
+      --border-accent:              1px solid var(--color-accent-neon);
+      --border-thick-neon:          2px solid var(--color-accent-neon);
+
+      /* Layout */
+      --max-width:                  1280px;
+    }
+
+    /* ==========================================================================
+       02. RESET & BASE VOID CANVAS (LEVEL 0 & LEVEL 1 TEXTURES)
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border-radius: 0 !important; /* Strict Brutalist Enforced */
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--color-bg-base);
+      color: var(--color-text-primary);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--color-text-primary);
+      background-color: var(--color-bg-base);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Texture Layer 1: Dither Micro-Grid & CRT Scanline Noise */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255, 42, 133, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 42, 133, 0.025) 1px, transparent 1px);
+      background-size: 24px 24px;
+      background-position: 0 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.45;
+    }
+
+    ::selection {
+      background-color: var(--color-accent-neon);
+      color: var(--color-text-inverted);
+    }
+
+    :focus-visible {
+      outline: 2px solid #FFFFFF;
+      outline-offset: 2px;
+    }
+
+    .layout-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 8-Bit Checkerboard Pixel Stripe Divider */
+    .checker-divider {
+      height: 8px;
+      width: 100%;
+      background-color: var(--color-bg-base);
+      background-image: 
+        linear-gradient(45deg, var(--color-accent-neon) 25%, transparent 25%),
+        linear-gradient(-45deg, var(--color-accent-neon) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, var(--color-accent-neon) 75%),
+        linear-gradient(-45deg, transparent 75%, var(--color-accent-neon) 75%);
+      background-size: 8px 8px;
+      background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+      margin: var(--space-xl) 0;
+      border: none;
+    }
+
+    .checker-divider-sm {
+      height: 6px;
+      margin: var(--space-md) 0;
+    }
+
+    /* Redaction Tape Stamping */
+    .tape-block {
+      display: inline-block;
+      background-color: var(--color-tape-fill);
+      color: var(--color-text-inverted) !important;
+      font-family: var(--font-header);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 2px 8px;
+      line-height: 1.1;
+      user-select: none;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    .tape-block-dark {
+      background-color: #FFFFFF;
+      color: #080808 !important;
+    }
+
+    .tape-block-muted {
+      background-color: #242424;
+      color: var(--color-accent-neon) !important;
+      border: 1px solid var(--color-accent-neon);
+    }
+
+    /* Glitch Display Accents */
+    .font-glitch {
+      font-family: var(--font-glitch);
+      letter-spacing: -0.02em;
+    }
+
+    .font-header {
+      font-family: var(--font-header);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .font-mono {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* ==========================================================================
+       03. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ========================================================================== */
+    .style-tile-header {
+      background-color: rgba(8, 8, 8, 0.95);
+      border-bottom: 1px solid var(--color-border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      padding: 10px var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      color: var(--color-text-primary);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--color-accent-neon);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 6px 12px;
+      background-color: #121212;
+      border: 1px solid var(--color-border-subtle);
+      transition: background-color 0s, color 0s, border-color 0s;
+    }
+
+    .nav-back-link:hover {
+      background-color: var(--color-accent-neon);
+      color: var(--color-text-inverted);
+      border-color: var(--color-accent-neon);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .design-code {
+      background-color: var(--color-accent-neon);
+      color: var(--color-text-inverted);
+      font-weight: 700;
+      padding: 2px 6px;
+      font-size: 11px;
+    }
+
+    .design-title {
+      font-family: var(--font-header);
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .design-vibe-tag {
+      color: var(--color-text-muted);
+      border: 1px solid var(--color-border-subtle);
+      padding: 2px 6px;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      background-color: #121212;
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border-subtle);
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0s, color 0s, border-color 0s;
+    }
+
+    .btn-tile:hover {
+      background-color: var(--color-accent-neon);
+      color: var(--color-text-inverted);
+      border-color: var(--color-accent-neon);
+    }
+
+    .btn-tile:active {
+      background-color: var(--color-accent-hot);
+      color: var(--color-text-inverted);
+      transform: translate(2px, 2px);
+    }
+
+    .btn-tile svg {
+      stroke: currentColor;
+    }
+
+    /* ==========================================================================
+       04. HERO DISPLAY SECTION
+       ========================================================================== */
+    .hero-section {
+      padding: var(--space-xl) 0 var(--space-lg);
+      border-bottom: 1px solid var(--color-border-subtle);
+      position: relative;
+    }
+
+    .hero-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-text-muted);
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding-bottom: var(--space-xs);
+    }
+
+    .hero-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta-item .glyph {
+      color: var(--color-accent-neon);
+    }
+
+    .hero-main-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .hero-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .hero-kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--color-accent-neon);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+      line-height: 0.90;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
+      text-shadow: 3px 3px 0px rgba(255, 42, 133, 0.4);
+      margin: var(--space-xs) 0;
+    }
+
+    .hero-title .highlight-glitch {
+      display: block;
+      color: var(--color-accent-neon);
+      font-family: var(--font-glitch);
+      letter-spacing: 0.02em;
+    }
+
+    .hero-subheading {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--color-text-muted);
+      max-width: 640px;
+    }
+
+    .hero-subheading strong {
+      color: var(--color-text-primary);
+      font-weight: 600;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+
+    .btn-acid-primary {
+      font-family: var(--font-header);
+      font-size: 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background-color: var(--color-accent-neon);
+      color: var(--color-text-inverted);
+      border: 1px solid var(--color-accent-neon);
+      padding: 12px 24px;
+      box-shadow: var(--shadow-brutalist);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      transition: background-color 0s, color 0s, transform 0s, box-shadow 0s;
+    }
+
+    .btn-acid-primary:hover {
+      background-color: #FFFFFF;
+      color: #080808;
+      border-color: #FFFFFF;
+      box-shadow: 4px 4px 0px #FFFFFF;
+    }
+
+    .btn-acid-primary:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #FFFFFF;
+    }
+
+    .btn-acid-secondary {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background-color: #121212;
+      color: var(--color-accent-neon);
+      border: 1px solid var(--color-border-subtle);
+      padding: 12px 20px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: background-color 0s, color 0s, border-color 0s;
+    }
+
+    .btn-acid-secondary:hover {
+      background-color: var(--color-accent-neon);
+      color: var(--color-text-inverted);
+      border-color: var(--color-accent-neon);
+    }
+
+    .btn-acid-secondary:active {
+      transform: translate(2px, 2px);
+    }
+
+    /* Hero Right Signal Board */
+    .hero-signal-panel {
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border-subtle);
+      box-shadow: var(--shadow-brutalist);
+      padding: var(--space-md);
+      position: relative;
+    }
+
+    .signal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-text-muted);
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding-bottom: 8px;
+      margin-bottom: var(--space-md);
+    }
+
+    .signal-title {
+      color: var(--color-accent-neon);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .signal-live-led {
+      width: 6px;
+      height: 6px;
+      background-color: var(--color-accent-neon);
+      display: inline-block;
+      animation: blinkSignal 1.2s infinite steps(1);
+    }
+
+    @keyframes blinkSignal {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .signal-matrix-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .signal-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 8px;
+      background-color: #080808;
+      border: 1px solid #1E1E1E;
+    }
+
+    .signal-row-label {
+      color: var(--color-text-muted);
+    }
+
+    .signal-row-val {
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+
+    .signal-row-val.neon {
+      color: var(--color-accent-neon);
+    }
+
+    .duotone-visual-box {
+      margin-top: var(--space-md);
+      height: 120px;
+      background: #080808;
+      border: 1px solid var(--color-border-subtle);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: crosshair;
+    }
+
+    .duotone-grid-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .duotone-box-label {
+      position: absolute;
+      bottom: 6px;
+      left: 8px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--color-text-muted);
+      background: #080808;
+      padding: 1px 4px;
+      border: 1px solid #242424;
+    }
+
+    /* ==========================================================================
+       05. SECTION ARCHITECTURE
+       ========================================================================== */
+    .section-block {
+      padding: var(--space-xl) 0;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .section-header-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-accent-neon);
+      letter-spacing: 0.15em;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title {
+      font-family: var(--font-header);
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .section-desc {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--color-text-muted);
+      max-width: 500px;
+    }
+
+    /* ==========================================================================
+       06. COLOR SYSTEM & PALETTE MATRIX (SPEC SECTION 01)
+       ========================================================================== */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .swatch-card {
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: var(--space-sm);
+      cursor: pointer;
+      transition: border-color 0s, transform 0s;
+      position: relative;
+    }
+
+    .swatch-card:hover {
+      border-color: var(--color-accent-neon);
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0px var(--color-accent-neon);
+    }
+
+    .swatch-card:active {
+      transform: translate(0, 0);
+      box-shadow: 0px 0px 0px transparent;
+    }
+
+    .swatch-preview {
+      height: 72px;
+      width: 100%;
+      border: 1px solid #242424;
+      margin-bottom: var(--space-sm);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 6px;
+    }
+
+    .swatch-copy-hint {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 4px;
+      background: #080808;
+      color: #FFFFFF;
+      opacity: 0;
+      transition: opacity 0.1s;
+    }
+
+    .swatch-card:hover .swatch-copy-hint {
+      opacity: 1;
+    }
+
+    .swatch-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-family: var(--font-mono);
+    }
+
+    .swatch-token-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.05em;
+    }
+
+    .swatch-hex {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-accent-neon);
+    }
+
+    .swatch-role {
+      font-size: 10px;
+      color: var(--color-text-muted);
+      line-height: 1.3;
+      margin-top: 4px;
+    }
+
+    /* Semantic Swatches Sub-Grid */
+    .semantic-swatches-bar {
+      margin-top: var(--space-lg);
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: var(--space-md);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .semantic-swatch-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      cursor: pointer;
+      padding: 6px;
+      border: 1px solid transparent;
+    }
+
+    .semantic-swatch-item:hover {
+      border-color: var(--color-accent-neon);
+      background-color: #080808;
+    }
+
+    .semantic-dot {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       07. TYPOGRAPHY SYSTEM SPECIMEN (SPEC SECTION 02)
+       ========================================================================== */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: var(--space-xl);
+    }
+
+    .type-families-panel {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .font-specimen-box {
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: var(--space-md);
+      position: relative;
+    }
+
+    .font-specimen-box:hover {
+      border-color: var(--color-accent-neon);
+    }
+
+    .font-meta-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-accent-neon);
+      margin-bottom: 8px;
+      letter-spacing: 0.1em;
+    }
+
+    .font-display-sample {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 28px;
+      line-height: 1.0;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .font-glitch-sample {
+      font-family: var(--font-glitch);
+      font-size: 32px;
+      line-height: 1.0;
+      color: var(--color-accent-neon);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .font-condensed-sample {
+      font-family: var(--font-header);
+      font-weight: 800;
+      font-size: 24px;
+      line-height: 1.1;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+
+    .font-mono-sample {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 1.4;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .font-sans-sample {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--color-text-muted);
+    }
+
+    /* Type Scale Ladder */
+    .type-scale-ladder {
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .scale-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      border-bottom: 1px solid #1E1E1E;
+      padding-bottom: var(--space-sm);
+    }
+
+    .scale-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .scale-meta {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-accent-neon);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .scale-text-display {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 0.90;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .scale-text-h1 {
+      font-family: var(--font-header);
+      font-weight: 800;
+      font-size: 26px;
+      line-height: 1.1;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .scale-text-h2 {
+      font-family: var(--font-header);
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 1.15;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .scale-text-tape {
+      font-family: var(--font-header);
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 1.0;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      background-color: var(--color-tape-fill);
+      color: var(--color-text-inverted);
+      display: inline-block;
+      padding: 3px 8px;
+      width: fit-content;
+    }
+
+    .scale-text-body {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--color-text-primary);
+    }
+
+    .scale-text-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.4;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    /* Interactive Live Type Tester */
+    .interactive-type-tester {
+      margin-top: var(--space-lg);
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: var(--space-md);
+    }
+
+    .tester-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding-bottom: 8px;
+    }
+
+    .tester-input {
+      width: 100%;
+      background: #080808;
+      border: 1px solid var(--color-border-subtle);
+      color: #FFFFFF;
+      padding: var(--space-sm);
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .tester-input:focus {
+      border-color: var(--color-accent-neon);
+      outline: none;
+    }
+
+    /* ==========================================================================
+       08. COMPONENT ARCHETYPE GALLERY (SPEC SECTION 06, 07, 08)
+       ========================================================================== */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .component-card {
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .component-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding-bottom: 6px;
+    }
+
+    .component-card-title {
+      font-family: var(--font-header);
+      font-size: 14px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Button Archetypes */
+    .button-specimen-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .btn-acid-invert {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background-color: #080808;
+      color: var(--color-accent-neon);
+      border: 1px solid var(--color-accent-neon);
+      padding: 10px 18px;
+      cursor: pointer;
+      transition: background-color 0s, color 0s;
+    }
+
+    .btn-acid-invert:hover {
+      background-color: var(--color-accent-neon);
+      color: var(--color-text-inverted);
+    }
+
+    .btn-acid-invert:active {
+      background-color: var(--color-accent-hot);
+      transform: translate(2px, 2px);
+    }
+
+    .btn-tape-action {
+      font-family: var(--font-header);
+      font-size: 16px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background-color: var(--color-tape-fill);
+      color: var(--color-text-inverted);
+      border: none;
+      padding: 10px 20px;
+      box-shadow: 4px 4px 0px #FFFFFF;
+      cursor: pointer;
+      transition: transform 0s, box-shadow 0s;
+    }
+
+    .btn-tape-action:hover {
+      background-color: #FFFFFF;
+      color: #080808;
+      box-shadow: 4px 4px 0px var(--color-accent-neon);
+    }
+
+    .btn-tape-action:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px var(--color-accent-neon);
+    }
+
+    .btn-wireframe {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background: transparent;
+      color: #FFFFFF;
+      border: 1px solid var(--color-border-subtle);
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: border-color 0s, color 0s;
+    }
+
+    .btn-wireframe:hover {
+      border-color: #FFFFFF;
+      background-color: #1A1A1A;
+    }
+
+    .btn-danger-kill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background: #080808;
+      color: #FF003C;
+      border: 1px solid #FF003C;
+      padding: 8px 14px;
+      cursor: pointer;
+    }
+
+    .btn-danger-kill:hover {
+      background: #FF003C;
+      color: #080808;
+    }
+
+    /* Form & Input Archetypes */
+    .form-specimen-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .acid-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .acid-input-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .acid-input-field {
+      width: 100%;
+      background-color: #080808;
+      border: 1px solid var(--color-border-subtle);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      padding: 10px 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .acid-input-field:focus {
+      border-color: var(--color-accent-neon);
+      outline: none;
+    }
+
+    .acid-input-field::placeholder {
+      color: #4A4A4A;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    /* Checkbox & Radio Controls */
+    .controls-specimen-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-top: 4px;
+    }
+
+    .brutalist-checkbox {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #FFFFFF;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .custom-check-box {
+      width: 16px;
+      height: 16px;
+      background: #080808;
+      border: 1px solid var(--color-border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 12px;
+      color: transparent;
+      transition: background-color 0s, color 0s, border-color 0s;
+    }
+
+    .brutalist-checkbox.active .custom-check-box {
+      background-color: var(--color-accent-neon);
+      color: #080808;
+      border-color: var(--color-accent-neon);
+    }
+
+    .brutalist-radio {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #FFFFFF;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .custom-radio-box {
+      width: 16px;
+      height: 16px;
+      background: #080808;
+      border: 1px solid var(--color-border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: transparent;
+    }
+
+    .brutalist-radio.active .custom-radio-box {
+      background-color: #080808;
+      border-color: var(--color-accent-neon);
+      color: var(--color-accent-neon);
+    }
+
+    /* Micro-Grids & Motif Badges */
+    .motif-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .glyph-chip {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 4px 8px;
+      background: #080808;
+      border: 1px solid var(--color-border-subtle);
+      color: var(--color-accent-neon);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .glyph-chip:hover {
+      background-color: var(--color-accent-neon);
+      color: #080808;
+      border-color: var(--color-accent-neon);
+    }
+
+    /* ==========================================================================
+       09. LIVING MICRO-EXPERIENCE: ACID_CORE INDUSTRIAL AUDIO SYNTH DEMO
+       ========================================================================== */
+    .living-demo-card {
+      background-color: #0D0D0D;
+      border: 1px solid var(--color-border-subtle);
+      box-shadow: 6px 6px 0px var(--color-accent-neon);
+      position: relative;
+    }
+
+    .demo-top-bar {
+      background-color: #141414;
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding: 12px var(--space-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .demo-title-block {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .demo-title-text {
+      font-family: var(--font-header);
+      font-size: 18px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .demo-status-pills {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .demo-rack-body {
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: var(--space-lg);
+    }
+
+    /* Oscilloscope Visualizer Box */
+    .oscilloscope-box {
+      background-color: #050505;
+      border: 1px solid var(--color-border-subtle);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .scope-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-accent-neon);
+      border-bottom: 1px solid #1A1A1A;
+      padding-bottom: 4px;
+    }
+
+    .scope-canvas-wrap {
+      width: 100%;
+      height: 140px;
+      background: #080808;
+      border: 1px solid #1C1C1C;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #oscilloscope-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .scope-telemetry {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+    }
+
+    .telemetry-cell {
+      background: #111111;
+      padding: 4px 6px;
+      border: 1px solid #1C1C1C;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .telemetry-label {
+      color: var(--color-text-muted);
+      font-size: 8px;
+    }
+
+    .telemetry-value {
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+
+    /* Synth Sound Trigger Pads */
+    .sampler-pads-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .pads-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-text-muted);
+    }
+
+    .pads-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-sm);
+    }
+
+    .sampler-pad {
+      background-color: #121212;
+      border: 1px solid var(--color-border-subtle);
+      padding: var(--space-md);
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      transition: border-color 0s, background-color 0s;
+      user-select: none;
+    }
+
+    .sampler-pad:hover {
+      border-color: var(--color-accent-neon);
+      background-color: #181818;
+    }
+
+    .sampler-pad:active,
+    .sampler-pad.triggered {
+      background-color: var(--color-accent-neon) !important;
+      border-color: var(--color-accent-neon) !important;
+    }
+
+    .sampler-pad:active *,
+    .sampler-pad.triggered * {
+      color: #080808 !important;
+    }
+
+    .pad-number {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-accent-neon);
+    }
+
+    .pad-name {
+      font-family: var(--font-header);
+      font-size: 16px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .pad-desc {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-text-muted);
+    }
+
+    /* Synth Modulation Strip */
+    .synth-mod-strip {
+      background-color: #101010;
+      border: 1px solid var(--color-border-subtle);
+      padding: var(--space-md);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: var(--space-md);
+      align-items: center;
+      margin-top: var(--space-sm);
+    }
+
+    .mod-control {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+    }
+
+    .mod-control label {
+      color: var(--color-text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .mod-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      background: #242424;
+      outline: none;
+    }
+
+    .mod-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      background: var(--color-accent-neon);
+      cursor: pointer;
+      border: none;
+    }
+
+    /* ==========================================================================
+       10. STYLE TILE PROMPT CODE DRAWER (ACCORDION & MODAL)
+       ========================================================================== */
+    .raw-spec-section {
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border-subtle);
+      padding: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+
+    .raw-spec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding-bottom: var(--space-sm);
+    }
+
+    .raw-spec-title {
+      font-family: var(--font-header);
+      font-size: 20px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .raw-spec-container {
+      background-color: #050505;
+      border: 1px solid var(--color-border-subtle);
+      padding: var(--space-md);
+      max-height: 400px;
+      overflow-y: auto;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.45;
+      color: #BDBDBD;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* Modal Overlay (Spec Drawer) */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-lg);
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal-dialog {
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-accent-neon);
+      box-shadow: 8px 8px 0px var(--color-accent-neon);
+      width: 100%;
+      max-width: 900px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .modal-header {
+      background-color: #181818;
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding: 12px var(--space-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+    }
+
+    .modal-title {
+      font-family: var(--font-header);
+      font-size: 16px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: 1px solid var(--color-border-subtle);
+      color: #FFFFFF;
+      padding: 4px 10px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .modal-close-btn:hover {
+      background-color: var(--color-accent-neon);
+      color: #080808;
+      border-color: var(--color-accent-neon);
+    }
+
+    .modal-body {
+      padding: var(--space-md);
+      overflow-y: auto;
+      background-color: #050505;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.5;
+      color: #CCCCCC;
+      white-space: pre-wrap;
+    }
+
+    /* Floating Feedback Toast */
+    .toast-pill {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: var(--color-accent-neon);
+      color: var(--color-text-inverted);
+      font-family: var(--font-header);
+      font-weight: 900;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 10px 18px;
+      box-shadow: 4px 4px 0px #FFFFFF;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-pill.show {
+      display: flex;
+      animation: toastIn 0.15s ease-out;
+    }
+
+    @keyframes toastIn {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* ==========================================================================
+       11. MOBILE RESPONSIVENESS & BREAKPOINTS (agent.md Section 6)
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .hero-main-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+
+      .components-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .demo-rack-body {
+        grid-template-columns: 1fr;
+        padding: var(--space-md);
+      }
+
+      .pads-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .synth-mod-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section-header-wrap {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-title {
+        font-size: clamp(2.2rem, 9vw, 3.2rem) !important;
+      }
+
+      .tester-input {
+        font-size: 22px;
+      }
+    }
+  </style>
+
+  <!-- Shared Mobile Safety Sheet (agent.md Section 6) -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       01. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ========================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Acid Foundry</span>
+      <span class="design-vibe-tag">Neo-Brutalism</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download acid-foundry.md">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <div class="layout-wrapper">
+
+    <!-- ==========================================================================
+         02. HERO DISPLAY BANNER
+         ========================================================================== -->
+    <section class="hero-section">
+      <div class="hero-meta-bar">
+        <div class="hero-meta-item"><span class="glyph">■</span> SYSTEM SPEC: <strong>TILE</strong></div>
+        <div class="hero-meta-item"><span class="glyph">◆</span> VIBE: <strong>NEO-BRUTALISM</strong></div>
+        <div class="hero-meta-item"><span class="glyph">↳</span> INVERSION PHYSICS: <strong>0ms INSTANT</strong></div>
+        <div class="hero-meta-item"><span class="glyph">≡</span> BASE VOID: <strong>#080808</strong></div>
+      </div>
+
+      <div class="hero-main-grid">
+        <div class="hero-title-wrap">
+          <div class="hero-kicker">
+            <span class="tape-block">SPEC // 023</span>
+            <span>HIGH-VOLTAGE BRUTALIST RUNIC</span>
+          </div>
+
+          <h1 class="hero-title">
+            INDUSTRIAL ACID
+            <span class="highlight-glitch">// NEO-GRUNGE</span>
+          </h1>
+
+          <p class="hero-subheading">
+            A high-voltage underground visual system combining <strong>void pitch-black canvases (#080808)</strong>, electric <strong>neon magenta (#FF2A85)</strong>, solid redaction tape headers, distorted glitch typography, 8-bit checkerboard pixel dividers, zero-radius geometry, and instant 1-to-1 color inversion physics.
+          </p>
+
+          <div class="hero-cta-group">
+            <button class="btn-acid-primary" onclick="copyMasterTileSpec()">
+              <span>⚡ COPY AI DESIGN PROMPT</span>
+              <span>➔</span>
+            </button>
+            <button class="btn-acid-secondary" onclick="triggerGlitchEffect()">
+              <span>[ ✕ ] TRIGGER SIGNAL GLITCH</span>
+            </button>
+            <button class="btn-acid-secondary" onclick="openSpecModal()">
+              <span>[ ≡ ] INSPECT TOKENS</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Signal Matrix Panel -->
+        <div class="hero-signal-panel">
+          <div class="signal-header">
+            <div class="signal-title">
+              <span class="signal-live-led"></span>
+              <span>SIGNAL_TELEMETRY // CH-01</span>
+            </div>
+            <span class="tape-block-dark" style="font-size: 9px; padding: 1px 4px;">ACTIVE</span>
+          </div>
+
+          <div class="signal-matrix-rows">
+            <div class="signal-row">
+              <span class="signal-row-label">PRIMARY CANVAS</span>
+              <span class="signal-row-val">#080808 (PITCH VOID)</span>
+            </div>
+            <div class="signal-row">
+              <span class="signal-row-label">ELECTRIC HIGHLIGHT</span>
+              <span class="signal-row-val neon">#FF2A85 (NEON ACID)</span>
+            </div>
+            <div class="signal-row">
+              <span class="signal-row-label">CORNER GEOMETRY</span>
+              <span class="signal-row-val">0px (STRICT ZERO RADIUS)</span>
+            </div>
+            <div class="signal-row">
+              <span class="signal-row-label">SHADOW PHYSICS</span>
+              <span class="signal-row-val neon">4px 4px 0px #FF2A85</span>
+            </div>
+            <div class="signal-row">
+              <span class="signal-row-label">INTERACTION SPEED</span>
+              <span class="signal-row-val">0ms STEP-END INVERSION</span>
+            </div>
+          </div>
+
+          <div class="duotone-visual-box" id="duotone-box" onclick="triggerGlitchEffect()" title="Click to trigger glitch flash">
+            <!-- Dynamic Vector Reticle Visualizer -->
+            <svg class="duotone-grid-svg" viewBox="0 0 300 120" preserveAspectRatio="none">
+              <line x1="0" y1="60" x2="300" y2="60" stroke="#FF2A85" stroke-width="1" stroke-dasharray="4,4" />
+              <line x1="150" y1="0" x2="150" y2="120" stroke="#FF2A85" stroke-width="1" stroke-dasharray="4,4" />
+              <rect x="20" y="20" width="80" height="80" fill="none" stroke="#FF2A85" stroke-width="1.5" />
+              <rect x="200" y="20" width="80" height="80" fill="none" stroke="#242424" stroke-width="1.5" />
+              <!-- Alchemical / Runic Industrial Markers -->
+              <path d="M50 40 L70 40 L60 80 Z" fill="#FF2A85" />
+              <path d="M230 40 L250 80 M250 40 L230 80" stroke="#FFFFFF" stroke-width="2" />
+              <!-- Bitmapped Noise Blocks -->
+              <rect x="110" y="30" width="6" height="6" fill="#FF2A85" />
+              <rect x="120" y="30" width="6" height="6" fill="#FFFFFF" />
+              <rect x="110" y="40" width="6" height="6" fill="#FFFFFF" />
+              <rect x="120" y="40" width="6" height="6" fill="#FF2A85" />
+            </svg>
+            <span class="duotone-box-label">CLICK FOR OVERDRIVE FLASH</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checkerboard Pixel Stripe -->
+    <div class="checker-divider"></div>
+
+    <!-- ==========================================================================
+         03. COLOR SYSTEM & PALETTE MATRIX (SPEC SECTION 01)
+         ========================================================================== -->
+    <section class="section-block">
+      <div class="section-header-wrap">
+        <div>
+          <div class="section-tag">[ 01. COLOR SYSTEM ]</div>
+          <h2 class="section-title">HIGH-CONTRAST PALETTE TOKENS</h2>
+        </div>
+        <p class="section-desc">
+          Click any color tile to copy its hexadecimal token directly to the clipboard. Zero gradients, pure ink values.
+        </p>
+      </div>
+
+      <div class="swatches-grid">
+        <!-- 1. Base Canvas -->
+        <div class="swatch-card" onclick="copyColorToken('#080808', '--color-bg-base')">
+          <div class="swatch-preview" style="background-color: #080808; border-color: #333;">
+            <span class="swatch-copy-hint">COPY HEX</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-token-name">--color-bg-base</span>
+            <span class="swatch-hex">#080808</span>
+            <span class="swatch-role">Primary canvas & void backdrops</span>
+          </div>
+        </div>
+
+        <!-- 2. Surface Card -->
+        <div class="swatch-card" onclick="copyColorToken('#121212', '--color-bg-surface')">
+          <div class="swatch-preview" style="background-color: #121212;">
+            <span class="swatch-copy-hint">COPY HEX</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-token-name">--color-bg-surface</span>
+            <span class="swatch-hex">#121212</span>
+            <span class="swatch-role">Card containers & sub-modules</span>
+          </div>
+        </div>
+
+        <!-- 3. Accent Neon -->
+        <div class="swatch-card" onclick="copyColorToken('#FF2A85', '--color-accent-neon')">
+          <div class="swatch-preview" style="background-color: #FF2A85;">
+            <span class="swatch-copy-hint" style="background: #080808; color: #FFF;">COPY HEX</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-token-name">--color-accent-neon</span>
+            <span class="swatch-hex" style="color: #FF2A85;">#FF2A85</span>
+            <span class="swatch-role">Primary electric highlight & duotone tint</span>
+          </div>
+        </div>
+
+        <!-- 4. Accent Hot / Pressed -->
+        <div class="swatch-card" onclick="copyColorToken('#E60067', '--color-accent-hot')">
+          <div class="swatch-preview" style="background-color: #E60067;">
+            <span class="swatch-copy-hint" style="background: #080808; color: #FFF;">COPY HEX</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-token-name">--color-accent-hot</span>
+            <span class="swatch-hex" style="color: #E60067;">#E60067</span>
+            <span class="swatch-role">Pressed states, dense tape fills</span>
+          </div>
+        </div>
+
+        <!-- 5. Text Primary -->
+        <div class="swatch-card" onclick="copyColorToken('#FFFFFF', '--color-text-primary')">
+          <div class="swatch-preview" style="background-color: #FFFFFF;">
+            <span class="swatch-copy-hint" style="background: #080808; color: #FFF;">COPY HEX</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-token-name">--color-text-primary</span>
+            <span class="swatch-hex" style="color: #FFFFFF;">#FFFFFF</span>
+            <span class="swatch-role">High-legibility technical text</span>
+          </div>
+        </div>
+
+        <!-- 6. Text Muted -->
+        <div class="swatch-card" onclick="copyColorToken('#8F8F8F', '--color-text-muted')">
+          <div class="swatch-preview" style="background-color: #8F8F8F;">
+            <span class="swatch-copy-hint" style="background: #080808; color: #FFF;">COPY HEX</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-token-name">--color-text-muted</span>
+            <span class="swatch-hex" style="color: #8F8F8F;">#8F8F8F</span>
+            <span class="swatch-role">Metadata, footnotes, labels</span>
+          </div>
+        </div>
+
+        <!-- 7. Border Subtle -->
+        <div class="swatch-card" onclick="copyColorToken('#242424', '--color-border-subtle')">
+          <div class="swatch-preview" style="background-color: #242424;">
+            <span class="swatch-copy-hint" style="background: #080808; color: #FFF;">COPY HEX</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-token-name">--color-border-subtle</span>
+            <span class="swatch-hex" style="color: #A0A0A0;">#242424</span>
+            <span class="swatch-role">Structural gridlines & framing</span>
+          </div>
+        </div>
+
+        <!-- 8. Redaction Tape Fill -->
+        <div class="swatch-card" onclick="copyColorToken('#FF2A85', '--color-tape-fill')">
+          <div class="swatch-preview" style="background-color: #FF2A85;">
+            <span class="tape-block" style="font-size: 12px; margin: auto;">REDACTED</span>
+          </div>
+          <div class="swatch-info">
+            <span class="swatch-token-name">--color-tape-fill</span>
+            <span class="swatch-hex" style="color: #FF2A85;">#FF2A85</span>
+            <span class="swatch-role">Solid high-contrast text blocks</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Semantic Signals Sub-Bar -->
+      <div class="semantic-swatches-bar">
+        <div class="semantic-swatch-item" onclick="copyColorToken('#00FF66', '--status-success')">
+          <div class="semantic-dot" style="background-color: #00FF66;"></div>
+          <div>
+            <div style="font-weight: 700; color: #00FF66;">#00FF66</div>
+            <div style="color: #8F8F8F; font-size: 9px;">STATUS_SUCCESS (ACID GREEN)</div>
+          </div>
+        </div>
+
+        <div class="semantic-swatch-item" onclick="copyColorToken('#FFE600', '--status-warning')">
+          <div class="semantic-dot" style="background-color: #FFE600;"></div>
+          <div>
+            <div style="font-weight: 700; color: #FFE600;">#FFE600</div>
+            <div style="color: #8F8F8F; font-size: 9px;">STATUS_WARNING (HAZARD YELLOW)</div>
+          </div>
+        </div>
+
+        <div class="semantic-swatch-item" onclick="copyColorToken('#FF2A85', '--status-danger')">
+          <div class="semantic-dot" style="background-color: #FF2A85;"></div>
+          <div>
+            <div style="font-weight: 700; color: #FF2A85;">#FF2A85</div>
+            <div style="color: #8F8F8F; font-size: 9px;">STATUS_DANGER (NEON OVERDRIVE)</div>
+          </div>
+        </div>
+
+        <div class="semantic-swatch-item" onclick="copyColorToken('#00F0FF', '--status-info')">
+          <div class="semantic-dot" style="background-color: #00F0FF;"></div>
+          <div>
+            <div style="font-weight: 700; color: #00F0FF;">#00F0FF</div>
+            <div style="color: #8F8F8F; font-size: 9px;">STATUS_INFO (ELECTRIC CYAN)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checkerboard Pixel Stripe -->
+    <div class="checker-divider"></div>
+
+    <!-- ==========================================================================
+         04. TYPOGRAPHY SYSTEM SPECIMEN (SPEC SECTION 02)
+         ========================================================================== -->
+    <section class="section-block">
+      <div class="section-header-wrap">
+        <div>
+          <div class="section-tag">[ 02. TYPOGRAPHY SYSTEM ]</div>
+          <h2 class="section-title">INDUSTRIAL RUNIC & GLITCH SPECIMENS</h2>
+        </div>
+        <p class="section-desc">
+          Distorted glitch headers, ultra-compressed brutalist title blocks, and monospaced technical telemetry.
+        </p>
+      </div>
+
+      <div class="type-specimen-grid">
+        <!-- Font Stacks -->
+        <div class="type-families-panel">
+          <div class="font-specimen-box">
+            <div class="font-meta-header">
+              <span>01 // DISPLAY HERO</span>
+              <span>WEIGHT: 800-900 / 0.9 LINE-HEIGHT</span>
+            </div>
+            <div class="font-display-sample">ACID REACTION 09</div>
+            <div class="font-glitch-sample">SIGNAL GLITCH ✕</div>
+            <div style="font-family: var(--font-mono); font-size: 10px; color: #8F8F8F;">
+              "Syne" 900 / "Rubik Glitch" / -0.03em tracking / UPPERCASE
+            </div>
+          </div>
+
+          <div class="font-specimen-box">
+            <div class="font-meta-header">
+              <span>02 // BRUTALIST CONDENSED HEADER</span>
+              <span>WEIGHT: 700-900 / 1.1 LINE-HEIGHT</span>
+            </div>
+            <div class="font-condensed-sample">COUNTER-CULTURE SOUND FREQUENCY MATRIX</div>
+            <div style="font-family: var(--font-mono); font-size: 10px; color: #8F8F8F;">
+              "Barlow Condensed" / +0.05em tracking / UPPERCASE
+            </div>
+          </div>
+
+          <div class="font-specimen-box">
+            <div class="font-meta-header">
+              <span>03 // METADATA & TELEMETRY MONO</span>
+              <span>WEIGHT: 500 / 1.4 LINE-HEIGHT</span>
+            </div>
+            <div class="font-mono-sample">
+              HEX_VAL: #FF2A85 // GAIN: +14.2dB // FREQ: 14.8kHz // LATENCY: 0ms
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 10px; color: #8F8F8F; margin-top: 4px;">
+              "Space Mono" / "VT323" / +0.12em tracking / UPPERCASE
+            </div>
+          </div>
+
+          <div class="font-specimen-box">
+            <div class="font-meta-header">
+              <span>04 // BODY SANS</span>
+              <span>WEIGHT: 400 REG / 1.5 LINE-HEIGHT</span>
+            </div>
+            <div class="font-sans-sample">
+              Subversion of clean corporate minimalism through intentional noise, redaction tape layering, raw pixelated geometry, and high-voltage contrast shocks.
+            </div>
+          </div>
+        </div>
+
+        <!-- Scale Hierarchy Ladder -->
+        <div class="type-scale-ladder">
+          <div class="scale-row">
+            <div class="scale-meta">
+              <span>DISPLAY / 56px – 96px</span>
+              <span>-0.03em / UPPERCASE</span>
+            </div>
+            <div class="scale-text-display">UNDERGROUND</div>
+          </div>
+
+          <div class="scale-row">
+            <div class="scale-meta">
+              <span>SECTION HEADER / 28px – 40px</span>
+              <span>+0.05em / UPPERCASE</span>
+            </div>
+            <div class="scale-text-h1">INDUSTRIAL HARDWARE MODULES</div>
+          </div>
+
+          <div class="scale-row">
+            <div class="scale-meta">
+              <span>TAPE LABEL / 18px – 24px</span>
+              <span>+0.02em / SOLID FILL</span>
+            </div>
+            <div>
+              <span class="scale-text-tape">CRITICAL OVERDRIVE ACTIVE</span>
+            </div>
+          </div>
+
+          <div class="scale-row">
+            <div class="scale-meta">
+              <span>BODY TEXT / 14px – 16px</span>
+              <span>NORMAL / SENTENCE</span>
+            </div>
+            <div class="scale-text-body">
+              Engineered with zero rounded corners, 4px brutalist hard drop shadows, and 8-bit checkerboard pixel dividers.
+            </div>
+          </div>
+
+          <div class="scale-row">
+            <div class="scale-meta">
+              <span>METADATA MONO / 11px – 13px</span>
+              <span>+0.12em / UPPERCASE</span>
+            </div>
+            <div class="scale-text-meta">
+              SYS_ID: 808-ACID // REVISION: REV_4.2 // STATUS: LOCKED
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Editable Type Tester -->
+      <div class="interactive-type-tester">
+        <div class="tester-controls">
+          <span style="color: var(--color-accent-neon); font-weight: 700;">[ LIVE TYPE TESTER & PANGRAM ]</span>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <label style="color: #8F8F8F;">SIZE: <span id="tester-size-label">32px</span></label>
+            <input type="range" min="18" max="64" value="32" class="mod-slider" style="width: 100px;" oninput="updateTesterSize(this.value)">
+            <button class="btn-tile" onclick="toggleGlitchFont()" style="padding: 2px 8px; font-size: 10px;">GLITCH TOGGLE</button>
+          </div>
+        </div>
+        <textarea id="live-tester-area" class="tester-input" spellcheck="false">HIGH VOLTAGE INDUSTRIAL ACID ACID 909</textarea>
+      </div>
+    </section>
+
+    <!-- Checkerboard Pixel Stripe -->
+    <div class="checker-divider"></div>
+
+    <!-- ==========================================================================
+         05. COMPONENT ARCHETYPE GALLERY (SPEC SECTION 06, 07, 08)
+         ========================================================================== -->
+    <section class="section-block">
+      <div class="section-header-wrap">
+        <div>
+          <div class="section-tag">[ 03. COMPONENT GALLERY ]</div>
+          <h2 class="section-title">BRUTALIST ATOMS & INTERACTION ARCHETYPES</h2>
+        </div>
+        <p class="section-desc">
+          Strict 0px radius, 0ms step-end inversion hover physics, and hard 4px offset shadows.
+        </p>
+      </div>
+
+      <div class="components-grid">
+        <!-- 1. Buttons Archetype -->
+        <div class="component-card">
+          <div class="component-card-header">
+            <span class="component-card-title">01 // BUTTON CONTROLS</span>
+            <span style="color: var(--color-accent-neon);">0ms INVERT</span>
+          </div>
+
+          <div class="button-specimen-stack">
+            <button class="btn-tape-action" onclick="showToast('Tape Action Executed', '⚡')">
+              TAPE ACTION ➔
+            </button>
+
+            <button class="btn-acid-invert" onclick="showToast('Invert Triggered', '■')">
+              INVERT STATE
+            </button>
+
+            <button class="btn-wireframe" onclick="showToast('Wireframe Clicked', '⌖')">
+              [ + ] WIREFRAME
+            </button>
+
+            <button class="btn-danger-kill" onclick="showToast('Killswitch Activated', '✕')">
+              KILLSWITCH
+            </button>
+          </div>
+
+          <div style="font-family: var(--font-mono); font-size: 10px; color: #8F8F8F; line-height: 1.4;">
+            * Rule: Hover shifts background #080808 to #FF2A85 instantly (0ms transition). Active collapses 4px hard shadow to 0px.
+          </div>
+        </div>
+
+        <!-- 2. Form Inputs Archetype -->
+        <div class="component-card">
+          <div class="component-card-header">
+            <span class="component-card-title">02 // DATA FIELDS & MATRIX INPUTS</span>
+            <span style="color: var(--color-accent-neon);">0px RADIUS</span>
+          </div>
+
+          <div class="form-specimen-stack">
+            <div class="acid-input-group">
+              <label class="acid-input-label">
+                <span>SIGNAL FREQUENCY // CHANNEL A</span>
+                <span style="color: var(--color-accent-neon);">REQUIRED</span>
+              </label>
+              <input type="text" class="acid-input-field" value="14.885 kHz" placeholder="ENTER FREQUENCY...">
+            </div>
+
+            <div class="acid-input-group">
+              <label class="acid-input-label">
+                <span>TERMINAL COMMAND / EXECUTOR</span>
+                <span>CMD</span>
+              </label>
+              <input type="text" class="acid-input-field" placeholder="EXECUTE: OVERDRIVE_ACID --GAIN +12" style="border-color: #333;">
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Brutalist Selectors -->
+        <div class="component-card">
+          <div class="component-card-header">
+            <span class="component-card-title">03 // CHECKBOXES & SELECTORS</span>
+            <span style="color: var(--color-accent-neon);">1-BIT GLYPHS</span>
+          </div>
+
+          <div class="controls-specimen-row">
+            <div class="brutalist-checkbox active" onclick="toggleBrutalistCheck(this)">
+              <div class="custom-check-box">✕</div>
+              <span>DITHER_NOISE [ON]</span>
+            </div>
+
+            <div class="brutalist-checkbox" onclick="toggleBrutalistCheck(this)">
+              <div class="custom-check-box">✕</div>
+              <span>ANALOG_TAPE_WARMTH</span>
+            </div>
+
+            <div class="brutalist-radio active" onclick="selectBrutalistRadio(this, 'grp1')">
+              <div class="custom-radio-box">■</div>
+              <span>ACID_SAW_303</span>
+            </div>
+
+            <div class="brutalist-radio" onclick="selectBrutalistRadio(this, 'grp1')">
+              <div class="custom-radio-box">■</div>
+              <span>SUB_SQUARE_808</span>
+            </div>
+          </div>
+
+          <!-- Micro Motif Badges -->
+          <div class="motif-badge-row" style="margin-top: 8px;">
+            <span class="glyph-chip">◆ ALCHEMICAL</span>
+            <span class="glyph-chip">■ 8-BIT GRID</span>
+            <span class="glyph-chip">[ + ] RETICLE</span>
+            <span class="glyph-chip">↳ VECTOR</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checkerboard Pixel Stripe -->
+    <div class="checker-divider"></div>
+
+    <!-- ==========================================================================
+         06. LIVING MICRO-EXPERIENCE: ACID_CORE AUDIO SYNTH DEMO
+         ========================================================================== -->
+    <section class="section-block">
+      <div class="section-header-wrap">
+        <div>
+          <div class="section-tag">[ 04. LIVING MICRO-EXPERIENCE ]</div>
+          <h2 class="section-title">ACID_CORE // INDUSTRIAL AUDIO & GLITCH SAMPLER</h2>
+        </div>
+        <p class="section-desc">
+          Fully interactive sound generator and real-time oscilloscope powered by Web Audio API. Trigger sample pads, adjust resonance, and observe audio telemetry.
+        </p>
+      </div>
+
+      <div class="living-demo-card">
+        <!-- Top Telemetry Bar -->
+        <div class="demo-top-bar">
+          <div class="demo-title-block">
+            <span class="tape-block" style="font-size: 12px;">CONSOLE</span>
+            <span class="demo-title-text">ACID_CORE // MODEL-303X</span>
+          </div>
+
+          <div class="demo-status-pills">
+            <span style="color: var(--color-accent-neon); font-weight: 700;">BPM: <span id="bpm-val">138</span></span>
+            <span style="color: #444;">|</span>
+            <span style="color: #00FF66;">DSP: ACTIVE</span>
+            <span style="color: #444;">|</span>
+            <button class="btn-tile" onclick="triggerRandomAudioLoop()" style="padding: 2px 8px; font-size: 10px;">
+              ⚡ AUTO-SEQUENCE
+            </button>
+          </div>
+        </div>
+
+        <div class="demo-rack-body">
+          <!-- Left: Real-time Oscilloscope & Monitor -->
+          <div class="oscilloscope-box">
+            <div class="scope-header">
+              <span>REAL-TIME OSCILLOSCOPE MATRIX</span>
+              <span id="scope-status" style="color: #00FF66;">SIGNAL READY</span>
+            </div>
+
+            <div class="scope-canvas-wrap">
+              <canvas id="oscilloscope-canvas" width="400" height="140"></canvas>
+            </div>
+
+            <div class="scope-telemetry">
+              <div class="telemetry-cell">
+                <span class="telemetry-label">FREQUENCY</span>
+                <span class="telemetry-value" id="telem-freq">220.0 Hz</span>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">OVERDRIVE</span>
+                <span class="telemetry-value" id="telem-drive" style="color: var(--color-accent-neon);">+14.5 dB</span>
+              </div>
+              <div class="telemetry-cell">
+                <span class="telemetry-label">BUFFER</span>
+                <span class="telemetry-value">512 SMP</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: 4 Sound Trigger Pads & Modulation Controls -->
+          <div class="sampler-pads-container">
+            <div class="pads-header-bar">
+              <span>TRIGGER SAMPLE PADS [KEYBOARD: 1, 2, 3, 4]</span>
+              <span style="color: var(--color-accent-neon);">TOUCH / CLICK</span>
+            </div>
+
+            <div class="pads-grid">
+              <!-- Pad 1: Acid 303 Saw -->
+              <div class="sampler-pad" id="pad-1" onclick="triggerSynthAudio('acid-303', 1)">
+                <span class="pad-number">[ 01 ] // SAW</span>
+                <span class="pad-name">303 ACID BASS</span>
+                <span class="pad-desc">Resonant saw filter sweep</span>
+              </div>
+
+              <!-- Pad 2: 808 Sub Kick -->
+              <div class="sampler-pad" id="pad-2" onclick="triggerSynthAudio('sub-808', 2)">
+                <span class="pad-number">[ 02 ] // SUB</span>
+                <span class="pad-name">808 HEAVY KICK</span>
+                <span class="pad-desc">Deep pitch-dropped sine</span>
+              </div>
+
+              <!-- Pad 3: Industrial Snare/Clap -->
+              <div class="sampler-pad" id="pad-3" onclick="triggerSynthAudio('industrial-snare', 3)">
+                <span class="pad-number">[ 03 ] // NOISE</span>
+                <span class="pad-name">NOISE CRUSH</span>
+                <span class="pad-desc">Bitcrushed white noise crack</span>
+              </div>
+
+              <!-- Pad 4: Glitch Laser Zap -->
+              <div class="sampler-pad" id="pad-4" onclick="triggerSynthAudio('glitch-zap', 4)">
+                <span class="pad-number">[ 04 ] // GLITCH</span>
+                <span class="pad-name">ACID STAB ZAP</span>
+                <span class="pad-desc">Square wave frequency mod</span>
+              </div>
+            </div>
+
+            <!-- Modulation Strip -->
+            <div class="synth-mod-strip">
+              <div class="mod-control">
+                <label><span>CUTOFF FREQ</span><span id="cutoff-display">850Hz</span></label>
+                <input type="range" min="100" max="3000" value="850" class="mod-slider" oninput="updateCutoff(this.value)">
+              </div>
+
+              <div class="mod-control">
+                <label><span>RESONANCE</span><span id="res-display">8.5</span></label>
+                <input type="range" min="1" max="20" value="8.5" step="0.5" class="mod-slider" oninput="updateResonance(this.value)">
+              </div>
+
+              <div class="mod-control">
+                <label><span>OVERDRIVE</span><span id="drive-display">MAX</span></label>
+                <input type="range" min="1" max="10" value="8" class="mod-slider" oninput="updateDrive(this.value)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checkerboard Pixel Stripe -->
+    <div class="checker-divider"></div>
+
+    <!-- ==========================================================================
+         07. STYLE TILE PROMPT CODE DRAWER (ACCORDION & RAW SPEC)
+         ========================================================================== -->
+    <section class="raw-spec-section">
+      <div class="raw-spec-header">
+        <div class="raw-spec-title">STYLE TILE PROMPT CODE SPECIFICATION</div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-tile btn-copy" onclick="copyMasterTileSpec()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Style Tile
+          </button>
+          <button class="btn-tile btn-download" onclick="downloadMasterTileSpec()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Style Tile
+          </button>
+        </div>
+      </div>
+
+      <pre id="raw-spec-display" class="raw-spec-container"></pre>
+    </section>
+
+    <div class="checker-divider" style="margin-top: 48px; margin-bottom: 32px;"></div>
+
+    <footer style="padding: 24px 0 48px; font-family: var(--font-mono); font-size: 11px; color: var(--color-text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div>STYLE TILES // TILE: INDUSTRIAL ACID // NEO-GRUNGE</div>
+      <div>NEO-BRUTALISM • 0ms INVERSION • ZERO ROUNDED CORNERS</div>
+    </footer>
+
+  </div>
+
+  <!-- ==========================================================================
+       MODAL: INSPECT FORMATTED SPECIFICATION
+       ========================================================================== -->
+  <div id="spec-modal-backdrop" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <span class="modal-title">SPECIFICATION MATRIX // TILE</span>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <button class="btn-tile" onclick="copyMasterTileSpec()" style="font-size: 10px; padding: 3px 8px;">COPY ALL</button>
+          <button class="modal-close-btn" onclick="closeSpecModal()">✕ CLOSE</button>
+        </div>
+      </div>
+      <div id="modal-spec-content" class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Pill -->
+  <div id="toast-notification" class="toast-pill">
+    <span id="toast-text">✓ COPIED TO CLIPBOARD</span>
+  </div>
+
+  <!-- ==========================================================================
+       EMBEDDED RAW MARKDOWN SPECIFICATION (agent.md Section 2)
+       ========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Industrial Acid Neo-Grunge
+  Construction: pitch void • neon magenta • 0px geometry • redaction tape • instant invert
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Pitch-black void (#080808) with charcoal modules (#121212, #181818, #202020) and one electric magenta (#FF2A85). Geometry is strictly 0px. Depth is a hard 4px 4px 0 magenta stamp, never blur. Display is Syne / Barlow Condensed, 800-900, uppercase, compressed to 0.90 line-height; optional Rubik Glitch distortion on existing display only. Solid magenta rectangles may wrap host words as redaction-tape emphasis -- they must not introduce new slogans. 8px checkerboard stripes (magenta / black) may divide sections. Hover is instant 1-to-1 inversion (0ms, step-end).
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #080808; /* Pitch void */
+  --bg-surface:             #121212; /* Modules */
+  --bg-surface-alt:         #181818; /* Secondary wells */
+  --bg-surface-dark:        #080808; /* Void */
+
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF;
+  --ink-secondary:          #8F8F8F;
+  --ink-muted:              #8F8F8F;
+  --ink-inverted:           #080808; /* On magenta tape */
+
+  /* Signature Accents */
+  --accent-primary:         #FF2A85; /* Electric magenta */
+  --accent-primary-hover:   #E60067; /* Hot press / dense tape */
+  --accent-secondary:       #E60067;
+  --accent-tertiary:        #00F0FF; /* Electric cyan */
+
+  /* Status Tokens */
+  --status-success:         #00FF66;
+  --status-warning:         #FFE600;
+  --status-danger:          #FF2A85;
+  --status-info:            #00F0FF;
+
+  /* Extra original tokens */
+  --color-bg-base:             #080808;
+  --color-bg-surface:          #121212;
+  --color-bg-surface-alt:      #181818;
+  --color-bg-surface-elevated: #202020;
+  --color-accent-neon:         #FF2A85;
+  --color-accent-hot:          #E60067;
+  --color-tape-fill:           #FF2A85;
+  --color-text-primary:        #FFFFFF;
+  --color-text-muted:          #8F8F8F;
+  --color-text-inverted:       #080808;
+  --color-border-subtle:       #242424;
+  --color-border-accent:       #FF2A85;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Syne", "Rubik Glitch", "Barlow Condensed", sans-serif;
+--font-sans:    "Space Grotesk", "Inter", -apple-system, sans-serif;
+--font-mono:    "Space Mono", "VT323", "Courier Prime", monospace;
+--font-glitch:  "Rubik Glitch", "Syne", sans-serif;
+--font-header:  "Barlow Condensed", "Syne", sans-serif;
+
+--text-display: 4.0rem-6.0rem / 0.90 var(--font-display); /* Weight: 800-900 | Tracking: -0.03em | UPPERCASE */
+--text-h1:      1.75rem-2.5rem / 1.10 var(--font-header); /* Weight: 700-800 | Tracking: +0.05em | UPPERCASE */
+--text-h2:      1.125rem-1.5rem / 1.00 var(--font-header); /* Weight: 900 | Tracking: +0.02em | UPPERCASE tape cut */
+--text-h3:      1.125rem-1.5rem / 1.00 var(--font-header); /* Weight: 900 | UPPERCASE */
+--text-body:    0.9375rem-1.0rem / 1.50 var(--font-sans); /* Weight: 400 */
+--text-body-sm: 0.875rem / 1.45 var(--font-sans); /* Weight: 400 */
+--text-meta:    0.75rem-0.8125rem / 1.40 var(--font-mono); /* Weight: 500 | Tracking: +0.12em | UPPERCASE */
+
+Glitch face is optional on a host heading that already wants distortion -- do not add glitch captions. Tape labels wrap existing words in magenta blocks; they do not invent redaction copy.
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-none:    0px;
+--radius-tape:    0px;
+--radius-default: 0px;
+--radius-subtle:  0px;
+--radius-pill:    0px;
+
+--shadow-base:    none;
+--shadow-hover:   4px 4px 0px #FF2A85;
+--shadow-active:  0px 0px 0px transparent;
+
+Level 0: #080808 void.
+Level 1: grain / dither at mix-blend-mode screen, opacity 0.18.
+Level 2: 1px #242424 wireframe, no blur.
+Level 3: 4px 4px 0px #FF2A85 hard offset.
+Imagery may use grayscale(100%) contrast(180%) with screen-blend magenta. Hover may flash inverted high-contrast.
+
+Spacing: 4 / 8 / 12 / 16 / 24 / 48 / 80px.
+
+Hover physics: 0ms / step-end inversion. Press: `translate(2px, 2px)` collapsing the hard shadow.
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:      1px solid #FF2A85;
+--border-hairline:  1px solid #242424;
+--border-accent:    1px solid #FF2A85;
+--border-thick:     2px solid #FF2A85;
+--divider-style:    8px checkerboard stripe, alternating #FF2A85 and #080808;
+
+Focus: 2px solid #FFFFFF, 2px offset.
+
+Icons: 1.5px hard geometric or 1-bit pixel. Checker micro-grids, crosshairs, and solid squares are silent marks -- no coordinate labels.
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 0px. Default: void or #121212, 1px #242424, magenta or white type. Hover: instant invert -- background #FF2A85, type #080808 (0ms step-end). Active: `translate(2px, 2px)` with shadow collapse. Primary may idle as magenta tape fill with void type. Keep host labels.
+- **Cards**: 0px, #121212 or #181818, 1px #242424. Focal cards 1-2px magenta. Optional 4px 4px 0 magenta stamp. Hover inverts 1-to-1. Do not add tracklists, serials, or redaction slogans.
+- **Inputs**: 0px, #181818 well, 1px #242424. Font-size at least 16px. Focus: 2px white offset ring. Placeholder #8F8F8F. Checkboxes are squares; checked magenta fill, void mark.
+- **Navigation**: Restyle existing items as 0px magenta or hairline cells. Active: magenta fill, void type. No catalog codes, clocks, or fake frequencies.
+- **Badges / chips / toggles**: 0px tape blocks, magenta wrap on existing text. Success #00FF66, warning #FFE600, danger magenta, info #00F0FF -- all flat, no glow.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No rounded corners anywhere (0px strictly).
+- No soft blur shadows or ambient glow halos.
+- No pastel or washed-out low contrast.
+- No slow easing; hover is 0ms or a hard snap.
+- No corporate illustration fluff or cartoon mascots.
+- No gradient fills on headline keywords.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    // 1. Get Embedded Markdown Text
+    function getMarkdownText() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    // 2. Master Copy Spec Function (Header & Section Buttons)
+    function copyMasterTileSpec() {
+      const text = getMarkdownText();
+      if (!text) return;
+
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("Style Tile Markdown Copied!", "⚡");
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const orig = btn.innerHTML;
+          btn.innerHTML = `<span style="color: #080808; background: #FF2A85; padding: 2px 6px;">✓ COPIED</span>`;
+          setTimeout(() => { btn.innerHTML = orig; }, 2000);
+        }
+      }).catch(() => {
+        showToast("Failed to copy", "✕");
+      });
+    }
+
+    // 3. Download Markdown File Function
+    function downloadMasterTileSpec() {
+      const text = getMarkdownText();
+      if (!text) return;
+
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-acid-foundry.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-acid-foundry.md", "💾");
+    }
+
+    // 4. Modal Open/Close Logic
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      const content = document.getElementById("modal-spec-content");
+      if (modal && content) {
+        content.textContent = getMarkdownText();
+        modal.classList.add("active");
+      }
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      if (modal) modal.classList.remove("active");
+    }
+
+    // 5. Color Swatch Copying
+    function copyColorToken(hex, token) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`${token}: ${hex} Copied`, "■");
+      });
+    }
+
+    // 6. Live Type Tester Controls
+    function updateTesterSize(val) {
+      const area = document.getElementById("live-tester-area");
+      const label = document.getElementById("tester-size-label");
+      if (area && label) {
+        area.style.fontSize = val + "px";
+        label.textContent = val + "px";
+      }
+    }
+
+    let isGlitchActive = false;
+    function toggleGlitchFont() {
+      const area = document.getElementById("live-tester-area");
+      if (!area) return;
+      isGlitchActive = !isGlitchActive;
+      area.style.fontFamily = isGlitchActive ? "var(--font-glitch)" : "var(--font-display)";
+      showToast(isGlitchActive ? "Glitch Font Active" : "Display Font Active", "⚡");
+    }
+
+    // 7. Component Toggles
+    function toggleBrutalistCheck(el) {
+      el.classList.toggle("active");
+      const isChecked = el.classList.contains("active");
+      showToast(isChecked ? "Control Activated" : "Control Deactivated", "✕");
+    }
+
+    function selectBrutalistRadio(el, group) {
+      document.querySelectorAll(".brutalist-radio").forEach(r => r.classList.remove("active"));
+      el.classList.add("active");
+      showToast("Signal Channel Switched", "■");
+    }
+
+    // 8. Visual Glitch Flash Effect
+    function triggerGlitchEffect() {
+      const box = document.getElementById("duotone-box");
+      if (!box) return;
+
+      box.style.filter = "invert(1) contrast(200%)";
+      box.style.transform = "translate(3px, -2px)";
+      setTimeout(() => {
+        box.style.filter = "none";
+        box.style.transform = "translate(0, 0)";
+      }, 120);
+
+      // Play short noise zap
+      triggerSynthAudio("glitch-zap", 4);
+      showToast("SIGNAL OVERDRIVE FLASH", "⚡");
+    }
+
+    // ==========================================================================
+    // 09. WEB AUDIO API & LIVING SYNTH ENGINE
+    // ==========================================================================
+    let audioCtx = null;
+    let cutoffValue = 850;
+    let resonanceValue = 8.5;
+    let driveMultiplier = 8;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (audioCtx && audioCtx.state === "suspended") {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function updateCutoff(val) {
+      cutoffValue = parseFloat(val);
+      const label = document.getElementById("cutoff-display");
+      if (label) label.textContent = val + "Hz";
+      const freq = document.getElementById("telem-freq");
+      if (freq) freq.textContent = (cutoffValue / 4).toFixed(1) + " Hz";
+    }
+
+    function updateResonance(val) {
+      resonanceValue = parseFloat(val);
+      const label = document.getElementById("res-display");
+      if (label) label.textContent = val;
+    }
+
+    function updateDrive(val) {
+      driveMultiplier = parseFloat(val);
+      const label = document.getElementById("drive-display");
+      const telem = document.getElementById("telem-drive");
+      if (label) label.textContent = val > 7 ? "MAX" : val + "x";
+      if (telem) telem.textContent = `+${(driveMultiplier * 1.8).toFixed(1)} dB`;
+    }
+
+    function triggerSynthAudio(type, padIndex) {
+      // Visual feedback on pad
+      const pad = document.getElementById(`pad-${padIndex}`);
+      if (pad) {
+        pad.classList.add("triggered");
+        setTimeout(() => pad.classList.remove("triggered"), 140);
+      }
+
+      // Trigger wave animation on canvas
+      animateScopeBurst();
+
+      const ctx = getAudioContext();
+      if (!ctx) return;
+
+      const now = ctx.currentTime;
+
+      if (type === "acid-303") {
+        // Acid 303 Saw Filter Sweep
+        const osc = ctx.createOscillator();
+        const filter = ctx.createBiquadFilter();
+        const gain = ctx.createGain();
+
+        osc.type = "sawtooth";
+        osc.frequency.setValueAtTime(110, now); // A2 note
+        osc.frequency.exponentialRampToValueAtTime(55, now + 0.35);
+
+        filter.type = "lowpass";
+        filter.frequency.setValueAtTime(cutoffValue * 2, now);
+        filter.frequency.exponentialRampToValueAtTime(120, now + 0.35);
+        filter.Q.setValueAtTime(resonanceValue, now);
+
+        gain.gain.setValueAtTime(0.5, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
+
+        osc.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.4);
+      } else if (type === "sub-808") {
+        // Deep Pitch-dropped 808 Sub Kick
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(140, now);
+        osc.frequency.exponentialRampToValueAtTime(32, now + 0.4);
+
+        gain.gain.setValueAtTime(0.8, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.45);
+      } else if (type === "industrial-snare") {
+        // Bitcrushed White Noise Snare
+        const bufferSize = ctx.sampleRate * 0.18;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = Math.random() * 2 - 1;
+        }
+
+        const noise = ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = "bandpass";
+        filter.frequency.setValueAtTime(1800, now);
+        filter.Q.setValueAtTime(2.5, now);
+
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.6, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.18);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+
+        noise.start(now);
+      } else if (type === "glitch-zap") {
+        // Glitch Zap / Square Overdrive
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = "square";
+        osc.frequency.setValueAtTime(1200, now);
+        osc.frequency.exponentialRampToValueAtTime(80, now + 0.15);
+
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.01, now + 0.16);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.16);
+      }
+    }
+
+    // Oscilloscope Waveform Animation
+    let scopeCanvas, scopeCtx;
+    let waveOffset = 0;
+    let burstEnergy = 0;
+
+    function initOscilloscope() {
+      scopeCanvas = document.getElementById("oscilloscope-canvas");
+      if (!scopeCanvas) return;
+      scopeCtx = scopeCanvas.getContext("2d");
+
+      function renderScope() {
+        const w = scopeCanvas.width;
+        const h = scopeCanvas.height;
+
+        scopeCtx.fillStyle = "#050505";
+        scopeCtx.fillRect(0, 0, w, h);
+
+        // Draw Matrix Gridlines
+        scopeCtx.strokeStyle = "#141414";
+        scopeCtx.lineWidth = 1;
+        for (let x = 0; x < w; x += 20) {
+          scopeCtx.beginPath();
+          scopeCtx.moveTo(x, 0);
+          scopeCtx.lineTo(x, h);
+          scopeCtx.stroke();
+        }
+        for (let y = 0; y < h; y += 20) {
+          scopeCtx.beginPath();
+          scopeCtx.moveTo(0, y);
+          scopeCtx.lineTo(w, y);
+          scopeCtx.stroke();
+        }
+
+        // Center line
+        scopeCtx.strokeStyle = "rgba(255, 42, 133, 0.2)";
+        scopeCtx.beginPath();
+        scopeCtx.moveTo(0, h / 2);
+        scopeCtx.lineTo(w, h / 2);
+        scopeCtx.stroke();
+
+        // Draw Dynamic Waveform
+        scopeCtx.strokeStyle = burstEnergy > 0.2 ? "#FF2A85" : "#00FF66";
+        scopeCtx.lineWidth = 2;
+        scopeCtx.beginPath();
+
+        const amplitude = (h / 4) * (0.2 + burstEnergy);
+        const freq = 0.04 + (cutoffValue / 30000);
+
+        for (let x = 0; x < w; x++) {
+          const noise = burstEnergy > 0.3 ? (Math.random() - 0.5) * 12 : 0;
+          const y = h / 2 + Math.sin(x * freq + waveOffset) * amplitude + noise;
+          if (x === 0) scopeCtx.moveTo(x, y);
+          else scopeCtx.lineTo(x, y);
+        }
+        scopeCtx.stroke();
+
+        // Decay burst energy
+        if (burstEnergy > 0) {
+          burstEnergy *= 0.92;
+          if (burstEnergy < 0.01) burstEnergy = 0;
+        }
+
+        waveOffset += 0.08;
+        requestAnimationFrame(renderScope);
+      }
+
+      renderScope();
+    }
+
+    function animateScopeBurst() {
+      burstEnergy = 1.0;
+    }
+
+    // Auto Loop Sequencer Demo
+    let autoLoopTimer = null;
+    function triggerRandomAudioLoop() {
+      if (autoLoopTimer) {
+        clearInterval(autoLoopTimer);
+        autoLoopTimer = null;
+        showToast("Auto-Sequencer Stopped", "■");
+        return;
+      }
+
+      showToast("Auto-Sequencer Running (138 BPM)", "⚡");
+      let step = 0;
+      const sequence = ["sub-808", "industrial-snare", "acid-303", "glitch-zap", "sub-808", "acid-303", "industrial-snare", "acid-303"];
+      const pads = [2, 3, 1, 4, 2, 1, 3, 1];
+
+      autoLoopTimer = setInterval(() => {
+        triggerSynthAudio(sequence[step], pads[step]);
+        step = (step + 1) % sequence.length;
+      }, 217); // ~138 BPM eighth notes
+    }
+
+    // 10. Floating Toast Handler
+    let toastTimeout = null;
+    function showToast(msg, icon = "✓") {
+      const toast = document.getElementById("toast-notification");
+      const textEl = document.getElementById("toast-text");
+      if (!toast || !textEl) return;
+
+      textEl.textContent = `${icon} ${msg}`;
+      toast.classList.add("show");
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
+    // Keyboard Shortcuts (1, 2, 3, 4 for pads, Escape for modal)
+    window.addEventListener("keydown", (e) => {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+      if (e.key === "1") triggerSynthAudio("acid-303", 1);
+      if (e.key === "2") triggerSynthAudio("sub-808", 2);
+      if (e.key === "3") triggerSynthAudio("industrial-snare", 3);
+      if (e.key === "4") triggerSynthAudio("glitch-zap", 4);
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    // 11. Initialization
+    document.addEventListener("DOMContentLoaded", () => {
+      // Populate Raw Code Display
+      const rawDisplay = document.getElementById("raw-spec-display");
+      if (rawDisplay) rawDisplay.textContent = getMarkdownText();
+
+      // Bind header buttons
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyMasterTileSpec);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadMasterTileSpec);
+
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      // Close modal on backdrop click
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      // Initialize oscilloscope
+      initOscilloscope();
+    });
+  </script>
+</body>
+</html>
+

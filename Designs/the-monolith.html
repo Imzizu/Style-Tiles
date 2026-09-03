@@ -1,0 +1,2590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Monolith — Style Tile &amp; Design System</title>
+  <meta name="description" content="A study in physical-digital convergence. Tension between 1970s Swiss archival typography, brutalist industrial telemetry, and high-frequency tactile physics.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon.ico">
+  
+  <!-- Google Fonts: Fraunces Variable, Fragment Mono, Space Grotesk, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:ital,wght@0,400..800;1,400..800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       1. CHROMATIC SPECTRUM & MATERIAL TOKENS
+       ========================================================================== */
+    :root {
+      /* Surfaces & Viewport Base */
+      --canvas-root:      #050505; /* Absolute Carbon — Primary viewport base */
+      --surface-slab:     #0E0F0E; /* Anodized Basalt — Elevated planar containment (1.2:1) */
+      --surface-well:     #080908; /* Recessed basalt well */
+      --border-edge:      #1E201E; /* Milled Cold-Steel — Structural 1px precision hairline */
+      --border-focus:     #585B55; /* Weathered cold-steel highlight */
+
+      /* Inks & Signal Typography */
+      --ink-lead:         #FBF9F3; /* Bleached Vellum — Headline display / pure signal (19.1:1 AAA) */
+      --ink-sub:          #585B55; /* Weathered Lead — Metadata, index tags, datestamps (4.5:1 AA) */
+      --ink-dim:          #303430; /* Faded carbon */
+      --ink-inverted:     #050505; /* Inverted pure carbon */
+
+      /* Kinetic Accents & Telemetry Signals */
+      --signal-kinetic:   #D4FF00; /* High-Ion Chartreuse — Primary tactile trigger & live reticle */
+      --signal-oxide:     #E83D1B; /* Venetian Vermilion — Interrupts, system alerts, killswitches */
+      --signal-slate:     #7A8278; /* Archival slate */
+
+      /* Structural Aliases */
+      --bg-canvas:        var(--canvas-root);
+      --bg-surface:       var(--surface-slab);
+      --border-core:      1px solid var(--border-edge);
+      --border-hairline:  1px solid var(--border-edge);
+      --border-kinetic:   1px solid var(--signal-kinetic);
+      --border-oxide:     1px solid var(--signal-oxide);
+
+      /* Typographic Stacks */
+      --font-display:     "Fraunces", "GT Alpina Fine", Georgia, serif;
+      --font-sans:        "Space Grotesk", "Söhne Mono", "Neue Haas Grotesk Display", -apple-system, sans-serif;
+      --font-mono:        "Fragment Mono", "JetBrains Mono", monospace;
+
+      /* Display Archetype Parameters */
+      --display-opsz:     144;
+      --display-wght:     350;
+      --display-soft:     0;
+
+      /* Corner Geometry (Strict Monolithic 0px) */
+      --radius-default:   0px;
+      --radius-subtle:    0px;
+      --radius-pill:      0px;
+
+      /* Hard 1-Bit Solid Shadows */
+      --shadow-none:      none;
+      --shadow-kinetic:   3px 3px 0px var(--signal-kinetic);
+      --shadow-oxide:     3px 3px 0px var(--signal-oxide);
+      --shadow-lead:      3px 3px 0px var(--ink-lead);
+      --shadow-coldsteel: 2px 2px 0px var(--border-edge);
+
+      /* Modular Spacing Baseline (4px Units) */
+      --space-1:  4px;
+      --space-2:  8px;
+      --space-3:  12px;
+      --space-4:  16px;
+      --space-6:  24px;
+      --space-8:  32px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-24: 96px;
+    }
+
+    /* ==========================================================================
+       2. RESET & TEXTURAL PHYSICS BASE
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border-radius: 0 !important; /* Enforce 0px strict rectilinear geometry */
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--canvas-root);
+      color: var(--ink-lead);
+    }
+
+    body {
+      background-color: var(--canvas-root);
+      color: var(--ink-lead);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 450;
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Selection High-Ion Inversion */
+    ::selection {
+      background: var(--signal-kinetic);
+      color: var(--canvas-root);
+    }
+
+    /* ==========================================================================
+       3. TYPOGRAPHIC ARCHITECTURE & TELEMETRY RULES
+       ========================================================================== */
+    .font-display {
+      font-family: var(--font-display);
+      font-variation-settings: "opsz" var(--display-opsz), "wght" var(--display-wght), "SOFT" var(--display-soft);
+      letter-spacing: -0.05em;
+      line-height: 0.88;
+    }
+
+    .display-hero {
+      font-family: var(--font-display);
+      font-variation-settings: "opsz" 144, "wght" 350, "SOFT" 0;
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      line-height: 0.88;
+      letter-spacing: -0.05em;
+      color: var(--ink-lead);
+      margin-bottom: var(--space-4);
+    }
+
+    .italic-nuance {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-variation-settings: "opsz" 144, "wght" 400, "SOFT" 0;
+      color: var(--ink-lead);
+    }
+
+    .font-mono {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: +0.12em;
+      text-transform: uppercase;
+      font-feature-settings: "tnum" 1, "zero" 1, "ss02" 1, "ss07" 1;
+    }
+
+    .font-grotesque {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 450;
+      line-height: 1.35;
+      letter-spacing: -0.015em;
+    }
+
+    .telemetry-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: +0.12em;
+      text-transform: uppercase;
+      color: var(--ink-sub);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .telemetry-val {
+      color: var(--ink-lead);
+      font-weight: 600;
+    }
+
+    .telemetry-val-kinetic {
+      color: var(--signal-kinetic);
+      font-weight: 700;
+    }
+
+    .telemetry-val-oxide {
+      color: var(--signal-oxide);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       4. ANIMATIONS & BLINK MECHANISMS
+       ========================================================================== */
+    @keyframes blink {
+      0%, 49.9% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .status-marker-kinetic {
+      width: 4px;
+      height: 4px;
+      background-color: var(--signal-kinetic);
+      display: inline-block;
+      animation: blink 1.2s infinite steps(1);
+      flex-shrink: 0;
+    }
+
+    .status-marker-oxide {
+      width: 4px;
+      height: 4px;
+      background-color: var(--signal-oxide);
+      display: inline-block;
+      animation: blink 0.8s infinite steps(1);
+      flex-shrink: 0;
+    }
+
+    .status-marker-sub {
+      width: 4px;
+      height: 4px;
+      background-color: var(--ink-sub);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       5. MANDATORY HEADER BAR COMPONENT (agent.md Standard)
+       ========================================================================== */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 48px;
+      background-color: rgba(5, 5, 5, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-edge);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: +0.12em;
+      text-transform: uppercase;
+      color: var(--ink-sub);
+      text-decoration: none;
+      transition: color 0ms;
+      padding: 6px 10px;
+      border: 1px solid transparent;
+    }
+
+    .nav-back-link:hover {
+      color: var(--signal-kinetic);
+      border-color: var(--border-edge);
+      background-color: var(--surface-slab);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .design-code {
+      background-color: var(--signal-kinetic);
+      color: var(--canvas-root);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: +0.12em;
+      padding: 3px 7px;
+      text-transform: uppercase;
+    }
+
+    .design-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: +0.08em;
+      color: var(--ink-lead);
+      text-transform: uppercase;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--ink-sub);
+      letter-spacing: +0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-edge);
+      padding: 2px 6px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Common Button / Actuator System */
+    .btn-tile {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: +0.12em;
+      text-transform: uppercase;
+      padding: 7px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      border: 1px solid var(--border-edge);
+      background-color: var(--surface-slab);
+      color: var(--ink-lead);
+      transition: color 0ms, background-color 0ms, border-color 0ms, transform 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .btn-tile:hover {
+      background-color: #161816;
+      border-color: var(--ink-sub);
+      color: var(--signal-kinetic);
+      transform: translate(-1px, -1px);
+      box-shadow: 2px 2px 0px var(--border-edge);
+    }
+
+    .btn-tile:active {
+      transform: translate(1px, 1px);
+      box-shadow: none;
+      background-color: var(--canvas-root);
+    }
+
+    .btn-copy {
+      background-color: var(--signal-kinetic);
+      color: var(--canvas-root);
+      border: 1px solid var(--signal-kinetic);
+      font-weight: 700;
+    }
+
+    .btn-copy:hover {
+      background-color: var(--ink-lead);
+      color: var(--canvas-root);
+      border-color: var(--ink-lead);
+    }
+
+    .btn-copy:active {
+      background-color: var(--canvas-root);
+      color: var(--signal-kinetic);
+      border-color: var(--signal-kinetic);
+      box-shadow: 3px 3px 0px var(--signal-kinetic);
+    }
+
+    /* ==========================================================================
+       6. ACTUATOR & COMPONENT SYSTEM
+       ========================================================================== */
+    /* Primary Actuator */
+    .actuator-primary {
+      background-color: var(--signal-kinetic);
+      color: var(--canvas-root);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: +0.12em;
+      text-transform: uppercase;
+      border: 0px;
+      padding: 12px 20px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: color 0ms, background-color 0ms, transform 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .actuator-primary:hover {
+      background-color: var(--ink-lead);
+      color: var(--canvas-root);
+      transform: translate(-1px, -1px);
+      box-shadow: 2px 2px 0px var(--border-edge);
+    }
+
+    .actuator-primary:active {
+      background-color: var(--canvas-root);
+      color: var(--signal-kinetic);
+      border: 1px solid var(--signal-kinetic);
+      box-shadow: 3px 3px 0px var(--signal-kinetic);
+      transform: translate(1px, 1px);
+    }
+
+    /* Secondary Actuator */
+    .actuator-secondary {
+      background-color: var(--surface-slab);
+      color: var(--ink-lead);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: +0.12em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-edge);
+      padding: 11px 19px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: color 0ms, background-color 0ms, border-color 0ms, transform 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .actuator-secondary:hover {
+      border-color: var(--ink-sub);
+      color: var(--signal-kinetic);
+      background-color: #141614;
+      transform: translate(-1px, -1px);
+      box-shadow: 2px 2px 0px var(--border-edge);
+    }
+
+    .actuator-secondary:active {
+      background-color: var(--canvas-root);
+      color: var(--signal-kinetic);
+      border-color: var(--signal-kinetic);
+      transform: translate(1px, 1px);
+      box-shadow: none;
+    }
+
+    /* Signal Oxide / Killswitch Actuator */
+    .actuator-oxide, .actuator-killswitch {
+      background-color: var(--signal-oxide);
+      color: var(--ink-lead);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: +0.12em;
+      text-transform: uppercase;
+      border: 0px;
+      padding: 12px 20px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: color 0ms, background-color 0ms, transform 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .actuator-oxide:hover, .actuator-killswitch:hover {
+      background-color: #FF4D2B;
+      transform: translate(-1px, -1px);
+      box-shadow: 2px 2px 0px var(--ink-lead);
+    }
+
+    .actuator-oxide:active, .actuator-killswitch:active {
+      background-color: var(--canvas-root);
+      color: var(--signal-oxide);
+      border: 1px solid var(--signal-oxide);
+      box-shadow: 3px 3px 0px var(--signal-oxide);
+      transform: translate(1px, 1px);
+    }
+
+    /* Ghost Actuator */
+    .actuator-ghost {
+      background-color: transparent;
+      color: var(--ink-sub);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: +0.12em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      padding: 11px 19px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: color 0ms, border-color 0ms;
+    }
+
+    .actuator-ghost:hover {
+      color: var(--ink-lead);
+      border-color: var(--border-edge);
+      background-color: var(--surface-slab);
+    }
+
+    /* ==========================================================================
+       7. SPLIT INDEX HEADER (CARD ANCHOR)
+       ========================================================================== */
+    .split-index-header {
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: transparent;
+      border-bottom: 1px solid var(--border-edge);
+      padding: 0 12px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: +0.12em;
+      text-transform: uppercase;
+      color: var(--ink-sub);
+    }
+
+    .split-index-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .split-index-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Surface Slab Containers */
+    .surface-slab-container {
+      background-color: var(--surface-slab);
+      border: 1px solid var(--border-edge);
+      position: relative;
+    }
+
+    /* ==========================================================================
+       8. LAYOUT & 12-COLUMN GRID FRAMEWORK
+       ========================================================================== */
+    .layout-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-spacing {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--border-edge);
+    }
+
+    .grid-12 {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .col-12 { grid-column: span 12; }
+    .col-8 { grid-column: span 8; }
+    .col-6 { grid-column: span 6; }
+    .col-4 { grid-column: span 4; }
+    .col-3 { grid-column: span 3; }
+    .col-7 { grid-column: span 7; }
+    .col-5 { grid-column: span 5; }
+
+    /* ==========================================================================
+       9. TELEMETRY STRIP & PARAMETER BAR
+       ========================================================================== */
+    .telemetry-parameter-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1px;
+      background-color: var(--border-edge);
+      border: 1px solid var(--border-edge);
+      margin: var(--space-6) 0;
+    }
+
+    .telemetry-cell {
+      background-color: var(--surface-slab);
+      padding: 12px 16px;
+    }
+
+    .telemetry-cell-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: +0.12em;
+      text-transform: uppercase;
+      color: var(--ink-sub);
+      margin-bottom: 4px;
+    }
+
+    .telemetry-cell-value {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: +0.06em;
+      color: var(--ink-lead);
+    }
+
+    /* ==========================================================================
+       10. SWATCH & MATRIX CARDS
+       ========================================================================== */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .swatch-card {
+      background-color: var(--surface-slab);
+      border: 1px solid var(--border-edge);
+      cursor: pointer;
+      transition: border-color 0ms, transform 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .swatch-card:hover {
+      border-color: var(--signal-kinetic);
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--border-edge);
+    }
+
+    .swatch-color-box {
+      height: 90px;
+      width: 100%;
+      border-bottom: 1px solid var(--border-edge);
+      position: relative;
+    }
+
+    .swatch-badge {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      font-family: var(--font-mono);
+      font-size: 8px;
+      padding: 2px 4px;
+      background-color: rgba(5, 5, 5, 0.85);
+      color: var(--ink-lead);
+      border: 1px solid var(--border-edge);
+    }
+
+    .swatch-info {
+      padding: 12px;
+    }
+
+    .swatch-token-name {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--signal-kinetic);
+      letter-spacing: +0.08em;
+      margin-bottom: 2px;
+    }
+
+    .swatch-metaphor {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink-lead);
+      margin-bottom: 6px;
+    }
+
+    .swatch-hex-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--ink-sub);
+    }
+
+    /* Contrast Table */
+    .contrast-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      margin-top: 16px;
+    }
+
+    .contrast-table th, .contrast-table td {
+      border: 1px solid var(--border-edge);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    .contrast-table th {
+      background-color: #080908;
+      color: var(--ink-sub);
+      font-weight: 600;
+      letter-spacing: +0.12em;
+    }
+
+    .contrast-table td {
+      background-color: var(--surface-slab);
+    }
+
+    .wcag-pass {
+      color: var(--signal-kinetic);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       11. TYPOGRAPHY ARCHITECTURE SPECIMENS & INTERACTIVE CONTROLS
+       ========================================================================== */
+    .type-specimen-box {
+      background-color: var(--surface-slab);
+      border: 1px solid var(--border-edge);
+      padding: 24px;
+      margin-top: 16px;
+    }
+
+    .variable-slider-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-edge);
+    }
+
+    .slider-control {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .slider-label-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--ink-sub);
+      text-transform: uppercase;
+    }
+
+    .slider-input {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      background: var(--border-edge);
+      outline: none;
+    }
+
+    .slider-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      background: var(--signal-kinetic);
+      cursor: pointer;
+    }
+
+    .specimen-display-target {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 0.90;
+      letter-spacing: -0.05em;
+      color: var(--ink-lead);
+      min-height: 120px;
+      outline: none;
+      border-left: 2px solid var(--signal-kinetic);
+      padding-left: 16px;
+      margin-top: 12px;
+    }
+
+    /* ==========================================================================
+       12. ASCII BLUEPRINT MONOLITH
+       ========================================================================== */
+    .blueprint-terminal {
+      background-color: #040504;
+      border: 1px solid var(--border-edge);
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--signal-kinetic);
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    /* ==========================================================================
+       13. INTERACTIVE INPUTS, TOGGLES, FORMS
+       ========================================================================== */
+    .telemetry-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .telemetry-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--ink-sub);
+      letter-spacing: +0.12em;
+      text-transform: uppercase;
+    }
+
+    .telemetry-input {
+      background-color: var(--surface-slab);
+      border: 1px solid var(--border-edge);
+      color: var(--ink-lead);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 10px 14px;
+      outline: none;
+      letter-spacing: +0.06em;
+      transition: border-color 0ms;
+    }
+
+    .telemetry-input:focus {
+      border-color: var(--signal-kinetic);
+      box-shadow: 2px 2px 0px var(--signal-kinetic);
+    }
+
+    .telemetry-input::placeholder {
+      color: var(--ink-sub);
+      text-transform: uppercase;
+    }
+
+    /* Checkbox & Switch 1-Bit Solid */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: +0.12em;
+      text-transform: uppercase;
+      color: var(--ink-lead);
+    }
+
+    .checkbox-1bit {
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--border-edge);
+      background-color: var(--canvas-root);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .checkbox-1bit.checked {
+      background-color: var(--signal-kinetic);
+      border-color: var(--signal-kinetic);
+    }
+
+    .checkbox-1bit.checked::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background-color: var(--canvas-root);
+    }
+
+    /* ==========================================================================
+       14. LIVING MICRO-EXPERIENCE // RADICAL SILENCE EXTRACTION TERMINAL
+       ========================================================================== */
+    .terminal-experience-shell {
+      background-color: var(--surface-slab);
+      border: 1px solid var(--border-edge);
+      position: relative;
+    }
+
+    .terminal-top-deck {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1px;
+      background-color: var(--border-edge);
+      border-bottom: 1px solid var(--border-edge);
+    }
+
+    .oscilloscope-box {
+      background-color: #040404;
+      padding: 16px;
+      position: relative;
+    }
+
+    .oscilloscope-canvas {
+      width: 100%;
+      height: 140px;
+      display: block;
+      background-color: #020202;
+      border: 1px solid var(--border-edge);
+    }
+
+    .oscilloscope-reticle-overlay {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--signal-kinetic);
+      pointer-events: none;
+      letter-spacing: +0.12em;
+    }
+
+    .telemetry-deck-side {
+      background-color: var(--surface-slab);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .terminal-lower-deck {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .terminal-log-screen {
+      background-color: #030303;
+      border: 1px solid var(--border-edge);
+      padding: 12px;
+      height: 180px;
+      overflow-y: auto;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      line-height: 1.5;
+      color: var(--ink-sub);
+    }
+
+    .log-line-kinetic { color: var(--signal-kinetic); }
+    .log-line-oxide { color: var(--signal-oxide); }
+    .log-line-lead { color: var(--ink-lead); }
+
+    .stepped-progress-bar {
+      display: flex;
+      gap: 3px;
+      margin: 12px 0;
+    }
+
+    .progress-step-block {
+      flex: 1;
+      height: 8px;
+      background-color: var(--border-edge);
+    }
+
+    .progress-step-block.active {
+      background-color: var(--signal-kinetic);
+    }
+
+    .progress-step-block.oxide {
+      background-color: var(--signal-oxide);
+    }
+
+    /* ==========================================================================
+       15. STYLE TILE PROMPT CODE DRAWER & MODAL
+       ========================================================================== */
+    .prompt-code-container {
+      background-color: #030403;
+      border: 1px solid var(--border-edge);
+      padding: 20px;
+      position: relative;
+    }
+
+    .prompt-pre {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.55;
+      color: var(--ink-lead);
+      white-space: pre-wrap;
+      max-height: 460px;
+      overflow-y: auto;
+      padding-right: 12px;
+    }
+
+    /* Inspection Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(5, 5, 5, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-backdrop.show {
+      display: flex;
+    }
+
+    .modal-sheet {
+      background-color: var(--surface-slab);
+      border: 1px solid var(--signal-kinetic);
+      box-shadow: 6px 6px 0px rgba(212, 255, 0, 0.2);
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-edge);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+      background-color: #030403;
+    }
+
+    .modal-footer {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border-edge);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      background-color: var(--surface-slab);
+    }
+
+    /* Toast System */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 11000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .toast {
+      background-color: var(--surface-slab);
+      border: 1px solid var(--signal-kinetic);
+      box-shadow: 3px 3px 0px var(--signal-kinetic);
+      color: var(--ink-lead);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: +0.08em;
+      text-transform: uppercase;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(10px);
+      opacity: 0;
+      transition: transform 120ms cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 120ms ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Anti-Pattern Box */
+    .anti-pattern-item {
+      padding: 12px 16px;
+      background-color: #080908;
+      border-left: 2px solid var(--signal-oxide);
+      margin-bottom: 8px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--ink-lead);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 900px) {
+      .grid-12 { grid-template-columns: 1fr; }
+      .col-12, .col-8, .col-6, .col-4, .col-3, .col-7, .col-5 { grid-column: span 1; }
+      .terminal-top-deck, .terminal-lower-deck { grid-template-columns: 1fr; }
+      .display-hero { font-size: 3rem; }
+      .header-title-block .design-vibe-tag { display: none; }
+    }
+  </style>
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. MANDATORY TOP NAVIGATION HEADER (agent.md Standard)
+       ========================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span>←</span> CATALOG
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">The Monolith</span>
+      <span class="design-vibe-tag">Editorial & Archival</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile" onclick="toggleSpecModal(true)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <span>Preview Tile</span>
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt" onclick="copyStyleTileMarkdown()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        <span id="copy-btn-label">Copy Style Tile</span>
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-the-monolith.md" onclick="downloadStyleTileMarkdown()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Download .md</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. TOP TELEMETRY MASTHEAD STRIP
+       ========================================================================== -->
+  <aside style="background-color: var(--surface-well); border-bottom: 1px solid var(--border-edge); padding: 6px 24px;">
+    <div class="layout-container" style="display: flex; justify-content: space-between; align-items: center; padding: 0;">
+      <div class="telemetry-tag">
+        <span class="status-marker-kinetic"></span>
+        <span>SYSTEM_ONLINE // REV 07.4</span>
+        <span style="color: var(--border-edge);">|</span>
+        <span>WCAG: <strong class="wcag-pass">AAA (19.1:1)</strong></span>
+        <span style="color: var(--border-edge);">|</span>
+        <span>LATENCY: <span class="telemetry-val">0.4 MS</span></span>
+      </div>
+      <div class="telemetry-tag">
+        <span>ARCHIVE_REF: <strong>#002_HYPER_EDITORIAL</strong></span>
+        <span style="color: var(--border-edge);">|</span>
+        <span id="live-utc-clock">2026-08-17 00:00:00 UTC</span>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ==========================================================================
+         3. HERO DISPLAY SECTION & EDITORIAL ARCHETYPE
+         ========================================================================== -->
+    <section class="section-spacing" style="padding-top: 48px;">
+      <div class="layout-container">
+        
+        <!-- Hero Split Header -->
+        <div class="split-index-header" style="margin-bottom: 24px;">
+          <div class="split-index-left">
+            <span>[ ARCHIVE_INDEX // 002 ]</span>
+            <span style="color: var(--border-edge);">──</span>
+            <span style="color: var(--signal-kinetic);">SYSTEM 07 MONOLITH</span>
+          </div>
+          <div class="split-index-right">
+            <span>RETICLE_ARMED</span>
+            <span class="status-marker-kinetic"></span>
+          </div>
+        </div>
+
+        <div class="grid-12">
+          <!-- Main Hero Display Title Column -->
+          <div class="col-8">
+            <div style="margin-bottom: 12px;">
+              <span class="telemetry-tag" style="background: var(--surface-slab); border: 1px solid var(--border-edge); padding: 3px 8px; color: var(--signal-kinetic);">
+                ◆ 1970s SWISS ARCHIVAL × INDUSTRIAL TELEMETRY
+              </span>
+            </div>
+
+            <!-- Primary <h1> with Variable Axis Settings and Italic Nuance -->
+            <h1 class="display-hero">
+              The Architecture<br>
+              of <span class="italic-nuance">(Radical Silence)</span><br>
+              & Monolithic Signal.
+            </h1>
+
+            <p class="font-grotesque" style="font-size: 15px; color: var(--ink-lead); max-width: 60ch; margin-bottom: 24px; line-height: 1.45;">
+              A study in physical-digital convergence. Tension between 1970s Swiss archival typography, brutalist industrial telemetry, and high-frequency tactile physics. Absolute carbon base containment framed with cold-steel 1px hairlines and high-ion chartreuse actuators.
+            </p>
+
+            <!-- Action Actuators Suite -->
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+              <button class="actuator-primary" onclick="copyStyleTileMarkdown()">
+                <span>EXECUTE EXTRACTION</span>
+                <span>↗</span>
+              </button>
+              <a href="#micro-experience" class="actuator-secondary">
+                <span>INSPECT TELEMETRY</span>
+                <span>↓</span>
+              </a>
+              <button class="actuator-oxide" onclick="triggerKillswitchMock()">
+                <span>KILLSWITCH / ABORT</span>
+                <span>●</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Hero Telemetry Sidebar / Structural Blueprint Box -->
+          <div class="col-4">
+            <div class="surface-slab-container" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+              <div class="split-index-header">
+                <span>[ 00 // SPEC_METADATA ]</span>
+                <span class="status-marker-kinetic"></span>
+              </div>
+
+              <div style="padding: 20px;">
+                <div style="margin-bottom: 16px;">
+                  <div class="telemetry-tag" style="margin-bottom: 4px;">MATERIAL METAPHOR</div>
+                  <div style="font-size: 14px; font-weight: 600; color: var(--ink-lead);">Absolute Carbon & Cold-Steel</div>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                  <div class="telemetry-tag" style="margin-bottom: 4px;">TYPOGRAPHIC TENSION</div>
+                  <div style="font-size: 14px; font-weight: 600; color: var(--ink-lead);">GT Alpina / Fraunces + Fragment Mono</div>
+                </div>
+
+                <div style="margin-bottom: 16px;">
+                  <div class="telemetry-tag" style="margin-bottom: 4px;">INTERACTION DAMPING</div>
+                  <div style="font-size: 14px; font-weight: 600; color: var(--signal-kinetic);">0ms Color Snapping • High-Tension Spring</div>
+                </div>
+
+                <div style="border-top: 1px solid var(--border-edge); padding-top: 12px;">
+                  <div class="telemetry-tag" style="margin-bottom: 6px;">SOLID 1-BIT RETICLE</div>
+                  <div style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-sub);">
+                    OFFSET: 3px 3px 0px #D4FF00<br>
+                    RADIUS: 0px STRICT MONOLITH
+                  </div>
+                </div>
+              </div>
+
+              <div style="background: var(--surface-well); border-top: 1px solid var(--border-edge); padding: 10px 16px; display: flex; justify-content: space-between; align-items: center;">
+                <span class="telemetry-tag">HASH: <span class="telemetry-val">0x89EF_MONO</span></span>
+                <span class="telemetry-tag" style="color: var(--signal-kinetic);">STATUS: LOCKED</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3-Column Parameter Telemetry Bar -->
+        <div class="telemetry-parameter-bar">
+          <div class="telemetry-cell">
+            <div class="telemetry-cell-label">[ PARAMETER ]</div>
+            <div class="telemetry-cell-value">ISO: 0800_RAW</div>
+          </div>
+          <div class="telemetry-cell">
+            <div class="telemetry-cell-label">[ TELEMETRY ]</div>
+            <div class="telemetry-cell-value" style="color: var(--signal-kinetic);">FREQUENCY: 144.2 Hz</div>
+          </div>
+          <div class="telemetry-cell">
+            <div class="telemetry-cell-label">[ PROTOCOL ]</div>
+            <div class="telemetry-cell-value">MODE: ISOLATED</div>
+          </div>
+          <div class="telemetry-cell">
+            <div class="telemetry-cell-label">[ RETICLE_STATUS ]</div>
+            <div class="telemetry-cell-value" style="color: var(--signal-kinetic);">CALIBRATED: 100%</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. CHROMATIC SPECTRUM & MATERIAL TOKENS
+         ========================================================================== -->
+    <section class="section-spacing" id="palette">
+      <div class="layout-container">
+        
+        <div class="split-index-header">
+          <div class="split-index-left">
+            <span>[ 01 // CHROMATIC_SPECTRUM ]</span>
+            <span style="color: var(--border-edge);">──</span>
+            <span>MATERIAL TOKENS & WCAG RATINGS</span>
+          </div>
+          <div class="split-index-right">
+            <span>CLICK SWATCH TO COPY</span>
+            <span class="status-marker-kinetic"></span>
+          </div>
+        </div>
+
+        <!-- Swatches Matrix Grid -->
+        <div class="palette-grid">
+          
+          <!-- 1. --canvas-root -->
+          <div class="swatch-card" onclick="copySwatchHex('#050505', '--canvas-root')">
+            <div class="swatch-color-box" style="background-color: #050505; border-color: #1E201E;">
+              <span class="swatch-badge">BASE 1.0:1</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-token-name">--canvas-root</div>
+              <div class="swatch-metaphor">Absolute Carbon</div>
+              <div class="swatch-hex-row">
+                <span>#050505</span>
+                <span>Viewport Base</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. --surface-slab -->
+          <div class="swatch-card" onclick="copySwatchHex('#0E0F0E', '--surface-slab')">
+            <div class="swatch-color-box" style="background-color: #0E0F0E; border-color: #1E201E;">
+              <span class="swatch-badge">PLANAR 1.2:1</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-token-name">--surface-slab</div>
+              <div class="swatch-metaphor">Anodized Basalt</div>
+              <div class="swatch-hex-row">
+                <span>#0E0F0E</span>
+                <span>Elevated Slabs</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. --border-edge -->
+          <div class="swatch-card" onclick="copySwatchHex('#1E201E', '--border-edge')">
+            <div class="swatch-color-box" style="background-color: #1E201E;">
+              <span class="swatch-badge">1px HAIRLINE</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-token-name">--border-edge</div>
+              <div class="swatch-metaphor">Milled Cold-Steel</div>
+              <div class="swatch-hex-row">
+                <span>#1E201E</span>
+                <span>Structural Rule</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. --ink-lead -->
+          <div class="swatch-card" onclick="copySwatchHex('#FBF9F3', '--ink-lead')">
+            <div class="swatch-color-box" style="background-color: #FBF9F3;">
+              <span class="swatch-badge" style="background: #000; color: #D4FF00;">19.1:1 AAA</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-token-name">--ink-lead</div>
+              <div class="swatch-metaphor">Bleached Vellum</div>
+              <div class="swatch-hex-row">
+                <span>#FBF9F3</span>
+                <span>Headline Display</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. --ink-sub -->
+          <div class="swatch-card" onclick="copySwatchHex('#585B55', '--ink-sub')">
+            <div class="swatch-color-box" style="background-color: #585B55;">
+              <span class="swatch-badge" style="background: #000; color: #FFF;">4.5:1 AA</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-token-name">--ink-sub</div>
+              <div class="swatch-metaphor">Weathered Lead</div>
+              <div class="swatch-hex-row">
+                <span>#585B55</span>
+                <span>Metadata Index</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. --signal-kinetic -->
+          <div class="swatch-card" onclick="copySwatchHex('#D4FF00', '--signal-kinetic')">
+            <div class="swatch-color-box" style="background-color: #D4FF00;">
+              <span class="swatch-badge" style="background: #000; color: #D4FF00;">TACTILE TRIGGER</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-token-name">--signal-kinetic</div>
+              <div class="swatch-metaphor">High-Ion Chartreuse</div>
+              <div class="swatch-hex-row">
+                <span>#D4FF00</span>
+                <span>Primary Actuator</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. --signal-oxide -->
+          <div class="swatch-card" onclick="copySwatchHex('#E83D1B', '--signal-oxide')">
+            <div class="swatch-color-box" style="background-color: #E83D1B;">
+              <span class="swatch-badge" style="background: #000; color: #FFF;">KILLSWITCH</span>
+            </div>
+            <div class="swatch-info">
+              <div class="swatch-token-name">--signal-oxide</div>
+              <div class="swatch-metaphor">Venetian Vermilion</div>
+              <div class="swatch-hex-row">
+                <span>#E83D1B</span>
+                <span>System Interrupt</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Material Tokens Contrast Matrix -->
+        <div style="margin-top: 24px;">
+          <table class="contrast-table">
+            <thead>
+              <tr>
+                <th>SEMANTIC TOKEN</th>
+                <th>HEX VALUE</th>
+                <th>MATERIAL METAPHOR</th>
+                <th>ROLE & WCAG DELTA</th>
+                <th>PHYSICAL STATE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code style="color: var(--signal-kinetic);">--canvas-root</code></td>
+                <td>#050505</td>
+                <td>Absolute Carbon</td>
+                <td>Primary viewport base (0% pitch absorption)</td>
+                <td>Dormant Base</td>
+              </tr>
+              <tr>
+                <td><code style="color: var(--signal-kinetic);">--surface-slab</code></td>
+                <td>#0E0F0E</td>
+                <td>Anodized Basalt</td>
+                <td>Elevated planar containment (1.2:1 delta)</td>
+                <td>Planar Slab</td>
+              </tr>
+              <tr>
+                <td><code style="color: var(--signal-kinetic);">--border-edge</code></td>
+                <td>#1E201E</td>
+                <td>Milled Cold-Steel</td>
+                <td>Structural 1px precision hairline rule</td>
+                <td>Milled Rule</td>
+              </tr>
+              <tr>
+                <td><code style="color: var(--signal-kinetic);">--ink-lead</code></td>
+                <td>#FBF9F3</td>
+                <td>Bleached Vellum</td>
+                <td><strong class="wcag-pass">19.1:1 AAA PASS</strong> (Pure High-Signal)</td>
+                <td>High-Contrast Display</td>
+              </tr>
+              <tr>
+                <td><code style="color: var(--signal-kinetic);">--ink-sub</code></td>
+                <td>#585B55</td>
+                <td>Weathered Lead</td>
+                <td><strong style="color: var(--ink-lead);">4.5:1 AA PASS</strong> (Metadata & Index Tags)</td>
+                <td>Archival Index</td>
+              </tr>
+              <tr>
+                <td><code style="color: var(--signal-kinetic);">--signal-kinetic</code></td>
+                <td>#D4FF00</td>
+                <td>High-Ion Chartreuse</td>
+                <td>Primary tactile trigger & live telemetry reticle</td>
+                <td>Charged Kinetic</td>
+              </tr>
+              <tr>
+                <td><code style="color: var(--signal-kinetic);">--signal-oxide</code></td>
+                <td>#E83D1B</td>
+                <td>Venetian Vermilion</td>
+                <td>Interrupts, emergency killswitches & halt alerts</td>
+                <td>Oxidized Signal</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. TYPOGRAPHIC ARCHITECTURE & VARIABLE AXES
+         ========================================================================== -->
+    <section class="section-spacing" id="typography">
+      <div class="layout-container">
+        
+        <div class="split-index-header">
+          <div class="split-index-left">
+            <span>[ 02 // TYPOGRAPHIC_ARCHITECTURE ]</span>
+            <span style="color: var(--border-edge);">──</span>
+            <span>VARIABLE AXES & ARCHIVAL SPECIMEN</span>
+          </div>
+          <div class="split-index-right">
+            <span>INTERACTIVE TESTER</span>
+            <span class="status-marker-kinetic"></span>
+          </div>
+        </div>
+
+        <div class="grid-12" style="margin-top: 16px;">
+          
+          <!-- Specimen Ladder & Variable Axes Controls -->
+          <div class="col-8">
+            <div class="type-specimen-box">
+              
+              <!-- Variable Axes Sliders -->
+              <div class="variable-slider-row">
+                <div class="slider-control">
+                  <div class="slider-label-row">
+                    <span>Optical Size ("opsz")</span>
+                    <span id="val-opsz" style="color: var(--signal-kinetic);">144</span>
+                  </div>
+                  <input type="range" id="slider-opsz" class="slider-input" min="9" max="144" value="144" oninput="updateVariableAxes()">
+                </div>
+
+                <div class="slider-control">
+                  <div class="slider-label-row">
+                    <span>Weight ("wght")</span>
+                    <span id="val-wght" style="color: var(--signal-kinetic);">350</span>
+                  </div>
+                  <input type="range" id="slider-wght" class="slider-input" min="100" max="900" value="350" oninput="updateVariableAxes()">
+                </div>
+
+                <div class="slider-control">
+                  <div class="slider-label-row">
+                    <span>Softness ("SOFT")</span>
+                    <span id="val-soft" style="color: var(--signal-kinetic);">0</span>
+                  </div>
+                  <input type="range" id="slider-soft" class="slider-input" min="0" max="100" value="0" oninput="updateVariableAxes()">
+                </div>
+
+                <div class="slider-control">
+                  <div class="slider-label-row">
+                    <span>Kerning (em)</span>
+                    <span id="val-kern" style="color: var(--signal-kinetic);">-0.05em</span>
+                  </div>
+                  <input type="range" id="slider-kern" class="slider-input" min="-10" max="10" value="-5" oninput="updateVariableAxes()">
+                </div>
+              </div>
+
+              <!-- Live Editable Target -->
+              <div class="telemetry-tag" style="margin-bottom: 8px;">
+                <span>LIVE EDITABLE SPECIMEN:</span>
+              </div>
+              <div id="interactive-specimen" class="specimen-display-target" contenteditable="true" spellcheck="false">
+                Radical Silence & <span class="italic-nuance">(High-Frequency)</span> Telemetry.
+              </div>
+
+              <div style="margin-top: 16px; display: flex; justify-content: space-between; align-items: center;">
+                <span class="telemetry-tag">FONT: <strong>Fraunces / GT Alpina Fine</strong></span>
+                <span class="telemetry-tag">LINE-HEIGHT: <strong>0.88</strong></span>
+              </div>
+            </div>
+
+            <!-- Typographic Hierarchy Ladder -->
+            <div style="margin-top: 20px; background-color: var(--surface-slab); border: 1px solid var(--border-edge); padding: 20px;">
+              <div class="split-index-header" style="margin: -20px -20px 16px -20px; border-bottom: 1px solid var(--border-edge); padding: 0 16px;">
+                <span>[ TYPE_SCALE_HIERARCHY ]</span>
+                <span class="status-marker-sub"></span>
+              </div>
+
+              <!-- Display Scale -->
+              <div style="padding: 12px 0; border-bottom: 1px solid var(--border-edge);">
+                <div class="telemetry-tag" style="margin-bottom: 4px;">DISPLAY ARCHETYPE // clamp(3.5rem, 8vw, 6.5rem) / 0.88 / -0.05em</div>
+                <div class="font-display" style="font-size: 2.75rem; line-height: 0.88; color: var(--ink-lead);">
+                  Monolithic Archival System
+                </div>
+              </div>
+
+              <!-- H1 Scale -->
+              <div style="padding: 12px 0; border-bottom: 1px solid var(--border-edge);">
+                <div class="telemetry-tag" style="margin-bottom: 4px;">HEADING H1 // 2.25rem / 0.95 / -0.04em</div>
+                <div class="font-display" style="font-size: 2.25rem; line-height: 0.95; color: var(--ink-lead);">
+                  Brutalist Physical-Digital Interface
+                </div>
+              </div>
+
+              <!-- Grotesque Body Scale -->
+              <div style="padding: 12px 0; border-bottom: 1px solid var(--border-edge);">
+                <div class="telemetry-tag" style="margin-bottom: 4px;">STRUCTURAL GROTESQUE BODY // 13px / 1.35 / -0.015em / wght 450</div>
+                <p class="font-grotesque" style="color: var(--ink-lead); max-width: 70ch;">
+                  Engineered strictly for machine telemetry and structural clarity. Standard paragraphs and component copy utilize tightly tracked grotesque line-heights without decorative flourish.
+                </p>
+              </div>
+
+              <!-- Fragment Mono Telemetry Meta -->
+              <div style="padding: 12px 0;">
+                <div class="telemetry-tag" style="margin-bottom: 4px;">SYSTEM TELEMETRY ARCHIVAL INDEX // 10px / +0.12em / UPPERCASE</div>
+                <div class="font-mono" style="color: var(--signal-kinetic);">
+                  ISO: 0800_RAW // FREQUENCY: 144.2 HZ // RETICLE: ARMED // STATUS: 0x24_PASS
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Type Pairing Rules & OpenType Features Column -->
+          <div class="col-4">
+            <div class="surface-slab-container" style="padding: 20px; height: 100%;">
+              <div class="split-index-header" style="margin: -20px -20px 16px -20px; padding: 0 16px;">
+                <span>[ OPENTYPE_FEATURES ]</span>
+                <span class="status-marker-kinetic"></span>
+              </div>
+
+              <div style="margin-bottom: 20px;">
+                <div class="telemetry-tag" style="margin-bottom: 6px;">TELEMETRY OPENTYPE AXES</div>
+                <pre style="background: #040504; border: 1px solid var(--border-edge); padding: 12px; font-family: var(--font-mono); font-size: 10px; color: var(--signal-kinetic); line-height: 1.6;">font-feature-settings:
+  "tnum" 1,  /* Tabular figures */
+  "zero" 1,  /* Slashed zero */
+  "ss02" 1,  /* Archival index */
+  "ss07" 1;  /* High-legibility mono */</pre>
+              </div>
+
+              <div style="margin-bottom: 20px;">
+                <div class="telemetry-tag" style="margin-bottom: 6px;">ITALIC NUANCE RULE</div>
+                <p class="font-grotesque" style="font-size: 12px; color: var(--ink-lead); margin-bottom: 8px;">
+                  All alternating parenthetical descriptors and atmospheric metadata must render in <em>Fraunces 400 True Italic</em> to create high tension against the brutalist mono numbers.
+                </p>
+                <div style="padding: 8px 12px; background: #080908; border-left: 2px solid var(--signal-kinetic); font-size: 12px;">
+                  Example: Architecture of <span class="italic-nuance">(Radical Silence)</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="telemetry-tag" style="margin-bottom: 6px;">FORBIDDEN TYPE PATTERNS</div>
+                <div style="font-family: var(--font-mono); font-size: 10px; color: var(--signal-oxide); line-height: 1.6;">
+                  ✕ NO huge untracked sans headers<br>
+                  ✕ NO rainbow gradient fills<br>
+                  ✕ NO loose 1.80 line-heights<br>
+                  ✕ NO decorative handwritten scripts
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. COMPONENT ARCHITECTURE & STRUCTURAL BLUEPRINT
+         ========================================================================== -->
+    <section class="section-spacing" id="blueprint">
+      <div class="layout-container">
+        
+        <div class="split-index-header">
+          <div class="split-index-left">
+            <span>[ 03 // STRUCTURAL_BLUEPRINT ]</span>
+            <span style="color: var(--border-edge);">──</span>
+            <span>ASCII ARCHIVAL SCHEMATIC & ACTUATORS</span>
+          </div>
+          <div class="split-index-right">
+            <span>PHYSICS: 1-BIT SOLID</span>
+            <span class="status-marker-kinetic"></span>
+          </div>
+        </div>
+
+        <div class="grid-12" style="margin-top: 16px;">
+          
+          <!-- ASCII Blueprint Monolith Container -->
+          <div class="col-7">
+            <div class="surface-slab-container">
+              <div class="split-index-header">
+                <span>[ BLUEPRINT_RENDER // MONOLITH_007 ]</span>
+                <span class="status-marker-kinetic"></span>
+              </div>
+              <pre class="blueprint-terminal">┌── [ ARCHIVE_INDEX // 004 ] ───────────────────────── [ SYSTEM_ONLINE: ● ] ──┐
+│                                                                             │
+│   The Architecture                                                          │
+│   of Radical Silence.                                                       │
+│                                                                             │
+│   [ PARAMETER ] ────────────── [ TELEMETRY ] ────────────── [ PROTOCOL ]    │
+│   ISO: 0800_RAW                FREQUENCY: 144.2 Hz          MODE: ISOLATED  │
+│                                                                             │
+│   ┌───────────────────────────┐  ┌──────────────────────────────────────┐   │
+│   │ EXECUTE EXTRACTION    ↗   │  │ ID: #0089_BETA                       │   │
+│   └───────────────────────────┘  └──────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────────┘</pre>
+            </div>
+
+            <!-- Live Rendering of the Exact Blueprint Component -->
+            <div style="margin-top: 20px;" class="surface-slab-container">
+              <div class="split-index-header">
+                <div class="split-index-left">
+                  <span>[ ARCHIVE_INDEX // 004 ]</span>
+                </div>
+                <div class="split-index-right">
+                  <span>SYSTEM_ONLINE:</span>
+                  <span class="status-marker-kinetic"></span>
+                </div>
+              </div>
+
+              <div style="padding: 24px;">
+                <div class="font-display" style="font-size: 2.25rem; line-height: 0.95; color: var(--ink-lead); margin-bottom: 20px;">
+                  The Architecture<br>of Radical Silence.
+                </div>
+
+                <div class="telemetry-parameter-bar" style="margin: 0 0 20px 0;">
+                  <div class="telemetry-cell">
+                    <div class="telemetry-cell-label">[ PARAMETER ]</div>
+                    <div class="telemetry-cell-value">ISO: 0800_RAW</div>
+                  </div>
+                  <div class="telemetry-cell">
+                    <div class="telemetry-cell-label">[ TELEMETRY ]</div>
+                    <div class="telemetry-cell-value" style="color: var(--signal-kinetic);">FREQUENCY: 144.2 Hz</div>
+                  </div>
+                  <div class="telemetry-cell">
+                    <div class="telemetry-cell-label">[ PROTOCOL ]</div>
+                    <div class="telemetry-cell-value">MODE: ISOLATED</div>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                  <button class="actuator-primary" onclick="simulateExtraction('#0089_BETA')">
+                    <span>EXECUTE EXTRACTION</span>
+                    <span>↗</span>
+                  </button>
+                  <div style="padding: 10px 16px; background: #080908; border: 1px solid var(--border-edge); font-family: var(--font-mono); font-size: 10px; color: var(--ink-sub);">
+                    ID: <strong style="color: var(--ink-lead);">#0089_BETA</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Component Archetypes Interactive Gallery -->
+          <div class="col-5">
+            <div class="surface-slab-container" style="padding: 20px;">
+              <div class="split-index-header" style="margin: -20px -20px 16px -20px; padding: 0 16px;">
+                <span>[ ACTUATOR_STATE_MATRIX ]</span>
+                <span class="status-marker-sub"></span>
+              </div>
+
+              <!-- Primary Actuator Specs -->
+              <div style="margin-bottom: 20px;">
+                <div class="telemetry-tag" style="margin-bottom: 8px;">1. PRIMARY ACTUATOR (BUTTON)</div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px;">
+                  <button class="actuator-primary">RESTING STATE</button>
+                  <button class="actuator-primary" style="background: var(--ink-lead); transform: translate(-1px,-1px); box-shadow: 2px 2px 0px var(--border-edge);">HOVER STATE</button>
+                </div>
+                <div style="font-family: var(--font-mono); font-size: 9px; color: var(--ink-sub); line-height: 1.5;">
+                  • Resting: BG #D4FF00, Text #050505 (10px bold mono)<br>
+                  • Hover: BG #FBF9F3, Text #050505, Translate: -1px, -1px<br>
+                  • Active: Invert to #050505 with 1px solid #D4FF00 & 3px 3px 0px #D4FF00
+                </div>
+              </div>
+
+              <!-- Secondary & Killswitch Actuators -->
+              <div style="margin-bottom: 20px; border-top: 1px solid var(--border-edge); padding-top: 16px;">
+                <div class="telemetry-tag" style="margin-bottom: 8px;">2. SECONDARY & KILLSWITCH ACTUATORS</div>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 8px;">
+                  <button class="actuator-secondary">ANODIZED BASALT</button>
+                  <button class="actuator-oxide" onclick="triggerKillswitchMock()">KILLSWITCH ●</button>
+                  <button class="actuator-ghost">[ ZERO_TRIM ]</button>
+                </div>
+              </div>
+
+              <!-- 1-Bit Form Controls -->
+              <div style="border-top: 1px solid var(--border-edge); padding-top: 16px;">
+                <div class="telemetry-tag" style="margin-bottom: 12px;">3. 1-BIT SOLID FORM CONTROLS</div>
+                
+                <div class="telemetry-input-group" style="margin-bottom: 14px;">
+                  <label class="telemetry-label">SEARCH RETICLE</label>
+                  <input type="text" class="telemetry-input" placeholder="ENTER PARAMETER OR ISO TAG... [ / ]" id="telemetry-sample-input">
+                </div>
+
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                  <label class="toggle-row" onclick="toggle1BitBox(this)">
+                    <span class="checkbox-1bit checked"></span>
+                    <span>CARRIER LOCK</span>
+                  </label>
+                  <label class="toggle-row" onclick="toggle1BitBox(this)">
+                    <span class="checkbox-1bit checked"></span>
+                    <span>ISOLATED MODE</span>
+                  </label>
+                  <label class="toggle-row" onclick="toggle1BitBox(this)">
+                    <span class="checkbox-1bit"></span>
+                    <span>DAMPING 100%</span>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. LIVING MICRO-EXPERIENCE // RADICAL SILENCE EXTRACTION TERMINAL
+         ========================================================================== -->
+    <section class="section-spacing" id="micro-experience">
+      <div class="layout-container">
+        
+        <div class="split-index-header">
+          <div class="split-index-left">
+            <span>[ 04 // LIVING_MICRO_EXPERIENCE ]</span>
+            <span style="color: var(--border-edge);">──</span>
+            <span>RADICAL SILENCE EXTRACTION TERMINAL</span>
+          </div>
+          <div class="split-index-right">
+            <span>OSCILLATOR: 144.2 HZ</span>
+            <span class="status-marker-kinetic"></span>
+          </div>
+        </div>
+
+        <div class="terminal-experience-shell" style="margin-top: 16px;">
+          
+          <!-- Terminal Top Deck -->
+          <div class="terminal-top-deck">
+            <!-- Left: Real-time SVG / Canvas Oscilloscope -->
+            <div class="oscilloscope-box">
+              <div class="oscilloscope-reticle-overlay">
+                FREQUENCY RETICLE // <span id="canvas-freq-readout">144.20 HZ</span> // RAW SINE
+              </div>
+              <canvas id="oscilloscope-canvas" class="oscilloscope-canvas" width="800" height="140"></canvas>
+            </div>
+
+            <!-- Right: Oscillator Controls & Audio Toggle -->
+            <div class="telemetry-deck-side">
+              <div>
+                <div class="telemetry-tag" style="margin-bottom: 4px;">TACTILE AUDIO SYNTHESIZER</div>
+                <div style="font-size: 13px; font-weight: 600; color: var(--ink-lead); margin-bottom: 12px;">
+                  High-Frequency Resonator
+                </div>
+                <div class="telemetry-tag" style="margin-bottom: 8px;">
+                  STATUS: <span id="audio-synth-status" class="telemetry-val-kinetic">STANDBY</span>
+                </div>
+              </div>
+
+              <div>
+                <button id="btn-toggle-tone" class="actuator-secondary" style="width: 100%; margin-bottom: 6px;" onclick="toggleAudioTone()">
+                  <span id="tone-btn-text">EMIT 144.2 HZ AUDIO CHIRP</span>
+                  <span>🔊</span>
+                </button>
+                <div style="font-family: var(--font-mono); font-size: 8px; color: var(--ink-sub); text-align: center;">
+                  WEB AUDIO API • HARD RESONANCE SYNTHESIS
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Terminal Lower Deck -->
+          <div class="terminal-lower-deck">
+            
+            <!-- Left Column: Extraction Trigger & Stepped Progress -->
+            <div>
+              <div class="telemetry-tag" style="margin-bottom: 8px;">EXTRACTION PROTOCOL CONTROLLER</div>
+              <div class="font-display" style="font-size: 1.5rem; line-height: 1.1; color: var(--ink-lead); margin-bottom: 12px;">
+                Buffer Pipeline: <span id="extraction-status-text" style="color: var(--signal-kinetic);">DORMANT</span>
+              </div>
+
+              <!-- Stepped Progress Bar -->
+              <div class="stepped-progress-bar" id="stepped-bar">
+                <div class="progress-step-block"></div>
+                <div class="progress-step-block"></div>
+                <div class="progress-step-block"></div>
+                <div class="progress-step-block"></div>
+                <div class="progress-step-block"></div>
+                <div class="progress-step-block"></div>
+                <div class="progress-step-block"></div>
+                <div class="progress-step-block"></div>
+                <div class="progress-step-block"></div>
+                <div class="progress-step-block"></div>
+              </div>
+
+              <div style="display: flex; gap: 12px; margin-top: 16px;">
+                <button class="actuator-primary" id="btn-execute-extraction" onclick="startExtractionSequence()">
+                  <span>START EXTRACTION CYCLE</span>
+                  <span>↗</span>
+                </button>
+                <button class="actuator-oxide" onclick="interruptExtraction()">
+                  <span>ABORT / KILLSWITCH</span>
+                </button>
+              </div>
+
+              <div style="margin-top: 16px; font-family: var(--font-mono); font-size: 10px; color: var(--ink-sub);">
+                EXTRACTED PACKETS: <strong id="packets-count" style="color: var(--ink-lead);">0 / 10</strong> | BUFFER: <span id="buffer-pct">0%</span>
+              </div>
+            </div>
+
+            <!-- Right Column: Real-time Telemetry Terminal Logs -->
+            <div>
+              <div class="split-index-header" style="background: #030303; margin-bottom: 0;">
+                <span>[ TELEMETRY_STREAM_LOG ]</span>
+                <span class="status-marker-kinetic"></span>
+              </div>
+              <div class="terminal-log-screen" id="terminal-logs">
+                <div>[00:00:01] SYSTEM 07 INITIALIZED // READY.</div>
+                <div>[00:00:02] FREQUENCY LOCKED TO 144.2 HZ CARRIER.</div>
+                <div>[00:00:03] ISO: 0800_RAW SENSITIVITY CALIBRATED.</div>
+                <div class="log-line-kinetic">[00:00:04] RETICLE ARMED. WAITING FOR OPERATOR EXTRACTION COMMAND.</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Archival Manifest Table Sub-Section -->
+          <div style="border-top: 1px solid var(--border-edge); padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+              <span class="telemetry-tag">ARCHIVE INDEX MANIFEST REGISTER</span>
+              <input type="text" id="manifest-search" class="telemetry-input" style="padding: 6px 12px; width: 260px;" placeholder="FILTER MANIFEST (E.G. BETA, ALPHA)..." oninput="filterManifest()">
+            </div>
+
+            <table class="contrast-table" id="manifest-table">
+              <thead>
+                <tr>
+                  <th>SPEC ID</th>
+                  <th>DESIGNATION</th>
+                  <th>TELEMETRY FREQ</th>
+                  <th>ISO PROFILE</th>
+                  <th>STATUS</th>
+                  <th>ACTION</th>
+                </tr>
+              </thead>
+              <tbody id="manifest-tbody">
+                <tr>
+                  <td><code>#0089_BETA</code></td>
+                  <td>The Architecture of Radical Silence</td>
+                  <td>144.2 Hz</td>
+                  <td>ISO: 0800_RAW</td>
+                  <td><span class="telemetry-val-kinetic">COMMITTED</span></td>
+                  <td><button class="actuator-ghost" style="padding: 4px 8px;" onclick="simulateExtraction('#0089_BETA')">EXTRACT ↗</button></td>
+                </tr>
+                <tr>
+                  <td><code>#0090_ALPHA</code></td>
+                  <td>Milled Cold-Steel Hairline Blueprint</td>
+                  <td>288.4 Hz</td>
+                  <td>ISO: 0400_FINE</td>
+                  <td><span class="telemetry-val-kinetic">COMMITTED</span></td>
+                  <td><button class="actuator-ghost" style="padding: 4px 8px;" onclick="simulateExtraction('#0090_ALPHA')">EXTRACT ↗</button></td>
+                </tr>
+                <tr>
+                  <td><code>#0091_GAMMA</code></td>
+                  <td>Venetian Oxide Telemetry Killswitch</td>
+                  <td>72.1 Hz</td>
+                  <td>ISO: 1600_HIGH</td>
+                  <td><span class="telemetry-val-oxide">STANDBY</span></td>
+                  <td><button class="actuator-ghost" style="padding: 4px 8px;" onclick="simulateExtraction('#0091_GAMMA')">EXTRACT ↗</button></td>
+                </tr>
+                <tr>
+                  <td><code>#0092_SIGMA</code></td>
+                  <td>1970s Swiss Archival Monolith</td>
+                  <td>144.2 Hz</td>
+                  <td>ISO: 0800_RAW</td>
+                  <td><span class="telemetry-val-kinetic">COMMITTED</span></td>
+                  <td><button class="actuator-ghost" style="padding: 4px 8px;" onclick="simulateExtraction('#0092_SIGMA')">EXTRACT ↗</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         8. STYLE TILE PROMPT CODE DRAWER & PROMPT VAULT
+         ========================================================================== -->
+    <section class="section-spacing" id="prompt-drawer">
+      <div class="layout-container">
+        
+        <div class="split-index-header">
+          <div class="split-index-left">
+            <span>[ 05 // AGENT_STYLE_TILE_PROMPT ]</span>
+            <span style="color: var(--border-edge);">──</span>
+            <span>MACHINE-READABLE SPECIFICATION VAULT</span>
+          </div>
+          <div class="split-index-right">
+            <span>1-CLICK AGENT INGESTION</span>
+            <span class="status-marker-kinetic"></span>
+          </div>
+        </div>
+
+        <div class="prompt-code-container" style="margin-top: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid var(--border-edge); padding-bottom: 10px;">
+            <span class="telemetry-tag">RAW MARKDOWN SPECIFICATION (agent.md SCHEMA COMPLIANT)</span>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn-tile btn-copy" onclick="copyStyleTileMarkdown()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copy Markdown Prompt
+              </button>
+              <button class="btn-tile" onclick="downloadStyleTileMarkdown()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download .md File
+              </button>
+            </div>
+          </div>
+
+          <pre class="prompt-pre" id="code-drawer-content"></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         9. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+         ========================================================================== -->
+    <section class="section-spacing">
+      <div class="layout-container">
+        <div class="split-index-header">
+          <div class="split-index-left">
+            <span>[ 06 // FORBIDDEN_CLICHÉS ]</span>
+            <span style="color: var(--border-edge);">──</span>
+            <span>ANTI-PATTERNS SPECIFIC TO THIS STYLE</span>
+          </div>
+          <div class="split-index-right">
+            <span class="status-marker-oxide"></span>
+            <span>ZERO COMPROMISE</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 16px;" class="grid-12">
+          <div class="col-6">
+            <div class="anti-pattern-item">
+              <strong style="color: var(--signal-oxide);">✕ NO SOFT BORDER RADII:</strong> Strictly 0px rectilinear corners. Any rounded squircle, pill button, or soft card corners completely breaks the cold monolithic silhouette.
+            </div>
+            <div class="anti-pattern-item">
+              <strong style="color: var(--signal-oxide);">✕ NO GAUSSIAN DROP SHADOWS:</strong> Never use blurred box-shadows or soft ambient lighting. Elevation relies entirely on 1-bit solid offset shadows (e.g. <code>3px 3px 0px #D4FF00</code>).
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="anti-pattern-item">
+              <strong style="color: var(--signal-oxide);">✕ NO PURPLE ON DARK THEMES:</strong> Generic violet/purple neon accents are forbidden. Use High-Ion Chartreuse (<code>#D4FF00</code>) for kinetic triggers and Venetian Vermilion (<code>#E83D1B</code>) for interrupts.
+            </div>
+            <div class="anti-pattern-item">
+              <strong style="color: var(--signal-oxide);">✕ NO GRADIENT KEYWORD HEADERS:</strong> Never apply CSS text gradients across headlines. Headlines are pure bleached vellum signal (<code>#FBF9F3</code>) with 19.1:1 AAA contrast.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       10. ARCHIVAL FOOTER
+       ========================================================================== -->
+  <footer style="background-color: var(--surface-well); border-top: 1px solid var(--border-edge); padding: 32px 0 24px 0;">
+    <div class="layout-container">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span class="design-code" data-live-tile-code>TILE</span>
+          <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: +0.08em; color: var(--ink-lead);">
+            SYSTEM 07 // MONOLITHIC HYPER-EDITORIAL
+          </span>
+        </div>
+        <div class="telemetry-tag">
+          <span>SPEC SPECIFICATION: <strong>ST-2026.08</strong></span>
+          <span style="color: var(--border-edge);">|</span>
+          <a href="../index.html" style="color: var(--signal-kinetic); text-decoration: none;">RETURN TO REGISTRY CATALOG ↗</a>
+        </div>
+      </div>
+      <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-edge); display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 9px; color: var(--ink-sub);">
+        <span>© 2026 STYLE TILES REGISTRY • VANILLA ZERO-BUILD SPECIFICATION</span>
+        <span>TESTED & OPTIMIZED FOR AGENTIC CODING (CURSOR / CLAUDE / ANTIGRAVITY)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       11. INSPECTION MODAL (Preview Style Tile)
+       ========================================================================== -->
+  <div class="modal-backdrop" id="spec-modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span class="design-code" data-live-tile-code>TILE</span>
+          <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; color: var(--ink-lead);">
+            SYSTEM 07 // MONOLITHIC HYPER-EDITORIAL (SPEC PROMPT)
+          </span>
+        </div>
+        <button class="btn-tile" style="padding: 4px 8px;" onclick="toggleSpecModal(false)">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre id="modal-markdown-display" style="font-family: var(--font-mono); font-size: 10.5px; line-height: 1.5; color: var(--ink-lead); white-space: pre-wrap;"></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-tile btn-copy" onclick="copyStyleTileMarkdown()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Style Tile
+        </button>
+        <button class="btn-tile" onclick="downloadStyleTileMarkdown()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download .md
+        </button>
+        <button class="btn-tile" onclick="toggleSpecModal(false)">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       12. TACTILE TOAST CONTAINER
+       ========================================================================== -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ==========================================================================
+       13. EMBEDDED RAW MARKDOWN SPECIFICATION (agent.md Schema Standard)
+       ========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Monolithic Hyper-Editorial
+  Construction: carbon slabs • 0px rectilinear • bleached-vellum serif • 1px cold-steel hairlines • high-ion chartreuse • 1-bit offset shadows
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A slab architecture of absolute carbon and anodized basalt, framed by 1px milled cold-steel hairlines. Every corner is 0px. Display type is a soft optical serif set large, light, and tightly kerned in bleached vellum; interface type is a compact grotesque; meta is a small uppercase mono. Accents are two hard inks only: high-ion chartreuse for primary actuation and venetian vermilion for danger. Elevation is 1-bit: solid 2px-3px offset blocks, never gaussian blur. Color changes snap at 0ms; positional shifts use a high-tension spring.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #050505; /* Absolute carbon - viewport base */
+  --bg-surface:             #0E0F0E; /* Anodized basalt - elevated slabs */
+  --bg-surface-alt:         #080908; /* Recessed basalt well */
+  --bg-surface-dark:        #040504; /* Deeper carbon recess */
+
+  /* Inks & Typography */
+  --ink-primary:            #FBF9F3; /* Bleached vellum - display and reading ink */
+  --ink-secondary:          #585B55; /* Weathered lead - secondary type */
+  --ink-muted:              #303430; /* Faded carbon - quiet type */
+  --ink-inverted:           #050505; /* Carbon ink on light fills */
+
+  /* Signature Accents */
+  --accent-primary:         #D4FF00; /* High-ion chartreuse */
+  --accent-primary-hover:   #FBF9F3; /* Vellum invert on hover */
+  --accent-secondary:       #E83D1B; /* Venetian vermilion */
+  --accent-tertiary:        #7A8278; /* Archival slate */
+
+  /* Status Tokens */
+  --status-success:         #D4FF00; /* Chartreuse confirm */
+  --status-warning:         #7A8278; /* Slate caution */
+  --status-danger:          #E83D1B; /* Vermilion interrupt */
+  --status-info:            #585B55; /* Weathered lead info */
+
+  /* Extra material aliases */
+  --canvas-root:            #050505;
+  --surface-slab:           #0E0F0E;
+  --surface-well:           #080908;
+  --border-edge:            #1E201E; /* Milled cold-steel */
+  --border-focus:           #585B55;
+  --ink-lead:               #FBF9F3;
+  --ink-sub:                #585B55;
+  --ink-dim:                #303430;
+  --signal-kinetic:         #D4FF00;
+  --signal-oxide:           #E83D1B;
+  --signal-slate:           #7A8278;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Fraunces", "GT Alpina Fine", Georgia, serif;
+--font-display-settings: "opsz" 144, "wght" 350, "SOFT" 0;
+--font-sans:    "Space Grotesk", "Sohne Mono", "Neue Haas Grotesk Display", "Inter", sans-serif;
+--font-mono:    "Fragment Mono", "JetBrains Mono", monospace;
+
+--text-display: clamp(3.5rem, 8vw, 6.5rem) / 0.88 var(--font-display); /* Kerning: -0.05em | wght 350 */
+--text-h1:      2.75rem / 0.95 var(--font-display);                   /* Kerning: -0.04em | wght 350 */
+--text-h2:      1.75rem / 1.15 var(--font-display);                   /* Kerning: -0.03em | wght 400 */
+--text-h3:      1.125rem / 1.30 var(--font-sans);                     /* Kerning: -0.02em | Weight: 500 */
+--text-body:    13px / 1.35 var(--font-sans);                         /* Weight: 450 | Tracking: -0.015em */
+--text-body-sm: 13px / 1.35 var(--font-sans);
+--text-meta:    10px / 1.40 var(--font-mono);                         /* Weight: 500 | Tracking: +0.12em | UPPERCASE */
+
+/* Display is light optical serif at extreme size with negative tracking.
+   Alternating italic cuts are a style of emphasis, not an invitation to add parenthetical slogans.
+   Mono meta uses font-feature-settings: "tnum" 1, "zero" 1, "ss02" 1, "ss07" 1.
+   Never prescribe sample headlines or index strings. */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 0px;
+--radius-subtle:  0px;
+--radius-pill:    0px;
+
+--shadow-none:      none;
+--shadow-base:      2px 2px 0px #1E201E;
+--shadow-hover:     3px 3px 0px #D4FF00;
+--shadow-active:    3px 3px 0px #D4FF00;
+--shadow-kinetic:   3px 3px 0px #D4FF00;
+--shadow-oxide:     3px 3px 0px #E83D1B;
+--shadow-coldsteel: 2px 2px 0px #1E201E;
+--shadow-lead:      3px 3px 0px #FBF9F3;
+
+/* Color and border changes snap at 0ms ease. Positional shifts: 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275)
+   or a high-tension spring (mass: 0.8, tension: 380, friction: 26). Zero soft drop shadows. */
+
+/* Raster grain (optional visual finish on existing surfaces):
+   backdrop-filter: contrast(110%) brightness(98%);
+   background-image: radial-gradient(#1E201E 0.75px, transparent 0.75px); background-size: 16px 16px; */
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid #1E201E;
+--border-hairline:    1px solid #1E201E;
+--border-kinetic:     1px solid #D4FF00;
+--border-oxide:       1px solid #E83D1B;
+--divider-style:      1px solid #1E201E;
+
+/* Modular 4px baseline. Hairlines only - no chunky frames. */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 0px radius. Primary rest: fill #D4FF00, ink #050505, 10px bold uppercase mono, no border. Hover: fill #FBF9F3, ink #050505, translate -1px -1px. Active: invert to #050505 fill, 1px solid #D4FF00, ink #D4FF00, 3px 3px 0 #D4FF00 offset. Danger uses vermilion fill or vermilion hairline. Use the host's existing labels.
+- **Cards**: Basalt slabs on carbon canvas, 1px cold-steel hairline, 0px radius. Optional 24px header strip with a hairline under-rule. Do not add numbered index prefixes, split-code headers, or pulsing status squares unless the host already has a status control - then style that control as a 4px chartreuse square.
+- **Inputs**: Square wells in recessed basalt, 1px cold-steel border. Focus uses weathered-lead or chartreuse hairline. Input font-size >= 16px. Mono for compact fields if the host already treats them as data entry.
+- **Navigation**: Restyle existing items as tracked uppercase grotesque or mono. Active state is vellum or chartreuse hairline, never a pill. Do not add clocks, frequencies, mode readouts, or catalog codes.
+- **Badges / chips / toggles**: 0px chips with hairline borders. Chartreuse fill for on; vermilion for destructive; cold-steel outline for idle.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No rounded pill buttons or any non-zero radius.
+- No soft gaussian drop shadows or diffuse lighting.
+- No purple/violet accents on dark backgrounds (chartreuse and vermilion only).
+- No rainbow gradients or gradient text fills.
+- No floating unbordered cards.
+- Do not print System 07, YS.07, TELEMETRY, ISO, FREQ, MODE, or any showcase index string.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- ==========================================================================
+       14. JAVASCRIPT CONTROLLER & LIVING INTERACTIONS
+       ========================================================================== -->
+  <script>
+    // --- 1. POPULATE PROMPT DRAWER & MODAL ON LOAD ---
+    document.addEventListener("DOMContentLoaded", () => {
+      const rawMarkdown = document.getElementById("style-tile-markdown").textContent.trim();
+      const codeDrawer = document.getElementById("code-drawer-content");
+      const modalDisplay = document.getElementById("modal-markdown-display");
+
+      if (codeDrawer) codeDrawer.textContent = rawMarkdown;
+      if (modalDisplay) modalDisplay.textContent = rawMarkdown;
+
+      initOscilloscope();
+      startLiveClock();
+    });
+
+    // --- 2. TACTILE TOAST SYSTEM ---
+    function showToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `<span style="color: var(--signal-kinetic);">${icon}</span> <span>${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => toast.classList.add("show"));
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 150);
+      }, 2200);
+    }
+
+    // --- 3. COPY STYLE TILE RAW MARKDOWN ---
+    function copyStyleTileMarkdown() {
+      const markdown = document.getElementById("style-tile-markdown").textContent.trim();
+      navigator.clipboard.writeText(markdown).then(() => {
+        showToast("STYLE TILE PROMPT COPIED TO CLIPBOARD!", "⌖");
+        playTactileBeep(880, 0.05);
+
+        const btnLabel = document.getElementById("copy-btn-label");
+        if (btnLabel) {
+          const original = btnLabel.textContent;
+          btnLabel.textContent = "✓ COPIED!";
+          setTimeout(() => { btnLabel.textContent = original; }, 2000);
+        }
+      }).catch(err => {
+        showToast("FAILED TO COPY: " + err, "✕");
+      });
+    }
+
+    // --- 4. DOWNLOAD STYLE TILE .MD FILE ---
+    function downloadStyleTileMarkdown() {
+      const markdown = document.getElementById("style-tile-markdown").textContent.trim();
+      const blob = new Blob([markdown], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = "style-tile-the-monolith.md";
+      document.body.appendChild(anchor);
+      anchor.click();
+      document.body.removeChild(anchor);
+      URL.revokeObjectURL(url);
+      showToast("DOWNLOADED: style-tile-the-monolith.md", "↓");
+      playTactileBeep(660, 0.04);
+    }
+
+    // --- 5. MODAL TOGGLE ---
+    function toggleSpecModal(show) {
+      const modal = document.getElementById("spec-modal-backdrop");
+      if (!modal) return;
+      if (show) {
+        modal.classList.add("show");
+        playTactileBeep(440, 0.03);
+      } else {
+        modal.classList.remove("show");
+      }
+    }
+
+    // ESC to close modal
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") toggleSpecModal(false);
+      if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
+        e.preventDefault();
+        const input = document.getElementById("telemetry-sample-input");
+        if (input) input.focus();
+      }
+    });
+
+    // --- 6. SWATCH COPY TO CLIPBOARD ---
+    function copySwatchHex(hex, token) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`COPIED ${token}: ${hex}`, "⌖");
+        playTactileBeep(520, 0.03);
+      });
+    }
+
+    // --- 7. VARIABLE AXES SLIDERS INTERACTIVITY ---
+    function updateVariableAxes() {
+      const opsz = document.getElementById("slider-opsz").value;
+      const wght = document.getElementById("slider-wght").value;
+      const soft = document.getElementById("slider-soft").value;
+      const kernVal = document.getElementById("slider-kern").value;
+      const kernEm = (kernVal / 100).toFixed(2) + "em";
+
+      document.getElementById("val-opsz").textContent = opsz;
+      document.getElementById("val-wght").textContent = wght;
+      document.getElementById("val-soft").textContent = soft;
+      document.getElementById("val-kern").textContent = kernEm;
+
+      const target = document.getElementById("interactive-specimen");
+      if (target) {
+        target.style.fontVariationSettings = `"opsz" ${opsz}, "wght" ${wght}, "SOFT" ${soft}`;
+        target.style.letterSpacing = kernEm;
+      }
+    }
+
+    // --- 8. 1-BIT SOLID TOGGLES ---
+    function toggle1BitBox(element) {
+      const box = element.querySelector(".checkbox-1bit");
+      if (box) {
+        box.classList.toggle("checked");
+        playTactileBeep(box.classList.contains("checked") ? 740 : 370, 0.02);
+      }
+    }
+
+    // --- 9. WEB AUDIO API TACTILE BEEP & OSCILLATOR ---
+    let audioCtx = null;
+    let toneOsc = null;
+    let isTonePlaying = false;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTactileBeep(freq = 440, duration = 0.04) {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        // Audio API fallback
+      }
+    }
+
+    function toggleAudioTone() {
+      try {
+        const ctx = getAudioContext();
+        const btnText = document.getElementById("tone-btn-text");
+        const statusReadout = document.getElementById("audio-synth-status");
+
+        if (isTonePlaying) {
+          if (toneOsc) {
+            toneOsc.stop();
+            toneOsc.disconnect();
+            toneOsc = null;
+          }
+          isTonePlaying = false;
+          if (btnText) btnText.textContent = "EMIT 144.2 HZ AUDIO CHIRP";
+          if (statusReadout) {
+            statusReadout.textContent = "STANDBY";
+            statusReadout.className = "telemetry-val-kinetic";
+          }
+          showToast("OSCILLATOR MUTED", "🔇");
+        } else {
+          toneOsc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          toneOsc.type = "sawtooth";
+          toneOsc.frequency.setValueAtTime(144.2, ctx.currentTime);
+          gain.gain.setValueAtTime(0.03, ctx.currentTime);
+          toneOsc.connect(gain);
+          gain.connect(ctx.destination);
+          toneOsc.start();
+          isTonePlaying = true;
+          if (btnText) btnText.textContent = "HALT 144.2 HZ SYNTHESIZER";
+          if (statusReadout) {
+            statusReadout.textContent = "TRANSMITTING (144.2 HZ)";
+            statusReadout.className = "telemetry-val-oxide";
+          }
+          showToast("OSCILLATOR LIVE: 144.2 HZ", "🔊");
+        }
+      } catch (e) {
+        showToast("AUDIO INITIALIZED ON INTERACTION", "!");
+      }
+    }
+
+    // --- 10. REAL-TIME OSCILLOSCOPE CANVAS ---
+    function initOscilloscope() {
+      const canvas = document.getElementById("oscilloscope-canvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      let phase = 0;
+
+      function renderFrame() {
+        ctx.fillStyle = "#020202";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Draw Hairline Grid
+        ctx.strokeStyle = "#1E201E";
+        ctx.lineWidth = 1;
+        for (let x = 0; x < canvas.width; x += 40) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, canvas.height);
+          ctx.stroke();
+        }
+        for (let y = 0; y < canvas.height; y += 35) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(canvas.width, y);
+          ctx.stroke();
+        }
+
+        // Draw 144.2 Hz Harmonic Waveform
+        ctx.strokeStyle = isTonePlaying ? "#E83D1B" : "#D4FF00";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+
+        const midY = canvas.height / 2;
+        for (let x = 0; x < canvas.width; x++) {
+          const freq = isTonePlaying ? 0.045 : 0.032;
+          const amp = isTonePlaying ? 40 : 25;
+          const y = midY + Math.sin(x * freq + phase) * amp + (Math.sin(x * 0.08 + phase * 2) * 6);
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+
+        phase += isTonePlaying ? 0.12 : 0.04;
+        requestAnimationFrame(renderFrame);
+      }
+      requestAnimationFrame(renderFrame);
+    }
+
+    // --- 11. EXTRACTION SEQUENCE SIMULATION ---
+    let extractionInterval = null;
+    let currentStep = 0;
+
+    function startExtractionSequence() {
+      if (extractionInterval) clearInterval(extractionInterval);
+      currentStep = 0;
+
+      const blocks = document.querySelectorAll("#stepped-bar .progress-step-block");
+      blocks.forEach(b => { b.className = "progress-step-block"; });
+
+      const statusEl = document.getElementById("extraction-status-text");
+      const packetsEl = document.getElementById("packets-count");
+      const bufferPct = document.getElementById("buffer-pct");
+
+      if (statusEl) {
+        statusEl.textContent = "ACQUIRING TELEMETRY LOCK...";
+        statusEl.style.color = "var(--signal-kinetic)";
+      }
+
+      addTerminalLog(">> INITIATING EXTRACTION SEQUENCE: #0089_BETA", "log-line-kinetic");
+      playTactileBeep(440, 0.03);
+
+      extractionInterval = setInterval(() => {
+        if (currentStep < blocks.length) {
+          blocks[currentStep].classList.add("active");
+          currentStep++;
+          const pct = Math.round((currentStep / blocks.length) * 100);
+          if (packetsEl) packetsEl.textContent = `${currentStep} / ${blocks.length}`;
+          if (bufferPct) bufferPct.textContent = `${pct}%`;
+
+          playTactileBeep(400 + (currentStep * 50), 0.02);
+          addTerminalLog(`[0x89${currentStep}] BUFFER PACKET #${currentStep} COMMITTED TO DISK.`);
+        } else {
+          clearInterval(extractionInterval);
+          extractionInterval = null;
+          if (statusEl) {
+            statusEl.textContent = "EXTRACTION COMPLETE // COMMITTED";
+            statusEl.style.color = "var(--ink-lead)";
+          }
+          addTerminalLog(">> EXTRACTION CYCLE 100% COMPLETE. MANIFEST LOCKED.", "log-line-lead");
+          showToast("EXTRACTION COMMITTED: 10 PACKETS", "✓");
+          playTactileBeep(880, 0.08);
+        }
+      }, 250);
+    }
+
+    function interruptExtraction() {
+      if (extractionInterval) {
+        clearInterval(extractionInterval);
+        extractionInterval = null;
+      }
+      const blocks = document.querySelectorAll("#stepped-bar .progress-step-block");
+      blocks.forEach((b, idx) => {
+        if (idx < currentStep) b.className = "progress-step-block oxide";
+      });
+
+      const statusEl = document.getElementById("extraction-status-text");
+      if (statusEl) {
+        statusEl.textContent = "ABORTED // KILLSWITCH ACTIVE";
+        statusEl.style.color = "var(--signal-oxide)";
+      }
+      addTerminalLog("!! EMERGENCY KILLSWITCH TRIGGERED. EXTRACTION HALTED.", "log-line-oxide");
+      showToast("KILLSWITCH TRIGGERED: SEQUENCE HALTED", "●");
+      playTactileBeep(220, 0.12);
+    }
+
+    function triggerKillswitchMock() {
+      interruptExtraction();
+    }
+
+    function simulateExtraction(specId) {
+      addTerminalLog(`>> TARGET SPEC SELECTED: ${specId}`, "log-line-kinetic");
+      startExtractionSequence();
+      showToast(`TARGETING SPEC: ${specId}`, "⌖");
+    }
+
+    function addTerminalLog(text, className = "") {
+      const logs = document.getElementById("terminal-logs");
+      if (!logs) return;
+      const row = document.createElement("div");
+      if (className) row.className = className;
+      row.textContent = text;
+      logs.appendChild(row);
+      logs.scrollTop = logs.scrollHeight;
+    }
+
+    // --- 12. MANIFEST SEARCH FILTER ---
+    function filterManifest() {
+      const query = document.getElementById("manifest-search").value.toLowerCase().trim();
+      const rows = document.querySelectorAll("#manifest-tbody tr");
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(query) ? "" : "none";
+      });
+    }
+
+    // --- 13. LIVE UTC CLOCK ---
+    function startLiveClock() {
+      const clockEl = document.getElementById("live-utc-clock");
+      if (!clockEl) return;
+      setInterval(() => {
+        const now = new Date();
+        const iso = now.toISOString().replace("T", " ").substring(0, 19) + " UTC";
+        clockEl.textContent = iso;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

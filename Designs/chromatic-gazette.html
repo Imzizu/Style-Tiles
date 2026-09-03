@@ -1,0 +1,3081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chromatic Gazette — Style Tile</title>
+  <meta name="description" content="Editorial Chromatic Block design system: Tri-tone asymmetric editorial layout with deep indigo (#2D265C), warm parchment (#FAF8EE), vivid vermilion (#FF5338), compressed heavy display typography, and zero-gap chromatic seams.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon.ico">
+
+  <!-- Google Fonts: Anton & Bebas Neue (for compressed display impact), Inter (for interface/body), JetBrains Mono (for metadata/mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       01. DESIGN SYSTEM TOKENS & ROLES (TILE: EDITORIAL CHROMATIC BLOCK)
+       ========================================================================== */
+    :root {
+      /* Primary Palette Tokens */
+      --palette-indigo-deep:      #2D265C;  /* Left rail background, high-contrast anchor */
+      --palette-indigo-muted:     #A59EC2;  /* Secondary text / metadata on dark canvas */
+      --palette-parchment-warm:   #FAF8EE;  /* Primary center stage background */
+      --palette-vermilion-vivid:  #FF5338;  /* Right rail background & focal display type */
+      --palette-vermilion-soft:   #FFE5E0;  /* Light tint for vermilion hover states */
+      --palette-ink-primary:      #1C1A24;  /* High-contrast body copy on parchment */
+      --palette-ink-secondary:    #636070;  /* Author/metadata subtext on light stage */
+      --palette-pure-white:       #FFFFFF;  /* Primary headers on dark rail, card canvas */
+      --palette-focus-goldenrod:  #FFD027;  /* High-vis goldenrod for a11y focus rings */
+
+      /* Semantic Mappings */
+      --surface-primary:        var(--palette-parchment-warm);
+      --surface-sidebar-dark:   var(--palette-indigo-deep);
+      --surface-sidebar-accent: var(--palette-vermilion-vivid);
+      --surface-card:           var(--palette-pure-white);
+      --text-primary-dark:      var(--palette-pure-white);
+      --text-secondary-dark:    var(--palette-indigo-muted);
+      --text-primary-light:     var(--palette-ink-primary);
+      --text-secondary-light:   var(--palette-ink-secondary);
+      --text-accent:            var(--palette-vermilion-vivid);
+      --interactive-focus:      var(--palette-focus-goldenrod);
+
+      /* Typography Stacks */
+      --font-display: "Druk Condensed", "Cabinet Grotesk", "Anton", "Bebas Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-body:    "Inter", "Satoshi", "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono:    "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+
+      /* Corner Geometry (Border Radii) */
+      --radius-none:        0px;
+      --radius-subtle:      3px;
+      --radius-interactive: 6px;
+      --radius-frame:       28px;
+      --radius-full:        9999px;
+
+      /* Elevation & Depth */
+      --elevation-0: none;
+      --elevation-1: 0 4px 14px -2px rgba(45, 38, 92, 0.08);
+      --elevation-2: 0 12px 28px -4px rgba(45, 38, 92, 0.16);
+
+      /* Spacing Scale (4px / 8px Grid) */
+      --space-2xs: 4px;
+      --space-xs:  8px;
+      --space-sm:  12px;
+      --space-md:  16px;
+      --space-lg:  24px;
+      --space-xl:  32px;
+      --space-2xl: 48px;
+      --space-3xl: 64px;
+
+      /* Borders & Dividers */
+      --divider-dark:  1px solid rgba(255, 255, 255, 0.08);
+      --divider-light: 1px solid rgba(45, 38, 92, 0.06);
+      --border-accent: 2px solid var(--palette-vermilion-vivid);
+
+      /* Motion Curves */
+      --transition-standard: 200ms cubic-bezier(0.2, 0, 0, 1);
+      --motion-lift:         350ms cubic-bezier(0.16, 1, 0.3, 1);
+
+      /* Global Dimensions */
+      --max-width: 1320px;
+    }
+
+    /* ==========================================================================
+       02. RESET & BASE
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--surface-primary);
+      color: var(--text-primary-light);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-primary-light);
+      background-color: var(--surface-primary);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background-color: var(--palette-vermilion-vivid);
+      color: var(--palette-pure-white);
+    }
+
+    :focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px var(--palette-indigo-deep), 0 0 0 5px var(--interactive-focus);
+    }
+
+    .layout-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       03. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ========================================================================== */
+    .style-tile-header {
+      background-color: var(--palette-pure-white);
+      border-bottom: 1px solid rgba(45, 38, 92, 0.12);
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      padding: 10px var(--space-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      box-shadow: 0 2px 8px rgba(45, 38, 92, 0.04);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--palette-indigo-deep);
+      text-decoration: none;
+      padding: 6px 12px;
+      background: var(--palette-parchment-warm);
+      border: 1px solid rgba(45, 38, 92, 0.15);
+      border-radius: var(--radius-interactive);
+      transition: all var(--transition-standard);
+    }
+
+    .nav-back-link:hover {
+      background-color: var(--palette-vermilion-vivid);
+      color: var(--palette-pure-white);
+      border-color: var(--palette-vermilion-vivid);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      background-color: var(--palette-indigo-deep);
+      color: var(--palette-pure-white);
+      border-radius: var(--radius-subtle);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .design-title {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--palette-ink-primary);
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--palette-vermilion-vivid);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background-color: var(--palette-vermilion-soft);
+      border: 1px solid rgba(255, 83, 56, 0.25);
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 7px 14px;
+      border: 1px solid rgba(45, 38, 92, 0.15);
+      border-radius: var(--radius-interactive);
+      background: var(--palette-parchment-warm);
+      color: var(--palette-indigo-deep);
+      cursor: pointer;
+      transition: all var(--transition-standard);
+    }
+
+    .btn-tile:hover {
+      background-color: var(--palette-indigo-deep);
+      color: var(--palette-pure-white);
+      border-color: var(--palette-indigo-deep);
+    }
+
+    .btn-tile.btn-copy {
+      background-color: var(--palette-vermilion-vivid);
+      border-color: var(--palette-vermilion-vivid);
+      color: var(--palette-pure-white);
+    }
+
+    .btn-tile.btn-copy:hover {
+      background-color: #E03E24;
+      border-color: #E03E24;
+    }
+
+    /* ==========================================================================
+       04. HERO SECTION (EDITORIAL CHROMATIC BANNER)
+       ========================================================================== */
+    .hero-container {
+      margin-top: var(--space-xl);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .hero-banner {
+      background: var(--palette-pure-white);
+      border: 1px solid rgba(45, 38, 92, 0.10);
+      border-radius: var(--radius-frame);
+      padding: var(--space-2xl);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--elevation-1);
+    }
+
+    .hero-meta-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--divider-light);
+    }
+
+    .hero-tag-chips {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .hero-chip {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: var(--radius-interactive);
+      background: var(--palette-parchment-warm);
+      color: var(--palette-indigo-deep);
+      border: 1px solid rgba(45, 38, 92, 0.08);
+    }
+
+    .hero-chip.accent {
+      background: var(--palette-vermilion-soft);
+      color: var(--palette-vermilion-vivid);
+      border-color: rgba(255, 83, 56, 0.2);
+    }
+
+    .hero-chip.dark {
+      background: var(--palette-indigo-deep);
+      color: var(--palette-pure-white);
+      border-color: var(--palette-indigo-deep);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .hero-headline-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--palette-vermilion-vivid);
+    }
+
+    h1.hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 8vw, 5.5rem);
+      line-height: 0.88;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--palette-indigo-deep);
+      margin: var(--space-2xs) 0 var(--space-xs);
+      word-spacing: 0.1em;
+    }
+
+    .hero-title .accent-word {
+      color: var(--palette-vermilion-vivid);
+    }
+
+    .hero-lead-text {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--palette-ink-secondary);
+      max-width: 580px;
+    }
+
+    .hero-action-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .btn-hero-primary {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 12px 24px;
+      background: var(--palette-vermilion-vivid);
+      color: var(--palette-pure-white);
+      border: none;
+      border-radius: var(--radius-interactive);
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 83, 56, 0.28);
+      transition: all var(--transition-standard);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-hero-primary:hover {
+      background: #E03E24;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255, 83, 56, 0.35);
+    }
+
+    .btn-hero-secondary {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 12px 20px;
+      background: var(--palette-indigo-deep);
+      color: var(--palette-pure-white);
+      border: none;
+      border-radius: var(--radius-interactive);
+      cursor: pointer;
+      transition: all var(--transition-standard);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-hero-secondary:hover {
+      background: #1F1943;
+      transform: translateY(-2px);
+    }
+
+    /* Tri-Tone Micro Preview Card in Hero */
+    .hero-preview-graphic {
+      background: var(--palette-parchment-warm);
+      border: 1px solid rgba(45, 38, 92, 0.12);
+      border-radius: var(--radius-interactive);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      position: relative;
+    }
+
+    .preview-columns-mock {
+      display: grid;
+      grid-template-columns: 80px 1fr 60px;
+      height: 140px;
+      border-radius: var(--radius-subtle);
+      overflow: hidden;
+      border: 1px solid rgba(45, 38, 92, 0.15);
+      box-shadow: var(--elevation-1);
+    }
+
+    .mock-col-left {
+      background: var(--palette-indigo-deep);
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mock-col-center {
+      background: var(--palette-parchment-warm);
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mock-col-right {
+      background: var(--palette-vermilion-vivid);
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mock-bar {
+      height: 6px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .mock-bar.dark-ink {
+      background: rgba(28, 26, 36, 0.15);
+    }
+
+    .mock-bar.white-ink {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .mock-badge {
+      width: 16px;
+      height: 16px;
+      border-radius: 9999px;
+      background: var(--palette-vermilion-vivid);
+    }
+
+    .preview-info-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--palette-ink-secondary);
+    }
+
+    /* ==========================================================================
+       05. SECTION HEADERS & GENERAL CARD ARCHITECTURE
+       ========================================================================== */
+    .section-wrap {
+      margin-bottom: var(--space-3xl);
+    }
+
+    .section-header-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-xs);
+      border-bottom: 2px solid var(--palette-indigo-deep);
+    }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--palette-vermilion-vivid);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    h2.section-title {
+      font-family: var(--font-body);
+      font-size: 28px;
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--palette-indigo-deep);
+    }
+
+    .section-subtitle {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--palette-ink-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ==========================================================================
+       06. COLOR MATRIX & PALETTE SPECIFICATION
+       ========================================================================== */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .swatch-card {
+      background: var(--palette-pure-white);
+      border: 1px solid rgba(45, 38, 92, 0.10);
+      border-radius: var(--radius-interactive);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      box-shadow: var(--elevation-1);
+      cursor: pointer;
+      position: relative;
+      transition: all var(--transition-standard);
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--elevation-2);
+      border-color: var(--palette-vermilion-vivid);
+    }
+
+    .swatch-color-pill {
+      height: 64px;
+      border-radius: var(--radius-subtle);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 6px;
+    }
+
+    .swatch-copy-hint {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--palette-indigo-deep);
+      padding: 2px 6px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0;
+      transition: opacity var(--transition-standard);
+    }
+
+    .swatch-card:hover .swatch-copy-hint {
+      opacity: 1;
+    }
+
+    .swatch-name {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--palette-ink-primary);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--palette-vermilion-vivid);
+    }
+
+    .swatch-role {
+      font-family: var(--font-body);
+      font-size: 11px;
+      color: var(--palette-ink-secondary);
+      line-height: 1.4;
+    }
+
+    .semantic-matrix-card {
+      background: var(--palette-pure-white);
+      border: 1px solid rgba(45, 38, 92, 0.10);
+      border-radius: var(--radius-interactive);
+      padding: var(--space-lg);
+      box-shadow: var(--elevation-1);
+    }
+
+    .semantic-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .semantic-table th {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-align: left;
+      padding: 10px 12px;
+      background: var(--palette-parchment-warm);
+      color: var(--palette-indigo-deep);
+      border-bottom: 1px solid rgba(45, 38, 92, 0.15);
+    }
+
+    .semantic-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(45, 38, 92, 0.06);
+      color: var(--palette-ink-primary);
+    }
+
+    .semantic-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .role-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: var(--palette-parchment-warm);
+      color: var(--palette-indigo-deep);
+      border: 1px solid rgba(45, 38, 92, 0.10);
+    }
+
+    /* ==========================================================================
+       07. TYPOGRAPHY SYSTEM SPECIMENS & INTERACTIVE TESTER
+       ========================================================================== */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .type-specimen-card {
+      background: var(--palette-pure-white);
+      border: 1px solid rgba(45, 38, 92, 0.10);
+      border-radius: var(--radius-interactive);
+      padding: var(--space-lg);
+      box-shadow: var(--elevation-1);
+    }
+
+    .type-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .type-ladder-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid rgba(45, 38, 92, 0.06);
+    }
+
+    .type-ladder-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--palette-vermilion-vivid);
+    }
+
+    /* Hierarchy Classes */
+    .type-display-xxl {
+      font-family: var(--font-display);
+      font-size: 72px;
+      line-height: 0.88;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--palette-indigo-deep);
+    }
+
+    .type-display-xl {
+      font-family: var(--font-body);
+      font-size: 28px;
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--palette-indigo-deep);
+    }
+
+    .type-card-title {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.25;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--palette-vermilion-vivid);
+    }
+
+    .type-nav-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 1.8;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: capitalize;
+      color: var(--palette-ink-primary);
+    }
+
+    .type-micro-caps {
+      font-family: var(--font-body);
+      font-size: 11px;
+      line-height: 1.4;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--palette-ink-secondary);
+    }
+
+    .type-body-text {
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 1.6;
+      font-weight: 400;
+      letter-spacing: 0.005em;
+      color: var(--palette-ink-primary);
+    }
+
+    /* Interactive Type Tester Box */
+    .interactive-tester-box {
+      background: var(--palette-pure-white);
+      border: 1px solid rgba(45, 38, 92, 0.10);
+      border-radius: var(--radius-interactive);
+      padding: var(--space-lg);
+      box-shadow: var(--elevation-1);
+    }
+
+    .tester-controls {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid rgba(45, 38, 92, 0.08);
+    }
+
+    .tester-control-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .tester-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--palette-indigo-deep);
+      text-transform: uppercase;
+    }
+
+    .tester-input-range {
+      accent-color: var(--palette-vermilion-vivid);
+      cursor: pointer;
+    }
+
+    .tester-btn-toggle {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border: 1px solid rgba(45, 38, 92, 0.15);
+      border-radius: var(--radius-interactive);
+      background: var(--palette-parchment-warm);
+      cursor: pointer;
+      transition: all var(--transition-standard);
+    }
+
+    .tester-btn-toggle.active {
+      background: var(--palette-indigo-deep);
+      color: var(--palette-pure-white);
+      border-color: var(--palette-indigo-deep);
+    }
+
+    .tester-output-area {
+      font-family: var(--font-display);
+      font-size: 48px;
+      line-height: 1.0;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--palette-indigo-deep);
+      outline: none;
+      min-height: 80px;
+      padding: 10px 0;
+      word-break: break-word;
+      transition: font-size 100ms ease;
+    }
+
+    /* ==========================================================================
+       08. COMPONENT ARCHETYPE GALLERY
+       ========================================================================== */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .component-card {
+      background: var(--palette-pure-white);
+      border: 1px solid rgba(45, 38, 92, 0.10);
+      border-radius: var(--radius-interactive);
+      padding: var(--space-lg);
+      box-shadow: var(--elevation-1);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .component-card-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--palette-vermilion-vivid);
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(45, 38, 92, 0.08);
+    }
+
+    /* Button Variants */
+    .buttons-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .btn-arch-vermilion {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 8px 16px;
+      border-radius: var(--radius-interactive);
+      background: var(--palette-vermilion-vivid);
+      color: var(--palette-pure-white);
+      border: 1px solid var(--palette-vermilion-vivid);
+      cursor: pointer;
+      transition: all var(--transition-standard);
+    }
+
+    .btn-arch-vermilion:hover {
+      background: #E03E24;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 83, 56, 0.28);
+    }
+
+    .btn-arch-indigo {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 8px 16px;
+      border-radius: var(--radius-interactive);
+      background: var(--palette-indigo-deep);
+      color: var(--palette-pure-white);
+      border: 1px solid var(--palette-indigo-deep);
+      cursor: pointer;
+      transition: all var(--transition-standard);
+    }
+
+    .btn-arch-indigo:hover {
+      background: #1F1943;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(45, 38, 92, 0.25);
+    }
+
+    .btn-arch-parchment {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 8px 16px;
+      border-radius: var(--radius-interactive);
+      background: var(--palette-vermilion-soft);
+      color: var(--palette-vermilion-vivid);
+      border: 1px solid rgba(255, 83, 56, 0.25);
+      cursor: pointer;
+      transition: all var(--transition-standard);
+    }
+
+    .btn-arch-parchment:hover {
+      background: var(--palette-vermilion-vivid);
+      color: var(--palette-pure-white);
+    }
+
+    .btn-arch-ghost {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 8px 16px;
+      border-radius: var(--radius-interactive);
+      background: transparent;
+      color: var(--palette-indigo-deep);
+      border: 1px solid rgba(45, 38, 92, 0.25);
+      cursor: pointer;
+      transition: all var(--transition-standard);
+    }
+
+    .btn-arch-ghost:hover {
+      border-color: var(--palette-vermilion-vivid);
+      color: var(--palette-vermilion-vivid);
+    }
+
+    /* Form Inputs */
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--palette-indigo-deep);
+    }
+
+    .arch-input {
+      font-family: var(--font-body);
+      font-size: 13px;
+      padding: 10px 14px;
+      border-radius: var(--radius-interactive);
+      border: 1px solid rgba(45, 38, 92, 0.20);
+      background: var(--palette-parchment-warm);
+      color: var(--palette-ink-primary);
+      outline: none;
+      transition: all var(--transition-standard);
+    }
+
+    .arch-input:focus {
+      border-color: var(--palette-indigo-deep);
+      box-shadow: 0 0 0 3px var(--palette-indigo-deep), 0 0 0 5px var(--interactive-focus);
+    }
+
+    .pill-tabs-flow {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .pill-tab {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: var(--radius-interactive);
+      background: var(--palette-parchment-warm);
+      color: var(--palette-ink-secondary);
+      border: 1px solid rgba(45, 38, 92, 0.12);
+      cursor: pointer;
+      transition: all var(--transition-standard);
+    }
+
+    .pill-tab.active, .pill-tab:hover {
+      background: var(--palette-indigo-deep);
+      color: var(--palette-pure-white);
+      border-color: var(--palette-indigo-deep);
+    }
+
+    /* ==========================================================================
+       09. THE LIVING MICRO-EXPERIENCE: TRI-TONE ASYMMETRIC EDITORIAL UI
+       ========================================================================== */
+    .living-stage-boundary {
+      border-radius: var(--radius-frame);
+      overflow: hidden;
+      box-shadow: 0 16px 40px -10px rgba(45, 38, 92, 0.22);
+      border: 1px solid rgba(45, 38, 92, 0.18);
+      margin-bottom: var(--space-3xl);
+      background: var(--palette-parchment-warm);
+    }
+
+    .tri-tone-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr 230px;
+      min-height: 820px;
+      position: relative;
+    }
+
+    /* --------------------------------------------------------------------------
+       COLUMN 1: LEFT RAIL (Deep Indigo #2D265C)
+       -------------------------------------------------------------------------- */
+    .rail-left-indigo {
+      background-color: var(--palette-indigo-deep);
+      color: var(--palette-pure-white);
+      padding: var(--space-xl) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+      position: relative;
+      z-index: 10;
+    }
+
+    .author-profile-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      border: 2px solid var(--palette-vermilion-vivid);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .avatar-svg-placeholder {
+      width: 100%;
+      height: 100%;
+      background: #3B3375;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-status-dot {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 14px;
+      height: 14px;
+      background: #10B981;
+      border-radius: 9999px;
+      border: 2px solid var(--palette-indigo-deep);
+    }
+
+    .author-name-title {
+      font-family: var(--font-body);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--palette-pure-white);
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+    }
+
+    .author-handle {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--palette-indigo-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .author-bio-snippet {
+      font-family: var(--font-body);
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--palette-indigo-muted);
+    }
+
+    .left-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
+      width: 100%;
+    }
+
+    /* Review Count XXL */
+    .stat-metric-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .stat-metric-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--palette-vermilion-vivid);
+    }
+
+    .stat-number-xxl {
+      font-family: var(--font-display);
+      font-size: 72px;
+      line-height: 0.88;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--palette-pure-white);
+    }
+
+    .stat-subtext {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--palette-indigo-muted);
+      margin-top: 4px;
+    }
+
+    /* Awards & Micro Caps */
+    .awards-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .award-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .award-icon {
+      color: var(--palette-vermilion-vivid);
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .award-text {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--palette-pure-white);
+      line-height: 1.35;
+    }
+
+    .award-sub {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--palette-indigo-muted);
+      text-transform: none;
+      letter-spacing: normal;
+      font-weight: 400;
+    }
+
+    .curator-quote-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-interactive);
+      padding: var(--space-md);
+      font-size: 12px;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--palette-indigo-muted);
+      position: relative;
+    }
+
+    .curator-quote-box strong {
+      color: var(--palette-pure-white);
+      font-style: normal;
+    }
+
+    /* --------------------------------------------------------------------------
+       COLUMN 2: CENTER STAGE (Warm Parchment #FAF8EE)
+       -------------------------------------------------------------------------- */
+    .rail-center-stage {
+      background-color: var(--palette-parchment-warm);
+      color: var(--palette-ink-primary);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+      position: relative;
+      z-index: 20;
+    }
+
+    .stage-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--divider-light);
+    }
+
+    .stage-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .stage-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--palette-vermilion-vivid);
+    }
+
+    .stage-headline {
+      font-family: var(--font-body);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--palette-indigo-deep);
+      line-height: 1.15;
+    }
+
+    .stage-search-form {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--palette-pure-white);
+      border: 1px solid rgba(45, 38, 92, 0.15);
+      border-radius: var(--radius-interactive);
+      padding: 6px 12px;
+      box-shadow: var(--elevation-1);
+    }
+
+    .stage-search-input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--palette-ink-primary);
+      width: 160px;
+    }
+
+    .filter-tags-strip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab-btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: var(--radius-interactive);
+      background: var(--palette-pure-white);
+      color: var(--palette-ink-secondary);
+      border: 1px solid rgba(45, 38, 92, 0.10);
+      cursor: pointer;
+      transition: all var(--transition-standard);
+    }
+
+    .filter-tab-btn.active, .filter-tab-btn:hover {
+      background: var(--palette-vermilion-vivid);
+      color: var(--palette-pure-white);
+      border-color: var(--palette-vermilion-vivid);
+    }
+
+    /* Media Book Card Grid: 3-column */
+    .media-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(140px, 1fr));
+      gap: 32px 24px;
+    }
+
+    .book-card {
+      background: var(--palette-pure-white);
+      border: 1px solid rgba(45, 38, 92, 0.08);
+      border-radius: var(--radius-subtle);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: var(--elevation-1);
+      cursor: pointer;
+      transition: transform var(--motion-lift), box-shadow var(--motion-lift), border-color var(--transition-standard);
+      position: relative;
+    }
+
+    .book-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: var(--elevation-2);
+      border-color: rgba(255, 83, 56, 0.35);
+    }
+
+    .book-cover {
+      height: 180px;
+      border-radius: var(--radius-subtle);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px;
+      border: 1px solid rgba(45, 38, 92, 0.06);
+    }
+
+    .book-cover-1 {
+      background: linear-gradient(135deg, #2D265C 0%, #473E8A 100%);
+      color: #FFFFFF;
+    }
+
+    .book-cover-2 {
+      background: linear-gradient(135deg, #FF5338 0%, #FF7E6B 100%);
+      color: #FFFFFF;
+    }
+
+    .book-cover-3 {
+      background: linear-gradient(135deg, #1C1A24 0%, #353245 100%);
+      color: #FAF8EE;
+    }
+
+    .book-cover-4 {
+      background: linear-gradient(135deg, #FAF8EE 0%, #E8E4D3 100%);
+      color: #1C1A24;
+      border: 1px solid rgba(45, 38, 92, 0.15);
+    }
+
+    .book-cover-5 {
+      background: linear-gradient(135deg, #2D265C 0%, #FF5338 100%);
+      color: #FFFFFF;
+    }
+
+    .book-cover-6 {
+      background: linear-gradient(135deg, #FF5338 0%, #2D265C 100%);
+      color: #FFFFFF;
+    }
+
+    .book-spine-motif {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      opacity: 0.8;
+    }
+
+    .book-cover-artwork {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 60px;
+    }
+
+    .book-cover-artwork svg {
+      width: 44px;
+      height: 44px;
+      opacity: 0.9;
+    }
+
+    .book-cover-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.05em;
+    }
+
+    .book-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .book-title {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.25;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--palette-vermilion-vivid);
+      transition: color var(--transition-standard);
+    }
+
+    .book-card:hover .book-title {
+      color: #E03E24;
+    }
+
+    .book-author {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--palette-ink-secondary);
+      font-weight: 500;
+    }
+
+    .book-meta-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--palette-ink-secondary);
+      margin-top: 4px;
+      padding-top: 6px;
+      border-top: 1px solid rgba(45, 38, 92, 0.06);
+    }
+
+    .book-rating {
+      color: #F59E0B;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      font-weight: 700;
+    }
+
+    /* Featured Monograph Strip */
+    .featured-monograph-strip {
+      background: var(--palette-pure-white);
+      border: 1px solid rgba(45, 38, 92, 0.10);
+      border-radius: var(--radius-interactive);
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--space-lg);
+      align-items: center;
+      box-shadow: var(--elevation-1);
+    }
+
+    .monograph-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 4px 8px;
+      background: var(--palette-vermilion-soft);
+      color: var(--palette-vermilion-vivid);
+      border-radius: var(--radius-interactive);
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .monograph-quote {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-style: italic;
+      color: var(--palette-ink-primary);
+      line-height: 1.5;
+    }
+
+    /* --------------------------------------------------------------------------
+       COLUMN 3: RIGHT RAIL (Vivid Vermilion #FF5338)
+       -------------------------------------------------------------------------- */
+    .rail-right-vermilion {
+      background-color: var(--palette-vermilion-vivid);
+      color: var(--palette-pure-white);
+      padding: var(--space-xl) var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+      position: relative;
+      z-index: 10;
+    }
+
+    .right-masthead {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .masthead-vol {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .masthead-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      line-height: 0.9;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+    }
+
+    /* Genre Nav Links (Tracking expanded, hover transform translateX(4px)) */
+    .genre-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .genre-nav-link {
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 1.8;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: capitalize;
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 8px;
+      border-radius: var(--radius-subtle);
+      transition: all var(--transition-standard);
+      cursor: pointer;
+    }
+
+    .genre-nav-link:hover, .genre-nav-link.active {
+      color: #FFFFFF;
+      font-weight: 700;
+      transform: translateX(4px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .genre-nav-count {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      opacity: 0.7;
+    }
+
+    /* Kinetic Rotational Graphic Widget */
+    .kinetic-widget-box {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-interactive);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-xs);
+      cursor: grab;
+      user-select: none;
+    }
+
+    .kinetic-widget-box:active {
+      cursor: grabbing;
+    }
+
+    .kinetic-graphic-viewport {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .kinetic-armillary {
+      width: 84px;
+      height: 84px;
+      animation: subtleRotation 30s linear infinite;
+      transform-origin: center center;
+      transition: transform 100ms ease-out;
+    }
+
+    @keyframes subtleRotation {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .kinetic-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Newsletter Subscribe in Right Rail */
+    .newsletter-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .newsletter-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .newsletter-input {
+      font-family: var(--font-body);
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: var(--radius-interactive);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+      outline: none;
+    }
+
+    .newsletter-input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .newsletter-btn {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px;
+      border-radius: var(--radius-interactive);
+      background: #FFFFFF;
+      color: var(--palette-vermilion-vivid);
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition-standard);
+    }
+
+    .newsletter-btn:hover {
+      background: var(--palette-indigo-deep);
+      color: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       10. STYLE TILE PROMPT CODE DRAWER (agent.md Section 5.6)
+       ========================================================================== */
+    .code-drawer-card {
+      background: var(--palette-pure-white);
+      border: 1px solid rgba(45, 38, 92, 0.12);
+      border-radius: var(--radius-interactive);
+      overflow: hidden;
+      box-shadow: var(--elevation-1);
+      margin-bottom: var(--space-3xl);
+    }
+
+    .drawer-header {
+      background: var(--palette-indigo-deep);
+      color: var(--palette-pure-white);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .drawer-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .drawer-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .drawer-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .drawer-code-content {
+      background: #1C1A24;
+      color: #FAF8EE;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      padding: var(--space-lg);
+      overflow-x: auto;
+      max-height: 480px;
+      white-space: pre;
+    }
+
+    /* ==========================================================================
+       11. MODAL SPEC INSPECTOR (agent.md Section 2)
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 26, 36, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 250ms ease;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-window {
+      background: var(--palette-pure-white);
+      border-radius: var(--radius-interactive);
+      max-width: 900px;
+      width: 100%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(45, 38, 92, 0.2);
+      overflow: hidden;
+      transform: translateY(16px) scale(0.98);
+      transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-backdrop.active .modal-window {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      background: var(--palette-indigo-deep);
+      color: var(--palette-pure-white);
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .modal-close-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: #FFFFFF;
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-interactive);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: all var(--transition-standard);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--palette-vermilion-vivid);
+    }
+
+    .modal-body {
+      padding: var(--space-lg);
+      overflow-y: auto;
+      background: #1C1A24;
+      color: #FAF8EE;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre;
+    }
+
+    .modal-footer {
+      padding: var(--space-sm) var(--space-lg);
+      background: var(--palette-parchment-warm);
+      border-top: 1px solid rgba(45, 38, 92, 0.1);
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    /* ==========================================================================
+       12. TOAST NOTIFICATION
+       ========================================================================== */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast-notification {
+      background: var(--palette-indigo-deep);
+      color: var(--palette-pure-white);
+      padding: 10px 18px;
+      border-radius: var(--radius-interactive);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      border-left: 4px solid var(--palette-vermilion-vivid);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: auto;
+    }
+
+    .toast-notification.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ==========================================================================
+       13. RESPONSIVE BREAKPOINTS (agent.md Section 6)
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .tri-tone-layout {
+        grid-template-columns: 280px 1fr 180px;
+      }
+      .media-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tri-tone-layout {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .rail-left-indigo,
+      .rail-center-stage,
+      .rail-right-vermilion {
+        padding: var(--space-lg) var(--space-md);
+      }
+
+      .media-card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-monograph-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <!-- Mobile Safety Net (agent.md Section 6) -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       01. MANDATORY HEADER BAR COMPONENT (agent.md Section 2)
+       ======================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Chromatic Gazette</span>
+      <span class="design-vibe-tag">Editorial & Archival</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-chromatic-gazette.md">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <div class="layout-wrapper">
+
+    <!-- ======================================================================
+         02. HERO DISPLAY BANNER
+         ====================================================================== -->
+    <section class="hero-container">
+      <div class="hero-banner">
+        <div class="hero-meta-strip">
+          <div class="hero-tag-chips">
+            <span class="hero-chip dark">TILE</span>
+            <span class="hero-chip accent">Editorial & Archival</span>
+            <span class="hero-chip">Tri-Tone Chromatic Blocks</span>
+            <span class="hero-chip">Compressed Heavy Display</span>
+          </div>
+          <span class="hero-chip" style="color: var(--palette-ink-secondary);">ARCHIVE SPEC // ISSUE NO. 19</span>
+        </div>
+
+        <div class="hero-grid">
+          <div class="hero-headline-block">
+            <span class="hero-eyebrow">Visual Identity Specification</span>
+            <h1 class="hero-title">Editorial <span class="accent-word">Chromatic</span> Block</h1>
+            <p class="hero-lead-text">
+              An asymmetric tri-tone editorial system pairing deep indigo anchor rails, warm parchment reading stages, and vivid vermilion accents. Engineered with compressed heavy display letterforms, zero-gap chromatic column seams, and subtle media elevation.
+            </p>
+            <div class="hero-action-row">
+              <button class="btn-hero-primary" onclick="openSpecModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                Inspect Markdown Token Spec
+              </button>
+              <button class="btn-hero-secondary" onclick="document.getElementById('living-demo').scrollIntoView({behavior: 'smooth'})">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                Explore Living Stage
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-preview-graphic">
+            <div class="preview-columns-mock">
+              <div class="mock-col-left">
+                <div class="mock-badge"></div>
+                <div class="mock-bar white-ink" style="width: 80%;"></div>
+                <div class="mock-bar white-ink" style="width: 50%;"></div>
+              </div>
+              <div class="mock-col-center">
+                <div class="mock-bar dark-ink" style="width: 70%; height: 10px;"></div>
+                <div class="mock-bar dark-ink" style="width: 90%;"></div>
+                <div class="mock-bar dark-ink" style="width: 60%;"></div>
+              </div>
+              <div class="mock-col-right">
+                <div class="mock-bar white-ink" style="width: 85%;"></div>
+                <div class="mock-bar white-ink" style="width: 65%;"></div>
+              </div>
+            </div>
+            <div class="preview-info-row">
+              <span>Deep Indigo (26vw)</span>
+              <span>Parchment (56vw)</span>
+              <span>Vermilion (18vw)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         03. COLOR SWATCHES & PALETTE MATRIX
+         ====================================================================== -->
+    <section class="section-wrap">
+      <div class="section-header-block">
+        <div>
+          <div class="section-num">Section 01 // Chromatic Foundations</div>
+          <h2 class="section-title">Color Roles & Palette Architecture</h2>
+        </div>
+        <div class="section-subtitle">Click any swatch to copy Hex token</div>
+      </div>
+
+      <div class="swatches-grid">
+        <!-- Indigo Deep -->
+        <div class="swatch-card" onclick="copyTokenHex('#2D265C', '--palette-indigo-deep')">
+          <div class="swatch-color-pill" style="background-color: #2D265C; color: #FFFFFF;">
+            <span class="swatch-copy-hint">Copy #2D265C</span>
+          </div>
+          <div class="swatch-name">Indigo Deep</div>
+          <div class="swatch-hex">#2D265C</div>
+          <div class="swatch-role">Left rail background, high-contrast anchor canvas</div>
+        </div>
+
+        <!-- Parchment Warm -->
+        <div class="swatch-card" onclick="copyTokenHex('#FAF8EE', '--palette-parchment-warm')">
+          <div class="swatch-color-pill" style="background-color: #FAF8EE; color: #1C1A24; border: 1px solid rgba(45, 38, 92, 0.15);">
+            <span class="swatch-copy-hint">Copy #FAF8EE</span>
+          </div>
+          <div class="swatch-name">Parchment Warm</div>
+          <div class="swatch-hex">#FAF8EE</div>
+          <div class="swatch-role">Primary center stage reading canvas</div>
+        </div>
+
+        <!-- Vermilion Vivid -->
+        <div class="swatch-card" onclick="copyTokenHex('#FF5338', '--palette-vermilion-vivid')">
+          <div class="swatch-color-pill" style="background-color: #FF5338; color: #FFFFFF;">
+            <span class="swatch-copy-hint">Copy #FF5338</span>
+          </div>
+          <div class="swatch-name">Vermilion Vivid</div>
+          <div class="swatch-hex">#FF5338</div>
+          <div class="swatch-role">Right rail background & focal display headings</div>
+        </div>
+
+        <!-- Vermilion Soft -->
+        <div class="swatch-card" onclick="copyTokenHex('#FFE5E0', '--palette-vermilion-soft')">
+          <div class="swatch-color-pill" style="background-color: #FFE5E0; color: #FF5338; border: 1px solid rgba(255, 83, 56, 0.2);">
+            <span class="swatch-copy-hint">Copy #FFE5E0</span>
+          </div>
+          <div class="swatch-name">Vermilion Soft</div>
+          <div class="swatch-hex">#FFE5E0</div>
+          <div class="swatch-role">Light tint for vermilion hover states and badges</div>
+        </div>
+
+        <!-- Indigo Muted -->
+        <div class="swatch-card" onclick="copyTokenHex('#A59EC2', '--palette-indigo-muted')">
+          <div class="swatch-color-pill" style="background-color: #A59EC2; color: #2D265C;">
+            <span class="swatch-copy-hint">Copy #A59EC2</span>
+          </div>
+          <div class="swatch-name">Indigo Muted</div>
+          <div class="swatch-hex">#A59EC2</div>
+          <div class="swatch-role">Secondary text & metadata on dark indigo canvas</div>
+        </div>
+
+        <!-- Ink Primary -->
+        <div class="swatch-card" onclick="copyTokenHex('#1C1A24', '--palette-ink-primary')">
+          <div class="swatch-color-pill" style="background-color: #1C1A24; color: #FFFFFF;">
+            <span class="swatch-copy-hint">Copy #1C1A24</span>
+          </div>
+          <div class="swatch-name">Ink Primary</div>
+          <div class="swatch-hex">#1C1A24</div>
+          <div class="swatch-role">High-contrast body copy on parchment canvas</div>
+        </div>
+
+        <!-- Pure White -->
+        <div class="swatch-card" onclick="copyTokenHex('#FFFFFF', '--palette-pure-white')">
+          <div class="swatch-color-pill" style="background-color: #FFFFFF; color: #1C1A24; border: 1px solid rgba(45, 38, 92, 0.15);">
+            <span class="swatch-copy-hint">Copy #FFFFFF</span>
+          </div>
+          <div class="swatch-name">Pure White</div>
+          <div class="swatch-hex">#FFFFFF</div>
+          <div class="swatch-role">Primary headers on dark rail, card canvas</div>
+        </div>
+
+        <!-- Focus Goldenrod -->
+        <div class="swatch-card" onclick="copyTokenHex('#FFD027', '--interactive-focus')">
+          <div class="swatch-color-pill" style="background-color: #FFD027; color: #1C1A24;">
+            <span class="swatch-copy-hint">Copy #FFD027</span>
+          </div>
+          <div class="swatch-name">Focus Goldenrod</div>
+          <div class="swatch-hex">#FFD027</div>
+          <div class="swatch-role">High-visibility goldenrod for accessibility focus rings</div>
+        </div>
+      </div>
+
+      <div class="semantic-matrix-card">
+        <table class="semantic-table">
+          <thead>
+            <tr>
+              <th>Semantic Token</th>
+              <th>Mapped CSS Variable</th>
+              <th>Rendered Value</th>
+              <th>Primary Role & Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="role-badge">Surface.Primary</span></td>
+              <td><code>var(--palette-parchment-warm)</code></td>
+              <td><code>#FAF8EE</code></td>
+              <td>Warm parchment background for main stage body and article layouts</td>
+            </tr>
+            <tr>
+              <td><span class="role-badge">Surface.Sidebar.Dark</span></td>
+              <td><code>var(--palette-indigo-deep)</code></td>
+              <td><code>#2D265C</code></td>
+              <td>Left rail high-density profile, masthead, and accolade container</td>
+            </tr>
+            <tr>
+              <td><span class="role-badge">Surface.Sidebar.Accent</span></td>
+              <td><code>var(--palette-vermilion-vivid)</code></td>
+              <td><code>#FF5338</code></td>
+              <td>Right rail category navigation and kinetic identity widget</td>
+            </tr>
+            <tr>
+              <td><span class="role-badge">Surface.Card</span></td>
+              <td><code>var(--palette-pure-white)</code></td>
+              <td><code>#FFFFFF</code></td>
+              <td>Elevated publication cards with ambient shadow micro-depth</td>
+            </tr>
+            <tr>
+              <td><span class="role-badge">Text.Accent</span></td>
+              <td><code>var(--palette-vermilion-vivid)</code></td>
+              <td><code>#FF5338</code></td>
+              <td>Book titles, eyebrow tags, key metrics, and hover interactive states</td>
+            </tr>
+            <tr>
+              <td><span class="role-badge">Interactive.Focus</span></td>
+              <td><code>var(--palette-focus-goldenrod)</code></td>
+              <td><code>#FFD027</code></td>
+              <td>High-contrast double outline ring: 3px deep indigo + 5px goldenrod</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         04. TYPOGRAPHY SYSTEM & INTERACTIVE SPECIMEN
+         ====================================================================== -->
+    <section class="section-wrap">
+      <div class="section-header-block">
+        <div>
+          <div class="section-num">Section 02 // Typographic Hierarchy</div>
+          <h2 class="section-title">Typeface Stacks & Scale Discipline</h2>
+        </div>
+        <div class="section-subtitle">Display Condensed • Interface Sans • Telemetry Mono</div>
+      </div>
+
+      <div class="type-specimen-grid">
+        <!-- Scale Ladder -->
+        <div class="type-specimen-card">
+          <div class="type-ladder">
+            <!-- XXL -->
+            <div class="type-ladder-row">
+              <div class="type-ladder-meta">
+                <span>Display XXL (Review Count)</span>
+                <span>72px / 0.88 // Weight 900 // -0.02em</span>
+              </div>
+              <div class="type-display-xxl">4.92 / 1,840</div>
+            </div>
+
+            <!-- XL -->
+            <div class="type-ladder-row">
+              <div class="type-ladder-meta">
+                <span>Display XL (Section Headers)</span>
+                <span>28px / 1.15 // Weight 700 // -0.015em</span>
+              </div>
+              <div class="type-display-xl">Curated Essentials & Reviews</div>
+            </div>
+
+            <!-- Card Title -->
+            <div class="type-ladder-row">
+              <div class="type-ladder-meta">
+                <span>Card Title (Book / Media)</span>
+                <span>16px / 1.25 // Weight 700 // Vermilion</span>
+              </div>
+              <div class="type-card-title">The Asymmetric Grid & Modular Order</div>
+            </div>
+
+            <!-- Category / Nav Label -->
+            <div class="type-ladder-row">
+              <div class="type-ladder-meta">
+                <span>Category / Nav Label (Right Sidebar)</span>
+                <span>13px / 1.8 // Weight 500 // +0.04em</span>
+              </div>
+              <div class="type-nav-label">Design Theory • Architecture • Monograph</div>
+            </div>
+
+            <!-- Micro Tracked Caps -->
+            <div class="type-ladder-row">
+              <div class="type-ladder-meta">
+                <span>Micro Tracked Caps (Awards/Footer)</span>
+                <span>11px / 1.4 // Weight 700 // +0.12em</span>
+              </div>
+              <div class="type-micro-caps">WINNER 2026 SWISS EDITORIAL DESIGN PRIZE</div>
+            </div>
+
+            <!-- Body Text -->
+            <div class="type-ladder-row" style="border-bottom: none;">
+              <div class="type-ladder-meta">
+                <span>Body Text (Bio / Paragraphs)</span>
+                <span>13px / 1.6 // Weight 400 // +0.005em</span>
+              </div>
+              <div class="type-body-text">
+                Every layout is conceived as a chromatic conversation between three asymmetrical vertical columns, delivering uncompromising legibility and structured rhythm.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Pangram Tester -->
+        <div class="interactive-tester-box">
+          <div class="tester-controls">
+            <div class="tester-control-group">
+              <span class="tester-label">Size:</span>
+              <input type="range" id="type-size-slider" class="tester-input-range" min="24" max="96" value="48" oninput="updateTesterSize(this.value)">
+              <span id="type-size-val" class="tester-label" style="color: var(--palette-vermilion-vivid);">48px</span>
+            </div>
+            <div class="tester-control-group">
+              <button class="tester-btn-toggle active" id="btn-font-display" onclick="setTesterFont('display')">Display</button>
+              <button class="tester-btn-toggle" id="btn-font-body" onclick="setTesterFont('body')">Body Sans</button>
+              <button class="tester-btn-toggle" id="btn-font-mono" onclick="setTesterFont('mono')">Mono</button>
+            </div>
+          </div>
+
+          <div id="tester-output" class="tester-output-area" contenteditable="true" spellcheck="false">
+            CHROMATIC ASYMMETRY 2026
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--palette-ink-secondary); margin-top: 8px;">
+            ↑ Editable testbed — Click to type custom glyphs & numerals (0123456789).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         05. COMPONENT ARCHETYPE GALLERY
+         ====================================================================== -->
+    <section class="section-wrap">
+      <div class="section-header-block">
+        <div>
+          <div class="section-num">Section 03 // Archetype Library</div>
+          <h2 class="section-title">Interactive Component Gallery</h2>
+        </div>
+        <div class="section-subtitle">Radius 6px Controls • Radius 3px Media • Radius 9999px Avatars</div>
+      </div>
+
+      <div class="components-grid">
+        <!-- Buttons Card -->
+        <div class="component-card">
+          <div class="component-card-title">Button Archetypes & Micro-States</div>
+          <div class="buttons-flow">
+            <button class="btn-arch-vermilion" onclick="showToast('Primary Vermilion Button Clicked')">Primary Vermilion</button>
+            <button class="btn-arch-indigo" onclick="showToast('Deep Indigo Button Clicked')">Deep Indigo</button>
+            <button class="btn-arch-parchment" onclick="showToast('Soft Vermilion Button Clicked')">Soft Tint</button>
+            <button class="btn-arch-ghost" onclick="showToast('Ghost Outline Button Clicked')">Ghost Outline</button>
+          </div>
+          <div style="font-size: 11px; color: var(--palette-ink-secondary);">
+            6px interactive radius, smooth 200ms transform lift, and crisp color transitions.
+          </div>
+        </div>
+
+        <!-- Form Controls Card -->
+        <div class="component-card">
+          <div class="component-card-title">Interactive Form Inputs & Search</div>
+          <div class="input-wrapper">
+            <label class="input-label" for="search-spec-input">Archival Search Query</label>
+            <input type="text" id="search-spec-input" class="arch-input" placeholder="Type search term... (Focus for goldenrod ring)">
+          </div>
+          <div class="pill-tabs-flow">
+            <span class="pill-tab active">All Categories</span>
+            <span class="pill-tab">Monographs</span>
+            <span class="pill-tab">Critiques</span>
+            <span class="pill-tab">Archives</span>
+          </div>
+        </div>
+
+        <!-- Micro Badges & Indicators -->
+        <div class="component-card">
+          <div class="component-card-title">Badges, Radii & Status Tokens</div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+            <span class="hero-chip dark">Radius.Subtle (3px)</span>
+            <span class="hero-chip accent">Radius.Interactive (6px)</span>
+            <span class="hero-chip" style="border-radius: 9999px;">Radius.Full (9999px)</span>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: center; margin-top: 6px;">
+            <span style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px;">
+              <span style="width: 8px; height: 8px; border-radius: 9999px; background: #10B981;"></span> In Print
+            </span>
+            <span style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px;">
+              <span style="width: 8px; height: 8px; border-radius: 9999px; background: var(--palette-vermilion-vivid);"></span> Rare Edition
+            </span>
+            <span style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px;">
+              <span style="width: 8px; height: 8px; border-radius: 9999px; background: var(--palette-indigo-deep);"></span> Archived
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         06. THE FLAGSHIP LIVING MICRO-EXPERIENCE:
+             TRI-TONE ASYMMETRIC EDITORIAL UI
+         ====================================================================== -->
+    <section class="section-wrap" id="living-demo">
+      <div class="section-header-block">
+        <div>
+          <div class="section-num">Section 04 // Living Architecture</div>
+          <h2 class="section-title">Tri-Tone Asymmetric Editorial UI</h2>
+        </div>
+        <div class="section-subtitle">26vw Deep Indigo • 56vw Warm Parchment • 18vw Vivid Vermilion</div>
+      </div>
+
+      <div class="living-stage-boundary">
+        <div class="tri-tone-layout">
+
+          <!-- ----------------------------------------------------------------
+               COLUMN 1: LEFT RAIL (Deep Indigo #2D265C)
+               ---------------------------------------------------------------- -->
+          <aside class="rail-left-indigo">
+            <!-- Profile / Masthead -->
+            <div class="author-profile-block">
+              <div class="avatar-wrapper">
+                <div class="avatar-svg-placeholder">
+                  <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.75">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                </div>
+                <div class="avatar-status-dot" title="Active Archivist"></div>
+              </div>
+              <div>
+                <div class="author-name-title">Dr. Julian Vane</div>
+                <div class="author-handle">CHIEF CURATOR // ARCHIVE DEPT.</div>
+              </div>
+              <p class="author-bio-snippet">
+                Senior researcher in typographic semantics and asymmetrical grid systems. Lead editor of the European Chromatic Review.
+              </p>
+            </div>
+
+            <div class="left-divider"></div>
+
+            <!-- Review Count Display XXL -->
+            <div class="stat-metric-block">
+              <div class="stat-metric-label">Editorial Impact Score</div>
+              <div class="stat-number-xxl">4.92</div>
+              <div class="stat-subtext">OVER 1,840 VERIFIED CRITIQUES</div>
+            </div>
+
+            <div class="left-divider"></div>
+
+            <!-- Literary Accolades -->
+            <div class="awards-list">
+              <div class="stat-metric-label">Honors & Accolades</div>
+
+              <div class="award-item">
+                <svg class="award-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="8" r="7"/>
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+                </svg>
+                <div>
+                  <div class="award-text">Swiss Design Grand Prix</div>
+                  <div class="award-sub">Category: Typographic Innovation (2025)</div>
+                </div>
+              </div>
+
+              <div class="award-item">
+                <svg class="award-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                <div>
+                  <div class="award-text">Gutenberg Monograph Award</div>
+                  <div class="award-sub">Editorial Excellence & Composition (2024)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="left-divider"></div>
+
+            <!-- Curatorial Quote -->
+            <div class="curator-quote-box">
+              "Color is not mere decoration; it is the structural scaffolding of editorial rhythm."
+              <br><strong style="display: block; margin-top: 4px;">— Editorial Manifesto</strong>
+            </div>
+          </aside>
+
+          <!-- ----------------------------------------------------------------
+               COLUMN 2: CENTER STAGE (Warm Parchment #FAF8EE)
+               ---------------------------------------------------------------- -->
+          <main class="rail-center-stage">
+            <!-- Stage Top Bar -->
+            <div class="stage-top-bar">
+              <div class="stage-title-group">
+                <span class="stage-eyebrow">Curated Essentials // Volume XIX</span>
+                <h2 class="stage-headline">Critics' Selection & Monograph Index</h2>
+              </div>
+
+              <div class="stage-search-form">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#636070" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="live-stage-filter-input" class="stage-search-input" placeholder="Search editions..." oninput="filterBookCards(this.value)">
+              </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tags-strip">
+              <button class="filter-tab-btn active" onclick="filterByGenre('all', this)">All Editions (6)</button>
+              <button class="filter-tab-btn" onclick="filterByGenre('theory', this)">Design Theory (2)</button>
+              <button class="filter-tab-btn" onclick="filterByGenre('monograph', this)">Monographs (2)</button>
+              <button class="filter-tab-btn" onclick="filterByGenre('rare', this)">Rare Prints (2)</button>
+            </div>
+
+            <!-- 3-Column Media Grid (Repeat 3, minmax(140px, 1fr)) -->
+            <div class="media-card-grid" id="book-catalog-grid">
+
+              <!-- Book 1 -->
+              <article class="book-card" data-genre="theory" data-title="The Asymmetric Grid" onclick="selectBookCard('The Asymmetric Grid', 'J. Müller-Brockmann')">
+                <div class="book-cover book-cover-1">
+                  <div class="book-spine-motif">REF: GR-01 // ZURICH</div>
+                  <div class="book-cover-artwork">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5">
+                      <rect x="3" y="3" width="18" height="18" rx="1"/>
+                      <line x1="9" y1="3" x2="9" y2="21"/>
+                      <line x1="3" y1="9" x2="21" y2="9"/>
+                    </svg>
+                  </div>
+                  <div class="book-cover-footer">
+                    <span>1961 / 2026</span>
+                    <span>ED. 04</span>
+                  </div>
+                </div>
+                <div class="book-info">
+                  <div class="book-title">The Asymmetric Grid</div>
+                  <div class="book-author">J. Müller-Brockmann</div>
+                  <div class="book-meta-footer">
+                    <span class="book-rating">★ 4.98</span>
+                    <span>324 PGS</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Book 2 -->
+              <article class="book-card" data-genre="theory" data-title="Chromatic Discipline" onclick="selectBookCard('Chromatic Discipline', 'Josef Albers')">
+                <div class="book-cover book-cover-2">
+                  <div class="book-spine-motif">REF: CD-08 // BAUHAUS</div>
+                  <div class="book-cover-artwork">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5">
+                      <rect x="3" y="3" width="18" height="18"/>
+                      <rect x="7" y="7" width="10" height="10"/>
+                    </svg>
+                  </div>
+                  <div class="book-cover-footer">
+                    <span>1963 / 2025</span>
+                    <span>ED. 09</span>
+                  </div>
+                </div>
+                <div class="book-info">
+                  <div class="book-title">Chromatic Discipline</div>
+                  <div class="book-author">Josef Albers</div>
+                  <div class="book-meta-footer">
+                    <span class="book-rating">★ 4.95</span>
+                    <span>280 PGS</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Book 3 -->
+              <article class="book-card" data-genre="monograph" data-title="Radical Typography" onclick="selectBookCard('Radical Typography', 'Wolfgang Weingart')">
+                <div class="book-cover book-cover-3">
+                  <div class="book-spine-motif">REF: RT-14 // BASEL</div>
+                  <div class="book-cover-artwork">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#FF5338" stroke-width="1.5">
+                      <polyline points="4 7 4 4 20 4 20 7"/>
+                      <line x1="9" y1="20" x2="15" y2="20"/>
+                      <line x1="12" y1="4" x2="12" y2="20"/>
+                    </svg>
+                  </div>
+                  <div class="book-cover-footer">
+                    <span>1972 / 2026</span>
+                    <span>MONO</span>
+                  </div>
+                </div>
+                <div class="book-info">
+                  <div class="book-title">Radical Typography</div>
+                  <div class="book-author">Wolfgang Weingart</div>
+                  <div class="book-meta-footer">
+                    <span class="book-rating">★ 4.91</span>
+                    <span>412 PGS</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Book 4 -->
+              <article class="book-card" data-genre="monograph" data-title="Monolithic Architecture" onclick="selectBookCard('Monolithic Architecture', 'Tadao Ando')">
+                <div class="book-cover book-cover-4">
+                  <div class="book-spine-motif">REF: MA-22 // OSAKA</div>
+                  <div class="book-cover-artwork">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#2D265C" stroke-width="1.5">
+                      <polygon points="12 2 2 22 22 22"/>
+                    </svg>
+                  </div>
+                  <div class="book-cover-footer">
+                    <span>1989 / 2024</span>
+                    <span>MONO</span>
+                  </div>
+                </div>
+                <div class="book-info">
+                  <div class="book-title">Monolithic Architecture</div>
+                  <div class="book-author">Tadao Ando</div>
+                  <div class="book-meta-footer">
+                    <span class="book-rating">★ 4.94</span>
+                    <span>360 PGS</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Book 5 -->
+              <article class="book-card" data-genre="rare" data-title="Concrete & Color" onclick="selectBookCard('Concrete & Color', 'Le Corbusier')">
+                <div class="book-cover book-cover-5">
+                  <div class="book-spine-motif">REF: CC-31 // PARIS</div>
+                  <div class="book-cover-artwork">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5">
+                      <circle cx="12" cy="12" r="9"/>
+                      <line x1="3.6" y1="9" x2="20.4" y2="9"/>
+                      <line x1="3.6" y1="15" x2="20.4" y2="15"/>
+                    </svg>
+                  </div>
+                  <div class="book-cover-footer">
+                    <span>1955 / 2026</span>
+                    <span>RARE</span>
+                  </div>
+                </div>
+                <div class="book-info">
+                  <div class="book-title">Concrete & Color</div>
+                  <div class="book-author">Le Corbusier</div>
+                  <div class="book-meta-footer">
+                    <span class="book-rating">★ 4.89</span>
+                    <span>198 PGS</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Book 6 -->
+              <article class="book-card" data-genre="rare" data-title="Systematic Serifs" onclick="selectBookCard('Systematic Serifs', 'Massimo Vignelli')">
+                <div class="book-cover book-cover-6">
+                  <div class="book-spine-motif">REF: SS-40 // MILANO</div>
+                  <div class="book-cover-artwork">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5">
+                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                  </div>
+                  <div class="book-cover-footer">
+                    <span>1974 / 2025</span>
+                    <span>RARE</span>
+                  </div>
+                </div>
+                <div class="book-info">
+                  <div class="book-title">Systematic Serifs</div>
+                  <div class="book-author">Massimo Vignelli</div>
+                  <div class="book-meta-footer">
+                    <span class="book-rating">★ 4.97</span>
+                    <span>256 PGS</span>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+
+            <!-- Featured Monograph Strip -->
+            <div class="featured-monograph-strip">
+              <div>
+                <span class="monograph-badge">EDITORIAL CRITIC PICK</span>
+                <p class="monograph-quote">
+                  "The interplay between deep indigo weight and vivid vermilion kinetic focus establishes an unmistakable editorial tension that feels both historical and urgently contemporary."
+                </p>
+              </div>
+              <button class="btn-arch-vermilion" onclick="showToast('Added Featured Edition to Collection')">Bookmark Edition</button>
+            </div>
+          </main>
+
+          <!-- ----------------------------------------------------------------
+               COLUMN 3: RIGHT RAIL (Vivid Vermilion #FF5338)
+               ---------------------------------------------------------------- -->
+          <aside class="rail-right-vermilion">
+            <!-- Masthead -->
+            <div class="right-masthead">
+              <div class="masthead-vol">ARCHIVE INDEX // VOL. XIX</div>
+              <div class="masthead-title">DISPATCH</div>
+            </div>
+
+            <!-- Genre Nav List with expanded tracking and hover translateX(4px) -->
+            <ul class="genre-nav-list">
+              <li>
+                <a class="genre-nav-link active" onclick="filterByGenre('all', this)">
+                  <span>All Editions</span>
+                  <span class="genre-nav-count">06</span>
+                </a>
+              </li>
+              <li>
+                <a class="genre-nav-link" onclick="filterByGenre('theory', this)">
+                  <span>Design Theory</span>
+                  <span class="genre-nav-count">02</span>
+                </a>
+              </li>
+              <li>
+                <a class="genre-nav-link" onclick="filterByGenre('monograph', this)">
+                  <span>Monographs</span>
+                  <span class="genre-nav-count">02</span>
+                </a>
+              </li>
+              <li>
+                <a class="genre-nav-link" onclick="filterByGenre('rare', this)">
+                  <span>Rare Prints</span>
+                  <span class="genre-nav-count">02</span>
+                </a>
+              </li>
+              <li>
+                <a class="genre-nav-link" onclick="showToast('Navigating to Typography Section')">
+                  <span>Typography</span>
+                  <span class="genre-nav-count">12</span>
+                </a>
+              </li>
+              <li>
+                <a class="genre-nav-link" onclick="showToast('Navigating to Architecture Section')">
+                  <span>Architecture</span>
+                  <span class="genre-nav-count">08</span>
+                </a>
+              </li>
+            </ul>
+
+            <!-- Interactive Kinetic Graphic Widget (Badge/Globe with rotation + friction drag) -->
+            <div class="kinetic-widget-box" id="kinetic-drag-container" title="Drag to spin with rotational friction!">
+              <div class="kinetic-graphic-viewport">
+                <svg id="kinetic-armillary-svg" class="kinetic-armillary" viewBox="0 0 100 100" fill="none" stroke="#FFFFFF" stroke-width="1.75">
+                  <!-- Outer Dial -->
+                  <circle cx="50" cy="50" r="44" stroke="#FFFFFF" stroke-opacity="0.6"/>
+                  <!-- Astrolabe rings -->
+                  <ellipse cx="50" cy="50" rx="44" ry="18" stroke="#FFFFFF"/>
+                  <ellipse cx="50" cy="50" rx="18" ry="44" stroke="#FFFFFF"/>
+                  <circle cx="50" cy="50" r="10" fill="#FFFFFF"/>
+                  <line x1="50" y1="6" x2="50" y2="94" stroke="#FFFFFF" stroke-dasharray="2 2"/>
+                  <line x1="6" y1="50" x2="94" y2="50" stroke="#FFFFFF" stroke-dasharray="2 2"/>
+                </svg>
+              </div>
+              <div class="kinetic-label">KINETIC GYROSCOPE</div>
+              <div style="font-family: var(--font-mono); font-size: 9px; opacity: 0.8;">Drag / Hover to displace</div>
+            </div>
+
+            <!-- Dispatch Newsletter Form -->
+            <div class="newsletter-block">
+              <label class="newsletter-label" for="dispatch-email">Quarterly Dispatch</label>
+              <input type="email" id="dispatch-email" class="newsletter-input" placeholder="curator@archive.org">
+              <button class="newsletter-btn" onclick="handleNewsletterSubmit()">Subscribe Free</button>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         07. STYLE TILE PROMPT CODE DRAWER (agent.md Section 5.6)
+         ====================================================================== -->
+    <section class="code-drawer-card">
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <span class="drawer-title">STYLE TILE SPECIFICATION // MARKDOWN PROMPT VAULT</span>
+        </div>
+        <div class="drawer-actions">
+          <button class="btn-tile btn-copy" onclick="copyStyleTileMarkdown()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Prompt Spec
+          </button>
+          <button class="btn-tile btn-download" onclick="downloadStyleTileMarkdown()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download .md
+          </button>
+        </div>
+      </div>
+      <pre class="drawer-code-content" id="style-tile-rendered-code"></pre>
+    </section>
+
+  </div>
+
+  <!-- ========================================================================
+       08. MODAL SPEC INSPECTOR (agent.md Section 2)
+       ======================================================================== -->
+  <div class="modal-backdrop" id="spec-modal-backdrop">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div class="modal-title">STYLE TILE // CHROMATIC GAZETTE (TILE)</div>
+        <button class="modal-close-btn" onclick="closeSpecModal()" title="Close (Esc)">✕</button>
+      </div>
+      <div class="modal-body" id="modal-spec-content"></div>
+      <div class="modal-footer">
+        <button class="btn-tile btn-copy" onclick="copyStyleTileMarkdown()">Copy Markdown</button>
+        <button class="btn-tile btn-download" onclick="downloadStyleTileMarkdown()">Download .md</button>
+        <button class="btn-tile" onclick="closeSpecModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Hub -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ========================================================================
+       09. RAW MARKDOWN SPECIFICATION EMBED (agent.md Section 2)
+       ======================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Editorial Chromatic Block
+  Construction: indigo • parchment • vermilion • zero-gap seams • compressed display
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Tri-tone chromatic blocking: deep indigo (#2D265C), warm parchment (#FAF8EE), and vivid vermilion (#FF5338) meeting at zero-gap vertical seams. The three hues are large architectural planes, not decorative chips. Display is compressed heavy (Druk Condensed / Cabinet Grotesk) at 72px / 0.88 / 900 / uppercase / -0.02em; interface type is Inter. Structural panels are 0px; interactive controls are 6px; the outer frame may use 28px. Elevation is mostly flush color; media may take a quiet indigo-tinted shadow. Goldenrod (#FFD027) is reserved for focus rings.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FAF8EE; /* Warm parchment stage */
+  --bg-surface:             #FFFFFF; /* White cards */
+  --bg-surface-alt:         #FFE5E0; /* Soft vermilion tint */
+  --bg-surface-dark:        #2D265C; /* Deep indigo plane */
+
+  /* Inks & Typography */
+  --ink-primary:            #1C1A24; /* On parchment */
+  --ink-secondary:          #636070; /* Quiet on light */
+  --ink-muted:              #A59EC2; /* Muted on indigo */
+  --ink-inverted:           #FFFFFF; /* On indigo or vermilion */
+
+  /* Signature Accents */
+  --accent-primary:         #FF5338; /* Vermilion */
+  --accent-primary-hover:   #FFE5E0; /* Soft vermilion hover wash */
+  --accent-secondary:       #2D265C; /* Indigo counter */
+  --accent-tertiary:        #FFD027; /* Goldenrod focus */
+
+  /* Status Tokens (mapped from original hexes) */
+  --status-success:         #2D265C;
+  --status-warning:         #FFD027;
+  --status-danger:          #FF5338;
+  --status-info:            #A59EC2;
+
+  /* Extra original tokens */
+  --palette-indigo-deep:      #2D265C;
+  --palette-indigo-muted:     #A59EC2;
+  --palette-parchment-warm:   #FAF8EE;
+  --palette-vermilion-vivid:  #FF5338;
+  --palette-vermilion-soft:   #FFE5E0;
+  --palette-ink-primary:      #1C1A24;
+  --palette-ink-secondary:    #636070;
+  --palette-pure-white:       #FFFFFF;
+  --palette-focus-goldenrod:  #FFD027;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Druk Condensed", "Cabinet Grotesk", sans-serif;
+--font-sans:    "Inter", "Satoshi", "Helvetica Neue", sans-serif;
+--font-mono:    "JetBrains Mono", monospace;
+
+--text-display: 72px / 0.88 var(--font-display); /* Weight: 900 | Tracking: -0.02em | UPPERCASE */
+--text-h1:      28px / 1.15 var(--font-sans);    /* Weight: 700 | Tracking: -0.015em */
+--text-h2:      16px / 1.25 var(--font-sans);    /* Weight: 700 | Tracking: -0.01em | vermilion allowed */
+--text-h3:      13px / 1.80 var(--font-sans);    /* Weight: 500 | Tracking: +0.04em */
+--text-body:    13px / 1.60 var(--font-sans);    /* Weight: 400 | Tracking: +0.005em */
+--text-body-sm: 13px / 1.60 var(--font-sans);    /* Weight: 400 */
+--text-meta:    11px / 1.40 var(--font-sans);    /* Weight: 700 | Tracking: +0.12em | UPPERCASE */
+
+Compressed display is for existing large headings only. Body stays 13px Inter. Do not invent review-count lockups or specimen titles.
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-none:        0px;
+--radius-default:     3px;
+--radius-subtle:      3px;
+--radius-interactive: 6px;
+--radius-frame:       28px;
+--radius-pill:        9999px;
+
+--shadow-base:    none;
+--shadow-hover:   0 12px 28px -4px rgba(45, 38, 92, 0.16);
+--shadow-active:  none;
+--elevation-0:    none;
+--elevation-1:    0 4px 14px -2px rgba(45, 38, 92, 0.08);
+--elevation-2:    0 12px 28px -4px rgba(45, 38, 92, 0.16);
+
+Color blocks themselves cast no shadow. Media tiles may rest at elevation-1 and lift to elevation-2.
+
+Spacing: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64px.
+If the host already has a multi-column shell, map indigo / parchment / vermilion onto those existing columns. Do not add rails the host lacks.
+
+--transition-standard: 200ms cubic-bezier(0.2, 0, 0, 1);
+--motion-lift:         350ms cubic-bezier(0.16, 1, 0.3, 1);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:      2px solid #FF5338;
+--border-hairline:  1px solid rgba(45, 38, 92, 0.06);
+--divider-dark:     1px solid rgba(255, 255, 255, 0.08);
+--divider-light:    1px solid rgba(45, 38, 92, 0.06);
+--divider-style:    0px; /* Chromatic seams: zero-gap, no rule between color blocks */
+--outline-accent:   2px solid #FF5338;
+
+Focus visibility: `0 0 0 3px #2D265C, 0 0 0 5px #FFD027`.
+
+Icons: 1.5-1.75px mono-weight stroke, round caps, crisp miters, 16-20px boxes, currentColor.
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 6px radius. Primary: vermilion fill, white type; hover may use a vermilion-soft wash behind or a brighter vermilion type. Ghost on indigo: white type at 0.82, hover to 1.0 weight 700 with `translateX(4px)` if it is a text link. Keep host labels.
+- **Cards**: White on parchment, 3px radius on media, 0px on structural panels. Resting media shadow elevation-1. Hover: `translateY(-6px) scale(1.02)` over 350ms elastic, elevation-2. Do not add index codes, award lines, or decorative meta.
+- **Inputs**: 6px radius, white well, light indigo hairline. Font-size at least 16px. Focus: goldenrod double ring. Placeholder #636070.
+- **Navigation**: Restyle existing items in the plane they already occupy -- white on indigo, or white at 0.82 on vermilion. Active: full white, weight 700. Do not add a third rail or catalog codes.
+- **Badges / chips / toggles**: 6px or 9999px. Vermilion type on parchment, or white on indigo. Optional slow rotational drift (30s linear) on an existing decorative mark only -- never add a globe badge the host does not have.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No purple neon on dark; indigo is a flat editorial plane, not a glow.
+- No large-radius bento cards (24-32px) on structural blocks; those stay 0px.
+- No gaps or hairlines between the three chromatic planes; seams are flush.
+- No gradient text on compressed display.
+- No biscuit headline pills with pulsing dots.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- ========================================================================
+       10. APPLICATION LOGIC & INTERACTION ENGINE
+       ======================================================================== -->
+  <script>
+    const markdownContent = document.getElementById("style-tile-markdown").textContent.trim();
+
+    // Populate Rendered Spec Blocks
+    document.getElementById("style-tile-rendered-code").textContent = markdownContent;
+    document.getElementById("modal-spec-content").textContent = markdownContent;
+
+    // Toast System
+    function showToast(message) {
+      const container = document.getElementById("toast-container");
+      const toast = document.createElement("div");
+      toast.className = "toast-notification";
+      toast.innerHTML = `<span style="color: var(--palette-vermilion-vivid); font-weight: 900;">✓</span> <span>${message}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("active");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("active");
+        setTimeout(() => toast.remove(), 250);
+      }, 2400);
+    }
+
+    // Copy Raw Markdown
+    function copyStyleTileMarkdown() {
+      navigator.clipboard.writeText(markdownContent).then(() => {
+        showToast("Style Tile Prompt Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const origText = copyBtn.innerHTML;
+          copyBtn.innerHTML = `✓ Copied!`;
+          setTimeout(() => { copyBtn.innerHTML = origText; }, 2000);
+        }
+      }).catch(err => {
+        console.error("Clipboard copy failed:", err);
+      });
+    }
+
+    // Download Markdown File
+    function downloadStyleTileMarkdown() {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-chromatic-gazette.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-chromatic-gazette.md!");
+    }
+
+    // Copy Token Hex
+    function copyTokenHex(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${hex} (${varName})`);
+      });
+    }
+
+    // Modal Control
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      if (modal) modal.classList.add("active");
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal-backdrop");
+      if (modal) modal.classList.remove("active");
+    }
+
+    // Header Button Bindings
+    document.getElementById("btn-copy-tile").addEventListener("click", copyStyleTileMarkdown);
+    document.getElementById("btn-download-tile").addEventListener("click", downloadStyleTileMarkdown);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+
+    // Modal Backdrop & Escape Key Listeners
+    const backdrop = document.getElementById("spec-modal-backdrop");
+    if (backdrop) {
+      backdrop.addEventListener("click", (e) => {
+        if (e.target === backdrop) closeSpecModal();
+      });
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    // Interactive Type Tester
+    function updateTesterSize(val) {
+      const output = document.getElementById("tester-output");
+      const label = document.getElementById("type-size-val");
+      if (output) output.style.fontSize = val + "px";
+      if (label) label.textContent = val + "px";
+    }
+
+    function setTesterFont(type) {
+      const output = document.getElementById("tester-output");
+      const btns = document.querySelectorAll(".tester-btn-toggle");
+      btns.forEach(b => b.classList.remove("active"));
+
+      if (type === "display") {
+        output.style.fontFamily = "var(--font-display)";
+        output.style.textTransform = "uppercase";
+        document.getElementById("btn-font-display").classList.add("active");
+      } else if (type === "body") {
+        output.style.fontFamily = "var(--font-body)";
+        output.style.textTransform = "none";
+        document.getElementById("btn-font-body").classList.add("active");
+      } else if (type === "mono") {
+        output.style.fontFamily = "var(--font-mono)";
+        output.style.textTransform = "none";
+        document.getElementById("btn-font-mono").classList.add("active");
+      }
+    }
+
+    // Living Demo Book Filtering
+    function filterByGenre(genre, btnElem) {
+      const cards = document.querySelectorAll(".book-card");
+      cards.forEach(card => {
+        if (genre === "all" || card.dataset.genre === genre) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      // Update active state in tabs & right sidebar
+      document.querySelectorAll(".filter-tab-btn, .genre-nav-link").forEach(b => b.classList.remove("active"));
+      if (btnElem) btnElem.classList.add("active");
+    }
+
+    function filterBookCards(query) {
+      const q = query.toLowerCase().trim();
+      const cards = document.querySelectorAll(".book-card");
+      cards.forEach(card => {
+        const title = (card.dataset.title || "").toLowerCase();
+        if (!q || title.includes(q)) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    function selectBookCard(title, author) {
+      showToast(`Selected: "${title}" by ${author}`);
+    }
+
+    function handleNewsletterSubmit() {
+      const input = document.getElementById("dispatch-email");
+      if (input && input.value) {
+        showToast(`Subscribed: ${input.value}`);
+        input.value = "";
+      } else {
+        showToast("Please enter a valid email address.");
+      }
+    }
+
+    // Kinetic Armillary Globe Interactive Physics Drag
+    (function initKineticGlobe() {
+      const container = document.getElementById("kinetic-drag-container");
+      const armillary = document.getElementById("kinetic-armillary-svg");
+      if (!container || !armillary) return;
+
+      let isDragging = false;
+      let startX = 0;
+      let currentRotation = 0;
+      let velocity = 0;
+      let lastX = 0;
+      let animFrameId = null;
+
+      container.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        lastX = e.clientX;
+        armillary.style.animationPlayState = "paused";
+        cancelAnimationFrame(animFrameId);
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        const delta = e.clientX - lastX;
+        velocity = delta * 1.5;
+        currentRotation += velocity;
+        armillary.style.transform = `rotate(${currentRotation}deg)`;
+        lastX = e.clientX;
+      });
+
+      window.addEventListener("mouseup", () => {
+        if (!isDragging) return;
+        isDragging = false;
+
+        // Friction damping loop
+        function applyFriction() {
+          if (Math.abs(velocity) > 0.1) {
+            velocity *= 0.94; // friction coefficient
+            currentRotation += velocity;
+            armillary.style.transform = `rotate(${currentRotation}deg)`;
+            animFrameId = requestAnimationFrame(applyFriction);
+          } else {
+            armillary.style.animationPlayState = "running";
+          }
+        }
+        applyFriction();
+      });
+    })();
+  </script>
+</body>
+</html>
+

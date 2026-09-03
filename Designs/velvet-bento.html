@@ -1,0 +1,3149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velvet Bento — Style Tile &amp; Design System</title>
+  <meta name="description" content="Production-ready design system specification for Fluid Bento / Soft SaaS: Soft slate canvas #ECEFF2, pure white bento cards #FFFFFF, berry pink accent #DE2454, 24px outer radii, 9999px pills, tabular figures, and hierarchy tree-lines.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon.ico">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =============================================================================
+       FLUID BENTO // SOFT SAAS — DESIGN SYSTEM STYLE TILE (TILE)
+       ============================================================================= */
+
+    :root {
+      /* ---------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * --------------------------------------------------------------------------- */
+      /* Canvas & Neutral Backgrounds */
+      --surface-0:              #ECEFF2; /* Soft warm slate canvas (App Background) */
+      --surface-1:              #FFFFFF; /* Pure white base cards (Bento Tile) */
+      --surface-2:              #F6F8FA; /* Sub-card, input fill & nested wells */
+      --surface-dark:           #111315; /* High-contrast feature card accent */
+      --surface-glass:          rgba(255, 255, 255, 0.85);
+
+      /* Brand & Semantic Accents */
+      --primary-accent:         #DE2454; /* Berry Pink: Active nav, pills, high-priority CTA */
+      --primary-accent-hover:   #C71E49; /* Deep Berry */
+      --primary-accent-soft:    #FCE8EE; /* Light berry badge background */
+      --metric-alert:           #E42A58; /* Delta / negative / spotlight tags */
+      --chart-accent:           #E83D6D; /* Dynamic trendline stroke */
+
+      /* Typography Colors */
+      --text-primary:           #111315; /* Near black, high contrast */
+      --text-secondary:         #6B7280; /* Neutral slate subheaders */
+      --text-muted:             #9CA3AF; /* Light gray auxiliary text & sub-decimals */
+      --text-on-dark:           #FFFFFF; /* Pure white on inverted surfaces */
+      --text-accent:            #DE2454; /* Highlighted link / active menu */
+
+      /* Data / Integration Palette */
+      --color-dribbble:         #EA4C89;
+      --color-behance:          #0057FF;
+      --color-google:           #4285F4;
+      --color-ig:               #E1306C;
+      --color-success:          #10B981;
+      --color-success-soft:     #D1FAE5;
+
+      /* Aliases for Global Alignment */
+      --bg-canvas:              var(--surface-0);
+      --bg-surface:             var(--surface-1);
+      --bg-surface-alt:         var(--surface-2);
+      --bg-surface-dark:        var(--surface-dark);
+      --ink-primary:            var(--text-primary);
+      --ink-secondary:          var(--text-secondary);
+      --ink-muted:              var(--text-muted);
+      --ink-inverted:           var(--text-on-dark);
+      --accent-primary:         var(--primary-accent);
+
+      /* ---------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * --------------------------------------------------------------------------- */
+      --font-display:           "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-sans:              "Inter", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono:              ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+
+      /* ---------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * --------------------------------------------------------------------------- */
+      --radius-pill:            9999px; /* Search bar, segmented pills, badge chips, avatars */
+      --radius-outer:           24px;   /* Primary Bento grid card containers (XL) */
+      --radius-medium:          16px;   /* Nested metric tiles, drop-downs, secondary cards (MD) */
+      --radius-inner:           10px;   /* Interactive buttons, filter pills, small badges (SM) */
+
+      /* ---------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (SHADOWS & LAYERING)
+       * --------------------------------------------------------------------------- */
+      --shadow-elevation-0:     none;
+      --shadow-elevation-1:     0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);
+      --shadow-elevation-2:     0 10px 30px -4px rgba(17, 19, 21, 0.08), 0 4px 12px -2px rgba(17, 19, 21, 0.03);
+      --shadow-accent-glow:     0 8px 24px -4px rgba(222, 36, 84, 0.28);
+
+      /* ---------------------------------------------------------------------------
+       * 5. SPACING & SPATIAL SCALE (4px / 8px Spatial Grid)
+       * --------------------------------------------------------------------------- */
+      --gap-xs:                 6px;
+      --gap-sm:                 10px;
+      --gap-md:                 16px;
+      --gap-lg:                 24px;
+      --gap-xl:                 32px;
+      --card-padding:           20px;
+      --card-padding-nested:    16px;
+
+      /* ---------------------------------------------------------------------------
+       * 6. BORDERS & DIVIDERS
+       * --------------------------------------------------------------------------- */
+      --stroke-standard:        1px solid rgba(17, 19, 21, 0.04);
+      --stroke-active:          1.5px solid #111315;
+      --stroke-input:           1px solid #E5E7EB;
+      --stroke-tree:            1px solid #D1D5DB;
+      --stroke-berry-soft:      1px solid rgba(222, 36, 84, 0.15);
+
+      /* ---------------------------------------------------------------------------
+       * 7. ICONOGRAPHY LANGUAGE & SPECS
+       * --------------------------------------------------------------------------- */
+      --icon-stroke-width:      1.75px;
+      --icon-size-inline:       14px;
+      --icon-size-action:       18px;
+      --icon-size-nav:          22px;
+
+      /* ---------------------------------------------------------------------------
+       * 8. INTERACTION & FEEDBACK RULES
+       * --------------------------------------------------------------------------- */
+      --ease-fluid:             cubic-bezier(0.16, 1, 0.3, 1);
+      --duration-micro:         180ms;
+      --transition-base:        all var(--duration-micro) var(--ease-fluid);
+      --transition-transform:   transform var(--duration-micro) var(--ease-fluid), box-shadow var(--duration-micro) var(--ease-fluid);
+    }
+
+    /* =============================================================================
+       BASE RESET & GLOBAL FOUNDATION
+       ============================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--surface-0);
+      color: var(--text-primary);
+    }
+
+    body {
+      background-color: var(--surface-0);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 18px;
+      letter-spacing: 0em;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Tabular data class for numbers */
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.01em;
+    }
+
+    ::selection {
+      background: var(--primary-accent-soft);
+      color: var(--primary-accent);
+    }
+
+    .layout-wrapper {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 var(--gap-lg);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =============================================================================
+       MANDATORY HEADER BAR COMPONENT (agent.md Specification)
+       ============================================================================= */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--surface-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(17, 19, 21, 0.06);
+      padding: 12px var(--gap-lg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--gap-md);
+      box-shadow: 0 2px 10px rgba(17, 19, 21, 0.02);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      padding: 7px 16px;
+      background: var(--surface-1);
+      border: 1px solid #E5E7EB;
+      border-radius: var(--radius-pill);
+      transition: var(--transition-base);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .nav-back-link:hover {
+      transform: translateY(-1px);
+      background: var(--surface-2);
+      border-color: #D1D5DB;
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--surface-dark);
+      color: var(--text-on-dark);
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary-accent);
+      background: var(--primary-accent-soft);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: var(--transition-base);
+      text-decoration: none;
+    }
+
+    .btn-tile svg {
+      stroke-width: var(--icon-stroke-width);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .btn-preview {
+      background: var(--surface-1);
+      color: var(--text-primary);
+      border-color: #E5E7EB;
+    }
+    .btn-preview:hover {
+      background: var(--surface-2);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy {
+      background: var(--primary-accent);
+      color: var(--text-on-dark);
+      box-shadow: 0 2px 8px rgba(222, 36, 84, 0.25);
+    }
+    .btn-copy:hover {
+      background: var(--primary-accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(222, 36, 84, 0.35);
+    }
+
+    .btn-download {
+      background: var(--surface-dark);
+      color: var(--text-on-dark);
+    }
+    .btn-download:hover {
+      background: #23272B;
+      transform: translateY(-1px);
+    }
+
+    /* =============================================================================
+       GENERIC BENTO SURFACES & CONTAINERS
+       ============================================================================= */
+    .bento-card {
+      background-color: var(--surface-1);
+      border-radius: var(--radius-outer);
+      padding: var(--card-padding);
+      box-shadow: var(--shadow-elevation-1);
+      border: var(--stroke-standard);
+      position: relative;
+      transition: var(--transition-transform);
+    }
+
+    .bento-card:hover {
+      box-shadow: var(--shadow-elevation-2);
+    }
+
+    .bento-card-dark {
+      background-color: var(--surface-dark);
+      color: var(--text-on-dark);
+      border-radius: var(--radius-outer);
+      padding: var(--card-padding);
+      box-shadow: 0 12px 36px -6px rgba(17, 19, 21, 0.30);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    .nested-container {
+      background-color: var(--surface-2);
+      border-radius: var(--radius-medium);
+      padding: var(--card-padding-nested);
+      border: 1px solid rgba(17, 19, 21, 0.03);
+    }
+
+    /* Section Structure */
+    .system-section {
+      margin-top: 36px;
+      margin-bottom: 36px;
+    }
+
+    .section-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 18px;
+      gap: var(--gap-md);
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--primary-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary-accent);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 26px;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      line-height: 19px;
+    }
+
+    /* =============================================================================
+       01. HERO DISPLAY BANNER
+       ============================================================================= */
+    .hero-bento-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: var(--gap-lg);
+      margin-top: 28px;
+    }
+
+    .hero-main-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--gap-lg);
+      padding: 32px;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FAFBFD 100%);
+    }
+
+    .hero-tag-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .tag-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: var(--surface-2);
+      color: var(--text-secondary);
+      border: 1px solid #E5E7EB;
+      transition: var(--transition-base);
+    }
+
+    .tag-chip.active-dark {
+      background: var(--surface-dark);
+      color: var(--text-on-dark);
+      border-color: var(--surface-dark);
+    }
+
+    .tag-chip.active-berry {
+      background: var(--primary-accent-soft);
+      color: var(--primary-accent);
+      border-color: var(--primary-accent-soft);
+    }
+
+    .hero-display-title {
+      font-family: var(--font-display);
+      font-size: 38px;
+      line-height: 44px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+
+    .hero-display-title .berry-highlight {
+      color: var(--primary-accent);
+      position: relative;
+    }
+
+    .hero-lead-narrative {
+      font-size: 14.5px;
+      line-height: 22px;
+      color: var(--text-secondary);
+      max-width: 580px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .btn-fluid-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: var(--radius-inner);
+      background: var(--primary-accent);
+      color: var(--text-on-dark);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(222, 36, 84, 0.30);
+      transition: var(--transition-base);
+      text-decoration: none;
+    }
+
+    .btn-fluid-primary:hover {
+      background: var(--primary-accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(222, 36, 84, 0.40);
+    }
+
+    .btn-fluid-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: var(--radius-inner);
+      background: var(--surface-1);
+      color: var(--text-primary);
+      border: 1px solid #E5E7EB;
+      cursor: pointer;
+      transition: var(--transition-base);
+      text-decoration: none;
+    }
+
+    .btn-fluid-secondary:hover {
+      background: var(--surface-2);
+      transform: translateY(-1px);
+      border-color: #D1D5DB;
+    }
+
+    /* Hero Side Bento Cards Stack */
+    .hero-side-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-md);
+    }
+
+    .hero-metric-tile {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 22px;
+    }
+
+    .metric-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .metric-tag-alert {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--metric-alert);
+      background: #FEE2E2;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .metric-tag-alert::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--metric-alert);
+    }
+
+    .metric-large-text {
+      font-family: var(--font-display);
+      font-size: 26px;
+      line-height: 32px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+    }
+
+    .sub-decimal {
+      font-size: 18px;
+      line-height: 30px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .hero-integrations-preview {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .integration-icon-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 11px;
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      flex-shrink: 0;
+    }
+
+    .bg-dribbble { background: var(--color-dribbble); }
+    .bg-behance { background: var(--color-behance); }
+    .bg-google { background: var(--color-google); }
+    .bg-ig { background: var(--color-ig); }
+
+    /* =============================================================================
+       02. COLOR SWATCHES & PALETTE MATRIX
+       ============================================================================= */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 14px;
+    }
+
+    .swatch-card {
+      background: var(--surface-1);
+      border-radius: var(--radius-medium);
+      padding: 12px;
+      border: 1px solid rgba(17, 19, 21, 0.05);
+      box-shadow: var(--shadow-elevation-1);
+      cursor: pointer;
+      transition: var(--transition-base);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-elevation-2);
+      border-color: rgba(222, 36, 84, 0.2);
+    }
+
+    .swatch-preview-box {
+      width: 100%;
+      height: 56px;
+      border-radius: var(--radius-inner);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 6px 8px;
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .swatch-copy-hint {
+      font-family: var(--font-display);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--text-primary);
+      opacity: 0;
+      transition: var(--transition-base);
+    }
+
+    .swatch-card:hover .swatch-copy-hint {
+      opacity: 1;
+    }
+
+    .swatch-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .swatch-name {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .swatch-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    .swatch-hex {
+      font-weight: 600;
+    }
+
+    /* =============================================================================
+       03. TYPOGRAPHY SYSTEM SPECIMEN
+       ============================================================================= */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--gap-lg);
+    }
+
+    .type-scale-table {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .type-specimen-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      align-items: baseline;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #EEF2F6;
+    }
+
+    .type-role-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .type-role-tag {
+      font-weight: 700;
+      color: var(--primary-accent);
+    }
+
+    .type-role-meta {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .sample-display-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 34px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .sample-metric-large {
+      font-family: var(--font-display);
+      font-size: 24px;
+      line-height: 30px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+    }
+
+    .sample-section-header {
+      font-family: var(--font-display);
+      font-size: 16px;
+      line-height: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    .sample-body-regular {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      line-height: 18px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .sample-label-badge {
+      font-family: var(--font-display);
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--text-primary);
+    }
+
+    .sample-micro-meta {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      line-height: 12px;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: var(--text-muted);
+    }
+
+    /* Tabular Comparison & Pangram */
+    .tabular-demo-box {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .tabular-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: var(--surface-1);
+      border-radius: var(--radius-inner);
+      border: 1px solid #E5E7EB;
+      font-size: 13px;
+    }
+
+    .pangram-input-field {
+      width: 100%;
+      background: var(--surface-2);
+      border: var(--stroke-input);
+      border-radius: var(--radius-medium);
+      padding: 14px;
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      outline: none;
+      transition: var(--transition-base);
+    }
+
+    .pangram-input-field:focus {
+      border-color: var(--text-primary);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 2px rgba(17, 19, 21, 0.1);
+    }
+
+    /* =============================================================================
+       04. COMPONENT ARCHETYPE GALLERY
+       ============================================================================= */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: var(--gap-lg);
+    }
+
+    .archetype-group-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Button Variants */
+    .buttons-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn-bento-primary {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: var(--radius-inner);
+      background: var(--primary-accent);
+      color: var(--text-on-dark);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(222, 36, 84, 0.25);
+      transition: var(--transition-base);
+    }
+    .btn-bento-primary:hover {
+      background: var(--primary-accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(222, 36, 84, 0.35);
+    }
+
+    .btn-bento-dark {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: var(--radius-inner);
+      background: var(--surface-dark);
+      color: var(--text-on-dark);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+    .btn-bento-dark:hover {
+      background: #252A2E;
+      transform: translateY(-1px);
+    }
+
+    .btn-bento-soft {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: var(--radius-inner);
+      background: var(--primary-accent-soft);
+      color: var(--primary-accent);
+      border: 1px solid rgba(222, 36, 84, 0.12);
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+    .btn-bento-soft:hover {
+      background: #FBD5DF;
+      transform: translateY(-1px);
+    }
+
+    .btn-bento-outline {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: var(--radius-inner);
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid #D1D5DB;
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+    .btn-bento-outline:hover {
+      background: var(--surface-2);
+      border-color: #9CA3AF;
+      transform: translateY(-1px);
+    }
+
+    /* Segmented Pills */
+    .segmented-pill-control {
+      display: inline-flex;
+      background: #ECEFF2;
+      padding: 3px;
+      border-radius: var(--radius-pill);
+      gap: 2px;
+      border: 1px solid rgba(17, 19, 21, 0.04);
+    }
+
+    .segment-item {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+
+    .segment-item:hover {
+      color: var(--text-primary);
+      background: rgba(0, 0, 0, 0.03);
+    }
+
+    .segment-item.active {
+      background: var(--surface-dark);
+      color: var(--text-on-dark);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Filter Chips with Native Emojis */
+    .filter-chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .filter-chip-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      background: var(--surface-1);
+      color: var(--text-secondary);
+      border: 1px solid #E5E7EB;
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+
+    .filter-chip-btn:hover {
+      background: var(--surface-2);
+      color: var(--text-primary);
+      transform: translateY(-1px);
+    }
+
+    .filter-chip-btn.active {
+      background: var(--primary-accent-soft);
+      color: var(--primary-accent);
+      border-color: rgba(222, 36, 84, 0.25);
+    }
+
+    /* Search Bar & Inputs */
+    .fluid-search-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface-2);
+      border: var(--stroke-input);
+      border-radius: var(--radius-pill);
+      padding: 8px 14px;
+      transition: var(--transition-base);
+      width: 100%;
+    }
+
+    .fluid-search-bar:focus-within {
+      background: #FFFFFF;
+      border-color: var(--text-primary);
+      box-shadow: 0 0 0 2px rgba(17, 19, 21, 0.08);
+    }
+
+    .fluid-search-input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-primary);
+      width: 100%;
+    }
+
+    .fluid-search-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* Tree View & Hierarchy Connectors */
+    .tree-view-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      position: relative;
+    }
+
+    .tree-node-parent {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: var(--radius-inner);
+      font-family: var(--font-display);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+
+    .tree-node-parent:hover {
+      background: var(--surface-2);
+    }
+
+    .tree-children-block {
+      position: relative;
+      padding-left: 20px;
+      margin-left: 10px;
+      border-left: var(--stroke-tree);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .tree-node-child {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 8px;
+      border-radius: var(--radius-inner);
+      font-size: 12px;
+      color: var(--text-secondary);
+      position: relative;
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+
+    .tree-node-child::before {
+      content: "";
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      width: 14px;
+      height: 1px;
+      background: #D1D5DB;
+    }
+
+    .tree-node-child:hover {
+      background: var(--surface-2);
+      color: var(--text-primary);
+    }
+
+    .tree-node-child.active {
+      color: var(--primary-accent);
+      font-weight: 600;
+    }
+
+    .tree-node-child.active .tree-dot-marker {
+      background: var(--primary-accent);
+      box-shadow: 0 0 0 3px var(--primary-accent-soft);
+    }
+
+    .tree-dot-marker {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #9CA3AF;
+      transition: var(--transition-base);
+      flex-shrink: 0;
+    }
+
+    /* Radii Visualizer */
+    .radii-matrix {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .radii-specimen {
+      background: var(--surface-2);
+      border: 1.5px solid #D1D5DB;
+      height: 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      text-align: center;
+    }
+
+    .radii-pill { border-radius: var(--radius-pill); }
+    .radii-xl   { border-radius: var(--radius-outer); }
+    .radii-md   { border-radius: var(--radius-medium); }
+    .radii-sm   { border-radius: var(--radius-inner); }
+
+    /* =============================================================================
+       05. LIVING MICRO-EXPERIENCE: VORTEX FLUID BENTO SAAS CONSOLE
+       ============================================================================= */
+    .saas-console-wrapper {
+      background: #ECEFF2;
+      border-radius: 28px;
+      padding: 24px;
+      border: 1px solid rgba(17, 19, 21, 0.06);
+      box-shadow: 0 20px 48px -12px rgba(17, 19, 21, 0.08);
+    }
+
+    /* Console Top Navigation */
+    .console-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--surface-1);
+      border-radius: var(--radius-pill);
+      padding: 8px 16px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-elevation-1);
+      border: var(--stroke-standard);
+      gap: var(--gap-md);
+    }
+
+    .workspace-brand-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    .workspace-logo-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: var(--primary-accent);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .console-user-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px 4px 4px;
+      background: var(--surface-2);
+      border-radius: var(--radius-pill);
+      border: 1px solid #E5E7EB;
+      cursor: pointer;
+    }
+
+    .user-avatar-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #111315;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 10px;
+    }
+
+    /* Console Main Bento Grid */
+    .console-bento-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 18px;
+    }
+
+    .console-sidebar-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .console-content-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* Metric Tiles Grid */
+    .console-metrics-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .console-metric-card {
+      background: var(--surface-1);
+      border-radius: var(--radius-outer);
+      padding: 18px 20px;
+      border: var(--stroke-standard);
+      box-shadow: var(--shadow-elevation-1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      transition: var(--transition-base);
+    }
+
+    .console-metric-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-elevation-2);
+    }
+
+    .metric-delta-tag {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .delta-positive {
+      background: #ECFDF5;
+      color: #059669;
+    }
+
+    .delta-alert {
+      background: var(--primary-accent-soft);
+      color: var(--primary-accent);
+    }
+
+    /* Middle Row: Feature Chart + Dark Feature Card */
+    .console-middle-row {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 18px;
+    }
+
+    .chart-bento-card {
+      background: var(--surface-1);
+      border-radius: var(--radius-outer);
+      padding: 20px;
+      border: var(--stroke-standard);
+      box-shadow: var(--shadow-elevation-1);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .chart-controls-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .svg-chart-container {
+      width: 100%;
+      height: 180px;
+      position: relative;
+    }
+
+    .svg-chart-container svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .chart-gradient-stop-1 { stop-color: #E83D6D; stop-opacity: 0.25; }
+    .chart-gradient-stop-2 { stop-color: #E83D6D; stop-opacity: 0.00; }
+
+    .chart-data-point {
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .chart-data-point:hover {
+      transform: scale(1.5);
+    }
+
+    /* Dark Feature Bento Card */
+    .telemetry-dark-card {
+      background: var(--surface-dark);
+      color: var(--text-on-dark);
+      border-radius: var(--radius-outer);
+      padding: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 12px 32px -4px rgba(17, 19, 21, 0.28);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .telemetry-event-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .telemetry-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 8px 12px;
+      border-radius: var(--radius-inner);
+      font-size: 11.5px;
+      transition: var(--transition-base);
+    }
+
+    .telemetry-item:hover {
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary-accent);
+      box-shadow: 0 0 8px var(--primary-accent);
+      animation: pulse-glow 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* Bottom Row: Data Table & Simulation Pod */
+    .console-bottom-row {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 18px;
+    }
+
+    .table-bento-card {
+      background: var(--surface-1);
+      border-radius: var(--radius-outer);
+      padding: 20px;
+      border: var(--stroke-standard);
+      box-shadow: var(--shadow-elevation-1);
+    }
+
+    .data-table-soft {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+    }
+
+    .data-table-soft th {
+      text-align: left;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 8px 10px;
+      border-bottom: 1px solid #EEF2F6;
+      letter-spacing: 0.02em;
+    }
+
+    .data-table-soft td {
+      padding: 10px;
+      border-bottom: 1px solid #F3F4F6;
+      color: var(--text-primary);
+    }
+
+    .data-table-soft tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table-soft tr:hover td {
+      background: var(--surface-2);
+    }
+
+    /* Simulation Pod */
+    .simulator-pod {
+      background: var(--surface-1);
+      border-radius: var(--radius-outer);
+      padding: 20px;
+      border: var(--stroke-standard);
+      box-shadow: var(--shadow-elevation-1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .sim-slider-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sim-range-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #E5E7EB;
+      outline: none;
+    }
+
+    .sim-range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--primary-accent);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(222, 36, 84, 0.4);
+      transition: var(--transition-base);
+    }
+
+    .sim-range-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    /* =============================================================================
+       06. SPECIFICATION CODE DRAWER & MODAL
+       ============================================================================= */
+    .spec-code-card {
+      background: var(--surface-1);
+      border-radius: var(--radius-outer);
+      padding: 24px;
+      border: var(--stroke-standard);
+      box-shadow: var(--shadow-elevation-1);
+    }
+
+    .spec-code-pre {
+      background: var(--surface-dark);
+      color: #E2E8F0;
+      border-radius: var(--radius-medium);
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      line-height: 18px;
+      overflow-x: auto;
+      max-height: 480px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(17, 19, 21, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: var(--surface-1);
+      border-radius: var(--radius-outer);
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-elevation-2);
+      border: var(--stroke-standard);
+      overflow: hidden;
+      transform: translateY(12px) scale(0.98);
+      transition: transform 200ms var(--ease-fluid);
+    }
+
+    .modal-backdrop.open .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid #EEF2F6;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .modal-footer {
+      padding: 14px 20px;
+      border-top: 1px solid #EEF2F6;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      background: var(--surface-2);
+    }
+
+    /* Toast Notification */
+    #toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--surface-dark);
+      color: var(--text-on-dark);
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-display);
+      font-size: 12.5px;
+      font-weight: 600;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(12px) scale(0.95);
+      transition: all 180ms var(--ease-fluid);
+      pointer-events: auto;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .toast-accent {
+      color: var(--primary-accent);
+      font-weight: 800;
+    }
+
+    /* Footer Meta */
+    .page-footer {
+      margin-top: 60px;
+      padding: 24px 0 48px;
+      border-top: 1px solid #DDE2E7;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+  </style>
+
+  <!-- Mandatory Shared Mobile Safety Sheet (agent.md Section 6) -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+
+  <style>
+    /* =============================================================================
+       PAGE-SPECIFIC MOBILE RULES (390px - 768px Viewports)
+       ============================================================================= */
+    @media (max-width: 768px) {
+      .hero-bento-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .hero-main-card {
+        padding: 20px !important;
+      }
+      .hero-display-title {
+        font-size: clamp(24px, 7vw, 32px) !important;
+        line-height: 1.2 !important;
+      }
+      .palette-grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
+      .type-specimen-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .type-specimen-row {
+        grid-template-columns: 1fr !important;
+        gap: 6px !important;
+      }
+      .components-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .console-bento-layout {
+        grid-template-columns: 1fr !important;
+      }
+      .console-metrics-row {
+        grid-template-columns: 1fr !important;
+      }
+      .console-middle-row {
+        grid-template-columns: 1fr !important;
+      }
+      .console-bottom-row {
+        grid-template-columns: 1fr !important;
+      }
+      .console-nav-bar {
+        flex-wrap: wrap !important;
+        border-radius: var(--radius-medium) !important;
+      }
+      .radii-matrix {
+        grid-template-columns: 1fr 1fr !important;
+      }
+      .fluid-search-bar {
+        width: 100% !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===========================================================================
+       MANDATORY HEADER BAR (agent.md Specification)
+       =========================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Velvet Bento</span>
+      <span class="design-vibe-tag">Minimalist & Monastic</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-velvet-bento.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- =========================================================================
+         01. HERO DISPLAY BANNER
+         ========================================================================= -->
+    <section class="system-section">
+      <div class="hero-bento-grid">
+        <!-- Main Bento Hero Card -->
+        <div class="bento-card hero-main-card">
+          <div>
+            <div class="hero-tag-pills">
+              <span class="tag-chip active-dark">FLUID BENTO</span>
+              <span class="tag-chip">SOFT SAAS</span>
+              <span class="tag-chip active-berry">BERRY PINK #DE2454</span>
+              <span class="tag-chip">TABULAR NUMS</span>
+            </div>
+
+            <h1 class="hero-display-title">
+              Fluid Bento <span class="berry-highlight">//</span> Soft SaaS
+            </h1>
+
+            <p class="hero-lead-narrative">
+              A high-precision visual design system for modern software consoles and data-rich SaaS platforms. Anchored by a calm warm-slate canvas (<code>#ECEFF2</code>), pure white bento surfaces (<code>#FFFFFF</code>), tactile berry pink focal points (<code>#DE2454</code>), 24px outer radii, 9999px pills, and structural hierarchy connectors.
+            </p>
+          </div>
+
+          <div class="hero-cta-group">
+            <button class="btn-fluid-primary" onclick="copyMasterTilePrompt()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Prompt for AI Agent
+            </button>
+            <a href="#living-demo" class="btn-fluid-secondary">
+              <span>Inspect Live Console Demo</span>
+              <span>↓</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Side Quick Spec Snapshot -->
+        <div class="hero-side-stack">
+          <!-- Live Metric Bento Pod -->
+          <div class="bento-card hero-metric-tile">
+            <div class="metric-header-row">
+              <span style="font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--text-secondary);">MONTHLY RECURRING REVENUE</span>
+              <span class="metric-tag-alert">ALERT +14.8%</span>
+            </div>
+            <div class="metric-large-text tabular-nums">
+              $48,290.<span class="sub-decimal">40</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #EEF2F6; padding-top: 10px;">
+              <span style="font-size: 11px; color: var(--text-muted);">Active Growth Pace</span>
+              <div class="hero-integrations-preview">
+                <div class="integration-icon-circle bg-dribbble" title="Dribbble">Dr</div>
+                <div class="integration-icon-circle bg-behance" title="Behance">Be</div>
+                <div class="integration-icon-circle bg-google" title="Google">G</div>
+                <div class="integration-icon-circle bg-ig" title="Instagram">IG</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick System Attributes Pod -->
+          <div class="nested-container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-family: var(--font-display); font-size: 12px; font-weight: 700; color: var(--text-primary);">Corner Geometry</div>
+              <div style="font-size: 11px; color: var(--text-secondary);">24px XL Outer • 16px MD • 9999px Pill</div>
+            </div>
+            <div class="segmented-pill-control">
+              <button class="segment-item active">Tokens</button>
+              <button class="segment-item" onclick="openSpecModal()">Spec</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         02. COLOR SWATCHES & PALETTE MATRIX
+         ========================================================================= -->
+    <section class="system-section" id="palette-matrix">
+      <div class="section-header-row">
+        <div>
+          <div class="section-eyebrow">PALETTE MATRIX</div>
+          <h2 class="section-title">Color Roles & Harmonized Tokens</h2>
+        </div>
+        <p class="section-desc">
+          Click any swatch below to copy its Hex color or CSS variable name to your clipboard.
+        </p>
+      </div>
+
+      <div class="palette-grid">
+        <!-- Canvas / Neutrals -->
+        <div class="swatch-card" onclick="copyColorToken('#ECEFF2', '--surface-0')">
+          <div class="swatch-preview-box" style="background: #ECEFF2;">
+            <span class="swatch-copy-hint">Copy #ECEFF2</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Surface-0 (Canvas)</span>
+            <div class="swatch-meta-row">
+              <span class="swatch-hex">#ECEFF2</span>
+              <span>--surface-0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorToken('#FFFFFF', '--surface-1')">
+          <div class="swatch-preview-box" style="background: #FFFFFF;">
+            <span class="swatch-copy-hint">Copy #FFFFFF</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Surface-1 (Base Card)</span>
+            <div class="swatch-meta-row">
+              <span class="swatch-hex">#FFFFFF</span>
+              <span>--surface-1</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorToken('#F6F8FA', '--surface-2')">
+          <div class="swatch-preview-box" style="background: #F6F8FA;">
+            <span class="swatch-copy-hint">Copy #F6F8FA</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Surface-2 (Nested)</span>
+            <div class="swatch-meta-row">
+              <span class="swatch-hex">#F6F8FA</span>
+              <span>--surface-2</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorToken('#111315', '--surface-dark')">
+          <div class="swatch-preview-box" style="background: #111315;">
+            <span class="swatch-copy-hint" style="background: #333; color: #fff;">Copy #111315</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Surface-Dark (Accent)</span>
+            <div class="swatch-meta-row">
+              <span class="swatch-hex">#111315</span>
+              <span>--surface-dark</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Brand & Semantic Accents -->
+        <div class="swatch-card" onclick="copyColorToken('#DE2454', '--primary-accent')">
+          <div class="swatch-preview-box" style="background: #DE2454;">
+            <span class="swatch-copy-hint" style="background: #fff; color: #DE2454;">Copy #DE2454</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Primary Accent (Berry)</span>
+            <div class="swatch-meta-row">
+              <span class="swatch-hex">#DE2454</span>
+              <span>--primary-accent</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorToken('#FCE8EE', '--primary-accent-soft')">
+          <div class="swatch-preview-box" style="background: #FCE8EE;">
+            <span class="swatch-copy-hint">Copy #FCE8EE</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Primary Accent Soft</span>
+            <div class="swatch-meta-row">
+              <span class="swatch-hex">#FCE8EE</span>
+              <span>--primary-accent-soft</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorToken('#E42A58', '--metric-alert')">
+          <div class="swatch-preview-box" style="background: #E42A58;">
+            <span class="swatch-copy-hint" style="background: #fff; color: #E42A58;">Copy #E42A58</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Metric Alert / Secondary</span>
+            <div class="swatch-meta-row">
+              <span class="swatch-hex">#E42A58</span>
+              <span>--metric-alert</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorToken('#E83D6D', '--chart-accent')">
+          <div class="swatch-preview-box" style="background: #E83D6D;">
+            <span class="swatch-copy-hint" style="background: #fff; color: #E83D6D;">Copy #E83D6D</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Chart Accent Line</span>
+            <div class="swatch-meta-row">
+              <span class="swatch-hex">#E83D6D</span>
+              <span>--chart-accent</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inks & Integrations -->
+        <div class="swatch-card" onclick="copyColorToken('#6B7280', '--text-secondary')">
+          <div class="swatch-preview-box" style="background: #6B7280;">
+            <span class="swatch-copy-hint">Copy #6B7280</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Text-Secondary</span>
+            <div class="swatch-meta-row">
+              <span class="swatch-hex">#6B7280</span>
+              <span>--text-secondary</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorToken('#EA4C89', '--color-dribbble')">
+          <div class="swatch-preview-box" style="background: #EA4C89;">
+            <span class="swatch-copy-hint">Copy #EA4C89</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Dribbble Integration</span>
+            <div class="swatch-meta-row">
+              <span class="swatch-hex">#EA4C89</span>
+              <span>--color-dribbble</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorToken('#0057FF', '--color-behance')">
+          <div class="swatch-preview-box" style="background: #0057FF;">
+            <span class="swatch-copy-hint">Copy #0057FF</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Behance Integration</span>
+            <div class="swatch-meta-row">
+              <span class="swatch-hex">#0057FF</span>
+              <span>--color-behance</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyColorToken('#4285F4', '--color-google')">
+          <div class="swatch-preview-box" style="background: #4285F4;">
+            <span class="swatch-copy-hint">Copy #4285F4</span>
+          </div>
+          <div class="swatch-details">
+            <span class="swatch-name">Google Integration</span>
+            <div class="swatch-meta-row">
+              <span class="swatch-hex">#4285F4</span>
+              <span>--color-google</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         03. TYPOGRAPHY SYSTEM SPECIMEN
+         ========================================================================= -->
+    <section class="system-section" id="typography-specimen">
+      <div class="section-header-row">
+        <div>
+          <div class="section-eyebrow">TYPOGRAPHY SYSTEM</div>
+          <h2 class="section-title">Type Hierarchy & Tabular Lining Figures</h2>
+        </div>
+        <p class="section-desc">
+          Using <strong>Plus Jakarta Sans</strong> for display/headings and <strong>Inter</strong> for functional body, with strict tabular Lining Figures (<code>tabular-nums</code>) for analytics.
+        </p>
+      </div>
+
+      <div class="type-specimen-grid">
+        <!-- Type Scale Ladder -->
+        <div class="bento-card">
+          <div class="type-scale-table">
+            <div class="type-specimen-row">
+              <div class="type-role-label">
+                <span class="type-role-tag">Display Title</span>
+                <span class="type-role-meta">28px / 34px • 600 • -0.02em</span>
+              </div>
+              <div class="sample-display-title">Fluid SaaS Command Matrix</div>
+            </div>
+
+            <div class="type-specimen-row">
+              <div class="type-role-label">
+                <span class="type-role-tag">Metric Large</span>
+                <span class="type-role-meta">24px / 30px • 700 • -0.03em</span>
+              </div>
+              <div class="sample-metric-large tabular-nums">
+                $128,490.<span class="sub-decimal">50</span>
+              </div>
+            </div>
+
+            <div class="type-specimen-row">
+              <div class="type-role-label">
+                <span class="type-role-tag">Section Header</span>
+                <span class="type-role-meta">16px / 22px • 600 • -0.01em</span>
+              </div>
+              <div class="sample-section-header">Workspace Telemetry & Integrations</div>
+            </div>
+
+            <div class="type-specimen-row">
+              <div class="type-role-label">
+                <span class="type-role-tag">Body Regular</span>
+                <span class="type-role-meta">13px / 18px • 500 • 0em</span>
+              </div>
+              <div class="sample-body-regular">
+                Bento tile architecture isolates core workflows into structured, high-legibility modules with soft elevation.
+              </div>
+            </div>
+
+            <div class="type-specimen-row">
+              <div class="type-role-label">
+                <span class="type-role-tag">Label / Badge</span>
+                <span class="type-role-meta">11px / 14px • 600 • +0.01em</span>
+              </div>
+              <div class="sample-label-badge">
+                <span class="tag-chip active-berry">STREAK ⚡ 14 DAYS</span>
+                <span class="tag-chip">TOP SALES 💡</span>
+              </div>
+            </div>
+
+            <div class="type-specimen-row" style="border-bottom: none;">
+              <div class="type-role-label">
+                <span class="type-role-tag">Micro / Meta</span>
+                <span class="type-role-meta">10px / 12px • 400 • +0.02em</span>
+              </div>
+              <div class="sample-micro-meta tabular-nums">
+                SYNCED 2 SECONDS AGO • LATENCY 14MS • SECURE TLS 1.3
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabular Comparison & Live Pangram Tester -->
+        <div style="display: flex; flex-direction: column; gap: var(--gap-md);">
+          <!-- Tabular Demonstration -->
+          <div class="bento-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-family: var(--font-display); font-size: 13px; font-weight: 700;">Tabular Alignment Demo</span>
+              <span class="tag-chip active-berry">font-variant-numeric: tabular-nums</span>
+            </div>
+            <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 10px;">
+              Notice how decimal points and currency figures perfectly align vertically:
+            </p>
+            <div class="tabular-demo-box">
+              <div class="tabular-row tabular-nums">
+                <span>Direct Stripe Inflow</span>
+                <strong style="color: var(--text-primary);">$49,120.90</strong>
+              </div>
+              <div class="tabular-row tabular-nums">
+                <span>Enterprise ARR Retainer</span>
+                <strong style="color: var(--text-primary);">$11,008.10</strong>
+              </div>
+              <div class="tabular-row tabular-nums">
+                <span>App Marketplace Payout</span>
+                <strong style="color: var(--text-primary);">$04,913.00</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Editable Pangram -->
+          <div class="bento-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+              <span style="font-family: var(--font-display); font-size: 13px; font-weight: 700;">Live Interactive Type Specimen</span>
+              <span style="font-size: 11px; color: var(--text-muted);">Editable</span>
+            </div>
+            <input type="text" class="pangram-input-field" value="Sphinx of black quartz, judge my vow 1234567890." id="pangram-box">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         04. COMPONENT ARCHETYPE GALLERY
+         ========================================================================= -->
+    <section class="system-section" id="component-gallery">
+      <div class="section-header-row">
+        <div>
+          <div class="section-eyebrow">COMPONENT ARCHETYPES</div>
+          <h2 class="section-title">Interactive Elements & Geometry Tokens</h2>
+        </div>
+        <p class="section-desc">
+          Engineered around 9999px full pills, 24px outer containers, 1.75px stroke iconography, and 150-200ms spring transitions.
+        </p>
+      </div>
+
+      <div class="components-grid">
+        <!-- 1. Buttons & Actions Archetype -->
+        <div class="bento-card">
+          <div class="archetype-group-title">
+            <span>Button & CTA Suite</span>
+            <span style="font-size: 11px; color: var(--text-muted);">10px Inner Radius</span>
+          </div>
+          <div class="buttons-flow" style="margin-bottom: 14px;">
+            <button class="btn-bento-primary" onclick="showToast('Triggered Berry Primary CTA!')">Primary Berry</button>
+            <button class="btn-bento-dark" onclick="showToast('Triggered Dark Feature Action!')">Surface Dark</button>
+            <button class="btn-bento-soft" onclick="showToast('Triggered Soft Badge Button!')">Soft Berry</button>
+            <button class="btn-bento-outline" onclick="showToast('Triggered Outline Action!')">Outline</button>
+          </div>
+          <p style="font-size: 11.5px; color: var(--text-secondary); line-height: 16px;">
+            Hover initiates <code>translateY(-1px)</code> with fluid cubic-bezier spring physics.
+          </p>
+        </div>
+
+        <!-- 2. Segmented Pill Controls -->
+        <div class="bento-card">
+          <div class="archetype-group-title">
+            <span>Segmented Pill Controls</span>
+            <span style="font-size: 11px; color: var(--text-muted);">9999px Full Radius</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="segmented-pill-control">
+              <button class="segment-item active" onclick="switchSegment(this)">Overview</button>
+              <button class="segment-item" onclick="switchSegment(this)">Telemetry</button>
+              <button class="segment-item" onclick="switchSegment(this)">Deployments</button>
+              <button class="segment-item" onclick="switchSegment(this)">Settings</button>
+            </div>
+            <p style="font-size: 11.5px; color: var(--text-secondary); line-height: 16px;">
+              Active state uses solid <code>#111315</code> with pure white text as an instant visual anchor.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3. Filter Chips with Native Emojis -->
+        <div class="bento-card">
+          <div class="archetype-group-title">
+            <span>Filter Chips with Emojis</span>
+            <span style="font-size: 11px; color: var(--text-muted);">Native Emoji Embed</span>
+          </div>
+          <div class="filter-chips-row" style="margin-bottom: 12px;">
+            <button class="filter-chip-btn active" onclick="toggleFilterChip(this)">Top sales 💡</button>
+            <button class="filter-chip-btn" onclick="toggleFilterChip(this)">Streak ⚡</button>
+            <button class="filter-chip-btn" onclick="toggleFilterChip(this)">High Retention 🔥</button>
+            <button class="filter-chip-btn" onclick="toggleFilterChip(this)">Global 🌐</button>
+            <button class="filter-chip-btn" onclick="toggleFilterChip(this)">Sync 🔄</button>
+          </div>
+          <p style="font-size: 11.5px; color: var(--text-secondary);">
+            Micro-padding (5px 12px) with 1px border stroke and active berry tint.
+          </p>
+        </div>
+
+        <!-- 4. Sidebar Tree-View & Hierarchy Lines -->
+        <div class="bento-card">
+          <div class="archetype-group-title">
+            <span>Hierarchy Tree-View Lines</span>
+            <span style="font-size: 11px; color: var(--text-muted);">90° Elbow Turns</span>
+          </div>
+          <div class="tree-view-container">
+            <div class="tree-node-parent">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              <span>Vortex Workspace</span>
+            </div>
+            <div class="tree-children-block">
+              <div class="tree-node-child active" onclick="selectTreeNode(this)">
+                <span class="tree-dot-marker"></span>
+                <span>Active Revenue Pod</span>
+              </div>
+              <div class="tree-node-child" onclick="selectTreeNode(this)">
+                <span class="tree-dot-marker"></span>
+                <span>Team Telemetry</span>
+              </div>
+              <div class="tree-node-child" onclick="selectTreeNode(this)">
+                <span class="tree-dot-marker"></span>
+                <span>Integration Endpoints</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Search Bar & Form Controls -->
+        <div class="bento-card">
+          <div class="archetype-group-title">
+            <span>Pill Search & Inputs</span>
+            <span style="font-size: 11px; color: var(--text-muted);">9999px Capsule</span>
+          </div>
+          <div class="fluid-search-bar" style="margin-bottom: 12px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="1.75"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" class="fluid-search-input" placeholder="Search analytics, tags, team members..." oninput="handleSearchType(this.value)">
+          </div>
+          <p style="font-size: 11.5px; color: var(--text-secondary);">
+            Smooth focus ring: <code>1.5px solid #111315</code> with elevated background.
+          </p>
+        </div>
+
+        <!-- 6. Corner Geometry Matrix -->
+        <div class="bento-card">
+          <div class="archetype-group-title">
+            <span>Radius Geometry Scale</span>
+            <span style="font-size: 11px; color: var(--text-muted);">Strict Tokens</span>
+          </div>
+          <div class="radii-matrix">
+            <div class="radii-specimen radii-pill">
+              <strong style="font-size: 11px;">Pill</strong>
+              <span style="font-size: 9px; color: var(--text-muted);">9999px</span>
+            </div>
+            <div class="radii-specimen radii-xl">
+              <strong style="font-size: 11px;">XL Outer</strong>
+              <span style="font-size: 9px; color: var(--text-muted);">24px</span>
+            </div>
+            <div class="radii-specimen radii-md">
+              <strong style="font-size: 11px;">MD Nested</strong>
+              <span style="font-size: 9px; color: var(--text-muted);">16px</span>
+            </div>
+            <div class="radii-specimen radii-sm">
+              <strong style="font-size: 11px;">SM Inner</strong>
+              <span style="font-size: 9px; color: var(--text-muted);">10px</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         05. LIVING MICRO-EXPERIENCE: VORTEX FLUID BENTO SAAS CONSOLE
+         ========================================================================= -->
+    <section class="system-section" id="living-demo">
+      <div class="section-header-row">
+        <div>
+          <div class="section-eyebrow">LIVING MICRO-EXPERIENCE</div>
+          <h2 class="section-title">Vortex Analytics Console — Live Soft SaaS Bento</h2>
+        </div>
+        <p class="section-desc">
+          Interact with live chart range filters, sidebar navigation, revenue simulation, and real-time event dispatch.
+        </p>
+      </div>
+
+      <div class="saas-console-wrapper">
+        <!-- Console Top Navigation Bar -->
+        <div class="console-nav-bar">
+          <div class="workspace-brand-badge">
+            <div class="workspace-logo-dot">V</div>
+            <span>Vortex Cloud</span>
+            <span style="font-size: 10px; color: var(--text-muted);">▾</span>
+          </div>
+
+          <div style="flex: 1; max-width: 380px;">
+            <div class="fluid-search-bar" style="padding: 6px 12px; background: #F6F8FA;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="1.75"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" class="fluid-search-input" placeholder="Quick find metrics (⌘K)...">
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div class="filter-chips-row">
+              <span class="tag-chip active-berry">Live ⚡</span>
+              <span class="tag-chip">Q3 Target 💡</span>
+            </div>
+            <div class="console-user-pill" title="User Profile">
+              <div class="user-avatar-circle">AZ</div>
+              <span style="font-size: 12px; font-weight: 600;">Alex Z.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Bento Grid -->
+        <div class="console-bento-layout">
+          <!-- Left Sidebar Panel -->
+          <div class="console-sidebar-panel">
+            <!-- Navigation Bento Card -->
+            <div class="bento-card" style="padding: 16px;">
+              <div style="font-family: var(--font-display); font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 10px; letter-spacing: 0.05em;">
+                WORKSPACE TREE
+              </div>
+              <div class="tree-view-container">
+                <div class="tree-node-parent">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                  <span>Core Dashboards</span>
+                </div>
+                <div class="tree-children-block">
+                  <div class="tree-node-child active" onclick="selectConsoleNav(this, 'Global Revenue')">
+                    <span class="tree-dot-marker"></span>
+                    <span>Global Revenue</span>
+                  </div>
+                  <div class="tree-node-child" onclick="selectConsoleNav(this, 'Pipeline Velocity')">
+                    <span class="tree-dot-marker"></span>
+                    <span>Pipeline Velocity</span>
+                  </div>
+                  <div class="tree-node-child" onclick="selectConsoleNav(this, 'Retention Hub')">
+                    <span class="tree-dot-marker"></span>
+                    <span>Retention Hub</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connected Integrations Bento Card -->
+            <div class="bento-card" style="padding: 16px;">
+              <div style="font-family: var(--font-display); font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 10px; letter-spacing: 0.05em;">
+                INTEGRATIONS
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                  <div style="display: flex; align-items: center; gap: 6px;">
+                    <div class="integration-icon-circle bg-dribbble" style="width: 20px; height: 20px; font-size: 9px;">Dr</div>
+                    <span>Dribbble Inflow</span>
+                  </div>
+                  <span style="font-size: 10px; color: var(--color-success); font-weight: 700;">ON</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                  <div style="display: flex; align-items: center; gap: 6px;">
+                    <div class="integration-icon-circle bg-behance" style="width: 20px; height: 20px; font-size: 9px;">Be</div>
+                    <span>Behance Sync</span>
+                  </div>
+                  <span style="font-size: 10px; color: var(--color-success); font-weight: 700;">ON</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px;">
+                  <div style="display: flex; align-items: center; gap: 6px;">
+                    <div class="integration-icon-circle bg-google" style="width: 20px; height: 20px; font-size: 9px;">G</div>
+                    <span>Google Cloud</span>
+                  </div>
+                  <span style="font-size: 10px; color: var(--color-success); font-weight: 700;">ON</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Content Panel -->
+          <div class="console-content-panel">
+            <!-- 1. Top Metrics Row -->
+            <div class="console-metrics-row">
+              <!-- Metric 1: MRR -->
+              <div class="console-metric-card">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                  <div>
+                    <span style="font-size: 11px; font-weight: 600; color: var(--text-secondary);">TOTAL NET REVENUE</span>
+                    <div class="metric-large-text tabular-nums" style="margin-top: 4px;" id="metric-mrr-val">
+                      $48,290.<span class="sub-decimal">40</span>
+                    </div>
+                  </div>
+                  <span class="metric-delta-tag delta-positive">+14.8% ↑</span>
+                </div>
+                <div style="font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between;">
+                  <span>vs last 30 days</span>
+                  <span style="color: var(--text-primary); font-weight: 600;">$42,060 baseline</span>
+                </div>
+              </div>
+
+              <!-- Metric 2: Active Teams -->
+              <div class="console-metric-card">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                  <div>
+                    <span style="font-size: 11px; font-weight: 600; color: var(--text-secondary);">ACTIVE RETAINED TEAMS</span>
+                    <div class="metric-large-text tabular-nums" style="margin-top: 4px;">
+                      1,420.<span class="sub-decimal">00</span>
+                    </div>
+                  </div>
+                  <span class="metric-delta-tag delta-alert">Streak ⚡</span>
+                </div>
+                <div style="font-size: 11px; color: var(--text-muted); display: flex; justify-content: space-between;">
+                  <span>Retention rate</span>
+                  <span style="color: var(--color-success); font-weight: 600;">99.4% SLA</span>
+                </div>
+              </div>
+
+              <!-- Metric 3: Integration Traffic -->
+              <div class="console-metric-card">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                  <div>
+                    <span style="font-size: 11px; font-weight: 600; color: var(--text-secondary);">INTEGRATION INFLOW</span>
+                    <div class="metric-large-text tabular-nums" style="margin-top: 4px;">
+                      94.2k<span class="sub-decimal"> req</span>
+                    </div>
+                  </div>
+                  <span class="tag-chip active-berry">14ms avg</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <div style="flex: 1; height: 5px; background: #EEF2F6; border-radius: 3px; overflow: hidden; display: flex;">
+                    <div style="width: 40%; background: var(--color-dribbble);"></div>
+                    <div style="width: 25%; background: var(--color-behance);"></div>
+                    <div style="width: 20%; background: var(--color-google);"></div>
+                    <div style="width: 15%; background: var(--color-ig);"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Middle Row: Interactive Trendline Chart + Dark Telemetry Feature Card -->
+            <div class="console-middle-row">
+              <!-- Feature Chart Bento Card -->
+              <div class="chart-bento-card">
+                <div class="chart-controls-row">
+                  <div>
+                    <div style="font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--text-primary);">
+                      Dynamic Trendline Vector
+                    </div>
+                    <span style="font-size: 11px; color: var(--text-muted);">Real-time linear stroke (<code>#E83D6D</code>)</span>
+                  </div>
+                  <div class="segmented-pill-control">
+                    <button class="segment-item" onclick="setChartRange(this, '24h')">24h</button>
+                    <button class="segment-item active" onclick="setChartRange(this, '7d')">7d</button>
+                    <button class="segment-item" onclick="setChartRange(this, '30d')">30d</button>
+                    <button class="segment-item" onclick="setChartRange(this, '90d')">90d</button>
+                  </div>
+                </div>
+
+                <!-- Interactive SVG Chart -->
+                <div class="svg-chart-container" id="chart-viewport">
+                  <svg viewBox="0 0 500 160" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="berry-chart-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" class="chart-gradient-stop-1" />
+                        <stop offset="100%" class="chart-gradient-stop-2" />
+                      </linearGradient>
+                    </defs>
+                    <!-- Horizontal Grid Lines -->
+                    <line x1="0" y1="40" x2="500" y2="40" stroke="#F1F3F5" stroke-width="1" />
+                    <line x1="0" y1="80" x2="500" y2="80" stroke="#F1F3F5" stroke-width="1" />
+                    <line x1="0" y1="120" x2="500" y2="120" stroke="#F1F3F5" stroke-width="1" />
+
+                    <!-- Chart Area Gradient Fill -->
+                    <polygon id="chart-area-poly" points="0,130 50,110 100,125 160,85 220,95 280,60 340,75 400,35 450,45 500,20 500,160 0,160" fill="url(#berry-chart-grad)" />
+
+                    <!-- Chart Accent Trendline Stroke (#E83D6D) -->
+                    <polyline id="chart-trend-line" points="0,130 50,110 100,125 160,85 220,95 280,60 340,75 400,35 450,45 500,20" fill="none" stroke="#E83D6D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+                    <!-- Interactive Data Points -->
+                    <circle cx="160" cy="85" r="4.5" fill="#FFFFFF" stroke="#E83D6D" stroke-width="2" class="chart-data-point" onclick="showToast('Wed: $28,400 MRR Milestone', '📈')" />
+                    <circle cx="280" cy="60" r="4.5" fill="#FFFFFF" stroke="#E83D6D" stroke-width="2" class="chart-data-point" onclick="showToast('Fri: $36,200 Spike', '📈')" />
+                    <circle cx="400" cy="35" r="4.5" fill="#FFFFFF" stroke="#E83D6D" stroke-width="2" class="chart-data-point" onclick="showToast('Sun: $45,800 All-Time High', '🚀')" />
+                    <circle cx="500" cy="20" r="5" fill="#DE2454" stroke="#FFFFFF" stroke-width="2" class="chart-data-point" onclick="showToast('Now: $48,290.40 Running Peak', '✦')" />
+                  </svg>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); font-family: var(--font-mono);">
+                  <span>MON (01)</span>
+                  <span>WED (03)</span>
+                  <span>FRI (05)</span>
+                  <span>SUN (07)</span>
+                  <span style="color: var(--primary-accent); font-weight: 700;">TODAY (PEAK)</span>
+                </div>
+              </div>
+
+              <!-- Surface Dark Feature Bento Card (#111315) -->
+              <div class="telemetry-dark-card">
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                      <span class="pulse-dot"></span>
+                      <span style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: #FFFFFF;">Live Telemetry Stream</span>
+                    </div>
+                    <span style="font-family: var(--font-mono); font-size: 10px; color: var(--primary-accent); background: rgba(222, 36, 84, 0.2); padding: 2px 6px; border-radius: 4px;">ACTIVE</span>
+                  </div>
+                  <p style="font-size: 11px; color: #9CA3AF; line-height: 15px; margin-bottom: 12px;">
+                    High-contrast dark feature card (<code>#111315</code>) providing instant visual gravity.
+                  </p>
+
+                  <div class="telemetry-event-list">
+                    <div class="telemetry-item">
+                      <span>Dribbble Lead Ingest #891</span>
+                      <span class="tabular-nums" style="color: #10B981; font-weight: 600;">+$850.00</span>
+                    </div>
+                    <div class="telemetry-item">
+                      <span>Behance Pro Seat Expansion</span>
+                      <span class="tabular-nums" style="color: #10B981; font-weight: 600;">+$1,200.00</span>
+                    </div>
+                    <div class="telemetry-item">
+                      <span>Google Cloud Sync Checkpoint</span>
+                      <span style="color: #9CA3AF;">12ms ✓</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 12px;">
+                  <span style="font-size: 11px; color: #9CA3AF;">System Latency</span>
+                  <button class="btn-fluid-primary" style="padding: 6px 12px; font-size: 11px;" onclick="simulateTelemetryPulse()">
+                    Trigger Event +
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Bottom Row: Data Table & Simulation Pod -->
+            <div class="console-bottom-row">
+              <!-- Team Activity Data Table -->
+              <div class="table-bento-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                  <span style="font-family: var(--font-display); font-size: 14px; font-weight: 700;">Recent Stream Inflows</span>
+                  <span class="tag-chip">Lining Figures (tabular-nums)</span>
+                </div>
+                <table class="data-table-soft">
+                  <thead>
+                    <tr>
+                      <th>CLIENT / WORKSPACE</th>
+                      <th>CHANNEL</th>
+                      <th>STATUS</th>
+                      <th style="text-align: right;">AMOUNT</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <strong>Aura Creative Lab</strong>
+                        <div style="font-size: 10px; color: var(--text-muted);">Pro Enterprise Plan</div>
+                      </td>
+                      <td>
+                        <span class="tag-chip" style="padding: 2px 8px; font-size: 10px;">Dribbble</span>
+                      </td>
+                      <td>
+                        <span style="color: #059669; font-weight: 600; font-size: 11px;">Active ✓</span>
+                      </td>
+                      <td style="text-align: right;" class="tabular-nums">
+                        <strong>$4,250.<span style="color: var(--text-muted);">00</span></strong>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Nexus Media GmbH</strong>
+                        <div style="font-size: 10px; color: var(--text-muted);">Custom Retention API</div>
+                      </td>
+                      <td>
+                        <span class="tag-chip" style="padding: 2px 8px; font-size: 10px;">Behance</span>
+                      </td>
+                      <td>
+                        <span style="color: #059669; font-weight: 600; font-size: 11px;">Active ✓</span>
+                      </td>
+                      <td style="text-align: right;" class="tabular-nums">
+                        <strong>$9,800.<span style="color: var(--text-muted);">50</span></strong>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Supersonic Studio</strong>
+                        <div style="font-size: 10px; color: var(--text-muted);">Global Scale Cluster</div>
+                      </td>
+                      <td>
+                        <span class="tag-chip" style="padding: 2px 8px; font-size: 10px;">Google</span>
+                      </td>
+                      <td>
+                        <span style="color: var(--primary-accent); font-weight: 600; font-size: 11px;">Alert Tag</span>
+                      </td>
+                      <td style="text-align: right;" class="tabular-nums">
+                        <strong>$14,320.<span style="color: var(--text-muted);">90</span></strong>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Quick Revenue Simulator Pod -->
+              <div class="simulator-pod">
+                <div>
+                  <div style="font-family: var(--font-display); font-size: 14px; font-weight: 700; margin-bottom: 4px;">
+                    Scale & Forecast Simulator
+                  </div>
+                  <p style="font-size: 11.5px; color: var(--text-secondary); margin-bottom: 12px;">
+                    Simulate active team expansion to recalculate revenue projections in real-time.
+                  </p>
+
+                  <div class="sim-slider-group">
+                    <div style="display: flex; justify-content: space-between; font-size: 11.5px; font-weight: 600;">
+                      <span>Simulated Expansion Units</span>
+                      <span id="slider-units-label" class="tabular-nums" style="color: var(--primary-accent);">12 Seats</span>
+                    </div>
+                    <input type="range" class="sim-range-slider" id="growth-slider" min="1" max="50" value="12" oninput="recalculateSimulation(this.value)">
+                  </div>
+                </div>
+
+                <div class="nested-container" style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <span style="font-size: 11px; color: var(--text-muted);">Projected ARR Impact</span>
+                    <div class="metric-large-text tabular-nums" id="sim-projected-total" style="font-size: 20px;">
+                      +$14,400.<span class="sub-decimal">00</span>
+                    </div>
+                  </div>
+                  <button class="btn-bento-primary" style="padding: 8px 14px; font-size: 11px;" onclick="applySimulationPlan()">
+                    Commit Forecast ✓
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         06. SPECIFICATION CODE DRAWER & PROMPT VAULT
+         ========================================================================= -->
+    <section class="system-section" id="prompt-spec">
+      <div class="section-header-row">
+        <div>
+          <div class="section-eyebrow">SPECIFICATION VAULT</div>
+          <h2 class="section-title">Style Tile Markdown Token Spec</h2>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-fluid-primary" onclick="copyMasterTilePrompt()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Raw Spec
+          </button>
+          <button class="btn-fluid-secondary" onclick="downloadStyleTileFile()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download .md
+          </button>
+        </div>
+      </div>
+
+      <div class="spec-code-card">
+        <pre class="spec-code-pre"><code id="spec-code-display">
+================================================================================
+  Visual language: Fluid Bento
+  Construction: warm slate canvas • 24px outer tiles • nested 16px wells • berry pink • soft float shadows
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A soft warm-slate canvas holding pure-white bento tiles with nested mist wells and occasional onyx inverted cards. Outer tiles are 24px; inner wells 16px; compact controls 10px; search and segments are full pills. Berry pink is the only loud ink - active nav, pills, and primary actions. Depth is a very light float shadow, not a hard border. Type is a single geometric sans with tabular figures. Motion is a short fluid spring.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #ECEFF2; /* Soft warm slate */
+  --bg-surface:             #FFFFFF; /* White bento tile */
+  --bg-surface-alt:         #F6F8FA; /* Nested well */
+  --bg-surface-dark:        #111315; /* Inverted feature card */
+
+  /* Inks & Typography */
+  --ink-primary:            #111315; /* Near black */
+  --ink-secondary:          #6B7280; /* Neutral slate */
+  --ink-muted:              #9CA3AF; /* Auxiliary gray */
+  --ink-inverted:           #FFFFFF; /* White on onyx */
+
+  /* Signature Accents */
+  --accent-primary:         #DE2454; /* Berry pink */
+  --accent-primary-hover:   #C71E49; /* Deep berry */
+  --accent-secondary:       #FCE8EE; /* Light berry wash */
+  --accent-tertiary:        #E83D6D; /* Trendline berry */
+
+  /* Status Tokens */
+  --status-success:         #10B981; /* Quiet green */
+  --status-warning:         #E83D6D; /* Berry caution */
+  --status-danger:          #E42A58; /* Alert berry */
+  --status-info:            #4285F4; /* Cool information blue */
+
+  /* Extra material tokens */
+  --surface-0:              #ECEFF2;
+  --surface-1:              #FFFFFF;
+  --surface-2:              #F6F8FA;
+  --surface-dark:           #111315;
+  --surface-glass:          rgba(255, 255, 255, 0.85);
+  --primary-accent-soft:    #FCE8EE;
+  --metric-alert:           #E42A58;
+  --chart-accent:           #E83D6D;
+  --color-success-soft:     #D1FAE5;
+  --nav-idle-fill:          #F3F4F6;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Plus Jakarta Sans", "Inter", "SF Pro Display", sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+--font-mono:    ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+
+--text-display: 600 28px / 34px var(--font-display); /* Tracking: -0.02em */
+--text-h1:      600 28px / 34px var(--font-display);
+--text-h2:      700 24px / 30px var(--font-display); /* Tracking: -0.03em | large figures */
+--text-h3:      600 16px / 22px var(--font-sans);    /* Tracking: -0.01em */
+--text-body:    500 13px / 18px var(--font-sans);
+--text-body-sm: 600 11px / 14px var(--font-sans);    /* Tracking: +0.01em */
+--text-meta:    400 10px / 12px var(--font-sans);    /* Tracking: +0.02em */
+
+/* font-variant-numeric: tabular-nums on figures. Interactive inputs must still be >= 16px.
+   Do not invent metric captions or chip labels. */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 24px;
+--radius-subtle:  10px;
+--radius-pill:    9999px;
+--radius-outer:   24px;
+--radius-medium:  16px;
+--radius-inner:   10px;
+
+--shadow-base:    0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);
+--shadow-hover:   0 10px 30px -4px rgba(17, 19, 21, 0.08), 0 4px 12px -2px rgba(17, 19, 21, 0.03);
+--shadow-active:  0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);
+--shadow-elevation-0: none;
+--shadow-elevation-1: 0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);
+--shadow-elevation-2: 0 10px 30px -4px rgba(17, 19, 21, 0.08), 0 4px 12px -2px rgba(17, 19, 21, 0.03);
+--shadow-accent-glow: 0 8px 24px -4px rgba(222, 36, 84, 0.28);
+
+--ease-fluid:     cubic-bezier(0.16, 1, 0.3, 1);
+--duration-micro: 150ms-200ms;
+
+/* Hover: translateY(-1px), background rgba(0,0,0,0.03). */
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:     1px solid rgba(17, 19, 21, 0.04);
+--border-hairline: 1px solid #E5E7EB;
+--border-active:   1.5px solid #111315;
+--divider-style:   1px solid #D1D5DB;
+--stroke-standard: 1px solid rgba(17, 19, 21, 0.04);
+--stroke-active:   1.5px solid #111315;
+--stroke-input:    1px solid #E5E7EB;
+--stroke-tree:     1px solid #D1D5DB;
+--stroke-berry-soft: 1px solid rgba(222, 36, 84, 0.15);
+
+/* Icons: 1.75px rounded monoline; 14 / 18 / 22px. Neutral icons #6B7280; circular white discs for hub icons.
+   Do not insert emoji into chips. */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 10px radius or pill. Primary: berry fill, white ink. Hover: #C71E49 and a berry glow. Segmented controls: idle #F3F4F6 with slate ink; active solid #111315 with white ink. Use the host's existing labels.
+- **Cards**: White 24px tiles on slate canvas, nested 16px #F6F8FA wells, 16-20px padding, elevation-1 shadow, 1px near-invisible stroke. Inverted tiles fill #111315 with white ink. Do not add sample KPI captions, emoji chips, or integration-brand marks the host lacks.
+- **Inputs**: 10px-pill wells, #F6F8FA or white, 1px #E5E7EB. Focus: 1.5px #111315. Input font-size >= 16px.
+- **Navigation**: Restyle existing items as quiet slate text. Active: berry ink plus a small berry node. If the host has a tree, elbow connectors are 1px #D1D5DB. Do not add catalog names.
+- **Badges / chips / toggles**: Pills, berry-soft fill or berry text. If the host already has filter chips, restyle them - do not invent chip copy or emoji.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No emoji inside chips or "top sales" sample tags.
+- No hard 0px brutalist frames or comic offset shadows.
+- No purple neon or glassmorphism HUD.
+- No floating unbordered dark cards on white without the onyx token.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- Footer Meta -->
+    <footer class="page-footer">
+      <div style="font-family: var(--font-display); font-weight: 700; color: var(--text-primary); margin-bottom: 4px;">
+        STYLE TILES // TILE: FLUID BENTO / SOFT SAAS
+      </div>
+      <div>Designed for AI Prompt Ingestion, Cursor, Claude, Antigravity, and Vibe Coders.</div>
+    </footer>
+
+  </main>
+
+  <!-- ===========================================================================
+       SPEC INSPECTION MODAL (agent.md Specification)
+       =========================================================================== -->
+  <div class="modal-backdrop" id="modal-spec-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-tile-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="design-code" data-live-tile-code>TILE</span>
+          <h3 class="section-title" id="modal-tile-title" style="font-size: 16px;">Velvet Bento Markdown Specification</h3>
+        </div>
+        <button class="btn-tile btn-preview" onclick="closeSpecModal()" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre" style="max-height: 520px;"><code id="modal-spec-code-text"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-fluid-primary" onclick="copyMasterTilePrompt()">
+          Copy Style Tile Spec
+        </button>
+        <button class="btn-fluid-secondary" onclick="downloadStyleTileFile()">
+          Download .md File
+        </button>
+        <button class="btn-tile btn-preview" onclick="closeSpecModal()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- ===========================================================================
+       RAW STYLE TILE MARKDOWN SCRIPT TAG (agent.md Section 2)
+       =========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Fluid Bento
+  Construction: warm slate canvas • 24px outer tiles • nested 16px wells • berry pink • soft float shadows
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A soft warm-slate canvas holding pure-white bento tiles with nested mist wells and occasional onyx inverted cards. Outer tiles are 24px; inner wells 16px; compact controls 10px; search and segments are full pills. Berry pink is the only loud ink - active nav, pills, and primary actions. Depth is a very light float shadow, not a hard border. Type is a single geometric sans with tabular figures. Motion is a short fluid spring.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #ECEFF2; /* Soft warm slate */
+  --bg-surface:             #FFFFFF; /* White bento tile */
+  --bg-surface-alt:         #F6F8FA; /* Nested well */
+  --bg-surface-dark:        #111315; /* Inverted feature card */
+
+  /* Inks & Typography */
+  --ink-primary:            #111315; /* Near black */
+  --ink-secondary:          #6B7280; /* Neutral slate */
+  --ink-muted:              #9CA3AF; /* Auxiliary gray */
+  --ink-inverted:           #FFFFFF; /* White on onyx */
+
+  /* Signature Accents */
+  --accent-primary:         #DE2454; /* Berry pink */
+  --accent-primary-hover:   #C71E49; /* Deep berry */
+  --accent-secondary:       #FCE8EE; /* Light berry wash */
+  --accent-tertiary:        #E83D6D; /* Trendline berry */
+
+  /* Status Tokens */
+  --status-success:         #10B981; /* Quiet green */
+  --status-warning:         #E83D6D; /* Berry caution */
+  --status-danger:          #E42A58; /* Alert berry */
+  --status-info:            #4285F4; /* Cool information blue */
+
+  /* Extra material tokens */
+  --surface-0:              #ECEFF2;
+  --surface-1:              #FFFFFF;
+  --surface-2:              #F6F8FA;
+  --surface-dark:           #111315;
+  --surface-glass:          rgba(255, 255, 255, 0.85);
+  --primary-accent-soft:    #FCE8EE;
+  --metric-alert:           #E42A58;
+  --chart-accent:           #E83D6D;
+  --color-success-soft:     #D1FAE5;
+  --nav-idle-fill:          #F3F4F6;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Plus Jakarta Sans", "Inter", "SF Pro Display", sans-serif;
+--font-sans:    "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+--font-mono:    ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+
+--text-display: 600 28px / 34px var(--font-display); /* Tracking: -0.02em */
+--text-h1:      600 28px / 34px var(--font-display);
+--text-h2:      700 24px / 30px var(--font-display); /* Tracking: -0.03em | large figures */
+--text-h3:      600 16px / 22px var(--font-sans);    /* Tracking: -0.01em */
+--text-body:    500 13px / 18px var(--font-sans);
+--text-body-sm: 600 11px / 14px var(--font-sans);    /* Tracking: +0.01em */
+--text-meta:    400 10px / 12px var(--font-sans);    /* Tracking: +0.02em */
+
+/* font-variant-numeric: tabular-nums on figures. Interactive inputs must still be >= 16px.
+   Do not invent metric captions or chip labels. */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 24px;
+--radius-subtle:  10px;
+--radius-pill:    9999px;
+--radius-outer:   24px;
+--radius-medium:  16px;
+--radius-inner:   10px;
+
+--shadow-base:    0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);
+--shadow-hover:   0 10px 30px -4px rgba(17, 19, 21, 0.08), 0 4px 12px -2px rgba(17, 19, 21, 0.03);
+--shadow-active:  0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);
+--shadow-elevation-0: none;
+--shadow-elevation-1: 0 4px 20px -2px rgba(17, 19, 21, 0.04), 0 2px 6px -1px rgba(17, 19, 21, 0.02);
+--shadow-elevation-2: 0 10px 30px -4px rgba(17, 19, 21, 0.08), 0 4px 12px -2px rgba(17, 19, 21, 0.03);
+--shadow-accent-glow: 0 8px 24px -4px rgba(222, 36, 84, 0.28);
+
+--ease-fluid:     cubic-bezier(0.16, 1, 0.3, 1);
+--duration-micro: 150ms-200ms;
+
+/* Hover: translateY(-1px), background rgba(0,0,0,0.03). */
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:     1px solid rgba(17, 19, 21, 0.04);
+--border-hairline: 1px solid #E5E7EB;
+--border-active:   1.5px solid #111315;
+--divider-style:   1px solid #D1D5DB;
+--stroke-standard: 1px solid rgba(17, 19, 21, 0.04);
+--stroke-active:   1.5px solid #111315;
+--stroke-input:    1px solid #E5E7EB;
+--stroke-tree:     1px solid #D1D5DB;
+--stroke-berry-soft: 1px solid rgba(222, 36, 84, 0.15);
+
+/* Icons: 1.75px rounded monoline; 14 / 18 / 22px. Neutral icons #6B7280; circular white discs for hub icons.
+   Do not insert emoji into chips. */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 10px radius or pill. Primary: berry fill, white ink. Hover: #C71E49 and a berry glow. Segmented controls: idle #F3F4F6 with slate ink; active solid #111315 with white ink. Use the host's existing labels.
+- **Cards**: White 24px tiles on slate canvas, nested 16px #F6F8FA wells, 16-20px padding, elevation-1 shadow, 1px near-invisible stroke. Inverted tiles fill #111315 with white ink. Do not add sample KPI captions, emoji chips, or integration-brand marks the host lacks.
+- **Inputs**: 10px-pill wells, #F6F8FA or white, 1px #E5E7EB. Focus: 1.5px #111315. Input font-size >= 16px.
+- **Navigation**: Restyle existing items as quiet slate text. Active: berry ink plus a small berry node. If the host has a tree, elbow connectors are 1px #D1D5DB. Do not add catalog names.
+- **Badges / chips / toggles**: Pills, berry-soft fill or berry text. If the host already has filter chips, restyle them - do not invent chip copy or emoji.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No emoji inside chips or "top sales" sample tags.
+- No hard 0px brutalist frames or comic offset shadows.
+- No purple neon or glassmorphism HUD.
+- No floating unbordered dark cards on white without the onyx token.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- ===========================================================================
+       PAGE INTERACTIVITY JAVASCRIPT
+       =========================================================================== -->
+  <script>
+    // --- 1. TOAST SYSTEM ---
+    function showToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `
+        <span class="toast-accent">${icon}</span>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 250);
+      }, 2400);
+    }
+
+    // --- 2. MARKDOWN ACCESSORS ---
+    function getRawMarkdown() {
+      const scriptEl = document.getElementById("style-tile-markdown");
+      return scriptEl ? scriptEl.textContent.trim() : "";
+    }
+
+    function copyMasterTilePrompt() {
+      const md = getRawMarkdown();
+      navigator.clipboard.writeText(md).then(() => {
+        const btn = document.getElementById("btn-copy-tile");
+        if (btn) {
+          const original = btn.innerHTML;
+          btn.innerHTML = `<span>✓ Copied to Clipboard!</span>`;
+          btn.style.background = "#C71E49";
+          setTimeout(() => {
+            btn.innerHTML = original;
+            btn.style.background = "";
+          }, 2000);
+        }
+        showToast("Copied Fluid Bento / Soft SaaS Style Tile prompt!", "✦");
+      }).catch(err => {
+        console.error("Clipboard copy failed:", err);
+      });
+    }
+
+    function downloadStyleTileFile() {
+      const md = getRawMarkdown();
+      const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-velvet-bento.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-velvet-bento.md!", "↓");
+    }
+
+    function copyColorToken(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${varName} (${hex}) to clipboard!`, "🎨");
+      });
+    }
+
+    // --- 3. MODAL CONTROLS ---
+    function openSpecModal() {
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      const codeEl = document.getElementById("modal-spec-code-text");
+      if (codeEl) codeEl.textContent = getRawMarkdown();
+      if (backdrop) backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    // --- 4. COMPONENT DEMO HELPERS ---
+    function switchSegment(btn) {
+      btn.parentElement.querySelectorAll(".segment-item").forEach(item => item.classList.remove("active"));
+      btn.classList.add("active");
+      showToast(`Switched segment to: ${btn.textContent}`, "✦");
+    }
+
+    function toggleFilterChip(btn) {
+      btn.classList.toggle("active");
+      const isActive = btn.classList.contains("active");
+      showToast(isActive ? `Activated filter: ${btn.textContent}` : `Deactivated filter: ${btn.textContent}`, "💡");
+    }
+
+    function selectTreeNode(node) {
+      document.querySelectorAll(".tree-node-child").forEach(n => n.classList.remove("active"));
+      node.classList.add("active");
+      showToast(`Selected Node: ${node.querySelector("span:last-child").textContent}`, "⌖");
+    }
+
+    function selectConsoleNav(node, name) {
+      document.querySelectorAll(".console-sidebar-panel .tree-node-child").forEach(n => n.classList.remove("active"));
+      node.classList.add("active");
+      showToast(`Switched console view to: ${name}`, "📊");
+    }
+
+    function handleSearchType(val) {
+      if (val.length > 2) {
+        showToast(`Live searching: "${val}"...`, "🔍");
+      }
+    }
+
+    // --- 5. CHART DYNAMICS ---
+    const chartRanges = {
+      "24h": {
+        points: "0,140 80,120 160,110 240,65 320,80 400,45 500,30",
+        poly: "0,140 80,120 160,110 240,65 320,80 400,45 500,30 500,160 0,160",
+        mrr: "$48,290.40"
+      },
+      "7d": {
+        points: "0,130 50,110 100,125 160,85 220,95 280,60 340,75 400,35 450,45 500,20",
+        poly: "0,130 50,110 100,125 160,85 220,95 280,60 340,75 400,35 450,45 500,20 500,160 0,160",
+        mrr: "$48,290.40"
+      },
+      "30d": {
+        points: "0,150 70,130 140,120 210,90 280,85 350,50 420,40 500,15",
+        poly: "0,150 70,130 140,120 210,90 280,85 350,50 420,40 500,15 500,160 0,160",
+        mrr: "$54,180.80"
+      },
+      "90d": {
+        points: "0,155 100,145 200,125 300,95 400,60 500,10",
+        poly: "0,155 100,145 200,125 300,95 400,60 500,10 500,160 0,160",
+        mrr: "$62,940.00"
+      }
+    };
+
+    function setChartRange(btn, range) {
+      btn.parentElement.querySelectorAll(".segment-item").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const line = document.getElementById("chart-trend-line");
+      const poly = document.getElementById("chart-area-poly");
+      const mrrEl = document.getElementById("metric-mrr-val");
+
+      if (chartRanges[range]) {
+        if (line) line.setAttribute("points", chartRanges[range].points);
+        if (poly) poly.setAttribute("points", chartRanges[range].poly);
+        if (mrrEl) {
+          const parts = chartRanges[range].mrr.split(".");
+          mrrEl.innerHTML = `${parts[0]}.<span class="sub-decimal">${parts[1]}</span>`;
+        }
+      }
+      showToast(`Updated trendline view to ${range}`, "📈");
+    }
+
+    function simulateTelemetryPulse() {
+      const list = document.querySelector(".telemetry-event-list");
+      if (!list) return;
+
+      const randomAmount = (Math.random() * 800 + 200).toFixed(2);
+      const newItem = document.createElement("div");
+      newItem.className = "telemetry-item";
+      newItem.innerHTML = `
+        <span>API Inbound Dispatch #${Math.floor(Math.random() * 900 + 100)}</span>
+        <span class="tabular-nums" style="color: #10B981; font-weight: 600;">+$${randomAmount}</span>
+      `;
+      list.insertBefore(newItem, list.firstChild);
+      if (list.children.length > 4) {
+        list.removeChild(list.lastChild);
+      }
+      showToast(`Dispatched new inbound event (+$${randomAmount})`, "⚡");
+    }
+
+    function recalculateSimulation(units) {
+      const label = document.getElementById("slider-units-label");
+      const totalEl = document.getElementById("sim-projected-total");
+      if (label) label.textContent = `${units} Seats`;
+
+      const calculated = (parseInt(units) * 1200).toLocaleString();
+      if (totalEl) totalEl.innerHTML = `+$${calculated}.<span class="sub-decimal">00</span>`;
+    }
+
+    function applySimulationPlan() {
+      showToast("Committed forecast model to Q3 ARR Roadmap!", "✓");
+    }
+
+    // --- 6. INITIALIZATION & EVENT LISTENERS ---
+    document.addEventListener("DOMContentLoaded", () => {
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyMasterTilePrompt);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadStyleTileFile);
+
+      const backdrop = document.getElementById("modal-spec-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+    });
+  </script>
+</body>
+</html>
+

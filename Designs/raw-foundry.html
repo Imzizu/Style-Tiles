@@ -1,0 +1,3181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raw Foundry — Style Tile</title>
+  <meta name="description" content="Neo-Brutalist Tech design system for developer tooling, Web3 infrastructure, and modern fintech architecture. High-density monochrome canvas, hyper-volt lime accents, rigid 0px brutalist geometry, and hardball ink elevation.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon.ico">
+
+  <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       01. PRODUCTION DESIGN SYSTEM TOKENS
+       ========================================================================== */
+    :root {
+      /* Surface & Canvas Tokens */
+      --bg-canvas:              #FAFAFA; /* Starch White - Global viewport root & base canvas */
+      --bg-card:                #F4F4F5; /* Clean Slate - Modular panels, tables, card bodies */
+      --bg-inset:               #E4E4E7; /* Concrete 200 - Code wells, search bars, nested trays */
+      --bg-dark:                #09090B; /* Carbon Heavy - Inverted terminal and command surfaces */
+
+      /* Inks & Monochromes */
+      --ink-primary:            #09090B; /* Carbon Heavy - 100% text, 2px structural borders, shadows */
+      --ink-muted:              #52525B; /* Zinc 600 - Secondary labels, timestamps, metadata */
+      --ink-inverse:            #FAFAFA; /* Starch White - High-contrast text on dark badges/buttons */
+
+      /* Kinetic Accents */
+      --accent-volt:            #CCFF00; /* Hyper-Volt Lime - Primary CTA, active build, main trigger */
+      --accent-volt-hover:      #B8E600; /* Deep Lime - Focus-visible states, subtle hover wash */
+      --accent-ultramarine:     #1D4ED8; /* Ultramarine Blue - RPC nodes, cryptographic data, links */
+      --accent-ultramarine-hover: #1E40AF;
+
+      /* Semantic Signal Matrix */
+      --signal-ok:              #CCFF00; /* Hyper-Volt Lime - Mainnet Live, Validated Block, Tests 100% */
+      --signal-warn:            #FACC15; /* Hazard Ochre - Gas Spike, Rate-Limit Warning, Mempool Lag */
+      --signal-crit:            #FF334B; /* Radical Vermilion - Reverted Tx, Compile Failure, Auth Error */
+      --signal-exec:            #1D4ED8; /* Ultramarine Blue - Mining, Query Executing, Syncing Shard */
+
+      /* Typography */
+      --font-display:           "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-body:              "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono:              "JetBrains Mono", SFMono-Regular, Menlo, monospace;
+
+      /* Structural Geometry & Hardball Shadows */
+      --border-width-main:      2px;
+      --border-width-fine:      1px;
+      --border-core:            2px solid #09090B;
+      --border-hairline:        1px solid #09090B;
+      --border-blueprint:       1px dashed #D4D4D8;
+
+      --radius-sharp:           0px;
+      --radius-subtle:          2px;
+      --radius-pill:            0px; /* Strictly Prohibited */
+
+      --shadow-interactive:     3px 3px 0px var(--ink-primary);
+      --shadow-card:            5px 5px 0px var(--ink-primary);
+      --shadow-modal:           8px 8px 0px var(--ink-primary);
+      --shadow-accent-blue:     3px 3px 0px var(--accent-ultramarine);
+
+      /* Spacing Scale (4px / 8px Rigid Base) */
+      --space-1:                4px;
+      --space-2:                8px;
+      --space-3:                12px;
+      --space-4:                16px;
+      --space-6:                24px;
+      --space-8:                32px;
+      --space-12:               48px;
+
+      /* Interaction Timing */
+      --btn-press-speed:        80ms cubic-bezier(0, 0, 0.2, 1);
+    }
+
+    /* ==========================================================================
+       02. RESET & BASE DOCUMENT PHYSICS
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.50;
+      color: var(--ink-primary);
+      background-color: var(--bg-canvas);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Technical vector dot matrix background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background-size: 20px 20px;
+      background-image: radial-gradient(var(--ink-primary) 0.8px, transparent 0.8px);
+      opacity: 0.12;
+    }
+
+    /* Selection High-Contrast Inversion */
+    ::selection {
+      background: var(--accent-volt);
+      color: var(--ink-primary);
+    }
+
+    .layout-wrapper {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       03. MANDATORY HEADER BAR COMPONENT (Per agent.md Section 2)
+       ========================================================================== */
+    .style-tile-header {
+      background-color: var(--bg-card);
+      border-bottom: var(--border-core);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 0 rgba(9, 9, 11, 0.08);
+      padding: var(--space-3) var(--space-6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+      text-decoration: none;
+      padding: 6px 12px;
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      box-shadow: var(--shadow-interactive);
+      transform: translate(0, 0);
+      transition: transform var(--btn-press-speed), box-shadow var(--btn-press-speed), background-color var(--btn-press-speed);
+    }
+
+    .nav-back-link:hover {
+      background: var(--accent-volt);
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px var(--ink-primary);
+    }
+
+    .nav-back-link:active {
+      transform: translate(3px, 3px);
+      box-shadow: 0px 0px 0px var(--ink-primary);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      background: var(--ink-primary);
+      color: var(--accent-volt);
+      border: 1px solid var(--ink-primary);
+      border-radius: var(--radius-sharp);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+      text-transform: capitalize;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      background: var(--bg-inset);
+      color: var(--ink-muted);
+      border: 1px solid var(--ink-primary);
+      border-radius: var(--radius-subtle);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      box-shadow: var(--shadow-interactive);
+      padding: 7px 14px;
+      cursor: pointer;
+      transform: translate(0, 0);
+      transition: transform var(--btn-press-speed), box-shadow var(--btn-press-speed), background-color var(--btn-press-speed);
+      white-space: nowrap;
+    }
+
+    .btn-tile:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px var(--ink-primary);
+    }
+
+    .btn-tile:active {
+      transform: translate(3px, 3px);
+      box-shadow: 0px 0px 0px var(--ink-primary);
+    }
+
+    .btn-tile.btn-copy {
+      background: var(--accent-volt);
+    }
+
+    .btn-tile.btn-copy:hover {
+      background: var(--accent-volt-hover);
+    }
+
+    .btn-tile.btn-download {
+      background: var(--bg-inset);
+    }
+
+    .btn-tile.btn-download:hover {
+      background: #D4D4D8;
+    }
+
+    .btn-tile.btn-preview {
+      background: var(--ink-primary);
+      color: var(--ink-inverse);
+    }
+
+    .btn-tile.btn-preview:hover {
+      background: #18181B;
+      color: var(--accent-volt);
+    }
+
+    /* ==========================================================================
+       04. SYSTEM TICKER & TELEMETRY STRIP
+       ========================================================================== */
+    .telemetry-masthead {
+      background: var(--bg-card);
+      border-bottom: var(--border-hairline);
+      padding: 6px var(--space-6);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .masthead-left, .masthead-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .status-pulse {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-volt);
+      border: 1px solid var(--ink-primary);
+      border-radius: var(--radius-sharp);
+      display: inline-block;
+      animation: blink-step 1.5s steps(2, start) infinite;
+    }
+
+    @keyframes blink-step {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ==========================================================================
+       05. HERO SECTION & PROMPT CALLOUT (HIGH-DENSITY 2-COLUMN VIEWPORT)
+       ========================================================================== */
+    .hero-section {
+      padding: var(--space-4) 0 var(--space-8);
+    }
+
+    .hero-grid-board {
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: var(--space-6);
+      align-items: stretch;
+    }
+
+    .hero-main-card {
+      background: var(--bg-card);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-card);
+      padding: var(--space-6);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Corner Crosshair Decorations */
+    .hero-main-card::before {
+      content: "+";
+      position: absolute;
+      top: 6px;
+      left: 8px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      line-height: 1;
+    }
+
+    .hero-main-card::after {
+      content: "+";
+      position: absolute;
+      bottom: 6px;
+      right: 8px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      line-height: 1;
+    }
+
+    .hero-header-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-3);
+      border-bottom: var(--border-hairline);
+      padding-bottom: var(--space-2);
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .hero-spec-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      background: var(--accent-volt);
+      border: 1.5px solid var(--ink-primary);
+      padding: 3px 8px;
+      border-radius: var(--radius-subtle);
+    }
+
+    .hero-meta-id {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink-muted);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(34px, 3.8vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      text-transform: capitalize;
+      color: var(--ink-primary);
+      margin-bottom: var(--space-2);
+    }
+
+    .hero-title .volt-highlight {
+      background: var(--accent-volt);
+      color: var(--ink-primary);
+      padding: 0 6px;
+      border: 2px solid var(--ink-primary);
+      box-shadow: 2px 2px 0px var(--ink-primary);
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .hero-tags-row {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+      margin: var(--space-3) 0 var(--space-3);
+    }
+
+    .hero-narrative {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.50;
+      letter-spacing: -0.01em;
+      color: var(--ink-muted);
+      margin-bottom: var(--space-4);
+    }
+
+    .hero-narrative strong {
+      color: var(--ink-primary);
+      font-weight: 700;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-4);
+    }
+
+    .hero-swatch-strip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg-inset);
+      border: var(--border-core);
+      padding: 6px 10px;
+      border-radius: var(--radius-sharp);
+      flex-wrap: wrap;
+    }
+
+    .hero-swatch-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      background: var(--bg-canvas);
+      border: 1px solid var(--ink-primary);
+      border-radius: var(--radius-sharp);
+      cursor: pointer;
+      box-shadow: 1px 1px 0px var(--ink-primary);
+      transition: all 80ms ease;
+    }
+
+    .hero-swatch-item:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 2px 2px 0px var(--ink-primary);
+    }
+
+    .hero-swatch-dot {
+      width: 8px;
+      height: 8px;
+      border: 1px solid var(--ink-primary);
+      display: inline-block;
+    }
+
+    /* Right Hero Instrument Panel */
+    .hero-telemetry-deck {
+      background: var(--bg-card);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-card);
+      padding: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-3);
+    }
+
+    .deck-top-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-hairline);
+      padding-bottom: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .deck-kpi-block {
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      box-shadow: var(--shadow-interactive);
+      padding: var(--space-3);
+    }
+
+    .deck-kpi-metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin: 4px 0 6px;
+    }
+
+    .deck-terminal-block {
+      background: var(--bg-dark);
+      color: var(--accent-volt);
+      border: var(--border-core);
+      box-shadow: var(--shadow-interactive);
+      padding: 10px 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .deck-footer-bar {
+      background: var(--bg-inset);
+      border: var(--border-core);
+      padding: 6px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       06. SECTION WRAPPERS & SECTION HEADERS
+       ========================================================================== */
+    .system-section {
+      margin-bottom: var(--space-12);
+    }
+
+    .section-header-block {
+      border-bottom: var(--border-core);
+      padding-bottom: var(--space-2);
+      margin-bottom: var(--space-6);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .section-num {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent-ultramarine);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.25;
+      text-transform: capitalize;
+      color: var(--ink-primary);
+    }
+
+    .section-subtext {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ==========================================================================
+       07. SECTION 01: COLOR ROLES & TOKEN PALETTE MATRIX
+       ========================================================================== */
+    .palette-group {
+      margin-bottom: var(--space-6);
+    }
+
+    .palette-group-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      margin-bottom: var(--space-3);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-4);
+    }
+
+    .swatch-card {
+      background: var(--bg-card);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-interactive);
+      overflow: hidden;
+      cursor: pointer;
+      transform: translate(0, 0);
+      transition: transform var(--btn-press-speed), box-shadow var(--btn-press-speed);
+      position: relative;
+    }
+
+    .swatch-card:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px var(--ink-primary);
+    }
+
+    .swatch-card:active {
+      transform: translate(3px, 3px);
+      box-shadow: 0px 0px 0px var(--ink-primary);
+    }
+
+    .swatch-preview {
+      height: 72px;
+      width: 100%;
+      border-bottom: var(--border-core);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 8px 10px;
+      position: relative;
+    }
+
+    .swatch-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border: 1px solid var(--ink-primary);
+      border-radius: var(--radius-sharp);
+      background: rgba(250, 250, 250, 0.9);
+      color: var(--ink-primary);
+    }
+
+    .swatch-details {
+      padding: var(--space-3);
+      background: var(--bg-card);
+    }
+
+    .swatch-role-name {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+      margin-bottom: 2px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      margin-bottom: 2px;
+    }
+
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-ultramarine);
+      margin-bottom: 4px;
+    }
+
+    .swatch-desc {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--ink-muted);
+      line-height: 1.35;
+    }
+
+    .click-to-copy-hint {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 4px;
+      background: var(--ink-primary);
+      color: var(--accent-volt);
+      opacity: 0;
+      transition: opacity 120ms ease;
+    }
+
+    .swatch-card:hover .click-to-copy-hint {
+      opacity: 1;
+    }
+
+    /* ==========================================================================
+       08. SECTION 02: TYPOGRAPHY SYSTEM & HIERARCHICAL SCALE
+       ========================================================================== */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+
+    .type-card {
+      background: var(--bg-card);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-card);
+      padding: var(--space-6);
+      position: relative;
+    }
+
+    .type-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-hairline);
+      padding-bottom: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .type-family-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .type-role-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 6px;
+      background: var(--bg-inset);
+      border: 1px solid var(--ink-primary);
+      border-radius: var(--radius-sharp);
+    }
+
+    .type-scale-table-card {
+      background: var(--bg-card);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-card);
+      overflow-x: auto;
+      margin-bottom: var(--space-6);
+    }
+
+    .neo-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-body);
+      font-size: 13px;
+      text-align: left;
+    }
+
+    .neo-table th {
+      background: var(--ink-primary);
+      color: var(--ink-inverse);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      border-right: 1px solid #27272A;
+    }
+
+    .neo-table th:last-child {
+      border-right: none;
+    }
+
+    .neo-table td {
+      padding: 12px 14px;
+      border-bottom: var(--border-hairline);
+      border-right: var(--border-hairline);
+      color: var(--ink-primary);
+      vertical-align: middle;
+    }
+
+    .neo-table td:last-child {
+      border-right: none;
+    }
+
+    .neo-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .neo-table tr:hover td {
+      background: var(--bg-inset);
+    }
+
+    /* Live Pangram Type Tester */
+    .type-tester-box {
+      background: var(--bg-card);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-card);
+      padding: var(--space-6);
+    }
+
+    .type-tester-controls {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-4);
+      border-bottom: var(--border-hairline);
+      padding-bottom: var(--space-3);
+    }
+
+    .type-pill-btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border: var(--border-core);
+      background: var(--bg-canvas);
+      cursor: pointer;
+      border-radius: var(--radius-subtle);
+      transition: all 80ms ease;
+    }
+
+    .type-pill-btn.active {
+      background: var(--accent-volt);
+      box-shadow: 2px 2px 0px var(--ink-primary);
+    }
+
+    .type-slider-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .neo-range-slider {
+      accent-color: var(--ink-primary);
+      cursor: pointer;
+    }
+
+    .type-tester-input {
+      width: 100%;
+      min-height: 90px;
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      padding: var(--space-4);
+      font-size: 24px;
+      line-height: 1.3;
+      color: var(--ink-primary);
+      outline: none;
+      resize: vertical;
+      box-shadow: inset 2px 2px 0px rgba(9, 9, 11, 0.05);
+    }
+
+    .type-tester-input:focus {
+      border-color: var(--ink-primary);
+      outline: 2px solid var(--accent-ultramarine);
+    }
+
+    /* ==========================================================================
+       09. SECTION 03: CORNER GEOMETRY & HARDBALL ELEVATION MATRIX
+       ========================================================================== */
+    .elevation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+
+    .elevation-card {
+      background: var(--bg-card);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      padding: var(--space-6);
+      text-align: center;
+      transition: all var(--btn-press-speed);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 170px;
+    }
+
+    .elev-0 { box-shadow: none; border-radius: var(--radius-sharp); }
+    .elev-1 { box-shadow: var(--shadow-interactive); border-radius: var(--radius-subtle); }
+    .elev-2 { box-shadow: var(--shadow-card); border-radius: var(--radius-sharp); }
+    .elev-3 { box-shadow: var(--shadow-modal); border-radius: var(--radius-sharp); }
+    .elev-blue { box-shadow: var(--shadow-accent-blue); border-color: var(--accent-ultramarine); border-radius: var(--radius-subtle); }
+
+    .elev-label {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 4px;
+    }
+
+    .elev-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    /* ==========================================================================
+       10. SECTION 04: ATOMIC COMPONENT SPECIFICATIONS & GALLERY
+       ========================================================================== */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+
+    .component-spec-card {
+      background: var(--bg-card);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-card);
+      padding: var(--space-6);
+      position: relative;
+    }
+
+    .component-spec-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-hairline);
+      padding-bottom: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .component-spec-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .component-spec-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      background: var(--bg-inset);
+      border: 1px solid var(--ink-primary);
+    }
+
+    /* Buttons Spec */
+    .buttons-flow {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .neo-btn {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: -0.02em;
+      border: var(--border-width-main) solid var(--ink-primary);
+      border-radius: var(--radius-subtle);
+      box-shadow: var(--shadow-interactive);
+      padding: 10px 18px;
+      cursor: pointer;
+      transform: translate(0, 0);
+      transition: transform var(--btn-press-speed), box-shadow var(--btn-press-speed), background-color var(--btn-press-speed);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .neo-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px var(--ink-primary);
+    }
+
+    .neo-btn:active {
+      transform: translate(3px, 3px);
+      box-shadow: 0px 0px 0px var(--ink-primary);
+    }
+
+    .neo-btn-primary {
+      background-color: var(--accent-volt);
+      color: var(--ink-primary);
+    }
+
+    .neo-btn-primary:hover {
+      background-color: var(--accent-volt-hover);
+    }
+
+    .neo-btn-secondary {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+    }
+
+    .neo-btn-secondary:hover {
+      background-color: #FFFFFF;
+    }
+
+    .neo-btn-exec {
+      background-color: var(--accent-ultramarine);
+      color: var(--ink-inverse);
+    }
+
+    .neo-btn-exec:hover {
+      background-color: var(--accent-ultramarine-hover);
+    }
+
+    .neo-btn-danger {
+      background-color: var(--signal-crit);
+      color: var(--ink-inverse);
+    }
+
+    .neo-btn-danger:hover {
+      background-color: #E6223A;
+    }
+
+    .neo-btn-disabled {
+      background-color: var(--bg-inset);
+      color: #A1A1AA;
+      box-shadow: none;
+      cursor: not-allowed;
+      border-color: #A1A1AA;
+      transform: none !important;
+    }
+
+    .neo-btn-sm {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    /* Form Controls & Inputs */
+    .form-group {
+      margin-bottom: var(--space-3);
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      margin-bottom: 4px;
+    }
+
+    .neo-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .neo-input-prefix {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      background: var(--bg-inset);
+      border: var(--border-core);
+      border-right: none;
+      padding: 8px 10px;
+      color: var(--ink-primary);
+      display: flex;
+      align-items: center;
+      border-radius: var(--radius-subtle) 0 0 var(--radius-subtle);
+    }
+
+    .neo-input {
+      width: 100%;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      padding: 8px 12px;
+      color: var(--ink-primary);
+      outline: none;
+      box-shadow: var(--shadow-interactive);
+      transition: all var(--btn-press-speed);
+    }
+
+    .neo-input-wrapper .neo-input {
+      border-radius: 0 var(--radius-subtle) var(--radius-subtle) 0;
+    }
+
+    .neo-input:focus {
+      outline: 2px solid var(--accent-ultramarine);
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px var(--ink-primary);
+    }
+
+    /* Checkboxes & Radio Controls */
+    .neo-check-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      cursor: pointer;
+      margin-bottom: 8px;
+      user-select: none;
+    }
+
+    .neo-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      background: var(--bg-canvas);
+      box-shadow: 2px 2px 0px var(--ink-primary);
+      cursor: pointer;
+      display: grid;
+      place-content: center;
+      position: relative;
+    }
+
+    .neo-checkbox:checked {
+      background: var(--accent-volt);
+    }
+
+    .neo-checkbox:checked::after {
+      content: "x";
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--ink-primary);
+      position: absolute;
+      top: -3px;
+      left: 3px;
+    }
+
+    /* High-Density KPI Card Specification (Component C) */
+    .kpi-spec-render {
+      background: var(--bg-card);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-card);
+      padding: var(--space-4);
+      position: relative;
+    }
+
+    .kpi-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-hairline);
+      padding-bottom: 6px;
+      margin-bottom: var(--space-3);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .kpi-main-metric {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .kpi-label {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+    }
+
+    .kpi-value {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: var(--ink-primary);
+      line-height: 1;
+    }
+
+    .kpi-delta {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: #15803D;
+      background: #DCFCE7;
+      border: 1px solid var(--ink-primary);
+      padding: 1px 6px;
+    }
+
+    .kpi-sub-tray {
+      background: var(--bg-inset);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      padding: 6px 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 8px;
+    }
+
+    /* Terminal & Code Spec (Component D) */
+    .terminal-card {
+      background: var(--bg-dark);
+      color: var(--accent-volt);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .terminal-header {
+      background: #18181B;
+      border-bottom: 2px solid var(--ink-primary);
+      padding: 6px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--ink-inverse);
+      font-weight: 700;
+    }
+
+    .terminal-body {
+      padding: var(--space-4);
+      overflow-x: auto;
+    }
+
+    .terminal-body pre {
+      font-family: var(--font-mono);
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
+    .t-dim { color: #A1A1AA; }
+    .t-blue { color: #60A5FA; }
+    .t-volt { color: var(--accent-volt); }
+    .t-crit { color: var(--signal-crit); }
+
+    /* ==========================================================================
+       11. SECTION 05: LIVING MICRO-EXPERIENCE (L2 WEB3 CONSOLE & TELEMETRY)
+       ========================================================================== */
+    .living-demo-card {
+      background: var(--bg-card);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-modal);
+      overflow: hidden;
+      margin-bottom: var(--space-12);
+    }
+
+    .demo-masthead {
+      background: var(--bg-dark);
+      color: var(--ink-inverse);
+      padding: var(--space-3) var(--space-6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-core);
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    .demo-masthead-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .demo-sync-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      background: var(--accent-volt);
+      color: var(--ink-primary);
+      border: 1px solid var(--ink-primary);
+    }
+
+    .demo-inner {
+      padding: var(--space-6);
+    }
+
+    /* Live Telemetry KPI row */
+    .demo-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .demo-kpi {
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-interactive);
+      padding: var(--space-4);
+    }
+
+    .demo-kpi-top {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .demo-kpi-num {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--ink-primary);
+      line-height: 1.1;
+    }
+
+    .demo-kpi-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-ultramarine);
+      margin-top: 4px;
+    }
+
+    /* Two column grid: Dispatcher & Ledger */
+    .demo-workbench-grid {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+
+    .dispatcher-panel {
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      padding: var(--space-4);
+      box-shadow: var(--shadow-interactive);
+    }
+
+    .panel-header-sm {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: var(--border-hairline);
+      padding-bottom: 6px;
+      margin-bottom: var(--space-3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ledger-panel {
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-interactive);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ledger-header {
+      background: var(--bg-inset);
+      border-bottom: var(--border-core);
+      padding: var(--space-3) var(--space-4);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab-btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      cursor: pointer;
+      color: var(--ink-primary);
+    }
+
+    .filter-tab-btn.active {
+      background: var(--ink-primary);
+      color: var(--accent-volt);
+    }
+
+    .ledger-table-wrap {
+      overflow-x: auto;
+      flex: 1;
+      max-height: 290px;
+    }
+
+    .ledger-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .ledger-table th {
+      background: var(--bg-card);
+      padding: 8px 10px;
+      text-align: left;
+      border-bottom: var(--border-hairline);
+      border-right: 1px solid #D4D4D8;
+      font-weight: 700;
+      color: var(--ink-muted);
+    }
+
+    .ledger-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #E4E4E7;
+      border-right: 1px solid #E4E4E7;
+      color: var(--ink-primary);
+      white-space: nowrap;
+    }
+
+    .ledger-table tr:hover td {
+      background: #F4F4F5;
+    }
+
+    .status-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border: 1px solid var(--ink-primary);
+      border-radius: var(--radius-sharp);
+    }
+
+    .status-badge-ok { background: var(--accent-volt); color: var(--ink-primary); }
+    .status-badge-warn { background: var(--signal-warn); color: var(--ink-primary); }
+    .status-badge-crit { background: var(--signal-crit); color: var(--ink-inverse); }
+    .status-badge-exec { background: var(--accent-ultramarine); color: var(--ink-inverse); }
+
+    /* RPC Node Latency Tester row */
+    .rpc-node-strip {
+      background: var(--bg-inset);
+      border: var(--border-core);
+      padding: var(--space-4);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-3);
+    }
+
+    .rpc-item {
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 2px 2px 0px var(--ink-primary);
+    }
+
+    .rpc-name {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .rpc-ping-val {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent-ultramarine);
+    }
+
+    /* ==========================================================================
+       12. SECTION 06: STYLE TILE PROMPT CODE DRAWER
+       ========================================================================== */
+    .prompt-drawer-card {
+      background: var(--bg-card);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-card);
+      margin-bottom: var(--space-12);
+      overflow: hidden;
+    }
+
+    .drawer-header {
+      background: var(--ink-primary);
+      color: var(--ink-inverse);
+      padding: var(--space-3) var(--space-6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .drawer-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent-volt);
+      letter-spacing: -0.01em;
+    }
+
+    .drawer-code-block {
+      background: var(--bg-dark);
+      color: var(--accent-volt);
+      padding: var(--space-6);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.55;
+      overflow-x: auto;
+      max-height: 480px;
+      margin: 0;
+      white-space: pre;
+    }
+
+    /* ==========================================================================
+       13. SPEC MODAL POPUP (Per agent.md Section 2)
+       ========================================================================== */
+    .spec-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(9, 9, 11, 0.75);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-6);
+    }
+
+    .spec-modal-backdrop.open {
+      display: flex;
+    }
+
+    .spec-modal-window {
+      background: var(--bg-card);
+      border: var(--border-core);
+      border-radius: var(--radius-sharp);
+      box-shadow: var(--shadow-modal);
+      width: 100%;
+      max-width: 900px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .modal-header {
+      background: var(--ink-primary);
+      color: var(--ink-inverse);
+      padding: var(--space-3) var(--space-6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: var(--border-core);
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent-volt);
+    }
+
+    .modal-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .modal-body {
+      padding: var(--space-6);
+      overflow-y: auto;
+      background: var(--bg-dark);
+      color: var(--accent-volt);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .modal-body pre {
+      white-space: pre-wrap;
+      margin: 0;
+    }
+
+    /* ==========================================================================
+       14. TOAST NOTIFICATION SYSTEM
+       ========================================================================== */
+    #toast-container {
+      position: fixed;
+      bottom: var(--space-6);
+      right: var(--space-6);
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--ink-primary);
+      color: var(--ink-inverse);
+      border: var(--border-core);
+      border-left: 6px solid var(--accent-volt);
+      border-radius: var(--radius-subtle);
+      box-shadow: var(--shadow-card);
+      padding: 10px 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 180ms cubic-bezier(0, 0, 0.2, 1), opacity 180ms ease;
+      pointer-events: auto;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-icon {
+      color: var(--accent-volt);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    /* ==========================================================================
+       15. PAGE SPECIFIC MOBILE REFLOW (Per agent.md Section 6)
+       ========================================================================== */
+    @media (max-width: 900px) {
+      .hero-grid-board {
+        grid-template-columns: 1fr;
+      }
+      .demo-workbench-grid {
+        grid-template-columns: 1fr;
+      }
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .layout-wrapper {
+        padding: 0 12px;
+      }
+      .hero-main-card, .hero-telemetry-deck {
+        padding: var(--space-4);
+      }
+      .hero-title {
+        font-size: clamp(26px, 7vw, 34px);
+      }
+      .hero-cta-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .hero-cta-group .neo-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .swatch-grid {
+        grid-template-columns: 1fr;
+      }
+      .elevation-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .components-grid {
+        grid-template-columns: 1fr;
+      }
+      .demo-masthead {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .demo-inner {
+        padding: var(--space-4);
+      }
+      .rpc-node-strip {
+        grid-template-columns: 1fr;
+      }
+      .neo-input, input, select, textarea {
+        font-size: 16px !important;
+      }
+    }
+  </style>
+
+  <!-- Shared Mobile Safety Sheet (agent.md Section 6) -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      .layout-wrapper { padding-left: 16px !important; padding-right: 16px !important; }
+      .hero-main-card, .hero-telemetry-deck {
+        padding: 0 !important;
+        border-width: 0 !important;
+        box-shadow: none !important;
+        background: transparent !important;
+        transform: none !important;
+      }
+      .hero-main-card::before, .hero-main-card::after { display: none !important; }
+      .hero-cta-group { width: 100% !important; }
+      .hero-cta-group .neo-btn { width: 100% !important; }
+      .hero-swatch-strip {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+      }
+      .hero-title, p { overflow-wrap: anywhere; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       01. MANDATORY HEADER BAR COMPONENT (Per agent.md Section 2)
+       ======================================================================== -->
+  <header class="style-tile-header">
+    <!-- 1. Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- 2. Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Raw Foundry</span>
+      <span class="design-vibe-tag">Neo-Brutalism</span>
+    </div>
+
+    <!-- 3. Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><rect x="9" y="9" width="13" height="13"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download style-tile-raw-foundry.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <!-- Telemetry Masthead Strip -->
+  <aside class="telemetry-masthead">
+    <div class="masthead-left">
+      <span class="status-pulse">
+        <span class="pulse-dot"></span>
+        <span>MAINNET_L2 // LIVE TELEMETRY</span>
+      </span>
+      <span>BLOCK: <strong id="masthead-block" style="color: var(--ink-primary);">#19,842,012</strong></span>
+      <span>BASE GAS: <strong id="masthead-gas" style="color: var(--accent-ultramarine);">14.82 GWEI</strong></span>
+    </div>
+    <div class="masthead-right">
+      <span>SHARD: <strong>ALPHA-4</strong></span>
+      <span id="masthead-clock">2026-08-17 00:00:00 UTC</span>
+    </div>
+  </aside>
+
+  <main class="layout-wrapper">
+
+    <!-- ========================================================================
+         02. HERO DISPLAY BANNER
+         ======================================================================== -->
+    <section class="hero-section">
+      <div class="hero-grid-board">
+        
+        <!-- Left Hero Column: High Impact Title & Actuators -->
+        <div class="hero-main-card">
+          <div>
+            <div class="hero-header-line">
+              <span class="hero-spec-tag">[>] SPECIFICATION // TILE</span>
+              <span class="hero-meta-id">DEV TOOLING • WEB3 INFRA • MODERN FINTECH</span>
+            </div>
+
+            <div class="hero-tags-row">
+              <span class="neo-chip neo-chip-volt">[>] HYPER-VOLT ACTUATION</span>
+              <span class="neo-chip neo-chip-blue">[*] 0PX HARD ELEVATION</span>
+              <span class="neo-chip neo-chip-dark">[#] RIGID GEOMETRY</span>
+            </div>
+
+            <h1 class="hero-title">
+              Neo-Brutalist Tech
+              <span class="volt-highlight">Developer Tooling</span>
+            </h1>
+
+            <p class="hero-narrative">
+              A high-density, hyper-tactile design system engineered for <strong>developer tooling</strong>, <strong>cryptographic infrastructure</strong>, and <strong>modern fintech architecture</strong>. Starch White (<code style="font-family: var(--font-mono); font-weight: 700; color: var(--ink-primary);">#FAFAFA</code>) & Clean Slate (<code style="font-family: var(--font-mono); font-weight: 700; color: var(--ink-primary);">#F4F4F5</code>) foundation, hyper-volt lime (<code style="font-family: var(--font-mono); font-weight: 700; color: var(--ink-primary); background: var(--accent-volt); padding: 1px 4px;">#CCFF00</code>) actuators, and 2px structural ink borders with 3px/5px zero-blur mechanical drop projections.
+            </p>
+          </div>
+
+          <div>
+            <div class="hero-cta-group">
+              <button class="neo-btn neo-btn-primary" onclick="copyHeaderTile()">
+                <span>[>] COPY AGENT PROMPT</span>
+              </button>
+              <button class="neo-btn neo-btn-secondary" onclick="openSpecModal()">
+                <span>[//] INSPECT SPEC</span>
+              </button>
+              <a href="#living-demo" class="neo-btn neo-btn-exec">
+                <span>[*] LAUNCH CONSOLE ↓</span>
+              </a>
+            </div>
+
+            <!-- Mini Interactive Swatch Quick-Strip -->
+            <div class="hero-swatch-strip">
+              <span style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--ink-muted);">QUICK SWATCHES:</span>
+              <span class="hero-swatch-item" onclick="copyHex('#FAFAFA', '--bg-canvas')">
+                <span class="hero-swatch-dot" style="background: #FAFAFA;"></span> #FAFAFA
+              </span>
+              <span class="hero-swatch-item" onclick="copyHex('#F4F4F5', '--bg-card')">
+                <span class="hero-swatch-dot" style="background: #F4F4F5;"></span> #F4F4F5
+              </span>
+              <span class="hero-swatch-item" onclick="copyHex('#CCFF00', '--accent-volt')">
+                <span class="hero-swatch-dot" style="background: #CCFF00;"></span> #CCFF00
+              </span>
+              <span class="hero-swatch-item" onclick="copyHex('#1D4ED8', '--accent-ultramarine')">
+                <span class="hero-swatch-dot" style="background: #1D4ED8;"></span> #1D4ED8
+              </span>
+              <span class="hero-swatch-item" onclick="copyHex('#09090B', '--ink-primary')">
+                <span class="hero-swatch-dot" style="background: #09090B;"></span> #09090B
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero Column: High-Density Telemetry & Terminal Deck -->
+        <div class="hero-telemetry-deck">
+          <div class="deck-top-status">
+            <span>+-- [SYS.ID // 0x8849]</span>
+            <span class="status-badge status-badge-ok">[ LIVE 12ms ]</span>
+          </div>
+
+          <!-- Component C: KPI Metric -->
+          <div class="deck-kpi-block">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-family: var(--font-display); font-size: 12px; font-weight: 700; color: var(--ink-muted); text-transform: uppercase;">GAS CONSUMPTION (ROLLUP_L2)</span>
+              <span class="kpi-delta">▲ +4.2%</span>
+            </div>
+            <div class="deck-kpi-metric-row">
+              <span style="font-family: var(--font-display); font-size: 32px; font-weight: 700; letter-spacing: -0.04em; color: var(--ink-primary); line-height: 1;">14.825 GWEI</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--accent-ultramarine);">SHARD-4</span>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); border-top: 1px solid #E4E4E7; padding-top: 4px; display: flex; justify-content: space-between;">
+              <span>BLOCK: <strong>#19842012</strong></span>
+              <span>HASH: <strong>0x9f8b...33a1</strong></span>
+              <span style="color: #15803D; font-weight: 700;">OK</span>
+            </div>
+          </div>
+
+          <!-- Component D: Terminal Well -->
+          <div class="deck-terminal-block">
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #27272A; padding-bottom: 4px; margin-bottom: 6px; font-size: 10px;">
+              <span style="color: #A1A1AA;">+-- [CLI // zsh]</span>
+              <span style="color: var(--accent-volt); cursor: pointer;" onclick="simulateCurlRun()">[>] RUN CURL</span>
+            </div>
+            <pre style="margin: 0; font-family: var(--font-mono); font-size: 10.5px; white-space: pre-wrap;"><span style="color: #71717A;">$</span> <span style="color: var(--accent-volt);">curl</span> -X POST https://api.infra.node/v1/broadcast \
+  -H <span style="color: #60A5FA;">"Authorization: Bearer $HYPER_KEY"</span>
+<span style="color: #71717A;">>></span> <span style="color: var(--accent-volt);">[200 OK]</span> 0xCCFF00_DEPLOY_SUCCESS (41ms)</pre>
+          </div>
+
+          <!-- Quick Telemetry Status Footer -->
+          <div class="deck-footer-bar">
+            <span>TPS: <strong style="color: var(--accent-ultramarine);">3,140</strong></span>
+            <span>SHARDS: <strong style="color: var(--ink-primary);">8/8 ACTIVE</strong></span>
+            <span>PROOF: <strong style="color: #15803D;">100% OK</strong></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         03. SECTION 01: COLOR ROLES & TOKEN PALETTE MATRIX
+         ======================================================================== -->
+    <section class="system-section" id="palette-matrix">
+      <div class="section-header-block">
+        <div>
+          <span class="section-num">01 // TOKEN PALETTE</span>
+          <h2 class="section-heading">Color Roles & High-Voltage Swatches</h2>
+        </div>
+        <span class="section-subtext">Click any swatch to copy Hex / Token</span>
+      </div>
+
+      <!-- Group 1: Canvas & Surfaces -->
+      <div class="palette-group">
+        <div class="palette-group-title">
+          <span>[ CORE CANVAS & INK SURFACES ]</span>
+        </div>
+        <div class="swatch-grid">
+          
+          <div class="swatch-card" onclick="copyHex('#FAFAFA', '--bg-canvas')">
+            <span class="click-to-copy-hint">COPY HEX</span>
+            <div class="swatch-preview" style="background: #FAFAFA;">
+              <span class="swatch-badge">ROOT CANVAS</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">Canvas Ground <span>#FAFAFA</span></div>
+              <div class="swatch-var">--bg-canvas</div>
+              <p class="swatch-desc">"Starch White" — Global viewport root & base canvas foundation.</p>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#F4F4F5', '--bg-card')">
+            <span class="click-to-copy-hint">COPY HEX</span>
+            <div class="swatch-preview" style="background: #F4F4F5;">
+              <span class="swatch-badge">PANEL / CARD</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">Surface Card <span>#F4F4F5</span></div>
+              <div class="swatch-var">--bg-card</div>
+              <p class="swatch-desc">"Clean Slate" — Modular panels, tables, card bodies, and drawers.</p>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#E4E4E7', '--bg-inset')">
+            <span class="click-to-copy-hint">COPY HEX</span>
+            <div class="swatch-preview" style="background: #E4E4E7;">
+              <span class="swatch-badge">INSET WELL</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">Surface Inset <span>#E4E4E7</span></div>
+              <div class="swatch-var">--bg-inset</div>
+              <p class="swatch-desc">"Concrete 200" — Code wells, search bars, nested trays, sub-headers.</p>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#09090B', '--ink-primary')">
+            <span class="click-to-copy-hint">COPY HEX</span>
+            <div class="swatch-preview" style="background: #09090B;">
+              <span class="swatch-badge" style="background: #CCFF00; color: #09090B;">PRIMARY INK</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">Core Ink (Primary) <span>#09090B</span></div>
+              <div class="swatch-var">--ink-primary</div>
+              <p class="swatch-desc">"Carbon Heavy" — 100% text, 2px structural borders, and offset shadows.</p>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#52525B', '--ink-muted')">
+            <span class="click-to-copy-hint">COPY HEX</span>
+            <div class="swatch-preview" style="background: #52525B;">
+              <span class="swatch-badge" style="color: #FAFAFA; background: #27272A;">SECONDARY</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">Muted Ink <span>#52525B</span></div>
+              <div class="swatch-var">--ink-muted</div>
+              <p class="swatch-desc">"Zinc 600" — Secondary labels, timestamps, metadata, and breadcrumbs.</p>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#FAFAFA', '--ink-inverse')">
+            <span class="click-to-copy-hint">COPY HEX</span>
+            <div class="swatch-preview" style="background: #09090B; border-bottom: 2px solid #CCFF00;">
+              <span class="swatch-badge" style="background: #FAFAFA; color: #09090B;">INVERSE</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">Inverse Text <span>#FAFAFA</span></div>
+              <div class="swatch-var">--ink-inverse</div>
+              <p class="swatch-desc">"Starch White" — High-contrast text on dark badges, buttons, and terminals.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Group 2: Kinetic Accents & Signals -->
+      <div class="palette-group">
+        <div class="palette-group-title">
+          <span>[ KINETIC ACCENTS & SEMANTIC SIGNALS ]</span>
+        </div>
+        <div class="swatch-grid">
+
+          <div class="swatch-card" onclick="copyHex('#CCFF00', '--accent-volt')">
+            <span class="click-to-copy-hint">COPY HEX</span>
+            <div class="swatch-preview" style="background: #CCFF00;">
+              <span class="swatch-badge" style="background: #09090B; color: #CCFF00;">PRIMARY CTA</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">Primary Accent <span>#CCFF00</span></div>
+              <div class="swatch-var">--accent-volt</div>
+              <p class="swatch-desc">"Hyper-Volt Lime" — Primary CTA, active build, main trigger, validated block.</p>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#B8E600', '--accent-volt-hover')">
+            <span class="click-to-copy-hint">COPY HEX</span>
+            <div class="swatch-preview" style="background: #B8E600;">
+              <span class="swatch-badge">HOVER WASH</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">Accent Dim / Hover <span>#B8E600</span></div>
+              <div class="swatch-var">--accent-volt-hover</div>
+              <p class="swatch-desc">"Deep Lime" — Focus-visible states, active build states, and tactile hover wash.</p>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#1D4ED8', '--accent-ultramarine')">
+            <span class="click-to-copy-hint">COPY HEX</span>
+            <div class="swatch-preview" style="background: #1D4ED8;">
+              <span class="swatch-badge" style="background: #FAFAFA; color: #1D4ED8;">EXECUTION</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">Secondary Accent <span>#1D4ED8</span></div>
+              <div class="swatch-var">--accent-ultramarine</div>
+              <p class="swatch-desc">"Ultramarine Blue" — RPC nodes, cryptographic data, interactive links, shard sync.</p>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#FACC15', '--signal-warn')">
+            <span class="click-to-copy-hint">COPY HEX</span>
+            <div class="swatch-preview" style="background: #FACC15;">
+              <span class="swatch-badge">WARNING</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">Hazard Ochre <span>#FACC15</span></div>
+              <div class="swatch-var">--signal-warn</div>
+              <p class="swatch-desc">Gas Spike, Rate-Limit Warning, Mempool Latency lag indicator.</p>
+            </div>
+          </div>
+
+          <div class="swatch-card" onclick="copyHex('#FF334B', '--signal-crit')">
+            <span class="click-to-copy-hint">COPY HEX</span>
+            <div class="swatch-preview" style="background: #FF334B;">
+              <span class="swatch-badge" style="color: #FFFFFF; background: #09090B;">CRITICAL</span>
+            </div>
+            <div class="swatch-details">
+              <div class="swatch-role-name">Radical Vermilion <span>#FF334B</span></div>
+              <div class="swatch-var">--signal-crit</div>
+              <p class="swatch-desc">Reverted Tx, Compile Failure, Auth Error, Circuit Breaker trip.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         04. SECTION 02: TYPOGRAPHY SYSTEM & HIERARCHICAL SCALE
+         ======================================================================== -->
+    <section class="system-section" id="typography-system">
+      <div class="section-header-block">
+        <div>
+          <span class="section-num">02 // TYPOGRAPHY</span>
+          <h2 class="section-heading">Type Families & Hierarchical Scale</h2>
+        </div>
+        <span class="section-subtext">Space Grotesk • Plus Jakarta Sans • JetBrains Mono</span>
+      </div>
+
+      <!-- Type Family Cards -->
+      <div class="type-specimen-grid">
+        <div class="type-card">
+          <div class="type-card-header">
+            <span class="type-family-title">Space Grotesk</span>
+            <span class="type-role-badge">DISPLAY & TITLES</span>
+          </div>
+          <div style="font-family: var(--font-display); font-size: 26px; font-weight: 700; letter-spacing: -0.04em; margin-bottom: 8px; line-height: 1.2;">
+            Cryptographic State Machine 0x8849
+          </div>
+          <p style="font-family: var(--font-body); font-size: 13px; color: var(--ink-muted);">
+            High-contrast, geometric neo-grotesk with aggressive tight tracking (-0.04em) and deep miter cuts engineered for massive hero titles and card headers.
+          </p>
+        </div>
+
+        <div class="type-card">
+          <div class="type-card-header">
+            <span class="type-family-title">Plus Jakarta Sans & JetBrains Mono</span>
+            <span class="type-role-badge">UI BODY & TELEMETRY</span>
+          </div>
+          <div style="font-family: var(--font-body); font-size: 15px; font-weight: 500; margin-bottom: 8px; line-height: 1.5;">
+            Clean geometric clarity for dense dashboards, tabular data, and input controls.
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--accent-ultramarine); background: var(--bg-inset); padding: 4px 8px; border: 1px solid var(--ink-primary);">
+            [+] GET /v1/node/state >> 200_OK_SHARD_SYNCED (12ms)
+          </div>
+        </div>
+      </div>
+
+      <!-- Type Scale Table -->
+      <div class="type-scale-table-card">
+        <table class="neo-table">
+          <thead>
+            <tr>
+              <th>LEVEL</th>
+              <th>FONT FAMILY</th>
+              <th>SIZE</th>
+              <th>WEIGHT</th>
+              <th>TRACKING</th>
+              <th>LH</th>
+              <th>ROLE / INTENDED USE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Display / H1</strong></td>
+              <td>Space Grotesk</td>
+              <td><code>32px</code></td>
+              <td>700 (Bold)</td>
+              <td><code>-0.04em</code></td>
+              <td>1.15</td>
+              <td>Hero metrics, main product heads</td>
+            </tr>
+            <tr>
+              <td><strong>Heading / H2</strong></td>
+              <td>Space Grotesk</td>
+              <td><code>22px</code></td>
+              <td>700 (Bold)</td>
+              <td><code>-0.03em</code></td>
+              <td>1.25</td>
+              <td>Card headers, modal titles</td>
+            </tr>
+            <tr>
+              <td><strong>Section / H3</strong></td>
+              <td>Space Grotesk</td>
+              <td><code>16px</code></td>
+              <td>700 (Bold)</td>
+              <td><code>-0.02em</code></td>
+              <td>1.35</td>
+              <td>Sub-panels, drawer titles</td>
+            </tr>
+            <tr>
+              <td><strong>Body Large</strong></td>
+              <td>Plus Jakarta Sans</td>
+              <td><code>15px</code></td>
+              <td>500 (Medium)</td>
+              <td><code>-0.01em</code></td>
+              <td>1.50</td>
+              <td>Primary narrative & prompts</td>
+            </tr>
+            <tr>
+              <td><strong>Body UI / Reg</strong></td>
+              <td>Plus Jakarta Sans</td>
+              <td><code>14px</code></td>
+              <td>500 (Medium)</td>
+              <td><code>0.00em</code></td>
+              <td>1.50</td>
+              <td>Form inputs, table cells</td>
+            </tr>
+            <tr>
+              <td><strong>Code / CLI</strong></td>
+              <td>JetBrains Mono</td>
+              <td><code>12px</code></td>
+              <td>400 (Reg)</td>
+              <td><code>+0.04em</code></td>
+              <td>1.60</td>
+              <td>Logs, payloads, smart contract bytecode</td>
+            </tr>
+            <tr>
+              <td><strong>Meta / Tag</strong></td>
+              <td>JetBrains Mono</td>
+              <td><code>11px</code></td>
+              <td>600 (Bold)</td>
+              <td><code>+0.08em</code></td>
+              <td>1.20</td>
+              <td>UPPERCASE status chips, KPIs</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Live Type Tester -->
+      <div class="type-tester-box">
+        <div class="type-tester-controls">
+          <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700;">FONT SPECIMEN:</span>
+          <button class="type-pill-btn active" onclick="setTypeTesterFont('Space Grotesk', this)">Space Grotesk</button>
+          <button class="type-pill-btn" onclick="setTypeTesterFont('Plus Jakarta Sans', this)">Plus Jakarta Sans</button>
+          <button class="type-pill-btn" onclick="setTypeTesterFont('JetBrains Mono', this)">JetBrains Mono</button>
+
+          <div class="type-slider-group" style="margin-left: auto;">
+            <label for="type-size-slider">SIZE: <span id="type-size-val">24px</span></label>
+            <input type="range" id="type-size-slider" class="neo-range-slider" min="12" max="54" value="24" oninput="updateTypeTesterSize(this.value)">
+          </div>
+        </div>
+
+        <textarea id="live-pangram-input" class="type-tester-input" spellcheck="false">DEVELOPER TOOLING // 0xCCFF00_HYPER_VOLT_DEPLOY_SUCCESS (41ms)</textarea>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         05. SECTION 03: CORNER GEOMETRY & HARDBALL ELEVATION
+         ======================================================================== -->
+    <section class="system-section" id="elevation-matrix">
+      <div class="section-header-block">
+        <div>
+          <span class="section-num">03 // GEOMETRY & PHYSICS</span>
+          <h2 class="section-heading">Corner Radii & Hardball Drop Elevations</h2>
+        </div>
+        <span class="section-subtext">Rigid 0px/2px geometry • Zero-blur 100% ink projection</span>
+      </div>
+
+      <div class="elevation-grid">
+        
+        <div class="elevation-card elev-0">
+          <span class="elev-label">Elevation 0</span>
+          <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--ink-muted);">FLAT / PRESSED</div>
+          <span class="elev-code">box-shadow: none</span>
+        </div>
+
+        <div class="elevation-card elev-1">
+          <span class="elev-label">Elevation 1</span>
+          <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--ink-primary);">INTERACTIVE ACTUATOR</div>
+          <span class="elev-code">3px 3px 0px #09090B</span>
+        </div>
+
+        <div class="elevation-card elev-2">
+          <span class="elev-label">Elevation 2</span>
+          <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--ink-primary);">FLOATING KPI PANEL</div>
+          <span class="elev-code">5px 5px 0px #09090B</span>
+        </div>
+
+        <div class="elevation-card elev-3">
+          <span class="elev-label">Elevation 3</span>
+          <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--ink-primary);">OVERLAY MODAL / CMD+K</div>
+          <span class="elev-code">8px 8px 0px #09090B</span>
+        </div>
+
+        <div class="elevation-card elev-blue">
+          <span class="elev-label" style="color: var(--accent-ultramarine);">Reverse Blue Glow</span>
+          <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: var(--accent-ultramarine);">CRYPTOGRAPHIC NODE</div>
+          <span class="elev-code">3px 3px 0px #1D4ED8</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         06. SECTION 04: ATOMIC COMPONENT SPECIFICATIONS & GALLERY
+         ======================================================================== -->
+    <section class="system-section" id="component-archetypes">
+      <div class="section-header-block">
+        <div>
+          <span class="section-num">04 // COMPONENT ARCHETYPES</span>
+          <h2 class="section-heading">Buttons, Telemetry Cards & Terminal Wells</h2>
+        </div>
+        <span class="section-subtext">Direct implementation of prompt ASCII specimens</span>
+      </div>
+
+      <div class="components-grid">
+
+        <!-- Spec A & B: Buttons Suite -->
+        <div class="component-spec-card">
+          <div class="component-spec-header">
+            <span class="component-spec-title">COMPONENT A & B // BUTTON MATRIX</span>
+            <span class="component-spec-tag">80ms TACTILE CLICK-DOWN</span>
+          </div>
+
+          <div class="buttons-flow">
+            <!-- Component A: Primary Volt -->
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); margin-bottom: 4px;">PRIMARY VOLT CTA [COMPONENT A]</div>
+              <button class="neo-btn neo-btn-primary" style="width: 100%;" onclick="showToast('Initiated Protocol Deployment Sequence...')">
+                <span>[>] DEPLOY PROTOCOL</span>
+              </button>
+            </div>
+
+            <!-- Component B: Ghost Invert -->
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); margin-bottom: 4px;">SECONDARY GHOST-INVERT [COMPONENT B]</div>
+              <button class="neo-btn neo-btn-secondary" style="width: 100%;" onclick="showToast('Opened RPC Documentation: READ_RPC_DOCS.MD')">
+                <span>[//] READ_RPC_DOCS.MD</span>
+              </button>
+            </div>
+
+            <!-- Semantic Actions -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2);">
+              <button class="neo-btn neo-btn-exec neo-btn-sm" onclick="showToast('Synchronized Node Cluster!')">
+                <span>[*] SYNC NODE</span>
+              </button>
+              <button class="neo-btn neo-btn-danger neo-btn-sm" onclick="showToast('Terminated RPC Session.')">
+                <span>[x] TERMINATE</span>
+              </button>
+            </div>
+
+            <button class="neo-btn neo-btn-disabled" disabled>
+              <span>[-] DISABLED RPC GATEWAY</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Inputs & Form Controls -->
+        <div class="component-spec-card">
+          <div class="component-spec-header">
+            <span class="component-spec-title">TECHNICAL INPUT CONTROLS</span>
+            <span class="component-spec-tag">2PX BORDER // INSET WELL</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="demo-input-contract">[#] TARGET CONTRACT ADDRESS</label>
+            <div class="neo-input-wrapper">
+              <span class="neo-input-prefix">0x</span>
+              <input type="text" id="demo-input-contract" class="neo-input" value="71C...8849" placeholder="Enter hexadecimal address...">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="demo-input-rpc">[>] RPC ENDPOINT URL</label>
+            <input type="text" id="demo-input-rpc" class="neo-input" value="https://api.infra.node/v1/broadcast" placeholder="https://...">
+          </div>
+
+          <div style="margin-top: var(--space-4); border-top: var(--border-hairline); padding-top: var(--space-3);">
+            <label class="neo-check-label">
+              <input type="checkbox" class="neo-checkbox" checked>
+              <span>[x] ENFORCE_OPTIMISTIC_FRAUD_PROOF</span>
+            </label>
+            <label class="neo-check-label">
+              <input type="checkbox" class="neo-checkbox" checked>
+              <span>[x] AUTO_RETRY_ON_MEMPOOL_SPIKE</span>
+            </label>
+            <label class="neo-check-label">
+              <input type="checkbox" class="neo-checkbox">
+              <span>[ ] STRICT_ZERO_KNOWLEDGE_COMPRESSION</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Component C: High-Density Fintech/Web3 KPI Card -->
+        <div class="component-spec-card">
+          <div class="component-spec-header">
+            <span class="component-spec-title">COMPONENT C // HIGH-DENSITY KPI</span>
+            <span class="component-spec-tag">ELEVATION 2 (5px)</span>
+          </div>
+
+          <div class="kpi-spec-render">
+            <div class="kpi-top-bar">
+              <span>+-- [SYS.ID // 0x8849]</span>
+              <span>[+] --+</span>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+              <span class="kpi-label">GAS CONSUMPTION (ROLLUP_L2)</span>
+              <span class="status-badge status-badge-ok">[ LIVE 12ms ]</span>
+            </div>
+
+            <div class="kpi-main-metric">
+              <div class="kpi-value" id="kpi-spec-val">14.825 GWEI</div>
+              <span class="kpi-delta">▲ +4.2%</span>
+            </div>
+
+            <div class="kpi-sub-tray">
+              <span>BLOCK: <strong>#19842012</strong></span>
+              <span>HASH: <strong>0x9f8b...33a1</strong></span>
+              <span class="status-badge status-badge-ok">STATUS: OK</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Component D: Code Block & Terminal Prompt -->
+        <div class="component-spec-card" style="grid-column: 1 / -1;">
+          <div class="component-spec-header">
+            <span class="component-spec-title">COMPONENT D // TERMINAL PROMPT & CODE BLOCK</span>
+            <span class="component-spec-tag">JETBRAINS MONO 12PX // #09090B</span>
+          </div>
+
+          <div class="terminal-card">
+            <div class="terminal-header">
+              <span>+-- [CLI // zsh] --------------------------------------------- [SH] -+</span>
+              <button class="type-pill-btn" style="background: var(--accent-volt); color: var(--ink-primary); padding: 2px 8px;" onclick="simulateCurlRun()">[>] RUN CURL TEST</button>
+            </div>
+            <div class="terminal-body" id="terminal-display-body">
+              <pre><span class="t-dim">$</span> <span class="t-volt">curl</span> -X POST https://api.infra.node/v1/broadcast \
+    -H <span class="t-blue">"Authorization: Bearer $HYPER_KEY"</span> \
+    -d <span class="t-blue">'{"network": "mainnet-alpha", "shard": 4, "stateRoot": "0x8849"}'</span>
+
+<span class="t-dim">>></span> <span class="t-volt">[200 OK]</span> 0xCCFF00_DEPLOY_SUCCESS (41ms)
+<span class="t-dim">>></span> TX_RECEIPT: 0x9f8b44a2c091e89b21a329d44391e81244ab9</pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         07. SECTION 05: LIVING MICRO-EXPERIENCE (L2 WEB3 CONSOLE & TELEMETRY)
+         ======================================================================== -->
+    <section class="system-section" id="living-demo">
+      <div class="section-header-block">
+        <div>
+          <span class="section-num">05 // LIVING MICRO-EXPERIENCE</span>
+          <h2 class="section-heading">Hyper-Node 2.0 // L2 Infrastructure Console</h2>
+        </div>
+        <span class="section-subtext">Functional developer telemetry & transaction dispatcher</span>
+      </div>
+
+      <div class="living-demo-card">
+        <!-- Masthead -->
+        <div class="demo-masthead">
+          <div class="demo-masthead-title">
+            <span style="color: var(--accent-volt);">[>] HYPER-NODE // L2 TELEMETRY CONSOLE</span>
+            <span class="demo-sync-badge">MAINNET-ALPHA</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: var(--space-3);">
+            <button class="type-pill-btn active" id="btn-toggle-sim" onclick="toggleSimulation()">[#] SIMULATION: RUNNING</button>
+            <button class="type-pill-btn" style="background: var(--accent-volt); color: var(--ink-primary);" onclick="triggerManualBlock()">[+] MINT BLOCK</button>
+          </div>
+        </div>
+
+        <div class="demo-inner">
+          
+          <!-- Live KPI Strip -->
+          <div class="demo-kpi-grid">
+            <div class="demo-kpi">
+              <div class="demo-kpi-top"><span>ACTIVE BLOCK HEIGHT</span> <span>[L2 SYNC]</span></div>
+              <div class="demo-kpi-num" id="live-block-num">#19,842,012</div>
+              <div class="demo-kpi-sub">Next block in ~2.8s</div>
+            </div>
+
+            <div class="demo-kpi">
+              <div class="demo-kpi-top"><span>ESTIMATED BASE GAS</span> <span>[EIP-1559]</span></div>
+              <div class="demo-kpi-num" id="live-gas-num">14.82 GWEI</div>
+              <div class="demo-kpi-sub" id="live-gas-delta">▲ +0.4% (Normal)</div>
+            </div>
+
+            <div class="demo-kpi">
+              <div class="demo-kpi-top"><span>THROUGHPUT VELOCITY</span> <span>[MEMPOOL]</span></div>
+              <div class="demo-kpi-num">3,140 TPS</div>
+              <div class="demo-kpi-sub">Shard 4 capacity: 94.2%</div>
+            </div>
+
+            <div class="demo-kpi">
+              <div class="demo-kpi-top"><span>PROOF VERIFICATION</span> <span>[FRAUD-PROOF]</span></div>
+              <div class="demo-kpi-num" style="color: #15803D;">100% OK</div>
+              <div class="demo-kpi-sub">0 Reversions pending</div>
+            </div>
+          </div>
+
+          <!-- Dispatcher & Transaction Ledger -->
+          <div class="demo-workbench-grid">
+            
+            <!-- Left: Transaction Dispatcher -->
+            <div class="dispatcher-panel">
+              <div class="panel-header-sm">
+                <span>[>] DISPATCH L2 PAYLOAD</span>
+                <span class="status-badge status-badge-ok">READY</span>
+              </div>
+
+              <form id="dispatch-form" onsubmit="handleDispatchSubmit(event)">
+                <div class="form-group">
+                  <label class="form-label" for="tx-contract">TARGET CONTRACT</label>
+                  <input type="text" id="tx-contract" class="neo-input" value="0x8849...DEAF" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="tx-method">FUNCTION SIGNATURE</label>
+                  <select id="tx-method" class="neo-input" style="cursor: pointer;">
+                    <option value="transfer(address,uint256)">transfer(address,uint256)</option>
+                    <option value="mintLiquidityVault(uint256)">mintLiquidityVault(uint256)</option>
+                    <option value="deploySmartContractBytecode()">deploySmartContractBytecode()</option>
+                    <option value="executeArbitrageRoute()">executeArbitrageRoute()</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="tx-val">VALUE (ETH)</label>
+                  <input type="number" id="tx-val" class="neo-input" value="0.25" step="0.01" min="0" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="tx-priority">PRIORITY TIP (GWEI)</label>
+                  <input type="number" id="tx-priority" class="neo-input" value="2.0" step="0.1" min="0">
+                </div>
+
+                <button type="submit" class="neo-btn neo-btn-primary" style="width: 100%; margin-top: var(--space-2);">
+                  <span>[>] BROADCAST PAYLOAD</span>
+                </button>
+              </form>
+            </div>
+
+            <!-- Right: Real-time Transaction Ledger -->
+            <div class="ledger-panel">
+              <div class="ledger-header">
+                <span style="font-family: var(--font-display); font-size: 13px; font-weight: 700;">LIVE TRANSACTION STREAM</span>
+                <div class="filter-tabs">
+                  <button class="filter-tab-btn active" onclick="filterLedger('ALL', this)">ALL (<span id="count-all">6</span>)</button>
+                  <button class="filter-tab-btn" onclick="filterLedger('OK', this)">OK</button>
+                  <button class="filter-tab-btn" onclick="filterLedger('EXEC', this)">EXEC</button>
+                  <button class="filter-tab-btn" onclick="filterLedger('WARN', this)">WARN</button>
+                </div>
+              </div>
+
+              <div class="ledger-table-wrap">
+                <table class="ledger-table" id="ledger-table">
+                  <thead>
+                    <tr>
+                      <th>TX HASH</th>
+                      <th>METHOD</th>
+                      <th>VALUE</th>
+                      <th>GAS</th>
+                      <th>LATENCY</th>
+                      <th>STATUS</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ledger-table-body">
+                    <tr data-status="OK">
+                      <td><code style="font-weight: 700; color: var(--accent-ultramarine);">0x9f8b...33a1</code></td>
+                      <td>transfer</td>
+                      <td>0.50 ETH</td>
+                      <td>21,000</td>
+                      <td>12ms</td>
+                      <td><span class="status-badge status-badge-ok">VALIDATED</span></td>
+                    </tr>
+                    <tr data-status="OK">
+                      <td><code style="font-weight: 700; color: var(--accent-ultramarine);">0x4e21...88c9</code></td>
+                      <td>mintLiquidity</td>
+                      <td>4.20 ETH</td>
+                      <td>142,000</td>
+                      <td>16ms</td>
+                      <td><span class="status-badge status-badge-ok">VALIDATED</span></td>
+                    </tr>
+                    <tr data-status="EXEC">
+                      <td><code style="font-weight: 700; color: var(--accent-ultramarine);">0x71aa...f120</code></td>
+                      <td>deployContract</td>
+                      <td>0.00 ETH</td>
+                      <td>850,200</td>
+                      <td>38ms</td>
+                      <td><span class="status-badge status-badge-exec">MINING</span></td>
+                    </tr>
+                    <tr data-status="WARN">
+                      <td><code style="font-weight: 700; color: var(--accent-ultramarine);">0x22c4...aa01</code></td>
+                      <td>executeArbitrage</td>
+                      <td>12.80 ETH</td>
+                      <td>420,100</td>
+                      <td>84ms</td>
+                      <td><span class="status-badge status-badge-warn">MEMPOOL LAG</span></td>
+                    </tr>
+                    <tr data-status="OK">
+                      <td><code style="font-weight: 700; color: var(--accent-ultramarine);">0xbb30...19e4</code></td>
+                      <td>transfer</td>
+                      <td>0.05 ETH</td>
+                      <td>21,000</td>
+                      <td>9ms</td>
+                      <td><span class="status-badge status-badge-ok">VALIDATED</span></td>
+                    </tr>
+                    <tr data-status="OK">
+                      <td><code style="font-weight: 700; color: var(--accent-ultramarine);">0x10fa...772b</code></td>
+                      <td>mintLiquidity</td>
+                      <td>1.00 ETH</td>
+                      <td>118,500</td>
+                      <td>14ms</td>
+                      <td><span class="status-badge status-badge-ok">VALIDATED</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RPC Node Latency Tester -->
+          <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; margin-bottom: 6px;">[ RPC CLUSTER HEALTH & PING LATENCY ]</div>
+          <div class="rpc-node-strip">
+            <div class="rpc-item">
+              <div>
+                <div class="rpc-name">ETH-MAINNET (L1)</div>
+                <div class="rpc-ping-val" id="ping-1">14ms • OK</div>
+              </div>
+              <button class="type-pill-btn" onclick="pingNode(1)">[>] PING</button>
+            </div>
+
+            <div class="rpc-item">
+              <div>
+                <div class="rpc-name">ARBITRUM-NITRO (L2)</div>
+                <div class="rpc-ping-val" id="ping-2">8ms • OK</div>
+              </div>
+              <button class="type-pill-btn" onclick="pingNode(2)">[>] PING</button>
+            </div>
+
+            <div class="rpc-item">
+              <div>
+                <div class="rpc-name">OPTIMISM-BEDROCK (L2)</div>
+                <div class="rpc-ping-val" id="ping-3">19ms • OK</div>
+              </div>
+              <button class="type-pill-btn" onclick="pingNode(3)">[>] PING</button>
+            </div>
+
+            <div class="rpc-item">
+              <div>
+                <div class="rpc-name">SHARD-04-CUSTOM</div>
+                <div class="rpc-ping-val" id="ping-4">41ms • WARN</div>
+              </div>
+              <button class="type-pill-btn" onclick="pingNode(4)">[>] PING</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         08. SECTION 06: STYLE TILE PROMPT CODE DRAWER
+         ======================================================================== -->
+    <section class="system-section" id="prompt-drawer">
+      <div class="prompt-drawer-card">
+        <div class="drawer-header">
+          <div class="drawer-title">[>] AI AGENT STYLE TILE PROMPT (READY TO COPY)</div>
+          <button class="neo-btn neo-btn-primary neo-btn-sm" onclick="copyHeaderTile()">
+            <span>✓ COPY STYLE TILE</span>
+          </button>
+        </div>
+        <pre class="drawer-code-block" id="visible-markdown-code"></pre>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       09. SPEC MODAL POPUP (Per agent.md Section 2)
+       ======================================================================== -->
+  <div id="spec-modal-backdrop" class="spec-modal-backdrop">
+    <div class="spec-modal-window">
+      <div class="modal-header">
+        <span class="modal-title">SPECIFICATION // STYLE TILE TILE</span>
+        <div class="modal-actions">
+          <button class="btn-tile btn-copy" onclick="copyHeaderTile()">Copy Tile</button>
+          <button class="btn-tile btn-preview" onclick="closeSpecModal()">✕ Close</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <pre id="modal-markdown-content"></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- ========================================================================
+       10. EMBEDDED MARKDOWN SPECIFICATION (Per agent.md Section 2 & 4)
+       ======================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Neo-Brutalist Tech
+  Construction: starch white • 0px geometry • 2px carbon borders • hyper-volt lime • ultramarine • zero-blur ink shadows
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A light starch-white canvas of clean-slate cards and concrete wells, ruled by 2px carbon ink borders and 0px corners. Elevation is a hard 3-8px offset block of 100% opaque ink, never blur. Primary actuation is hyper-volt lime on carbon; secondary is ultramarine. Display and titles are Space Grotesk, tight and heavy; body is Plus Jakarta Sans; compact meta is JetBrains Mono, uppercase and wide. Click physics is a short mechanical press: the object slides onto its own shadow.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FAFAFA; /* Starch white */
+  --bg-surface:             #F4F4F5; /* Clean slate cards */
+  --bg-surface-alt:         #E4E4E7; /* Concrete inset wells */
+  --bg-surface-dark:        #09090B; /* Carbon inverted */
+
+  /* Inks & Typography */
+  --ink-primary:            #09090B; /* Carbon heavy */
+  --ink-secondary:          #52525B; /* Zinc secondary */
+  --ink-muted:              #52525B; /* Quiet labels */
+  --ink-inverted:           #FAFAFA; /* Starch on carbon */
+
+  /* Signature Accents */
+  --accent-primary:         #CCFF00; /* Hyper-volt lime */
+  --accent-primary-hover:   #B8E600; /* Deep lime */
+  --accent-secondary:       #1D4ED8; /* Ultramarine */
+  --accent-tertiary:        #1E40AF; /* Deep ultramarine */
+
+  /* Status Tokens */
+  --status-success:         #CCFF00; /* Volt confirm */
+  --status-warning:         #FACC15; /* Hazard ochre */
+  --status-danger:          #FF334B; /* Radical vermilion */
+  --status-info:            #1D4ED8; /* Ultramarine info */
+
+  /* Extra material aliases */
+  --bg-card:                #F4F4F5;
+  --bg-inset:               #E4E4E7;
+  --bg-dark:                #09090B;
+  --accent-volt:            #CCFF00;
+  --accent-volt-hover:      #B8E600;
+  --accent-ultramarine:     #1D4ED8;
+  --signal-ok:              #CCFF00;
+  --signal-warn:            #FACC15;
+  --signal-crit:            #FF334B;
+  --signal-exec:            #1D4ED8;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+--font-sans:    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+--font-mono:    "JetBrains Mono", SFMono-Regular, Menlo, monospace;
+
+--text-display: 32px / 1.15 var(--font-display); /* Weight: 700 | Tracking: -0.04em */
+--text-h1:      32px / 1.15 var(--font-display); /* Weight: 700 | Tracking: -0.04em */
+--text-h2:      22px / 1.25 var(--font-display); /* Weight: 700 | Tracking: -0.03em */
+--text-h3:      16px / 1.35 var(--font-display); /* Weight: 700 | Tracking: -0.02em */
+--text-body:    14px / 1.50 var(--font-sans);    /* Weight: 500 */
+--text-body-sm: 12px / 1.60 var(--font-mono);    /* Weight: 400 | Tracking: +0.04em | compact data */
+--text-meta:    11px / 1.20 var(--font-mono);    /* Weight: 600 | Tracking: +0.08em | UPPERCASE */
+--text-body-lg: 15px / 1.50 var(--font-sans);    /* Weight: 500 | Tracking: -0.01em */
+
+/* Compact data uses mono at 12px. Do not invent terminal prompts, node labels, or hash prefixes. */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 0px;
+--radius-subtle:  2px; /* Interactive controls only */
+--radius-sharp:   0px;
+--radius-pill:    0px; /* Prohibited on badges, cards, and modals */
+
+--shadow-base:        5px 5px 0px #09090B;
+--shadow-hover:       4px 4px 0px #09090B;
+--shadow-active:      none;
+--shadow-none:        none;
+--shadow-interactive: 3px 3px 0px #09090B;
+--shadow-card:        5px 5px 0px #09090B;
+--shadow-modal:       8px 8px 0px #09090B;
+--shadow-accent-blue: 3px 3px 0px #1D4ED8;
+
+/* Click-down physics (80ms cubic-bezier(0, 0, 0.2, 1)):
+   Rest: translate(0,0) + 3px 3px 0 #09090B
+   Hover: translate(-1px,-1px) + 4px 4px 0 #09090B
+   Active: translate(3px,3px) + no shadow
+   Focus-visible: 2px solid #1D4ED8 */
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:          2px solid #09090B;
+--border-hairline:      1px solid #09090B;
+--border-blueprint-sub: 1px dashed #D4D4D8;
+--divider-style:        1px solid #09090B;
+
+/* Optional 16px-dot or 32px-square background grid in quiet regions.
+   Optional "+" ticks at existing card corners - graphic only, no labels. */
+
+/* Icons: 2.0px, square caps, miter joins. Do not add ASCII operator prefixes to labels. */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 0-2px radius, 2px carbon border, 3px hard shadow. Primary: lime fill, carbon ink, Space Grotesk 700 ~14px. Ghost: starch fill, carbon ink, optional mono 600 12px. Hover/press uses the click-down physics above. Use the host's existing labels.
+- **Cards**: Clean slate #F4F4F5, 2px carbon border, 5px hard shadow, 0px radius. Inverted wells: carbon fill with lime or starch ink. Do not add KPI chrome, CLI headers, or hash tags the host lacks.
+- **Inputs**: Concrete well #E4E4E7, 2px carbon border, 3px hard shadow, 2px radius max. Focus: 2px ultramarine outline. Input font-size >= 16px.
+- **Navigation**: Restyle existing items as heavy grotesque or uppercase mono. Active: lime fill or ultramarine underline. Do not add catalog names or fake command palettes.
+- **Badges / chips / toggles**: 0-2px, 2px carbon border, lime/ochre/vermilion/ultramarine fills. No pills.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHES & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No soft, diffuse, or blurred drop shadows (0% blur, 100% opacity ink only).
+- No pill radii or rounded modals/cards (default 0px; 2px max on controls).
+- No pastel or low-contrast structural borders (2px solid #09090B).
+- No gradient text or purple dark-mode tropes.
+- No Web3, CLI, or developer-tooling copy mandates.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- ========================================================================
+       11. JAVASCRIPT LOGIC & TELEMETRY ENGINE
+       ======================================================================== -->
+  <script>
+    // 1. Toast Notification System
+    function showToast(message, icon = "✓") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerHTML = `
+        <span class="toast-icon">${icon}</span>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 200);
+      }, 2400);
+    }
+
+    // 2. Get Markdown Helper
+    function getMarkdownSpec() {
+      const el = document.getElementById("style-tile-markdown");
+      return el ? el.textContent.trim() : "";
+    }
+
+    // 3. Header Action 1: Copy Style Tile
+    function copyHeaderTile() {
+      const md = getMarkdownSpec();
+      navigator.clipboard.writeText(md).then(() => {
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const originalHTML = copyBtn.innerHTML;
+          copyBtn.innerHTML = `<span>✓ Copied!</span>`;
+          setTimeout(() => { copyBtn.innerHTML = originalHTML; }, 2000);
+        }
+        showToast("Copied Neo-Brutalist Tech Style Tile to clipboard!");
+      }).catch(err => {
+        console.error("Clipboard write failed", err);
+      });
+    }
+
+    // 4. Header Action 2: Download Style Tile .md
+    function downloadHeaderTile() {
+      const md = getMarkdownSpec();
+      const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "style-tile-raw-foundry.md";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      showToast("Downloaded style-tile-raw-foundry.md!");
+    }
+
+    // 5. Header Action 3: Preview Style Tile Modal
+    function openSpecModal() {
+      const md = getMarkdownSpec();
+      document.getElementById("modal-markdown-content").textContent = md;
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) backdrop.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSpecModal() {
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) backdrop.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    // 6. Swatch Hex Copy
+    function copyHex(hex, varName) {
+      navigator.clipboard.writeText(hex).then(() => {
+        showToast(`Copied ${varName} (${hex}) to clipboard!`);
+      });
+    }
+
+    // 7. Interactive Type Tester
+    function setTypeTesterFont(fontName, btn) {
+      const input = document.getElementById("live-pangram-input");
+      if (!input) return;
+      
+      document.querySelectorAll(".type-pill-btn").forEach(b => {
+        if (b.parentNode === btn.parentNode) b.classList.remove("active");
+      });
+      btn.classList.add("active");
+
+      if (fontName === 'Space Grotesk') {
+        input.style.fontFamily = 'var(--font-display)';
+      } else if (fontName === 'Plus Jakarta Sans') {
+        input.style.fontFamily = 'var(--font-body)';
+      } else if (fontName === 'JetBrains Mono') {
+        input.style.fontFamily = 'var(--font-mono)';
+      }
+      showToast(`Switched specimen font to ${fontName}`);
+    }
+
+    function updateTypeTesterSize(val) {
+      const input = document.getElementById("live-pangram-input");
+      const label = document.getElementById("type-size-val");
+      if (input) input.style.fontSize = `${val}px`;
+      if (label) label.textContent = `${val}px`;
+    }
+
+    // 8. Terminal Curl Runner Simulation
+    function simulateCurlRun() {
+      const term = document.getElementById("terminal-display-body");
+      if (!term) return;
+      
+      term.innerHTML = `<pre><span class="t-volt">[>] EXECUTING RPC BROADCAST...</span>\nConnecting to https://api.infra.node/v1/broadcast (TLS 1.3)...</pre>`;
+      
+      setTimeout(() => {
+        const hash = "0x" + Array.from({length: 40}, () => Math.floor(Math.random()*16).toString(16)).join("");
+        term.innerHTML = `<pre><span class="t-dim">$</span> <span class="t-volt">curl</span> -X POST https://api.infra.node/v1/broadcast \\
+    -H <span class="t-blue">"Authorization: Bearer $HYPER_KEY"</span> \\
+    -d <span class="t-blue">'{"network": "mainnet-alpha", "shard": 4, "stateRoot": "0x8849"}'</span>
+
+<span class="t-dim">>></span> <span class="t-volt">[200 OK]</span> 0xCCFF00_DEPLOY_SUCCESS (38ms)
+<span class="t-dim">>></span> TX_HASH: <span class="t-blue">${hash}</span>
+<span class="t-dim">>></span> SHARD_STATUS: <span class="t-volt">SYNCED_AND_COMMITTED</span></pre>`;
+        showToast("Simulated RPC curl execution returned 200 OK!");
+      }, 400);
+    }
+
+    // 9. Living Telemetry & Simulation Engine
+    let currentBlock = 19842012;
+    let isSimulationRunning = true;
+    let simInterval = null;
+
+    function updateMastheadClock() {
+      const clockEl = document.getElementById("masthead-clock");
+      if (!clockEl) return;
+      const now = new Date();
+      clockEl.textContent = now.toISOString().replace("T", " ").substring(0, 19) + " UTC";
+    }
+
+    function triggerManualBlock() {
+      currentBlock++;
+      const blockStr = `#${currentBlock.toLocaleString()}`;
+      
+      const mastheadEl = document.getElementById("masthead-block");
+      const liveEl = document.getElementById("live-block-num");
+      if (mastheadEl) mastheadEl.textContent = blockStr;
+      if (liveEl) liveEl.textContent = blockStr;
+
+      // Gas price small jitter
+      const gas = (14.2 + Math.random() * 1.5).toFixed(2);
+      const gasEl = document.getElementById("masthead-gas");
+      const liveGasEl = document.getElementById("live-gas-num");
+      if (gasEl) gasEl.textContent = `${gas} GWEI`;
+      if (liveGasEl) liveGasEl.textContent = `${gas} GWEI`;
+
+      showToast(`Minted Block ${blockStr} on Shard-04!`);
+    }
+
+    function toggleSimulation() {
+      const btn = document.getElementById("btn-toggle-sim");
+      isSimulationRunning = !isSimulationRunning;
+      if (isSimulationRunning) {
+        btn.textContent = "[#] SIMULATION: RUNNING";
+        btn.classList.add("active");
+        startSimulation();
+        showToast("Telemetry simulation resumed.");
+      } else {
+        btn.textContent = "[#] SIMULATION: PAUSED";
+        btn.classList.remove("active");
+        if (simInterval) clearInterval(simInterval);
+        showToast("Telemetry simulation paused.");
+      }
+    }
+
+    function startSimulation() {
+      if (simInterval) clearInterval(simInterval);
+      simInterval = setInterval(() => {
+        if (!isSimulationRunning) return;
+        currentBlock++;
+        const blockStr = `#${currentBlock.toLocaleString()}`;
+        
+        const mastheadEl = document.getElementById("masthead-block");
+        const liveEl = document.getElementById("live-block-num");
+        if (mastheadEl) mastheadEl.textContent = blockStr;
+        if (liveEl) liveEl.textContent = blockStr;
+
+        const gas = (14.1 + Math.random() * 1.6).toFixed(2);
+        const gasEl = document.getElementById("masthead-gas");
+        const liveGasEl = document.getElementById("live-gas-num");
+        if (gasEl) gasEl.textContent = `${gas} GWEI`;
+        if (liveGasEl) liveGasEl.textContent = `${gas} GWEI`;
+      }, 3200);
+    }
+
+    // 10. Dispatch Transaction Form Handler
+    function handleDispatchSubmit(e) {
+      e.preventDefault();
+      const contract = document.getElementById("tx-contract").value.trim() || "0x8849...DEAF";
+      const method = document.getElementById("tx-method").value;
+      const val = document.getElementById("tx-val").value || "0.00";
+      
+      const shortHash = "0x" + Math.floor(Math.random()*16777215).toString(16).padEnd(6, '0') + "...";
+      const gasUsed = Math.floor(21000 + Math.random() * 90000).toLocaleString();
+      const latency = Math.floor(9 + Math.random() * 25) + "ms";
+
+      const tableBody = document.getElementById("ledger-table-body");
+      if (tableBody) {
+        const row = document.createElement("tr");
+        row.setAttribute("data-status", "OK");
+        row.innerHTML = `
+          <td><code style="font-weight: 700; color: var(--accent-ultramarine);">${shortHash}</code></td>
+          <td>${method.split('(')[0]}</td>
+          <td>${val} ETH</td>
+          <td>${gasUsed}</td>
+          <td>${latency}</td>
+          <td><span class="status-badge status-badge-ok">VALIDATED</span></td>
+        `;
+        tableBody.prepend(row);
+      }
+
+      updateLedgerCount();
+      triggerManualBlock();
+      showToast(`Broadcast transaction ${shortHash} committed!`, "🚀");
+    }
+
+    function filterLedger(status, btn) {
+      document.querySelectorAll(".filter-tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const rows = document.querySelectorAll("#ledger-table-body tr");
+      rows.forEach(r => {
+        if (status === "ALL" || r.getAttribute("data-status") === status) {
+          r.style.display = "";
+        } else {
+          r.style.display = "none";
+        }
+      });
+    }
+
+    function updateLedgerCount() {
+      const countEl = document.getElementById("count-all");
+      const rows = document.querySelectorAll("#ledger-table-body tr");
+      if (countEl) countEl.textContent = rows.length;
+    }
+
+    // 11. RPC Ping Tester
+    function pingNode(nodeId) {
+      const pingEl = document.getElementById(`ping-${nodeId}`);
+      if (!pingEl) return;
+      
+      pingEl.textContent = "Pinging...";
+      setTimeout(() => {
+        const lat = Math.floor(6 + Math.random() * 22);
+        pingEl.textContent = `${lat}ms • OK`;
+        showToast(`Node #${nodeId} responded in ${lat}ms!`);
+      }, 250);
+    }
+
+    // 12. DOM Initialization
+    document.addEventListener("DOMContentLoaded", () => {
+      // Wire header buttons
+      const btnCopy = document.getElementById("btn-copy-tile");
+      if (btnCopy) btnCopy.addEventListener("click", copyHeaderTile);
+
+      const btnDownload = document.getElementById("btn-download-tile");
+      if (btnDownload) btnDownload.addEventListener("click", downloadHeaderTile);
+
+      const btnPreview = document.getElementById("btn-preview-tile");
+      if (btnPreview) btnPreview.addEventListener("click", openSpecModal);
+
+      // Populate bottom visible code block
+      const visibleCode = document.getElementById("visible-markdown-code");
+      if (visibleCode) visibleCode.textContent = getMarkdownSpec();
+
+      // Start clocks and simulation
+      updateMastheadClock();
+      setInterval(updateMastheadClock, 1000);
+      startSimulation();
+      updateLedgerCount();
+
+      // Keyboard & modal dismiss
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSpecModal();
+      });
+
+      const backdrop = document.getElementById("spec-modal-backdrop");
+      if (backdrop) {
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) closeSpecModal();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+

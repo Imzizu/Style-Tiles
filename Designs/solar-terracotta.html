@@ -1,0 +1,2324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar Terracotta — Style Tile &amp; Design System</title>
+  <meta name="description" content="Production design system and Style Tile for Warm Botanical & Solar Terracotta (TILE): Sun-baked terracotta #B84E29, radiant marigold gold #FAB833, deep carbon #141414, sunlit cream #EEDCB9, frosted ambient glass, Plus Jakarta Sans & Inter typography, 36px container geometry, and diagram leader wire aesthetics.">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="../favicon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+  <link rel="manifest" href="../favicon/site.webmanifest">
+  <link rel="shortcut icon" href="../favicon.ico">
+
+  <!-- Google Fonts: Plus Jakarta Sans, Outfit, Inter, DM Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       STYLE TILE: WARM BOTANICAL & SOLAR TERRACOTTA // TILE
+       ========================================================================== */
+
+    :root {
+      /* ------------------------------------------------------------------------
+       * 1. COLOR ROLES & PALETTE
+       * ------------------------------------------------------------------------ */
+      /* Canvas & Ambient */
+      --bg-canvas-primary:       #B84E29; /* Sun-baked terracotta base */
+      --bg-canvas-gradient:      radial-gradient(circle at 50% 30%, #C95A32 0%, #A43F1C 100%);
+      --bg-surface-dark:         #141414; /* Deep carbon black for high-contrast anchors */
+      --bg-surface-cream:        #EEDCB9; /* Warm sunlit linen / soft oat */
+      --bg-surface-glass:        rgba(255, 255, 255, 0.12); /* Frosted ambient glass overlay */
+      --bg-surface-glass-heavy:  rgba(255, 255, 255, 0.20);
+      --bg-surface-glass-dark:   rgba(20, 20, 20, 0.75);
+
+      /* Accents & Interactive */
+      --accent-gold-primary:     #FAB833; /* Radiant marigold / warm amber yellow */
+      --accent-gold-hover:       #E5A424;
+      --accent-sunburst:         #F58A42; /* Supporting warm apricot */
+      --accent-gold-soft:        rgba(250, 184, 51, 0.18);
+      --accent-terracotta-deep:  #8A3214;
+
+      /* Typography & Icon Contrast */
+      --text-primary-light:      #FFFFFF; /* Crisp contrast against terracotta/dark */
+      --text-secondary-light:    rgba(255, 240, 230, 0.78); /* Soft peach-tinted neutral */
+      --text-primary-dark:       #1F1A17; /* Espresso-tinted near-black on light panels */
+      --text-secondary-dark:     #5C5346; /* Muted olive-bark for secondary card copy */
+      --text-accent-gold:        #FAB833;
+
+      /* Overlays & Strokes */
+      --stroke-subtle-white:     rgba(255, 255, 255, 0.22);
+      --stroke-hairline-wire:    rgba(255, 255, 255, 0.40);
+      --stroke-dark:             rgba(20, 20, 20, 0.08);
+
+      /* ------------------------------------------------------------------------
+       * 2. TYPOGRAPHY SYSTEM
+       * ------------------------------------------------------------------------ */
+      --font-display:            "Plus Jakarta Sans", "Outfit", sans-serif;
+      --font-display-alt:        "Outfit", "Plus Jakarta Sans", sans-serif;
+      --font-body:               "Inter", "DM Sans", -apple-system, sans-serif;
+      --font-mono:               "JetBrains Mono", "SF Mono", monospace;
+
+      /* Scale & Hierarchy */
+      --text-display-xl:         700 clamp(2.25rem, 5.2vw, 52px) / 1.08 var(--font-display);
+      --text-heading-lg:         600 28px / 1.20 var(--font-display);
+      --text-heading-md:         600 20px / 1.30 var(--font-display);
+      --text-body-regular:       400 14px / 1.50 var(--font-body);
+      --text-body-compact:       400 12px / 1.45 var(--font-body);
+      --text-nav-link:           500 13px / 1.00 var(--font-body);
+      --text-rating-num:         600 32px / 1.00 var(--font-display);
+
+      /* ------------------------------------------------------------------------
+       * 3. CORNER GEOMETRY (BORDER RADII)
+       * ------------------------------------------------------------------------ */
+      --radius-pill:             9999px; /* Nav CTA, pill buttons, icon badges */
+      --radius-container:        36px;   /* Outer screen wrapper */
+      --radius-card-lg:          24px;   /* Main feature/hero split banners */
+      --radius-card-sm:          18px;   /* Floating interactive media cards */
+      --radius-control:          10px;   /* Standard compact buttons & tags */
+      --radius-avatar:           50%;
+
+      /* ------------------------------------------------------------------------
+       * 4. ELEVATION & DEPTH (SHADOWS & LAYERS)
+       * ------------------------------------------------------------------------ */
+      --glass-blur-sm:           blur(8px);
+      --glass-blur-lg:           blur(20px);
+
+      --shadow-floating-card:    0 16px 36px -8px rgba(70, 20, 5, 0.28);
+      --shadow-floating-hover:   0 24px 48px -6px rgba(70, 20, 5, 0.38);
+      --shadow-button-glow:      0 8px 20px -4px rgba(250, 184, 51, 0.45);
+      --shadow-button-glow-lg:   0 12px 28px -2px rgba(250, 184, 51, 0.60);
+      --shadow-dark-card:        0 20px 40px -12px rgba(0, 0, 0, 0.35);
+      --shadow-node-dot:         0 0 12px 2px rgba(255, 255, 255, 0.80);
+
+      /* ------------------------------------------------------------------------
+       * 5. SPACING & SPATIAL SCALE
+       * ------------------------------------------------------------------------ */
+      --space-2xs:               4px;
+      --space-xs:                8px;
+      --space-sm:                12px;
+      --space-md:                16px;
+      --space-lg:                24px;
+      --space-xl:                32px;
+      --space-2xl:               48px;
+      --space-section:           80px;
+
+      /* ------------------------------------------------------------------------
+       * 6. BORDERS & DIVIDERS
+       * ------------------------------------------------------------------------ */
+      --border-glass-card:       1px solid rgba(255, 255, 255, 0.20);
+      --border-opaque-card:      1px solid rgba(255, 255, 255, 0.08);
+      --border-technical-line:   1px solid rgba(255, 255, 255, 0.35);
+
+      /* ------------------------------------------------------------------------
+       * 7. TRANSITIONS & TIMING
+       * ------------------------------------------------------------------------ */
+      --transition-smooth:       all 240ms cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-spring:       all 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* ==========================================================================
+       RESET & BASE STRUCTURE
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-canvas-primary);
+      color: var(--text-primary-light);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background: var(--bg-canvas-primary);
+      background-image: var(--bg-canvas-gradient);
+      background-attachment: fixed;
+      color: var(--text-primary-light);
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.50;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Organic Botanical Texture Overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 20% 15%, rgba(250, 184, 51, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 80% 85%, rgba(245, 138, 66, 0.12) 0%, transparent 50%),
+        radial-gradient(rgba(255, 255, 255, 0.12) 0.6px, transparent 0.6px);
+      background-size: 100% 100%, 100% 100%, 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    ::selection {
+      background-color: var(--accent-gold-primary);
+      color: var(--bg-surface-dark);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       MANDATORY HEADER BAR (agent.md Section 2)
+       ========================================================================== */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: rgba(184, 78, 41, 0.88);
+      backdrop-filter: var(--glass-blur-lg);
+      -webkit-backdrop-filter: var(--glass-blur-lg);
+      border-bottom: var(--border-glass-card);
+      padding: 12px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary-light);
+      background: var(--bg-surface-glass);
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      border: var(--border-glass-card);
+      transition: var(--transition-smooth);
+    }
+
+    .nav-back-link:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateX(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      background: var(--bg-surface-dark);
+      color: var(--accent-gold-primary);
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(250, 184, 51, 0.3);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary-light);
+      letter-spacing: -0.01em;
+    }
+
+    .design-vibe-tag {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--bg-surface-dark);
+      background: var(--accent-gold-primary);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      border: none;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-preview {
+      background: var(--bg-surface-glass);
+      color: var(--text-primary-light);
+      border: var(--border-glass-card);
+      backdrop-filter: var(--glass-blur-sm);
+    }
+
+    .btn-preview:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .btn-copy {
+      background: var(--bg-surface-dark);
+      color: var(--text-primary-light);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-copy:hover {
+      background: #262626;
+      border-color: rgba(255, 255, 255, 0.30);
+      transform: translateY(-1px);
+    }
+
+    .btn-download {
+      background: var(--accent-gold-primary);
+      color: var(--bg-surface-dark);
+      font-weight: 700;
+      box-shadow: var(--shadow-button-glow);
+    }
+
+    .btn-download:hover {
+      background: var(--accent-gold-hover);
+      box-shadow: var(--shadow-button-glow-lg);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       HERO DISPLAY BANNER
+       ========================================================================== */
+    .hero-section {
+      padding: var(--space-2xl) 0 var(--space-section);
+    }
+
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-2xl);
+      align-items: center;
+    }
+
+    .hero-badge-strip {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-md);
+    }
+
+    .badge-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: var(--radius-pill);
+    }
+
+    .badge-gold {
+      background: var(--accent-gold-primary);
+      color: var(--bg-surface-dark);
+    }
+
+    .badge-carbon {
+      background: var(--bg-surface-dark);
+      color: var(--text-primary-light);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .badge-glass {
+      background: var(--bg-surface-glass);
+      color: var(--text-primary-light);
+      border: var(--border-glass-card);
+      backdrop-filter: var(--glass-blur-sm);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.5vw, 54px);
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -0.025em;
+      color: var(--text-primary-light);
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-title span.accent-gold {
+      color: var(--accent-gold-primary);
+      display: inline-block;
+    }
+
+    .hero-narrative {
+      font-size: 15px;
+      line-height: 1.60;
+      color: var(--text-secondary-light);
+      max-width: 540px;
+      margin-bottom: var(--space-xl);
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+
+    .cta-primary-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 30px;
+      background: var(--accent-gold-primary);
+      color: var(--bg-surface-dark);
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-button-glow);
+      cursor: pointer;
+      border: none;
+      transition: var(--transition-smooth);
+    }
+
+    .cta-primary-gold:hover {
+      background: var(--accent-gold-hover);
+      box-shadow: var(--shadow-button-glow-lg);
+      transform: translateY(-2px);
+    }
+
+    .cta-secondary-glass {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 26px;
+      background: var(--bg-surface-glass);
+      color: var(--text-primary-light);
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      border: var(--border-glass-card);
+      backdrop-filter: var(--glass-blur-sm);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .cta-secondary-glass:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-2px);
+    }
+
+    /* Hero Staging Art: Asymmetric Botanical Solar Canvas */
+    .hero-staging-wrapper {
+      position: relative;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-container);
+      padding: var(--space-xl);
+      border: var(--border-glass-card);
+      box-shadow: var(--shadow-floating-card);
+      backdrop-filter: var(--glass-blur-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    /* Central Asymmetric Card */
+    .staging-main-card {
+      background: var(--bg-surface-cream);
+      color: var(--text-primary-dark);
+      border-radius: var(--radius-card-lg);
+      padding: 28px 32px;
+      position: relative;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .staging-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #8A3214;
+      background: rgba(184, 78, 41, 0.14);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+
+    .staging-card-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-primary-dark);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .staging-card-desc {
+      font-size: 13px;
+      color: var(--text-secondary-dark);
+      line-height: 1.45;
+    }
+
+    /* Floating Asymmetric Offset Chips & Node Callout */
+    .staging-subgrid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-md);
+      position: relative;
+    }
+
+    .floating-mini-glass {
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-card-sm);
+      padding: 18px 20px;
+      border: var(--border-glass-card);
+      backdrop-filter: var(--glass-blur-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition-smooth);
+    }
+
+    .floating-mini-glass:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-floating-hover);
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .floating-carbon-card {
+      background: var(--bg-surface-dark);
+      color: var(--text-primary-light);
+      border-radius: var(--radius-card-sm);
+      padding: 18px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: var(--shadow-dark-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition-smooth);
+    }
+
+    .floating-carbon-card:hover {
+      transform: scale(1.02);
+    }
+
+    /* Diagram Node & 45° Leader Wire */
+    .diagram-callout-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary-light);
+      margin-top: 8px;
+    }
+
+    .diagram-node-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: var(--shadow-node-dot);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .diagram-node-dot::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+    }
+
+    /* Rating Stars */
+    .rating-stars-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--accent-gold-primary);
+    }
+
+    /* ==========================================================================
+       SECTION HEADERS
+       ========================================================================== */
+    .section-block {
+      margin-bottom: var(--space-section);
+    }
+
+    .section-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: var(--space-xl);
+      border-bottom: var(--border-glass-card);
+      padding-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .section-header-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary-light);
+      letter-spacing: -0.01em;
+    }
+
+    .section-header-sub {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-secondary-light);
+    }
+
+    /* ==========================================================================
+       COLOR PALETTE & TOKEN MATRIX
+       ========================================================================== */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .swatch-card {
+      background: rgba(255, 255, 255, 0.10);
+      border-radius: var(--radius-card-sm);
+      padding: var(--space-md);
+      border: var(--border-glass-card);
+      backdrop-filter: var(--glass-blur-sm);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-2px) scale(1.01);
+      background: rgba(255, 255, 255, 0.16);
+      box-shadow: var(--shadow-floating-card);
+    }
+
+    .swatch-preview {
+      height: 76px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 8px;
+      position: relative;
+    }
+
+    .swatch-copy-hint {
+      font-size: 10px;
+      font-weight: 700;
+      background: rgba(20, 20, 20, 0.85);
+      color: #FFFFFF;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: var(--transition-smooth);
+    }
+
+    .swatch-card:hover .swatch-copy-hint {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .swatch-meta-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary-light);
+    }
+
+    .swatch-meta-token {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-gold-primary);
+      font-weight: 500;
+    }
+
+    .swatch-meta-hex {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary-light);
+    }
+
+    .swatch-meta-role {
+      font-size: 12px;
+      color: var(--text-secondary-light);
+      line-height: 1.4;
+    }
+
+    /* ==========================================================================
+       TYPOGRAPHY SPECIMEN SYSTEM
+       ========================================================================== */
+    .type-specimen-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--space-xl);
+    }
+
+    .type-ladder-card {
+      background: rgba(255, 255, 255, 0.10);
+      border-radius: var(--radius-container);
+      padding: var(--space-xl);
+      border: var(--border-glass-card);
+      backdrop-filter: var(--glass-blur-lg);
+    }
+
+    .type-ladder-item {
+      padding: var(--space-md) 0;
+      border-bottom: var(--border-glass-card);
+    }
+
+    .type-ladder-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .type-ladder-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary-light);
+    }
+
+    .type-ladder-name {
+      font-weight: 700;
+      color: var(--accent-gold-primary);
+    }
+
+    .sample-display-xl {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4.5vw, 44px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--text-primary-light);
+    }
+
+    .sample-heading-lg {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.20;
+      letter-spacing: -0.01em;
+      color: var(--text-primary-light);
+    }
+
+    .sample-heading-md {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.30;
+      color: var(--text-primary-light);
+    }
+
+    .sample-body-regular {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.50;
+      color: var(--text-secondary-light);
+    }
+
+    .sample-rating-num {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1.00;
+      letter-spacing: -0.02em;
+      color: var(--accent-gold-primary);
+    }
+
+    /* Type Playground */
+    .type-playground-card {
+      background: var(--bg-surface-cream);
+      color: var(--text-primary-dark);
+      border-radius: var(--radius-container);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-floating-card);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .playground-controls {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+
+    .playground-pill-btn {
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      background: rgba(31, 26, 23, 0.08);
+      border: 1px solid rgba(31, 26, 23, 0.15);
+      color: var(--text-primary-dark);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .playground-pill-btn.active {
+      background: var(--bg-surface-dark);
+      color: #FFFFFF;
+    }
+
+    .playground-textarea {
+      width: 100%;
+      min-height: 140px;
+      padding: var(--space-md);
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: var(--radius-card-sm);
+      border: 1px solid rgba(31, 26, 23, 0.12);
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--text-primary-dark);
+      line-height: 1.3;
+      resize: vertical;
+      outline: none;
+      transition: var(--transition-smooth);
+    }
+
+    .playground-textarea:focus {
+      border-color: var(--bg-canvas-primary);
+      box-shadow: 0 0 0 3px rgba(184, 78, 41, 0.2);
+    }
+
+    /* ==========================================================================
+       COMPONENT ARCHETYPE GALLERY
+       ========================================================================== */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-xl);
+    }
+
+    .component-tile {
+      background: rgba(255, 255, 255, 0.10);
+      border-radius: var(--radius-container);
+      padding: var(--space-xl);
+      border: var(--border-glass-card);
+      backdrop-filter: var(--glass-blur-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .component-tile-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .component-tile-sub {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary-light);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Button Gallery */
+    .button-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    .btn-gold-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      background: var(--accent-gold-primary);
+      color: var(--bg-surface-dark);
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-button-glow);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-gold-cta:hover {
+      background: var(--accent-gold-hover);
+      box-shadow: var(--shadow-button-glow-lg);
+      transform: translateY(-2px);
+    }
+
+    .btn-dark-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      background: var(--bg-surface-dark);
+      color: var(--text-primary-light);
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-dark-pill:hover {
+      background: #262626;
+      border-color: rgba(255, 255, 255, 0.30);
+      transform: translateY(-1px);
+    }
+
+    .btn-control-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 14px;
+      background: var(--bg-surface-glass);
+      color: var(--text-primary-light);
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: var(--radius-control);
+      border: var(--border-glass-card);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-control-tag:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    /* Media Play Action: Carbon on Gold */
+    .media-play-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent-gold-primary);
+      color: var(--bg-surface-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-button-glow);
+      cursor: pointer;
+      transition: var(--transition-spring);
+    }
+
+    .media-play-badge:hover {
+      transform: scale(1.12);
+      box-shadow: var(--shadow-button-glow-lg);
+    }
+
+    .media-play-badge svg {
+      width: 18px;
+      height: 18px;
+      margin-left: 2px;
+      fill: currentColor;
+    }
+
+    /* Rating Component */
+    .rating-card-component {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-card-sm);
+      padding: 16px 20px;
+      border: var(--border-glass-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .rating-score {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--accent-gold-primary);
+      line-height: 1;
+    }
+
+    /* Form Inputs */
+    .warm-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .botanical-input {
+      width: 100%;
+      padding: 12px 18px;
+      padding-right: 42px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-pill);
+      border: var(--border-glass-card);
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--text-primary-light);
+      outline: none;
+      backdrop-filter: var(--glass-blur-sm);
+      transition: var(--transition-smooth);
+    }
+
+    .botanical-input::placeholder {
+      color: rgba(255, 240, 230, 0.6);
+    }
+
+    .botanical-input:focus {
+      border-color: var(--accent-gold-primary);
+      box-shadow: 0 0 0 3px rgba(250, 184, 51, 0.25);
+      background: rgba(255, 255, 255, 0.20);
+    }
+
+    .input-action-icon {
+      position: absolute;
+      right: 6px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent-gold-primary);
+      color: var(--bg-surface-dark);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .input-action-icon:hover {
+      transform: scale(1.06);
+      background: var(--accent-gold-hover);
+    }
+
+    /* Diagram Callout Card */
+    .diagram-specimen-tile {
+      background: var(--bg-surface-cream);
+      color: var(--text-primary-dark);
+      border-radius: var(--radius-card-sm);
+      padding: 18px 20px;
+      position: relative;
+    }
+
+    .leader-wire-svg {
+      width: 100%;
+      height: 48px;
+      overflow: visible;
+    }
+
+    /* ==========================================================================
+       LIVING MICRO-EXPERIENCE: SOLARIS BOTANICAL APOTHECARY
+       ========================================================================== */
+    .demo-showcase-container {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-container);
+      padding: var(--space-2xl);
+      border: var(--border-glass-card);
+      box-shadow: var(--shadow-floating-card);
+      backdrop-filter: var(--glass-blur-lg);
+    }
+
+    .demo-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--border-glass-card);
+    }
+
+    .demo-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .demo-sun-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--accent-gold-primary);
+      color: var(--bg-surface-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-button-glow);
+    }
+
+    .demo-brand-text {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary-light);
+      letter-spacing: -0.01em;
+    }
+
+    .demo-nav-tabs {
+      display: inline-flex;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: var(--radius-pill);
+      padding: 4px;
+      border: var(--border-glass-card);
+    }
+
+    .demo-tab-btn {
+      padding: 8px 18px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary-light);
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      transition: var(--transition-smooth);
+    }
+
+    .demo-tab-btn.active {
+      background: var(--accent-gold-primary);
+      color: var(--bg-surface-dark);
+      font-weight: 700;
+    }
+
+    .demo-grid-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: var(--space-xl);
+    }
+
+    /* Solarium Extraction Station Card */
+    .solarium-station-card {
+      background: rgba(20, 20, 20, 0.65);
+      border-radius: var(--radius-card-lg);
+      padding: var(--space-xl);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .solarium-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .solarium-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-primary-light);
+    }
+
+    .solarium-specimen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+      margin-top: 4px;
+    }
+
+    .specimen-pill {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-control);
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition-smooth);
+    }
+
+    .specimen-pill:hover, .specimen-pill.active {
+      background: rgba(250, 184, 51, 0.18);
+      border-color: var(--accent-gold-primary);
+    }
+
+    .specimen-pill.active .specimen-name {
+      color: var(--accent-gold-primary);
+    }
+
+    .specimen-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary-light);
+    }
+
+    .specimen-temp {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary-light);
+    }
+
+    /* Interactive Solar Index Slider */
+    .solar-slider-box {
+      margin-top: var(--space-sm);
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.10);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .slider-header-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary-light);
+    }
+
+    .solar-range-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-pill);
+      outline: none;
+    }
+
+    .solar-range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent-gold-primary);
+      cursor: pointer;
+      box-shadow: var(--shadow-button-glow);
+      transition: var(--transition-smooth);
+    }
+
+    .solar-range-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+      box-shadow: var(--shadow-button-glow-lg);
+    }
+
+    /* Right Botanical Feature Card */
+    .botanical-feature-card {
+      background: var(--bg-surface-cream);
+      color: var(--text-primary-dark);
+      border-radius: var(--radius-card-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-floating-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .botanical-header-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .botanical-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary-dark);
+      line-height: 1.2;
+    }
+
+    .botanical-summary {
+      font-size: 13px;
+      color: var(--text-secondary-dark);
+      line-height: 1.5;
+    }
+
+    .botanical-metrics-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: rgba(31, 26, 23, 0.06);
+      border-radius: var(--radius-control);
+    }
+
+    /* ==========================================================================
+       STYLE TILE PROMPT CODE DRAWER & PREVIEW MODAL
+       ========================================================================== */
+    .spec-drawer-card {
+      background: var(--bg-surface-dark);
+      color: #FFFFFF;
+      border-radius: var(--radius-container);
+      padding: var(--space-xl);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: var(--shadow-dark-card);
+    }
+
+    .spec-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .spec-code-pre {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: #EEDCB9;
+      background: #1C1C1C;
+      padding: var(--space-lg);
+      border-radius: var(--radius-card-sm);
+      overflow-x: auto;
+      max-height: 440px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 20, 20, 0.75);
+      backdrop-filter: var(--glass-blur-lg);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-window {
+      background: #141414;
+      color: #FFFFFF;
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      border-radius: var(--radius-container);
+      padding: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-close-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: var(--transition-smooth);
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Floating Toast Popup */
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-surface-dark);
+      color: var(--accent-gold-primary);
+      border: 1px solid rgba(250, 184, 51, 0.4);
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+      z-index: 1000;
+      display: none;
+      animation: toastSlideUp 240ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes toastSlideUp {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Responsive Mobile Overrides */
+    @media (max-width: 768px) {
+      .page-container {
+        padding: 0 var(--space-md);
+      }
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+      }
+      .staging-subgrid {
+        grid-template-columns: 1fr;
+      }
+      .type-specimen-grid {
+        grid-template-columns: 1fr;
+      }
+      .demo-grid-layout {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: clamp(2.0rem, 8.2vw, 3.1rem);
+      }
+      .botanical-input {
+        font-size: 16px !important;
+      }
+    }
+  </style>
+
+  <!-- Shared Mobile Safety Sheet -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. MANDATORY TOP NAVIGATION HEADER
+       ========================================================================== -->
+  <header class="style-tile-header">
+    <!-- Navigation Back -->
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <!-- Design Title & Code -->
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Solar Terracotta</span>
+      <span class="design-vibe-tag">Quiet Luxury</span>
+    </div>
+
+    <!-- Action Suite -->
+    <div class="header-actions">
+      <!-- Preview / Inspect Markdown Modal Button -->
+      <button id="btn-preview-tile" class="btn-tile btn-preview" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+
+      <!-- Copy Raw Markdown to Clipboard Button -->
+      <button id="btn-copy-tile" class="btn-tile btn-copy" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+
+      <!-- Download Markdown File Button -->
+      <button id="btn-download-tile" class="btn-tile btn-download" title="Download solar-terracotta.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <div class="page-container">
+
+    <!-- ==========================================================================
+         2. HERO DISPLAY BANNER & STAGING COMPOSITION
+         ========================================================================== -->
+    <section class="hero-section">
+      <div class="hero-container">
+        
+        <!-- Left: Statement & Primary Actions -->
+        <div class="hero-content-col">
+          <div class="hero-badge-strip">
+            <span class="badge-chip badge-gold">✦ Solar Radiance</span>
+            <span class="badge-chip badge-carbon">Terracotta #B84E29</span>
+            <span class="badge-chip badge-glass">36px Geometry</span>
+          </div>
+
+          <h1 class="hero-title">
+            Warm Botanical &<br>
+            <span class="accent-gold">Solar Terracotta</span>
+          </h1>
+
+          <p class="hero-narrative">
+            An earthy, tactile aesthetic blending organic warmth with refined modern UI. Sun-baked terracotta foundations, frosted ambient glass cards, and radiant marigold accents create an elevated, restorative visual atmosphere.
+          </p>
+
+          <div class="hero-cta-group">
+            <button class="cta-primary-gold" onclick="copyTilePromptDirect()">
+              <span>Copy Style Tile for AI Agent</span>
+              <span>↗</span>
+            </button>
+            <a href="#demo-section" class="cta-secondary-glass">
+              <span>Explore Solarium Suite</span>
+              <span>↓</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Asymmetric Staging Showcase -->
+        <div class="hero-staging-wrapper">
+          
+          <!-- Central Sunlit Cream Card -->
+          <div class="staging-main-card">
+            <div class="staging-card-badge">✦ Botanical Synthesis</div>
+            <h3 class="staging-card-title">Solar-Cured Neroli & Calendula Extract</h3>
+            <p class="staging-card-desc">
+              Organically harvested at dawn, solar-macerated under ambient heat, and distilled in small-batch ceramic vessels.
+            </p>
+
+            <div class="diagram-callout-box">
+              <div class="diagram-node-dot"></div>
+              <span>45° Hairline Leader Wire // Node Ref: SOL-82</span>
+            </div>
+          </div>
+
+          <!-- Subgrid: Floating Glass & Carbon Contrast Cards -->
+          <div class="staging-subgrid">
+            <div class="floating-mini-glass">
+              <div>
+                <span style="font-size: 11px; font-weight: 700; color: var(--text-primary-light); text-transform: uppercase; letter-spacing: 0.05em;">Solar Rating</span>
+                <div style="display: flex; align-items: baseline; gap: 6px; margin-top: 4px;">
+                  <span style="font-family: var(--font-display); font-size: 28px; font-weight: 800; color: var(--accent-gold-primary);">4.98</span>
+                  <span style="font-size: 12px; color: var(--text-secondary-light);">/ 5.0</span>
+                </div>
+              </div>
+              <div class="rating-stars-row" style="margin-top: 8px;">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+            </div>
+
+            <div class="floating-carbon-card">
+              <div>
+                <span style="font-size: 11px; font-weight: 700; color: var(--accent-gold-primary); text-transform: uppercase; letter-spacing: 0.05em;">Apothecary Lab</span>
+                <div style="font-family: var(--font-display); font-size: 16px; font-weight: 700; color: #FFFFFF; margin-top: 4px;">Solarium Batch 09</div>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 12px;">
+                <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary-light);">32.4°C ACTIVE</span>
+                <div class="media-play-badge" style="width: 32px; height: 32px;" onclick="triggerToast('Solar Audio Stream Playing')">
+                  <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         3. COLOR ROLES & PALETTE MATRIX
+         ========================================================================== -->
+    <section class="section-block" id="palette-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-header-title">01 / Color Roles & Palette Matrix</h2>
+          <p class="section-header-sub">Click any swatch to copy its Hex code to your clipboard.</p>
+        </div>
+        <span class="badge-chip badge-glass">8 Palette Tokens</span>
+      </div>
+
+      <div class="palette-grid">
+        <!-- 1. Sun-baked Terracotta -->
+        <div class="swatch-card" onclick="copyHex('#B84E29', '--bg-canvas-primary')">
+          <div class="swatch-preview" style="background-color: #B84E29;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Sun-Baked Terracotta</div>
+            <div class="swatch-meta-token">--bg-canvas-primary</div>
+            <div class="swatch-meta-hex">#B84E29</div>
+          </div>
+          <p class="swatch-meta-role">Rich earth foundation evoking sun-drenched clay and Mediterranean warmth.</p>
+        </div>
+
+        <!-- 2. Radiant Marigold Gold -->
+        <div class="swatch-card" onclick="copyHex('#FAB833', '--accent-gold-primary')">
+          <div class="swatch-preview" style="background-color: #FAB833;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Radiant Marigold Gold</div>
+            <div class="swatch-meta-token">--accent-gold-primary</div>
+            <div class="swatch-meta-hex">#FAB833</div>
+          </div>
+          <p class="swatch-meta-role">Solar primary accent for glowing CTAs, star ratings, and interactive focus.</p>
+        </div>
+
+        <!-- 3. Deep Carbon Black -->
+        <div class="swatch-card" onclick="copyHex('#141414', '--bg-surface-dark')">
+          <div class="swatch-preview" style="background-color: #141414;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Deep Carbon Black</div>
+            <div class="swatch-meta-token">--bg-surface-dark</div>
+            <div class="swatch-meta-hex">#141414</div>
+          </div>
+          <p class="swatch-meta-role">High-contrast structural anchor for floating cards and tactile dark pills.</p>
+        </div>
+
+        <!-- 4. Sunlit Linen Cream -->
+        <div class="swatch-card" onclick="copyHex('#EEDCB9', '--bg-surface-cream')">
+          <div class="swatch-preview" style="background-color: #EEDCB9;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Sunlit Linen Cream</div>
+            <div class="swatch-meta-token">--bg-surface-cream</div>
+            <div class="swatch-meta-hex">#EEDCB9</div>
+          </div>
+          <p class="swatch-meta-role">Warm oat surface delivering luminous contrast for feature product staging.</p>
+        </div>
+
+        <!-- 5. Supporting Apricot Sunburst -->
+        <div class="swatch-card" onclick="copyHex('#F58A42', '--accent-sunburst')">
+          <div class="swatch-preview" style="background-color: #F58A42;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Apricot Sunburst</div>
+            <div class="swatch-meta-token">--accent-sunburst</div>
+            <div class="swatch-meta-hex">#F58A42</div>
+          </div>
+          <p class="swatch-meta-role">Vibrant intermediate solar tone for gradients, badges, and warm accents.</p>
+        </div>
+
+        <!-- 6. Frosted Glass Overlay -->
+        <div class="swatch-card" onclick="copyHex('rgba(255,255,255,0.12)', '--bg-surface-glass')">
+          <div class="swatch-preview" style="background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(8px);">
+            <span class="swatch-copy-hint">Copy RGBA</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Frosted Ambient Glass</div>
+            <div class="swatch-meta-token">--bg-surface-glass</div>
+            <div class="swatch-meta-hex">rgba(255,255,255,0.12)</div>
+          </div>
+          <p class="swatch-meta-role">Translucent layer capturing ambient background illumination.</p>
+        </div>
+
+        <!-- 7. Espresso Dark Ink -->
+        <div class="swatch-card" onclick="copyHex('#1F1A17', '--text-primary-dark')">
+          <div class="swatch-preview" style="background-color: #1F1A17;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Espresso Charcoal Ink</div>
+            <div class="swatch-meta-token">--text-primary-dark</div>
+            <div class="swatch-meta-hex">#1F1A17</div>
+          </div>
+          <p class="swatch-meta-role">High-contrast reading ink on light cream cards and product labels.</p>
+        </div>
+
+        <!-- 8. Muted Olive Bark -->
+        <div class="swatch-card" onclick="copyHex('#5C5346', '--text-secondary-dark')">
+          <div class="swatch-preview" style="background-color: #5C5346;">
+            <span class="swatch-copy-hint">Copy Hex</span>
+          </div>
+          <div>
+            <div class="swatch-meta-name">Muted Olive Bark</div>
+            <div class="swatch-meta-token">--text-secondary-dark</div>
+            <div class="swatch-meta-hex">#5C5346</div>
+          </div>
+          <p class="swatch-meta-role">Subdued organic tone for body paragraphs and secondary annotations.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         4. TYPOGRAPHY & TYPE SPECIMEN SYSTEM
+         ========================================================================== -->
+    <section class="section-block" id="typography-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-header-title">02 / Typography Hierarchy & Specimen</h2>
+          <p class="section-header-sub">Plus Jakarta Sans & Inter pairing engineered for organic editorial clarity.</p>
+        </div>
+        <span class="badge-chip badge-glass">Proportional Type System</span>
+      </div>
+
+      <div class="type-specimen-grid">
+        
+        <!-- Left: Hierarchy Ladder -->
+        <div class="type-ladder-card">
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">Display XL</span>
+              <span>52px | 1.08 | 700 Weight | -0.02em</span>
+            </div>
+            <div class="sample-display-xl">Solar Terracotta</div>
+          </div>
+
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">Heading LG</span>
+              <span>28px | 1.20 | 600 Weight | -0.01em</span>
+            </div>
+            <div class="sample-heading-lg">Botanical Alchemy & Extraction</div>
+          </div>
+
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">Heading MD</span>
+              <span>20px | 1.30 | 600 Weight | 0em</span>
+            </div>
+            <div class="sample-heading-md">Pure Sun-Cured Neroli Essence</div>
+          </div>
+
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">Body Regular</span>
+              <span>14px | 1.50 | 400 Weight | 0em</span>
+            </div>
+            <div class="sample-body-regular">
+              Sun-baked terracotta foundations provide grounded organic warmth, while translucent frosted glass panels reflect natural ambient light across the interface.
+            </div>
+          </div>
+
+          <div class="type-ladder-item">
+            <div class="type-ladder-meta">
+              <span class="type-ladder-name">Rating Number</span>
+              <span>32px | 1.00 | 600 Weight | -0.02em</span>
+            </div>
+            <div class="sample-rating-num">4.98 ★★★★★</div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Playground -->
+        <div class="type-playground-card">
+          <div class="playground-controls">
+            <button class="playground-pill-btn active" onclick="setFontWeight(this, '700')">700 Bold</button>
+            <button class="playground-pill-btn" onclick="setFontWeight(this, '600')">600 SemiBold</button>
+            <button class="playground-pill-btn" onclick="setFontWeight(this, '500')">500 Medium</button>
+            <button class="playground-pill-btn" onclick="setFontWeight(this, '400')">400 Regular</button>
+          </div>
+
+          <textarea id="live-type-box" class="playground-textarea">Warm Botanical & Solar Terracotta. Earthy, tactile, and radiant.</textarea>
+
+          <div style="font-size: 13px; color: var(--text-secondary-dark); line-height: 1.5;">
+            <strong>Type Characteristics:</strong> Plus Jakarta Sans delivers crisp neo-grotesque geometry softened by warm humanist aperture terminals, while Inter provides rock-solid reading legibility.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         5. COMPONENT ARCHETYPE GALLERY
+         ========================================================================== -->
+    <section class="section-block" id="components-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-header-title">03 / Component Archetypes & Interaction Rules</h2>
+          <p class="section-header-sub">Glowing gold CTAs, frosted glass panels, and leader wire diagram nodes.</p>
+        </div>
+        <span class="badge-chip badge-glass">Living UI Components</span>
+      </div>
+
+      <div class="components-grid">
+
+        <!-- 1. Buttons & Media Actions -->
+        <div class="component-tile">
+          <div>
+            <div class="component-tile-title">Buttons & Media Actions</div>
+            <div class="component-tile-sub">Radiant Glow & Upward Lift (-2px)</div>
+          </div>
+
+          <div class="button-stack">
+            <button class="btn-gold-cta" onclick="triggerToast('Radiant Gold CTA Activated')">
+              <span>Primary Gold CTA</span>
+              <span>↗</span>
+            </button>
+            <button class="btn-dark-pill" onclick="triggerToast('Dark Pill Pressed')">
+              <span>Dark Carbon Pill</span>
+            </button>
+            <button class="btn-control-tag" onclick="triggerToast('Control Tag Toggled')">
+              <span>✦ Tag Control</span>
+            </button>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; padding-top: var(--space-xs); border-top: var(--border-glass-card);">
+            <div>
+              <div style="font-size: 13px; font-weight: 600;">Media Play Button</div>
+              <div style="font-size: 11px; color: var(--text-secondary-light);">Carbon triangle inside radiant gold disk</div>
+            </div>
+            <div class="media-play-badge" onclick="triggerToast('Media Playback Initiated')">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Inputs & Rating Badges -->
+        <div class="component-tile">
+          <div>
+            <div class="component-tile-title">Inputs & Ratings</div>
+            <div class="component-tile-sub">Frosted Glass Well & Amber Stars</div>
+          </div>
+
+          <div class="warm-input-wrapper">
+            <input type="text" class="botanical-input" placeholder="Search botanical index...">
+            <button class="input-action-icon" title="Search" onclick="triggerToast('Botanical Search Fired')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
+          </div>
+
+          <div class="rating-card-component">
+            <div>
+              <div style="font-size: 11px; font-weight: 700; color: var(--text-secondary-light); text-transform: uppercase;">Average Rating</div>
+              <div class="rating-stars-row" style="margin-top: 4px;">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+            </div>
+            <div class="rating-score">4.98</div>
+          </div>
+        </div>
+
+        <!-- 3. Diagram Nodes & 45° Hairline Wires -->
+        <div class="component-tile">
+          <div>
+            <div class="component-tile-title">Diagram Nodes & Wires</div>
+            <div class="component-tile-sub">45° Angled Polyline to Metadata</div>
+          </div>
+
+          <div class="diagram-specimen-tile">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 12px; font-weight: 700; color: #8A3214;">Maceration Chamber</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary-dark);">NODE-01</span>
+            </div>
+
+            <!-- SVG 45° Polyline -->
+            <svg class="leader-wire-svg" viewBox="0 0 200 40">
+              <circle cx="10" cy="30" r="4" fill="#B84E29"/>
+              <polyline points="10,30 50,10 190,10" fill="none" stroke="#B84E29" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <circle cx="190" cy="10" r="3" fill="#B84E29"/>
+            </svg>
+
+            <div style="font-size: 11px; color: var(--text-secondary-dark); line-height: 1.35;">
+              Points directly to high-precision ceramic temperature sensors.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         6. LIVING MICRO-EXPERIENCE: SOLARIS BOTANICAL APOTHECARY
+         ========================================================================== -->
+    <section class="section-block" id="demo-section">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-header-title">04 / Living Micro-Experience — Solaris Botanical Lab</h2>
+          <p class="section-header-sub">Interactive product showcase demonstrating all tokens operating in concert.</p>
+        </div>
+        <span class="badge-chip badge-gold">✦ Live Solarium Demo</span>
+      </div>
+
+      <div class="demo-showcase-container">
+        
+        <!-- Top Bar inside Demo -->
+        <div class="demo-top-bar">
+          <div class="demo-brand">
+            <div class="demo-sun-logo">✦</div>
+            <div>
+              <div class="demo-brand-text">SOLARIS BOTANICAL LABS</div>
+              <div style="font-size: 11px; color: var(--text-secondary-light);">Solar Maceration & Extract Platform</div>
+            </div>
+          </div>
+
+          <!-- Nav Tabs -->
+          <div class="demo-nav-tabs">
+            <button class="demo-tab-btn active" onclick="setDemoTab(this, 'chamber')">Solarium Chamber</button>
+            <button class="demo-tab-btn" onclick="setDemoTab(this, 'distillation')">Distillation</button>
+            <button class="demo-tab-btn" onclick="setDemoTab(this, 'archive')">Harvest Archive</button>
+          </div>
+
+          <!-- CTA -->
+          <button class="btn-tile btn-download" onclick="triggerToast('Solar Extract Added to Tray')">
+            <span>Collect Batch</span>
+          </button>
+        </div>
+
+        <!-- Demo Grid -->
+        <div class="demo-grid-layout">
+          
+          <!-- Left: Solarium Extraction Station -->
+          <div class="solarium-station-card">
+            <div class="solarium-header">
+              <div>
+                <span style="font-size: 11px; font-weight: 700; color: var(--accent-gold-primary); text-transform: uppercase; letter-spacing: 0.08em;">Active Botanical Specimen</span>
+                <div class="solarium-title" id="active-specimen-title">Golden Calendula Solar Maceration</div>
+              </div>
+              <span class="badge-chip badge-glass" id="live-solar-status">
+                ● 94.2% Solar Radiance
+              </span>
+            </div>
+
+            <!-- Specimen Selectors -->
+            <div class="solarium-specimen-grid">
+              <div class="specimen-pill active" onclick="selectSpecimen(this, 'Golden Calendula', '34.2°C', '94.2%', 'Deep marigold resin extracted via 14-day solar bath.')">
+                <span class="specimen-name">Calendula</span>
+                <span class="specimen-temp">34.2°C</span>
+              </div>
+              <div class="specimen-pill" onclick="selectSpecimen(this, 'Sun-Cured Neroli', '31.8°C', '88.5%', 'Dawn-picked orange blossom infused in cold-pressed jojoba.')">
+                <span class="specimen-name">Neroli</span>
+                <span class="specimen-temp">31.8°C</span>
+              </div>
+              <div class="specimen-pill" onclick="selectSpecimen(this, 'Wild Immortelle', '36.5°C', '98.1%', 'High-altitude everlasting flower with potent regenerative terpenes.')">
+                <span class="specimen-name">Immortelle</span>
+                <span class="specimen-temp">36.5°C</span>
+              </div>
+              <div class="specimen-pill" onclick="selectSpecimen(this, 'Terracotta Clay Infusion', '29.4°C', '82.0%', 'Mineral-rich Mediterranean clay fermented with solar botanical waters.')">
+                <span class="specimen-name">Terracotta Clay</span>
+                <span class="specimen-temp">29.4°C</span>
+              </div>
+            </div>
+
+            <!-- Interactive Solar Slider -->
+            <div class="solar-slider-box">
+              <div class="slider-header-row">
+                <span>Solar Exposure Index</span>
+                <span id="solar-index-readout" style="color: var(--accent-gold-primary); font-family: var(--font-mono); font-weight: 700;">85% Solar Flux</span>
+              </div>
+              <input type="range" min="20" max="100" value="85" class="solar-range-slider" id="solar-index-slider" oninput="handleSolarFlux(this.value)">
+            </div>
+          </div>
+
+          <!-- Right: Botanical Feature Card -->
+          <div class="botanical-feature-card">
+            <div class="botanical-header-meta">
+              <span class="staging-card-badge">✦ Lab Specification</span>
+              <div class="rating-stars-row">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+            </div>
+
+            <div>
+              <h3 class="botanical-title" id="feature-card-name">Golden Calendula Solar Maceration</h3>
+              <p class="botanical-summary" id="feature-card-desc" style="margin-top: 8px;">
+                Deep marigold resin extracted via 14-day solar bath under controlled solarium temperatures.
+              </p>
+            </div>
+
+            <div class="botanical-metrics-row">
+              <div>
+                <div style="font-size: 10px; font-weight: 700; color: #8A3214; text-transform: uppercase;">Maceration Temp</div>
+                <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700;" id="metric-temp-val">34.2°C</div>
+              </div>
+              <div>
+                <div style="font-size: 10px; font-weight: 700; color: #8A3214; text-transform: uppercase;">Batch Ref</div>
+                <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 600;">SOL-CAL-088</div>
+              </div>
+              <div>
+                <button class="btn-gold-cta" style="padding: 8px 16px; font-size: 12px;" onclick="triggerToast('Specimen Dispatched to Lab')">
+                  <span>Inspect ↗</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         7. STYLE TILE PROMPT CODE DRAWER (Bottom Ingestion)
+         ========================================================================== -->
+    <section class="section-block" id="spec-section">
+      <div class="spec-drawer-card">
+        <div class="spec-drawer-header">
+          <div>
+            <div style="font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--accent-gold-primary);">Markdown Style Tile Specification</div>
+            <div style="font-size: 12px; color: var(--text-secondary-light);">Copy directly into Cursor, Claude, Antigravity, or Copilot prompts.</div>
+          </div>
+
+          <div style="display: flex; gap: var(--space-xs);">
+            <button class="btn-tile btn-download" onclick="copyTilePromptDirect()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Prompt
+            </button>
+          </div>
+        </div>
+
+        <pre class="spec-code-pre" id="spec-code-display"></pre>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==========================================================================
+       MODAL INSPECT DRAWER
+       ========================================================================== -->
+  <div class="modal-overlay" id="spec-modal" onclick="closeSpecModalOnOutside(event)">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--accent-gold-primary);">TILE // Solar Terracotta</div>
+          <div style="font-size: 11px; color: var(--text-secondary-light);">Official Style Tile Token Specification</div>
+        </div>
+        <button class="modal-close-btn" onclick="closeSpecModal()">✕</button>
+      </div>
+      <pre class="spec-code-pre" id="modal-spec-display" style="max-height: 60vh;"></pre>
+      <div style="display: flex; justify-content: flex-end; gap: var(--space-xs);">
+        <button class="btn-tile btn-download" onclick="copyTilePromptDirect()">Copy Markdown</button>
+        <button class="btn-tile btn-preview" style="background: rgba(255,255,255,0.1); color: #fff; border: none;" onclick="closeSpecModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Popup -->
+  <div class="toast-popup" id="toast-popup">✓ Copied to Clipboard!</div>
+
+  <!-- ==========================================================================
+       EMBEDDED STYLE TILE MARKDOWN SCRIPT BLOCK (agent.md Section 2 & 4)
+       ========================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Warm Botanical Terracotta
+  Construction: sun-baked terracotta • linen cream • marigold gold • 24–36px glass • Plus Jakarta Sans
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A sun-baked terracotta field (#B84E29) with a radial warm core, linen-cream
+plates, carbon-black anchors, and radiant marigold gold (#FAB833). Frosted
+glass overlays sit at 18–36px radius; actions are 9999px gold pills with a
+soft gold glow. Type is Plus Jakarta Sans, tight on display. Depth is
+diffused terracotta occlusion and glass blur — not HUD wires or apothecary
+ornament.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #B84E29; /* Sun-baked terracotta */
+  --bg-surface:             #EEDCB9; /* Sunlit linen / oat */
+  --bg-surface-alt:         rgba(255, 255, 255, 0.12); /* Frosted glass */
+  --bg-surface-dark:        #141414; /* Deep carbon */
+
+  --bg-canvas-primary:      #B84E29;
+  --bg-canvas-gradient:     radial-gradient(circle at 50% 30%, #C95A32 0%, #A43F1C 100%);
+  --bg-surface-cream:       #EEDCB9;
+  --bg-surface-glass:       rgba(255, 255, 255, 0.12);
+
+  /* Inks & Typography */
+  --ink-primary:            #FFFFFF; /* On terracotta / carbon */
+  --ink-secondary:          rgba(255, 240, 230, 0.75); /* Peach-tinted */
+  --ink-muted:              #5C5346; /* Olive-bark on cream */
+  --ink-inverted:           #1F1A17; /* Espresso on light plates */
+
+  --text-primary-light:     #FFFFFF;
+  --text-secondary-light:   rgba(255, 240, 230, 0.75);
+  --text-primary-dark:      #1F1A17;
+  --text-secondary-dark:    #5C5346;
+  --text-accent-gold:       #FAB833;
+
+  /* Signature Accents */
+  --accent-primary:         #FAB833; /* Radiant marigold */
+  --accent-primary-hover:   #E5A424;
+  --accent-secondary:       #F58A42; /* Warm apricot */
+  --accent-tertiary:        #EEDCB9;
+
+  --accent-gold-primary:    #FAB833;
+  --accent-gold-hover:      #E5A424;
+  --accent-sunburst:        #F58A42;
+
+  /* Status Tokens (mapped from gold / apricot / terracotta) */
+  --status-success:         #FAB833;
+  --status-warning:         #F58A42;
+  --status-danger:          #B84E29;
+  --status-info:            #EEDCB9;
+
+  --stroke-subtle-white:    rgba(255, 255, 255, 0.22);
+  --stroke-hairline-wire:   rgba(255, 255, 255, 0.40);
+  --stroke-dark:            rgba(20, 20, 20, 0.08);
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+--font-display: "Plus Jakarta Sans", "Outfit", sans-serif;
+--font-sans:    "Inter", "DM Sans", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", "SF Mono", monospace;
+--font-body:    "Inter", "DM Sans", -apple-system, sans-serif;
+
+--text-display: 52px / 1.08 var(--font-display); /* Weight 700 | tracking -0.02em */
+--text-h1:      52px / 1.08 var(--font-display);
+--text-h2:      28px / 1.20 var(--font-display); /* Weight 600 | tracking -0.01em */
+--text-h3:      20px / 1.30 var(--font-display); /* Weight 600 | tracking 0 */
+--text-body:    14px / 1.50 var(--font-sans);    /* Weight 400 */
+--text-body-sm: 12px / 1.45 var(--font-sans);    /* Weight 400 | tracking 0.01em */
+--text-meta:    13px / 1.00 var(--font-sans);    /* Weight 500 | tracking 0.02em | nav */
+--text-figure:  32px / 1.00 var(--font-display); /* Weight 600 | tracking -0.02em — only for host-existing figures */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 24px;
+--radius-subtle:  18px;
+--radius-pill:    9999px;
+
+--radius-container: 36px;
+--radius-card-lg:   24px;
+--radius-card-sm:   18px;
+--radius-control:   10px;
+
+--shadow-base:   0 16px 36px -8px rgba(70, 20, 5, 0.28);
+--shadow-hover:  0 20px 40px -12px rgba(0, 0, 0, 0.35);
+--shadow-active: 0 8px 20px -4px rgba(250, 184, 51, 0.45);
+
+--glass-blur-sm:        blur(8px);
+--glass-blur-lg:        blur(20px);
+--shadow-floating-card: 0 16px 36px -8px rgba(70, 20, 5, 0.28);
+--shadow-button-glow:   0 8px 20px -4px rgba(250, 184, 51, 0.45);
+--shadow-dark-card:     0 20px 40px -12px rgba(0, 0, 0, 0.35);
+--shadow-node-dot:      0 0 12px 2px rgba(255, 255, 255, 0.80);
+
+--space-2xs: 4px;
+--space-xs:  8px;
+--space-sm:  12px;
+--space-md:  16px;
+--space-lg:  24px;
+--space-xl:  32px;
+--space-2xl: 48px;
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:     1px solid rgba(255, 255, 255, 0.20);
+--border-hairline: 1px solid rgba(255, 255, 255, 0.08);
+--divider-style:   1px solid rgba(255, 255, 255, 0.22);
+
+--border-glass-card:     1px solid rgba(255, 255, 255, 0.20);
+--border-opaque-card:    1px solid rgba(255, 255, 255, 0.08);
+--border-technical-line: 1px solid rgba(255, 255, 255, 0.35);
+
+/* Hairline strokes may exist as borders. Do not add leader-wire callouts,
+   diagram nodes, or metadata labels the host does not already have. */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: 9999px gold pills. Fill #FAB833, ink #1F1A17. Hover: translateY(-2px)
+  plus 0 8px 20px -4px rgba(250, 184, 51, 0.45); fill #E5A424. Dark pills: carbon
+  #141414 shifting toward #262626 with border lightened to ~30% white. Compact
+  controls 10px radius. Use the host's existing labels.
+- **Cards**: Cream #EEDCB9 at 24px, glass rgba(255,255,255,0.12) at 18px with
+  blur(8–20px) and white hairline, or carbon #141414 at 24–36px with --shadow-dark-card.
+  Inner padding 20px 24px compact / 28px 32px large. Hover: scale(1.02) and deeper
+  terracotta occlusion. Do not add apothecary labels, HUD wires, or fake meta.
+- **Inputs**: Cream or glass well, 10px or pill, font-size >= 16px, espresso ink
+  on light / white ink on terracotta. Focus: gold glow or 1px rgba(255,255,255,0.35).
+- **Navigation**: Existing items 13px / 500 / 0.02em. Rest opacity 0.70 on terracotta;
+  hover 1.00 with a warm gold underline glow. Do not add clocks or catalog codes.
+- **Badges**: Gold or cream pills; circular high-contrast discs for existing icons.
+- **Icons**: Single-weight linear 1.5px plus solid accents. Sunburst spokes, filled
+  stars in #FAB833, or a play triangle (carbon on gold) only if the host already
+  uses those control types.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No cold synthetic neon blue/purple cyber gradients; keep solar terracotta warmth.
+- No harsh unsoftened drop shadows; use diffused terracotta/carbon occlusion.
+- No rigid 0px brutalist borders; stay on 10 / 18 / 24 / 36px and 9999px pills.
+- Do not add apothecary, botanical-product, or HUD callout copy.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    const markdownContent = document.getElementById("style-tile-markdown").textContent.trim();
+
+    // Populate code viewer displays
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    // Toast notification
+    function triggerToast(message = "✓ Copied to Clipboard!") {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      setTimeout(() => {
+        toast.style.display = "none";
+      }, 2200);
+    }
+
+    // Direct Copy Action
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(() => {
+        triggerToast("✓ Style Tile Copied for Agent!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.innerHTML = `<span>✓ Copied!</span>`;
+          setTimeout(() => { copyBtn.innerHTML = original; }, 2000);
+        }
+      });
+    }
+
+    // Copy Swatch Hex
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(() => {
+        triggerToast(`✓ Copied ${name}: ${hex}`);
+      });
+    }
+
+    // Event Listeners for Header Actions
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+
+    document.getElementById("btn-download-tile").addEventListener("click", () => {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-solar-terracotta.md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-solar-terracotta.md");
+    });
+
+    document.getElementById("btn-preview-tile").addEventListener("click", () => {
+      document.getElementById("spec-modal").classList.add("active");
+    });
+
+    function closeSpecModal() {
+      document.getElementById("spec-modal").classList.remove("active");
+    }
+
+    function closeSpecModalOnOutside(e) {
+      if (e.target.id === "spec-modal") {
+        closeSpecModal();
+      }
+    }
+
+    // Typeface Weight Switcher
+    function setFontWeight(btn, weight) {
+      document.querySelectorAll(".playground-controls .playground-pill-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const textarea = document.getElementById("live-type-box");
+      if (textarea) {
+        textarea.style.fontWeight = weight;
+      }
+    }
+
+    // Demo Tab Switcher
+    function setDemoTab(btn, tabKey) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll(".demo-tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      triggerToast(`Solarium Mode: ${btn.textContent}`);
+    }
+
+    // Interactive Specimen Selection
+    function selectSpecimen(el, name, temp, radiance, desc) {
+      document.querySelectorAll(".solarium-specimen-grid .specimen-pill").forEach(p => p.classList.remove("active"));
+      el.classList.add("active");
+
+      document.getElementById("active-specimen-title").textContent = `${name} Solar Maceration`;
+      document.getElementById("live-solar-status").textContent = `● ${radiance} Solar Radiance`;
+      document.getElementById("feature-card-name").textContent = `${name} Solar Maceration`;
+      document.getElementById("feature-card-desc").textContent = desc;
+      document.getElementById("metric-temp-val").textContent = temp;
+
+      triggerToast(`Active Specimen: ${name}`);
+    }
+
+    // Solar Flux Slider Interaction
+    function handleSolarFlux(val) {
+      const readout = document.getElementById("solar-index-readout");
+      if (readout) readout.textContent = `${val}% Solar Flux`;
+
+      const statusEl = document.getElementById("live-solar-status");
+      if (statusEl) statusEl.textContent = `● ${val}.0% Solar Radiance`;
+    }
+  </script>
+</body>
+</html>
+

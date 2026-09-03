@@ -21,8 +21,8 @@ window.CATALOG_THEMES = [
     id: "monolithic-hyper-editorial",
     mode: "dark",
     shortName: "Monolith",
-    label: "Monolithic Hyper-Editorial",
-    sourceTile: "monolithic-hyper-editorial",
+    label: "The Monolith",
+    sourceTile: "the-monolith",
     themeColor: "#050505",
     swatches: ["#050505", "#0E0F0E", "#FBF9F3", "#D4FF00"],
     fonts: { display: "Fraunces", sans: "Space Grotesk", mono: "Fragment Mono" }
@@ -30,9 +30,9 @@ window.CATALOG_THEMES = [
   {
     id: "neo-editorial-poster-brutalism",
     mode: "light",
-    shortName: "Poster",
-    label: "Neo-Editorial Poster Brutalism",
-    sourceTile: "neo-editorial-poster-brutalism",
+    shortName: "Broadside",
+    label: "The Broadside",
+    sourceTile: "the-broadside",
     themeColor: "#E1E1E1",
     swatches: ["#E1E1E1", "#FFFFFF", "#111111", "#FF505F"],
     fonts: { display: "Bebas Neue", sans: "Inter", mono: "JetBrains Mono" }

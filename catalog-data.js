@@ -26,8 +26,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "monolithic-hyper-editorial",
-    name: "System 07 // Monolithic Hyper-Editorial",
+    slug: "the-monolith",
+    name: "The Monolith",
     vibe: "1970s Swiss Archival • Industrial Telemetry • Tactile Physics",
     vibeBadge: "Editorial & Archival",
     categories: ["editorial"],
@@ -52,7 +52,7 @@ const STYLE_TILES_DATA = [
   },
   {
     slug: "cryptovista",
-    name: "CryptoVista Neo-FinTech",
+    name: "CryptoVista",
     vibe: "Neo-FinTech Minimalist • Monochromatic Structured • Parametric Clay",
     vibeBadge: "Minimalist & Monastic",
     categories: ["minimalist"],
@@ -77,7 +77,7 @@ const STYLE_TILES_DATA = [
   },
   {
     slug: "greenwrap",
-    name: "Greenwrap Design System",
+    name: "Greenwrap",
     vibe: "Modern Eco-Brutalist • Neo-Editorial • Organic Dark Mode",
     vibeBadge: "Quiet Luxury",
     categories: ["luxury"],
@@ -122,8 +122,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "dark-tactical-editorial",
-    name: "Dark Tactical Editorial / Cyber-Gothic",
+    slug: "cyber-gothic",
+    name: "Cyber Gothic",
     vibe: "Deep Obsidian • Cyber-Gothic Watermarks • 237° Telemetry • Engineered Brutalism",
     vibeBadge: "Editorial & Archival",
     categories: ["editorial"],
@@ -149,7 +149,7 @@ const STYLE_TILES_DATA = [
   },
   {
     slug: "skybound",
-    name: "Skybound Design System",
+    name: "Skybound",
     vibe: "Cool Alabaster • Electric Lemon Lime • Modern Travel",
     vibeBadge: "Quiet Luxury",
     categories: ["luxury"],
@@ -196,8 +196,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "blueprint-hud",
-    name: "Industrial Blueprint HUD",
+    slug: "the-draftsman",
+    name: "The Draftsman",
     vibe: "Prussian Cyanotype • Ivory Vector Ink • ISO Title Block",
     vibeBadge: "Cyber & Blueprint",
     categories: ["cyber"],
@@ -222,8 +222,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "fluid-bento-saas",
-    name: "Fluid Bento // Soft SaaS",
+    slug: "velvet-bento",
+    name: "Velvet Bento",
     vibe: "Soft SaaS • Fluid Bento Architecture • Berry Accent",
     vibeBadge: "Minimalist & Monastic",
     categories: ["minimalist"],
@@ -247,8 +247,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "transform9-healthtech",
-    name: "Transform9+ // Neo-Brutalist HealthTech",
+    slug: "pulse-matrix",
+    name: "Pulse Matrix",
     vibe: "High-Contrast Dark Mode • Precision HealthTech • Electric Lime & Cobalt",
     vibeBadge: "Neo-Brutalism",
     categories: ["brutalist"],
@@ -271,8 +271,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "neo-brutalist-tech",
-    name: "Neo-Brutalist Tech // Developer Tooling & Web3 Infrastructure",
+    slug: "raw-foundry",
+    name: "Raw Foundry",
     vibe: "Developer Tooling • Web3 Infrastructure • High-Voltage Accents",
     vibeBadge: "Neo-Brutalism",
     categories: ["brutalist"],
@@ -295,8 +295,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "editorial-letterpress",
-    name: "The Editorial Letterpress // Neo-Brutalist Craft Print",
+    slug: "the-letterpress",
+    name: "The Letterpress",
     vibe: "Letterpress Craft • Historical Serif • High-Tactility Mechanical Depress",
     vibeBadge: "Editorial & Archival",
     categories: ["editorial"],
@@ -319,8 +319,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "hyper-vibrant-geometric",
-    name: "Modern Hyper-Vibrant Geometric",
+    slug: "prism-pop",
+    name: "Prism Pop",
     vibe: "Electric Iris • Blueprint Scaffolding • Squircle Flow & Rotational Geometry",
     vibeBadge: "Playful & Pop",
     categories: ["playful"],
@@ -344,8 +344,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "architectural-brutalism",
-    name: "Architectural Brutalism & Editorial Modernism",
+    slug: "concrete-gazette",
+    name: "Concrete Gazette",
     vibe: "Swiss International • Constructivist Tension • Vermilion & Ink Contrast",
     vibeBadge: "Neo-Brutalism",
     categories: ["brutalist"],
@@ -368,8 +368,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "bio-clinical-editorial",
-    name: "Bio-Clinical Technical Editorial",
+    slug: "clinical-sage",
+    name: "Clinical Sage",
     vibe: "Warm Bio-Ivory & Olive • Monospace Telemetry • Flat Swiss Minimalist • High-Density Clinical Architecture",
     vibeBadge: "Editorial & Archival",
     categories: ["editorial"],
@@ -392,8 +392,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "neo-dark-tactile-fintech",
-    name: "Neo-Dark Tactile FinTech / SaaS",
+    slug: "obsidian-vault",
+    name: "Obsidian Vault",
     vibe: "Ultra-Deep Void Black • Pinned Tactile Hardware • Ambient Aura Blends • Electric Chartreuse & Warm Ochre",
     vibeBadge: "Cyber & Blueprint",
     categories: ["cyber"],
@@ -416,8 +416,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "editorial-chromatic-block",
-    name: "Editorial Chromatic Block",
+    slug: "chromatic-gazette",
+    name: "Chromatic Gazette",
     vibe: "Tri-Tone Asymmetric Layout • Deep Indigo Anchor & Vivid Vermilion Rail • Warm Parchment Stage • Compressed Heavy Display Type",
     vibeBadge: "Editorial & Archival",
     categories: ["editorial"],
@@ -440,8 +440,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "retro-postal-modernist",
-    name: "Retro-Postal Modernist",
+    slug: "airmail-modern",
+    name: "Airmail Modern",
     vibe: "Philatelic Editorial • Scallop Punch-Out Perforations • Cobalt & Bubblegum Airmail Duotones • Condensed Poster Display & Grotesque Body",
     vibeBadge: "Editorial & Archival",
     categories: ["editorial"],
@@ -488,8 +488,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "editorial-high-contrast",
-    name: "Editorial High-Contrast Minimalist",
+    slug: "ink-and-vellum",
+    name: "Ink & Vellum",
     vibe: "Modern Commerce • International Safety Orange • Hairline Split Grids • Editorial Typographic Mashup • Stark Minimalist Monastic",
     vibeBadge: "Minimalist & Monastic",
     categories: ["minimalist"],
@@ -513,8 +513,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "industrial-acid-neo-grunge",
-    name: "Industrial Acid // Neo-Grunge",
+    slug: "acid-foundry",
+    name: "Acid Foundry",
     vibe: "Acid Industrialism • Neo-Grunge Glitch • Redaction Tape • 8-Bit Checkerboards • High-Voltage Brutalism",
     vibeBadge: "Neo-Brutalism",
     categories: ["brutalist"],
@@ -538,8 +538,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "nordic-botanical-tech",
-    name: "Nordic Botanical Tech",
+    slug: "fjord-and-flora",
+    name: "Fjord & Flora",
     vibe: "Deep Alpine Pine • Warm Linen • Acid Chartreuse • Asymmetric Geometry • Phyto-Genomic Telemetry",
     vibeBadge: "Quiet Luxury",
     categories: ["luxury"],
@@ -563,8 +563,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "organic-luxe",
-    name: "Organic Luxe",
+    slug: "verdant-silk",
+    name: "Verdant Silk",
     vibe: "Deep Roasted Cacao • Soft Oat Milk • Caramel Gold • Molten Fluid Geometry • Artisanal Confectionery",
     vibeBadge: "Quiet Luxury",
     categories: ["luxury"],
@@ -590,7 +590,7 @@ const STYLE_TILES_DATA = [
   },
   {
     slug: "crimson-radiance",
-    name: "Crimson Radiance / Lumina Tech",
+    name: "Crimson Radiance",
     vibe: "Ultra-Deep Obsidian Canvas • Kinetic Crimson & Solar Orange Glows • Specular Glassmorphism • Multi-Strand Telemetry Waveforms",
     vibeBadge: "Cyber & Blueprint",
     categories: ["cyber"],
@@ -615,8 +615,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "industrial-ghost-system",
-    name: "Lab-01 / Industrial Ghost System",
+    slug: "ghost-protocol",
+    name: "Ghost Protocol",
     vibe: "Swiss Lab Metrology • Achromatic 90/10 Ratio • Ghost Blueprint Coordinate Frames • Tactile Floating Hardware Instruments",
     vibeBadge: "Cyber & Blueprint",
     categories: ["cyber"],
@@ -640,8 +640,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "editorial-neo-humanist",
-    name: "Editorial Neo-Humanist / Impact Refined",
+    slug: "the-chronicler",
+    name: "The Chronicler",
     vibe: "Warm Oat Parchment • High-Impact Compressed Display • Vibrant Emerald Jade • Documentary Stacking • Subtle Tonal Shifts",
     vibeBadge: "Editorial & Archival",
     categories: ["editorial"],
@@ -666,8 +666,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "vintage-modern-quirky-brutalism",
-    name: "Vintage-Modern Editorial & Quirky Neo-Brutalism",
+    slug: "paper-tiger",
+    name: "Paper Tiger",
     vibe: "Warm Vanilla Newsprint • High-Energy Tangerine • Checkerboard Ribbons • Serrated Starbursts • 0px Razor Geometry • Playful Line Mascots",
     vibeBadge: "Neo-Brutalism",
     categories: ["brutalist"],
@@ -692,8 +692,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "tactical-hyper-light",
-    name: "Tactical Hyper-Light",
+    slug: "aero-tactical",
+    name: "Aero Tactical",
     vibe: "High-Performance Esport • Editorial Modernist • Aero Slate Canvas • Pulse Cyan Vector • 24px Media Frames • L4 Drag Controller",
     vibeBadge: "Cyber & Blueprint",
     categories: ["cyber"],
@@ -719,8 +719,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "elenrn-design-system",
-    name: "ELEnRN Design System",
+    slug: "nocturne-atelier",
+    name: "Nocturne Atelier",
     vibe: "Sophisticated Heritage • Modern Clarity • Deep Forest Emerald • Warm Terracotta • 30px Card Geometry • Pill Controls",
     vibeBadge: "Quiet Luxury",
     categories: ["luxury"],
@@ -743,8 +743,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "neo-obsidian-acid-sunset",
-    name: "Neo-Obsidian & Acid Sunset",
+    slug: "acid-sunset",
+    name: "Acid Sunset",
     vibe: "High-Contrast Dark Surface • Warm-to-Acid Kinetic Spectrum • Obsidian Canvas • 32px Squircle Shell • Micro-Precision Telemetry",
     vibeBadge: "Cyber & Blueprint",
     categories: ["cyber"],
@@ -771,8 +771,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "luxe-maritime-cybernetic",
-    name: "Luxe Maritime Cybernetic",
+    slug: "abyssal-yacht",
+    name: "Abyssal Yacht",
     vibe: "Cinematic Dark Glass • Deep Oceanic Abyss • Frosted Ice Pills • Crimson Hull Anchor • Electric Azure Halo • Titanium Chrome Display",
     vibeBadge: "Cyber & Blueprint",
     categories: ["cyber"],
@@ -797,8 +797,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "neo-editorial-poster-brutalism",
-    name: "Neo-Editorial / Poster Brutalism",
+    slug: "the-broadside",
+    name: "The Broadside",
     vibe: "High-Contrast Condensed Display • Acid-Pop Vector Overlays • Utilitarian 0px Grid • Zine-Inspired Collage • Concrete Paper",
     vibeBadge: "Neo-Brutalism",
     categories: ["brutalist"],
@@ -821,8 +821,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "neo-pop-playful-grotesque",
-    name: "Neo-Pop Playful Grotesque",
+    slug: "bubblegum-pop",
+    name: "Bubblegum Pop",
     vibe: "Gen-Z Vibe • Soft Neo-Brutalist UI • Electric Lime • Soft Lilac • Bubblegum Pink • Spring Physics • 32px Squircle",
     vibeBadge: "Playful & Pop",
     categories: ["playful"],
@@ -846,8 +846,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "earthen-minimalist-tactical-retro",
-    name: "Earthen Minimalist / Tactical Retro",
+    slug: "dune-outpost",
+    name: "Dune Outpost",
     vibe: "Warm Bone Canvas • Military Olive • Electric Mustard • Flat Surface Nesting • Anton Condensed • Tactile Matte Micro-Depth",
     vibeBadge: "Minimalist & Monastic",
     categories: ["minimalist"],
@@ -897,8 +897,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "humanist-warm-minimalism",
-    name: "Humanist Warm-Minimalism",
+    slug: "hearth-and-stone",
+    name: "Hearth & Stone",
     vibe: "Warm Oat Canvas • Rich Honey Caramel • Pitch Obsidian Type • Editorial Tech • 28px Bento Radii • Hatched Data Tracks • Plus Jakarta Sans & Syne • Ambient Diffused Lighting",
     vibeBadge: "Minimalist & Monastic",
     categories: ["minimalist"],
@@ -923,8 +923,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "warm-botanical-solar-terracotta",
-    name: "Warm Botanical & Solar Terracotta",
+    slug: "solar-terracotta",
+    name: "Solar Terracotta",
     vibe: "Sun-Baked Terracotta • Radiant Marigold Gold • Frosted Ambient Glass • Deep Carbon Black • Sunlit Linen Cream • 36px Geometry • Plus Jakarta Sans & Inter • Solar Maceration HUD",
     vibeBadge: "Quiet Luxury",
     categories: ["luxury"],
@@ -975,8 +975,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "dramatic-chromatic-editorial",
-    name: "Dramatic Chromatic Editorial",
+    slug: "chromatic-noir",
+    name: "Chromatic Noir",
     vibe: "Parisian Crimson • Deep Wine • Dark Oxblood Silhouette • High-Contrast Didone Display • Bleeding Typographic Layers • Strict 0px Parisian Fashion Tension",
     vibeBadge: "Editorial & Archival",
     categories: ["editorial"],
@@ -1001,8 +1001,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "sartorial-editorial-modernism",
-    name: "Sartorial Editorial Modernism",
+    slug: "the-sartorialist",
+    name: "The Sartorialist",
     vibe: "Warm Bone & Antique Ivory • Deep Oxblood Burgundy • Charcoal Noir • Editorial Serif Display • Deconstructed Bento Mosaic • Sandstone Hairline Grid",
     vibeBadge: "Quiet Luxury",
     categories: ["luxury"],
@@ -1137,8 +1137,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "warm-organic-bento",
-    name: "Warm Organic Bento",
+    slug: "earth-bento",
+    name: "Earth Bento",
     vibe: "Warm Oat Canvas • Sunburst Orange • 24px Bento • Dot-Matrix Charts • Pastel Chips",
     vibeBadge: "Minimalist & Monastic",
     categories: ["minimalist"],
@@ -1221,8 +1221,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "warm-earth-wellness",
-    name: "Warm Earth Wellness",
+    slug: "sandstone-spa",
+    name: "Sandstone Spa",
     vibe: "Sandstone Canvas • Ceramic White • Espresso Ink • Pill CTAs • Botanical Seals",
     vibeBadge: "Quiet Luxury",
     categories: ["luxury"],
@@ -1305,8 +1305,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "luxe-editorial",
-    name: "Luxe Editorial",
+    slug: "the-folio",
+    name: "The Folio",
     vibe: "Paper White • Bodoni Display • High-Contrast Monochrome • Frosted Glass Overlays • Fashion Folio",
     vibeBadge: "Editorial & Archival",
     categories: ["editorial"],
@@ -1389,8 +1389,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "aurora-glass-collab",
-    name: "Aurora Dark / Glass-Collab",
+    slug: "aurora-glass",
+    name: "Aurora Glass",
     vibe: "Pitch Black #07070A • Frosted Glass 32px • Ambient Aurora Mesh • Electric Lime CTA • Warm Amber Multiplayer Presence",
     vibeBadge: "Quiet Luxury",
     categories: ["luxury"],
@@ -1435,8 +1435,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "neo-brutalist-folder-tab",
-    name: "Neo-Brutalist Tech & Folder-Tab System",
+    slug: "chalk-and-tab",
+    name: "Chalk & Tab",
     vibe: "Warm Chalk #EAEAE4 • Asymmetric Folder Tabs • Flame Orange & Cobalt • Flat Planar Slabs • Mechanical Snap",
     vibeBadge: "Neo-Brutalism",
     categories: ["brutalist"],
@@ -1462,8 +1462,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "artisanal-minimal",
-    name: "Artisanal Minimal / Ceramicist Modern",
+    slug: "ceramicist-atelier",
+    name: "Ceramicist Atelier",
     vibe: "Chalk White Canvas • Deep Cobalt #27477D • Soft Glaze Halo #D8ECF8 • Raw Bisque Warmth • Hand-Drawn Script",
     vibeBadge: "Minimalist & Monastic",
     categories: ["minimalist"],
@@ -1569,8 +1569,8 @@ const STYLE_TILES_DATA = [
   },
 
   {
-    slug: "botanical-heritage-press",
-    name: "Botanical Heritage & Press",
+    slug: "botanical-press",
+    name: "Botanical Press",
     vibe: "19th-Century Naturalist Ledger • Intaglio Spruce Ink • Mineral Rag Paper • Letterpress Deboss",
     vibeBadge: "Editorial & Archival",
     categories: ["editorial"],
@@ -1596,8 +1596,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "neo-swiss-editorial",
-    name: "Neo-Swiss Editorial",
+    slug: "swiss-vermilion",
+    name: "Swiss Vermilion",
     vibe: "Modernist Monochrome • Swiss Grotesk • Planar Split • Signal Vermilion",
     vibeBadge: "Editorial & Archival",
     categories: ["editorial"],
@@ -1622,8 +1622,8 @@ const STYLE_TILES_DATA = [
     description: "Neo-Swiss Editorial: High-density modernist monochrome system on dual white and cool stone canvases (#FFFFFF / #E5E5E7) with ultra-rationalist Swiss grotesk typography, flat zero-elevation planar contrast, hairline rules, and vivid vermilion signal accents (#FF2800).",
   },
   {
-    slug: "autonomous-tech-dark",
-    name: "Autonomous Tech Dark",
+    slug: "kinetic-carbon",
+    name: "Kinetic Carbon",
     vibe: "Technical Minimalism • Dark Surface • Precision B2B • Kinetic Green",
     vibeBadge: "Minimalist & Monastic",
     categories: ["minimalist"],
@@ -1650,8 +1650,8 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "modern-clinical-editorial",
-    name: "Modern Clinical Editorial",
+    slug: "sage-apothecary",
+    name: "Sage Apothecary",
     vibe: "Warm Minimalism • Clinical Tactile • Botanical Accents",
     vibeBadge: "Editorial & Archival",
     categories: ["editorial"],
