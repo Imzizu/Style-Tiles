@@ -1541,30 +1541,29 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "curated-field-guide",
-    name: "Curated Field Guide",
-    vibe: "Warm Linen Parchment • Utilitarian Modern Moleskine • Geometric Sans Numbers • Burnt Terracotta • Saffron Amber Callouts • Flat Paper Baseline",
-    vibeBadge: "Minimalist & Monastic",
-    categories: ["minimalist"],
+    slug: "editorial-luxe",
+    name: "Editorial Luxe",
+    vibe: "High-Fashion Didone • Frosted Glass HUD • Electric Lavender • 0px Precision • Intelligent Minimalism",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
     theme: "Light",
     hasPage: true,
     fonts: {
-      display: "Satoshi / General Sans",
-      sans: "Plus Jakarta Sans / Inter",
+      display: "Cormorant Garamond",
+      sans: "Plus Jakarta Sans",
       mono: "JetBrains Mono"
     },
     palette: [
-      { name: "Warm Linen Canvas", hex: "#FAF8F5" },
-      { name: "Deeper Sand Surface", hex: "#F2EFEB" },
-      { name: "Matte Charcoal Inverse", hex: "#121212" },
-      { name: "Deep Charcoal Ink", hex: "#141413" },
-      { name: "Warm Graphite Stone", hex: "#7A746B" },
-      { name: "Burnt Terracotta", hex: "#DE5333" },
-      { name: "Warm Saffron Amber", hex: "#E5A42E" },
-      { name: "Ghost Ochre", hex: "#DCD6CA" },
-      { name: "Hairline Divider", hex: "#EAE5DC" }
+      { name: "Absolute Black Ink", hex: "#0A0A0A" },
+      { name: "Pure White Canvas", hex: "#FFFFFF" },
+      { name: "Electric Lavender", hex: "#6C5CE7" },
+      { name: "Accent Tint Wash", hex: "#F1EEFF" },
+      { name: "Soft Muted Charcoal", hex: "#4A4A4A" },
+      { name: "Faded Ghost Grey", hex: "#B5B5B5" },
+      { name: "Hairline Grey", hex: "#E6E6E6" },
+      { name: "Dark Frost", hex: "#1A1A1A" }
     ],
-    description: "Curated Field Guide: Tactile minimalist and utilitarian modern Moleskine design system built on warm linen parchment (#FAF8F5) with subtle sand cards (#F2EFEB), high-contrast matte charcoal floating pill CTAs (#121212), bold 32px geometric step numerals, warm saffron amber callouts (#E5A42E), and burnt terracotta accent indicators (#DE5333).",
+    description: "High-fashion editorial Didone typography with dual-tone contrast, frosted glass HUD overlays with 20px blur, electric lavender cyber-intelligence triggers, razor-sharp 0px rectangular CTAs, and pure white architectural space.",
     markdownSpec: null
   },
 
@@ -1701,6 +1700,33 @@ const STYLE_TILES_DATA = [
       { name: "Midnight Icon", hex: "#1F1E24" }
     ],
     description: "Academic Lilac / Modern Editorial: Atmospheric cool lavender-tinted wash surfaces (#F4F3F8 / #FAF9FD) paired with regal twilight indigo display typography (#382D6B), high-contrast charcoal body text (#2D2C34), royal iris violet interactive actions (#5C48A2), and planar, tactile, print-inspired depth.",
+    markdownSpec: null
+  },
+  {
+    slug: "curated-field-guide",
+    name: "Curated Field Guide",
+    vibe: "Warm Linen Parchment • Utilitarian Modern Moleskine • Geometric Sans Numbers • Burnt Terracotta • Saffron Amber Callouts • Flat Paper Baseline",
+    vibeBadge: "Minimalist & Monastic",
+    categories: ["minimalist"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Satoshi / General Sans",
+      sans: "Plus Jakarta Sans / Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Warm Linen Canvas", hex: "#FAF8F5" },
+      { name: "Deeper Sand Surface", hex: "#F2EFEB" },
+      { name: "Matte Charcoal Inverse", hex: "#121212" },
+      { name: "Deep Charcoal Ink", hex: "#141413" },
+      { name: "Warm Graphite Stone", hex: "#7A746B" },
+      { name: "Burnt Terracotta", hex: "#DE5333" },
+      { name: "Warm Saffron Amber", hex: "#E5A42E" },
+      { name: "Ghost Ochre", hex: "#DCD6CA" },
+      { name: "Hairline Divider", hex: "#EAE5DC" }
+    ],
+    description: "Curated Field Guide: Tactile minimalist and utilitarian modern Moleskine design system built on warm linen parchment (#FAF8F5) with subtle sand cards (#F2EFEB), high-contrast matte charcoal floating pill CTAs (#121212), bold 32px geometric step numerals, warm saffron amber callouts (#E5A42E), and burnt terracotta accent indicators (#DE5333).",
     markdownSpec: null
   }
 

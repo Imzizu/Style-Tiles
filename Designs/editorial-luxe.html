@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editorial Luxe // TILE</title>
+  <meta name="description" content="High-fashion editorial Didone typography, frosted glass HUD overlays with 20px blur, electric lavender cyber-intelligence triggers, razor-sharp 0px rectangular CTAs, and pure white architectural space.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Google Fonts: Cormorant Garamond (Editorial Didone Serif), Plus Jakarta Sans (Geometric Sans), JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Ground Canvas & Foundation Surfaces */
+      --bg-canvas:              #FFFFFF;
+      --bg-surface:             #FFFFFF;
+      --bg-surface-alt:         #F1EEFF;
+      --bg-surface-dark:        #0A0A0A;
+      --bg-glass:               rgba(255, 255, 255, 0.72);
+      --bg-glass-edge:          rgba(255, 255, 255, 0.45);
+      --bg-dark-frost:          rgba(10, 10, 10, 0.85);
+
+      /* Inks & Typography */
+      --ink-primary:            #0A0A0A;
+      --ink-secondary:          #4A4A4A;
+      --ink-muted:              #B5B5B5;
+      --ink-inverted:           #FFFFFF;
+
+      /* Signature Brand & Digital Accents */
+      --accent-primary:         #6C5CE7;
+      --accent-primary-hover:   #735BF2;
+      --accent-secondary:       #F1EEFF;
+      --accent-tertiary:        #E6E6E6;
+
+      /* Status Tokens */
+      --status-success:         #00B894;
+      --status-warning:         #F39C12;
+      --status-danger:          #D63031;
+      --status-info:            #6C5CE7;
+
+      /* Typeface Stacks */
+      --font-display:           'Cormorant Garamond', Garamond, 'Didot', 'Bodoni MT', serif;
+      --font-sans:              'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono:              'JetBrains Mono', ui-monospace, Consolas, monospace;
+
+      /* Corner Geometry (Dualistic Philosophy) */
+      --radius-none:            0px;
+      --radius-subtle:          3px;
+      --radius-soft:            16px;
+      --radius-full:            9999px;
+      --radius-default:         16px;
+      --radius-pill:            9999px;
+
+      /* Atmospheric Depth & Shadows */
+      --backdrop-glass:         blur(20px) saturate(160%);
+      --shadow-base:            0 20px 40px -15px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+      --shadow-hover:           0 24px 48px -12px rgba(108, 92, 231, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+      --shadow-chip:            0 8px 16px -4px rgba(0, 0, 0, 0.12);
+      --shadow-active:          none;
+
+      /* Borders & Dividers */
+      --border-hairline:        1px solid #E6E6E6;
+      --border-active:          1px solid #0A0A0A;
+      --border-glass:           1px solid rgba(255, 255, 255, 0.55);
+      --border-divider:         1px solid rgba(0, 0, 0, 0.04);
+      --border-core:            1px solid #E6E6E6;
+
+      --header-height:          64px;
+      --ease-editorial:         cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      line-height: 1.5;
+      position: relative;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    /* Ambient atmospheric background soft glow */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -20%;
+      right: -10%;
+      width: 70vw;
+      height: 70vw;
+      background: radial-gradient(circle at center, rgba(241, 238, 255, 0.55) 0%, rgba(255, 255, 255, 0) 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* -------------------------------------------------------------------------
+     * MANDATORY HEADER BAR
+     * ---------------------------------------------------------------------- */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 12px 32px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: var(--backdrop-glass);
+      -webkit-backdrop-filter: var(--backdrop-glass);
+      border-bottom: var(--border-hairline);
+      transition: border-color 200ms var(--ease-editorial);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 7px 14px;
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: var(--border-hairline);
+      border-radius: var(--radius-subtle);
+      background: transparent;
+      transition: all 200ms var(--ease-editorial);
+    }
+
+    .nav-back-link:hover {
+      border-color: var(--ink-primary);
+      background: #FFFFFF;
+      color: var(--ink-primary);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-subtle);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--ink-primary);
+      overflow-wrap: anywhere;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid var(--accent-primary);
+      background: var(--accent-secondary);
+      border-radius: var(--radius-subtle);
+      color: var(--accent-primary);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: var(--border-hairline);
+      border-radius: var(--radius-none);
+      background: #FFFFFF;
+      color: var(--ink-primary);
+      transition: all 200ms var(--ease-editorial);
+    }
+
+    .btn-tile:hover {
+      border-color: var(--ink-primary);
+      background: #FAF9FF;
+    }
+
+    .btn-copy {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-color: var(--bg-surface-dark);
+    }
+
+    .btn-copy:hover {
+      background: #262626;
+      border-color: #262626;
+      color: var(--ink-inverted);
+    }
+
+    /* -------------------------------------------------------------------------
+     * MAIN LAYOUT CONTAINER
+     * ---------------------------------------------------------------------- */
+    .layout-wrapper {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 48px 0 100px;
+    }
+
+    .section-block {
+      margin-top: 88px;
+      position: relative;
+    }
+
+    .section-kicker {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-kicker::before {
+      content: "✦";
+      font-size: 10px;
+      color: var(--accent-primary);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7.5vw, 5.75rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      overflow-wrap: anywhere;
+    }
+
+    .display-dual-tone {
+      color: var(--ink-muted);
+      font-style: italic;
+      font-weight: 300;
+      margin-left: 8px;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin-bottom: 24px;
+      color: var(--ink-primary);
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      color: var(--ink-primary);
+    }
+
+    /* -------------------------------------------------------------------------
+     * HERO SECTION
+     * ---------------------------------------------------------------------- */
+    .hero-banner {
+      padding-top: 24px;
+      padding-bottom: 32px;
+      border-bottom: var(--border-hairline);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+
+    .chip {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: var(--border-hairline);
+      border-radius: var(--radius-pill);
+      color: var(--ink-secondary);
+      background: #FFFFFF;
+    }
+
+    .chip-accent {
+      background: var(--accent-secondary);
+      color: var(--accent-primary);
+      border-color: rgba(108, 92, 231, 0.25);
+    }
+
+    .hero-lead {
+      margin: 24px 0 36px;
+      max-width: 68ch;
+      color: var(--ink-secondary);
+      font-size: 1.125rem;
+      line-height: 1.65;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    /* Buttons conforming to 0px Architectural precision */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 46px;
+      padding: 13px 26px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: var(--radius-none);
+      border: 1px solid transparent;
+      transition: all 200ms var(--ease-editorial);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+      border-color: var(--ink-primary);
+    }
+
+    .btn-primary:hover {
+      background: #262626;
+      border-color: #262626;
+      color: var(--ink-inverted);
+    }
+
+    .btn-secondary {
+      background: #FFFFFF;
+      color: var(--ink-primary);
+      border-color: #E6E6E6;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--ink-primary);
+      background: #FAF9FF;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink-primary);
+      border-color: transparent;
+    }
+
+    .btn-ghost:hover {
+      background: var(--accent-secondary);
+      color: var(--accent-primary);
+    }
+
+    .btn-accent {
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      border-color: var(--accent-primary);
+    }
+
+    .btn-accent:hover {
+      background: var(--accent-primary-hover);
+      border-color: var(--accent-primary-hover);
+      box-shadow: 0 4px 16px rgba(108, 92, 231, 0.28);
+    }
+
+    .btn-danger {
+      background: var(--status-danger);
+      color: #FFFFFF;
+      border-color: var(--status-danger);
+    }
+
+    .btn-danger:hover {
+      background: #BD2130;
+      border-color: #BD2130;
+    }
+
+    /* -------------------------------------------------------------------------
+     * PALETTE MATRIX
+     * ---------------------------------------------------------------------- */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      border: var(--border-hairline);
+      border-radius: var(--radius-soft);
+      overflow: hidden;
+      background: #FFFFFF;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      transition: all 250ms var(--ease-editorial);
+    }
+
+    .swatch-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -6px rgba(108, 92, 231, 0.12);
+      border-color: rgba(108, 92, 231, 0.35);
+    }
+
+    .swatch-chip {
+      height: 84px;
+      width: 100%;
+      border-bottom: var(--border-hairline);
+      position: relative;
+    }
+
+    .swatch-meta {
+      padding: 14px 16px;
+    }
+
+    .swatch-name {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      margin-bottom: 4px;
+    }
+
+    .swatch-var {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-primary);
+      margin-bottom: 2px;
+    }
+
+    .swatch-hex {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    /* -------------------------------------------------------------------------
+     * TYPOGRAPHY SPECIMEN
+     * ---------------------------------------------------------------------- */
+    .type-stack {
+      display: grid;
+      gap: 24px;
+      background: #FFFFFF;
+      border: var(--border-hairline);
+      border-radius: var(--radius-soft);
+      padding: 32px;
+      box-shadow: var(--shadow-base);
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 24px;
+      padding: 18px 0;
+      border-bottom: var(--border-divider);
+      min-width: 0;
+      align-items: baseline;
+    }
+
+    .type-row:last-child {
+      border-bottom: none;
+    }
+
+    .type-label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .text-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5.5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .text-h1 {
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      line-height: 1.15;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+
+    .text-h2 {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      line-height: 1.25;
+      font-style: italic;
+      color: var(--ink-primary);
+    }
+
+    .text-h3 {
+      font-family: var(--font-sans);
+      font-size: 1.25rem;
+      line-height: 1.35;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .text-body {
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--ink-secondary);
+      max-width: 65ch;
+    }
+
+    .text-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 18px;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      border: var(--border-hairline);
+      border-radius: var(--radius-subtle);
+      background: #FAF9FF;
+      color: var(--ink-primary);
+      transition: all 200ms var(--ease-editorial);
+    }
+
+    .live-type-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.12);
+      background: #FFFFFF;
+    }
+
+    /* -------------------------------------------------------------------------
+     * COMPONENT ARCHETYPES
+     * ---------------------------------------------------------------------- */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .component-card {
+      padding: 28px;
+      background: #FFFFFF;
+      border: var(--border-hairline);
+      border-radius: var(--radius-soft);
+      box-shadow: var(--shadow-base);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .component-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .component-card-desc {
+      font-size: 12px;
+      color: var(--ink-secondary);
+      margin-top: -12px;
+      margin-bottom: 12px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .field-label {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      margin-bottom: 8px;
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 46px;
+      padding: 12px 16px;
+      font-size: 16px;
+      border: var(--border-hairline);
+      border-radius: var(--radius-subtle);
+      background: #FAF9FF;
+      color: var(--ink-primary);
+      transition: all 200ms var(--ease-editorial);
+    }
+
+    .text-input:focus {
+      outline: none;
+      border-color: var(--ink-primary);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 1px var(--ink-primary);
+    }
+
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .custom-control {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--ink-secondary);
+      cursor: pointer;
+    }
+
+    .custom-control input[type="checkbox"],
+    .custom-control input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1px solid #B5B5B5;
+      background: #FFFFFF;
+      cursor: pointer;
+      display: grid;
+      place-content: center;
+      transition: all 180ms var(--ease-editorial);
+    }
+
+    .custom-control input[type="checkbox"] {
+      border-radius: 2px;
+    }
+
+    .custom-control input[type="radio"] {
+      border-radius: 50%;
+    }
+
+    .custom-control input[type="checkbox"]:checked {
+      background: var(--ink-primary);
+      border-color: var(--ink-primary);
+    }
+
+    .custom-control input[type="checkbox"]:checked::after {
+      content: "";
+      width: 6px;
+      height: 10px;
+      border: solid #FFFFFF;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) translate(-1px, -1px);
+    }
+
+    .custom-control input[type="radio"]:checked {
+      border-color: var(--accent-primary);
+      background: #FFFFFF;
+    }
+
+    .custom-control input[type="radio"]:checked::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--accent-primary);
+      border-radius: 50%;
+    }
+
+    .toggle {
+      position: relative;
+      width: 48px;
+      height: 26px;
+      border: 1px solid #E6E6E6;
+      border-radius: var(--radius-pill);
+      background: #F1EEFF;
+      cursor: pointer;
+      transition: all 250ms var(--ease-editorial);
+      padding: 0;
+    }
+
+    .toggle[aria-pressed="true"] {
+      background: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+      transition: transform 250ms var(--ease-editorial);
+    }
+
+    .toggle[aria-pressed="true"]::after {
+      transform: translateX(22px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: var(--radius-subtle);
+    }
+
+    .badge-lavender {
+      background: var(--accent-secondary);
+      color: var(--accent-primary);
+      border: 1px solid rgba(108, 92, 231, 0.25);
+    }
+
+    .badge-ink {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+    }
+
+    .badge-status {
+      background: rgba(0, 184, 148, 0.12);
+      color: #00876C;
+      border: 1px solid rgba(0, 184, 148, 0.3);
+    }
+
+    /* -------------------------------------------------------------------------
+     * LIVING DEMO: THE EDITORIAL LUXE × INTELLIGENT MINIMALISM HUD EXPERIENCE
+     * ---------------------------------------------------------------------- */
+    .demo-showcase-container {
+      position: relative;
+      background: #FFFFFF;
+      border: var(--border-hairline);
+      border-radius: var(--radius-soft);
+      overflow: hidden;
+      box-shadow: var(--shadow-base);
+    }
+
+    .demo-top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 28px;
+      border-bottom: var(--border-divider);
+      background: #FFFFFF;
+    }
+
+    .demo-brand-mark {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .demo-nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .demo-nav-links a {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      text-decoration: none;
+      transition: color 200ms;
+    }
+
+    .demo-nav-links a:hover, .demo-nav-links a.active {
+      color: var(--ink-primary);
+    }
+
+    .demo-content-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+    }
+
+    .demo-left-column {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid rgba(0, 0, 0, 0.04);
+      background: #FFFFFF;
+    }
+
+    .demo-edition-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .demo-editorial-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 3.8vw, 3.25rem);
+      line-height: 1.06;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .demo-editorial-title span {
+      color: var(--ink-muted);
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .demo-narrative-copy {
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--ink-secondary);
+      margin-bottom: 32px;
+      max-width: 48ch;
+    }
+
+    .demo-action-cluster {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .demo-right-column {
+      position: relative;
+      background: linear-gradient(135deg, #F9F8FD 0%, #ECE9FB 100%);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Abstract editorial backdrop geometric lines */
+    .demo-backdrop-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(108, 92, 231, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(108, 92, 231, 0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+
+    /* Floating Frosted Glass HUD Overlay Card */
+    .hud-glass-card {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 380px;
+      background: var(--bg-glass);
+      backdrop-filter: var(--backdrop-glass);
+      -webkit-backdrop-filter: var(--backdrop-glass);
+      border: var(--border-glass);
+      border-radius: var(--radius-soft);
+      padding: 28px;
+      box-shadow: var(--shadow-base);
+      transition: all 400ms var(--ease-editorial);
+    }
+
+    .hud-glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .hud-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .hud-chip-pulse {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--accent-primary);
+      text-transform: uppercase;
+    }
+
+    .hud-chip-pulse::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background: var(--accent-primary);
+      border-radius: 50%;
+      animation: pulseGlow 2s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* Circular Dark Frost Media Control */
+    .dark-frost-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-full);
+      background: var(--bg-dark-frost);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-chip);
+      transition: all 200ms var(--ease-editorial);
+    }
+
+    .dark-frost-btn:hover {
+      background: #000000;
+      transform: scale(1.06);
+    }
+
+    .hud-card-quote {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      line-height: 1.25;
+      color: var(--ink-primary);
+      margin-bottom: 14px;
+      font-style: italic;
+    }
+
+    .hud-card-meta {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      padding-top: 14px;
+    }
+
+    .hud-telemetry-row {
+      margin-top: 14px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .hud-stat-pill {
+      flex: 1;
+      padding: 8px 10px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius-subtle);
+      text-align: center;
+    }
+
+    .hud-stat-val {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .hud-stat-lbl {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* -------------------------------------------------------------------------
+     * SPEC DRAWER CARD & MODAL
+     * ---------------------------------------------------------------------- */
+    .spec-drawer-card {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-soft);
+      padding: 36px;
+      box-shadow: 0 24px 48px -12px rgba(10, 10, 10, 0.18);
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 520px;
+      padding: 24px;
+      background: #000000;
+      color: #EDEDED;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid #222222;
+      border-radius: var(--radius-subtle);
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(10, 10, 10, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content-card {
+      width: min(920px, 100%);
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      background: #FFFFFF;
+      border: var(--border-hairline);
+      border-radius: var(--radius-soft);
+      overflow: hidden;
+      box-shadow: 0 32px 64px -16px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 28px;
+      border-bottom: var(--border-divider);
+    }
+
+    .modal-footer {
+      border-bottom: 0;
+      border-top: var(--border-divider);
+      justify-content: flex-end;
+    }
+
+    .modal-body {
+      padding: 24px 28px;
+      overflow: auto;
+      flex: 1;
+    }
+
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      border: var(--border-hairline);
+      background: #FFFFFF;
+      cursor: pointer;
+      border-radius: var(--radius-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 180ms;
+    }
+
+    .modal-close-btn:hover {
+      border-color: var(--ink-primary);
+      background: #FAF9FF;
+    }
+
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 3000;
+      padding: 14px 24px;
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius-none);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+      border-left: 3px solid var(--accent-primary);
+    }
+
+    /* -------------------------------------------------------------------------
+     * MOBILE SAFETY & RESPONSIVENESS
+     * ---------------------------------------------------------------------- */
+    @media (max-width: 768px) {
+      .style-tile-header {
+        padding: 12px 16px;
+        flex-wrap: wrap;
+      }
+      .layout-wrapper {
+        width: calc(100% - 32px);
+        padding: 24px 0 64px;
+      }
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .swatches-grid, .components-grid {
+        grid-template-columns: 1fr;
+      }
+      .demo-content-split {
+        grid-template-columns: 1fr;
+      }
+      .demo-left-column {
+        padding: 28px 20px;
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      }
+      .demo-right-column {
+        padding: 28px 16px;
+      }
+      .hero-actions, .btn-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn, .btn-tile {
+        white-space: normal;
+        text-align: center;
+      }
+      .toast-popup {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet. Must remain immediately after this page's <style>. -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- Mandatory Persistent Header Bar -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Editorial Luxe</span>
+      <!-- MUST equal catalog vibeBadge exactly -->
+      <span class="design-vibe-tag">Quiet Luxury</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+      <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+      <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-editorial-luxe.md">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- SLOT 1: Hero Display Banner -->
+    <section class="hero-banner" id="hero-section">
+      <p class="section-kicker">Visual Identity Showcase</p>
+      <div class="hero-meta">
+        <span class="chip chip-accent">✦ High-Fashion Editorial Clarity</span>
+        <span class="chip">Refined Cyber-Intelligence</span>
+        <span class="chip">Light Theme</span>
+      </div>
+      <h1>Editorial Luxe <span class="display-dual-tone">× Minimal</span></h1>
+      <p class="hero-lead">
+        A synthesis of high-fashion Didone editorial clarity and refined cyber-intelligence. Stark Absolute Black ink anchored on pure white architectural canvas, illuminated by Electric Lavender AI triggers, translucent frosted glass HUD overlays, and precision 0px geometry.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">
+          Copy Prompt for Agent ↗
+        </button>
+        <a class="btn btn-secondary" href="#demo-section">
+          Explore Living Experience
+        </a>
+        <a class="btn btn-ghost" href="#components-section">
+          Inspect Components
+        </a>
+      </div>
+    </section>
+
+    <!-- SLOT 2: Palette Matrix -->
+    <section class="section-block" id="palette-section">
+      <p class="section-kicker">01 // Color Roles</p>
+      <h2>Chromatic Palette & Material Surfaces</h2>
+      <div class="swatches-grid" id="swatch-grid">
+        <!-- Filled dynamically from DESIGN_PALETTE via JavaScript -->
+      </div>
+    </section>
+
+    <!-- SLOT 3: Typography & Typeface Specimen -->
+    <section class="section-block" id="typography-section">
+      <p class="section-kicker">02 // Typographic Hierarchy</p>
+      <h2>Didone Editorial Voice & Geometric Precision</h2>
+      <div class="type-stack">
+        <div class="type-row">
+          <span class="type-label">Display Hero</span>
+          <p class="text-display" id="specimen-display">EDITORIAL LUXE</p>
+        </div>
+        <div class="type-row">
+          <span class="type-label">H1 Headline</span>
+          <p class="text-h1">Intelligent Minimalist Couture</p>
+        </div>
+        <div class="type-row">
+          <span class="type-label">H2 Editorial</span>
+          <p class="text-h2">Architectural precision balanced with organic glass surfaces.</p>
+        </div>
+        <div class="type-row">
+          <span class="type-label">H3 Functional</span>
+          <p class="text-h3">Low-contrast geometric sans engineered for micro-clarity</p>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Body Text</span>
+          <p class="text-body">
+            High-fashion editorial elegance requires relentless spatial discipline. Didone letterforms communicate authority and cultural pedigree, while unrounded hairlines and atmospheric frosted overlays lend the interface a quiet, contemporary computational poise.
+          </p>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Mono Meta</span>
+          <p class="text-meta">SYSTEM_REF // LATENCY: 0.04MS • ARCHIVE: 2026.4 • STATE: RESTFUL</p>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Interactive Tester</span>
+          <input class="live-type-input" id="live-type-tester-input" type="text" value="EDITORIAL LUXE" aria-label="Test display typography" />
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 4: Component Archetype Gallery -->
+    <section class="section-block" id="components-section">
+      <p class="section-kicker">03 // Interface Archetypes</p>
+      <h2>Component Skin & Interaction System</h2>
+      <div class="components-grid">
+
+        <!-- Button Archetypes -->
+        <article class="component-card">
+          <div>
+            <h3>Action Controls</h3>
+            <p class="component-card-desc">0px architectural edges with instant hover shifts</p>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="button">Primary CTA</button>
+            <button class="btn btn-secondary" type="button">Secondary</button>
+            <button class="btn btn-accent" type="button">✦ Trigger</button>
+            <button class="btn btn-ghost" type="button">Subtle</button>
+            <button class="btn btn-danger" type="button">Critical</button>
+          </div>
+        </article>
+
+        <!-- Input Fields -->
+        <article class="component-card">
+          <div>
+            <h3>Text Well & Filters</h3>
+            <p class="component-card-desc">Hairline boundaries with lavender focus wash</p>
+          </div>
+          <div>
+            <label class="field-label" for="demo-input">System Keyword Query</label>
+            <input class="text-input" id="demo-input" type="text" placeholder="Enter search descriptor…" autocomplete="off" />
+          </div>
+        </article>
+
+        <!-- Selection Controls & Badges -->
+        <article class="component-card">
+          <div>
+            <h3>Selectors & Status Badges</h3>
+            <p class="component-card-desc">Refined geometric switches and metadata pills</p>
+          </div>
+          <div class="control-row">
+            <label class="custom-control">
+              <input type="checkbox" checked /> Active
+            </label>
+            <label class="custom-control">
+              <input type="radio" name="demo-radio" checked /> Choice 01
+            </label>
+            <label class="custom-control">
+              <input type="radio" name="demo-radio" /> Choice 02
+            </label>
+            <button class="toggle" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle intelligent mode"></button>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;">
+            <span class="badge badge-lavender">✦ AI Model Active</span>
+            <span class="badge badge-ink">Curated Archive</span>
+            <span class="badge badge-status">Synchronized</span>
+          </div>
+        </article>
+
+        <!-- Surface Container Card -->
+        <article class="component-card">
+          <div>
+            <h3>Frosted Micro-Card</h3>
+            <p class="component-card-desc">Atmospheric glass overlay with 16px soft radius</p>
+          </div>
+          <div style="padding: 16px; background: var(--bg-surface-alt); border-radius: var(--radius-subtle); border: 1px solid rgba(108, 92, 231, 0.15);">
+            <p style="font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 4px;">Specular Edge Highlight</p>
+            <p style="font-size: 12.5px; color: var(--ink-secondary);">Reflective borders with 20px blur filtration.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SLOT 5: Living Micro-Experience / Landing Demo -->
+    <section class="section-block" id="demo-section">
+      <p class="section-kicker">04 // Living Micro-Experience</p>
+      <h2>Editorial Showcase & Intelligent HUD</h2>
+
+      <div class="demo-showcase-container">
+        <!-- Mini Header Navigation -->
+        <nav class="demo-top-nav" aria-label="Showcase internal navigation">
+          <div class="demo-brand-mark">ATELIER NUMÉRIQUE</div>
+          <ul class="demo-nav-links">
+            <li><a href="#demo-section" class="active">Archive 2026</a></li>
+            <li><a href="#demo-section">Runway Telemetry</a></li>
+            <li><a href="#demo-section">Editions</a></li>
+          </ul>
+        </nav>
+
+        <!-- Split Grid Showcase -->
+        <div class="demo-content-split">
+          <!-- Left Editorial Pane -->
+          <div class="demo-left-column">
+            <div>
+              <div class="demo-edition-tag">
+                <span>✦</span> AUTONOMOUS CURATION // ISSUE 09
+              </div>
+              <h3 class="demo-editorial-title">
+                THE INTELLIGENCE <span>OF COUTURE</span>
+              </h3>
+              <p class="demo-narrative-copy">
+                When digital precision relinquishes decorative excess, typography and geometry converge. Uncompromising hairline grids balance tactile frosted planes, providing the foundation for algorithmic discernment in high fashion.
+              </p>
+            </div>
+
+            <div class="demo-action-cluster">
+              <button class="btn btn-primary" type="button">
+                ACQUIRE FOLIO ↗
+              </button>
+              <button class="btn btn-secondary" type="button">
+                SPECIFICATIONS
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Atmospheric Pane with Floating Frosted HUD -->
+          <div class="demo-right-column">
+            <div class="demo-backdrop-lines"></div>
+
+            <!-- Floating Frosted Glass HUD Card -->
+            <div class="hud-glass-card">
+              <div class="hud-header">
+                <span class="hud-chip-pulse">INTELLIGENT RUNWAY</span>
+                <button class="dark-frost-btn" type="button" aria-label="Play audio narration" title="Play Runway Stream">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </button>
+              </div>
+
+              <div class="hud-card-quote">
+                “Form is not merely an ornament; it is the mathematical consequence of clarity.”
+              </div>
+
+              <div class="hud-card-meta">
+                <span>Editorial Dispatch</span>
+                <span>Paris • 2026</span>
+              </div>
+
+              <div class="hud-telemetry-row">
+                <div class="hud-stat-pill">
+                  <span class="hud-stat-val">99.4%</span>
+                  <span class="hud-stat-lbl">Clarity</span>
+                </div>
+                <div class="hud-stat-pill">
+                  <span class="hud-stat-val">20PX</span>
+                  <span class="hud-stat-lbl">Blur HUD</span>
+                </div>
+                <div class="hud-stat-pill">
+                  <span class="hud-stat-val">#6C5CE7</span>
+                  <span class="hud-stat-lbl">Accent</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 6: Style Tile Prompt Code Drawer -->
+    <section class="section-block spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-head">
+        <div>
+          <h2 style="margin:0 0 4px 0; color:inherit; font-size:1.8rem;">Style Tile specification</h2>
+          <p style="font-size:12px; color:var(--ink-muted); margin:0;">Machine-readable transferable visual language for AI system prompts</p>
+        </div>
+        <button class="btn btn-accent" type="button" onclick="copyTilePromptDirect()">
+          Copy Markdown Spec
+        </button>
+      </div>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+    </section>
+
+  </main>
+
+  <!-- Modal Overlay for Spec Inspection -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title" style="font-family:var(--font-display); font-size:1.3rem;">Style Tile: Editorial Luxe</strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Feedback -->
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">Copied to Clipboard</div>
+
+  <!--
+    =============================================================================
+    SOURCE OF TRUTH for Copy / Download / Preview.
+    Adheres strictly to agent.md §4 Standard Style Tile Markdown Schema.
+    =============================================================================
+  -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Editorial Luxe × Intelligent Minimalism
+  Construction: high-contrast Didone • frosted glass HUD • electric lavender • 0px architectural geometry
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+High-fashion editorial Didone typography paired with crisp modern geometric sans and refined cyber-intelligence accents. Pure white canvases framed by hairline architectural borders support floating frosted-glass HUD overlays with 20px blur and specular highlights. Sharp 0px rectangular primary action triggers contrast with soft 16px organic glass surfaces and electric lavender interactive cues, creating a serene balance between couture restraint and technical clarity.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FFFFFF; /* Pure white ground canvas */
+  --bg-surface:             #FFFFFF; /* Elevated cards and containers */
+  --bg-surface-alt:         #F1EEFF; /* Accent tint wash for highlights and active wells */
+  --bg-surface-dark:        #0A0A0A; /* Absolute black solid anchors and deep containers */
+  --bg-glass:               rgba(255, 255, 255, 0.72); /* Frosted glass HUD overlay fill */
+  --bg-glass-edge:          rgba(255, 255, 255, 0.45); /* Glass edge specular highlight */
+  --bg-dark-frost:          rgba(10, 10, 10, 0.85); /* Dark frost circular media controls */
+
+  /* Inks & Typography */
+  --ink-primary:            #0A0A0A; /* Absolute black primary headings & ink */
+  --ink-secondary:          #4A4A4A; /* Soft muted charcoal secondary body copy */
+  --ink-muted:              #B5B5B5; /* Faded ghost grey de-emphasized words & captions */
+  --ink-inverted:           #FFFFFF; /* Pure white high-contrast text on dark fills */
+
+  /* Signature Accents */
+  --accent-primary:         #6C5CE7; /* Electric lavender system actions & AI triggers */
+  --accent-primary-hover:   #735BF2; /* Brightened lavender interactive hover tone */
+  --accent-secondary:       #F1EEFF; /* Lavender tint subtle highlight wash */
+  --accent-tertiary:        #E6E6E6; /* Hairline grey structural boundary stroke */
+
+  /* Status Tokens */
+  --status-success:         #00B894; /* Balanced intelligent emerald */
+  --status-warning:         #F39C12; /* Refined amber */
+  --status-danger:          #D63031; /* Editorial crimson */
+  --status-info:            #6C5CE7; /* Electric lavender */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Cormorant Garamond", Garamond, "Didot", serif;
+--font-sans:    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+--font-mono:    "JetBrains Mono", ui-monospace, Consolas, monospace;
+
+/* Type Scale */
+--text-display: clamp(3.5rem, 7vw, 5.5rem) / 1.05 var(--font-display); /* Letter-spacing: -0.02em | Weight: 400 | UPPERCASE */
+--text-h1:      clamp(2.5rem, 5vw, 3.75rem) / 1.10 var(--font-display); /* Letter-spacing: -0.02em | Weight: 400 */
+--text-h2:      1.625rem / 1.25 var(--font-display);                   /* Letter-spacing: -0.01em | Weight: 600 */
+--text-h3:      1.125rem / 1.35 var(--font-sans);                      /* Letter-spacing: 0 | Weight: 600 */
+--text-body:    0.875rem / 1.55 var(--font-sans);                      /* Letter-spacing: 0 | Weight: 400 */
+--text-body-sm: 0.8125rem / 1.50 var(--font-sans);                     /* Letter-spacing: 0.01em | Weight: 400 */
+--text-meta:    0.6875rem / 1.40 var(--font-mono);                     /* Letter-spacing: 0.12em | UPPERCASE */
+--text-cta:     0.75rem  / 1.00 var(--font-sans);                     /* Letter-spacing: +0.12em | Weight: 600 | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-none:    0px;    /* Primary action buttons, structural split grids */
+--radius-subtle:  3px;    /* Top utility navigation bars, rectangular system tags */
+--radius-soft:    16px;   /* Floating frosted glass information overlays, HUD cards */
+--radius-pill:    9999px; /* Media action controls, avatar chips, filter pills */
+--radius-default: 16px;
+
+/* Atmospheric Depth & Shadows */
+--backdrop-glass: blur(20px) saturate(160%);
+--shadow-base:    0 20px 40px -15px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+--shadow-hover:   0 24px 48px -12px rgba(108, 92, 231, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+--shadow-chip:    0 8px 16px -4px rgba(0, 0, 0, 0.12);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-hairline: 1px solid #E6E6E6;                  /* Secondary outline buttons, structural grids */
+--border-active:   1px solid #0A0A0A;                  /* Active outline states */
+--border-glass:    1px solid rgba(255, 255, 255, 0.55);/* Specular reflective card edge */
+--border-divider:  1px solid rgba(0, 0, 0, 0.04);       /* Subtle vertical pane divisions */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Primary buttons feature solid Absolute Black (#0A0A0A) fills with zero radius (0px), crisp all-caps 11px-12px sans typography (+0.12em letter-spacing), transitioning to #262626 on hover with zero elevation lift to preserve architectural grounding. Secondary buttons use 1px solid #E6E6E6 borders on pure white backgrounds, instantly tightening border color to #0A0A0A on hover. Media and floating action controls use 9999px circular Dark Frost containers (rgba(10, 10, 10, 0.85)) with soft elevation. Use host's existing labels.
+- **Cards**: Elevated panels utilize frosted glass (rgba(255, 255, 255, 0.72)) with backdrop-filter: blur(20px) saturate(160%), soft 16px radii, specular highlights (1px solid rgba(255, 255, 255, 0.55)), and 24px-32px internal inset. Flat cards maintain a crisp pure white base with hairline #E6E6E6 outlines. Do not add index codes or fake metadata.
+- **Inputs**: Crisp white wells with 1px solid #E6E6E6 hairline borders, subtle 2px-3px radius, minimum 16px text size to prevent iOS viewport zoom. Focus transitions smoothly to 1px solid #0A0A0A with a subtle lavender (#F1EEFF) glow wash.
+- **Navigation**: Clean horizontal header with 1px hairline bottom border (#E6E6E6), 2px-3px subtle radii on utility tags, and uppercase sans navigation links at 12px-13px with +0.02em letter spacing. Restyle existing items without adding catalog codes or status readouts.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No heavy, dark Gaussian drop shadows; all depth must derive from translucent frosted glass (20px blur) or delicate specular highlights.
+- No rounded border radii (e.g., 20px-32px bento boxes) on primary action CTA buttons; keep CTAs strictly 0px architectural boxes.
+- No thick, comic, or brutalist 2px-3px solid black outlines.
+- No noisy grain overlays, skeuomorphic gradients, or low-contrast gray-on-gray body text.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- Page Interaction & Chrome Scripts -->
+  <script>
+    const DESIGN_SLUG = "editorial-luxe";
+
+    const DESIGN_PALETTE = [
+      { name: "Absolute Black Ink", hex: "#0A0A0A", cssVar: "--ink-primary" },
+      { name: "Pure White Canvas", hex: "#FFFFFF", cssVar: "--bg-canvas" },
+      { name: "Electric Lavender", hex: "#6C5CE7", cssVar: "--accent-primary" },
+      { name: "Electric Lavender Hover", hex: "#735BF2", cssVar: "--accent-primary-hover" },
+      { name: "Accent Lavender Tint", hex: "#F1EEFF", cssVar: "--accent-secondary" },
+      { name: "Soft Muted Charcoal", hex: "#4A4A4A", cssVar: "--ink-secondary" },
+      { name: "Faded Ghost Grey", hex: "#B5B5B5", cssVar: "--ink-muted" },
+      { name: "Hairline Grey", hex: "#E6E6E6", cssVar: "--border-hairline" },
+      { name: "Frosted Glass Fill", hex: "rgba(255, 255, 255, 0.72)", cssVar: "--bg-glass" },
+      { name: "Dark Frost Media", hex: "rgba(10, 10, 10, 0.85)", cssVar: "--bg-dark-frost" },
+      { name: "Intelligent Emerald", hex: "#00B894", cssVar: "--status-success" },
+      { name: "Editorial Crimson", hex: "#D63031", cssVar: "--status-danger" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex;
+        btn.innerHTML =
+          '<span class="swatch-chip" style="background:' + swatch.hex + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + "</span>" +
+            '<span class="swatch-var">' + swatch.cssVar + "</span>" +
+            '<span class="swatch-hex">' + swatch.hex + "</span>" +
+          "</span>";
+        btn.addEventListener("click", function () { copyHex(swatch.hex, swatch.name); });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () { toast.style.display = "none"; }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(function () { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    // Toggle switch interaction
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+      });
+    }
+
+    // Live type specimen interaction
+    const liveTypeInput = document.getElementById("live-type-tester-input");
+    const specimenDisplay = document.getElementById("specimen-display");
+    if (liveTypeInput && specimenDisplay) {
+      liveTypeInput.addEventListener("input", function () {
+        specimenDisplay.textContent = liveTypeInput.value || "EDITORIAL LUXE";
+      });
+    }
+  </script>
+</body>
+</html>
