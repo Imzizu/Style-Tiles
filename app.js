@@ -406,6 +406,12 @@ function renderTileCard(tile) {
     ? "Filter by Dark or Light theme"
     : `Filter by ${themeVal} theme`;
 
+  const displayFont = (tile.fonts && tile.fonts.display) || "";
+  const sansFont = (tile.fonts && tile.fonts.sans) || "";
+  const fontPairing = displayFont === sansFont
+    ? displayFont
+    : `${displayFont} / ${sansFont}`;
+
   return `
     <article class="design-card" data-id="${tile.slug}" data-tile-code="${tile.id}">
       <!-- Card Header with Vibe Filter Option Badge -->
@@ -420,13 +426,15 @@ function renderTileCard(tile) {
       <!-- 16:9 Screen Container (Live if page published, Skeleton if draft) -->
       ${renderCardPreview(tile)}
 
-      <!-- Card Body with Standardised Top and Bottom Blocks -->
+      <!-- Card Body: Compact Architectural Spec -->
       <div class="card-body">
         <div class="card-info-top">
           <div class="card-title-row">
-            <h3 class="card-title">${tile.name}</h3>
+            <h3 class="card-title" title="${tile.name}">
+              <a href="Designs/${tile.slug}.html" class="card-title-link">${tile.name}</a>
+            </h3>
           </div>
-          <p class="card-desc">${tile.description}</p>
+          <p class="card-desc" title="${tile.description}">${tile.description}</p>
         </div>
 
         <!-- Standardised Bottom Section: Palette + Meta & Theme Tags -->
@@ -443,25 +451,28 @@ function renderTileCard(tile) {
             <span class="badge badge-theme-${themeVal.toLowerCase().replace('/', '-')} badge-clickable" role="button" tabindex="0" title="${themeTooltip}" onclick="setCategory('${targetTheme}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();setCategory('${targetTheme}');}" aria-label="${themeTooltip}">
               ${themeLabel}
             </span>
-            <span class="badge badge-dark">Display: ${tile.fonts.display}</span>
-            <span class="badge">Body: ${tile.fonts.sans}</span>
-            <span class="badge badge-orange">#${tile.categories[0]}</span>
+            <span class="badge badge-font-spec" title="Display: ${displayFont} • Sans: ${sansFont}">
+              <span class="spec-glyph">Aa</span>
+              <span class="spec-font-names">${fontPairing}</span>
+            </span>
+            <span class="badge badge-orange badge-tag" title="Category: ${tile.categories[0]}">#${tile.categories[0]}</span>
           </div>
         </div>
       </div>
 
       <!-- Card Action Footer -->
       <div class="card-actions-bar">
-        <button class="btn btn-sm btn-mustard" onclick="openSpecModal('${tile.slug}')" title="Inspect raw Markdown Style Tile">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          Inspect Spec
+        <button class="btn btn-sm btn-mustard card-btn card-btn-inspect" onclick="openSpecModal('${tile.slug}')" title="Inspect raw Markdown Style Tile">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span>Inspect</span>
         </button>
-        <button class="btn btn-sm btn-primary" onclick="copyTilePrompt('${tile.slug}')" title="Copy Markdown prompt for AI coding agent">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          Copy Tile
+        <button class="btn btn-sm btn-primary card-btn card-btn-copy" onclick="copyTilePrompt('${tile.slug}')" title="Copy Markdown prompt for AI coding agent">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy Tile</span>
         </button>
-        <a href="Designs/${tile.slug}.html" class="btn btn-sm ${tile.hasPage ? 'btn-mustard' : ''}" title="Open ${tile.slug}.html">
-          Page →
+        <a href="Designs/${tile.slug}.html" class="btn btn-sm card-btn card-btn-page ${tile.hasPage ? 'btn-mustard' : ''}" title="Open ${tile.slug}.html">
+          <span>Page</span>
+          <span class="card-btn-arrow">↗</span>
         </a>
       </div>
     </article>
