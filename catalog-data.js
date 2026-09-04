@@ -1728,6 +1728,32 @@ const STYLE_TILES_DATA = [
     ],
     description: "Curated Field Guide: Tactile minimalist and utilitarian modern Moleskine design system built on warm linen parchment (#FAF8F5) with subtle sand cards (#F2EFEB), high-contrast matte charcoal floating pill CTAs (#121212), bold 32px geometric step numerals, warm saffron amber callouts (#E5A42E), and burnt terracotta accent indicators (#DE5333).",
     markdownSpec: null
+  },
+  {
+    slug: "aethel-sculptural-noir",
+    name: "Aethel / Sculptural Noir",
+    vibe: "High-End Editorial • Atmospheric Dark Luxury • Sculptural Depth • Neo-Classical Elegance • Obsidian Plum • Vivid Magenta Orchid",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Playfair Display / Editorial New",
+      sans: "Plus Jakarta Sans / Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Midnight Plum Canvas", hex: "#1B0B13" },
+      { name: "Elevated Dark Cherry", hex: "#25121C" },
+      { name: "Porcelain Blush", hex: "#F6E3EB" },
+      { name: "Vivid Magenta Orchid", hex: "#D4568C" },
+      { name: "Deep Shaded Berry", hex: "#8E2F5B" },
+      { name: "Luminous Soft Rose", hex: "#F597C0" },
+      { name: "Pure Optical White", hex: "#FFFFFF" },
+      { name: "Dusty Mauve Lavender", hex: "#B3A2AC" }
+    ],
+    description: "Aethel / Sculptural Noir: Atmospheric dark luxury and neo-classical editorial elegance constructed on deep midnight plum (#1B0B13) and elevated dark cherry surfaces (#25121C), warm porcelain blush contrast planes (#F6E3EB), vivid magenta orchid focal accents (#D4568C), and sculptural 28px curvature.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
