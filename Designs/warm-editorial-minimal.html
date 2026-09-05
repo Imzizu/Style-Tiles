@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warm Editorial Minimal // TILE</title>
+  <meta name="description" content="Warm editorial minimal clinical-luxe aesthetic constructed on warm alabaster linen planes, obsidian presentation framing, deep carmine inks, and 20px squircle containers.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Typography: Clash Grotesk & General Sans (Fontshare), Plus Jakarta Sans & JetBrains Mono (Google Fonts) -->
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@600,700,800&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       STYLE TILE: WARM EDITORIAL MINIMAL (CLINICAL-LUXE / APOTHECARY)
+       ========================================================================== */
+    :root {
+      /* 1. Canvas & Surfaces */
+      --color-surface-base:      #F6F3EC; /* Warm alabaster / linen cream base */
+      --color-surface-container: #F6F3EC; /* Transparent / tone-on-tone container */
+      --color-surface-frame:     #141312; /* Obsidian outer bezel / presentation mat */
+      --color-surface-tint:      #ECE7DC; /* Subtle hover / alternate container fill */
+
+      /* 2. Brand & Expressive Accents */
+      --color-accent-primary:    #B21A2D; /* Deep carmine / apothecary crimson */
+      --color-accent-hover:      #911424; /* Burnished wine red */
+      --color-accent-subtle:     #FBEBED; /* Faint washed blush for badges/chips */
+
+      /* 3. Typography & Structure (Inks) */
+      --color-ink-display:       #B21A2D; /* Accent-driven primary headline ink */
+      --color-ink-primary:       #3A332C; /* Warm espresso charcoal for body copy */
+      --color-ink-muted:         #6B635B; /* Weathered stone for auxiliary details */
+      --color-ink-subtle:        #9B938A; /* Soft warm gray for disabled/watermarks */
+
+      /* 4. Borders & Outlines */
+      --color-border-primary:    #473F37; /* Fine-line warm taupe outline */
+      --color-border-subtle:     #D8D2C5; /* Ghost divider for internal structure */
+
+      /* Standard tokens mapping for system chrome */
+      --bg-canvas:              var(--color-surface-base);
+      --bg-surface:             var(--color-surface-container);
+      --bg-surface-alt:         var(--color-surface-tint);
+      --bg-surface-dark:        var(--color-surface-frame);
+
+      --ink-primary:            var(--color-ink-primary);
+      --ink-secondary:          var(--color-ink-muted);
+      --ink-muted:              var(--color-ink-subtle);
+      --ink-inverted:           var(--color-surface-base);
+      --ink-display:            var(--color-ink-display);
+
+      --accent-primary:         var(--color-accent-primary);
+      --accent-primary-hover:   var(--color-accent-hover);
+      --accent-secondary:       var(--color-surface-tint);
+      --accent-tertiary:        var(--color-accent-subtle);
+
+      --status-success:         #2D6A4F;
+      --status-warning:         #B07D38;
+      --status-danger:          #B21A2D;
+      --status-info:            #3D6B88;
+
+      /* Typography Stacks */
+      --font-display:           "Clash Grotesk", "Plus Jakarta Sans", -apple-system, sans-serif;
+      --font-body:              "General Sans", "Inter", -apple-system, sans-serif;
+      --font-sans:              var(--font-body);
+      --font-mono:              "JetBrains Mono", monospace;
+
+      /* Corner Geometry (Border Radii) */
+      --radius-sharp:           0px;     /* Raw photographic crops, clinical imagery */
+      --radius-sm:              6px;     /* Small inline chips, form inputs */
+      --radius-md:              12px;    /* Secondary modals, dialog windows */
+      --radius-lg:              20px;    /* Core content cards, focal outline boxes */
+      --radius-frame:           28px;    /* Exterior root viewport / layout card border */
+      --radius-pill:            9999px;  /* Action buttons, status badges */
+      --radius-default:         20px;
+      --radius-subtle:          6px;
+
+      /* Elevation & Shadows: Flat zero-blur framework */
+      --elevation-flat:         none;
+      --shadow-base:            none;
+      --shadow-hover:           none;
+      --shadow-active:          none;
+
+      /* Spacing Scale */
+      --space-2xs:              4px;
+      --space-xs:               8px;
+      --space-sm:               12px;
+      --space-md:               16px;
+      --space-lg:               24px;
+      --space-xl:               32px;
+      --space-2xl:              48px;
+      --space-3xl:              64px;
+      --space-4xl:              96px;
+
+      /* Borders & Dividers */
+      --border-card:            1px solid var(--color-border-primary);
+      --border-divider:         1px solid var(--color-border-subtle);
+      --border-frame:           10px solid var(--color-surface-frame);
+      --border-core:            1px solid var(--color-border-primary);
+      --border-hairline:        1px solid var(--color-border-subtle);
+      --divider-style:          1px solid var(--color-border-subtle);
+
+      /* Timing Functions */
+      --transition-fast:        150ms cubic-bezier(0.2, 0, 0, 1);
+      --transition-smooth:      280ms cubic-bezier(0.16, 1, 0.3, 1);
+      --header-height:          68px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: var(--color-surface-frame);
+      color: var(--color-ink-primary);
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--color-surface-frame);
+      color: var(--color-ink-primary);
+      line-height: 1.55;
+      padding: 12px;
+    }
+
+    /* Presentation Frame Enclosure */
+    .viewport-mat-frame {
+      background: var(--color-surface-base);
+      border-radius: var(--radius-frame);
+      min-height: calc(100vh - 24px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    /* -------------------------------------------------------------------------
+     * MANDATORY HEADER BAR
+     * ---------------------------------------------------------------------- */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 12px 32px;
+      background: rgba(246, 243, 236, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 8px 16px;
+      background: transparent;
+      color: var(--color-ink-primary);
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--radius-pill);
+      transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .nav-back-link:hover {
+      background: var(--color-surface-tint);
+      border-color: var(--color-accent-primary);
+      color: var(--color-accent-primary);
+    }
+
+    .nav-back-link:active {
+      transform: scale(0.985);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      background: var(--color-surface-frame);
+      color: var(--color-surface-base);
+      border-radius: var(--radius-sm);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--color-ink-primary);
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      background: var(--color-accent-subtle);
+      color: var(--color-accent-primary);
+      border: 1px solid rgba(178, 26, 45, 0.2);
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      font-family: var(--font-display);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--radius-pill);
+      background: var(--color-surface-base);
+      color: var(--color-ink-primary);
+      transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .btn-tile:hover {
+      background: var(--color-surface-tint);
+      border-color: var(--color-accent-primary);
+      color: var(--color-accent-primary);
+    }
+
+    .btn-tile:active {
+      transform: scale(0.985);
+    }
+
+    .btn-copy {
+      background: var(--color-accent-primary);
+      color: var(--color-surface-base);
+      border-color: var(--color-accent-primary);
+    }
+
+    .btn-copy:hover {
+      background: var(--color-accent-hover);
+      border-color: var(--color-accent-hover);
+      color: var(--color-surface-base);
+    }
+
+    /* -------------------------------------------------------------------------
+     * MAIN LAYOUT & SPATIAL SYSTEM
+     * ---------------------------------------------------------------------- */
+    .layout-wrapper {
+      width: min(1180px, calc(100% - 64px));
+      margin: 0 auto;
+      padding: 56px 0 96px;
+    }
+
+    .section-block {
+      margin-top: 80px;
+      position: relative;
+    }
+
+    .section-overline {
+      font-family: var(--font-display);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-accent-primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-overline::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-accent-primary);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 6vw, 5.25rem);
+      font-weight: 800;
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      color: var(--color-ink-display);
+      text-transform: none;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--color-ink-primary);
+      margin-bottom: 24px;
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--color-ink-primary);
+      margin-bottom: 12px;
+    }
+
+    /* -------------------------------------------------------------------------
+     * HERO DISPLAY BANNER
+     * ---------------------------------------------------------------------- */
+    .hero-banner {
+      background: var(--color-surface-container);
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--radius-lg);
+      padding: clamp(36px, 5vw, 56px) clamp(28px, 4vw, 48px);
+      position: relative;
+    }
+
+    .hero-meta-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+      align-items: center;
+    }
+
+    .chip-luxe {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      background: var(--color-surface-tint);
+      color: var(--color-ink-primary);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-pill);
+    }
+
+    .chip-crimson {
+      background: var(--color-accent-subtle);
+      color: var(--color-accent-primary);
+      border-color: rgba(178, 26, 45, 0.25);
+    }
+
+    .hero-lead-text {
+      font-family: var(--font-body);
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+      color: var(--color-ink-primary);
+      max-width: 68ch;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    /* -------------------------------------------------------------------------
+     * BUTTONS & INTERACTION SYSTEM
+     * ---------------------------------------------------------------------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 10px 24px;
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--color-border-primary);
+      background: var(--color-surface-base);
+      color: var(--color-ink-primary);
+      transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: var(--color-surface-tint);
+      border-color: var(--color-accent-primary);
+      color: var(--color-accent-primary);
+    }
+
+    .btn:active {
+      transform: scale(0.985);
+    }
+
+    .btn-primary {
+      background: var(--color-accent-primary);
+      color: var(--color-surface-base);
+      border-color: var(--color-accent-primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-accent-hover);
+      border-color: var(--color-accent-hover);
+      color: var(--color-surface-base);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--color-border-primary);
+      color: var(--color-ink-primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--color-surface-tint);
+      border-color: var(--color-accent-primary);
+      color: var(--color-accent-primary);
+    }
+
+    .btn-subtle {
+      background: var(--color-accent-subtle);
+      color: var(--color-accent-primary);
+      border-color: rgba(178, 26, 45, 0.25);
+    }
+
+    .btn-subtle:hover {
+      background: #F4D7DB;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--color-ink-primary);
+    }
+
+    .btn-ghost:hover {
+      background: var(--color-surface-tint);
+      border-color: var(--color-border-subtle);
+    }
+
+    .btn-danger {
+      background: #911424;
+      color: #FFFFFF;
+      border-color: #911424;
+    }
+
+    /* -------------------------------------------------------------------------
+     * PALETTE SWATCHES MATRIX
+     * ---------------------------------------------------------------------- */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      background: var(--color-surface-container);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      transition: border-color var(--transition-fast), background-color var(--transition-fast);
+    }
+
+    .swatch-item:hover {
+      border-color: var(--color-accent-primary);
+      background-color: rgba(178, 26, 45, 0.02);
+    }
+
+    .swatch-item:active {
+      transform: scale(0.985);
+    }
+
+    .swatch-chip {
+      height: 90px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      position: relative;
+    }
+
+    .swatch-meta {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .swatch-name {
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--color-ink-primary);
+    }
+
+    .swatch-var, .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-ink-muted);
+    }
+
+    /* -------------------------------------------------------------------------
+     * TYPOGRAPHY SPECIMEN
+     * ---------------------------------------------------------------------- */
+    .type-specimen-card {
+      background: var(--color-surface-container);
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+
+    .type-stack {
+      display: grid;
+      gap: 24px;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+      align-items: baseline;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .type-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .type-badge-label {
+      font-family: var(--font-display);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-ink-muted);
+    }
+
+    .text-display-hero {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--color-ink-display);
+    }
+
+    .text-overline-kicker {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.8125rem;
+      line-height: 1.2;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-accent-primary);
+    }
+
+    .text-subtitle-date {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.875rem;
+      line-height: 1.2;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-ink-primary);
+    }
+
+    .text-body-regular {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      letter-spacing: -0.01em;
+      color: var(--color-ink-primary);
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 18px;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface-tint);
+      color: var(--color-ink-primary);
+      outline: none;
+      transition: border-color var(--transition-fast), background-color var(--transition-fast);
+    }
+
+    .live-type-input:focus {
+      outline: 2px solid var(--color-accent-primary);
+      outline-offset: 3px;
+      background: var(--color-surface-base);
+    }
+
+    /* -------------------------------------------------------------------------
+     * COMPONENT ARCHETYPES
+     * ---------------------------------------------------------------------- */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .component-card {
+      padding: 32px 28px;
+      background: var(--color-surface-container);
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--radius-lg);
+      transition: border-color var(--transition-fast), background-color var(--transition-fast);
+      position: relative;
+    }
+
+    .component-card:hover {
+      border-color: var(--color-accent-primary);
+      background-color: rgba(178, 26, 45, 0.015);
+    }
+
+    .btn-row, .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 18px;
+    }
+
+    .field-label {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: var(--color-ink-primary);
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 16px;
+      font-size: 16px;
+      font-family: var(--font-body);
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface-base);
+      color: var(--color-ink-primary);
+      outline: none;
+      transition: border-color var(--transition-fast);
+    }
+
+    .text-input:focus {
+      outline: 2px solid var(--color-accent-primary);
+      outline-offset: 3px;
+      border-color: var(--color-accent-primary);
+    }
+
+    /* Custom Checkbox & Radio */
+    .custom-control {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .custom-control input {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 1px solid var(--color-border-primary);
+      background: var(--color-surface-base);
+      border-radius: 4px;
+      cursor: pointer;
+      display: grid;
+      place-content: center;
+      transition: border-color var(--transition-fast), background-color var(--transition-fast);
+    }
+
+    .custom-control input[type="checkbox"]:checked {
+      background: var(--color-accent-primary);
+      border-color: var(--color-accent-primary);
+    }
+
+    .custom-control input[type="checkbox"]:checked::after {
+      content: "✓";
+      color: var(--color-surface-base);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .custom-control input[type="radio"] {
+      border-radius: 50%;
+    }
+
+    .custom-control input[type="radio"]:checked {
+      background: var(--color-surface-base);
+      border-color: var(--color-accent-primary);
+    }
+
+    .custom-control input[type="radio"]:checked::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: var(--color-accent-primary);
+      border-radius: 50%;
+    }
+
+    /* Tactile Toggle */
+    .toggle {
+      position: relative;
+      width: 48px;
+      height: 26px;
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--radius-pill);
+      background: var(--color-surface-tint);
+      cursor: pointer;
+      transition: background-color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .toggle[aria-pressed="true"] {
+      background: var(--color-accent-primary);
+      border-color: var(--color-accent-primary);
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--color-surface-base);
+      transition: transform var(--transition-fast);
+    }
+
+    .toggle[aria-pressed="true"]::after {
+      transform: translateX(22px);
+    }
+
+    /* Monoline Iconography */
+    .icon-mono {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      flex-shrink: 0;
+    }
+
+    /* -------------------------------------------------------------------------
+     * LIVING DEMO: APOTHECARY FORMULATION & ARCHIVAL LEDGER
+     * ---------------------------------------------------------------------- */
+    .demo-container {
+      background: var(--color-surface-container);
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 4vw, 44px);
+      position: relative;
+    }
+
+    .demo-header-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .demo-brand-kicker {
+      font-family: var(--font-display);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-accent-primary);
+    }
+
+    .demo-grid-board {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 28px;
+    }
+
+    .formulation-dossier {
+      background: var(--color-surface-base);
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    /* High-contrast pairing: 0px sharp photographic / botanical crop */
+    .crop-clinical-photo {
+      border-radius: var(--radius-sharp); /* 0px crisp cut */
+      border: 1px solid var(--color-border-primary);
+      background: #EFEBE2;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .crop-clinical-photo svg {
+      opacity: 0.85;
+      stroke: var(--color-ink-primary);
+    }
+
+    .photo-caption {
+      position: absolute;
+      bottom: 8px;
+      left: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-ink-muted);
+      background: rgba(246, 243, 236, 0.9);
+      padding: 2px 8px;
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    .batch-details-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    .batch-details-table tr {
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .batch-details-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .batch-details-table td {
+      padding: 10px 0;
+      font-family: var(--font-body);
+    }
+
+    .batch-details-table td:first-child {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.8125rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-ink-muted);
+      width: 40%;
+    }
+
+    .formulation-controls-panel {
+      background: var(--color-surface-base);
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .extract-selector-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .extract-option-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: var(--color-surface-tint);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--color-ink-primary);
+      transition: border-color var(--transition-fast), background-color var(--transition-fast);
+      text-align: left;
+    }
+
+    .extract-option-btn:hover {
+      border-color: var(--color-accent-primary);
+      background-color: var(--color-accent-subtle);
+    }
+
+    .extract-option-btn.active-extract {
+      border-color: var(--color-accent-primary);
+      background-color: var(--color-accent-subtle);
+      color: var(--color-accent-primary);
+    }
+
+    /* -------------------------------------------------------------------------
+     * SPEC DRAWER & MODAL & TOAST
+     * ---------------------------------------------------------------------- */
+    .spec-drawer-card {
+      background: var(--color-surface-frame);
+      color: var(--color-surface-base);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 520px;
+      padding: 24px;
+      background: #0C0B0B;
+      color: #E6E1D7;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-sm);
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(20, 19, 18, 0.75);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content-card {
+      width: min(880px, 100%);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--color-surface-base);
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 24px;
+      background: var(--color-surface-tint);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .modal-footer {
+      border-bottom: 0;
+      border-top: 1px solid var(--color-border-subtle);
+      background: var(--color-surface-base);
+      justify-content: flex-end;
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow: auto;
+      flex: 1;
+      background: #FDFBF8;
+    }
+
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--color-border-primary);
+      background: var(--color-surface-base);
+      color: var(--color-ink-primary);
+      cursor: pointer;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background-color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .modal-close-btn:hover {
+      background: var(--color-surface-tint);
+      border-color: var(--color-accent-primary);
+      color: var(--color-accent-primary);
+    }
+
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 3000;
+      padding: 12px 24px;
+      background: var(--color-surface-frame);
+      color: var(--color-surface-base);
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-pill);
+      animation: toastFade 180ms cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    @keyframes toastFade {
+      from { transform: translateY(8px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* -------------------------------------------------------------------------
+     * MANDATORY MOBILE LAYOUT (agent.md §6)
+     * ---------------------------------------------------------------------- */
+    @media (max-width: 768px) {
+      body {
+        padding: 4px;
+      }
+
+      .viewport-mat-frame {
+        border-radius: 16px;
+        min-height: calc(100vh - 8px);
+      }
+
+      .layout-wrapper {
+        width: calc(100% - 24px);
+        padding: 24px 0 64px;
+      }
+
+      .style-tile-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 12px 16px;
+      }
+
+      .header-title-block {
+        justify-content: flex-start;
+      }
+
+      .header-actions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+
+      .btn-tile {
+        padding: 8px 6px;
+        font-size: 0.75rem;
+        justify-content: center;
+        white-space: nowrap;
+      }
+
+      .hero-banner {
+        padding: 28px 20px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .swatches-grid, .components-grid, .demo-grid-board {
+        grid-template-columns: 1fr;
+      }
+
+      .btn-row, .control-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+        min-height: 48px;
+      }
+
+      .toast-popup {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet. Must remain immediately after this page's <style>. -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- Gallery Mat Outer Presentation Bezel -->
+  <div class="viewport-mat-frame">
+
+    <!-- =========================================================================
+         MANDATORY HEADER BAR COMPONENT
+         ========================================================================= -->
+    <header class="style-tile-header">
+      <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+        <span class="icon">←</span> Catalog
+      </a>
+
+      <div class="header-title-block">
+        <span class="design-code" data-live-tile-code>TILE</span>
+        <span class="design-title">Warm Editorial Minimal</span>
+        <!-- MUST equal catalog vibeBadge exactly. One of the seven official filter names. -->
+        <span class="design-vibe-tag">Quiet Luxury</span>
+      </div>
+
+      <div class="header-actions">
+        <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+          <svg class="icon-mono" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Preview Style Tile
+        </button>
+        <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+          <svg class="icon-mono" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Style Tile
+        </button>
+        <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-warm-editorial-minimal.md">
+          <svg class="icon-mono" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Style Tile
+        </button>
+      </div>
+    </header>
+
+    <main class="layout-wrapper">
+
+      <!-- SLOT 1: HERO DISPLAY BANNER -->
+      <section class="hero-banner" id="hero-section">
+        <p class="section-overline">Clinical-Luxe / Apothecary System</p>
+
+        <div class="hero-meta-chips">
+          <span class="chip-luxe">Warm Alabaster (#F6F3EC)</span>
+          <span class="chip-luxe chip-crimson">Apothecary Crimson (#B21A2D)</span>
+          <span class="chip-luxe">Obsidian Mat Frame</span>
+          <span class="chip-luxe">20px Squircle Contours</span>
+          <span class="chip-luxe">Flat 0px Shadows</span>
+        </div>
+
+        <h1>Warm Editorial Minimal</h1>
+
+        <p class="hero-lead-text">
+          A restrained clinical-luxe editorial system constructed on warm alabaster linen planes, framed by obsidian gallery bezels, deep espresso charcoal typography, and sharp apothecary crimson accents. Layout containers employ generous 20px squircle contours paired with crisp 0px photographic crops, communicating physicality strictly through hairline ink strokes and tonal shifts.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">
+            <svg class="icon-mono" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Prompt for Agent
+          </button>
+          <a class="btn btn-secondary" href="#demo-section">
+            <svg class="icon-mono" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            Explore Living Formulation Demo
+          </a>
+          <a class="btn btn-ghost" href="#components-section">
+            Inspect Component Archetypes
+          </a>
+        </div>
+      </section>
+
+      <!-- SLOT 2: PALETTE MATRIX -->
+      <section class="section-block" id="palette-section">
+        <p class="section-overline">01 // Color Roles &amp; Palette</p>
+        <h2>Surfaces, inks &amp; apothecary accents</h2>
+        <div class="swatches-grid" id="swatch-grid">
+          <!-- Populated by JS from DESIGN_PALETTE -->
+        </div>
+      </section>
+
+      <!-- SLOT 3: TYPOGRAPHY SPECIMEN -->
+      <section class="section-block" id="typography-section">
+        <p class="section-overline">02 // Typographic Hierarchy</p>
+        <h2>Display scale &amp; contrast ladder</h2>
+
+        <div class="type-specimen-card">
+          <div class="type-stack">
+            <div class="type-row">
+              <span class="type-badge-label">Display Hero</span>
+              <p class="text-display-hero">Formulation № 0824</p>
+            </div>
+
+            <div class="type-row">
+              <span class="type-badge-label">Overline Kicker</span>
+              <p class="text-overline-kicker">PURE BOTANICAL DISTILLATION // EST. 2026</p>
+            </div>
+
+            <div class="type-row">
+              <span class="type-badge-label">Section Subtitle</span>
+              <p class="text-subtitle-date">AUTUMN HARVEST • CLINICAL BATCH ANALYSIS • VOL. 14</p>
+            </div>
+
+            <div class="type-row">
+              <span class="type-badge-label">Body Regular</span>
+              <p class="text-body-regular">
+                Physicality is communicated strictly through hairline strokes and tonal shifts rather than synthetic drop-shadows. High-contrast pairing pairs soft 20px squircle containers with raw 0px photographic cuts.
+              </p>
+            </div>
+
+            <div class="type-row">
+              <span class="type-badge-label">Live Tester</span>
+              <input class="live-type-input" id="live-type-tester-input" type="text" value="Type here to test Clash Grotesk 800 display weight…" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLOT 4: COMPONENT ARCHETYPES -->
+      <section class="section-block" id="components-section">
+        <p class="section-overline">03 // Component Archetypes</p>
+        <h2>Tactile controls &amp; squircle surfaces</h2>
+
+        <div class="components-grid">
+          <!-- Buttons Suite -->
+          <article class="component-card">
+            <h3>Buttons &amp; Actions</h3>
+            <p class="text-body-regular" style="color:var(--color-ink-muted);font-size:0.875rem;">
+              Strictly 2D planar interactions with 0.985 active scale compression.
+            </p>
+            <div class="btn-row">
+              <button class="btn btn-primary" type="button">Primary CTA</button>
+              <button class="btn btn-secondary" type="button">Secondary</button>
+              <button class="btn btn-subtle" type="button">Subtle Blush</button>
+              <button class="btn btn-ghost" type="button">Ghost</button>
+            </div>
+          </article>
+
+          <!-- Input Fields & Selectors -->
+          <article class="component-card">
+            <h3>Inputs &amp; Focus</h3>
+            <label class="field-label" for="demo-input">Batch Identifier // 2px Crimson Ring</label>
+            <input class="text-input" id="demo-input" type="text" placeholder="Focus to observe offset focus ring…" autocomplete="off" />
+            <div class="control-row" style="margin-top:20px;">
+              <label class="custom-control">
+                <input type="checkbox" checked />
+                <span>Verified Organic</span>
+              </label>
+              <label class="custom-control">
+                <input type="radio" name="demo-radio" checked />
+                <span>Distillate A</span>
+              </label>
+              <label class="custom-control">
+                <input type="radio" name="demo-radio" />
+                <span>Distillate B</span>
+              </label>
+              <button class="toggle" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle active state"></button>
+            </div>
+          </article>
+
+          <!-- Card Geometry & Outlines -->
+          <article class="component-card">
+            <h3>Squircle Geometry</h3>
+            <p class="text-body-regular" style="font-size:0.875rem;margin-bottom:16px;">
+              Generous 20px contour with 1px fine-line warm taupe outline (#473F37).
+            </p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span class="chip-luxe chip-crimson">Apothecary Grade</span>
+              <span class="chip-luxe">1.25px Stroke</span>
+              <span class="chip-luxe">0px Elevation</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- SLOT 5: LIVING MICRO-EXPERIENCE -->
+      <section class="section-block" id="demo-section">
+        <p class="section-overline">04 // Living Micro-Experience</p>
+        <h2>Archival Formulation &amp; Botanical Ledger</h2>
+
+        <div class="demo-container">
+          <div class="demo-header-strip">
+            <div>
+              <span class="demo-brand-kicker">APOTHECARY DOSSIER // BATCH SPECIFICATION</span>
+              <h3 style="font-size:1.6rem;margin-top:4px;">№ 0824 — Damask Rose &amp; Hinoki Distillate</h3>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <span class="chip-luxe chip-crimson">STATUS: VERIFIED</span>
+              <span class="chip-luxe">LOT: 2026.09</span>
+            </div>
+          </div>
+
+          <div class="demo-grid-board">
+            <!-- Left: Clinical Dossier -->
+            <div class="formulation-dossier">
+              <!-- Crisp 0px Photographic/Botanical Cut -->
+              <div class="crop-clinical-photo">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#473F37" stroke-width="1.25">
+                  <path d="M10 2v7.31L4.36 19.46A2 2 0 0 0 6.09 22h11.82a2 2 0 0 0 1.73-2.54L14 9.31V2h-4z"/>
+                  <line x1="8.5" y1="2" x2="15.5" y2="2"/>
+                  <path d="M7 16h10"/>
+                </svg>
+                <span class="photo-caption">FIG. 01 — CLINICAL RETORT / 0PX CROP</span>
+              </div>
+
+              <div>
+                <table class="batch-details-table">
+                  <tbody>
+                    <tr>
+                      <td>Extraction</td>
+                      <td id="dossier-method">Supercritical CO₂ Hydro-Distillation</td>
+                    </tr>
+                    <tr>
+                      <td>Purity Index</td>
+                      <td id="dossier-purity">99.4% Active Terpene Conjugate</td>
+                    </tr>
+                    <tr>
+                      <td>Storage Mat</td>
+                      <td>Amber Borosilicate / 14°C Controlled</td>
+                    </tr>
+                    <tr>
+                      <td>Certification</td>
+                      <td>ISO 17025 Clinical Pharmacopeia</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--color-border-subtle);">
+                <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--color-ink-muted);">TIMESTAMP: 2026.09.05 // REF-L0824</span>
+                <button class="btn btn-primary" id="btn-certify-dossier" type="button" style="min-height:38px;padding:6px 18px;font-size:0.8125rem;">
+                  Certify Batch
+                </button>
+              </div>
+            </div>
+
+            <!-- Right: Interactive Formulation Selector -->
+            <div class="formulation-controls-panel">
+              <div>
+                <span class="field-label">SELECT BOTANICAL EXTRACT</span>
+                <div class="extract-selector-list">
+                  <button class="extract-option-btn active-extract" type="button" data-method="Supercritical CO₂ Hydro-Distillation" data-purity="99.4% Active Terpene Conjugate" data-name="Damask Rose & Hinoki">
+                    <span>Damask Rose (Rosa damascena)</span>
+                    <span style="font-family:var(--font-mono);font-size:0.75rem;">99.4%</span>
+                  </button>
+                  <button class="extract-option-btn" type="button" data-method="Steam Micro-Vapor Fractionation" data-purity="98.8% Sesquiterpene Isolated" data-name="Atlas Cedarwood">
+                    <span>Atlas Cedar (Cedrus atlantica)</span>
+                    <span style="font-family:var(--font-mono);font-size:0.75rem;">98.8%</span>
+                  </button>
+                  <button class="extract-option-btn" type="button" data-method="Cold-Pressed Centrifugal Clarification" data-purity="99.1% Bio-Flavonoid Complex" data-name="Calabrian Bergamot">
+                    <span>Bergamot (Citrus bergamia)</span>
+                    <span style="font-family:var(--font-mono);font-size:0.75rem;">99.1%</span>
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <span class="field-label">CLINICAL DILUTION RATIO</span>
+                <div style="display:flex;align-items:center;gap:12px;margin-top:6px;">
+                  <input type="range" id="potency-slider" min="1" max="100" value="75" style="width:100%;accent-color:var(--color-accent-primary);" />
+                  <span id="potency-value" style="font-family:var(--font-mono);font-size:0.875rem;font-weight:700;color:var(--color-accent-primary);min-width:40px;">75%</span>
+                </div>
+              </div>
+
+              <div style="background:var(--color-surface-tint);padding:14px;border-radius:var(--radius-sm);border:1px solid var(--color-border-subtle);">
+                <p class="text-body-regular" style="font-size:0.8125rem;color:var(--color-ink-muted);line-height:1.4;">
+                  Containers observe 20px squircle contours while raw photographic cutaways maintain strict 0px edges. Zero-blur flat elevation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLOT 6: STYLE TILE SPEC DRAWER -->
+      <section class="section-block spec-drawer-card" id="spec-section">
+        <div class="spec-drawer-head">
+          <div>
+            <span class="chip-luxe chip-crimson" style="margin-bottom:8px;display:inline-block;">MACHINE-READABLE SPEC</span>
+            <h2 style="margin:0;color:inherit;">Style Tile specification</h2>
+          </div>
+          <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">
+            <svg class="icon-mono" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Markdown Spec
+          </button>
+        </div>
+        <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+      </section>
+    </main>
+  </div>
+
+  <!-- Spec Modal -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title" style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--color-ink-primary);">
+          Warm Editorial Minimal // Markdown Spec
+        </strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre" style="background:#141312;"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">✓ Copied to Clipboard!</div>
+
+  <!-- =========================================================================
+       SOURCE OF TRUTH: STYLE TILE MARKDOWN (agent.md §4)
+       ========================================================================= -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Warm Editorial Minimal
+  Construction: warm alabaster canvas • obsidian presentation mat • deep carmine ink • 20px squircle containers • hairline precision strokes
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A warm, clinical-luxe editorial system constructed on warm alabaster linen-cream planes (#F6F3EC) framed by deep obsidian borders (#141312), warm espresso charcoal text (#3A332C), and deep carmine accents (#B21A2D). High typographic contrast balances heavy geometric display headings with airy regular body text. Layout containers use generous 20px squircle radii paired with crisp 0px photographic cuts, while physical presence is communicated through 1px precision hairline strokes and subtle tonal shifts without drop-shadows.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F6F3EC; /* Warm alabaster linen cream base */
+  --bg-surface:             #F6F3EC; /* Tone-on-tone container surface */
+  --bg-surface-alt:         #ECE7DC; /* Subtle tint for alternate containers */
+  --bg-surface-dark:        #141312; /* Obsidian outer bezel and presentation mat */
+
+  /* Inks & Typography */
+  --ink-primary:            #3A332C; /* Warm espresso charcoal for primary reading text */
+  --ink-secondary:          #6B635B; /* Weathered stone for auxiliary details and subtitles */
+  --ink-muted:              #9B938A; /* Soft warm gray for disabled elements and borders */
+  --ink-inverted:           #F6F3EC; /* Warm alabaster text on dark surfaces */
+  --ink-display:            #B21A2D; /* Accent-driven primary headline ink */
+
+  /* Signature Accents */
+  --accent-primary:         #B21A2D; /* Deep carmine apothecary crimson primary CTA */
+  --accent-primary-hover:   #911424; /* Burnished wine red interactive hover */
+  --accent-secondary:       #ECE7DC; /* Warm surface tint highlight */
+  --accent-tertiary:        #FBEBED; /* Faint washed blush for badges and chips */
+
+  /* Dedicated Tokens */
+  --color-surface-base:      #F6F3EC;
+  --color-surface-container: #F6F3EC;
+  --color-surface-frame:     #141312;
+  --color-surface-tint:      #ECE7DC;
+  --color-accent-primary:    #B21A2D;
+  --color-accent-hover:      #911424;
+  --color-accent-subtle:     #FBEBED;
+  --color-ink-display:       #B21A2D;
+  --color-ink-primary:       #3A332C;
+  --color-ink-muted:         #6B635B;
+  --color-ink-subtle:        #9B938A;
+  --color-border-primary:    #473F37;
+  --color-border-subtle:     #D8D2C5;
+
+  /* Status Tokens */
+  --status-success:         #2D6A4F;
+  --status-warning:         #B07D38;
+  --status-danger:          #B21A2D;
+  --status-info:            #3D6B88;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Clash Grotesk", "Plus Jakarta Sans", -apple-system, sans-serif;
+--font-sans:    "General Sans", "Inter", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", monospace;
+
+/* Type Scale */
+--text-display: clamp(3.5rem, 6vw, 5.5rem) / 0.95 var(--font-display); /* Weight: 800 | Letter-spacing: -0.04em */
+--text-h1:      2.75rem / 1.05 var(--font-display);                    /* Weight: 800 | Letter-spacing: -0.03em */
+--text-h2:      1.75rem / 1.20 var(--font-display);                    /* Weight: 700 | Letter-spacing: -0.02em */
+--text-h3:      1.125rem / 1.30 var(--font-display);                   /* Weight: 700 | Letter-spacing: -0.01em */
+--text-body:    0.9375rem / 1.55 var(--font-sans);                     /* Weight: 400 | Letter-spacing: -0.01em */
+--text-body-sm: 0.8125rem / 1.45 var(--font-sans);                     /* Weight: 400 | Letter-spacing: 0.0em */
+--text-meta:    0.8125rem / 1.20 var(--font-display);                  /* Weight: 700 | Letter-spacing: 0.14em | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-sharp:    0px;     /* Raw photographic crops, clinical imagery */
+--radius-sm:       6px;     /* Small inline chips, form inputs */
+--radius-md:       12px;    /* Secondary modals, dialog windows */
+--radius-lg:       20px;    /* Core content cards, focal outline boxes */
+--radius-frame:    28px;    /* Exterior root viewport / layout card border */
+--radius-pill:     9999px;  /* Action buttons, status badges */
+--radius-default:  20px;
+--radius-subtle:   6px;
+
+/* Elevation & Shadows: Flat zero-blur framework */
+--shadow-base:    none;
+--shadow-hover:   none;
+--shadow-active:  none;
+
+/* Motion Transitions */
+--transition-fast:   150ms cubic-bezier(0.2, 0, 0, 1);
+--transition-smooth: 280ms cubic-bezier(0.16, 1, 0.3, 1);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-card:     1px solid var(--color-border-primary);
+--border-divider:  1px solid var(--color-border-subtle);
+--border-frame:    8px solid var(--color-surface-frame);
+--border-core:     1px solid #473F37;
+--border-hairline: 1px solid #D8D2C5;
+--divider-style:   1px solid #D8D2C5;
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Pill geometry (9999px radius) or subtle 6px corner radius. Primary buttons filled with deep carmine crimson (#B21A2D) and alabaster text (#F6F3EC); hover transitions to burnished wine red (#911424). Active state subtly scales down to 0.985 with no drop-shadow. Secondary buttons feature 1px solid warm taupe borders (#473F37) over transparent alabaster. Use the host's existing labels.
+- **Cards**: Generous 20px soft squircle corners with tone-on-tone alabaster fill (#F6F3EC) and 1px solid fine-line warm taupe outline (#473F37). On hover, border-color shifts to deep carmine (#B21A2D) with a faint 2% carmine wash (rgba(178, 26, 45, 0.02)), strictly maintaining 2D layout without buoyant lifting. Do not add index codes or fake meta.
+- **Inputs**: 6px border radius, alabaster or subtle tint fill (#ECE7DC), 1px solid fine border (#473F37 or #D8D2C5). Focus state applies a 2px solid carmine outline (#B21A2D) with 3px offset. Font-size at least 16px.
+- **Navigation**: Restyle existing links as clean uppercase overlines in Clash Grotesk (700 weight, 13px, 0.14em tracking) separated by ghost 1px hairline dividers (#D8D2C5). Active states indicated by deep carmine text or a washed blush pill badge (#FBEBED). Do not add catalog codes, fake clocks, or status readouts.
+- **Iconography**: Monoline, geometric, clinical-minimalist. Stroke width 1.25px to 1.5px matching typography weights. Transparent fill with stroke color matching parent ink.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No synthetic drop-shadows or blur filters anywhere in the interface; elevation is strictly flat and stroke-defined.
+- No buoyant float or translate hover effects; hover states remain strictly 2D planar shifts.
+- No heavy border strokes inside the canvas; internal borders must never exceed 1.25px hairline precision.
+- No loud saturated gradient meshes or bright neon accents; palette remains warm alabaster, espresso, obsidian, and apothecary crimson.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- =========================================================================
+       CHROME LOGIC SCRIPT
+       ========================================================================= -->
+  <script>
+    const DESIGN_SLUG = "warm-editorial-minimal";
+
+    const DESIGN_PALETTE = [
+      { name: "Surface Base", hex: "#F6F3EC", cssVar: "--color-surface-base" },
+      { name: "Surface Frame", hex: "#141312", cssVar: "--color-surface-frame" },
+      { name: "Surface Tint", hex: "#ECE7DC", cssVar: "--color-surface-tint" },
+      { name: "Accent Primary", hex: "#B21A2D", cssVar: "--color-accent-primary" },
+      { name: "Accent Hover", hex: "#911424", cssVar: "--color-accent-hover" },
+      { name: "Accent Subtle", hex: "#FBEBED", cssVar: "--color-accent-subtle" },
+      { name: "Ink Display", hex: "#B21A2D", cssVar: "--color-ink-display" },
+      { name: "Ink Primary", hex: "#3A332C", cssVar: "--color-ink-primary" },
+      { name: "Ink Muted", hex: "#6B635B", cssVar: "--color-ink-muted" },
+      { name: "Ink Subtle", hex: "#9B938A", cssVar: "--color-ink-subtle" },
+      { name: "Border Primary", hex: "#473F37", cssVar: "--color-border-primary" },
+      { name: "Border Subtle", hex: "#D8D2C5", cssVar: "--color-border-subtle" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex;
+        btn.innerHTML =
+          '<span class="swatch-chip" style="background:' + swatch.hex + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + "</span>" +
+            '<span class="swatch-var">' + swatch.cssVar + "</span> " +
+            '<span class="swatch-hex">' + swatch.hex + "</span>" +
+          "</span>";
+        btn.addEventListener("click", function () { copyHex(swatch.hex, swatch.name); });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () { toast.style.display = "none"; }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(function () { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+      });
+    }
+
+    // Interactive Formulation Demo Logic
+    const extractBtns = document.querySelectorAll(".extract-option-btn");
+    const dossierMethod = document.getElementById("dossier-method");
+    const dossierPurity = document.getElementById("dossier-purity");
+
+    extractBtns.forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        extractBtns.forEach(b => b.classList.remove("active-extract"));
+        btn.classList.add("active-extract");
+
+        if (dossierMethod) dossierMethod.textContent = btn.getAttribute("data-method");
+        if (dossierPurity) dossierPurity.textContent = btn.getAttribute("data-purity");
+        triggerToast("Selected: " + btn.getAttribute("data-name"));
+      });
+    });
+
+    const potencySlider = document.getElementById("potency-slider");
+    const potencyValue = document.getElementById("potency-value");
+    if (potencySlider && potencyValue) {
+      potencySlider.addEventListener("input", function() {
+        potencyValue.textContent = potencySlider.value + "%";
+      });
+    }
+
+    const btnCertify = document.getElementById("btn-certify-dossier");
+    if (btnCertify) {
+      btnCertify.addEventListener("click", function() {
+        triggerToast("✓ Batch Certified by Pharmacopeia Protocol");
+      });
+    }
+  </script>
+</body>
+</html>

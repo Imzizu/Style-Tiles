@@ -1752,6 +1752,32 @@ const STYLE_TILES_DATA = [
     ],
     description: "Playful Pop-Brutalism: Tactile tape-stamp aesthetic constructed on radiant pastel lilac (#ECC2FD) with electric orchid ribbon surfaces (#BD72F5), deep midnight violet typography (#390366), dense grape zero-blur extrusion shadows (#300057), and vivid electric cyan micro-accents (#00A3FF).",
     markdownSpec: null
+  },
+  {
+    slug: "warm-editorial-minimal",
+    name: "Warm Editorial Minimal",
+    vibe: "Clinical-Luxe • Apothecary • Warm Alabaster • Deep Carmine • Obsidian Bezel • Squircle Contours",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Clash Grotesk / Plus Jakarta Sans",
+      sans: "General Sans / Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Surface Base", hex: "#F6F3EC" },
+      { name: "Surface Frame", hex: "#141312" },
+      { name: "Surface Tint", hex: "#ECE7DC" },
+      { name: "Accent Primary", hex: "#B21A2D" },
+      { name: "Accent Hover", hex: "#911424" },
+      { name: "Accent Subtle", hex: "#FBEBED" },
+      { name: "Ink Primary", hex: "#3A332C" },
+      { name: "Border Primary", hex: "#473F37" }
+    ],
+    description: "Warm Editorial Minimal: Clinical-luxe and apothecary editorial design system constructed on warm alabaster linen planes (#F6F3EC) framed by deep obsidian presentation bezels (#141312), warm espresso charcoal typography (#3A332C), sharp apothecary crimson accents (#B21A2D), 20px squircle layout containers, and flat 0px drop-shadow elevation.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
