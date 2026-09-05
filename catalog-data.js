@@ -1728,6 +1728,30 @@ const STYLE_TILES_DATA = [
     ],
     description: "Aethel / Sculptural Noir: Atmospheric dark luxury and neo-classical editorial elegance constructed on deep midnight plum (#1B0B13) and elevated dark cherry surfaces (#25121C), warm porcelain blush contrast planes (#F6E3EB), vivid magenta orchid focal accents (#D4568C), and sculptural 28px curvature.",
     markdownSpec: null
+  },
+  {
+    slug: "playful-pop-brutalism",
+    name: "Playful Pop-Brutalism",
+    vibe: "Pop-Brutalism • Tape-Stamp Aesthetic • Electric Orchid • Midnight Plum • Zero-Blur Extrusion",
+    vibeBadge: "Neo-Brutalism",
+    categories: ["brutalist"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Outfit",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas Base", hex: "#ECC2FD" },
+      { name: "Surface Tape", hex: "#BD72F5" },
+      { name: "Ink Primary", hex: "#390366" },
+      { name: "Ink Shadow", hex: "#300057" },
+      { name: "Accent Pop", hex: "#00A3FF" },
+      { name: "Surface Inverse", hex: "#FFFFFF" }
+    ],
+    description: "Playful Pop-Brutalism: Tactile tape-stamp aesthetic constructed on radiant pastel lilac (#ECC2FD) with electric orchid ribbon surfaces (#BD72F5), deep midnight violet typography (#390366), dense grape zero-blur extrusion shadows (#300057), and vivid electric cyan micro-accents (#00A3FF).",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===

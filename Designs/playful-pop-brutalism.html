@@ -1,0 +1,1926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playful Pop-Brutalism // TILE</title>
+  <meta name="description" content="Tactile tape-stamp aesthetic constructed on radiant pastel lilac with electric orchid ribbons, midnight violet inks, and zero-blur extrusion drop-shadows.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Google Fonts: Outfit (Display & Headings), Plus Jakarta Sans (Body), JetBrains Mono (Meta) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       STYLE TILE: PLAYFUL POP-BRUTALISM / TAPE-STAMP AESTHETIC
+       ========================================================================== */
+    :root {
+      /* 1. Color Roles & Palette */
+      --color-canvas-base:       #ECC2FD; /* Radiant pastel lilac / primary screen backdrop */
+      --color-surface-tape:      #BD72F5; /* Electric orchid / highlighted ribbon surfaces */
+      --color-ink-primary:       #390366; /* Deep midnight violet / typography & silhouette art */
+      --color-ink-shadow:        #300057; /* Dense grape / hard drop-shadow offset layer */
+      --color-accent-pop:        #00A3FF; /* Vivid electric cyan / pagination dot & active state micro-accent */
+      --color-surface-inverse:   #FFFFFF; /* Pure crisp white / high-contrast negative space */
+
+      /* Standard tokens mapping */
+      --bg-canvas:              var(--color-canvas-base);
+      --bg-surface:             var(--color-surface-tape);
+      --bg-surface-alt:         #E4B1FC;
+      --bg-surface-dark:        var(--color-ink-primary);
+
+      --ink-primary:            var(--color-ink-primary);
+      --ink-secondary:          #591694;
+      --ink-muted:              #7B37B8;
+      --ink-inverted:           var(--color-surface-inverse);
+
+      --accent-primary:         var(--color-ink-primary);
+      --accent-primary-hover:   var(--color-ink-shadow);
+      --accent-secondary:       var(--color-surface-tape);
+      --accent-tertiary:        var(--color-accent-pop);
+
+      --status-success:         #059669;
+      --status-warning:         #D97706;
+      --status-danger:          #DC2626;
+      --status-info:            var(--color-accent-pop);
+
+      /* 2. Typography System */
+      --font-family-primary:    "Outfit", "Plus Jakarta Sans", "Poppins", sans-serif;
+      --font-display:           "Outfit", sans-serif;
+      --font-sans:              "Plus Jakarta Sans", -apple-system, sans-serif;
+      --font-mono:              "JetBrains Mono", monospace;
+
+      /* 3. Corner Geometry (Border Radii) */
+      --radius-badge-tape:       3px;      /* Subtle soften for cut-tape effect */
+      --radius-card-surface:     0px;      /* Flat edges for poster-like structure */
+      --radius-pill-indicator:   9999px;   /* Full round for pagination pips & dots */
+      --radius-default:          0px;
+      --radius-subtle:           3px;
+      --radius-pill:             9999px;
+
+      /* 4. Elevation & Depth (Shadows & Layers) */
+      --shadow-hard-tape:        4px 4px 0px 0px var(--color-ink-shadow);
+      --shadow-hard-tape-offset: 5px 6px 0px 0px var(--color-ink-shadow);
+      --shadow-base:             4px 4px 0px 0px var(--color-ink-shadow);
+      --shadow-hover:            6px 6px 0px 0px var(--color-ink-shadow);
+      --shadow-active:           1px 1px 0px 0px var(--color-ink-shadow);
+
+      --layer-tilt-left:         rotate(-2.2deg);
+      --layer-tilt-right:        rotate(1.8deg);
+      --layer-tilt-subtle:       rotate(-0.8deg);
+
+      /* 5. Spacing & Spatial Scale */
+      --space-badge-padding-x:   16px;
+      --space-badge-padding-y:   8px;
+      --space-stack-gap-tight:   8px;
+      --space-stack-gap-loose:   24px;
+      --space-screen-padding:    32px;
+
+      /* 6. Borders & Dividers */
+      --divider-hard-bar:        3px solid var(--color-ink-primary);
+      --border-badge-stroke:     none;
+      --border-core:             3px solid var(--color-ink-primary);
+      --border-hairline:         2px solid var(--color-ink-primary);
+
+      /* 7. Iconography Language */
+      --icon-color:              var(--color-ink-primary);
+
+      /* 8. Interaction & Feedback */
+      --transition-snap:         120ms cubic-bezier(0.2, 0.8, 0.4, 1);
+      --header-height:           68px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-canvas);
+      background-image: 
+        radial-gradient(circle at 12px 12px, rgba(57, 3, 102, 0.06) 2px, transparent 0);
+      background-size: 32px 32px;
+      color: var(--ink-primary);
+      line-height: 1.45;
+      overflow-x: hidden;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    /* -------------------------------------------------------------------------
+     * MANDATORY HEADER BAR
+     * ---------------------------------------------------------------------- */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 10px 24px;
+      background: var(--color-surface-tape);
+      border-bottom: var(--divider-hard-bar);
+      box-shadow: 0 4px 0 0 var(--color-ink-shadow);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 6px 14px;
+      background: var(--color-surface-inverse);
+      color: var(--color-ink-primary);
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 800;
+      border: 2px solid var(--color-ink-primary);
+      border-radius: var(--radius-badge-tape);
+      box-shadow: 3px 3px 0 0 var(--color-ink-shadow);
+      transition: transform var(--transition-snap), box-shadow var(--transition-snap);
+    }
+
+    .nav-back-link:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 4px 4px 0 0 var(--color-ink-shadow);
+    }
+
+    .nav-back-link:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 0 var(--color-ink-shadow);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--color-ink-primary);
+      color: var(--color-surface-inverse);
+      border-radius: var(--radius-badge-tape);
+      box-shadow: 2px 2px 0 0 var(--color-ink-shadow);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--color-ink-primary);
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--color-canvas-base);
+      color: var(--color-ink-primary);
+      border: 2px solid var(--color-ink-primary);
+      border-radius: var(--radius-badge-tape);
+      box-shadow: 2px 2px 0 0 var(--color-ink-shadow);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      border: 2px solid var(--color-ink-primary);
+      border-radius: var(--radius-badge-tape);
+      background: var(--color-surface-inverse);
+      color: var(--color-ink-primary);
+      box-shadow: 3px 3px 0 0 var(--color-ink-shadow);
+      transition: transform var(--transition-snap), box-shadow var(--transition-snap), background-color var(--transition-snap);
+    }
+
+    .btn-tile:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 5px 5px 0 0 var(--color-ink-shadow);
+      background: #FDF9FF;
+    }
+
+    .btn-tile:active {
+      transform: translate(3px, 3px);
+      box-shadow: 1px 1px 0 0 var(--color-ink-shadow);
+    }
+
+    .btn-copy {
+      background: var(--color-ink-primary);
+      color: var(--color-surface-inverse);
+      border-color: var(--color-ink-primary);
+    }
+
+    .btn-copy:hover {
+      background: var(--color-ink-shadow);
+      color: var(--color-surface-inverse);
+    }
+
+    /* -------------------------------------------------------------------------
+     * MAIN LAYOUT & STRUCTURE
+     * ---------------------------------------------------------------------- */
+    .layout-wrapper {
+      width: min(1160px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 40px 0 96px;
+    }
+
+    .section-block {
+      margin-top: 64px;
+      position: relative;
+    }
+
+    .section-kicker-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: var(--color-surface-tape);
+      color: var(--color-ink-primary);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 800;
+      font-style: italic;
+      letter-spacing: -0.01em;
+      border-radius: var(--radius-badge-tape);
+      box-shadow: 3px 3px 0 0 var(--color-ink-shadow);
+      margin-bottom: 12px;
+      transform: var(--layer-tilt-subtle);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      color: var(--color-ink-primary);
+      text-transform: none;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--color-ink-primary);
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--color-ink-primary);
+      margin-bottom: 12px;
+    }
+
+    /* -------------------------------------------------------------------------
+     * HERO BANNER & TAPE STAMP ELEMENTS
+     * ---------------------------------------------------------------------- */
+    .hero-banner {
+      background: var(--color-surface-inverse);
+      border: var(--border-core);
+      border-radius: var(--radius-card-surface);
+      padding: 40px;
+      box-shadow: var(--shadow-hard-tape-offset);
+      position: relative;
+      overflow: visible;
+    }
+
+    .hero-ribbon-tag {
+      position: absolute;
+      top: -16px;
+      right: 24px;
+      background: var(--color-surface-tape);
+      color: var(--color-ink-primary);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 6px 18px;
+      border-radius: var(--radius-badge-tape);
+      box-shadow: var(--shadow-hard-tape);
+      transform: var(--layer-tilt-right);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .chip-tape {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      padding: 4px 12px;
+      background: var(--color-canvas-base);
+      color: var(--color-ink-primary);
+      border-radius: var(--radius-badge-tape);
+      box-shadow: 2px 2px 0 0 var(--color-ink-shadow);
+    }
+
+    .chip-cyan {
+      background: var(--color-accent-pop);
+      color: #FFFFFF;
+      box-shadow: 2px 2px 0 0 var(--color-ink-shadow);
+    }
+
+    .hero-lead-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+      font-weight: 300;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: var(--color-ink-primary);
+      max-width: 68ch;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    /* -------------------------------------------------------------------------
+     * BUTTONS & CONTROLS SYSTEM
+     * ---------------------------------------------------------------------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: var(--space-badge-padding-y) var(--space-badge-padding-x);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: var(--radius-badge-tape);
+      border: none;
+      background: var(--color-surface-inverse);
+      color: var(--color-ink-primary);
+      box-shadow: var(--shadow-hard-tape);
+      transition: transform var(--transition-snap), box-shadow var(--transition-snap), background-color var(--transition-snap);
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .btn:active {
+      transform: translate(3px, 3px);
+      box-shadow: var(--shadow-active);
+    }
+
+    .btn-primary {
+      background: var(--color-ink-primary);
+      color: var(--color-surface-inverse);
+      box-shadow: var(--shadow-hard-tape);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-ink-shadow);
+      color: var(--color-surface-inverse);
+    }
+
+    .btn-tape {
+      background: var(--color-surface-tape);
+      color: var(--color-ink-primary);
+    }
+
+    .btn-accent {
+      background: var(--color-accent-pop);
+      color: #FFFFFF;
+    }
+
+    .btn-accent:hover {
+      background: #008FE0;
+    }
+
+    .btn-danger {
+      background: var(--status-danger);
+      color: #FFFFFF;
+    }
+
+    .btn-danger:hover {
+      background: #B91C1C;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 3px solid var(--color-ink-primary);
+      box-shadow: 3px 3px 0 0 var(--color-ink-shadow);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(189, 114, 245, 0.2);
+    }
+
+    /* -------------------------------------------------------------------------
+     * PALETTE SWATCHES
+     * ---------------------------------------------------------------------- */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      background: var(--color-surface-inverse);
+      border: 3px solid var(--color-ink-primary);
+      border-radius: var(--radius-card-surface);
+      overflow: hidden;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      box-shadow: var(--shadow-hard-tape);
+      transition: transform var(--transition-snap), box-shadow var(--transition-snap);
+      position: relative;
+    }
+
+    .swatch-item:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .swatch-item:active {
+      transform: translate(3px, 3px);
+      box-shadow: var(--shadow-active);
+    }
+
+    .swatch-chip {
+      height: 84px;
+      border-bottom: 3px solid var(--color-ink-primary);
+      position: relative;
+    }
+
+    .swatch-meta {
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      background: var(--color-surface-inverse);
+    }
+
+    .swatch-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--color-ink-primary);
+    }
+
+    .swatch-var, .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink-secondary);
+      font-weight: 600;
+    }
+
+    /* -------------------------------------------------------------------------
+     * TYPOGRAPHY SPECIMEN
+     * ---------------------------------------------------------------------- */
+    .type-specimen-card {
+      background: var(--color-surface-inverse);
+      border: var(--border-core);
+      border-radius: var(--radius-card-surface);
+      padding: 32px;
+      box-shadow: var(--shadow-hard-tape-offset);
+    }
+
+    .type-stack {
+      display: grid;
+      gap: 20px;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 20px;
+      align-items: baseline;
+      padding: 16px 0;
+      border-bottom: 2px dashed rgba(57, 3, 102, 0.25);
+    }
+
+    .type-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .type-badge-label {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--color-surface-tape);
+      color: var(--color-ink-primary);
+      border-radius: var(--radius-badge-tape);
+      box-shadow: 2px 2px 0 0 var(--color-ink-shadow);
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .text-hero-tape {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 40px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: var(--color-ink-primary);
+    }
+
+    .text-badge-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2.5vw, 26px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: var(--color-ink-primary);
+    }
+
+    .text-headline-light {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.8vw, 28px);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--color-ink-primary);
+    }
+
+    .text-body-caption {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.35;
+      letter-spacing: 0.0em;
+      color: var(--color-ink-primary);
+    }
+
+    .text-eyebrow-heavy {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 800;
+      font-style: italic;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--color-ink-primary);
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 18px;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      border: 3px solid var(--color-ink-primary);
+      border-radius: var(--radius-badge-tape);
+      background: var(--color-canvas-base);
+      color: var(--color-ink-primary);
+      box-shadow: 3px 3px 0 0 var(--color-ink-shadow);
+      outline: none;
+      transition: transform var(--transition-snap), box-shadow var(--transition-snap);
+    }
+
+    .live-type-input:focus {
+      box-shadow: 5px 5px 0 0 var(--color-accent-pop);
+      background: var(--color-surface-inverse);
+    }
+
+    /* -------------------------------------------------------------------------
+     * COMPONENT ARCHETYPES
+     * ---------------------------------------------------------------------- */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .component-card {
+      padding: 28px;
+      background: var(--color-surface-inverse);
+      border: var(--border-core);
+      border-radius: var(--radius-card-surface);
+      box-shadow: var(--shadow-hard-tape);
+      position: relative;
+    }
+
+    .card-tape-pin {
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: var(--color-surface-tape);
+      color: var(--color-ink-primary);
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: var(--radius-badge-tape);
+      box-shadow: 2px 2px 0 0 var(--color-ink-shadow);
+      transform: var(--layer-tilt-left);
+    }
+
+    .btn-row, .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .field-label {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--color-ink-primary);
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 10px 14px;
+      font-size: 16px;
+      font-family: var(--font-sans);
+      border: 3px solid var(--color-ink-primary);
+      border-radius: var(--radius-badge-tape);
+      background: var(--color-surface-inverse);
+      color: var(--color-ink-primary);
+      box-shadow: 3px 3px 0 0 var(--color-ink-shadow);
+      outline: none;
+      transition: transform var(--transition-snap), box-shadow var(--transition-snap);
+    }
+
+    .text-input:focus {
+      box-shadow: 4px 4px 0 0 var(--color-accent-pop);
+      outline: 2px solid var(--color-accent-pop);
+      outline-offset: 1px;
+    }
+
+    /* Custom Checkbox & Radio */
+    .custom-control {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .custom-control input {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border: 3px solid var(--color-ink-primary);
+      background: var(--color-surface-inverse);
+      border-radius: var(--radius-badge-tape);
+      box-shadow: 2px 2px 0 0 var(--color-ink-shadow);
+      cursor: pointer;
+      display: grid;
+      place-content: center;
+      transition: transform var(--transition-snap), background-color var(--transition-snap);
+    }
+
+    .custom-control input[type="checkbox"]:checked {
+      background: var(--color-ink-primary);
+    }
+
+    .custom-control input[type="checkbox"]:checked::after {
+      content: "✓";
+      color: var(--color-surface-inverse);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .custom-control input[type="radio"] {
+      border-radius: 50%;
+    }
+
+    .custom-control input[type="radio"]:checked {
+      background: var(--color-surface-inverse);
+    }
+
+    .custom-control input[type="radio"]:checked::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: var(--color-ink-primary);
+      border-radius: 50%;
+    }
+
+    /* Tactile Toggle */
+    .toggle {
+      position: relative;
+      width: 52px;
+      height: 28px;
+      border: 3px solid var(--color-ink-primary);
+      border-radius: var(--radius-pill-indicator);
+      background: var(--color-canvas-base);
+      box-shadow: 2px 2px 0 0 var(--color-ink-shadow);
+      cursor: pointer;
+      transition: background-color var(--transition-snap);
+    }
+
+    .toggle[aria-pressed="true"] {
+      background: var(--color-accent-pop);
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--color-ink-primary);
+      transition: transform var(--transition-snap);
+    }
+
+    .toggle[aria-pressed="true"]::after {
+      transform: translateX(24px);
+      background: var(--color-surface-inverse);
+    }
+
+    /* Tape Badges */
+    .badge-tape {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--color-ink-primary);
+      background: var(--color-surface-tape);
+      border-radius: var(--radius-badge-tape);
+      box-shadow: 3px 3px 0 0 var(--color-ink-shadow);
+    }
+
+    .badge-tilt-left {
+      transform: var(--layer-tilt-left);
+    }
+
+    .badge-tilt-right {
+      transform: var(--layer-tilt-right);
+    }
+
+    .badge-cyan {
+      background: var(--color-accent-pop);
+      color: #FFFFFF;
+    }
+
+    /* Silhouette Icon Stamp */
+    .icon-stamp {
+      width: 20px;
+      height: 20px;
+      fill: var(--color-ink-primary);
+      flex-shrink: 0;
+    }
+
+    /* -------------------------------------------------------------------------
+     * LIVING DEMO: THE POP-BRUTALIST TAPE & STAMP STUDIO
+     * ---------------------------------------------------------------------- */
+    .demo-container {
+      background: var(--color-canvas-base);
+      border: var(--border-core);
+      border-radius: var(--radius-card-surface);
+      padding: 36px;
+      box-shadow: var(--shadow-hard-tape-offset);
+      position: relative;
+    }
+
+    .demo-header-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: var(--divider-hard-bar);
+    }
+
+    .demo-badge-banner {
+      background: var(--color-surface-tape);
+      color: var(--color-ink-primary);
+      padding: 8px 18px;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      border-radius: var(--radius-badge-tape);
+      box-shadow: var(--shadow-hard-tape);
+      transform: var(--layer-tilt-left);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .demo-interactive-board {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 28px;
+    }
+
+    .demo-poster-card {
+      background: var(--color-surface-inverse);
+      border: var(--border-core);
+      border-radius: var(--radius-card-surface);
+      padding: 32px;
+      box-shadow: var(--shadow-hard-tape);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .demo-poster-tape-corner {
+      position: absolute;
+      top: -12px;
+      right: 28px;
+      background: var(--color-surface-tape);
+      color: var(--color-ink-primary);
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 16px;
+      border-radius: var(--radius-badge-tape);
+      box-shadow: 3px 3px 0 0 var(--color-ink-shadow);
+      transform: var(--layer-tilt-right);
+    }
+
+    .demo-controls-panel {
+      background: var(--color-surface-inverse);
+      border: var(--border-core);
+      border-radius: var(--radius-card-surface);
+      padding: 24px;
+      box-shadow: var(--shadow-hard-tape);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .stamp-palette {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .stamp-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 8px;
+      background: var(--color-canvas-base);
+      border: 2px solid var(--color-ink-primary);
+      border-radius: var(--radius-badge-tape);
+      box-shadow: 2px 2px 0 0 var(--color-ink-shadow);
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--color-ink-primary);
+      transition: transform var(--transition-snap), box-shadow var(--transition-snap), background-color var(--transition-snap);
+    }
+
+    .stamp-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 4px 4px 0 0 var(--color-ink-shadow);
+      background: var(--color-surface-tape);
+    }
+
+    .stamp-btn.active-stamp {
+      background: var(--color-accent-pop);
+      color: #FFFFFF;
+      box-shadow: 3px 3px 0 0 var(--color-ink-shadow);
+    }
+
+    .stamp-btn.active-stamp .icon-stamp {
+      fill: #FFFFFF;
+    }
+
+    .demo-canvas-target {
+      min-height: 220px;
+      background: var(--color-canvas-base);
+      border: 2px dashed var(--color-ink-primary);
+      border-radius: var(--radius-card-surface);
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      gap: 14px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stamped-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--color-surface-tape);
+      color: var(--color-ink-primary);
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 800;
+      border-radius: var(--radius-badge-tape);
+      box-shadow: var(--shadow-hard-tape);
+      animation: stampPop 180ms cubic-bezier(0.2, 0.8, 0.4, 1);
+      cursor: grab;
+      user-select: none;
+    }
+
+    @keyframes stampPop {
+      0% { transform: scale(1.4) translateY(-10px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    /* Audio Player Tape Deck Fragment */
+    .tape-deck {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: var(--color-surface-inverse);
+      border: 2px solid var(--color-ink-primary);
+      border-radius: var(--radius-card-surface);
+      padding: 16px;
+      box-shadow: 3px 3px 0 0 var(--color-ink-shadow);
+    }
+
+    .tape-deck-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .pip-indicator-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pip-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: var(--radius-pill-indicator);
+      border: 2px solid var(--color-ink-primary);
+      background: var(--color-surface-inverse);
+      cursor: pointer;
+      transition: background-color var(--transition-snap), transform var(--transition-snap);
+    }
+
+    .pip-dot.active {
+      background: var(--color-accent-pop);
+      transform: scale(1.2);
+    }
+
+    /* -------------------------------------------------------------------------
+     * SPEC DRAWER & MODAL & TOAST
+     * ---------------------------------------------------------------------- */
+    .spec-drawer-card {
+      background: var(--color-ink-primary);
+      color: var(--color-surface-inverse);
+      border: var(--border-core);
+      border-radius: var(--radius-card-surface);
+      padding: 32px;
+      box-shadow: var(--shadow-hard-tape-offset);
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 520px;
+      padding: 20px;
+      background: #250143;
+      color: #F8E8FF;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 2px solid var(--color-surface-tape);
+      border-radius: var(--radius-badge-tape);
+      box-shadow: inset 2px 2px 0 0 var(--color-ink-shadow);
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(48, 0, 87, 0.7);
+      backdrop-filter: blur(2px);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content-card {
+      width: min(880px, 100%);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--color-surface-inverse);
+      border: var(--border-core);
+      border-radius: var(--radius-card-surface);
+      box-shadow: 8px 8px 0 0 var(--color-ink-shadow);
+      overflow: hidden;
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 22px;
+      background: var(--color-surface-tape);
+      border-bottom: var(--border-core);
+    }
+
+    .modal-footer {
+      border-bottom: 0;
+      border-top: var(--border-core);
+      background: var(--color-canvas-base);
+      justify-content: flex-end;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow: auto;
+      flex: 1;
+      background: #FAF3FE;
+    }
+
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      border: 2px solid var(--color-ink-primary);
+      background: var(--color-surface-inverse);
+      color: var(--color-ink-primary);
+      cursor: pointer;
+      border-radius: var(--radius-badge-tape);
+      font-weight: 800;
+      font-size: 1rem;
+      box-shadow: 2px 2px 0 0 var(--color-ink-shadow);
+      transition: transform var(--transition-snap), box-shadow var(--transition-snap);
+    }
+
+    .modal-close-btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 3px 3px 0 0 var(--color-ink-shadow);
+    }
+
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 3000;
+      padding: 14px 22px;
+      background: var(--color-ink-primary);
+      color: var(--color-surface-inverse);
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 800;
+      border: 2px solid var(--color-surface-tape);
+      border-radius: var(--radius-badge-tape);
+      box-shadow: 4px 4px 0 0 var(--color-ink-shadow);
+      animation: toastSlide 160ms cubic-bezier(0.2, 0.8, 0.4, 1);
+    }
+
+    @keyframes toastSlide {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* -------------------------------------------------------------------------
+     * MANDATORY RESPONSIVE RULES (agent.md §6)
+     * ---------------------------------------------------------------------- */
+    @media (max-width: 768px) {
+      .layout-wrapper {
+        width: calc(100% - 24px);
+        padding: 24px 0 64px;
+      }
+
+      .style-tile-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 12px 16px;
+      }
+
+      .header-title-block {
+        justify-content: flex-start;
+      }
+
+      .header-actions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+
+      .btn-tile {
+        padding: 8px 6px;
+        font-size: 0.75rem;
+        justify-content: center;
+        white-space: nowrap;
+      }
+
+      .hero-banner {
+        padding: 24px 18px;
+      }
+
+      .hero-ribbon-tag {
+        position: static;
+        transform: none;
+        margin-bottom: 16px;
+        display: inline-flex;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .swatches-grid, .components-grid, .demo-interactive-board {
+        grid-template-columns: 1fr;
+      }
+
+      .btn-row, .control-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+        min-height: 48px;
+      }
+
+      .toast-popup {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet. Must remain immediately after this page's <style>. -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- =========================================================================
+       MANDATORY HEADER BAR COMPONENT
+       ========================================================================= -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Playful Pop-Brutalism</span>
+      <!-- MUST equal catalog vibeBadge exactly. One of the seven official filter names. -->
+      <span class="design-vibe-tag">Neo-Brutalism</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+      <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+      <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-playful-pop-brutalism.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- SLOT 1: HERO DISPLAY BANNER -->
+    <section class="hero-banner" id="hero-section">
+      <div class="hero-ribbon-tag">
+        <svg class="icon-stamp" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        TAPE-STAMP // SYSTEM SPEC
+      </div>
+
+      <div class="hero-meta-chips">
+        <span class="chip-tape">Tape-Stamp Aesthetic</span>
+        <span class="chip-tape">Zero-Blur Extrusion</span>
+        <span class="chip-tape">Radiant Lilac (#ECC2FD)</span>
+        <span class="chip-tape chip-cyan">Vivid Cyan Dot (#00A3FF)</span>
+        <span class="chip-tape">Light Mode</span>
+      </div>
+
+      <h1>Playful Pop-Brutalism</h1>
+
+      <p class="hero-lead-text">
+        A tactile tape-stamp aesthetic constructed on radiant pastel lilac backdrops with electric orchid ribbon surfaces, high-contrast midnight violet typography, and zero-blur grape extrusion drop-shadows. Flat 0px card edges meet slightly softened 3px cut-tape badges with hand-placed sticker tilts.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">
+          <svg class="icon-stamp" style="fill:#FFFFFF;" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Prompt for Agent
+        </button>
+        <a class="btn btn-tape" href="#demo-section">
+          <svg class="icon-stamp" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Launch Living Demo
+        </a>
+        <a class="btn btn-ghost" href="#components-section">
+          Test Component Archetypes
+        </a>
+      </div>
+    </section>
+
+    <!-- SLOT 2: PALETTE & COLOR ROLES -->
+    <section class="section-block" id="palette-section">
+      <div class="section-kicker-badge">
+        <svg class="icon-stamp" style="width:14px;height:14px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+        01 // COLOR ROLES & MATRIX
+      </div>
+      <h2>Color roles & palette</h2>
+      <div class="swatches-grid" id="swatch-grid">
+        <!-- Filled by JS from DESIGN_PALETTE -->
+      </div>
+    </section>
+
+    <!-- SLOT 3: TYPOGRAPHY SPECIMEN -->
+    <section class="section-block" id="typography-section">
+      <div class="section-kicker-badge">
+        <svg class="icon-stamp" style="width:14px;height:14px;" viewBox="0 0 24 24"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+        02 // TYPOGRAPHY SYSTEM
+      </div>
+      <h2>Typeface specimen & hierarchy</h2>
+
+      <div class="type-specimen-card">
+        <div class="type-stack">
+          <div class="type-row">
+            <span class="type-badge-label">Hero Tape</span>
+            <p class="text-hero-tape">Playful Pop-Brutalism System</p>
+          </div>
+
+          <div class="type-row">
+            <span class="type-badge-label">Badge Title</span>
+            <p class="text-badge-title">Hand-Placed Cut-Tape Badges &amp; Extrusions</p>
+          </div>
+
+          <div class="type-row">
+            <span class="type-badge-label">Headline Light</span>
+            <p class="text-headline-light">Airy geometric sans-serif counterbalanced with dense plum shadows.</p>
+          </div>
+
+          <div class="type-row">
+            <span class="type-badge-label">Body Caption</span>
+            <p class="text-body-caption">
+              Base-8 structural rhythm with expansive poster-style breathing room. Organic solid silhouette glyphs stamped directly into electric orchid ribbon surfaces.
+            </p>
+          </div>
+
+          <div class="type-row">
+            <span class="type-badge-label">Eyebrow Heavy</span>
+            <p class="text-eyebrow-heavy">SPECIFICATION NO. 2026 // ZERO-BLUR MECHANICAL FEEDBACK</p>
+          </div>
+
+          <div class="type-row">
+            <span class="type-badge-label">Live Tester</span>
+            <input class="live-type-input" id="live-type-tester-input" type="text" value="Type here to test Outfit 800 tape weight…" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 4: COMPONENT ARCHETYPES -->
+    <section class="section-block" id="components-section">
+      <div class="section-kicker-badge">
+        <svg class="icon-stamp" style="width:14px;height:14px;" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        03 // COMPONENT ARCHETYPES
+      </div>
+      <h2>Tactile component suite</h2>
+
+      <div class="components-grid">
+        <!-- Buttons Card -->
+        <article class="component-card">
+          <span class="card-tape-pin">TAPE 01</span>
+          <h3>Buttons &amp; Actions</h3>
+          <p class="text-body-caption">120ms snap transitions mimicking spring-loaded mechanical presses.</p>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="button">Primary</button>
+            <button class="btn btn-tape" type="button">Surface Tape</button>
+            <button class="btn btn-accent" type="button">Cyan Pop</button>
+            <button class="btn btn-ghost" type="button">Ghost</button>
+            <button class="btn btn-danger" type="button">Danger</button>
+          </div>
+        </article>
+
+        <!-- Form Controls Card -->
+        <article class="component-card">
+          <span class="card-tape-pin">TAPE 02</span>
+          <h3>Inputs &amp; Focus</h3>
+          <label class="field-label" for="demo-input">Field Label // Cut-Tape Well</label>
+          <input class="text-input" id="demo-input" type="text" placeholder="Enter text to see cyan ring focus…" autocomplete="off" />
+          <div class="control-row" style="margin-top:16px;">
+            <label class="custom-control">
+              <input type="checkbox" checked />
+              <span>Checked Box</span>
+            </label>
+            <label class="custom-control">
+              <input type="radio" name="demo-radio" checked />
+              <span>Radio A</span>
+            </label>
+            <label class="custom-control">
+              <input type="radio" name="demo-radio" />
+              <span>Radio B</span>
+            </label>
+            <button class="toggle" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle state"></button>
+          </div>
+        </article>
+
+        <!-- Tape Badges & Silhouette Stamp Card -->
+        <article class="component-card">
+          <span class="card-tape-pin">TAPE 03</span>
+          <h3>Sticker Badges &amp; Tilts</h3>
+          <p class="text-body-caption">Rotational tilts mimic hand-placed stickers on a poster grid.</p>
+          <div class="btn-row">
+            <span class="badge-tape badge-tilt-left">
+              <svg class="icon-stamp" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Left Tilt (-2.2°)
+            </span>
+            <span class="badge-tape badge-tilt-right">
+              <svg class="icon-stamp" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Right Tilt (+1.8°)
+            </span>
+            <span class="badge-tape badge-cyan">
+              <svg class="icon-stamp" style="fill:#FFFFFF;" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Electric Cyan Pip
+            </span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SLOT 5: LIVING MICRO-EXPERIENCE -->
+    <section class="section-block" id="demo-section">
+      <div class="section-kicker-badge">
+        <svg class="icon-stamp" style="width:14px;height:14px;" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        04 // LIVING MICRO-EXPERIENCE
+      </div>
+      <h2>Living demo: Pop-Brutalist Sticker &amp; Tape Studio</h2>
+
+      <div class="demo-container">
+        <div class="demo-header-strip">
+          <div class="demo-badge-banner">
+            <svg class="icon-stamp" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            TAPE-STAMP ZINE // VOL. 01
+          </div>
+          <div class="pip-indicator-row">
+            <span class="pip-dot active" data-pip="1" title="Page 1"></span>
+            <span class="pip-dot" data-pip="2" title="Page 2"></span>
+            <span class="pip-dot" data-pip="3" title="Page 3"></span>
+            <span class="chip-tape" style="margin-left:8px;">CYAN PIPS</span>
+          </div>
+        </div>
+
+        <div class="demo-interactive-board">
+          <!-- Poster Showcase Canvas -->
+          <div class="demo-poster-card">
+            <div class="demo-poster-tape-corner">ISSUE 01 // ARCHIVE</div>
+            <div>
+              <p class="text-eyebrow-heavy" style="margin-bottom:6px;">STAMP CANVAS // LIVE PREVIEW</p>
+              <h3 style="font-size:1.8rem;line-height:1.1;margin-bottom:12px;">Radical Violet Screenprint</h3>
+              <p class="text-body-caption" style="margin-bottom:18px;">
+                Click any stamp button on the right to apply hand-placed sticker seals onto this poster surface. Each sticker snaps into place with high-contrast extrusion shadows.
+              </p>
+            </div>
+
+            <!-- Target area where stamps are added -->
+            <div class="demo-canvas-target" id="demo-canvas-target">
+              <div class="stamped-item" style="transform:rotate(-2deg);">
+                <svg class="icon-stamp" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                VERIFIED TAPE-STAMP
+              </div>
+              <div class="stamped-item" style="transform:rotate(1.5deg);background:var(--color-surface-inverse);">
+                <svg class="icon-stamp" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                POP EXTRUSION
+              </div>
+            </div>
+
+            <!-- Audio Deck Mini Fragment -->
+            <div class="tape-deck" style="margin-top:20px;">
+              <div class="tape-deck-controls">
+                <div>
+                  <strong style="font-family:var(--font-display);font-size:0.9rem;display:block;">CASSETTE TRACK 04 // VIOLET PULSE</strong>
+                  <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--ink-secondary);">120 BPM • MECHANICAL SNAP</span>
+                </div>
+                <button class="btn btn-accent" id="demo-play-btn" type="button" style="min-height:36px;padding:4px 14px;font-size:0.8rem;">
+                  ▶ PLAY TRACK
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls & Stamp Selector -->
+          <div class="demo-controls-panel">
+            <span class="field-label">SELECT STAMP GLYPH</span>
+            <div class="stamp-palette">
+              <button class="stamp-btn active-stamp" type="button" data-stamp="star">
+                <svg class="icon-stamp" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                STAR
+              </button>
+              <button class="stamp-btn" type="button" data-stamp="wreath">
+                <svg class="icon-stamp" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                SEAL
+              </button>
+              <button class="stamp-btn" type="button" data-stamp="bolt">
+                <svg class="icon-stamp" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                BOLT
+              </button>
+            </div>
+
+            <div>
+              <span class="field-label">STAMP TEXT</span>
+              <input class="text-input" id="stamp-label-input" type="text" value="HAND-STAMPED" />
+            </div>
+
+            <button class="btn btn-primary" id="btn-press-stamp" type="button" style="width:100%;">
+              <svg class="icon-stamp" style="fill:#FFFFFF;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+              PRESS STAMP (APPLY)
+            </button>
+
+            <button class="btn btn-ghost" id="btn-clear-stamps" type="button" style="width:100%;">
+              RESET STAMPS
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 6: STYLE TILE SPEC DRAWER -->
+    <section class="section-block spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-head">
+        <div>
+          <span class="chip-tape" style="background:var(--color-surface-tape);color:var(--color-ink-primary);margin-bottom:8px;display:inline-block;">
+            MACHINE-READABLE SPEC
+          </span>
+          <h2 style="margin:0;color:inherit;">Style Tile specification</h2>
+        </div>
+        <button class="btn btn-accent" type="button" onclick="copyTilePromptDirect()">
+          <svg class="icon-stamp" style="fill:#FFFFFF;" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Markdown Spec
+        </button>
+      </div>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+    </section>
+  </main>
+
+  <!-- Spec Modal -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title" style="font-family:var(--font-display);font-size:1.1rem;font-weight:800;color:var(--color-ink-primary);">
+          Playful Pop-Brutalism // Markdown Spec
+        </strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">✓ Copied to Clipboard!</div>
+
+  <!-- =========================================================================
+       SOURCE OF TRUTH: STYLE TILE MARKDOWN (agent.md §4)
+       ========================================================================= -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Playful Pop-Brutalism
+  Construction: cut-tape ribbons • midnight violet inks • 0px poster flats • zero-blur extrusion
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A tactile tape-stamp aesthetic constructed on radiant pastel lilac backdrops with electric orchid ribbon surfaces, high-contrast midnight violet inks, and zero-blur grape extrusion drop-shadows. Flat 0px card edges meet slightly softened 3px cut-tape badges with slight rotational tilts mimicking hand-applied stickers. Fast, mechanical 120ms transitions produce punchy snap feedback on tactile interaction.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #ECC2FD; /* Radiant pastel lilac primary screen backdrop */
+  --bg-surface:             #BD72F5; /* Electric orchid highlighted ribbon tape surface */
+  --bg-surface-alt:         #E4B1FC; /* Soft lilac tone for subtle panels */
+  --bg-surface-dark:        #390366; /* Deep midnight violet solid contrast blocks */
+
+  /* Inks & Typography */
+  --ink-primary:            #390366; /* Deep midnight violet high-contrast text and silhouettes */
+  --ink-secondary:          #591694; /* Mid violet subtext and secondary copy */
+  --ink-muted:              #7B37B8; /* Muted violet captions and metadata */
+  --ink-inverted:           #FFFFFF; /* Pure crisp white high-contrast negative space */
+
+  /* Signature Accents & Shadows */
+  --accent-primary:         #390366; /* Deep midnight violet primary action */
+  --accent-primary-hover:   #300057; /* Dense grape interactive hover */
+  --accent-secondary:       #BD72F5; /* Electric orchid surface accent */
+  --accent-tertiary:        #00A3FF; /* Vivid electric cyan micro-accent pop */
+
+  /* Dedicated Tokens */
+  --color-canvas-base:      #ECC2FD; /* Radiant pastel lilac */
+  --color-surface-tape:     #BD72F5; /* Electric orchid */
+  --color-ink-primary:      #390366; /* Deep midnight violet */
+  --color-ink-shadow:       #300057; /* Dense grape hard drop-shadow */
+  --color-accent-pop:       #00A3FF; /* Vivid electric cyan */
+  --color-surface-inverse:  #FFFFFF; /* Pure crisp white */
+
+  /* Status Tokens */
+  --status-success:         #059669;
+  --status-warning:         #D97706;
+  --status-danger:          #DC2626;
+  --status-info:            #00A3FF;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Outfit", sans-serif;
+--font-sans:    "Plus Jakarta Sans", -apple-system, sans-serif;
+--font-mono:    "JetBrains Mono", monospace;
+
+/* Type Scale */
+--text-display: 2.5rem   / 1.05  var(--font-display); /* Letter-spacing: -0.025em | Weight: 800 */
+--text-h1:      2.25rem  / 1.10  var(--font-display); /* Letter-spacing: -0.02em  | Weight: 800 */
+--text-h2:      1.75rem  / 1.20  var(--font-display); /* Letter-spacing: -0.01em  | Weight: 300 */
+--text-h3:      1.625rem / 1.15  var(--font-display); /* Letter-spacing: -0.015em | Weight: 700 */
+--text-body:    1.0rem   / 1.35  var(--font-sans);    /* Letter-spacing: 0.0em    | Weight: 400 */
+--text-body-sm: 0.875rem / 1.35  var(--font-sans);    /* Letter-spacing: 0.0em    | Weight: 400 */
+--text-meta:    0.875rem / 1.20  var(--font-display); /* Letter-spacing: -0.01em  | Weight: 800 italic */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-badge-tape:       3px;      /* Subtle soften for cut-tape effect */
+--radius-card-surface:     0px;      /* Flat edges for poster-like structure */
+--radius-pill-indicator:   9999px;   /* Full round for pagination pips and dots */
+--radius-default:          0px;
+--radius-subtle:           3px;
+--radius-pill:             9999px;
+
+/* Elevation & Hard Extrusion Shadows */
+--shadow-hard-tape:        4px 4px 0px 0px #300057;
+--shadow-hard-tape-offset: 5px 6px 0px 0px #300057;
+--shadow-base:             4px 4px 0px 0px #300057;
+--shadow-hover:            6px 6px 0px 0px #300057;
+--shadow-active:           1px 1px 0px 0px #300057;
+
+/* Rotational Tilt Layers */
+--layer-tilt-left:         rotate(-2.2deg);
+--layer-tilt-right:        rotate(1.8deg);
+--layer-tilt-subtle:       rotate(-0.8deg);
+
+/* Transition */
+--transition-snap:         120ms cubic-bezier(0.2, 0.8, 0.4, 1);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--divider-hard-bar:        3px solid #390366;
+--border-badge-stroke:     none;     /* Depth is defined by hard-shadow, not borders */
+--border-core:             3px solid #390366;
+--border-hairline:         1.5px solid #390366;
+--divider-style:           3px solid #390366;
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Render with cut-tape 3px radius or crisp 0px corners, filled in electric orchid (#BD72F5) or midnight violet (#390366). No border strokes; depth is rendered via zero-blur hard shadow (4px 4px 0px 0px #300057). On hover: translateY(-2px) scale(1.02) with 6px 6px shadow. On active press: translate(3px, 3px) with 1px 1px shadow via 120ms snap timing. Use the host's existing labels.
+- **Cards**: Flat 0px edges with poster-like geometry. Filled with pastel lilac (#ECC2FD), electric orchid (#BD72F5), or pure white (#FFFFFF), backed by hard 4px or 5px offset grape shadow extrusion (#300057). Content blocks spaced with 24px gaps and 32px inner padding. Do not add index codes or fake meta.
+- **Inputs**: Flat 0px or 3px radius wells filled with white (#FFFFFF) or light lilac, 3px solid midnight violet border or 3px hard drop shadow. Focused state snaps with high-contrast violet outline or cyan ring (#00A3FF). Font-size at least 16px.
+- **Navigation**: Restyle existing nav links as bold cut-tape tabs or ink labels with 3px divider rules between sections. Active indicator renders as a vivid electric cyan (#00A3FF) pill pip or hard-shadowed orchid badge. Do not add catalog codes, fake clocks, or status readouts.
+- **Iconography**: Organic, solid silhouette glyphs filled with midnight violet (#390366). Solid fill with 0px stroke weight. Stylized stars, laurel wreaths, and stamps.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No soft Gaussian blurs or diffused dropshadows; all elevation must be zero-blur hard offset extrusion.
+- No rounded bento pills for cards; card geometry is strictly 0px flat cut-paper edges.
+- No thin 1px light gray borders; structural boundaries must be 3px solid ink bars or hard shadow offsets.
+- No slow easing transitions; interactions must be snappy 120ms mechanical clicks.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- =========================================================================
+       CHROME LOGIC SCRIPT
+       ========================================================================= -->
+  <script>
+    const DESIGN_SLUG = "playful-pop-brutalism";
+
+    const DESIGN_PALETTE = [
+      { name: "Canvas Base", hex: "#ECC2FD", cssVar: "--color-canvas-base" },
+      { name: "Surface Tape", hex: "#BD72F5", cssVar: "--color-surface-tape" },
+      { name: "Ink Primary", hex: "#390366", cssVar: "--color-ink-primary" },
+      { name: "Ink Shadow", hex: "#300057", cssVar: "--color-ink-shadow" },
+      { name: "Accent Pop", hex: "#00A3FF", cssVar: "--color-accent-pop" },
+      { name: "Surface Inverse", hex: "#FFFFFF", cssVar: "--color-surface-inverse" },
+      { name: "Mid Violet", hex: "#591694", cssVar: "--ink-secondary" },
+      { name: "Muted Violet", hex: "#7B37B8", cssVar: "--ink-muted" },
+      { name: "Soft Lilac", hex: "#E4B1FC", cssVar: "--bg-surface-alt" },
+      { name: "Status Success", hex: "#059669", cssVar: "--status-success" },
+      { name: "Status Warning", hex: "#D97706", cssVar: "--status-warning" },
+      { name: "Status Danger", hex: "#DC2626", cssVar: "--status-danger" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex;
+        btn.innerHTML =
+          '<span class="swatch-chip" style="background:' + swatch.hex + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + "</span>" +
+            '<span class="swatch-var">' + swatch.cssVar + "</span> " +
+            '<span class="swatch-hex">' + swatch.hex + "</span>" +
+          "</span>";
+        btn.addEventListener("click", function () { copyHex(swatch.hex, swatch.name); });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () { toast.style.display = "none"; }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(function () { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+      });
+    }
+
+    // Interactive Stamp Machine Logic
+    let currentStamp = "star";
+    const stampBtns = document.querySelectorAll(".stamp-btn");
+    stampBtns.forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        stampBtns.forEach(b => b.classList.remove("active-stamp"));
+        btn.classList.add("active-stamp");
+        currentStamp = btn.getAttribute("data-stamp");
+      });
+    });
+
+    const btnPressStamp = document.getElementById("btn-press-stamp");
+    const stampTarget = document.getElementById("demo-canvas-target");
+    const stampInput = document.getElementById("stamp-label-input");
+
+    const stampIcons = {
+      star: '<svg class="icon-stamp" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+      wreath: '<svg class="icon-stamp" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>',
+      bolt: '<svg class="icon-stamp" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>'
+    };
+
+    if (btnPressStamp && stampTarget) {
+      btnPressStamp.addEventListener("click", function() {
+        const text = (stampInput && stampInput.value.trim()) || "STAMP";
+        const tilts = [-2.5, -1.8, 1.2, 2.2, -0.8, 1.8];
+        const randomTilt = tilts[Math.floor(Math.random() * tilts.length)];
+        const bgColors = ["var(--color-surface-tape)", "var(--color-surface-inverse)", "var(--color-accent-pop)"];
+        const randomBg = bgColors[Math.floor(Math.random() * bgColors.length)];
+        const textColor = randomBg === "var(--color-accent-pop)" ? "#FFFFFF" : "var(--color-ink-primary)";
+
+        const item = document.createElement("div");
+        item.className = "stamped-item";
+        item.style.transform = "rotate(" + randomTilt + "deg)";
+        item.style.background = randomBg;
+        item.style.color = textColor;
+        item.innerHTML = (stampIcons[currentStamp] || stampIcons.star) + " <span>" + text + "</span>";
+
+        if (randomBg === "var(--color-accent-pop)") {
+          const icon = item.querySelector(".icon-stamp");
+          if (icon) icon.style.fill = "#FFFFFF";
+        }
+
+        stampTarget.appendChild(item);
+        triggerToast("✓ Stamped: " + text);
+      });
+    }
+
+    const btnClearStamps = document.getElementById("btn-clear-stamps");
+    if (btnClearStamps && stampTarget) {
+      btnClearStamps.addEventListener("click", function() {
+        stampTarget.innerHTML = 
+          '<div class="stamped-item" style="transform:rotate(-2deg);">' +
+            stampIcons.star + ' VERIFIED TAPE-STAMP' +
+          '</div>' +
+          '<div class="stamped-item" style="transform:rotate(1.5deg);background:var(--color-surface-inverse);">' +
+            stampIcons.bolt + ' POP EXTRUSION' +
+          '</div>';
+        triggerToast("Stamps reset");
+      });
+    }
+
+    // Audio Play Button Simulation
+    const playBtn = document.getElementById("demo-play-btn");
+    if (playBtn) {
+      let isPlaying = false;
+      playBtn.addEventListener("click", function() {
+        isPlaying = !isPlaying;
+        playBtn.textContent = isPlaying ? "⏸ PAUSE TRACK" : "▶ PLAY TRACK";
+        playBtn.style.background = isPlaying ? "var(--color-ink-primary)" : "var(--color-accent-pop)";
+        playBtn.style.color = "#FFFFFF";
+        triggerToast(isPlaying ? "Track playing: Violet Pulse" : "Track paused");
+      });
+    }
+
+    // Pips indicator interaction
+    const pipDots = document.querySelectorAll(".pip-dot");
+    pipDots.forEach(function(pip) {
+      pip.addEventListener("click", function() {
+        pipDots.forEach(p => p.classList.remove("active"));
+        pip.classList.add("active");
+        triggerToast("Jumped to Pip " + pip.getAttribute("data-pip"));
+      });
+    });
+  </script>
+</body>
+</html>
