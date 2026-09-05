@@ -122,32 +122,6 @@ const STYLE_TILES_DATA = [
     markdownSpec: null
   },
   {
-    slug: "cyber-gothic",
-    name: "Cyber Gothic",
-    vibe: "Deep Obsidian • Cyber-Gothic Watermarks • 237° Telemetry • Engineered Brutalism",
-    vibeBadge: "Editorial & Archival",
-    categories: ["editorial"],
-    theme: "Dark",
-    hasPage: true,
-    fonts: {
-      display: "Syne",
-      sans: "Inter",
-      mono: "JetBrains Mono"
-    },
-    palette: [
-      { name: "Canvas Base", hex: "#0A0A0C" },
-      { name: "Canvas Subtle", hex: "#121216" },
-      { name: "Surface Card", hex: "#18181D" },
-      { name: "Surface Elevated", hex: "#22222A" },
-      { name: "Text Primary", hex: "#F5F5F7" },
-      { name: "Text Secondary", hex: "#9E9EA8" },
-      { name: "Text Muted", hex: "#52525B" },
-      { name: "Accent Solid", hex: "#FFFFFF" }
-    ],
-    description: "High-contrast dark tactical cyber-gothic design system featuring deep obsidian black surfaces, ambient blackletter calligraphy watermarks, 237° tactical telemetry, perspective dashed orbital ground stages, and razor-sharp engineered brutalism.",
-    markdownSpec: null
-  },
-  {
     slug: "skybound",
     name: "Skybound",
     vibe: "Cool Alabaster • Electric Lemon Lime • Modern Travel",
