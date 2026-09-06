@@ -283,7 +283,7 @@ From the project root:
 - [x] **6.** Real errors hit existing alerts
 - [x] **7.** Completion log only; no catalog writes
 - [x] **8.** Server-side HTML / size / prefix / suffix / private
-- [ ] **9.** No chrome regressions
+- [x] **9.** No chrome regressions
 - [ ] **10.** `vercel dev` happy path + negative tests
 
 ---
