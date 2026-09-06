@@ -1,5 +1,6 @@
-﻿# Environment variables & local credentials
+# Environment variables & local credentials
 .env
+.env.local
 .env*.local
 env/
 *.env
@@ -12,3 +13,7 @@ desktop.ini
 # Node / dependencies
 node_modules/
 npm-debug.log*
+
+# Vercel
+.vercel/
+
