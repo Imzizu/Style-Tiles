@@ -282,7 +282,7 @@ From the project root:
 - [x] **5.** Replace `executeUploadSubmission()` with `uploadPresigned` → `/api/upload`
 - [x] **6.** Real errors hit existing alerts
 - [x] **7.** Completion log only; no catalog writes
-- [ ] **8.** Server-side HTML / size / prefix / suffix / private
+- [x] **8.** Server-side HTML / size / prefix / suffix / private
 - [ ] **9.** No chrome regressions
 - [ ] **10.** `vercel dev` happy path + negative tests
 

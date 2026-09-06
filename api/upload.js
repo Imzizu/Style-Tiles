@@ -64,10 +64,30 @@ export function getForcedPathname(clientPathname) {
 
 /**
  * Hook called prior to issuing client token/presigned URL.
- * Enforces passphrase (if configured), file extension, size limit, random suffix, and metadata payload.
+ * Enforces passphrase (if configured), file extension, size limit, random suffix, prefix, and metadata payload.
  */
 export async function onBeforeGenerateToken(pathname, clientPayload, multipart) {
-  // 1. Passphrase check if UPLOAD_PASSPHRASE is set in environment
+  // 1. Enforce single-file restriction (no multipart)
+  if (multipart) {
+    throw new Error('Multipart uploads are forbidden. Submissions must be standalone files under 5 MB.');
+  }
+
+  // 2. Storage prefix and path traversal guardrails
+  if (!pathname || typeof pathname !== 'string' || !pathname.startsWith(SUBMISSION_PREFIX)) {
+    throw new Error(`Forbidden pathname: must be stored under ${SUBMISSION_PREFIX}`);
+  }
+
+  if (pathname.includes('..') || pathname.includes('\\')) {
+    throw new Error('Forbidden pathname: path traversal sequences are not permitted.');
+  }
+
+  // 3. Strict file extension validation
+  const lowerPath = pathname.toLowerCase();
+  if (!lowerPath.endsWith('.html') && !lowerPath.endsWith('.htm')) {
+    throw new Error('Invalid file type: only standalone .html / .htm files are allowed.');
+  }
+
+  // 4. Passphrase check if UPLOAD_PASSPHRASE is set in environment
   const configuredPassphrase = process.env.UPLOAD_PASSPHRASE?.trim();
   let parsedClientPayload = {};
 
@@ -88,13 +108,7 @@ export async function onBeforeGenerateToken(pathname, clientPayload, multipart) 
     }
   }
 
-  // 2. Strict file extension validation
-  const lowerPath = (pathname || '').toLowerCase();
-  if (!lowerPath.endsWith('.html') && !lowerPath.endsWith('.htm')) {
-    throw new Error('Invalid file type: only standalone .html / .htm files are allowed.');
-  }
-
-  // 3. Extract metadata for completion log
+  // 5. Extract metadata for completion log
   const authorName = (parsedClientPayload.name || parsedClientPayload.authorName || '').trim();
   const designName = (parsedClientPayload.designName || '').trim();
   const curatorNote = (parsedClientPayload.note || parsedClientPayload.curatorNote || '').trim();
@@ -212,10 +226,22 @@ export async function POST(request) {
       return Response.json({ error: 'Missing request body' }, { status: 400 });
     }
 
-    // If generating a presigned URL, enforce pathname sanitization and prefixing
+    // Only allow expected Blob client operations
+    if (body.type !== 'blob.generate-presigned-url' && body.type !== 'blob.upload-completed') {
+      return Response.json({ error: 'Unsupported operation type' }, { status: 400 });
+    }
+
+    // If generating a presigned URL, enforce pathname sanitization, prefixing, and constraints
     if (body.type === 'blob.generate-presigned-url') {
       if (!body.payload || typeof body.payload !== 'object') {
         return Response.json({ error: 'Missing event payload' }, { status: 400 });
+      }
+
+      if (body.payload.multipart) {
+        return Response.json(
+          { error: 'Multipart uploads are forbidden. Standalone design files must be under 5 MB.' },
+          { status: 400 }
+        );
       }
 
       const clientPathname = body.payload.pathname;
@@ -231,8 +257,21 @@ export async function POST(request) {
         );
       }
 
+      if (body.payload.maximumSizeInBytes && Number(body.payload.maximumSizeInBytes) > MAX_UPLOAD_FILE_SIZE) {
+        return Response.json(
+          { error: `File exceeds maximum allowed size of ${MAX_UPLOAD_FILE_SIZE} bytes (5 MB).` },
+          { status: 400 }
+        );
+      }
+
       // Enforce submissions/YYYY-MM-DD/<sanitized-filename>
       body.payload.pathname = getForcedPathname(clientPathname);
+
+      // Force private access and random suffix guardrails
+      body.payload.access = 'private';
+      body.payload.addRandomSuffix = true;
+      body.payload.maximumSizeInBytes = MAX_UPLOAD_FILE_SIZE;
+      body.payload.allowedContentTypes = ALLOWED_CONTENT_TYPES;
     }
 
     const jsonResponse = await handleUploadPresigned({
