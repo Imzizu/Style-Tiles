@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light" data-theme="archival-drafting">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#FAF7F2" id="theme-color-meta">
+  <script>
+    (function () {
+      try {
+        var DEFAULTS = { light: "archival-drafting", dark: "monolithic-hyper-editorial" };
+        var mode = "light";
+        var themeId = DEFAULTS.light;
+        var v2 = null;
+        try { v2 = JSON.parse(localStorage.getItem("styleTiles.catalogTheme.v2") || "null"); } catch (e2) {}
+        if (v2 && (v2.mode === "light" || v2.mode === "dark")) {
+          mode = v2.mode;
+          themeId = (v2.themes && v2.themes[mode]) || DEFAULTS[mode];
+        } else {
+          var v1 = localStorage.getItem("styleTiles.theme");
+          if (v1 === "dark" || v1 === "light") mode = v1;
+          else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) mode = "dark";
+          themeId = DEFAULTS[mode];
+        }
+        document.documentElement.setAttribute("data-mode", mode);
+        document.documentElement.setAttribute("data-theme", themeId);
+        document.documentElement.style.colorScheme = mode;
+      } catch (e) {
+        document.documentElement.setAttribute("data-mode", "light");
+        document.documentElement.setAttribute("data-theme", "archival-drafting");
+      }
+    })();
+  </script>
+  <title>Upload Your Own Design Files — Style Tiles Archive</title>
+  <meta name="description" content="Submit a standalone HTML design page to the Style Tiles curator inbox. Every submission is reviewed by hand.">
+  
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <link rel="shortcut icon" href="favicon.ico">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chivo+Mono:ital,wght@0,400..800;1,400..800&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Fragment+Mono:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400..800;1,400..800&family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Orbitron:wght@400..900&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Space+Grotesk:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet + catalog chrome theme packs -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="themes/archival-drafting.css">
+  <link rel="stylesheet" href="themes/monolithic-hyper-editorial.css">
+  <link rel="stylesheet" href="themes/neo-editorial-poster-brutalism.css">
+  <link rel="stylesheet" href="themes/editorial-noir.css">
+</head>
+<body>
+
+  <!-- 1. Top Masthead Bar -->
+  <aside class="masthead-strip">
+    <div class="strip-left">
+      <span class="strip-reg-mark">⌖</span>
+      <span><strong>STYLE TILES // DESIGN REGISTRY</strong></span>
+      <span class="live-indicator">
+        <span class="live-dot"></span>
+        <span>REGISTRY ONLINE</span>
+      </span>
+    </div>
+    <div class="strip-right">
+      <span id="live-clock" style="font-family: var(--font-mono); font-weight: 600;">2026-08-17 00:00:00 UTC</span>
+    </div>
+  </aside>
+
+  <!-- 2. Sticky Primary Header -->
+  <header class="site-header">
+    <div class="layout-wrapper header-inner">
+      <a href="index.html" class="brand-block" title="Style Tiles Registry Home">
+        <div class="brand-stamp">ST</div>
+        <div class="brand-text-group">
+          <span class="brand-title">STYLE TILES</span>
+          <span class="brand-sub">AGENT DESIGN REGISTRY</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" aria-label="Main Navigation">
+        <a href="index.html#catalog" class="header-link">Catalog</a>
+        <a href="index.html#catalog-controls" class="header-link">Search</a>
+        <button id="header-theme-toggle" class="view-btn theme-toggle" type="button" onclick="toggleSiteThemeMode()" title="Roll a random dark theme" aria-pressed="false" aria-label="Apply a random dark theme">
+          <span class="theme-toggle-icon" aria-hidden="true">
+            <svg class="theme-icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="theme-icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </span>
+          <span class="theme-label">Dark</span>
+        </button>
+        <div class="theme-picker" id="theme-picker">
+          <button id="header-theme-picker" class="view-btn" type="button" onclick="toggleThemePicker(event)" title="Choose catalog theme" aria-haspopup="dialog" aria-expanded="false" aria-controls="theme-picker-panel">
+            <span class="theme-swatch-stack" id="header-theme-swatch" aria-hidden="true"></span>
+            <span class="theme-picker-label" id="header-theme-picker-label">Manila</span>
+          </button>
+          <div class="theme-picker-panel" id="theme-picker-panel" role="dialog" aria-label="Catalog themes" hidden></div>
+        </div>
+        <a href="index.html" class="btn btn-primary btn-sm">
+          <span>← Back to Catalog</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 3. Main Upload Content -->
+  <main class="upload-page-main">
+    <div class="layout-wrapper" style="padding-top: var(--space-8); padding-bottom: var(--space-16); max-width: 840px;">
+      
+      <!-- Archival Header Section -->
+      <div style="margin-bottom: var(--space-8);">
+        <div style="display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-3);">
+          <span class="badge badge-orange">CURATOR INTAKE</span>
+          <span class="badge badge-dark">STANDALONE HTML</span>
+          <span class="badge">MANUAL REVIEW</span>
+        </div>
+        <h1 class="text-display" style="margin-bottom: var(--space-3);">
+          Upload your own design files
+        </h1>
+        <p class="hero-lead" style="max-width: 68ch;">
+          Hand us a standalone HTML design page. We review every submission by eye. Nothing is added to the catalog until it is curated.
+        </p>
+      </div>
+
+      <!-- Upload Desk Container (Step 2 — Client Upload Form) -->
+      <div class="hero-card upload-desk-card" id="upload-desk">
+        
+        <!-- Header Info Bar / Archival Spec -->
+        <div class="upload-desk-header">
+          <div class="upload-desk-title-group">
+            <span class="text-meta upload-desk-stamp">SPECIFICATION RECEPTION DESK</span>
+            <span class="badge badge-dark">INTAKE MAILBOX</span>
+          </div>
+          <p class="text-body-sm upload-desk-desc">
+            Send a finished, self-contained HTML page formatted as a Style Tile. Submissions land directly in the curator's private review cabinet and do not appear in the catalog until curated.
+          </p>
+        </div>
+
+        <!-- Intake Specifications Callout -->
+        <div class="upload-specs-callout">
+          <div class="upload-specs-title">
+            <span>INTAKE SPECIFICATIONS</span>
+          </div>
+          <ul class="upload-specs-list">
+            <li><strong>Standalone HTML only:</strong> Send one self-contained <code>.html</code> file.</li>
+            <li><strong>Self-contained assets:</strong> Inline styles and web font / asset links directly in the page.</li>
+            <li><strong>5 MB size ceiling:</strong> Sufficient for complete, styled design templates.</li>
+            <li><strong>Curated intake:</strong> Every submission is reviewed by hand. Not automatically published.</li>
+          </ul>
+        </div>
+
+        <!-- Problem / Alert Banner (State 5: Problem) -->
+        <div id="upload-problem-alert" class="upload-alert" role="alert" hidden>
+          <div class="upload-alert-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="upload-alert-content">
+            <strong class="upload-alert-title" id="upload-alert-title">Submission problem</strong>
+            <p class="upload-alert-message" id="upload-alert-message">Please check your submission details.</p>
+          </div>
+          <button type="button" class="upload-alert-dismiss" id="upload-alert-dismiss" aria-label="Dismiss error">&times;</button>
+        </div>
+
+        <!-- Client Upload Form (States 1, 2, 3) -->
+        <form id="client-upload-form" class="client-upload-form" novalidate>
+          
+          <!-- File Selection Zone (State 1: Rest, State 2: File Chosen) -->
+          <div class="form-group">
+            <div class="form-label-row">
+              <label for="design-file-input" class="form-label">
+                <span>HTML Design File</span>
+                <span class="form-label-required">*Required</span>
+              </label>
+              <span class="form-hint-inline">Max 5 MB • Standalone .html only</span>
+            </div>
+
+            <!-- Custom Interactive Dropzone -->
+            <div id="upload-dropzone" class="upload-dropzone" tabindex="0" role="region" aria-label="File upload dropzone">
+              <input type="file" id="design-file-input" name="file" accept=".html,.htm,text/html" class="file-input-hidden" aria-describedby="file-dropzone-hint">
+              
+              <!-- Empty / Rest Dropzone State -->
+              <div id="dropzone-rest-view" class="dropzone-view-rest">
+                <div class="dropzone-icon" aria-hidden="true">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="12" y2="12"/><line x1="15" y1="15" x2="12" y2="12"/></svg>
+                </div>
+                <div class="dropzone-prompt">
+                  <strong>Choose an .html design file</strong> or drag &amp; drop here
+                </div>
+                <p id="file-dropzone-hint" class="dropzone-subtext">One .html file. Self-contained pages work best.</p>
+                <button type="button" class="btn btn-sm dropzone-browse-btn" id="btn-browse-file">
+                  <span>Browse File</span>
+                </button>
+              </div>
+
+              <!-- File Chosen Card (State 2: File Chosen) -->
+              <div id="dropzone-chosen-view" class="dropzone-view-chosen" hidden>
+                <div class="chosen-file-card">
+                  <div class="chosen-file-stamp">.HTML</div>
+                  <div class="chosen-file-info">
+                    <span class="chosen-file-name" id="chosen-file-name">design.html</span>
+                    <span class="chosen-file-meta" id="chosen-file-meta">124 KB • Ready to send</span>
+                  </div>
+                  <div class="chosen-file-actions">
+                    <button type="button" class="btn btn-sm chosen-file-replace-btn" id="btn-replace-file" title="Pick a different file">Change</button>
+                    <button type="button" class="chosen-file-remove-btn" id="btn-remove-file" aria-label="Remove selected file" title="Remove file">&times;</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metadata Fields Grid -->
+          <div class="form-grid-2col">
+            <div class="form-group">
+              <label for="author-name" class="form-label">
+                <span>Your Name or Handle</span>
+                <span class="form-label-optional">(Optional)</span>
+              </label>
+              <input type="text" id="author-name" name="authorName" class="form-input" placeholder="e.g. Elena Rostova or @elena" autocomplete="name">
+              <span class="form-field-hint">So you can be credited if your design is published.</span>
+            </div>
+
+            <div class="form-group">
+              <label for="design-name" class="form-label">
+                <span>Design Name</span>
+                <span class="form-label-optional">(Optional)</span>
+              </label>
+              <input type="text" id="design-name" name="designName" class="form-input" placeholder="e.g. Mineral Celadon or Neon Courier">
+              <span class="form-field-hint">Helps the curator identify and file your design.</span>
+            </div>
+          </div>
+
+          <!-- Curator Note -->
+          <div class="form-group">
+            <label for="curator-note" class="form-label">
+              <span>Note to the Curator</span>
+              <span class="form-label-optional">(Optional)</span>
+            </label>
+            <textarea id="curator-note" name="curatorNote" rows="3" class="form-textarea" placeholder="Short context on aesthetic vibe, design intent, or how to contact you..."></textarea>
+            <span class="form-field-hint">One short note for context or links. Keep it brief.</span>
+          </div>
+
+          <!-- Curator Passphrase (Option A Gate Prep) -->
+          <div class="form-group">
+            <label for="submission-passphrase" class="form-label">
+              <span>Submission Passphrase</span>
+              <span class="form-label-optional">(Optional in preview)</span>
+            </label>
+            <input type="password" id="submission-passphrase" name="passphrase" class="form-input" placeholder="Leave empty or enter curator passphrase" autocomplete="current-password">
+            <span class="form-field-hint">If you were given an invitation passphrase by the curator, enter it here.</span>
+          </div>
+
+          <!-- Progress Bar (State 3: Sending) -->
+          <div id="upload-progress-container" class="upload-progress-container" hidden>
+            <div class="upload-progress-header">
+              <span class="upload-progress-label" id="upload-progress-label">Sending design to cabinet…</span>
+              <span class="upload-progress-percent" id="upload-progress-percent">0%</span>
+            </div>
+            <div class="upload-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="upload-progressbar">
+              <div class="upload-progress-fill" id="upload-progress-fill"></div>
+            </div>
+          </div>
+
+          <!-- Submit / Action Row -->
+          <div class="form-action-row">
+            <button type="submit" id="btn-submit-upload" class="btn btn-primary btn-submit-upload">
+              <svg class="send-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <span id="btn-submit-label">Send design</span>
+            </button>
+            <a href="index.html" class="btn btn-back-catalog">
+              <span>Back to Catalog</span>
+            </a>
+          </div>
+        </form>
+
+        <!-- Stamped Receipt View (State 4: Received) -->
+        <div id="upload-receipt-view" class="upload-receipt-view" hidden>
+          <div class="receipt-docket-card">
+            
+            <div class="receipt-stamp-header">
+              <div class="receipt-stamp-badge">
+                <span class="receipt-stamp-mark">✓</span>
+                <span>DESIGN RECEIVED</span>
+              </div>
+              <span class="receipt-docket-id" id="receipt-docket-id">DOCKET #ST-SUB-2026-0000</span>
+            </div>
+
+            <div class="receipt-body">
+              <h2 class="receipt-title">Design received.</h2>
+              <p class="receipt-lead">
+                Your file is in the curator’s cabinet. This is not a live catalog listing. If it becomes a Style Tile, it will be rebuilt to the same standard as the rest of the registry.
+              </p>
+
+              <div class="receipt-spec-table">
+                <div class="receipt-spec-row">
+                  <span class="receipt-spec-label">SUBMITTED FILE</span>
+                  <span class="receipt-spec-value" id="receipt-file-name">—</span>
+                </div>
+                <div class="receipt-spec-row">
+                  <span class="receipt-spec-label">FILE SIZE</span>
+                  <span class="receipt-spec-value" id="receipt-file-size">—</span>
+                </div>
+                <div class="receipt-spec-row">
+                  <span class="receipt-spec-label">DESIGN NAME</span>
+                  <span class="receipt-spec-value" id="receipt-design-name">—</span>
+                </div>
+                <div class="receipt-spec-row">
+                  <span class="receipt-spec-label">CONTRIBUTOR</span>
+                  <span class="receipt-spec-value" id="receipt-author-name">—</span>
+                </div>
+                <div class="receipt-spec-row">
+                  <span class="receipt-spec-label">STAMPED AT</span>
+                  <span class="receipt-spec-value" id="receipt-timestamp">—</span>
+                </div>
+                <div class="receipt-spec-row">
+                  <span class="receipt-spec-label">STORAGE VAULT</span>
+                  <span class="receipt-spec-value">Curator Cabinet (Private Blob)</span>
+                </div>
+                <div class="receipt-spec-row">
+                  <span class="receipt-spec-label">STATUS</span>
+                  <span class="receipt-spec-value receipt-status-tag">Awaiting Manual Curation</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="receipt-action-row">
+              <a href="index.html" class="btn btn-primary">
+                <span>← Back to Catalog</span>
+              </a>
+              <button type="button" class="btn" id="btn-send-another">
+                <span>Send another design</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 4. Tactile Toast Notifications Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- 5. Archival Footer with Perforated Tear-off Line -->
+  <footer class="site-footer">
+    <div class="layout-wrapper">
+      <div class="footer-inner">
+        
+        <div class="footer-col">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <div class="brand-stamp" style="width: 32px; height: 32px; font-size: 1.1rem;">ST</div>
+            <span class="font-display" style="font-size: 1.25rem; font-weight: 800;">STYLE TILES</span>
+          </div>
+          <p class="text-body-sm" style="color: var(--ink-secondary); max-width: 48ch; margin-bottom: 16px;">
+            An archival repository of production-grade design systems crafted to elevate frontend design and eliminate generic AI design clichés.
+          </p>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="badge badge-dark">VANILLA HTML & CSS</span>
+            <span class="badge">ZERO DEPENDENCY</span>
+            <span class="badge badge-orange">PRODUCTION READY</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>EXPLORE</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#catalog">Browse All Vibes</a></li>
+            <li><a href="index.html#how-it-works">Workflow Demo Video</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>KEYBOARD SHORTCUTS</h4>
+          <ul class="footer-links" style="font-family: var(--font-mono); font-size: 0.75rem;">
+            <li><kbd>ESC</kbd> Close Theme Picker</li>
+            <li><kbd>THEME</kbd> Header picker — catalog skins</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom-strip">
+        <span>© 2026 STYLE TILES ARCHIVE</span>
+        <span>REGISTERED TO THE OPEN WEB • BUILT FOR AGENTS & BUILDERS</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Theme registry, then upload interface logic -->
+  <script src="themes/registry.js"></script>
+  <script src="upload.js"></script>
+</body>
+</html>

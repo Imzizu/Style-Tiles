@@ -1,0 +1,14 @@
+﻿# Environment variables & local credentials
+.env
+.env*.local
+env/
+*.env
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node / dependencies
+node_modules/
+npm-debug.log*
