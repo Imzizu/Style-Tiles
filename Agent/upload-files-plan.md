@@ -278,7 +278,7 @@ From the project root:
 - [x] **1.** Hero Upload button next to Search (`index.html`)
 - [x] **2.** Client Upload Form UI (`upload.html`, `upload.js`) — still simulated submit
 - [x] **3.** Repo wiring: `package.json`, `@vercel/blob`, root `.env.local` from `env/env.local`, gitignore
-- [ ] **4.** Token Route Handler `api/upload.js` with `handleUploadPresigned`
+- [x] **4.** Token Route Handler `api/upload.js` with `handleUploadPresigned`
 - [ ] **5.** Replace `executeUploadSubmission()` with `uploadPresigned` → `/api/upload`
 - [ ] **6.** Real errors hit existing alerts
 - [ ] **7.** Completion log only; no catalog writes
