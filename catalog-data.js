@@ -1884,6 +1884,34 @@ const STYLE_TILES_DATA = [
     ],
     description: "Mineral Celadon Slabs: Composed quiet luxury pairing pale tinted alabaster (#EEF2F1) and desaturated soft sage slabs (#CFDDD9) with deep mineral teal blocks (#3F7A82), framed by a 3px dark charcoal boundary (#161D1E), organic vector contours, borderless 18px cards, and Plus Jakarta Sans display typography.",
     markdownSpec: null
+  },
+  {
+    slug: "chartreuse-pop-slabs",
+    name: "Chartreuse Pop Slabs",
+    vibe: "Playful & Pop • Pastel Chartreuse • Warm Ivory Slabs • Earthy Moss • Asymmetric Geometry • Flat Color Blocking",
+    vibeBadge: "Playful & Pop",
+    categories: ["playful"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "DM Sans",
+      mono: "Space Grotesk"
+    },
+    palette: [
+      { name: "Canvas Lime", hex: "#DCE9A6" },
+      { name: "Surface Ivory", hex: "#F7F9EE" },
+      { name: "Sage Lime Chip", hex: "#C4D89E" },
+      { name: "Deep Olive", hex: "#334126" },
+      { name: "Brand Moss", hex: "#3E6C52" },
+      { name: "Forest Charcoal", hex: "#1B1E17" },
+      { name: "Amber Gold", hex: "#F2A738" },
+      { name: "Periwinkle", hex: "#8EAEE8" },
+      { name: "Denim Blue", hex: "#2C4EA8" },
+      { name: "Coral Pink", hex: "#F48CA4" }
+    ],
+    description: "Chartreuse Pop Slabs: Playful and energetic flat paper aesthetic pairing a soft pastel chartreuse canvas (#DCE9A6) with warm ivory slabs (#F7F9EE), deep moss display type (#3E6C52), asymmetric 0 24px 24px 0 cards with 1.5px deep olive borders (#334126), and vibrant candy pop accents without drop shadows.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
