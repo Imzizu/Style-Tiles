@@ -517,8 +517,178 @@ function resetFormToRest() {
   currentUploadState = UPLOAD_STATES.REST;
 }
 
-// Simulated upload execution for Step 2 (extensible to Step 5 fetch to Blob & Route Handler)
-function executeUploadSubmission(submissionData) {
+// -----------------------------------------------------------------------------
+// VERCEL BLOB INTAKE CLIENT (Step 5)
+// -----------------------------------------------------------------------------
+let blobClientModule = null;
+
+async function loadBlobClient() {
+  if (blobClientModule) return blobClientModule;
+  try {
+    // Dynamic ESM import from CDN as recommended in Step 5
+    blobClientModule = await import("https://esm.sh/@vercel/blob/client");
+    if (blobClientModule && typeof blobClientModule.uploadPresigned === "function") {
+      return blobClientModule;
+    }
+  } catch (err) {
+    console.warn("[Style Tiles] CDN import of @vercel/blob/client failed, using vendored fallback:", err);
+  }
+  return null;
+}
+
+/**
+ * Vendored fallback implementation of uploadPresigned for environments
+ * where dynamic CDN imports are unavailable or offline.
+ */
+async function fallbackUploadPresigned(pathname, file, options = {}) {
+  const { handleUploadUrl = "/api/upload", clientPayload, onUploadProgress } = options;
+
+  // 1. Request presigned URL payload from Token Route Handler
+  const tokenRes = await fetch(handleUploadUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      type: "blob.generate-presigned-url",
+      payload: {
+        pathname,
+        clientPayload: clientPayload || null,
+        multipart: false
+      }
+    })
+  });
+
+  if (!tokenRes.ok) {
+    let errorData = null;
+    try {
+      errorData = await tokenRes.json();
+    } catch {}
+    const msg = (errorData && errorData.error) || `Server error (${tokenRes.status})`;
+    throw new Error(msg);
+  }
+
+  const data = await tokenRes.json();
+  const presignedUrlPayload = data && data.presignedUrlPayload;
+  if (!presignedUrlPayload || !presignedUrlPayload.signature) {
+    throw new Error("Missing presigned URL payload from upload handler.");
+  }
+
+  const targetPathname = data.pathname || pathname;
+
+  // 2. Construct presigned PUT URL
+  const uploadUrl = new URL("https://blob.vercel-storage.com/");
+  uploadUrl.searchParams.set("pathname", targetPathname);
+  if (presignedUrlPayload.params) {
+    for (const [k, v] of Object.entries(presignedUrlPayload.params)) {
+      uploadUrl.searchParams.set(k, v);
+    }
+  }
+  uploadUrl.searchParams.set("vercel-blob-delegation", presignedUrlPayload.delegationToken);
+  uploadUrl.searchParams.set("vercel-blob-signature", presignedUrlPayload.signature);
+
+  // 3. Perform PUT upload with progress reporting
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("PUT", uploadUrl.toString());
+    xhr.setRequestHeader("Content-Type", (file && file.type) || "text/html");
+
+    if (xhr.upload && typeof onUploadProgress === "function") {
+      xhr.upload.onprogress = (event) => {
+        if (event.lengthComputable) {
+          const percentage = Math.round((event.loaded / event.total) * 100);
+          onUploadProgress({
+            loaded: event.loaded,
+            total: event.total,
+            percentage
+          });
+        }
+      };
+    }
+
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        let result = {};
+        try {
+          result = JSON.parse(xhr.responseText);
+        } catch {
+          result = { pathname: targetPathname };
+        }
+        resolve(result);
+      } else {
+        let errorMsg = `Upload failed with status ${xhr.status}`;
+        try {
+          const errData = JSON.parse(xhr.responseText);
+          if (errData && errData.error) errorMsg = errData.error;
+        } catch {}
+        reject(new Error(errorMsg));
+      }
+    };
+
+    xhr.onerror = () => {
+      reject(new Error("Network error during file transmission."));
+    };
+
+    xhr.onabort = () => {
+      reject(new Error("File upload aborted."));
+    };
+
+    xhr.send(file);
+  });
+}
+
+/**
+ * Executes Blob upload via @vercel/blob/client uploadPresigned,
+ * falling back to local client implementation if CDN is unreachable.
+ */
+async function performBlobUpload(pathname, file, options) {
+  const client = await loadBlobClient();
+  if (client && typeof client.uploadPresigned === "function") {
+    return await client.uploadPresigned(pathname, file, options);
+  }
+  return await fallbackUploadPresigned(pathname, file, options);
+}
+
+/**
+ * Maps server and transmission errors onto human-readable problem alert UI
+ */
+function mapUploadErrorToAlert(err) {
+  const rawMsg = err && err.message ? err.message : String(err);
+  const lower = rawMsg.toLowerCase();
+
+  if (lower.includes("passphrase") || lower.includes("unauthorized")) {
+    showProblemAlert(
+      "Passphrase required",
+      "The submission passphrase is missing or incorrect. Please check your invite code."
+    );
+  } else if (lower.includes("file type") || lower.includes("html") || lower.includes("extension") || lower.includes("content type")) {
+    showProblemAlert(
+      "Invalid file type",
+      "Style Tiles only accepts standalone .html and .htm files in this version."
+    );
+  } else if (lower.includes("large") || lower.includes("size") || lower.includes("ceiling") || lower.includes("5 mb") || lower.includes("too large")) {
+    showProblemAlert(
+      "File too large",
+      "That file exceeds the 5 MB ceiling. Please send a self-contained HTML page."
+    );
+  } else if (lower.includes("network") || lower.includes("fetch") || lower.includes("failed to fetch") || lower.includes("connect") || lower.includes("offline")) {
+    showProblemAlert(
+      "Connection problem",
+      "Could not connect to the intake desk or storage service. Please check your connection and try again."
+    );
+  } else {
+    showProblemAlert(
+      "Submission problem",
+      rawMsg || "An unexpected error occurred while transmitting your design. Please try again."
+    );
+  }
+}
+
+/**
+ * Real Blob intake submission replacing simulated Step 2 timer.
+ * POSTs to /api/upload to generate presigned token, then PUTs to Vercel Blob.
+ */
+async function executeUploadSubmission(submissionData) {
+  const { file, authorName, designName, curatorNote, passphrase } = submissionData;
+
   currentUploadState = UPLOAD_STATES.SENDING;
   setFormControlsDisabled(true);
 
@@ -527,23 +697,48 @@ function executeUploadSubmission(submissionData) {
 
   setSendingProgress(0);
 
-  let currentPercent = 5;
-  setSendingProgress(currentPercent);
+  // 1. Build clientPayload as JSON string
+  const clientPayload = JSON.stringify({
+    passphrase: (passphrase || "").trim(),
+    name: (authorName || "").trim(),
+    designName: (designName || "").trim(),
+    note: (curatorNote || "").trim(),
+    authorName: (authorName || "").trim(),
+    curatorNote: (curatorNote || "").trim()
+  });
 
-  uploadProgressInterval = setInterval(() => {
-    currentPercent += Math.floor(Math.random() * 15) + 10;
-    if (currentPercent >= 100) {
-      clearInterval(uploadProgressInterval);
-      uploadProgressInterval = null;
-      setSendingProgress(100);
+  try {
+    // 2. Call uploadPresigned from @vercel/blob/client in the browser
+    const blob = await performBlobUpload(file.name, file, {
+      access: "private",
+      handleUploadUrl: "/api/upload",
+      clientPayload,
+      onUploadProgress: (progressEvent) => {
+        // 3. Drive the existing progress UI from onUploadProgress
+        if (progressEvent && typeof progressEvent.percentage === "number") {
+          setSendingProgress(progressEvent.percentage);
+        }
+      }
+    });
 
-      setTimeout(() => {
-        renderReceipt(submissionData);
-      }, 250);
-    } else {
-      setSendingProgress(currentPercent);
-    }
-  }, 140);
+    setSendingProgress(100);
+
+    // 4. On success: render receipt without leaking private Blob URL
+    renderReceipt({
+      file,
+      authorName,
+      designName,
+      curatorNote,
+      blob
+    });
+  } catch (err) {
+    // 5. On failure: map errors onto existing problem alert and re-enable form
+    mapUploadErrorToAlert(err);
+    setFormControlsDisabled(false);
+    if (submitLabel) submitLabel.textContent = "Send design";
+    const progressContainer = document.getElementById("upload-progress-container");
+    if (progressContainer) progressContainer.hidden = true;
+  }
 }
 
 function initClientUploadForm() {
