@@ -284,7 +284,7 @@ From the project root:
 - [x] **7.** Completion log only; no catalog writes
 - [x] **8.** Server-side HTML / size / prefix / suffix / private
 - [x] **9.** No chrome regressions
-- [ ] **10.** `vercel dev` happy path + negative tests
+- [x] **10.** `vercel dev` happy path + negative tests
 
 ---
 

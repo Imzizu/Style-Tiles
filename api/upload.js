@@ -201,13 +201,31 @@ async function parseRequestBody(request) {
   }
   if (request.body) {
     if (typeof request.body === 'string') {
-      return JSON.parse(request.body);
+      try {
+        return JSON.parse(request.body);
+      } catch {
+        return {};
+      }
     }
     return request.body;
   }
   if (typeof request.text === 'function') {
     const text = await request.text();
     return text ? JSON.parse(text) : {};
+  }
+  if (typeof request[Symbol.asyncIterator] === 'function') {
+    try {
+      const chunks = [];
+      for await (const chunk of request) {
+        chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
+      }
+      if (chunks.length > 0) {
+        const raw = Buffer.concat(chunks).toString('utf8');
+        return raw ? JSON.parse(raw) : {};
+      }
+    } catch {
+      return {};
+    }
   }
   return {};
 }
@@ -293,4 +311,15 @@ export async function POST(request) {
   }
 }
 
-export default POST;
+export default async function handler(req, res) {
+  if (res && (typeof res.status === 'function' || typeof res.writeHead === 'function')) {
+    const webResponse = await POST(req);
+    const data = await webResponse.json();
+    if (typeof res.status === 'function') {
+      return res.status(webResponse.status).json(data);
+    }
+    res.writeHead(webResponse.status, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify(data));
+  }
+  return POST(req);
+}
