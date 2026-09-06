@@ -1827,6 +1827,63 @@ const STYLE_TILES_DATA = [
     ],
     description: "Slate Atmospheric Minimal: Restrained corporate minimalism constructed on a cool slate canvas (#D2D9E0) with a diffuse lower-left ambient radial luminescence (#ADC7E5), 1px solid hairline contour framing (#2C2E33), transparent surface containers, and smooth 40px container curvature.",
     markdownSpec: null
+  },
+  {
+    slug: "onyx-luminescence",
+    name: "Onyx Luminescence",
+    vibe: "Quiet Luxury • Restrained Dark Onyx • Diffuse Ambient Light Fields • Hairline Gridlines • Disciplined 0px Geometry",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Syne",
+      sans: "Plus Jakarta Sans",
+      mono: "Inter"
+    },
+    palette: [
+      { name: "Canvas Base", hex: "#202225" },
+      { name: "Frame Bezel", hex: "#121314" },
+      { name: "Warm Aura", hex: "#E57A38" },
+      { name: "Cool Glow", hex: "#124B98" },
+      { name: "Data Coral", hex: "#D25D63" },
+      { name: "Data Slate", hex: "#6E73A8" },
+      { name: "Data Steel", hex: "#3B70B2" },
+      { name: "Structural Grid", hex: "#3A3D42" },
+      { name: "Text Solid", hex: "#FFFFFF" },
+      { name: "Text Body", hex: "#B5B8BE" },
+      { name: "Text Micro", hex: "#787C84" }
+    ],
+    description: "Onyx Luminescence: Restrained dark onyx slate foundation (#202225) bordered in near-black (#121314), accented by asymmetric diffuse warm and cool ambient light fields, delicate hairline structural gridlines (#3A3D42), Syne 800 solid and ghost-outline display headlines, and disciplined 0px rectilinearity.",
+    markdownSpec: null
+  },
+  {
+    slug: "mineral-celadon-slabs",
+    name: "Mineral Celadon Slabs",
+    vibe: "Quiet Luxury • Pale Alabaster Canvas • Soft Sage Slabs • Deep Mineral Teal • 3px Charcoal Boundary • Flat Planar Layering",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Manrope",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas Alabaster", hex: "#EEF2F1" },
+      { name: "Soft Sage Slab", hex: "#CFDDD9" },
+      { name: "Deep Mineral Teal", hex: "#3F7A82" },
+      { name: "Dark Charcoal Frame", hex: "#161D1E" },
+      { name: "Deep Ink Charcoal", hex: "#111617" },
+      { name: "Muted Slate Charcoal", hex: "#243032" },
+      { name: "Optical White", hex: "#FFFFFF" },
+      { name: "Dusty Pine Wave", hex: "#6B9697" },
+      { name: "Washed Celadon", hex: "#A5BEBA" },
+      { name: "Mist Overlay", hex: "#C1D4D1" }
+    ],
+    description: "Mineral Celadon Slabs: Composed quiet luxury pairing pale tinted alabaster (#EEF2F1) and desaturated soft sage slabs (#CFDDD9) with deep mineral teal blocks (#3F7A82), framed by a 3px dark charcoal boundary (#161D1E), organic vector contours, borderless 18px cards, and Plus Jakarta Sans display typography.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
