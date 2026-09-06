@@ -1,5 +1,5 @@
 import { handleUploadPresigned } from '@vercel/blob/client';
-import { issueSignedToken } from '@vercel/blob';
+import { issueSignedToken, put } from '@vercel/blob';
 import {
   MAX_UPLOAD_FILE_SIZE,
   ALLOWED_CONTENT_TYPES,
@@ -130,9 +130,45 @@ export async function onBeforeGenerateToken(pathname, clientPayload, multipart) 
 }
 
 /**
+ * Runtime OIDC lives on the Function request header, not in env.local.
+ * At runtime Vercel sets `x-vercel-oidc-token`; `VERCEL_OIDC_TOKEN` is mainly
+ * a build/dev fallback. issueSignedToken/put must receive this explicitly.
+ */
+export function getOidcTokenFromRequest(request) {
+  if (!request || !request.headers) return undefined;
+
+  let headerValue;
+  if (typeof request.headers.get === 'function') {
+    headerValue = request.headers.get('x-vercel-oidc-token');
+  } else {
+    const raw = request.headers['x-vercel-oidc-token'];
+    headerValue = Array.isArray(raw) ? raw[0] : raw;
+  }
+
+  const fromHeader = typeof headerValue === 'string' ? headerValue.trim() : '';
+  if (fromHeader) return fromHeader;
+
+  const fromEnv = typeof process.env.VERCEL_OIDC_TOKEN === 'string'
+    ? process.env.VERCEL_OIDC_TOKEN.trim()
+    : '';
+  return fromEnv || undefined;
+}
+
+function blobAuthOptions(request) {
+  const oidcToken = getOidcTokenFromRequest(request);
+  const storeId = typeof process.env.BLOB_STORE_ID === 'string'
+    ? process.env.BLOB_STORE_ID.trim()
+    : '';
+  return {
+    ...(storeId ? { storeId } : {}),
+    ...(oidcToken ? { oidcToken } : {}),
+  };
+}
+
+/**
  * Bridges handleUploadPresigned with @vercel/blob issueSignedToken.
  */
-export async function getSignedToken(pathname, clientPayload, multipart) {
+export async function getSignedToken(pathname, clientPayload, multipart, auth = {}) {
   const urlOptions = await onBeforeGenerateToken(pathname, clientPayload, multipart);
 
   const token = await issueSignedToken({
@@ -140,12 +176,20 @@ export async function getSignedToken(pathname, clientPayload, multipart) {
     operations: ['put'],
     maximumSizeInBytes: urlOptions.maximumSizeInBytes,
     allowedContentTypes: urlOptions.allowedContentTypes,
-    storeId: process.env.BLOB_STORE_ID,
+    storeId: auth.storeId || process.env.BLOB_STORE_ID,
+    ...(auth.oidcToken ? { oidcToken: auth.oidcToken } : {}),
   });
 
   return {
     token,
-    urlOptions,
+    urlOptions: {
+      allowedContentTypes: urlOptions.allowedContentTypes,
+      maximumSizeInBytes: urlOptions.maximumSizeInBytes,
+      addRandomSuffix: true,
+      allowOverwrite: false,
+      access: 'private',
+      tokenPayload: urlOptions.tokenPayload,
+    },
   };
 }
 
@@ -230,6 +274,89 @@ async function parseRequestBody(request) {
   return {};
 }
 
+function getContentType(request) {
+  if (!request || !request.headers) return '';
+  if (typeof request.headers.get === 'function') {
+    return request.headers.get('content-type') || '';
+  }
+  const raw = request.headers['content-type'];
+  return Array.isArray(raw) ? raw[0] || '' : raw || '';
+}
+
+function formValue(form, ...keys) {
+  for (const key of keys) {
+    const value = form.get(key);
+    if (typeof value === 'string' && value.trim()) return value.trim();
+  }
+  return '';
+}
+
+/**
+ * Browser FormData intake: file is written by this Function with OIDC.
+ * Avoids browser→Blob presigned PUTs, which fail without a read-write token.
+ */
+export async function handleFileUpload(request) {
+  if (typeof request.formData !== 'function') {
+    return Response.json({ error: 'Upload form could not be read.' }, { status: 400 });
+  }
+
+  const form = await request.formData();
+  const file = form.get('file');
+
+  if (!file || typeof file === 'string' || typeof file.name !== 'string') {
+    return Response.json({ error: 'Choose an .html design file first.' }, { status: 400 });
+  }
+
+  const originalName = file.name;
+  const lower = originalName.toLowerCase();
+  if (!lower.endsWith('.html') && !lower.endsWith('.htm')) {
+    return Response.json(
+      { error: 'Invalid file type: only standalone .html / .htm files are allowed.' },
+      { status: 400 }
+    );
+  }
+
+  if (typeof file.size === 'number' && file.size > MAX_UPLOAD_FILE_SIZE) {
+    return Response.json(
+      { error: `File exceeds maximum allowed size of ${MAX_UPLOAD_FILE_SIZE} bytes (5 MB).` },
+      { status: 400 }
+    );
+  }
+
+  const authorName = formValue(form, 'name', 'authorName');
+  const designName = formValue(form, 'designName');
+  const note = formValue(form, 'note', 'curatorNote');
+  const passphrase = formValue(form, 'passphrase');
+  const pathname = getForcedPathname(originalName);
+  const clientPayload = JSON.stringify({
+    passphrase,
+    name: authorName,
+    designName,
+    note,
+  });
+
+  const tokenOptions = await onBeforeGenerateToken(pathname, clientPayload, false);
+  const blob = await put(pathname, file, {
+    access: 'private',
+    addRandomSuffix: true,
+    allowOverwrite: false,
+    contentType: file.type && ALLOWED_CONTENT_TYPES.includes(file.type)
+      ? file.type
+      : 'text/html',
+    ...blobAuthOptions(request),
+  });
+
+  await onUploadCompleted({
+    blob,
+    tokenPayload: tokenOptions.tokenPayload,
+  });
+
+  return Response.json({
+    ok: true,
+    pathname: blob.pathname,
+  });
+}
+
 /**
  * Vercel Serverless Function POST Handler for /api/upload
  */
@@ -237,6 +364,10 @@ export async function POST(request) {
   try {
     if (request.method && request.method !== 'POST') {
       return Response.json({ error: 'Method not allowed' }, { status: 405 });
+    }
+
+    if (getContentType(request).includes('multipart/form-data')) {
+      return await handleFileUpload(request);
     }
 
     const body = await parseRequestBody(request);
@@ -292,12 +423,13 @@ export async function POST(request) {
       body.payload.allowedContentTypes = ALLOWED_CONTENT_TYPES;
     }
 
+    const auth = blobAuthOptions(request);
     const jsonResponse = await handleUploadPresigned({
       body,
       request,
       webhookPublicKey: process.env.BLOB_WEBHOOK_PUBLIC_KEY,
-      getSignedToken,
-      onBeforeGenerateToken,
+      getSignedToken: (pathname, clientPayload, multipart) =>
+        getSignedToken(pathname, clientPayload, multipart, auth),
       onUploadCompleted,
     });
 
@@ -311,9 +443,43 @@ export async function POST(request) {
   }
 }
 
+async function incomingMessageToRequest(req) {
+  const protoHeader = req.headers && req.headers['x-forwarded-proto'];
+  const proto = (Array.isArray(protoHeader) ? protoHeader[0] : protoHeader) || 'https';
+  const host = (req.headers && req.headers.host) || 'localhost';
+  const url = `${proto}://${host}${req.url || '/api/upload'}`;
+  const chunks = [];
+  if (req[Symbol.asyncIterator]) {
+    for await (const chunk of req) {
+      chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+    }
+  }
+  const body = chunks.length > 0 ? Buffer.concat(chunks) : undefined;
+  const headers = new Headers();
+  for (const [key, value] of Object.entries(req.headers || {})) {
+    if (value == null) continue;
+    headers.set(key, Array.isArray(value) ? value.join(', ') : String(value));
+  }
+  const method = req.method || 'POST';
+  return new Request(url, {
+    method,
+    headers,
+    body: method === 'GET' || method === 'HEAD' ? undefined : body,
+  });
+}
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 export default async function handler(req, res) {
   if (res && (typeof res.status === 'function' || typeof res.writeHead === 'function')) {
-    const webResponse = await POST(req);
+    const webRequest = typeof req.formData === 'function' || typeof req.headers?.get === 'function'
+      ? req
+      : await incomingMessageToRequest(req);
+    const webResponse = await POST(webRequest);
     const data = await webResponse.json();
     if (typeof res.status === 'function') {
       return res.status(webResponse.status).json(data);

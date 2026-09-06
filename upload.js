@@ -522,78 +522,23 @@ function resetFormToRest() {
 }
 
 // -----------------------------------------------------------------------------
-// VERCEL BLOB INTAKE CLIENT (Step 5)
+// VERCEL BLOB INTAKE CLIENT
+// File goes to /api/upload. The Function writes to Blob with runtime OIDC.
 // -----------------------------------------------------------------------------
-let blobClientModule = null;
 
-async function loadBlobClient() {
-  if (blobClientModule) return blobClientModule;
-  try {
-    // Dynamic ESM import from CDN as recommended in Step 5
-    blobClientModule = await import("https://esm.sh/@vercel/blob/client");
-    if (blobClientModule && typeof blobClientModule.uploadPresigned === "function") {
-      return blobClientModule;
-    }
-  } catch (err) {
-    console.warn("[Style Tiles] CDN import of @vercel/blob/client failed, using vendored fallback:", err);
-  }
-  return null;
-}
-
-/**
- * Vendored fallback implementation of uploadPresigned for environments
- * where dynamic CDN imports are unavailable or offline.
- */
-async function fallbackUploadPresigned(pathname, file, options = {}) {
-  const { handleUploadUrl = "/api/upload", clientPayload, onUploadProgress } = options;
-
-  // 1. Request presigned URL payload from Token Route Handler
-  const tokenRes = await fetch(handleUploadUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      type: "blob.generate-presigned-url",
-      payload: {
-        pathname,
-        clientPayload: clientPayload || null,
-        multipart: false
-      }
-    })
-  });
-
-  if (!tokenRes.ok) {
-    let errorData = null;
-    try {
-      errorData = await tokenRes.json();
-    } catch {}
-    const msg = (errorData && errorData.error) || `Server error (${tokenRes.status})`;
-    throw new Error(msg);
-  }
-
-  const data = await tokenRes.json();
-  const presignedUrlPayload = data && data.presignedUrlPayload;
-  if (!presignedUrlPayload || !presignedUrlPayload.signature) {
-    throw new Error("Missing presigned URL payload from upload handler.");
-  }
-
-  const targetPathname = data.pathname || pathname;
-
-  // 2. Construct presigned PUT URL
-  const uploadUrl = new URL("https://blob.vercel-storage.com/");
-  uploadUrl.searchParams.set("pathname", targetPathname);
-  if (presignedUrlPayload.params) {
-    for (const [k, v] of Object.entries(presignedUrlPayload.params)) {
-      uploadUrl.searchParams.set(k, v);
-    }
-  }
-  uploadUrl.searchParams.set("vercel-blob-delegation", presignedUrlPayload.delegationToken);
-  uploadUrl.searchParams.set("vercel-blob-signature", presignedUrlPayload.signature);
-
-  // 3. Perform PUT upload with progress reporting
+function performDirectUpload(file, fields, onUploadProgress) {
   return new Promise((resolve, reject) => {
+    const formData = new FormData();
+    formData.append("file", file, file.name);
+    formData.append("name", fields.authorName || "");
+    formData.append("authorName", fields.authorName || "");
+    formData.append("designName", fields.designName || "");
+    formData.append("note", fields.curatorNote || "");
+    formData.append("curatorNote", fields.curatorNote || "");
+    formData.append("passphrase", fields.passphrase || "");
+
     const xhr = new XMLHttpRequest();
-    xhr.open("PUT", uploadUrl.toString());
-    xhr.setRequestHeader("Content-Type", (file && file.type) || "text/html");
+    xhr.open("POST", "/api/upload");
 
     if (xhr.upload && typeof onUploadProgress === "function") {
       xhr.upload.onprogress = (event) => {
@@ -609,22 +554,17 @@ async function fallbackUploadPresigned(pathname, file, options = {}) {
     }
 
     xhr.onload = () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        let result = {};
-        try {
-          result = JSON.parse(xhr.responseText);
-        } catch {
-          result = { pathname: targetPathname };
-        }
-        resolve(result);
-      } else {
-        let errorMsg = `Upload failed with status ${xhr.status}`;
-        try {
-          const errData = JSON.parse(xhr.responseText);
-          if (errData && errData.error) errorMsg = errData.error;
-        } catch {}
-        reject(new Error(errorMsg));
+      let data = {};
+      try {
+        data = JSON.parse(xhr.responseText);
+      } catch {}
+
+      if (xhr.status >= 200 && xhr.status < 300 && data && data.ok) {
+        resolve(data);
+        return;
       }
+
+      reject(new Error((data && data.error) || `Upload failed with status ${xhr.status}`));
     };
 
     xhr.onerror = () => {
@@ -635,20 +575,8 @@ async function fallbackUploadPresigned(pathname, file, options = {}) {
       reject(new Error("File upload aborted."));
     };
 
-    xhr.send(file);
+    xhr.send(formData);
   });
-}
-
-/**
- * Executes Blob upload via @vercel/blob/client uploadPresigned,
- * falling back to local client implementation if CDN is unreachable.
- */
-async function performBlobUpload(pathname, file, options) {
-  const client = await loadBlobClient();
-  if (client && typeof client.uploadPresigned === "function") {
-    return await client.uploadPresigned(pathname, file, options);
-  }
-  return await fallbackUploadPresigned(pathname, file, options);
 }
 
 /**
@@ -713,8 +641,7 @@ function mapUploadErrorToAlert(err) {
 }
 
 /**
- * Real Blob intake submission replacing simulated Step 2 timer.
- * POSTs to /api/upload to generate presigned token, then PUTs to Vercel Blob.
+ * POSTs the HTML file to /api/upload. The Function stores it in Blob.
  */
 async function executeUploadSubmission(submissionData) {
   const { file, authorName, designName, curatorNote, passphrase } = submissionData;
@@ -727,42 +654,27 @@ async function executeUploadSubmission(submissionData) {
 
   setSendingProgress(0);
 
-  // 1. Build clientPayload as JSON string
-  const clientPayload = JSON.stringify({
-    passphrase: (passphrase || "").trim(),
-    name: (authorName || "").trim(),
-    designName: (designName || "").trim(),
-    note: (curatorNote || "").trim(),
-    authorName: (authorName || "").trim(),
-    curatorNote: (curatorNote || "").trim()
-  });
-
   try {
-    // 2. Call uploadPresigned from @vercel/blob/client in the browser
-    const blob = await performBlobUpload(file.name, file, {
-      access: "private",
-      handleUploadUrl: "/api/upload",
-      clientPayload,
-      onUploadProgress: (progressEvent) => {
-        // 3. Drive the existing progress UI from onUploadProgress
+    const result = await performDirectUpload(
+      file,
+      { authorName, designName, curatorNote, passphrase },
+      (progressEvent) => {
         if (progressEvent && typeof progressEvent.percentage === "number") {
           setSendingProgress(progressEvent.percentage);
         }
       }
-    });
+    );
 
     setSendingProgress(100);
 
-    // 4. On success: render receipt without leaking private Blob URL
     renderReceipt({
       file,
       authorName,
       designName,
       curatorNote,
-      blob
+      blob: result
     });
   } catch (err) {
-    // 5. On failure: map errors onto existing problem alert and re-enable form
     mapUploadErrorToAlert(err);
     setFormControlsDisabled(false);
     if (submitLabel) submitLabel.textContent = "Send design";

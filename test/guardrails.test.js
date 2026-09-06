@@ -4,6 +4,7 @@ import {
   sanitizeFilename,
   getForcedPathname,
   onBeforeGenerateToken,
+  getOidcTokenFromRequest,
   POST,
 } from '../api/upload.js';
 import {
@@ -176,6 +177,34 @@ test('POST handler rejects multipart requests in presigned generation request', 
   assert.equal(res.status, 400);
   const data = await res.json();
   assert.match(data.error, /Multipart uploads are forbidden/);
+});
+
+test('getOidcTokenFromRequest prefers the Function request header over env', () => {
+  const previous = process.env.VERCEL_OIDC_TOKEN;
+  process.env.VERCEL_OIDC_TOKEN = 'env-token-should-not-win';
+  try {
+    const req = new Request('http://localhost/api/upload', {
+      method: 'POST',
+      headers: { 'x-vercel-oidc-token': 'runtime-oidc-from-header' },
+    });
+    assert.equal(getOidcTokenFromRequest(req), 'runtime-oidc-from-header');
+  } finally {
+    if (previous === undefined) delete process.env.VERCEL_OIDC_TOKEN;
+    else process.env.VERCEL_OIDC_TOKEN = previous;
+  }
+});
+
+test('POST handler rejects FormData uploads that are not HTML files', async () => {
+  const form = new FormData();
+  form.append('file', new File(['not html'], 'moodboard.png', { type: 'image/png' }));
+  const req = new Request('http://localhost/api/upload', {
+    method: 'POST',
+    body: form,
+  });
+  const res = await POST(req);
+  assert.equal(res.status, 400);
+  const data = await res.json();
+  assert.match(data.error, /only standalone \.html \/ \.htm files are allowed/);
 });
 
 test('POST handler rejects requests exceeding 5 MB ceiling in presigned generation request', async () => {
