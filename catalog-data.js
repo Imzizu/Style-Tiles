@@ -1912,6 +1912,59 @@ const STYLE_TILES_DATA = [
     ],
     description: "Chartreuse Pop Slabs: Playful and energetic flat paper aesthetic pairing a soft pastel chartreuse canvas (#DCE9A6) with warm ivory slabs (#F7F9EE), deep moss display type (#3E6C52), asymmetric 0 24px 24px 0 cards with 1.5px deep olive borders (#334126), and vibrant candy pop accents without drop shadows.",
     markdownSpec: null
+  },
+  {
+    slug: "mineral-teal-press",
+    name: "Mineral Teal Press",
+    vibe: "Editorial & Archival • Warm Newsprint Ivory • Mineral Teal Ink • Didone Display Serif • 2px Ruled Borders • Flat Matte Paper",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Abril Fatface",
+      sans: "Outfit",
+      mono: "Plus Jakarta Sans"
+    },
+    palette: [
+      { name: "Canvas Ivory", hex: "#FAF6EB" },
+      { name: "Surface Vellum", hex: "#FFFDF5" },
+      { name: "Mineral Teal Ink", hex: "#437179" },
+      { name: "Border Charcoal", hex: "#1C2529" },
+      { name: "Sage Green", hex: "#C5DCC1" },
+      { name: "Soft Sky Teal", hex: "#B5CDD3" },
+      { name: "Muted Slate", hex: "#7DA7B5" },
+      { name: "Warm Peach", hex: "#F1A86F" },
+      { name: "Dusty Rose", hex: "#DCA2A7" }
+    ],
+    description: "Mineral Teal Press: Tactile editorial and archival print aesthetic pairing warm newsprint ivory (#FAF6EB) with bright vellum card slabs (#FFFDF5), bold mineral teal ink (#437179), 2px ruled borders, a 3px deep petrol charcoal outer frame (#1C2529), dramatic Abril Fatface display typography, and flat matte paper construction without drop shadows.",
+    markdownSpec: null
+  },
+  {
+    slug: "electric-midnight-pop",
+    name: "Electric Midnight Pop",
+    vibe: "Playful & Pop • Chromatic Slabs • Vector Neo-Pop",
+    vibeBadge: "Playful & Pop",
+    categories: ["playful"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Syne",
+      sans: "Plus Jakarta Sans",
+      mono: "Space Grotesk"
+    },
+    palette: [
+      { name: "Canvas Midnight Navy", hex: "#0a1727" },
+      { name: "Ocean Card Fill", hex: "#0e2746" },
+      { name: "Neon Lime Slabs", hex: "#daf83b" },
+      { name: "Electric Lavender", hex: "#9a85ee" },
+      { name: "Ice Blue Slate", hex: "#c7d6ec" },
+      { name: "Cool Off-White", hex: "#edf2f7" },
+      { name: "Charcoal Ink", hex: "#1c2229" },
+      { name: "Crisp White", hex: "#ffffff" }
+    ],
+    description: "Electric Midnight Pop: High-energy Playful & Pop aesthetic built over deep midnight navy (#0a1727), featuring fully opaque chromatic color-blocked slabs in neon lime (#daf83b), electric periwinkle (#9a85ee), ice slate, and crisp off-white with 100% flat zero-shadow geometry, 0px borderless edge contrast, 18px rounded radii, uppercase Syne typography, and geometric sticker glyphs.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===

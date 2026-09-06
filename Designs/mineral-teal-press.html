@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mineral Teal Press // TILE</title>
+  <meta name="description" content="Mineral Teal Press: Tactile editorial and archival print aesthetic pairing warm newsprint ivory, bright vellum cards, mineral teal ink, 2px ruled borders, 3px dark charcoal frame, and dramatic Abril Fatface display typography.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Google Fonts: Abril Fatface (Display), Outfit (Card Headings), Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------------------------------------------------------
+     * MINERAL TEAL PRESS — DESIGN TOKENS
+     * ---------------------------------------------------------------------- */
+    :root {
+      /* Surfaces & Paper Stocks */
+      --bg-canvas:              #FAF6EB; /* Warm newsprint ivory */
+      --bg-surface:             #FFFDF5; /* Bright vellum card surface */
+      --bg-surface-alt:         #F3EBD8; /* Subdued parchment well */
+      --bg-surface-dark:        #1C2529; /* Deep petrol charcoal frame & slab */
+
+      /* Inks & Typography */
+      --ink-primary:            #437179; /* Primary mineral teal display ink */
+      --ink-body:               #1C2529; /* Deep petrol charcoal body text */
+      --ink-secondary:          #437179; /* Mineral teal section headings */
+      --ink-muted:              #7DA7B5; /* Muted slate teal for folios & meta */
+      --ink-inverted:           #FFFDF5; /* Warm vellum text on dark slabs */
+
+      /* Signature Accents */
+      --accent-primary:         #437179; /* Primary mineral teal action */
+      --accent-primary-hover:   #1C2529; /* Deep petrol charcoal hover */
+      --accent-sage:            #C5DCC1; /* Archival sage green */
+      --accent-sky:             #B5CDD3; /* Soft sky teal */
+      --accent-slate:           #7DA7B5; /* Muted slate */
+      --accent-peach:           #F1A86F; /* Warm peach */
+      --accent-rose:            #DCA2A7; /* Dusty rose */
+
+      /* Status Tokens */
+      --status-success:         #437179; /* Mineral teal */
+      --status-warning:         #F1A86F; /* Warm peach */
+      --status-danger:          #DCA2A7; /* Dusty rose */
+      --status-info:            #7DA7B5; /* Muted slate */
+
+      /* Typography */
+      --font-display:           "Abril Fatface", Georgia, serif;
+      --font-heading:           "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-sans:              "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono:              "Outfit", monospace, sans-serif;
+
+      /* Geometry & Radii */
+      --radius-canvas:          12px;
+      --radius-card:            8px;
+      --radius-card-header:     8px 8px 0px 0px;
+      --radius-subtle:          4px;
+      --radius-pill:            9999px;
+
+      /* Elevation: Flat matte paper slabs (zero drop shadows) */
+      --shadow-base:            none;
+      --shadow-hover:           none;
+      --shadow-active:          none;
+
+      /* Borders & Ruled Dividers */
+      --border-frame:           3px solid #1C2529; /* Outer frame */
+      --border-card:            2px solid #437179; /* Card outline */
+      --border-separator:       2px solid #437179; /* Section rule */
+      --border-hairline:        1px solid #7DA7B5; /* Internal division */
+      --border-core:            2px solid #437179;
+      --header-height:          70px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background-color: var(--bg-canvas);
+      color: var(--ink-body);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-canvas);
+      color: var(--ink-body);
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    /* -------------------------------------------------------------------------
+     * MANDATORY HEADER BAR
+     * ---------------------------------------------------------------------- */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 12px 28px;
+      background: var(--bg-surface);
+      border-bottom: var(--border-separator);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 8px 16px;
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: var(--border-card);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-surface);
+      transition: all 140ms ease;
+    }
+
+    .nav-back-link:hover {
+      background: var(--accent-sage);
+      color: var(--ink-body);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-subtle);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--ink-primary);
+      letter-spacing: -0.01em;
+      overflow-wrap: anywhere;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border: var(--border-card);
+      border-radius: var(--radius-pill);
+      background: var(--accent-sage);
+      color: var(--ink-body);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: var(--border-card);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      transition: all 140ms ease;
+    }
+
+    .btn-tile:hover {
+      background: var(--accent-sky);
+      color: var(--ink-body);
+    }
+
+    .btn-copy {
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      border-color: var(--accent-primary);
+    }
+
+    .btn-copy:hover {
+      background: var(--accent-primary-hover);
+      border-color: var(--accent-primary-hover);
+      color: #ffffff;
+    }
+
+    .btn-download:hover {
+      background: var(--accent-peach);
+      color: var(--ink-body);
+    }
+
+    /* -------------------------------------------------------------------------
+     * MAIN LAYOUT WRAPPER & SECTIONS
+     * ---------------------------------------------------------------------- */
+    .layout-wrapper {
+      width: min(1140px, calc(100% - 36px));
+      margin: 28px auto 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .section-block {
+      background: var(--bg-surface);
+      border: var(--border-card);
+      border-radius: var(--radius-card);
+      padding: 36px 40px;
+      position: relative;
+    }
+
+    .section-kicker-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      border-bottom: var(--border-separator);
+      padding-bottom: 12px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-kicker::before {
+      content: "§";
+      color: var(--accent-peach);
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .section-tagline {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6.5vw, 4.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+      font-weight: 400;
+      overflow-wrap: anywhere;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+      line-height: 1.2;
+      letter-spacing: 0em;
+      color: var(--ink-primary);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink-body);
+      margin-bottom: 10px;
+    }
+
+    /* -------------------------------------------------------------------------
+     * HERO BANNER (ARCHIVAL BROADSIDE STYLE)
+     * ---------------------------------------------------------------------- */
+    .hero-banner {
+      background: var(--bg-surface);
+      border: var(--border-frame);
+      border-radius: var(--radius-canvas);
+      padding: 44px 48px;
+      position: relative;
+    }
+
+    .hero-masthead-rule {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px double var(--ink-primary);
+      padding-bottom: 10px;
+      margin-bottom: 24px;
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+
+    .chip {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 4px 12px;
+      border: var(--border-card);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-surface);
+      color: var(--ink-body);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chip-sage { background: var(--accent-sage); }
+    .chip-sky { background: var(--accent-sky); }
+    .chip-peach { background: var(--accent-peach); }
+    .chip-rose { background: var(--accent-rose); }
+    .chip-teal { background: var(--accent-primary); color: var(--ink-inverted); border-color: var(--accent-primary); }
+
+    .hero-lead {
+      margin: 18px 0 28px;
+      max-width: 68ch;
+      color: var(--ink-body);
+      font-size: 1.15rem;
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    /* -------------------------------------------------------------------------
+     * GENERAL BUTTON SYSTEM
+     * ---------------------------------------------------------------------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 22px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: var(--radius-subtle);
+      border: var(--border-card);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      text-decoration: none;
+      transition: all 140ms ease;
+    }
+
+    .btn:hover {
+      background: var(--accent-sky);
+      color: var(--ink-body);
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      border-color: var(--accent-primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-primary-hover);
+      border-color: var(--accent-primary-hover);
+      color: #ffffff;
+    }
+
+    .btn-secondary {
+      background: var(--accent-sage);
+      color: var(--ink-body);
+    }
+
+    .btn-secondary:hover {
+      background: #a9caa5;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--border-card);
+      color: var(--ink-primary);
+    }
+
+    .btn-ghost:hover {
+      background: var(--bg-surface-alt);
+    }
+
+    .btn-danger {
+      background: var(--accent-rose);
+      color: var(--ink-body);
+      border-color: var(--border-card);
+    }
+
+    .btn-danger:hover {
+      background: #caa0a4;
+    }
+
+    .btn-accent-peach {
+      background: var(--accent-peach);
+      color: var(--ink-body);
+      border-color: var(--border-card);
+    }
+
+    .btn-accent-peach:hover {
+      background: #e29454;
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 01: COLOR ROLES & SWATCHES
+     * ---------------------------------------------------------------------- */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      border: var(--border-card);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      background: var(--bg-surface);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      padding: 0;
+      transition: transform 120ms ease;
+    }
+
+    .swatch-item:hover {
+      transform: translateY(-2px);
+    }
+
+    .swatch-chip {
+      height: 84px;
+      width: 100%;
+      border-bottom: var(--border-hairline);
+    }
+
+    .swatch-meta {
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .swatch-name {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .swatch-var {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--ink-body);
+      letter-spacing: 0.04em;
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 02: TYPOGRAPHY SPECIMEN
+     * ---------------------------------------------------------------------- */
+    .type-stack {
+      display: grid;
+      gap: 20px;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 20px;
+      padding: 18px 0;
+      border-bottom: var(--border-separator);
+      align-items: baseline;
+      min-width: 0;
+    }
+
+    .type-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .type-label {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .type-label-sub {
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .text-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      line-height: 1.05;
+      font-weight: 400;
+      color: var(--ink-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .text-h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.15;
+      font-weight: 400;
+      color: var(--ink-primary);
+      letter-spacing: -0.015em;
+    }
+
+    .text-h2 {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      line-height: 1.25;
+      font-weight: 700;
+      color: var(--ink-body);
+      letter-spacing: 0em;
+    }
+
+    .text-h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      line-height: 1.35;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .text-body {
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--ink-body);
+    }
+
+    .text-meta {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 16px;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--ink-primary);
+      border: var(--border-card);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-surface);
+      outline: none;
+      transition: border-color 150ms ease;
+    }
+
+    .live-type-input:focus {
+      border-color: var(--ink-body);
+      outline: 2px solid var(--ink-body);
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 03: COMPONENT ARCHETYPES
+     * ---------------------------------------------------------------------- */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .component-card {
+      background: var(--bg-surface);
+      border: var(--border-card);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .component-card-header {
+      padding: 14px 20px;
+      background: var(--bg-surface-alt);
+      border-bottom: var(--border-separator);
+      border-radius: var(--radius-card-header);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .component-card-header h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      color: var(--ink-primary);
+    }
+
+    .component-card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+
+    .btn-row, .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-label {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--ink-primary);
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 14px;
+      font-family: var(--font-sans);
+      font-size: 16px; /* Prevents mobile iOS zoom */
+      border: var(--border-card);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-canvas);
+      color: var(--ink-body);
+      outline: none;
+      transition: border-color 150ms ease;
+    }
+
+    .text-input:focus {
+      border-color: var(--ink-body);
+      outline: 2px solid var(--ink-body);
+    }
+
+    /* Custom Checkbox & Radio */
+    .checkbox-custom-label, .radio-custom-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .checkbox-custom-label input[type="checkbox"],
+    .radio-custom-label input[type="radio"] {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: var(--border-card);
+      background: var(--bg-surface);
+      cursor: pointer;
+      display: inline-grid;
+      place-content: center;
+      transition: background 150ms ease;
+    }
+
+    .checkbox-custom-label input[type="checkbox"] {
+      border-radius: var(--radius-subtle);
+    }
+
+    .checkbox-custom-label input[type="checkbox"]:checked {
+      background: var(--accent-primary);
+    }
+
+    .checkbox-custom-label input[type="checkbox"]:checked::after {
+      content: "✓";
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .radio-custom-label input[type="radio"] {
+      border-radius: 50%;
+    }
+
+    .radio-custom-label input[type="radio"]:checked {
+      background: var(--bg-surface);
+    }
+
+    .radio-custom-label input[type="radio"]:checked::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+    }
+
+    /* Toggle Switch */
+    .toggle-wrapper {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .toggle {
+      position: relative;
+      width: 48px;
+      height: 26px;
+      border: var(--border-card);
+      border-radius: var(--radius-pill);
+      background: var(--accent-sky);
+      cursor: pointer;
+      transition: background 160ms ease;
+      padding: 0;
+    }
+
+    .toggle[aria-pressed="true"] {
+      background: var(--accent-primary);
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 1px solid var(--ink-body);
+      transition: transform 160ms ease;
+    }
+
+    .toggle[aria-pressed="true"]::after {
+      transform: translateX(22px);
+      background: #ffffff;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      border: var(--border-card);
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface);
+      color: var(--ink-body);
+    }
+
+    .badge-sage { background: var(--accent-sage); }
+    .badge-sky { background: var(--accent-sky); }
+    .badge-peach { background: var(--accent-peach); }
+    .badge-rose { background: var(--accent-rose); }
+    .badge-teal { background: var(--accent-primary); color: #ffffff; }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 04: LIVING MICRO-EXPERIENCE (ARCHIVAL GAZETTE & DISPATCH)
+     * ---------------------------------------------------------------------- */
+    .archival-workspace {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .archival-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .archival-slab {
+      background: var(--bg-surface);
+      border: var(--border-card);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+
+    .archival-slab-header {
+      padding: 12px 18px;
+      background: var(--bg-surface-alt);
+      border-bottom: var(--border-separator);
+      border-radius: var(--radius-card-header);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .archival-slab-title {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .archival-slab-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-chip {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border: var(--border-card);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      cursor: pointer;
+      transition: all 120ms ease;
+    }
+
+    .filter-chip.active {
+      background: var(--accent-primary);
+      color: #ffffff;
+    }
+
+    .accent-ink-picker {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .accent-ink-btn {
+      height: 34px;
+      border: var(--border-card);
+      border-radius: var(--radius-subtle);
+      cursor: pointer;
+      display: grid;
+      place-content: center;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      transition: transform 120ms ease;
+    }
+
+    .accent-ink-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .archival-main {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .dispatch-hero-plate {
+      background: var(--bg-surface);
+      border: var(--border-card);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dispatch-plate-header {
+      padding: 14px 22px;
+      background: var(--accent-sage);
+      border-bottom: var(--border-separator);
+      border-radius: var(--radius-card-header);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      transition: background 160ms ease;
+    }
+
+    .dispatch-plate-content {
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .dispatch-folio-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      border-bottom: 1px solid var(--accent-slate);
+      padding-bottom: 8px;
+    }
+
+    .dispatch-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      line-height: 1.15;
+      color: var(--ink-primary);
+    }
+
+    .dispatch-columns-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .dispatch-plate-card {
+      background: var(--bg-surface);
+      border: var(--border-card);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .plate-card-head {
+      padding: 10px 14px;
+      background: var(--bg-surface-alt);
+      border-bottom: var(--border-separator);
+      border-radius: var(--radius-card-header);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .plate-card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .task-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      background: var(--bg-canvas);
+      border: 1px solid var(--accent-slate);
+      border-radius: var(--radius-subtle);
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 05: STYLE TILE SPECIFICATION DRAWER
+     * ---------------------------------------------------------------------- */
+    .spec-drawer-card {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border: var(--border-frame);
+      border-radius: var(--radius-card);
+      padding: 32px 36px;
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 520px;
+      padding: 20px;
+      background: #11181c;
+      color: #e2edea;
+      font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      font-size: 0.78rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border-radius: var(--radius-subtle);
+      border: 1px solid #37545b;
+    }
+
+    /* -------------------------------------------------------------------------
+     * MODAL OVERLAY & TOAST POPUP
+     * ---------------------------------------------------------------------- */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(28, 37, 41, 0.7);
+      backdrop-filter: blur(2px);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content-card {
+      width: min(880px, 100%);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-surface);
+      border: var(--border-frame);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 22px;
+      border-bottom: var(--border-separator);
+      background: var(--bg-surface);
+    }
+
+    .modal-footer {
+      border-bottom: 0;
+      border-top: var(--border-separator);
+      justify-content: flex-end;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--ink-primary);
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow: auto;
+      flex: 1;
+      background: var(--bg-canvas);
+    }
+
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      border: var(--border-card);
+      background: var(--bg-surface);
+      cursor: pointer;
+      border-radius: var(--radius-subtle);
+      display: grid;
+      place-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-body);
+      transition: background 120ms ease;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--accent-rose);
+    }
+
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3000;
+      padding: 12px 22px;
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 2px solid var(--accent-peach);
+      border-radius: var(--radius-subtle);
+    }
+
+    /* -------------------------------------------------------------------------
+     * MOBILE RESPONSIVENESS
+     * ---------------------------------------------------------------------- */
+    @media (max-width: 768px) {
+      .style-tile-header {
+        padding: 12px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .header-title-block {
+        width: 100%;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .layout-wrapper {
+        width: calc(100% - 24px);
+        margin: 16px auto 60px;
+        gap: 20px;
+      }
+
+      .section-block, .hero-banner {
+        padding: 24px 20px;
+      }
+
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .swatches-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .components-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .archival-workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .dispatch-columns-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions, .btn-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn, .btn-tile {
+        white-space: normal;
+        width: 100%;
+      }
+
+      .toast-popup {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- =========================================================================
+       MANDATORY HEADER BAR
+       ========================================================================= -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Mineral Teal Press</span>
+      <span class="design-vibe-tag">Editorial &amp; Archival</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+      <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+      <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-mineral-teal-press.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- =========================================================================
+         SLOT 1: HERO DISPLAY BANNER
+         ========================================================================= -->
+    <section class="hero-banner" id="hero-section">
+      <div class="hero-masthead-rule">
+        <span>ARCHIVAL FOLIO // VOL. IV</span>
+        <span>NEWSLETTER &amp; BROADSIDE MONOGRAPH</span>
+        <span>OCTOBER PRINTING</span>
+      </div>
+
+      <div class="hero-meta">
+        <span class="chip chip-teal">Editorial &amp; Archival</span>
+        <span class="chip chip-sage">2px Mineral Teal Borders</span>
+        <span class="chip chip-sky">3px Charcoal Frame</span>
+        <span class="chip chip-peach">Didone Headline Serif</span>
+        <span class="chip chip-rose">Flat Matte Paper</span>
+      </div>
+
+      <h1>Mineral Teal Press</h1>
+
+      <p class="hero-lead">
+        A disciplined, tactile editorial print language structured around warm newsprint ivory (#FAF6EB) and crisp vellum card slabs (#FFFDF5). Architectural stability is established through 2px solid mineral teal borders (#437179) and an authoritative 3px petrol charcoal outer frame (#1C2529). High-contrast Abril Fatface display typography commands headlines, while Outfit subheads and Plus Jakarta Sans body copy carry structured archival prose without drop shadows.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Prompt for Agent</button>
+        <a class="btn btn-secondary" href="#demo-section">Examine Archival Demo</a>
+        <a class="btn btn-ghost" href="#components-section">Review Components</a>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SLOT 2: COLOR SWATCHES & PALETTE MATRIX
+         ========================================================================= -->
+    <section class="section-block" id="palette-section">
+      <div class="section-kicker-row">
+        <p class="section-kicker">01 // Color Tokens</p>
+        <span class="section-tagline">Click any swatch to copy HEX value</span>
+      </div>
+      <h2>Color roles &amp; ink palette matrix</h2>
+      <div class="swatches-grid" id="swatch-grid">
+        <!-- Filled dynamically by JavaScript from DESIGN_PALETTE -->
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SLOT 3: TYPOGRAPHY SPECIMEN
+         ========================================================================= -->
+    <section class="section-block" id="typography-section">
+      <div class="section-kicker-row">
+        <p class="section-kicker">02 // Type Foundry</p>
+        <span class="section-tagline">Abril Fatface • Outfit • Plus Jakarta Sans</span>
+      </div>
+      <h2>Typography hierarchy specimen</h2>
+      <div class="type-stack">
+        <div class="type-row">
+          <div class="type-label">
+            <span>Display Title</span>
+            <span class="type-label-sub">Abril Fatface 400 / -0.02em</span>
+          </div>
+          <p class="text-display">Archival Gazette</p>
+        </div>
+
+        <div class="type-row">
+          <div class="type-label">
+            <span>H1 Heading</span>
+            <span class="type-label-sub">Abril Fatface 400 / -0.015em</span>
+          </div>
+          <p class="text-h1">The Monograph on Mineral Inks</p>
+        </div>
+
+        <div class="type-row">
+          <div class="type-label">
+            <span>H2 Card Head</span>
+            <span class="type-label-sub">Outfit 700 / 0em</span>
+          </div>
+          <p class="text-h2">Curated Plates &amp; Ruled Compartments</p>
+        </div>
+
+        <div class="type-row">
+          <div class="type-label">
+            <span>H3 Section</span>
+            <span class="type-label-sub">Outfit 700 / 0em</span>
+          </div>
+          <p class="text-h3">Tactile Newsprint Ivory &amp; Deep Petrol Boundaries</p>
+        </div>
+
+        <div class="type-row">
+          <div class="type-label">
+            <span>Body Sans</span>
+            <span class="type-label-sub">Plus Jakarta Sans 400 / 1.65</span>
+          </div>
+          <p class="text-body">
+            Clean and legible grotesque typography designed for high-density reading across archival journals, critical monographs, and modular card headers. Solid color fills with 2px borders establish clean hierarchy without needing drop shadows.
+          </p>
+        </div>
+
+        <div class="type-row">
+          <div class="type-label">
+            <span>Folio Meta</span>
+            <span class="type-label-sub">Plus Jakarta Sans 600 / +0.04em</span>
+          </div>
+          <p class="text-meta">FOLIO_REF // PLATE_04 // BORDER: 2PX_SOLID_#437179 // NO_SHADOWS</p>
+        </div>
+
+        <div class="type-row">
+          <div class="type-label">
+            <span>Live Tester</span>
+            <span class="type-label-sub">Test Abril Fatface letterforms</span>
+          </div>
+          <input class="live-type-input" id="live-type-tester-input" type="text" value="Type here to test Abril Fatface broadside typography…" />
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SLOT 4: COMPONENT ARCHETYPES
+         ========================================================================= -->
+    <section class="section-block" id="components-section">
+      <div class="section-kicker-row">
+        <p class="section-kicker">03 // Component Archetypes</p>
+        <span class="section-tagline">8px 8px 0 0 Headers • 2px Ruled Outlines • Flat Slabs</span>
+      </div>
+      <h2>Component gallery &amp; controls</h2>
+
+      <div class="components-grid">
+        <!-- Buttons Card -->
+        <article class="component-card">
+          <div class="component-card-header">
+            <h3>Button Archetypes</h3>
+            <span class="badge badge-teal">Solid Ink</span>
+          </div>
+          <div class="component-card-body">
+            <p class="text-body" style="font-size: 0.9rem;">Matte opaque button fills bounded by 2px solid mineral teal perimeter strokes.</p>
+            <div class="btn-row">
+              <button class="btn btn-primary" type="button">Primary Teal</button>
+              <button class="btn btn-secondary" type="button">Sage Tint</button>
+              <button class="btn btn-ghost" type="button">Ghost Ruled</button>
+              <button class="btn btn-accent-peach" type="button">Peach Accent</button>
+              <button class="btn btn-danger" type="button">Dusty Rose</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Form Inputs Card -->
+        <article class="component-card">
+          <div class="component-card-header">
+            <h3>Input Wells</h3>
+            <span class="badge badge-sky">2px Rule</span>
+          </div>
+          <div class="component-card-body">
+            <div class="field-group">
+              <label class="field-label" for="demo-input-text">Archival Document Ref (16px+ for iOS)</label>
+              <input class="text-input" id="demo-input-text" type="text" placeholder="e.g. DOC-1894-TEAL" />
+            </div>
+            <div class="field-group">
+              <label class="field-label" for="demo-select">Folio Compartment</label>
+              <select class="text-input" id="demo-select" style="cursor: pointer;">
+                <option>Curated Plate (8px Radius)</option>
+                <option>Broadside Slab (12px Frame)</option>
+                <option>Archival Capsule (Pill)</option>
+              </select>
+            </div>
+          </div>
+        </article>
+
+        <!-- Selectors & Controls Card -->
+        <article class="component-card">
+          <div class="component-card-header">
+            <h3>Selectors &amp; Switches</h3>
+            <span class="badge badge-sage">Controls</span>
+          </div>
+          <div class="component-card-body">
+            <div class="control-row">
+              <label class="checkbox-custom-label">
+                <input type="checkbox" checked /> Vellum Paper
+              </label>
+              <label class="checkbox-custom-label">
+                <input type="checkbox" checked /> 2px Stroke
+              </label>
+              <label class="radio-custom-label">
+                <input type="radio" name="demo-radio" checked /> Series A
+              </label>
+              <label class="radio-custom-label">
+                <input type="radio" name="demo-radio" /> Series B
+              </label>
+            </div>
+
+            <div class="control-row" style="margin-top: 6px;">
+              <div class="toggle-wrapper">
+                <button class="toggle" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle system"></button>
+                <span>Archival Rule</span>
+              </div>
+              <span class="badge badge-sage">Sage</span>
+              <span class="badge badge-sky">Sky</span>
+              <span class="badge badge-peach">Peach</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card Archetype Demo -->
+        <article class="component-card">
+          <div class="component-card-header">
+            <h3>Header Geometry</h3>
+            <span class="badge badge-rose">8px 8px 0 0</span>
+          </div>
+          <div class="component-card-body">
+            <p class="text-body" style="font-size: 0.9rem;">
+              Card header compartments anchor with an 8px top radius, separated from the lower vellum container by a crisp 2px solid mineral teal boundary.
+            </p>
+            <div style="display: flex; gap: 8px; align-items: center; margin-top: auto;">
+              <span class="badge badge-teal">#437179 Ink</span>
+              <span class="badge" style="background: var(--bg-surface-dark); color: #fff;">#1C2529 Frame</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SLOT 5: LIVING MICRO-EXPERIENCE (ARCHIVAL GAZETTE & DISPATCH)
+         ========================================================================= -->
+    <section class="section-block" id="demo-section">
+      <div class="section-kicker-row">
+        <p class="section-kicker">04 // Living Experience</p>
+        <span class="section-tagline">Interactive Archival Gazette &amp; Folio Plates</span>
+      </div>
+      <h2>The Quarterly Gazette &amp; Archival Dispatch</h2>
+
+      <div class="archival-workspace">
+        <!-- Sidebar Controls -->
+        <div class="archival-sidebar">
+          <div class="archival-slab">
+            <div class="archival-slab-header">
+              <span class="archival-slab-title">Index Filter</span>
+              <span class="badge badge-peach">4 Plates</span>
+            </div>
+            <div class="archival-slab-body">
+              <div class="filter-chips" id="demo-filter-chips">
+                <button class="filter-chip active" type="button" onclick="setDemoFilter(this, 'all')">All Entries</button>
+                <button class="filter-chip" type="button" onclick="setDemoFilter(this, 'plates')">Plates</button>
+                <button class="filter-chip" type="button" onclick="setDemoFilter(this, 'essays')">Essays</button>
+                <button class="filter-chip" type="button" onclick="setDemoFilter(this, 'folios')">Folios</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="archival-slab">
+            <div class="archival-slab-header">
+              <span class="archival-slab-title">Accent Ink Well</span>
+              <span class="badge" id="active-ink-badge" style="background: var(--accent-sage);">Sage Green</span>
+            </div>
+            <div class="archival-slab-body">
+              <p class="text-body" style="font-size: 0.85rem;">Click to restyle the lead dispatch plate banner with archival spot inks:</p>
+              <div class="accent-ink-picker">
+                <button class="accent-ink-btn" style="background: #C5DCC1; color: #1C2529;" type="button" onclick="swapDemoAccent('#C5DCC1', 'Sage Green')" title="Sage Green">SG</button>
+                <button class="accent-ink-btn" style="background: #B5CDD3; color: #1C2529;" type="button" onclick="swapDemoAccent('#B5CDD3', 'Soft Sky Teal')" title="Soft Sky Teal">ST</button>
+                <button class="accent-ink-btn" style="background: #7DA7B5; color: #FFFFFF;" type="button" onclick="swapDemoAccent('#7DA7B5', 'Muted Slate')" title="Muted Slate">MS</button>
+                <button class="accent-ink-btn" style="background: #F1A86F; color: #1C2529;" type="button" onclick="swapDemoAccent('#F1A86F', 'Warm Peach')" title="Warm Peach">WP</button>
+                <button class="accent-ink-btn" style="background: #DCA2A7; color: #1C2529;" type="button" onclick="swapDemoAccent('#DCA2A7', 'Dusty Rose')" title="Dusty Rose">DR</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="archival-slab">
+            <div class="archival-slab-header">
+              <span class="archival-slab-title">Boundaries Telemetry</span>
+              <span class="badge badge-teal">Verified</span>
+            </div>
+            <div class="archival-slab-body">
+              <div class="task-row">
+                <span>Card Borders</span>
+                <strong>2px #437179</strong>
+              </div>
+              <div class="task-row">
+                <span>Outer Frame</span>
+                <strong>3px #1C2529</strong>
+              </div>
+              <div class="task-row">
+                <span>Box Shadows</span>
+                <strong>None (0px)</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Gazette Content -->
+        <div class="archival-main">
+          <div class="dispatch-hero-plate">
+            <div class="dispatch-plate-header" id="dispatch-lead-banner">
+              <span class="badge badge-teal">★ Lead Monograph</span>
+              <span class="text-meta" style="color: var(--ink-body);">PRINT EDITION // NO. 42</span>
+            </div>
+
+            <div class="dispatch-plate-content">
+              <div class="dispatch-folio-line">
+                <span>ARCHIVE DIVISION OF MINERAL WORKS</span>
+                <span>FOLIO RECORD 014-B</span>
+              </div>
+
+              <h3 class="dispatch-headline">Studies in Archival Paper Chemistry &amp; Deep Mineral Teal Inks</h3>
+
+              <p class="text-body" style="font-size: 0.98rem;">
+                A rigorous investigation into long-life untextured vellum card stocks, balanced Didone headline tracking, and continuous 2px mineral teal border rules. Solid opaque color blocking eliminates visual noise while preserving reading focus.
+              </p>
+
+              <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 6px;">
+                <button class="btn btn-primary" type="button" onclick="triggerToast('✓ Entry Archived to Register')">Archive Entry</button>
+                <button class="btn btn-secondary" type="button" onclick="triggerToast('✓ Folio Proof Exported')">Export Folio</button>
+                <span class="text-meta" style="margin-left: auto;">REGISTER: 24 OF 24 PAGES BOUND</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dispatch-columns-grid">
+            <div class="dispatch-plate-card" data-category="plates">
+              <div class="plate-card-head">
+                <span class="badge badge-sage">Plate 01</span>
+                <span class="text-meta">OCT 1894</span>
+              </div>
+              <div class="plate-card-body">
+                <h4 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--ink-primary); font-weight: 700;">Vellum Card Slabs</h4>
+                <p class="text-body" style="font-size: 0.88rem;">
+                  Bright vellum containers (#FFFDF5) anchored by 8px corner radii and 2px solid mineral teal borders.
+                </p>
+                <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
+                  <span class="badge badge-sky">8px Radius</span>
+                  <span class="text-meta" style="color: var(--ink-primary); font-weight: 700;">Read Plate →</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dispatch-plate-card" data-category="essays">
+              <div class="plate-card-head">
+                <span class="badge badge-peach">Essay 02</span>
+                <span class="text-meta">OCT 1902</span>
+              </div>
+              <div class="plate-card-body">
+                <h4 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--ink-primary); font-weight: 700;">Abril Fatface Headlines</h4>
+                <p class="text-body" style="font-size: 0.88rem;">
+                  Classic 19th-century Didone display letterforms with extreme stroke contrast and commanding authority.
+                </p>
+                <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
+                  <span class="badge badge-rose">Weight 400</span>
+                  <span class="text-meta" style="color: var(--ink-primary); font-weight: 700;">Inspect →</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dispatch-plate-card" data-category="folios">
+              <div class="plate-card-head">
+                <span class="badge badge-sky">Folio 03</span>
+                <span class="text-meta">NOV 1910</span>
+              </div>
+              <div class="plate-card-body">
+                <h4 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--ink-primary); font-weight: 700;">Petrol Charcoal Frame</h4>
+                <p class="text-body" style="font-size: 0.88rem;">
+                  Stout 3px dark perimeter boundary (#1C2529) containing newsprint ivory field elements cleanly.
+                </p>
+                <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
+                  <span class="badge badge-teal">3px Border</span>
+                  <span class="text-meta" style="color: var(--ink-primary); font-weight: 700;">Review →</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="dispatch-plate-card" data-category="plates">
+              <div class="plate-card-head">
+                <span class="badge badge-rose">Plate 04</span>
+                <span class="text-meta">DEC 1918</span>
+              </div>
+              <div class="plate-card-body">
+                <h4 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--ink-primary); font-weight: 700;">Separators &amp; Dividers</h4>
+                <p class="text-body" style="font-size: 0.88rem;">
+                  Continuous 2px solid #437179 hairline rules dividing compartments with geometric discipline.
+                </p>
+                <div style="margin-top: auto; display: flex; justify-content: space-between; align-items: center;">
+                  <span class="badge badge-peach">2px Rule</span>
+                  <span class="text-meta" style="color: var(--ink-primary); font-weight: 700;">Open →</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SLOT 6: SPECIFICATION DRAWER
+         ========================================================================= -->
+    <section class="section-block spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-head">
+        <h2 style="margin:0;color:inherit;">Style Tile specification</h2>
+        <button class="btn btn-secondary" type="button" onclick="copyTilePromptDirect()">Copy Markdown Spec</button>
+      </div>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       SPEC MODAL
+       ========================================================================= -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title" class="modal-title">Mineral Teal Press // Specification</strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION POPUP -->
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">Copied</div>
+
+  <!-- =========================================================================
+       STYLE TILE MARKDOWN (CANONICAL PROMPT SOURCE OF TRUTH)
+       ========================================================================= -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Mineral Teal Press
+  Construction: warm ivory paper • solid mineral teal ink • Didone display serif • disciplined hairline & frame borders
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A tactile editorial and archival print aesthetic pairing warm newsprint ivory (#FAF6EB) with bright vellum card slabs (#FFFDF5) and rich mineral teal primary ink (#437179). Structural boundaries are strictly delineated by 2px solid mineral teal borders and a 3px deep petrol charcoal outer frame (#1C2529) without any drop shadows or blur filters. Dramatic high-contrast Didone display serifs command primary headlines, while geometric grotesque card headings and balanced sans body type provide clean editorial hierarchy. Soft pastel archival accents—sage green, soft sky teal, muted slate, warm peach, and dusty rose—differentiate sections and active tokens.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FAF6EB; /* Warm ivory newsprint canvas */
+  --bg-surface:             #FFFDF5; /* Bright vellum card surface */
+  --bg-surface-alt:         #F3EBD8; /* Secondary tinted paper well */
+  --bg-surface-dark:        #1C2529; /* Deep petrol charcoal frame & slab */
+
+  /* Inks & Typography */
+  --ink-primary:            #437179; /* Primary mineral teal ink for titles & display */
+  --ink-body:               #1C2529; /* Deep petrol charcoal for high-legibility body text */
+  --ink-secondary:          #437179; /* Supporting mineral teal headers */
+  --ink-muted:              #7DA7B5; /* Muted slate teal for folios & metadata */
+  --ink-inverted:           #FFFDF5; /* Warm vellum text on dark surfaces */
+
+  /* Signature Accents */
+  --accent-primary:         #437179; /* Primary mineral teal action fill */
+  --accent-primary-hover:   #1C2529; /* Deep charcoal hover transition */
+  --accent-sage:            #C5DCC1; /* Archival sage green tint */
+  --accent-sky:             #B5CDD3; /* Soft sky teal panel tint */
+  --accent-slate:           #7DA7B5; /* Muted slate accent & micro borders */
+  --accent-peach:           #F1A86F; /* Warm peach highlight accent */
+  --accent-rose:            #DCA2A7; /* Dusty rose editorial stamp accent */
+
+  /* Status Tokens */
+  --status-success:         #437179; /* Mineral teal */
+  --status-warning:         #F1A86F; /* Warm peach */
+  --status-danger:          #DCA2A7; /* Dusty rose */
+  --status-info:            #7DA7B5; /* Muted slate teal */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Abril Fatface", Georgia, serif;
+--font-heading: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
+--font-sans:    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+--font-mono:    ui-monospace, "Space Grotesk", monospace, sans-serif;
+
+/* Type Scale */
+--text-display: clamp(2.5rem, 6vw, 3.8rem) / 1.05 var(--font-display); /* Letter-spacing: -0.02em | Weight: 400 */
+--text-h1:      2.5rem   / 1.15 var(--font-display);                     /* Letter-spacing: -0.02em | Weight: 400 */
+--text-h2:      1.75rem  / 1.25 var(--font-heading);                     /* Letter-spacing: 0em     | Weight: 700 */
+--text-h3:      1.25rem  / 1.35 var(--font-heading);                     /* Letter-spacing: 0em     | Weight: 700 */
+--text-body:    1.0rem   / 1.60 var(--font-sans);                        /* Letter-spacing: 0em     | Weight: 400 */
+--text-body-sm: 0.875rem / 1.50 var(--font-sans);                        /* Letter-spacing: 0em     | Weight: 400 */
+--text-meta:    0.75rem  / 1.40 var(--font-sans);                        /* Letter-spacing: 0.04em  | Weight: 600 | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-canvas:      12px;
+--radius-card:        8px;
+--radius-card-header: 8px 8px 0px 0px;
+--radius-subtle:      4px;
+--radius-pill:        9999px;
+
+/* Elevation & Shadows */
+--shadow-base:   none; /* Flat matte opaque fills; depth arises from contrasting paper slabs */
+--shadow-hover:  none;
+--shadow-active: none;
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-frame:       3px solid #1C2529; /* Outer structural boundary */
+--border-card:        2px solid #437179; /* Inner card perimeter */
+--border-separator:   2px solid #437179; /* Header and section dividers */
+--border-hairline:    1px solid #7DA7B5; /* Muted internal cell dividers */
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Flat opaque fills with 2px solid #437179 borders and 4px or pill (9999px) corner radii. Primary buttons use mineral teal fill (#437179) with warm vellum text (#FFFDF5), transitioning to deep charcoal (#1C2529) on hover. Zero shadows. Use the host's existing labels.
+- **Cards**: Crisp vellum containers (#FFFDF5) bounded by 2px solid #437179 perimeters and 8px corners. Card headers use an 8px 8px 0px 0px top radius and are separated from the card body by a 2px solid #437179 hairline rule. Completely flat with no drop shadows. Do not add index codes or fake meta.
+- **Inputs**: Flat warm ivory wells (#FAF6EB) bounded by 2px solid #437179 borders. Focus state outlines in 2px solid #1C2529 with 0px offset. Font size minimum 16px.
+- **Navigation**: Flat archival top bar with a 2px solid #437179 bottom rule. Navigation links set in Outfit 700 with mineral teal inks and subtle underline or chip active indicators. Restyle existing items. Do not add catalog codes, fake clocks, or status readouts.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No Gaussian blur, soft ambient drop shadows, or neumorphic bevels (depth must emerge strictly from matte paper surfaces and solid borders).
+- No saturated neon, hyper-bright primary primaries, or modern cyberpunk glows.
+- No thin modern monoline serifs for titles; display titles must remain robust, high-contrast Abril Fatface.
+- No borderless floating cards; cards must maintain their disciplined 2px solid mineral teal perimeter.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- =========================================================================
+       CHROME & INTERACTION LOGIC
+       ========================================================================= -->
+  <script>
+    const DESIGN_SLUG = "mineral-teal-press";
+
+    const DESIGN_PALETTE = [
+      { name: "Canvas Ivory", hex: "#FAF6EB", cssVar: "--bg-canvas" },
+      { name: "Surface Vellum", hex: "#FFFDF5", cssVar: "--bg-surface" },
+      { name: "Mineral Teal Ink", hex: "#437179", cssVar: "--ink-primary" },
+      { name: "Border Charcoal", hex: "#1C2529", cssVar: "--border-dark" },
+      { name: "Sage Green", hex: "#C5DCC1", cssVar: "--accent-sage" },
+      { name: "Soft Sky Teal", hex: "#B5CDD3", cssVar: "--accent-sky" },
+      { name: "Muted Slate", hex: "#7DA7B5", cssVar: "--accent-slate" },
+      { name: "Warm Peach", hex: "#F1A86F", cssVar: "--accent-peach" },
+      { name: "Dusty Rose", hex: "#DCA2A7", cssVar: "--accent-rose" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex + " (" + swatch.name + ")";
+        btn.innerHTML =
+          '<span class="swatch-chip" style="background:' + swatch.hex + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + '</span>' +
+            '<span class="swatch-var">' + swatch.cssVar + '</span> ' +
+            '<span class="swatch-hex">' + swatch.hex + '</span>' +
+          '</span>';
+        btn.addEventListener("click", function () { copyHex(swatch.hex, swatch.name); });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () { toast.style.display = "none"; }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(function () { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+      });
+    }
+
+    /* Living Demo Interactivity */
+    function swapDemoAccent(hex, name) {
+      const badge = document.getElementById("active-ink-badge");
+      if (badge) {
+        badge.style.background = hex;
+        badge.textContent = name;
+        badge.style.color = (hex === "#7DA7B5") ? "#FFFFFF" : "#1C2529";
+      }
+      const banner = document.getElementById("dispatch-lead-banner");
+      if (banner) {
+        banner.style.background = hex;
+      }
+      triggerToast("✓ Spot ink set to " + name);
+    }
+
+    function setDemoFilter(btn, category) {
+      const allChips = document.querySelectorAll("#demo-filter-chips .filter-chip");
+      allChips.forEach(function (c) { c.classList.remove("active"); });
+      btn.classList.add("active");
+
+      const cards = document.querySelectorAll(".dispatch-plate-card");
+      cards.forEach(function (card) {
+        if (category === "all" || card.getAttribute("data-category") === category) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
