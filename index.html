@@ -203,6 +203,16 @@
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                 </span>
                 <input type="text" id="search-input" class="search-input" placeholder="Search by vibe, type, or tag..." autocomplete="off" data-placeholder-desktop="Search by vibe, typography, tag, or aesthetic... [ / ]" data-placeholder-mobile="Search vibes, type, tags...">
+                <div class="search-color-filter" id="search-color-filter" role="toolbar" aria-label="Filter catalog by colour">
+                  <button type="button" class="color-dot-btn" data-color="Red" onclick="toggleColorFilter('Red')" title="Filter by Red" aria-label="Filter by Red" aria-pressed="false" style="--dot-color: #EF4444;"></button>
+                  <button type="button" class="color-dot-btn" data-color="Orange" onclick="toggleColorFilter('Orange')" title="Filter by Orange" aria-label="Filter by Orange" aria-pressed="false" style="--dot-color: #F97316;"></button>
+                  <button type="button" class="color-dot-btn" data-color="Yellow" onclick="toggleColorFilter('Yellow')" title="Filter by Yellow" aria-label="Filter by Yellow" aria-pressed="false" style="--dot-color: #EAB308;"></button>
+                  <button type="button" class="color-dot-btn" data-color="Green" onclick="toggleColorFilter('Green')" title="Filter by Green" aria-label="Filter by Green" aria-pressed="false" style="--dot-color: #10B981;"></button>
+                  <button type="button" class="color-dot-btn" data-color="Blue" onclick="toggleColorFilter('Blue')" title="Filter by Blue" aria-label="Filter by Blue" aria-pressed="false" style="--dot-color: #3B82F6;"></button>
+                  <button type="button" class="color-dot-btn" data-color="Purple" onclick="toggleColorFilter('Purple')" title="Filter by Purple" aria-label="Filter by Purple" aria-pressed="false" style="--dot-color: #8B5CF6;"></button>
+                  <button type="button" class="color-dot-btn" data-color="Pink" onclick="toggleColorFilter('Pink')" title="Filter by Pink" aria-label="Filter by Pink" aria-pressed="false" style="--dot-color: #EC4899;"></button>
+                  <button type="button" class="color-dot-btn" data-color="Gray" onclick="toggleColorFilter('Gray')" title="Filter by Gray" aria-label="Filter by Gray" aria-pressed="false" style="--dot-color: #6B7280;"></button>
+                </div>
               </div>
 
               <div class="search-quick-actions">

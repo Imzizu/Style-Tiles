@@ -951,7 +951,7 @@ html[data-mode="dark"] .theme-picker-option.is-active {
   padding: 0 var(--space-3);
   flex: 1;
   min-width: 240px;
-  max-width: 440px;
+  max-width: 580px;
   transition: var(--transition-snap);
 }
 
@@ -1027,6 +1027,81 @@ html[data-mode="dark"] .theme-picker-option.is-active {
   caret-color: var(--ink-primary);
   box-shadow: 0 0 0 1000px var(--surface-canvas) inset;
   transition: background-color 9999s ease-out;
+}
+
+/* Color Filter Dots inside Search Box */
+.search-color-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: var(--space-3);
+  padding: 4px 8px 4px var(--space-3);
+  border-left: var(--border-hairline);
+  flex-shrink: 0;
+}
+
+.color-dot-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  max-width: 16px;
+  max-height: 16px;
+  flex: 0 0 16px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-color: var(--dot-color);
+  cursor: pointer;
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  line-height: 0;
+  font-size: 0;
+  transition: box-shadow 0.15s cubic-bezier(0.2, 0, 0, 1), filter 0.15s ease;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+html[data-mode="dark"] .color-dot-btn {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+.color-dot-btn:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 0 0 2px var(--surface-canvas), 0 0 0 3px var(--dot-color), inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+html[data-mode="dark"] .color-dot-btn:hover {
+  box-shadow: 0 0 0 2px var(--surface-canvas), 0 0 0 3px var(--dot-color), inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+.color-dot-btn:focus-visible {
+  outline: 2px dashed var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.color-dot-btn.active {
+  box-shadow: 0 0 0 2px var(--surface-canvas), 0 0 0 3.5px var(--ink-primary), inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.color-dot-btn.active:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 0 0 2px var(--surface-canvas), 0 0 0 3.5px var(--ink-primary), inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+html[data-mode="dark"] .color-dot-btn.active {
+  box-shadow: 0 0 0 2px var(--surface-canvas), 0 0 0 3.5px #FFFFFF, inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+html[data-mode="dark"] .color-dot-btn.active:hover {
+  box-shadow: 0 0 0 2px var(--surface-canvas), 0 0 0 3.5px #FFFFFF, inset 0 0 0 1px rgba(255, 255, 255, 0.25);
 }
 
 .view-options {
@@ -2339,6 +2414,22 @@ kbd,
     width: 100%;
   }
 
+  .search-color-filter {
+    gap: 8px;
+    padding: 3px 6px 3px 8px;
+    margin-left: 6px;
+  }
+
+  .color-dot-btn {
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+    min-height: 14px;
+    max-width: 14px;
+    max-height: 14px;
+    flex: 0 0 14px;
+  }
+
   .search-quick-actions {
     display: flex;
     gap: 8px;
@@ -2580,6 +2671,22 @@ kbd,
 
   .filter-label {
     display: none;
+  }
+
+  .search-color-filter {
+    gap: 6px;
+    padding: 2px 4px 2px 6px;
+    margin-left: 4px;
+  }
+
+  .color-dot-btn {
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
+    min-height: 12px;
+    max-width: 12px;
+    max-height: 12px;
+    flex: 0 0 12px;
   }
 }
 
