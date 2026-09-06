@@ -16,6 +16,7 @@ When the user says *“Read agent.md and create the next style tile…”* you a
 |---|---|
 | Read | `Agent/agent.md` (this file) |
 | Read + copy | `Agent/style-tile-skeleton.html` |
+| Read / Reference | `Assets/*` — image assets (via `../Assets/<filename>`), permitted ONLY if strictly required by the design language (see §1.6) |
 | Write | `Designs/<design-slug>.html` (the copy you just made) |
 | Write (end of file only) | `catalog-data.js` — the `AGENT_APPEND_TILE_HERE` marker |
 
@@ -27,7 +28,7 @@ Do **not** open, grep, or “check”: `app.js`, `index.html`, `styles.css`, any
 
 1. Invent a kebab-case `slug` from the requested style. Filename = `Designs/<slug>.html`. That string **is** the identity.
 2. Copy `Agent/style-tile-skeleton.html` → `Designs/<slug>.html`. Paths in the skeleton already assume `Designs/`.
-3. In that new HTML file only: replace `YOUR-SLUG`, `Your Design Name`, vibe tag, tokens, type, layout, living demo, and showcase copy. Delete `.skeleton-notice`. Fill `#style-tile-markdown` using §4. Pick `vibeBadge` using §3.
+3. In that new HTML file only: replace `YOUR-SLUG`, `Your Design Name`, vibe tag, tokens, type, layout, living demo, and showcase copy. Delete `.skeleton-notice`. Fill `#style-tile-markdown` using §4. Pick `vibeBadge` using §3. If (and only if) the aesthetic strictly demands photographic imagery to convey its design language, link assets from `../Assets/<filename>` (see §1.6).
 4. **Keep** the skeleton’s header, `#spec-modal`, `#toast-popup`, chrome script, mobile `<link>` / `<script>`, and section ids. Restyle CSS; do not rewrite the chrome from scratch.
 5. Register the tile: open `catalog-data.js` **at the `AGENT_APPEND_TILE_HERE` marker only**. Add a comma after the previous entry. Paste the object below (no `id`). Stop. Do not register the skeleton.
 
@@ -79,6 +80,12 @@ The skeleton is a **machine template**. Its gray wireframe is not a style. Do no
 5. **Mandatory Live Preview on Catalog Cards**:
    - When a design page `Designs/<design-slug>.html` is published, its corresponding card in the main catalog (`index.html`) **MUST render a live, scaled 16:9 preview iframe of the actual design page** instead of a placeholder wireframe.
    - This ensures users and agents immediately see the true rendered typography, colors, borders, and vibe directly on the catalog grid.
+
+6. **Image Assets Policy (`/Assets` folder)**:
+   - The repository provides an `/Assets` folder at root containing random image assets (referenced from a design page as `../Assets/<filename>`, e.g., `../Assets/black-swan.jpg`, `../Assets/city.jpg`).
+   - **Strict requirement condition**: You may use these image assets when creating a design page **ONLY IF strictly required to convey the specific design language** (e.g. archival monochrome photography plates, museum editorial spreads, fine art / high-fashion art direction where photographic imagery is a foundational pillar of the visual system).
+   - **Never use as generic filler**: If the design language can be expressed through pure CSS, typography, borders, geometric shapes, patterns, or SVGs, use those instead. Do NOT use images simply to fill space, serve as background wallpaper, or make a generic card look busy.
+   - **Transferability rule**: Never reference `/Assets` files inside the machine-readable Markdown spec in `<script id="style-tile-markdown">`. The host product has its own content and imagery.
 
 ---
 
@@ -412,6 +419,7 @@ Every design page created in `Designs/<slug>.html` must render the following ric
 
 5. **Living Micro-Experience / Landing Demo**:
    - A fully functional mini-layout (e.g., an editorial article snippet, audio player, code inspector, or product showcase) that demonstrates how the design tokens work in concert.
+   - If the aesthetic strictly requires photography to communicate its visual language (e.g. editorial spreads or archival plates), image assets from `/Assets` (`../Assets/<filename>`) may be integrated here. Otherwise, rely on pure CSS, SVG, and typographic hierarchy.
 
 6. **Style Tile Prompt Code Drawer**:
    - An accordion or visible code block containing the full Markdown Style Tile with a 1-click copy button, allowing agents to copy directly from the bottom of the page as well.
@@ -468,5 +476,6 @@ When adding a new design (see §0 — do not open extra files to complete this l
   - [ ] Forbidden list includes: never inject this tile's name, construction tags, or showcase copy into the host interface.
 - [ ] Append one object at `AGENT_APPEND_TILE_HERE` in `catalog-data.js` (schema in §0). Omit `id`. `hasPage: true`. Matching `vibeBadge` / `categories` / `.design-vibe-tag`. Header code stays `TILE`.
 - [ ] Did **not** open `app.js`, `index.html`, other design HTML, or the mobile JS/CSS sources.
+- [ ] If image assets from `/Assets` are used (`../Assets/<filename>`), verify they are strictly required to convey the design language (not used as generic decorative filler).
 - [ ] Test at phone (~390px), tablet (~768px), and desktop: no horizontal overflow, stacked layouts, readable type, working header actions, contrast, keyboard.
 

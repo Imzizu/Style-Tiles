@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Slate Atmospheric Minimal // TILE</title>
+  <meta name="description" content="Restrained, atmospheric corporate minimalism pairing cool slate tones, hairline framing, and a soft ambient radial light source.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------------------------------------------------------
+     * SLATE ATMOSPHERIC MINIMAL — DESIGN TOKENS
+     * Style: Quiet Luxury
+     * Vibe: Restrained corporate minimalism, cool slate, ambient radial glow,
+     *       hairline contour framing, 40px curvature, 0px elevation.
+     * ---------------------------------------------------------------------- */
+    :root {
+      /* Surfaces & Canvases */
+      --bg-canvas:              #D2D9E0;
+      --ambient-glow:           #ADC7E5;
+      --bg-surface:             transparent;
+      --bg-surface-alt:         rgba(173, 199, 229, 0.18);
+      --bg-surface-subtle:      rgba(44, 46, 51, 0.04);
+      --bg-surface-dark:        #2E3035;
+
+      /* Inks & Typography */
+      --ink-primary:            #2E3035;
+      --ink-secondary:          #52565D;
+      --ink-muted:              rgba(82, 86, 93, 0.75);
+      --ink-inverted:           #F5F7FA;
+
+      /* Signature Structural Accents & Borders */
+      --border-structural:      #2C2E33;
+      --icon-stroke:            #2E3035;
+      --accent-primary:         #2E3035;
+      --accent-primary-hover:   #1C1D20;
+      --accent-secondary:       #ADC7E5;
+      --accent-secondary-hover: #98B8DB;
+      --accent-tint:            rgba(173, 199, 229, 0.28);
+
+      /* Status Tokens */
+      --status-success:         #24553F;
+      --status-warning:         #945618;
+      --status-danger:          #8B2626;
+      --status-info:            #2A4D73;
+
+      /* Typography Stacks */
+      --font-display:           "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-sans:              "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono:              "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
+
+      /* Geometry & Elevation */
+      --radius-default:         40px;
+      --radius-medium:          20px;
+      --radius-subtle:          14px;
+      --radius-pill:            9999px;
+
+      --shadow-base:            none;
+      --shadow-hover:           none;
+      --shadow-active:          none;
+
+      --border-core:            1px solid var(--border-structural);
+      --border-hairline:        1px solid rgba(44, 46, 51, 0.25);
+      --divider-style:          1px solid rgba(44, 46, 51, 0.22);
+      --header-height:          68px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-canvas);
+      background-image:
+        radial-gradient(ellipse 70% 60% at 8% 92%, #ADC7E5 0%, rgba(173, 199, 229, 0.6) 32%, rgba(210, 217, 224, 0) 68%),
+        radial-gradient(circle at 92% 12%, rgba(255, 255, 255, 0.35) 0%, rgba(210, 217, 224, 0) 45%);
+      background-attachment: fixed;
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      line-height: 1.45;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    /* Mandatory Header Bar */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 12px 28px;
+      background: rgba(210, 217, 224, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: var(--border-core);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 8px 16px;
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-size: 0.825rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      background: transparent;
+      transition: background 180ms ease, color 180ms ease;
+    }
+
+    .nav-back-link:hover {
+      background: var(--ink-primary);
+      color: var(--ink-inverted);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-pill);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--ink-primary);
+      overflow-wrap: anywhere;
+    }
+
+    .design-vibe-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      color: var(--ink-secondary);
+      background: transparent;
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      background: transparent;
+      color: var(--ink-primary);
+      transition: all 180ms ease;
+    }
+
+    .btn-tile:hover {
+      background: var(--bg-surface-alt);
+    }
+
+    .btn-copy {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-color: var(--bg-surface-dark);
+    }
+
+    .btn-copy:hover {
+      background: var(--accent-primary-hover);
+      border-color: var(--accent-primary-hover);
+      color: var(--ink-inverted);
+    }
+
+    /* Layout & Section Blocks */
+    .layout-wrapper {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 48px 0 100px;
+    }
+
+    .section-block {
+      margin-top: 72px;
+      position: relative;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      margin-bottom: 10px;
+    }
+
+    .section-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+      color: var(--ink-primary);
+      margin-bottom: 24px;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      padding: 64px 56px;
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      background: transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      bottom: -40px;
+      left: -40px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(173, 199, 229, 0.45) 0%, rgba(210, 217, 224, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .chip {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      color: var(--ink-secondary);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .chip-accent {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-color: var(--bg-surface-dark);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6.5vw, 4.8rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink-primary);
+      margin-bottom: 20px;
+      overflow-wrap: anywhere;
+    }
+
+    .hero-lead {
+      max-width: 68ch;
+      color: var(--ink-secondary);
+      font-size: 1.15rem;
+      line-height: 1.55;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 10px 24px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: var(--radius-pill);
+      border: var(--border-core);
+      background: transparent;
+      color: var(--ink-primary);
+      transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: var(--bg-surface-alt);
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      border-color: var(--accent-primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-primary-hover);
+      border-color: var(--accent-primary-hover);
+      color: var(--ink-inverted);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink-primary);
+      border-color: var(--border-structural);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-surface-alt);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: transparent;
+      color: var(--ink-secondary);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(44, 46, 51, 0.06);
+      color: var(--ink-primary);
+    }
+
+    .btn-danger {
+      background: transparent;
+      border-color: var(--status-danger);
+      color: var(--status-danger);
+    }
+
+    .btn-danger:hover {
+      background: var(--status-danger);
+      color: #fff;
+    }
+
+    .btn-accent {
+      background: var(--accent-secondary);
+      color: var(--ink-primary);
+      border-color: var(--border-structural);
+    }
+
+    .btn-accent:hover {
+      background: var(--accent-secondary-hover);
+    }
+
+    /* Color Swatches Grid */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      border: var(--border-core);
+      border-radius: var(--radius-medium);
+      overflow: hidden;
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      padding: 0;
+      transition: border-color 180ms ease, transform 180ms ease;
+    }
+
+    .swatch-item:hover {
+      border-color: var(--ink-primary);
+    }
+
+    .swatch-chip {
+      height: 90px;
+      width: 100%;
+      border-bottom: var(--border-core);
+    }
+
+    .swatch-meta {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .swatch-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .swatch-var, .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-secondary);
+    }
+
+    /* Typography Ladder */
+    .type-card {
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      padding: 36px 44px;
+      background: transparent;
+    }
+
+    .type-stack {
+      display: grid;
+      gap: 24px;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 24px;
+      padding: 16px 0;
+      border-bottom: var(--divider-style);
+      align-items: baseline;
+      min-width: 0;
+    }
+
+    .type-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .type-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      font-weight: 600;
+    }
+
+    .text-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink-primary);
+    }
+
+    .text-h1 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .text-h2 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--ink-primary);
+    }
+
+    .text-h3 {
+      font-family: var(--font-sans);
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+    }
+
+    .text-body {
+      font-family: var(--font-sans);
+      font-size: 1.0rem;
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--ink-secondary);
+    }
+
+    .text-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 18px;
+      font-size: 1.1rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: transparent;
+      color: var(--ink-primary);
+      outline: none;
+      transition: border-color 180ms ease, background 180ms ease;
+    }
+
+    .live-type-input:focus {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: var(--ink-primary);
+    }
+
+    /* Components Gallery */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .component-card {
+      padding: 32px;
+      background: transparent;
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-width: 0;
+    }
+
+    .component-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--ink-primary);
+    }
+
+    .btn-row, .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      margin-bottom: 6px;
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 16px;
+      font-size: 16px;
+      font-family: var(--font-sans);
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: transparent;
+      color: var(--ink-primary);
+      outline: none;
+      transition: border-color 180ms ease, background 180ms ease;
+    }
+
+    .text-input:focus {
+      border-color: var(--ink-primary);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .custom-control {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink-primary);
+      cursor: pointer;
+    }
+
+    .custom-control input[type="checkbox"],
+    .custom-control input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: var(--border-core);
+      border-radius: 6px;
+      background: transparent;
+      display: inline-grid;
+      place-content: center;
+      cursor: pointer;
+      transition: background 160ms ease, border-color 160ms ease;
+    }
+
+    .custom-control input[type="radio"] {
+      border-radius: 50%;
+    }
+
+    .custom-control input[type="checkbox"]:checked,
+    .custom-control input[type="radio"]:checked {
+      background: var(--ink-primary);
+      border-color: var(--ink-primary);
+    }
+
+    .custom-control input[type="checkbox"]:checked::after {
+      content: "";
+      width: 6px;
+      height: 10px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) translate(-1px, -1px);
+    }
+
+    .custom-control input[type="radio"]:checked::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .toggle {
+      position: relative;
+      width: 52px;
+      height: 28px;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      background: transparent;
+      cursor: pointer;
+      transition: background 180ms ease, border-color 180ms ease;
+    }
+
+    .toggle[aria-pressed="true"] {
+      background: var(--ink-primary);
+      border-color: var(--ink-primary);
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--ink-primary);
+      transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), background 180ms ease;
+    }
+
+    .toggle[aria-pressed="true"]::after {
+      transform: translateX(24px);
+      background: #fff;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      color: var(--ink-secondary);
+      background: transparent;
+    }
+
+    .badge-accent {
+      background: var(--accent-secondary);
+      color: var(--ink-primary);
+    }
+
+    /* Monoline Icon Gallery Component */
+    .icon-showcase {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--icon-stroke);
+      background: transparent;
+      transition: background 180ms ease;
+    }
+
+    .icon-box:hover {
+      background: var(--bg-surface-alt);
+    }
+
+    .icon-box svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Living Micro-Experience: Atelier Reserve Executive Portfolio */
+    .demo-container {
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      background: transparent;
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .demo-container::before {
+      content: "";
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ADC7E5 0%, rgba(173, 199, 229, 0.4) 35%, rgba(210, 217, 224, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .demo-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 32px;
+    }
+
+    .demo-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 24px;
+      border-bottom: var(--border-core);
+      flex-wrap: wrap;
+    }
+
+    .demo-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .demo-brand-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    .demo-brand-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+    }
+
+    .demo-split-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+    }
+
+    .demo-panel {
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      padding: 32px;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .panel-kicker-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .metric-hero {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--ink-primary);
+    }
+
+    .metric-sub {
+      font-size: 0.875rem;
+      color: var(--ink-secondary);
+      line-height: 1.4;
+    }
+
+    .allocation-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .allocation-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink-primary);
+      transition: background 180ms ease;
+    }
+
+    .allocation-item:hover {
+      background: rgba(173, 199, 229, 0.25);
+    }
+
+    .allocation-val {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .demo-actions-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Spec Code Drawer */
+    .spec-drawer-card {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-default);
+      padding: 36px 40px;
+      border: var(--border-core);
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .spec-drawer-head h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--ink-inverted);
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 480px;
+      padding: 24px;
+      background: #1D1E22;
+      color: #E2E6EC;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border-radius: var(--radius-medium);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Modal Component */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(44, 46, 51, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content-card {
+      width: min(880px, 100%);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-canvas);
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      overflow: hidden;
+      box-shadow: none;
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 24px;
+      border-bottom: var(--border-core);
+      background: rgba(210, 217, 224, 0.95);
+    }
+
+    .modal-footer {
+      border-bottom: 0;
+      border-top: var(--border-core);
+      justify-content: flex-end;
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow: auto;
+      flex: 1;
+      background: var(--bg-canvas);
+    }
+
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      border: var(--border-core);
+      background: transparent;
+      cursor: pointer;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-primary);
+      transition: background 160ms ease;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+    }
+
+    /* Toast Notification */
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 3000;
+      padding: 14px 24px;
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      border: var(--border-core);
+    }
+
+    /* Responsive Mobile Rules */
+    @media (max-width: 768px) {
+      .layout-wrapper {
+        width: calc(100% - 28px);
+        padding: 24px 0 64px;
+      }
+      .hero-banner {
+        padding: 36px 24px;
+        border-radius: 28px;
+      }
+      .type-card, .component-card, .demo-container, .spec-drawer-card {
+        border-radius: 28px;
+        padding: 24px 20px;
+      }
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .swatches-grid, .components-grid, .demo-split-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-actions, .btn-row, .demo-actions-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn, .btn-tile {
+        white-space: normal;
+        text-align: center;
+      }
+      .toast-popup {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet. Must remain immediately after this page's <style>. -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- Mandatory Top Header Bar -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Slate Atmospheric Minimal</span>
+      <span class="design-vibe-tag">Quiet Luxury</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+      <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+      <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-slate-atmospheric-minimal.md">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- SLOT 1: Hero Display Banner -->
+    <section class="hero-banner" id="hero-section">
+      <div class="hero-content">
+        <p class="section-kicker">Visual System 08 // Architectural Reserve</p>
+        <div class="hero-meta">
+          <span class="chip chip-accent">Quiet Luxury</span>
+          <span class="chip">Cool Slate #D2D9E0</span>
+          <span class="chip">Ambient Radial Glow</span>
+          <span class="chip">Hairline Framing</span>
+          <span class="chip">40px Curvature</span>
+          <span class="chip">Light</span>
+        </div>
+        <h1>Slate Atmospheric Minimal</h1>
+        <p class="hero-lead">
+          Restrained, atmospheric corporate minimalism pairing cool slate tones, hairline framing, and a soft ambient radial light source. Containers preserve transparent planar depth, framed exclusively with 1px solid hairline contours and expansive 40px container curvature—banishing artificial drop shadows to let atmospheric luminescence and typography command the canvas.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy Prompt for Agent
+          </button>
+          <a class="btn btn-secondary" href="#components-section">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Test Interactive Elements
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 2: Color Swatches & Palette Matrix -->
+    <section class="section-block" id="palette-section">
+      <p class="section-kicker">01 // Atmospheric Palette Matrix</p>
+      <h2 class="section-headline">Color roles</h2>
+      <div class="swatches-grid" id="swatch-grid">
+        <!-- Injected via JavaScript from DESIGN_PALETTE below -->
+      </div>
+    </section>
+
+    <!-- SLOT 3: Typography Specimen -->
+    <section class="section-block" id="typography-section">
+      <p class="section-kicker">02 // Typeface Hierarchy</p>
+      <h2 class="section-headline">Typography</h2>
+      <div class="type-card">
+        <div class="type-stack">
+          <div class="type-row">
+            <span class="type-label">Display // 800</span>
+            <p class="text-display">Slate Atmospheric Minimal</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">H1 // 800</span>
+            <p class="text-h1">Restrained Corporate Architecture</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">H2 // 700</span>
+            <p class="text-h2">Ambient Luminescence & Hairline Contours</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">H3 // 600</span>
+            <p class="text-h3">Transparent Container Planes with 40px Curvature</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Body // 400</span>
+            <p class="text-body">
+              Depth emerges purely through atmospheric luminescence and precise 1px hairline framing. Typography pairs the architectural punch of Plus Jakarta Sans with the serene, effortless legibility of Inter.
+            </p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Meta // Mono</span>
+            <p class="text-meta">SYSTEM SPECIFICATION // 0PX ELEVATION // HAIRLINE 1PX CONTOUR // 40PX CURVATURE</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Interactive</span>
+            <input class="live-type-input" id="live-type-tester-input" type="text" value="Quiet luxury is felt in the restraint of every contour." aria-label="Live type specimen tester" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 4: Component Archetype Gallery -->
+    <section class="section-block" id="components-section">
+      <p class="section-kicker">03 // Interaction Language</p>
+      <h2 class="section-headline">Components</h2>
+      <div class="components-grid">
+
+        <!-- Buttons Archetype -->
+        <article class="component-card">
+          <h3>Button Actions</h3>
+          <p class="text-body" style="font-size: 0.85rem;">Pill contours, hairline perimeter boundaries, and zero-blur elevation transitions.</p>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="button">Primary Pill</button>
+            <button class="btn btn-secondary" type="button">Hairline Secondary</button>
+            <button class="btn btn-accent" type="button">Ambient Glow</button>
+            <button class="btn btn-ghost" type="button">Ghost Action</button>
+            <button class="btn btn-danger" type="button">Restrained Alert</button>
+          </div>
+        </article>
+
+        <!-- Form Inputs Archetype -->
+        <article class="component-card">
+          <h3>Form Fields</h3>
+          <p class="text-body" style="font-size: 0.85rem;">Transparent wells, 14px curvature, and high-contrast focus perimeter.</p>
+          <div>
+            <label class="field-label" for="demo-input">Account Portfolio Identifier</label>
+            <input class="text-input" id="demo-input" type="text" placeholder="SLATE-EXECUTIVE-88" autocomplete="off" />
+          </div>
+          <div style="margin-top: 6px;">
+            <label class="field-label" for="demo-email">Institutional Advisory Contact</label>
+            <input class="text-input" id="demo-email" type="email" placeholder="client@atelier-reserve.ch" autocomplete="off" />
+          </div>
+        </article>
+
+        <!-- Selectors & Switches -->
+        <article class="component-card">
+          <h3>Selectors & Switches</h3>
+          <p class="text-body" style="font-size: 0.85rem;">2px monoline line art controls, custom pill toggles, and status badges.</p>
+          <div class="control-row">
+            <label class="custom-control">
+              <input type="checkbox" checked /> Ambient Light Source
+            </label>
+            <label class="custom-control">
+              <input type="checkbox" /> 0px Elevation Lock
+            </label>
+          </div>
+          <div class="control-row" style="margin-top: 8px;">
+            <label class="custom-control">
+              <input type="radio" name="demo-radio" checked /> Option Alpha
+            </label>
+            <label class="custom-control">
+              <input type="radio" name="demo-radio" /> Option Beta
+            </label>
+          </div>
+          <div class="control-row" style="margin-top: 8px;">
+            <button class="toggle" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle atmospheric glow"></button>
+            <span class="badge badge-accent">Radial Active</span>
+            <span class="badge">40px Radius</span>
+          </div>
+        </article>
+
+        <!-- Monoline Iconography -->
+        <article class="component-card">
+          <h3>2px Monoline Iconography</h3>
+          <p class="text-body" style="font-size: 0.85rem;">Uniform 2px line art with open counters, rounded terminal caps, and quiet corporate poise.</p>
+          <div class="icon-showcase">
+            <div class="icon-box" title="Atmospheric Compass">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+            </div>
+            <div class="icon-box" title="Structural Framing">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="5"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <div class="icon-box" title="Luminescence Wave">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M6.34 17.66l-1.41 1.41"/><path d="M19.07 4.93l-1.41 1.41"/></svg>
+            </div>
+            <div class="icon-box" title="Shield & Integrity">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="icon-box" title="Executive Layers">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SLOT 5: Living Micro-Experience -->
+    <section class="section-block" id="demo-section">
+      <p class="section-kicker">04 // Living Micro-Experience</p>
+      <h2 class="section-headline">Living demo</h2>
+
+      <div class="demo-container">
+        <div class="demo-inner">
+
+          <!-- Demo Header -->
+          <div class="demo-header-bar">
+            <div class="demo-brand">
+              <div class="icon-box" style="border-radius: 50%; width: 44px; height: 44px;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <div>
+                <h4 class="demo-brand-title">Aetheria Reserve</h4>
+                <p class="demo-brand-subtitle">Atmospheric Wealth & Spatial Advisory</p>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="badge badge-accent">Portfolio Active</span>
+              <span class="badge">Quarterly Rebalance</span>
+            </div>
+          </div>
+
+          <!-- Split Demo Grid -->
+          <div class="demo-split-grid">
+
+            <!-- Primary Metric Panel -->
+            <div class="demo-panel">
+              <div class="panel-kicker-row">
+                <span class="section-kicker" style="margin: 0;">Institutional Reserves</span>
+                <span class="badge">Net Capital Index</span>
+              </div>
+              <div>
+                <p class="metric-hero" id="demo-counter">$142,850,000</p>
+                <p class="metric-sub">+4.2% atmospheric yield over benchmark portfolio</p>
+              </div>
+              <div class="allocation-list">
+                <div class="allocation-item">
+                  <span>Sovereign Slate Fixed Income</span>
+                  <span class="allocation-val">42.5%</span>
+                </div>
+                <div class="allocation-item">
+                  <span>Architectural Private Equity</span>
+                  <span class="allocation-val">35.0%</span>
+                </div>
+                <div class="allocation-item">
+                  <span>Atmospheric Infrastructure Reserve</span>
+                  <span class="allocation-val">22.5%</span>
+                </div>
+              </div>
+              <div class="demo-actions-row">
+                <button class="btn btn-primary" type="button" onclick="triggerRebalanceDemo()">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                  Simulate Allocation Shift
+                </button>
+                <button class="btn btn-secondary" type="button" onclick="triggerToast('✓ Executive prospectus dispatched.')">
+                  Download Statement
+                </button>
+              </div>
+            </div>
+
+            <!-- Secondary Advisory Panel -->
+            <div class="demo-panel">
+              <div class="panel-kicker-row">
+                <span class="section-kicker" style="margin: 0;">Atmospheric Parameters</span>
+                <span class="badge badge-accent">Optimal</span>
+              </div>
+              <div>
+                <h4 style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 8px;">
+                  Restrained Luminescence
+                </h4>
+                <p class="text-body" style="font-size: 0.9rem;">
+                  Container planes remain 100% transparent. Depth is conveyed purely through the lower-left radial glow (#ADC7E5) bleeding softly beneath the hairline contour grid.
+                </p>
+              </div>
+
+              <div style="padding: 16px; border: var(--border-core); border-radius: var(--radius-subtle); background: rgba(255, 255, 255, 0.1);">
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px;">
+                  <span>Luminescence Intensity</span>
+                  <span class="allocation-val" id="glow-intensity-val">65%</span>
+                </div>
+                <input type="range" min="20" max="100" value="65" id="glow-slider" style="width: 100%; accent-color: var(--ink-primary); cursor: pointer;" aria-label="Luminescence intensity slider" />
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--ink-secondary);">
+                  <span>Container Curvature:</span>
+                  <strong style="color: var(--ink-primary);">40px Smooth</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--ink-secondary);">
+                  <span>Contour Framing:</span>
+                  <strong style="color: var(--ink-primary);">1px Solid Hairline</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--ink-secondary);">
+                  <span>Drop Shadow Elevation:</span>
+                  <strong style="color: var(--ink-primary);">0px (Flat)</strong>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 6: Style Tile Prompt Code Drawer -->
+    <section class="section-block spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-head">
+        <h2>Style Tile specification</h2>
+        <button class="btn btn-accent" type="button" onclick="copyTilePromptDirect()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Markdown Spec
+        </button>
+      </div>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+    </section>
+
+  </main>
+
+  <!-- Inspect Modal Overlay -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title" style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;">Slate Atmospheric Minimal // Markdown Spec</strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notification -->
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">Copied to clipboard</div>
+
+  <!--
+    SOURCE OF TRUTH for Copy / Download / Preview.
+    Section 0 Application Contract is included verbatim.
+    No sample headlines, fake chrome, industries, or TILE-NNN stamps.
+  -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Slate Atmospheric Minimal
+  Construction: cool slate tones • ambient radial glow • hairline framing • 40px curvature • zero shadows
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Restrained corporate minimalism constructed over a cool matte slate canvas disrupted solely by a diffuse, low-contrast ambient radial light pool emanating from the lower-left axis. Container modules maintain transparent surface planes defined strictly by 1px solid hairline contour framing and expansive 40px corner curvature. Elevation is flat with zero drop shadows, allowing atmospheric luminescence and high-contrast typography to produce depth.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #D2D9E0; /* Primary cool slate canvas base */
+  --ambient-glow:           #ADC7E5; /* Soft ambient radial light source */
+  --bg-surface:             transparent; /* Transparent container surfaces */
+  --bg-surface-alt:         rgba(173, 199, 229, 0.18); /* Soft ambient tinted wells */
+  --bg-surface-subtle:      rgba(44, 46, 51, 0.04); /* Subtle hairline tint */
+  --bg-surface-dark:        #2E3035; /* Deep slate inverted containers */
+
+  /* Inks & Typography */
+  --ink-primary:            #2E3035; /* High-contrast primary reading text */
+  --ink-secondary:          #52565D; /* Cool slate secondary reading text */
+  --ink-muted:              rgba(82, 86, 93, 0.75); /* Captions, disabled text, borders */
+  --ink-inverted:           #F5F7FA; /* Inverted contrast text on dark surfaces */
+
+  /* Structural Accents & Borders */
+  --border-structural:      #2C2E33; /* 1px hairline structural boundary */
+  --icon-stroke:            #2E3035; /* 2px uniform monoline line art */
+  --accent-primary:         #2E3035; /* Primary deep slate call-to-action fill */
+  --accent-primary-hover:   #1C1D20; /* Interactive hover tone */
+  --accent-secondary:       #ADC7E5; /* Soft glow atmospheric highlight */
+  --accent-secondary-hover: #98B8DB; /* Atmospheric highlight hover */
+  --accent-tertiary:        rgba(44, 46, 51, 0.08); /* Hairline accent wash */
+
+  /* Status Tokens */
+  --status-success:         #24553F;
+  --status-warning:         #945618;
+  --status-danger:          #8B2626;
+  --status-info:            #2A4D73;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+--font-sans:    "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+--font-mono:    "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
+
+/* Type Scale */
+--text-display: clamp(2.5rem, 6vw, 4.0rem) / 1.05 var(--font-display); /* Letter-spacing: -0.03em | Weight: 800 */
+--text-h1:      2.5rem   / 1.15 var(--font-display); /* Letter-spacing: -0.02em | Weight: 800 */
+--text-h2:      1.75rem  / 1.20 var(--font-display); /* Letter-spacing: -0.015em | Weight: 700 */
+--text-h3:      1.25rem  / 1.35 var(--font-sans);    /* Letter-spacing: -0.01em | Weight: 600 */
+--text-body:    1.0rem   / 1.45 var(--font-sans);    /* Letter-spacing: 0em | Weight: 400 */
+--text-body-sm: 0.875rem / 1.45 var(--font-sans);    /* Letter-spacing: 0em | Weight: 400 */
+--text-meta:    0.75rem  / 1.40 var(--font-mono);    /* Letter-spacing: 0.06em | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 40px;   /* Smooth large container curvature */
+--radius-medium:  20px;   /* Secondary card modules */
+--radius-subtle:  14px;   /* Inner controls and inputs */
+--radius-pill:    9999px; /* Pill buttons and badges */
+
+/* Elevation & Shadows */
+--shadow-base:    none; /* 0px elevation; depth driven purely via atmospheric luminescence */
+--shadow-hover:   none;
+--shadow-active:  none;
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid var(--border-structural); /* 1px hairline contour */
+--border-hairline:    1px solid rgba(44, 46, 51, 0.25);
+--divider-style:      1px solid rgba(44, 46, 51, 0.22);
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Primary buttons feature solid deep slate (#2E3035) fill with inverted text (#F5F7FA) and pill curvature. Secondary buttons use transparent fill with 1px hairline border (#2C2E33) and primary text. Restrained hover transitions without glow halos or drop shadows. Use the host's existing labels.
+- **Cards**: Transparent surface containers framed strictly by 1px solid hairline contours (#2C2E33) with expansive 40px corner radiuses. Zero box shadows; the canvas ambient radial glow bleeds through transparent module planes. Do not add index codes or fake meta.
+- **Inputs**: Transparent or subtle slate-tinted background with 1px solid hairline border (#2C2E33), 14px curvature, and dark slate focus perimeter. Font-size at least 16px.
+- **Navigation**: Clean horizontal header with hairline divider, subtle slate glass backdrop blur, and crisp Inter typography. Restyle existing items. Do not add catalog codes, fake clocks, or status readouts.
+- **Iconography**: 2px uniform monoline line art with open counters and soft terminal caps.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No drop shadows, box shadows, or gaussian blur elevation tricks; depth must come strictly from the canvas radial glow and hairline contours.
+- No opaque white cards or heavy filled container backgrounds; retain container transparency.
+- No bright neon colors, saturated accents, or loud gradient overlays.
+- No sharp 0px brutalist boxes or harsh angularity; enforce smooth 40px container curvature.
+- No decorative tech badges, telemetry readouts, or industrial jargon.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- Page Logic & Event Binding -->
+  <script>
+    const DESIGN_SLUG = "slate-atmospheric-minimal";
+
+    const DESIGN_PALETTE = [
+      { name: "Canvas Base", hex: "#D2D9E0", cssVar: "--bg-canvas" },
+      { name: "Ambient Glow", hex: "#ADC7E5", cssVar: "--ambient-glow" },
+      { name: "Text Primary", hex: "#2E3035", cssVar: "--ink-primary" },
+      { name: "Text Secondary", hex: "#52565D", cssVar: "--ink-secondary" },
+      { name: "Border Structural", hex: "#2C2E33", cssVar: "--border-structural" },
+      { name: "Icon Stroke", hex: "#2E3035", cssVar: "--icon-stroke" },
+      { name: "Surface Alt", hex: "rgba(173,199,229,0.18)", cssVar: "--bg-surface-alt" },
+      { name: "Surface Dark", hex: "#2E3035", cssVar: "--bg-surface-dark" },
+      { name: "Ink Inverted", hex: "#F5F7FA", cssVar: "--ink-inverted" },
+      { name: "Status Success", hex: "#24553F", cssVar: "--status-success" },
+      { name: "Status Warning", hex: "#945618", cssVar: "--status-warning" },
+      { name: "Status Danger", hex: "#8B2626", cssVar: "--status-danger" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    // Populate Color Swatches Grid
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex;
+        btn.innerHTML =
+          '<span class="swatch-chip" style="background:' + swatch.hex + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + '</span>' +
+            '<span class="swatch-var">' + swatch.cssVar + '</span>' +
+            '<span class="swatch-hex">' + swatch.hex + '</span>' +
+          '</span>';
+        btn.addEventListener("click", function () {
+          copyHex(swatch.hex, swatch.name);
+        });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () {
+        toast.style.display = "none";
+      }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(function () {
+            copyBtn.innerHTML = original;
+          }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    // Toggle Switch logic
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+        triggerToast(on ? "✓ Atmospheric glow active" : "Atmospheric glow subdued");
+      });
+    }
+
+    // Dynamic Glow Slider
+    const glowSlider = document.getElementById("glow-slider");
+    const glowIntensityVal = document.getElementById("glow-intensity-val");
+    if (glowSlider && glowIntensityVal) {
+      glowSlider.addEventListener("input", function (e) {
+        const val = e.target.value;
+        glowIntensityVal.textContent = val + "%";
+        document.documentElement.style.setProperty("--accent-tint", "rgba(173, 199, 229, " + (val / 100 * 0.45) + ")");
+      });
+    }
+
+    // Living demo interactive rebalance simulation
+    let rebalanceState = 0;
+    function triggerRebalanceDemo() {
+      const counter = document.getElementById("demo-counter");
+      if (!counter) return;
+      rebalanceState = (rebalanceState + 1) % 3;
+      if (rebalanceState === 1) {
+        counter.textContent = "$158,400,000";
+        triggerToast("✓ Sovereign allocation optimized (+10.8%)");
+      } else if (rebalanceState === 2) {
+        counter.textContent = "$174,120,000";
+        triggerToast("✓ Infrastructure expansion committed (+9.9%)");
+      } else {
+        counter.textContent = "$142,850,000";
+        triggerToast("✓ Benchmark reserve baseline restored");
+      }
+    }
+  </script>
+</body>
+</html>

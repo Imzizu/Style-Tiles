@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raw Marker Archive // TILE</title>
+  <meta name="description" content="Matte gallery paper stock framed by deep charcoal outer matte, high-saturation raw marker red accents, Permanent Marker expressive focal overlays, and strict uppercase Archivo editorial discipline.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Google Fonts: Permanent Marker & Archivo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400;1,700&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------------------------------------------------------
+     * RAW MARKER ARCHIVE — EDITORIAL & ARCHIVAL SYSTEM
+     * Flat matte gallery paper, heavy charcoal outer matte border,
+     * high-saturation raw marker red accents, Permanent Marker title display,
+     * uppercase Archivo typography, flush monochrome media, and 0px geometry.
+     * ---------------------------------------------------------------------- */
+    :root {
+      /* Surfaces & Backgrounds */
+      --bg-canvas:              #EBEAE6; /* Warm gallery paper / light concrete */
+      --bg-surface:             #EBEAE6; /* Flat matte paper stock */
+      --bg-surface-alt:         #DFDED9; /* Tonal archival paper tint */
+      --bg-surface-dark:        #121214; /* Deep charcoal outer matte */
+
+      /* Inks & Typography */
+      --ink-primary:            #383838; /* Deep graphite headline */
+      --ink-secondary:          #575757; /* Muted charcoal body */
+      --ink-muted:              #828181; /* Desaturated monochrome gray */
+      --ink-inverted:           #EBEAE6; /* Gallery paper on dark matte */
+
+      /* Signature Accents */
+      --accent-primary:         #FF0314; /* High-saturation raw marker red */
+      --accent-primary-hover:   #D9000F; /* Deep raw marker red */
+      --accent-secondary:       #121214; /* Solid framing charcoal */
+      --accent-tertiary:        #828181; /* Desaturated midtone gray */
+
+      /* Status Tokens */
+      --status-success:         #1E6B38;
+      --status-warning:         #C25B00;
+      --status-danger:          #FF0314;
+      --status-info:            #2B4C7E;
+
+      /* Typography */
+      --font-display:           'Permanent Marker', Impact, cursive;
+      --font-sans:              'Archivo', Helvetica, Arial, sans-serif;
+      --font-mono:              'Archivo', monospace;
+
+      /* Geometry & Elevation */
+      --radius-default:         0px;
+      --radius-subtle:          0px;
+      --radius-pill:            0px;
+
+      --shadow-base:            none;
+      --shadow-hover:           none;
+      --shadow-active:          none;
+
+      /* Borders & Layout */
+      --border-core:            1px solid #121214;
+      --border-hairline:        1px solid #DFDED9;
+      --border-dark:            2px solid #121214;
+      --border-outer-matte:     14px solid #121214;
+      --header-height:          64px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    html {
+      background: #121214;
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      line-height: 1.45;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: var(--border-outer-matte);
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      border-radius: 0;
+      letter-spacing: inherit;
+    }
+
+    /* -------------------------------------------------------------------------
+     * MANDATORY HEADER COMPONENT (Restyled for Raw Marker Archive)
+     * ---------------------------------------------------------------------- */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 12px 24px;
+      background: var(--bg-canvas);
+      border-bottom: 2px solid var(--bg-surface-dark);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 8px 14px;
+      color: var(--ink-inverted);
+      background: var(--bg-surface-dark);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .nav-back-link:hover {
+      background: var(--accent-primary);
+      color: #FFFFFF;
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      overflow-wrap: anywhere;
+    }
+
+    .design-vibe-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border: 1px solid var(--bg-surface-dark);
+      color: var(--ink-secondary);
+      background: var(--bg-surface-alt);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1px solid var(--bg-surface-dark);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .btn-tile:hover {
+      background: var(--bg-surface-alt);
+      color: var(--ink-primary);
+    }
+
+    .btn-copy {
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      border-color: var(--accent-primary);
+    }
+
+    .btn-copy:hover {
+      background: var(--accent-primary-hover);
+      color: #FFFFFF;
+    }
+
+    .btn-download:hover {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+    }
+
+    /* -------------------------------------------------------------------------
+     * MAIN LAYOUT WRAPPER & TYPOGRAPHY
+     * ---------------------------------------------------------------------- */
+    .layout-wrapper {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 40px 0 96px;
+    }
+
+    .section-block {
+      margin-top: 72px;
+      position: relative;
+    }
+
+    .section-header-bar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--bg-surface-dark);
+      padding-bottom: 8px;
+      margin-bottom: 28px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .section-kicker {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 7vw, 5.2rem);
+      line-height: 0.98;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      overflow-wrap: anywhere;
+    }
+
+    h2 {
+      font-family: var(--font-sans);
+      font-size: clamp(1.4rem, 3.2vw, 2rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      line-height: 1.15;
+    }
+
+    h3 {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      margin-bottom: 12px;
+    }
+
+    /* -------------------------------------------------------------------------
+     * HERO BANNER SECTION
+     * ---------------------------------------------------------------------- */
+    .hero-banner {
+      border-bottom: 2px solid var(--bg-surface-dark);
+      padding-bottom: 56px;
+    }
+
+    .hero-top-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--bg-surface-dark);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-classification {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+    }
+
+    .red-marker-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--accent-primary);
+      display: inline-block;
+    }
+
+    .hero-meta-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--bg-surface-alt);
+      color: var(--ink-primary);
+      border: 1px solid #121214;
+    }
+
+    .chip-accent {
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      border-color: var(--accent-primary);
+    }
+
+    .hero-content-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-top: 28px;
+    }
+
+    .hero-title-area {
+      position: relative;
+    }
+
+    .hero-marker-underline {
+      display: inline-block;
+      position: relative;
+    }
+
+    .hero-marker-underline::after {
+      content: "";
+      position: absolute;
+      left: -4px;
+      right: -8px;
+      bottom: 4px;
+      height: 14px;
+      background: rgba(255, 3, 20, 0.28);
+      z-index: -1;
+      transform: rotate(-0.6deg);
+    }
+
+    .hero-lead {
+      margin: 24px 0 32px;
+      max-width: 64ch;
+      color: var(--ink-secondary);
+      font-size: 0.95rem;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-visual-card {
+      background: var(--bg-surface-alt);
+      border: 2px solid var(--bg-surface-dark);
+      padding: 16px;
+      position: relative;
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background: #121214;
+    }
+
+    .hero-monochrome-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(140%) brightness(0.92);
+      display: block;
+    }
+
+    .hero-marker-stamp {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      padding: 6px 14px;
+      letter-spacing: 0.04em;
+      transform: rotate(-3deg);
+      border: 1px solid #121214;
+    }
+
+    .hero-image-caption {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--ink-secondary);
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 2: COLOR PALETTE MATRIX
+     * ---------------------------------------------------------------------- */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--bg-surface-dark);
+      background: var(--bg-surface-alt);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      transition: transform 0.1s ease, border-color 0.15s ease;
+    }
+
+    .swatch-item:hover {
+      border-color: var(--accent-primary);
+    }
+
+    .swatch-chip {
+      height: 84px;
+      border-bottom: 1px solid var(--bg-surface-dark);
+      position: relative;
+    }
+
+    .swatch-chip::after {
+      content: "CLICK TO COPY";
+      position: absolute;
+      inset: 0;
+      background: rgba(18, 18, 20, 0.85);
+      color: #EBEAE6;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .swatch-item:hover .swatch-chip::after {
+      opacity: 1;
+    }
+
+    .swatch-meta {
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .swatch-name {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+    }
+
+    .swatch-var {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--ink-secondary);
+    }
+
+    .swatch-hex {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent-primary);
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 3: TYPOGRAPHY SPECIMEN
+     * ---------------------------------------------------------------------- */
+    .type-specimen-board {
+      border: 2px solid var(--bg-surface-dark);
+      background: var(--bg-surface);
+      padding: 24px;
+    }
+
+    .type-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--bg-surface-alt);
+      align-items: baseline;
+      min-width: 0;
+    }
+
+    .type-row:last-child {
+      border-bottom: none;
+    }
+
+    .type-meta-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .type-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent-primary);
+    }
+
+    .type-specs {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+    }
+
+    .text-display {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.0;
+      letter-spacing: 0.02em;
+      color: var(--ink-primary);
+    }
+
+    .text-h1 {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      color: var(--ink-primary);
+    }
+
+    .text-h2 {
+      font-family: var(--font-sans);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+    }
+
+    .text-h3 {
+      font-family: var(--font-sans);
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0.06em;
+      color: var(--ink-primary);
+    }
+
+    .text-body {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 400;
+      line-height: 1.45;
+      letter-spacing: 0.04em;
+      color: var(--ink-secondary);
+    }
+
+    .text-meta {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+    }
+
+    .live-tester-container {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 2px solid var(--bg-surface-dark);
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 16px;
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      border: 2px solid var(--bg-surface-dark);
+      background: var(--bg-surface-alt);
+      color: var(--accent-primary);
+    }
+
+    .live-type-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      background: #FFFFFF;
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 4: COMPONENT ARCHETYPE GALLERY
+     * ---------------------------------------------------------------------- */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .component-card {
+      padding: 24px;
+      background: var(--bg-surface-alt);
+      border: 2px solid var(--bg-surface-dark);
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .component-card-title {
+      border-bottom: 1px solid var(--bg-surface-dark);
+      padding-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .component-card-title span {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+    }
+
+    .btn-row, .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 8px 18px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1px solid var(--bg-surface-dark);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn:hover {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      border-color: var(--accent-primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-primary-hover);
+      color: #FFFFFF;
+      border-color: var(--accent-primary-hover);
+    }
+
+    .btn-secondary {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-color: var(--bg-surface-dark);
+    }
+
+    .btn-secondary:hover {
+      background: var(--ink-primary);
+      color: #FFFFFF;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--bg-surface-dark);
+    }
+
+    .btn-ghost:hover {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+    }
+
+    .btn-danger {
+      background: #FFFFFF;
+      color: var(--accent-primary);
+      border: 2px solid var(--accent-primary);
+    }
+
+    .btn-danger:hover {
+      background: var(--accent-primary);
+      color: #FFFFFF;
+    }
+
+    .btn-accent {
+      background: #383838;
+      color: #FFFFFF;
+      border-color: #383838;
+    }
+
+    .btn-accent:hover {
+      background: #121214;
+      color: #FFFFFF;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--ink-primary);
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 14px;
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid var(--bg-surface-dark);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      outline: none;
+    }
+
+    .text-input:focus {
+      border: 2px solid var(--accent-primary);
+      background: #FFFFFF;
+    }
+
+    /* Custom Checkbox and Radio (0px sharp rectangular) */
+    .custom-control {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .custom-control input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent-primary);
+      cursor: pointer;
+    }
+
+    /* Rectangular Hard Toggle */
+    .toggle {
+      position: relative;
+      width: 48px;
+      height: 24px;
+      border: 2px solid var(--bg-surface-dark);
+      background: var(--bg-canvas);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .toggle[aria-pressed="true"] {
+      background: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background: var(--bg-surface-dark);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .toggle[aria-pressed="true"]::after {
+      transform: translateX(24px);
+      background: #FFFFFF;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid var(--bg-surface-dark);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+    }
+
+    .badge-red {
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      border-color: var(--accent-primary);
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 5: LIVING MICRO-EXPERIENCE (Curatorial Monograph & Archive)
+     * ---------------------------------------------------------------------- */
+    .living-demo-card {
+      border: 2px solid var(--bg-surface-dark);
+      background: var(--bg-surface);
+      padding: 28px;
+    }
+
+    .demo-monograph-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .demo-plate-viewer {
+      background: var(--bg-surface-dark);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .demo-plate-image-container {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .demo-plate-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(145%) brightness(0.9);
+      display: block;
+      transition: filter 0.3s ease;
+    }
+
+    .demo-marker-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      display: block;
+      transition: opacity 0.2s ease;
+    }
+
+    .demo-marker-layer.hidden {
+      display: none;
+    }
+
+    .marker-stamp-accepted {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      padding: 4px 12px;
+      letter-spacing: 0.04em;
+      transform: rotate(3deg);
+      border: 1px solid #000;
+    }
+
+    .marker-scribble-note {
+      position: absolute;
+      bottom: 12px;
+      left: 14px;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--accent-primary);
+      background: rgba(235, 234, 230, 0.95);
+      padding: 4px 10px;
+      letter-spacing: 0.02em;
+      transform: rotate(-1.5deg);
+      border: 1px solid var(--accent-primary);
+    }
+
+    .demo-plate-footer {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--ink-inverted);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .demo-plate-controls {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .demo-plate-selector-tabs {
+      display: flex;
+      border: 1px solid var(--bg-surface-dark);
+      background: var(--bg-surface-alt);
+    }
+
+    .plate-tab-btn {
+      flex: 1;
+      padding: 10px 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--ink-secondary);
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .plate-tab-btn.active {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+    }
+
+    .demo-readout-panel {
+      border: 1px solid var(--bg-surface-dark);
+      background: var(--bg-surface-alt);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .readout-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #CFCFC8;
+      padding-bottom: 6px;
+      font-size: 0.75rem;
+    }
+
+    .readout-label {
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .readout-val {
+      font-weight: 600;
+      color: var(--ink-secondary);
+    }
+
+    .readout-val.highlight {
+      color: var(--accent-primary);
+      font-weight: 700;
+    }
+
+    .demo-action-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 6: SPEC DRAWER CARD
+     * ---------------------------------------------------------------------- */
+    .spec-drawer-card {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      padding: 28px;
+      border: 2px solid var(--bg-surface-dark);
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #383838;
+      padding-bottom: 14px;
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 520px;
+      padding: 20px;
+      background: #080809;
+      color: #EBEAE6;
+      font-family: 'Archivo', monospace;
+      font-size: 0.75rem;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid #28282B;
+    }
+
+    /* -------------------------------------------------------------------------
+     * MODAL OVERLAY & TOAST POPUP
+     * ---------------------------------------------------------------------- */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(18, 18, 20, 0.75);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content-card {
+      width: min(920px, 100%);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-canvas);
+      border: 4px solid var(--bg-surface-dark);
+      overflow: hidden;
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 20px;
+      background: var(--bg-surface-alt);
+      border-bottom: 2px solid var(--bg-surface-dark);
+    }
+
+    .modal-footer {
+      border-bottom: 0;
+      border-top: 2px solid var(--bg-surface-dark);
+      justify-content: flex-end;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow: auto;
+      flex: 1;
+      background: var(--bg-surface-dark);
+    }
+
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--bg-surface-dark);
+      background: var(--bg-canvas);
+      cursor: pointer;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--accent-primary);
+      color: #FFFFFF;
+    }
+
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 3000;
+      padding: 14px 20px;
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 2px solid var(--bg-surface-dark);
+    }
+
+    /* -------------------------------------------------------------------------
+     * MANDATORY MOBILE SAFETY RULES (§6)
+     * ---------------------------------------------------------------------- */
+    @media (max-width: 768px) {
+      body {
+        border-width: 8px;
+      }
+
+      .layout-wrapper {
+        width: calc(100% - 24px);
+        padding: 24px 0 64px;
+      }
+
+      .style-tile-header {
+        padding: 10px 14px;
+      }
+
+      .header-title-block {
+        gap: 6px;
+      }
+
+      .hero-content-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .demo-monograph-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .swatches-grid, .components-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions, .btn-row, .demo-action-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn, .btn-tile {
+        white-space: normal;
+        justify-content: center;
+      }
+
+      .toast-popup {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        border-width: 6px;
+      }
+
+      .style-tile-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+
+      .header-actions {
+        justify-content: stretch;
+      }
+
+      .header-actions .btn-tile {
+        flex: 1;
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- MANDATORY HEADER COMPONENT -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Raw Marker Archive</span>
+      <span class="design-vibe-tag">Editorial & Archival</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+      <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+      <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-raw-marker-archive.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- SLOT 1: Hero Banner Section -->
+    <section class="hero-banner" id="hero-section">
+      <div class="hero-top-meta">
+        <div class="hero-classification">
+          <span class="red-marker-dot"></span>
+          <span>VISUAL DISCIPLINE REGISTER // ARCHIVAL MONOGRAPH</span>
+        </div>
+        <div class="hero-meta-chips">
+          <span class="chip chip-accent">0PX GEOMETRY</span>
+          <span class="chip">MATTE PAPER STOCK</span>
+          <span class="chip">LIGHT SYSTEM</span>
+        </div>
+      </div>
+
+      <div class="hero-content-grid">
+        <div class="hero-title-area">
+          <p class="section-kicker">EXHIBITION SYSTEM // TILE SPECIMEN</p>
+          <h1 class="hero-marker-underline">Raw Marker Archive</h1>
+          <p class="hero-lead">
+            Warm gallery paper and light concrete planes framed within a heavy charcoal border. Expressive permanent marker annotations cut through rigorous uppercase Archivo typography and high-contrast monochrome imagery, celebrating unvarnished editorial discipline and physical paper tactile presence.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Prompt for Agent</button>
+            <a class="btn btn-secondary" href="#demo-section">Explore Archival Demo</a>
+            <a class="btn btn-ghost" href="#components-section">View Components</a>
+          </div>
+        </div>
+
+        <div class="hero-visual-card">
+          <div class="hero-image-wrap">
+            <img src="../Assets/city.jpg" alt="Monochrome Architectural City Plate" class="hero-monochrome-img">
+            <div class="hero-marker-stamp">ARCHIVE // 01</div>
+          </div>
+          <div class="hero-image-caption">
+            <span>PLATE 01: URBAN GEOMETRY</span>
+            <span>HIGH-CONTRAST MONOCHROME</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 2: Color Roles & Palette Matrix -->
+    <section class="section-block" id="palette-section">
+      <div class="section-header-bar">
+        <div>
+          <p class="section-kicker">01 // CHROMATIC SYSTEM</p>
+          <h2>Color Roles & Palette Matrix</h2>
+        </div>
+        <span class="chip">12 TOKENS REGISTERED</span>
+      </div>
+      <div class="swatches-grid" id="swatch-grid">
+        <!-- Injected via JavaScript from DESIGN_PALETTE -->
+      </div>
+    </section>
+
+    <!-- SLOT 3: Typography & Typeface Specimen -->
+    <section class="section-block" id="typography-section">
+      <div class="section-header-bar">
+        <div>
+          <p class="section-kicker">02 // EDITORIAL VOICE</p>
+          <h2>Typography & Typeface Specimen</h2>
+        </div>
+        <span class="chip">PERMANENT MARKER + ARCHIVO</span>
+      </div>
+
+      <div class="type-specimen-board">
+        <div class="type-stack">
+          <div class="type-row">
+            <div class="type-meta-cell">
+              <span class="type-label">Display</span>
+              <span class="type-specs">Permanent Marker • 400</span>
+            </div>
+            <p class="text-display">RAW MARKER ARCHIVE</p>
+          </div>
+          <div class="type-row">
+            <div class="type-meta-cell">
+              <span class="type-label">H1 Heading</span>
+              <span class="type-specs">Permanent Marker • 400</span>
+            </div>
+            <p class="text-h1">EDITORIAL DISCIPLINE</p>
+          </div>
+          <div class="type-row">
+            <div class="type-meta-cell">
+              <span class="type-label">H2 Heading</span>
+              <span class="type-specs">Archivo • 700 • Uppercase</span>
+            </div>
+            <p class="text-h2">STRUCTURAL SUBHEADERS & INDICES</p>
+          </div>
+          <div class="type-row">
+            <div class="type-meta-cell">
+              <span class="type-label">H3 Heading</span>
+              <span class="type-specs">Archivo • 700 • Uppercase</span>
+            </div>
+            <p class="text-h3">TECHNICAL SPECIFICATION REGISTER 09</p>
+          </div>
+          <div class="type-row">
+            <div class="type-meta-cell">
+              <span class="type-label">Body Text</span>
+              <span class="type-specs">Archivo • 400 • Uppercase</span>
+            </div>
+            <p class="text-body">
+              WARM GALLERY PAPER BASE COMBINED WITH SHARP ZERO-RADIUS CONTOURS. ALL EDITORIAL READOUTS REMAIN CAPITALIZED TO PRESERVE TECHNICAL DENSITY AND ARCHIVAL AUTHORITY ACROSS SPREADS.
+            </p>
+          </div>
+          <div class="type-row">
+            <div class="type-meta-cell">
+              <span class="type-label">Metadata</span>
+              <span class="type-specs">Archivo • 700 • Tracked</span>
+            </div>
+            <p class="text-meta">CATALOG ORDER: #EBEAE6 // MARKER RED: #FF0314 // CHARCOAL: #121214</p>
+          </div>
+        </div>
+
+        <div class="live-tester-container">
+          <p class="field-label">Interactive Display Face Tester (Permanent Marker):</p>
+          <input class="live-type-input" id="live-type-tester-input" type="text" value="TYPE HERE TO TEST THE MARKER VOICE" />
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 4: Component Archetype Gallery -->
+    <section class="section-block" id="components-section">
+      <div class="section-header-bar">
+        <div>
+          <p class="section-kicker">03 // INTERACTION KIT</p>
+          <h2>Component Archetype Gallery</h2>
+        </div>
+        <span class="chip">0PX RAZOR-SHARP EDGES</span>
+      </div>
+
+      <div class="components-grid">
+        <article class="component-card">
+          <div class="component-card-title">
+            <h3>Action Buttons</h3>
+            <span>01 // BUTTONS</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="button">Primary Red</button>
+            <button class="btn btn-secondary" type="button">Charcoal</button>
+            <button class="btn btn-ghost" type="button">Ghost</button>
+            <button class="btn btn-danger" type="button">Outline</button>
+            <button class="btn btn-accent" type="button">Graphite</button>
+          </div>
+        </article>
+
+        <article class="component-card">
+          <div class="component-card-title">
+            <h3>Form Input Wells</h3>
+            <span>02 // INPUTS</span>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="demo-input">Plate Index Identifier</label>
+            <input class="text-input" id="demo-input" type="text" value="ARCH-1092-MKR" autocomplete="off" />
+          </div>
+        </article>
+
+        <article class="component-card">
+          <div class="component-card-title">
+            <h3>Toggles & Selectors</h3>
+            <span>03 // CONTROLS</span>
+          </div>
+          <div class="control-row">
+            <label class="custom-control"><input type="checkbox" checked /> Confirmed</label>
+            <label class="custom-control"><input type="radio" name="demo-radio" checked /> Index A</label>
+            <label class="custom-control"><input type="radio" name="demo-radio" /> Index B</label>
+            <button class="toggle" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle marker layer"></button>
+            <span class="badge-pill badge-red">Active</span>
+          </div>
+        </article>
+
+        <article class="component-card">
+          <div class="component-card-title">
+            <h3>Matte Surface Block</h3>
+            <span>04 // PANELS</span>
+          </div>
+          <p class="text-body" style="font-size: 0.8rem;">
+            Opaque flat matte paper surface (#EBEAE6) with zero drop-shadow elevation. Boundaries exist through pure spatial abutting and charcoal perimeter framing.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- SLOT 5: Living Micro-Experience Demo -->
+    <section class="section-block" id="demo-section">
+      <div class="section-header-bar">
+        <div>
+          <p class="section-kicker">04 // LIVING MONOGRAPH</p>
+          <h2>Living Micro-Experience // Curatorial Archive</h2>
+        </div>
+        <span class="chip">INTERACTIVE PLATE VIEWER</span>
+      </div>
+
+      <div class="living-demo-card">
+        <div class="demo-monograph-grid">
+          <!-- Left: Plate Viewer with Marker Overlays -->
+          <div class="demo-plate-viewer">
+            <div class="demo-plate-image-container">
+              <img id="active-plate-img" src="../Assets/black-swan.jpg" alt="Active Monochrome Archival Plate" class="demo-plate-img">
+              <div id="demo-marker-layer" class="demo-marker-layer">
+                <div class="marker-stamp-accepted" id="marker-stamp-text">EXHIBIT // VERIFIED</div>
+                <div class="marker-scribble-note" id="marker-note-text">FOLIO 04: HIGH DENSITY OBSIDIAN CONTRAST</div>
+              </div>
+            </div>
+            <div class="demo-plate-footer">
+              <span id="plate-accession-code">ACCESSION: #MKR-8910-B</span>
+              <span>FILTER: 100% MONOCHROME</span>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Controls & Metadata -->
+          <div class="demo-plate-controls">
+            <div>
+              <p class="field-label" style="margin-bottom: 8px;">Select Archival Plate:</p>
+              <div class="demo-plate-selector-tabs">
+                <button class="plate-tab-btn active" type="button" onclick="switchPlate('swan', this)">Plate 01: Swan</button>
+                <button class="plate-tab-btn" type="button" onclick="switchPlate('city', this)">Plate 02: City</button>
+                <button class="plate-tab-btn" type="button" onclick="switchPlate('leafs', this)">Plate 03: Flora</button>
+              </div>
+            </div>
+
+            <div class="demo-readout-panel">
+              <div class="readout-row">
+                <span class="readout-label">Plate Title:</span>
+                <span class="readout-val" id="readout-title">The Obsidian Swan Study</span>
+              </div>
+              <div class="readout-row">
+                <span class="readout-label">Curatorial Status:</span>
+                <span class="readout-val highlight" id="readout-status">Annotated with Raw Marker</span>
+              </div>
+              <div class="readout-row">
+                <span class="readout-label">Substrate Stock:</span>
+                <span class="readout-val">Warm Gallery Paper 340gsm</span>
+              </div>
+              <div class="readout-row">
+                <span class="readout-label">Framing Matte:</span>
+                <span class="readout-val">14px Deep Charcoal Solid</span>
+              </div>
+            </div>
+
+            <div class="demo-action-bar">
+              <button class="btn btn-primary" type="button" onclick="toggleMarkerOverlay()">Toggle Marker Notes</button>
+              <button class="btn btn-secondary" type="button" onclick="randomizeStamp()">Stamp Verification</button>
+              <button class="btn btn-ghost" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 6: Style Tile Prompt Code Drawer -->
+    <section class="section-block spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-head">
+        <div>
+          <p class="section-kicker" style="color: var(--accent-primary);">05 // PROMPT SPECIFICATION</p>
+          <h2 style="margin:0;color:inherit;">Style Tile Specification Drawer</h2>
+        </div>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Markdown Spec</button>
+      </div>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+    </section>
+
+  </main>
+
+  <!-- SPEC MODAL -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title">Raw Marker Archive // Visual Style Tile</strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST POPUP -->
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">✓ Copied to Clipboard!</div>
+
+  <!--
+    SOURCE OF TRUTH for Copy / Download / Preview.
+    Adheres strictly to Agent/agent.md §4:
+    Section 0 verbatim Application Contract.
+    No sample headlines, fake chrome, industries, or hardcoded tile IDs.
+  -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Raw Marker Archive
+  Construction: matte gallery paper • charcoal outer matte • raw marker red • 0px geometry • permanent marker display • flush monochrome media
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Matte gallery paper (#EBEAE6) framed by a heavy solid charcoal border (#121214) with flat, zero-elevation surfaces and 0px razor-sharp rectangular geometry. High-saturation raw marker red (#FF0314) cuts through deep graphite (#383838) headlines and muted charcoal (#575757) uppercase body typography. Expressive Permanent Marker display lettering creates focal points layered over structured uppercase Archivo editorial layouts and high-contrast monochrome photography. Depth is produced strictly through physical spatial overlap, abutting rectangular blocks, and high-contrast ink values with zero drop shadows.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #EBEAE6; /* Warm gallery paper / light concrete */
+  --bg-surface:             #EBEAE6; /* Flat matte paper stock */
+  --bg-surface-alt:         #DFDED9; /* Tonal archival paper tint */
+  --bg-surface-dark:        #121214; /* Deep charcoal outer matte */
+
+  /* Inks & Typography */
+  --ink-primary:            #383838; /* Deep graphite headline */
+  --ink-secondary:          #575757; /* Muted charcoal body */
+  --ink-muted:              #828181; /* Desaturated monochrome gray */
+  --ink-inverted:           #EBEAE6; /* Gallery paper on dark matte */
+
+  /* Signature Accents */
+  --accent-primary:         #FF0314; /* High-saturation raw marker red */
+  --accent-primary-hover:   #D9000F; /* Deep raw marker red */
+  --accent-secondary:       #121214; /* Solid framing charcoal */
+  --accent-tertiary:        #828181; /* Desaturated midtone gray */
+
+  /* Status Tokens */
+  --status-success:         #1E6B38;
+  --status-warning:         #C25B00;
+  --status-danger:          #FF0314;
+  --status-info:            #2B4C7E;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Permanent Marker", Impact, cursive;
+--font-sans:    "Archivo", Helvetica, Arial, sans-serif;
+--font-mono:    "Archivo", monospace;
+
+/* Type Scale */
+--text-display: clamp(2.5rem, 6vw, 4.5rem) / 1.00  var(--font-display); /* Letter-spacing: 0.02em | Weight: 400 | UPPERCASE */
+--text-h1:      2.25rem                    / 1.10  var(--font-display); /* Letter-spacing: 0.02em | Weight: 400 | UPPERCASE */
+--text-h2:      1.5rem                     / 1.20  var(--font-sans);    /* Letter-spacing: 0.06em | Weight: 700 | UPPERCASE */
+--text-h3:      1.125rem                   / 1.30  var(--font-sans);    /* Letter-spacing: 0.06em | Weight: 700 | UPPERCASE */
+--text-body:    0.9375rem                  / 1.45  var(--font-sans);    /* Letter-spacing: 0.04em | Weight: 400 | UPPERCASE */
+--text-body-sm: 0.8125rem                  / 1.45  var(--font-sans);    /* Letter-spacing: 0.04em | Weight: 400 | UPPERCASE */
+--text-meta:    0.75rem                    / 1.40  var(--font-sans);    /* Letter-spacing: 0.08em | Weight: 700 | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 0px;
+--radius-subtle:  0px;
+--radius-pill:    0px;
+
+/* Elevation & Shadows */
+--shadow-base:    none;
+--shadow-hover:   none;
+--shadow-active:  none;
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid var(--accent-secondary);
+--border-hairline:    1px solid var(--bg-surface-alt);
+--border-frame:       14px solid var(--bg-surface-dark);
+--divider-style:      2px solid var(--bg-surface-dark);
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Flat rectangular solid blocks with strictly 0px corners. Primary actions in raw marker red (#FF0314) with white text; secondary in solid charcoal (#121214) with gallery paper text. Hover states invert color or switch tone without elevation or blur shadows. Use the host's existing labels.
+- **Cards**: Borderless flat matte planes (#EBEAE6 or #DFDED9) or crisp 1-2px solid charcoal containers. 0px corner radius, zero shadow elevation, and flush alignments. Do not add index codes or fake meta.
+- **Inputs**: Flat rectangular matte wells with 0px radius, 1px solid charcoal boundary, uppercase Archivo text at minimum 16px font-size to prevent mobile zoom, and high-visibility marker red focus border.
+- **Navigation**: Borderless flush layout with uppercase Archivo links and sharp rectangular hover fills. Restyle existing items without adding catalog codes or status readouts.
+- **Media & Images**: High-contrast monochrome or grayscale photography embedded flush with the canvas (0px radius, no border, or solid charcoal frame).
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No rounded corners, capsules, or squircles (strictly 0px sharp rectangular edges everywhere).
+- No drop shadows, Gaussian blurs, glow effects, or ambient elevation.
+- No gradients, glassmorphism, or glossy skeuomorphic finishes; maintain opaque matte paper stock throughout.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <script>
+    const DESIGN_SLUG = "raw-marker-archive";
+
+    const DESIGN_PALETTE = [
+      { name: "Canvas Background", hex: "#EBEAE6", cssVar: "--bg-canvas" },
+      { name: "Outer Matte Charcoal", hex: "#121214", cssVar: "--bg-surface-dark" },
+      { name: "Primary Marker Red", hex: "#FF0314", cssVar: "--accent-primary" },
+      { name: "Text Headline Graphite", hex: "#383838", cssVar: "--ink-primary" },
+      { name: "Text Body Charcoal", hex: "#575757", cssVar: "--ink-secondary" },
+      { name: "Image Midtone Gray", hex: "#828181", cssVar: "--ink-muted" },
+      { name: "Surface Alt Paper", hex: "#DFDED9", cssVar: "--bg-surface-alt" },
+      { name: "Marker Red Hover", hex: "#D9000F", cssVar: "--accent-primary-hover" },
+      { name: "Status Success", hex: "#1E6B38", cssVar: "--status-success" },
+      { name: "Status Warning", hex: "#C25B00", cssVar: "--status-warning" },
+      { name: "Status Danger", hex: "#FF0314", cssVar: "--status-danger" },
+      { name: "Status Info", hex: "#2B4C7E", cssVar: "--status-info" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex;
+        btn.innerHTML =
+          '<span class="swatch-chip" style="background:' + swatch.hex + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + '</span>' +
+            '<span class="swatch-var">' + swatch.cssVar + '</span>' +
+            '<span class="swatch-hex">' + swatch.hex + '</span>' +
+          '</span>';
+        btn.addEventListener("click", function () { copyHex(swatch.hex, swatch.name); });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () { toast.style.display = "none"; }, 2200);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(function () { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+        toggleMarkerOverlay();
+      });
+    }
+
+    // Living Demo Interactive Plate Switcher
+    const plates = {
+      swan: {
+        img: "../Assets/black-swan.jpg",
+        title: "The Obsidian Swan Study",
+        accession: "ACCESSION: #MKR-8910-B",
+        stamp: "EXHIBIT // VERIFIED",
+        note: "FOLIO 04: HIGH DENSITY OBSIDIAN CONTRAST"
+      },
+      city: {
+        img: "../Assets/city.jpg",
+        title: "Monochrome Concrete Grid",
+        accession: "ACCESSION: #MKR-3402-C",
+        stamp: "ARCHIVE // APPROVED",
+        note: "SECTION 09: RAZOR-SHARP PERSPECTIVE RUN"
+      },
+      leafs: {
+        img: "../Assets/leafs.jpg",
+        title: "Botanical Shadow Register",
+        accession: "ACCESSION: #MKR-7711-L",
+        stamp: "CATALOG // RETAINED",
+        note: "PLATE 12: FLAT FIELD DESATURATED SPECIMEN"
+      }
+    };
+
+    function switchPlate(plateKey, btn) {
+      const plate = plates[plateKey];
+      if (!plate) return;
+
+      document.querySelectorAll(".plate-tab-btn").forEach(function (b) { b.classList.remove("active"); });
+      if (btn) btn.classList.add("active");
+
+      const imgEl = document.getElementById("active-plate-img");
+      if (imgEl) imgEl.src = plate.img;
+
+      const titleEl = document.getElementById("readout-title");
+      if (titleEl) titleEl.textContent = plate.title;
+
+      const accessionEl = document.getElementById("plate-accession-code");
+      if (accessionEl) accessionEl.textContent = plate.accession;
+
+      const stampEl = document.getElementById("marker-stamp-text");
+      if (stampEl) stampEl.textContent = plate.stamp;
+
+      const noteEl = document.getElementById("marker-note-text");
+      if (noteEl) noteEl.textContent = plate.note;
+    }
+
+    function toggleMarkerOverlay() {
+      const layer = document.getElementById("demo-marker-layer");
+      if (!layer) return;
+      layer.classList.toggle("hidden");
+      const statusEl = document.getElementById("readout-status");
+      if (statusEl) {
+        statusEl.textContent = layer.classList.contains("hidden") ? "Raw Monochrome (Clean)" : "Annotated with Raw Marker";
+      }
+    }
+
+    const stampOptions = ["EXHIBIT // VERIFIED", "ARCHIVE // ACCEPTED", "RED MARKER // RECORDED", "CURATOR // APPROVED", "EDITION // RESTRICTED"];
+    let stampIndex = 0;
+    function randomizeStamp() {
+      stampIndex = (stampIndex + 1) % stampOptions.length;
+      const stampEl = document.getElementById("marker-stamp-text");
+      if (stampEl) {
+        stampEl.textContent = stampOptions[stampIndex];
+        triggerToast("✓ Stamped: " + stampOptions[stampIndex]);
+      }
+    }
+  </script>
+</body>
+</html>

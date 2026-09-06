@@ -1778,6 +1778,55 @@ const STYLE_TILES_DATA = [
     ],
     description: "Warm Editorial Minimal: Clinical-luxe and apothecary editorial design system constructed on warm alabaster linen planes (#F6F3EC) framed by deep obsidian presentation bezels (#141312), warm espresso charcoal typography (#3A332C), sharp apothecary crimson accents (#B21A2D), 20px squircle layout containers, and flat 0px drop-shadow elevation.",
     markdownSpec: null
+  },
+  {
+    slug: "raw-marker-archive",
+    name: "Raw Marker Archive",
+    vibe: "Warm Gallery Paper • Deep Charcoal Matte • Raw Marker Red • Permanent Marker Display • Archivo Uppercase • 0px Flush Geometry",
+    vibeBadge: "Editorial & Archival",
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Permanent Marker",
+      sans: "Archivo",
+      mono: "Archivo"
+    },
+    palette: [
+      { name: "Canvas Background", hex: "#EBEAE6" },
+      { name: "Outer Matte", hex: "#121214" },
+      { name: "Primary Accent Red", hex: "#FF0314" },
+      { name: "Text Headline", hex: "#383838" },
+      { name: "Text Body", hex: "#575757" },
+      { name: "Image Midtone", hex: "#828181" },
+      { name: "Paper Tint", hex: "#DFDED9" }
+    ],
+    description: "Raw Marker Archive: Gallery paper matte planes (#EBEAE6) enclosed in a heavy charcoal presentation matte (#121214), marked by high-saturation raw marker red (#FF0314), deep graphite typography (#383838), expressive Permanent Marker display titles, strict uppercase Archivo editorial hierarchy, flush monochrome media, and razor-sharp 0px geometry.",
+    markdownSpec: null
+  },
+  {
+    slug: "slate-atmospheric-minimal",
+    name: "Slate Atmospheric Minimal",
+    vibe: "Quiet Luxury • Cool Slate • Ambient Radial Glow • Hairline Contour • 40px Curvature • Zero Shadows",
+    vibeBadge: "Quiet Luxury",
+    categories: ["luxury"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas Base", hex: "#D2D9E0" },
+      { name: "Ambient Glow", hex: "#ADC7E5" },
+      { name: "Text Primary", hex: "#2E3035" },
+      { name: "Text Secondary", hex: "#52565D" },
+      { name: "Border Structural", hex: "#2C2E33" },
+      { name: "Icon Stroke", hex: "#2E3035" }
+    ],
+    description: "Slate Atmospheric Minimal: Restrained corporate minimalism constructed on a cool slate canvas (#D2D9E0) with a diffuse lower-left ambient radial luminescence (#ADC7E5), 1px solid hairline contour framing (#2C2E33), transparent surface containers, and smooth 40px container curvature.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
