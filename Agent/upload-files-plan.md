@@ -280,7 +280,7 @@ From the project root:
 - [x] **3.** Repo wiring: `package.json`, `@vercel/blob`, root `.env.local` from `env/env.local`, gitignore
 - [x] **4.** Token Route Handler `api/upload.js` with `handleUploadPresigned`
 - [x] **5.** Replace `executeUploadSubmission()` with `uploadPresigned` → `/api/upload`
-- [ ] **6.** Real errors hit existing alerts
+- [x] **6.** Real errors hit existing alerts
 - [ ] **7.** Completion log only; no catalog writes
 - [ ] **8.** Server-side HTML / size / prefix / suffix / private
 - [ ] **9.** No chrome regressions

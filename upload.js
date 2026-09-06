@@ -335,6 +335,10 @@ function showProblemAlert(title, message) {
   messageEl.textContent = message || "Please review your design submission.";
   alertEl.hidden = false;
   currentUploadState = UPLOAD_STATES.PROBLEM;
+
+  if (typeof alertEl.scrollIntoView === "function") {
+    alertEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
 }
 
 function hideProblemAlert() {
@@ -651,25 +655,51 @@ async function performBlobUpload(pathname, file, options) {
  * Maps server and transmission errors onto human-readable problem alert UI
  */
 function mapUploadErrorToAlert(err) {
-  const rawMsg = err && err.message ? err.message : String(err);
+  const rawMsg = (err && (err.message || err.error)) ? String(err.message || err.error) : (err ? String(err) : "");
   const lower = rawMsg.toLowerCase();
 
-  if (lower.includes("passphrase") || lower.includes("unauthorized")) {
+  if (lower.includes("passphrase") || lower.includes("unauthorized") || lower.includes("forbidden")) {
     showProblemAlert(
       "Passphrase required",
-      "The submission passphrase is missing or incorrect. Please check your invite code."
+      "The submission passphrase is missing or incorrect. If you have an invite code, enter it below."
     );
-  } else if (lower.includes("file type") || lower.includes("html") || lower.includes("extension") || lower.includes("content type")) {
+  } else if (
+    lower.includes("file type") ||
+    lower.includes("html") ||
+    lower.includes("extension") ||
+    lower.includes("content type") ||
+    lower.includes("content-type")
+  ) {
     showProblemAlert(
       "Invalid file type",
       "Style Tiles only accepts standalone .html and .htm files in this version."
     );
-  } else if (lower.includes("large") || lower.includes("size") || lower.includes("ceiling") || lower.includes("5 mb") || lower.includes("too large")) {
+  } else if (
+    lower.includes("large") ||
+    lower.includes("size") ||
+    lower.includes("ceiling") ||
+    lower.includes("5 mb") ||
+    lower.includes("too large") ||
+    lower.includes("maximumsize")
+  ) {
     showProblemAlert(
       "File too large",
       "That file exceeds the 5 MB ceiling. Please send a self-contained HTML page."
     );
-  } else if (lower.includes("network") || lower.includes("fetch") || lower.includes("failed to fetch") || lower.includes("connect") || lower.includes("offline")) {
+  } else if (
+    lower.includes("network") ||
+    lower.includes("fetch") ||
+    lower.includes("failed to fetch") ||
+    lower.includes("connect") ||
+    lower.includes("offline") ||
+    lower.includes("404") ||
+    lower.includes("not found") ||
+    lower.includes("server error") ||
+    lower.includes("500") ||
+    lower.includes("failed to retrieve") ||
+    lower.includes("abort") ||
+    !rawMsg
+  ) {
     showProblemAlert(
       "Connection problem",
       "Could not connect to the intake desk or storage service. Please check your connection and try again."
