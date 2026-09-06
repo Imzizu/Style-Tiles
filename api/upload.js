@@ -137,24 +137,42 @@ export async function getSignedToken(pathname, clientPayload, multipart) {
 
 /**
  * Callback triggered by Vercel Blob webhook when file upload finishes.
- * Logs intake record without modifying catalog or public files.
+ * Logs intake record for the owner without modifying catalog or public files.
  */
 export async function onUploadCompleted({ blob, tokenPayload }) {
-  let meta = null;
-  if (tokenPayload) {
-    try {
-      meta = JSON.parse(tokenPayload);
-    } catch {
-      meta = tokenPayload;
+  try {
+    let meta = null;
+    if (tokenPayload) {
+      try {
+        meta = typeof tokenPayload === 'string' ? JSON.parse(tokenPayload) : tokenPayload;
+      } catch {
+        meta = { raw: tokenPayload };
+      }
     }
-  }
 
-  console.log('[Style Tiles Intake] Upload completed:', {
-    pathname: blob?.pathname,
-    url: blob?.url,
-    size: blob?.size,
-    tokenPayload: meta,
-  });
+    const intakeRecord = {
+      event: 'upload.completed',
+      status: 'received',
+      pathname: blob?.pathname || null,
+      url: blob?.url || null,
+      downloadUrl: blob?.downloadUrl || null,
+      size: typeof blob?.size === 'number' ? blob.size : null,
+      contentType: blob?.contentType || 'text/html',
+      uploadedAt: blob?.uploadedAt || new Date().toISOString(),
+      metadata: {
+        authorName: meta?.name || meta?.authorName || 'Anonymous',
+        designName: meta?.designName || 'Untitled',
+        note: meta?.note || meta?.curatorNote || '(none)',
+        submittedAt: meta?.submittedAt || null,
+      },
+    };
+
+    console.log('[Style Tiles Intake] Submission received:', JSON.stringify(intakeRecord, null, 2));
+    return intakeRecord;
+  } catch (err) {
+    console.error('[Style Tiles Intake] Error in onUploadCompleted handler:', err);
+    return null;
+  }
 }
 
 function sanitizeErrorMessage(error) {
