@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aubergine Press // TILE</title>
+  <meta name="description" content="Warm cream uncoated paper, deep aubergine ink, violet halftone dot screens, and condensed Didone serif typography with copperplate calligraphic accents.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Typography imports: Bodoni Moda, Pinyon Script, Cormorant SC, Cormorant Garamond -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,600;0,6..96,700;1,6..96,600;1,6..96,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Cormorant+SC:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Surfaces & Paper Canvas */
+      --bg-canvas:              #FBF7EF; /* Warm cream uncoated paper */
+      --bg-surface:             #FFFDF9; /* Opaque warm white slab */
+      --bg-surface-alt:         #F3EDE0; /* Secondary archival card/well */
+      --bg-surface-dark:        #1C1524; /* Dark framing boundary / deep void */
+
+      /* Inks & Typography */
+      --ink-primary:            #2D1D44; /* Deep aubergine/plum ink */
+      --ink-secondary:          #594373; /* Muted aubergine reading ink */
+      --ink-muted:              #7E5C9B; /* Midtone violet screen ink */
+      --ink-faint:              #9D82B6; /* Distant print tone */
+      --ink-inverted:           #FBF7EF; /* Warm cream inverted text */
+
+      /* Halftone Screens & Inks */
+      --halftone-mid:           #7E5C9B; /* Midtone violet screen ink */
+      --halftone-light:         #D9CBE8; /* Faded lavender wash */
+      --divider-light:          #FFFDF9; /* Opaque warm white cutline */
+      --frame-border:           #1C1524; /* Dark framing boundary */
+
+      /* Signature Accents & Action Inks */
+      --accent-primary:         #2D1D44; /* Deep aubergine */
+      --accent-primary-hover:   #432B66; /* Interactive plum tone */
+      --accent-secondary:       #7E5C9B; /* Midtone violet */
+      --accent-tertiary:        #D9CBE8; /* Faded lavender */
+
+      /* Status Tokens */
+      --status-success:         #2D5A3C;
+      --status-warning:         #8F5518;
+      --status-danger:          #852233;
+      --status-info:            #334A7B;
+
+      /* Typography Stacks */
+      --font-display:           "Bodoni Moda", Didot, "Bodoni MT", serif;
+      --font-accent:            "Pinyon Script", "Brush Script MT", cursive;
+      --font-caps:              "Cormorant SC", "Bodoni Moda", serif;
+      --font-sans:              "Cormorant Garamond", Garamond, Georgia, serif;
+      --font-mono:              "JetBrains Mono", ui-monospace, monospace;
+
+      /* Corner Geometry */
+      --radius-default:         0px;     /* Elements: 0px flat cut */
+      --radius-card:            16px;    /* Outer card: 16px */
+      --radius-badge:           50%;     /* Badge crop: 50% circular */
+      --radius-pill:            9999px;
+
+      /* Shadows: None (flat printed finish, 0px offset, 0px blur) */
+      --shadow-base:            none;
+      --shadow-hover:           none;
+      --shadow-active:          none;
+
+      /* Borders & Cutlines */
+      --border-frame:           6px solid #1C1524;
+      --border-cutline:         4px solid #FFFDF9;
+      --border-accent:          1.5px solid #2D1D44;
+      --border-hairline:        1px solid rgba(45, 29, 68, 0.22);
+      --border-core:            1.5px solid #2D1D44;
+
+      --header-height:          68px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-canvas);
+      background-image: 
+        radial-gradient(#2D1D44 0.65px, transparent 0.65px),
+        linear-gradient(to right, rgba(45, 29, 68, 0.02) 1px, transparent 1px);
+      background-size: 28px 28px, 120px 120px;
+      color: var(--ink-primary);
+      line-height: 1.55;
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    /* Mandatory header bar */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 12px 28px;
+      background: var(--bg-canvas);
+      border-bottom: 3px solid var(--frame-border);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 8px 16px;
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-family: var(--font-caps);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: 1.5px solid var(--frame-border);
+      background: var(--bg-surface);
+      border-radius: 0px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .nav-back-link:hover {
+      background: var(--frame-border);
+      color: var(--bg-canvas);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-caps);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--frame-border);
+      color: var(--bg-canvas);
+      border-radius: 0px;
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      overflow-wrap: anywhere;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-caps);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1.5px solid var(--frame-border);
+      background: var(--halftone-light);
+      border-radius: 0px;
+      color: var(--ink-primary);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      font-family: var(--font-caps);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1.5px solid var(--frame-border);
+      border-radius: 0px;
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      box-shadow: none;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .btn-tile:hover {
+      background: var(--halftone-light);
+    }
+
+    .btn-copy {
+      background: var(--frame-border);
+      color: var(--bg-canvas);
+      border-color: var(--frame-border);
+    }
+
+    .btn-copy:hover {
+      background: var(--accent-primary-hover);
+      color: #FFFDF9;
+    }
+
+    /* Layout structure */
+    .layout-wrapper {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 40px 0 100px;
+    }
+
+    .section-block {
+      margin-top: 72px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-caps);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--halftone-mid);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-kicker::after {
+      content: "";
+      flex: 1;
+      height: 1.5px;
+      background: var(--frame-border);
+      opacity: 0.35;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.75rem, 7vw, 4.75rem);
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      overflow-wrap: anywhere;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--ink-primary);
+      margin-bottom: 10px;
+    }
+
+    /* Hero Section */
+    .hero-container {
+      border: var(--border-frame);
+      border-radius: var(--radius-card);
+      background: var(--bg-surface);
+      padding: 48px 44px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-accent-script {
+      font-family: var(--font-accent);
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 400;
+      color: var(--halftone-mid);
+      display: block;
+      margin-bottom: -10px;
+      letter-spacing: 0em;
+      line-height: 1;
+    }
+
+    .hero-lead {
+      margin: 20px 0 28px;
+      max-width: 68ch;
+      color: var(--ink-secondary);
+      font-size: 1.2rem;
+      line-height: 1.65;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+      align-items: center;
+    }
+
+    .chip {
+      font-family: var(--font-caps);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: 1.5px solid var(--frame-border);
+      border-radius: 0px;
+      color: var(--ink-primary);
+      background: var(--bg-canvas);
+    }
+
+    .chip-accent {
+      background: var(--halftone-light);
+      border-color: var(--frame-border);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .hero-stamp-badge {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      width: 104px;
+      height: 104px;
+      border-radius: var(--radius-badge);
+      border: 3px solid var(--frame-border);
+      background: var(--halftone-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8px;
+      outline: 4px solid var(--divider-light);
+      transform: rotate(6deg);
+    }
+
+    .hero-stamp-inner {
+      font-family: var(--font-caps);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      line-height: 1.3;
+    }
+
+    .hero-stamp-year {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 22px;
+      font-family: var(--font-caps);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 0px;
+      border: 1.5px solid var(--frame-border);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      text-decoration: none;
+      box-shadow: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn:hover {
+      background: var(--halftone-light);
+    }
+
+    .btn-primary {
+      background: var(--ink-primary);
+      color: var(--bg-canvas);
+      border-color: var(--frame-border);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-primary-hover);
+      color: #FFFDF9;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--frame-border);
+    }
+
+    .btn-ghost:hover {
+      background: var(--bg-surface);
+    }
+
+    .btn-accent {
+      background: var(--halftone-mid);
+      color: #FFFDF9;
+      border-color: var(--frame-border);
+    }
+
+    .btn-accent:hover {
+      background: #6A4B85;
+    }
+
+    .btn-danger {
+      background: var(--status-danger);
+      color: #FFFDF9;
+      border-color: var(--frame-border);
+    }
+
+    .btn-danger:hover {
+      background: #6E1A29;
+    }
+
+    /* Palette Matrix */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 14px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      border: 1.5px solid var(--frame-border);
+      border-radius: 0px;
+      overflow: hidden;
+      background: var(--bg-surface);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      box-shadow: none;
+      transition: transform 0.12s ease;
+    }
+
+    .swatch-item:hover {
+      outline: 2px solid var(--ink-primary);
+    }
+
+    .swatch-chip {
+      height: 76px;
+      border-bottom: 1.5px solid var(--frame-border);
+      position: relative;
+    }
+
+    .swatch-chip.swatch-halftone {
+      background-color: var(--halftone-light);
+      background-image: radial-gradient(var(--halftone-mid) 1.25px, transparent 1.25px);
+      background-size: 6px 6px;
+    }
+
+    .swatch-meta {
+      padding: 12px 14px;
+      background: var(--bg-surface);
+    }
+
+    .swatch-name {
+      display: block;
+      font-family: var(--font-caps);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .swatch-var, .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink-secondary);
+      display: block;
+      margin-top: 3px;
+    }
+
+    /* Typography Specimens */
+    .type-specimen-card {
+      border: var(--border-frame);
+      border-radius: var(--radius-card);
+      background: var(--bg-surface);
+      padding: 36px;
+    }
+
+    .type-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(45, 29, 68, 0.2);
+      min-width: 0;
+      align-items: baseline;
+    }
+
+    .type-label {
+      font-family: var(--font-caps);
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--halftone-mid);
+    }
+
+    .text-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+    }
+
+    .text-accent-sample {
+      font-family: var(--font-accent);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--halftone-mid);
+      line-height: 1.1;
+    }
+
+    .text-h1 {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+    }
+
+    .text-h2 {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--ink-primary);
+    }
+
+    .text-h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--ink-primary);
+    }
+
+    .text-body {
+      font-family: var(--font-sans);
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+    }
+
+    .text-utility {
+      font-family: var(--font-caps);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .text-meta {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--halftone-mid);
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 10px 14px;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      border: 1.5px solid var(--frame-border);
+      border-radius: 0px;
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+    }
+
+    .live-type-input:focus {
+      outline: 2px solid var(--ink-primary);
+      outline-offset: 1px;
+    }
+
+    /* Components Archetype Grid */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .component-card {
+      padding: 24px;
+      background: var(--bg-surface);
+      border: 1.5px solid var(--frame-border);
+      border-radius: 0px;
+      min-width: 0;
+      position: relative;
+    }
+
+    .component-card.framed {
+      border: var(--border-frame);
+      border-radius: var(--radius-card);
+    }
+
+    .btn-row, .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .field-label {
+      display: block;
+      font-family: var(--font-caps);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      margin-bottom: 8px;
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 14px;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      border: 1.5px solid var(--frame-border);
+      border-radius: 0px;
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      box-shadow: none;
+    }
+
+    .text-input:focus {
+      outline: 2px solid var(--ink-primary);
+      outline-offset: 1px;
+      background: var(--bg-surface);
+    }
+
+    .toggle-switch-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toggle {
+      position: relative;
+      width: 46px;
+      height: 24px;
+      border: 1.5px solid var(--frame-border);
+      border-radius: 0px;
+      background: var(--halftone-light);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .toggle[aria-pressed="true"] {
+      background: var(--ink-primary);
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 0px;
+      background: var(--bg-canvas);
+      border: 1px solid var(--frame-border);
+      transition: transform 140ms ease;
+    }
+
+    .toggle[aria-pressed="true"]::after {
+      transform: translateX(22px);
+      background: #FFFDF9;
+    }
+
+    .badge-circular {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-badge);
+      border: 1.5px solid var(--frame-border);
+      background: var(--halftone-light);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-caps);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      text-align: center;
+      outline: 2px solid var(--divider-light);
+    }
+
+    .badge-rect {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      font-family: var(--font-caps);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: 1.5px solid var(--frame-border);
+      border-radius: 0px;
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+    }
+
+    /* Living Micro-Experience Demo */
+    .archival-plate-card {
+      border: var(--border-frame);
+      border-radius: var(--radius-card);
+      background: var(--bg-surface);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .archival-plate-inner {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      min-height: 420px;
+    }
+
+    .archival-plate-graphic {
+      background: var(--halftone-light);
+      border-right: var(--border-frame);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      background-image: radial-gradient(var(--halftone-mid) 1.25px, transparent 1.25px);
+      background-size: 8px 8px;
+    }
+
+    .plate-graphic-raster {
+      border: var(--border-cutline);
+      outline: 2px solid var(--frame-border);
+      background: var(--bg-canvas);
+      height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .raster-pattern {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(#2D1D44 2px, transparent 2px);
+      background-size: 10px 10px;
+      opacity: 0.45;
+    }
+
+    .raster-svg-icon {
+      position: relative;
+      z-index: 2;
+      color: var(--ink-primary);
+    }
+
+    .raster-badge-overlay {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-badge);
+      border: 2px solid var(--frame-border);
+      background: var(--bg-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-caps);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      z-index: 3;
+    }
+
+    .archival-plate-content {
+      padding: 38px 42px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--bg-surface);
+    }
+
+    .plate-header-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1.5px solid var(--frame-border);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+
+    .plate-header-meta .plate-cat {
+      font-family: var(--font-caps);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--halftone-mid);
+    }
+
+    .plate-header-meta .plate-id {
+      font-family: var(--font-caps);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--ink-primary);
+    }
+
+    .plate-body-headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      margin-bottom: 12px;
+    }
+
+    .plate-body-headline em {
+      font-family: var(--font-accent);
+      font-weight: 400;
+      font-style: normal;
+      color: var(--halftone-mid);
+      display: inline-block;
+      margin: 0 4px;
+    }
+
+    .plate-body-copy {
+      font-family: var(--font-sans);
+      font-size: 1.12rem;
+      line-height: 1.65;
+      color: var(--ink-secondary);
+      margin-bottom: 24px;
+    }
+
+    .plate-columns-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      border-top: 1px solid rgba(45, 29, 68, 0.2);
+      padding-top: 18px;
+      margin-bottom: 24px;
+    }
+
+    .plate-col-title {
+      font-family: var(--font-caps);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      margin-bottom: 6px;
+    }
+
+    .plate-col-desc {
+      font-family: var(--font-sans);
+      font-size: 0.98rem;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+    }
+
+    .plate-actions-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1.5px solid var(--frame-border);
+      padding-top: 20px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    /* Spec Drawer Card */
+    .spec-drawer-card {
+      background: var(--frame-border);
+      color: var(--bg-canvas);
+      border-radius: var(--radius-card);
+      border: 4px solid var(--frame-border);
+      padding: 28px;
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 480px;
+      padding: 20px;
+      background: #0E0A13;
+      color: #E6DCF2;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid rgba(217, 203, 232, 0.2);
+      border-radius: 0px;
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(28, 21, 36, 0.75);
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal-content-card {
+      width: min(880px, 100%);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-canvas);
+      border: var(--border-frame);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 22px;
+      border-bottom: 1.5px solid var(--frame-border);
+      background: var(--bg-surface);
+    }
+
+    .modal-footer {
+      border-bottom: 0;
+      border-top: 1.5px solid var(--frame-border);
+      justify-content: flex-end;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow: auto;
+      flex: 1;
+      background: var(--bg-canvas);
+    }
+
+    .modal-close-btn {
+      width: 38px;
+      height: 38px;
+      border: 1.5px solid var(--frame-border);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      cursor: pointer;
+      border-radius: 0px;
+      font-weight: 700;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--halftone-light);
+    }
+
+    /* Floating Toast */
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3000;
+      padding: 14px 22px;
+      background: var(--frame-border);
+      color: var(--bg-canvas);
+      font-family: var(--font-caps);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: 2px solid var(--divider-light);
+      border-radius: 0px;
+    }
+
+    /* Responsive Queries */
+    @media (max-width: 768px) {
+      .layout-wrapper {
+        width: calc(100% - 24px);
+        padding: 24px 0 64px;
+      }
+      .hero-container {
+        padding: 32px 20px;
+      }
+      .hero-stamp-badge {
+        position: static;
+        margin-bottom: 20px;
+        transform: none;
+      }
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .swatches-grid, .components-grid {
+        grid-template-columns: 1fr;
+      }
+      .archival-plate-inner {
+        grid-template-columns: 1fr;
+      }
+      .archival-plate-graphic {
+        border-right: none;
+        border-bottom: var(--border-frame);
+      }
+      .plate-columns-layout {
+        grid-template-columns: 1fr;
+      }
+      .hero-actions, .btn-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn, .btn-tile {
+        white-space: normal;
+        text-align: center;
+      }
+      .toast-popup {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet. Must remain immediately after this page's <style>. -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Aubergine Press</span>
+      <span class="design-vibe-tag">Editorial &amp; Archival</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+      <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+      <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-aubergine-press.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- SLOT 1: Hero Banner -->
+    <section class="hero-banner" id="hero-section">
+      <div class="hero-container">
+        <div class="hero-stamp-badge" aria-hidden="true">
+          <span class="hero-stamp-inner">Plate Spec</span>
+          <span class="hero-stamp-year">№ 01</span>
+          <span class="hero-stamp-inner">Halftone</span>
+        </div>
+        <p class="section-kicker">Archival Print &amp; Editorial System</p>
+        <span class="hero-accent-script">The Archival Plate</span>
+        <h1>Aubergine Press</h1>
+        <p class="hero-lead">
+          An editorial and archival print language formulated on warm uncoated newsprint (#FBF7EF), heavy plum ink (#2D1D44), and tactile violet halftone dot screens. Constructed with a 6px dark boundary frame, crisp white cutlines, Didone display serif typography, and copperplate calligraphy flourishes.
+        </p>
+        <div class="hero-meta">
+          <span class="chip chip-accent">Editorial &amp; Archival</span>
+          <span class="chip">Light Theme</span>
+          <span class="chip">Warm Paper Canvas</span>
+          <span class="chip">Ben-Day Dot Screen</span>
+          <span class="chip">Bodoni Moda &amp; Pinyon Script</span>
+          <span class="chip">0px Shadow / Flat Print</span>
+        </div>
+        <div class="hero-actions">
+          <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Prompt for Agent</button>
+          <a class="btn btn-ghost" href="#components-section">Test Interactive Elements</a>
+          <a class="btn btn-accent" href="#demo-section">Examine Archival Plate</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 2: Palette Section -->
+    <section class="section-block" id="palette-section">
+      <p class="section-kicker">01 // Color Matrix</p>
+      <h2>Color roles &amp; printing inks</h2>
+      <div class="swatches-grid" id="swatch-grid">
+        <!-- JS populates swatches from DESIGN_PALETTE -->
+      </div>
+    </section>
+
+    <!-- SLOT 3: Typography Section -->
+    <section class="section-block" id="typography-section">
+      <p class="section-kicker">02 // Typeface Hierarchy</p>
+      <h2>Typography &amp; calligraphic specimen</h2>
+      <div class="type-specimen-card">
+        <div class="type-stack">
+          <div class="type-row">
+            <span class="type-label">Display Primary</span>
+            <p class="text-display">Aubergine Press</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Display Accent</span>
+            <p class="text-accent-sample">The Art of Archival Inks &amp; Hand Calligraphy</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Utility Caps</span>
+            <p class="text-utility">PLATE SPECIFICATION • VOL. IV • FOLIO 1894 • PARIS &amp; MILAN</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Heading H1</span>
+            <p class="text-h1">High-Contrast Condensed Didone Serif</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Heading H2</span>
+            <p class="text-h2">Monochrome Halftone Screen Raster Systems</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Body Serif</span>
+            <p class="text-body">
+              Printed upon an unbleached tactile warm cream vellum with deep violet plum pigment. Letterforms balance razor-thin hairlines against saturated ink wells, evoking classical folio volumes and museum monograph editions.
+            </p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Monospace Meta</span>
+            <p class="text-meta">DPI: 1200 // SCREEN_ANGLE: 45DEG // DOT_PITCH: 1.25PX // INK_WEIGHT: HEAVY</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Live Specimen</span>
+            <input class="live-type-input" id="live-type-tester-input" type="text" value="The quick brown fox jumps over the archival plate." />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 4: Components Section -->
+    <section class="section-block" id="components-section">
+      <p class="section-kicker">03 // Component Archetypes</p>
+      <h2>UI components &amp; interactive controls</h2>
+      <div class="components-grid">
+        <article class="component-card framed">
+          <h3>Button suite</h3>
+          <p class="text-body" style="font-size:0.95rem;margin-bottom:14px;">Flat printed action controls with 0px elements radius and 1.5px organic hand-drawn stroke weight.</p>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="button">Primary Ink</button>
+            <button class="btn" type="button">Secondary</button>
+            <button class="btn btn-accent" type="button">Halftone Mid</button>
+            <button class="btn btn-ghost" type="button">Ghost Ruled</button>
+            <button class="btn btn-danger" type="button">Redaction</button>
+          </div>
+        </article>
+
+        <article class="component-card framed">
+          <h3>Input &amp; Field</h3>
+          <label class="field-label" for="demo-input">Archival accession query</label>
+          <input class="text-input" id="demo-input" type="text" placeholder="Enter collection catalog title…" autocomplete="off" />
+          <p class="text-body" style="font-size:0.9rem;margin-top:10px;color:var(--ink-secondary);">Focused fields highlight with deep aubergine ink outline.</p>
+        </article>
+
+        <article class="component-card framed">
+          <h3>Selections &amp; Stamps</h3>
+          <div class="control-row" style="margin-bottom:14px;">
+            <label style="display:flex;align-items:center;gap:8px;font-family:var(--font-caps);font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;"><input type="checkbox" checked style="accent-color:var(--ink-primary);" /> Checked</label>
+            <label style="display:flex;align-items:center;gap:8px;font-family:var(--font-caps);font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;"><input type="radio" name="demo-radio" checked style="accent-color:var(--ink-primary);" /> Folio A</label>
+            <label style="display:flex;align-items:center;gap:8px;font-family:var(--font-caps);font-size:0.85rem;letter-spacing:0.12em;text-transform:uppercase;"><input type="radio" name="demo-radio" style="accent-color:var(--ink-primary);" /> Folio B</label>
+          </div>
+          <div class="control-row">
+            <div class="toggle-switch-wrapper">
+              <button class="toggle" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle Halftone Mode"></button>
+              <span class="field-label" style="margin:0;">Screen Plate</span>
+            </div>
+            <span class="badge-circular">50%<br>Crop</span>
+            <span class="badge-rect">№ 482</span>
+          </div>
+        </article>
+
+        <article class="component-card framed">
+          <h3>Boundary frame &amp; card</h3>
+          <p class="text-body" style="font-size:0.98rem;margin-bottom:12px;">
+            Outer cards receive a 16px radius bounded by a 6px solid #1C1524 dark frame. Interior elements maintain 0px sharp razor cuts with zero drop shadows.
+          </p>
+          <div style="background:var(--halftone-light);border:1.5px solid var(--frame-border);padding:10px 14px;display:flex;justify-content:space-between;align-items:center;">
+            <span class="text-utility" style="font-size:0.75rem;">Plate Calibration</span>
+            <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--ink-primary);">100% FLAT</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SLOT 5: Living Micro-Experience Demo -->
+    <section class="section-block" id="demo-section">
+      <p class="section-kicker">04 // Living Micro-Experience</p>
+      <h2>The archival print plate specimen</h2>
+      
+      <div class="archival-plate-card">
+        <div class="archival-plate-inner">
+          <div class="archival-plate-graphic">
+            <div>
+              <p class="text-utility" style="font-size:0.72rem;margin-bottom:8px;">Ben-Day Halftone Screen</p>
+              <h3 style="font-size:1.15rem;margin-bottom:14px;">Screen Plate № 09</h3>
+            </div>
+            
+            <div class="plate-graphic-raster">
+              <div class="raster-pattern"></div>
+              <svg class="raster-svg-icon" width="68" height="68" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+              <div class="raster-badge-overlay">
+                ARCHIVE
+              </div>
+            </div>
+
+            <div style="margin-top:16px;">
+              <p class="text-utility" style="font-size:0.7rem;color:var(--ink-primary);">Boundary Cutline // 4px Opaque White</p>
+              <p style="font-family:var(--font-mono);font-size:0.68rem;color:var(--ink-secondary);margin-top:4px;">INK: #2D1D44 • SCREEN: #7E5C9B</p>
+            </div>
+          </div>
+
+          <div class="archival-plate-content">
+            <div>
+              <div class="plate-header-meta">
+                <span class="plate-cat">Gazette Monograph Series</span>
+                <span class="plate-id">DOC-894-IV</span>
+              </div>
+              <h3 class="plate-body-headline">
+                The Preservation of <em>Fine Art</em> Print Plates
+              </h3>
+              <p class="plate-body-copy">
+                In classical fine-art intaglio and letterpress workshops, paper choice dictates ink absorption. Uncoated warm newsprint softens dense plum pigments into velvety midtones, while secondary lavender washes illuminate archival boundaries.
+              </p>
+              <div class="plate-columns-layout">
+                <div>
+                  <h4 class="plate-col-title">Ink Density</h4>
+                  <p class="plate-col-desc">Deep aubergine (#2D1D44) mixed with high-viscosity binder, providing absolute contrast on uncoated warm paper.</p>
+                </div>
+                <div>
+                  <h4 class="plate-col-title">Halftone Raster</h4>
+                  <p class="plate-col-desc">Violet Ben-Day screens (#7E5C9B) layered over faded lavender wash (#D9CBE8) for optical depth without digital glow.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="plate-actions-bar">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span class="badge-circular" style="width:40px;height:40px;font-size:0.6rem;">1894</span>
+                <span class="text-utility" style="font-size:0.75rem;">Archival Edition</span>
+              </div>
+              <div style="display:flex;gap:10px;">
+                <button class="btn btn-ghost" type="button">Inspect Proof</button>
+                <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Acquire Specimen</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 6: Style Tile Specification Code Drawer -->
+    <section class="section-block spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-head">
+        <h2 style="margin:0;color:inherit;">Style Tile specification</h2>
+        <button class="btn btn-accent" type="button" onclick="copyTilePromptDirect()">Copy Markdown Spec</button>
+      </div>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+    </section>
+  </main>
+
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title" style="font-family:var(--font-display);font-size:1.2rem;color:var(--ink-primary);">Style Tile // Aubergine Press</strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">Copied</div>
+
+  <!-- SOURCE OF TRUTH for Copy / Download / Preview -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Aubergine Press
+  Construction: warm cream paper • aubergine & violet halftone inks • Didone serif • 6px dark frame • flat 0px shadow
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A tactile editorial and archival print visual system founded on warm uncoated cream paper (#FBF7EF), heavy aubergine ink (#2D1D44), and Ben-Day violet halftone dot screen raster fills. Structural cards are bounded by a 6px solid dark framing border (#1C1524) with 16px corner radii, opaque warm white cutline accents (#FFFDF9), 0px element radii, strictly zero drop shadows, and high-contrast condensed Didone display serifs accented with calligraphic flourishes.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #FBF7EF; /* Warm cream uncoated paper canvas */
+  --bg-surface:             #FFFDF9; /* Opaque warm white elevated slab */
+  --bg-surface-alt:         #F3EDE0; /* Archival secondary paper container */
+  --bg-surface-dark:        #1C1524; /* Dark framing boundary / deep plum void */
+
+  /* Inks & Typography */
+  --ink-primary:            #2D1D44; /* Deep aubergine/plum primary reading ink */
+  --ink-secondary:          #594373; /* Muted aubergine for secondary copy */
+  --ink-muted:              #7E5C9B; /* Midtone violet screen ink */
+  --ink-inverted:           #FBF7EF; /* Warm cream text on dark containers */
+
+  /* Halftone Screens & Print Inks */
+  --halftone-mid:           #7E5C9B; /* Midtone violet screen ink */
+  --halftone-light:         #D9CBE8; /* Faded lavender wash */
+  --divider-light:          #FFFDF9; /* Opaque warm white cutline */
+  --frame-border:           #1C1524; /* Dark framing boundary */
+
+  /* Signature Accents */
+  --accent-primary:         #2D1D44; /* Deep aubergine call-to-action */
+  --accent-primary-hover:   #432B66; /* Interactive hover plum tone */
+  --accent-secondary:       #7E5C9B; /* Midtone violet highlight */
+  --accent-tertiary:        #D9CBE8; /* Faded lavender wash highlight */
+
+  /* Status Tokens */
+  --status-success:         #2D5A3C;
+  --status-warning:         #8F5518;
+  --status-danger:          #852233;
+  --status-info:            #334A7B;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Bodoni Moda", Didot, "Bodoni MT", serif;
+--font-accent:  "Pinyon Script", "Brush Script MT", cursive;
+--font-caps:    "Cormorant SC", "Bodoni Moda", serif;
+--font-sans:    "Cormorant Garamond", Garamond, Georgia, serif;
+--font-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+/* Type Scale */
+--text-display: 3.5rem   / 1.05  var(--font-display); /* Letter-spacing: -0.01em | Weight: 700 */
+--text-h1:      2.5rem   / 1.15  var(--font-display); /* Letter-spacing: -0.01em | Weight: 600 */
+--text-h2:      1.75rem  / 1.25  var(--font-display); /* Letter-spacing: -0.01em | Weight: 600 */
+--text-h3:      1.25rem  / 1.35  var(--font-display); /* Letter-spacing: 0 | Weight: 600 */
+--text-body:    1.05rem  / 1.60  var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
+--text-body-sm: 0.9rem   / 1.50  var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
+--text-utility: 0.8rem   / 1.40  var(--font-caps);    /* Letter-spacing: 0.18em | Weight: 600 | UPPERCASE */
+--text-meta:    0.75rem  / 1.40  var(--font-mono);    /* Letter-spacing: 0.08em | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-card:     16px;   /* Outer card framing containers */
+--radius-badge:    50%;    /* Circular badge crop stamps */
+--radius-elements: 0px;    /* Buttons, inputs, chips, internal containers */
+--radius-pill:     9999px;
+
+/* Elevation & Shadows: strictly 0px flat printed finish */
+--shadow-base:    none;
+--shadow-hover:   none;
+--shadow-active:  none;
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-frame:        6px solid #1C1524;              /* Heavy dark outer card frame */
+--border-cutline:      4px solid #FFFDF9;              /* Opaque warm white graphic cutline */
+--border-core:         1.5px solid #2D1D44;            /* Primary organic stroke weight */
+--border-hairline:     1px solid rgba(45, 29, 68, 0.22);/* Archival divider rule */
+--divider-style:       1px solid rgba(45, 29, 68, 0.22);
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Flat ink fills or ruled borders. 0px corner radius, 1.5px solid #2D1D44 or #1C1524 stroke, Cormorant SC utility caps font with 0.18em tracking, zero shadow. Invert to deep plum hover (#432B66) or lavender screen (#D9CBE8). Use the host's existing labels.
+- **Cards & Plates**: Outer structural cards receive 16px radius bounded by a 6px solid #1C1524 dark frame. Interior elements, slabs, and content wells keep 0px sharp razor cuts and 0px drop shadows. Fills use warm cream #FBF7EF or opaque warm white #FFFDF9.
+- **Inputs**: Flat warm cream wells (#FBF7EF) bounded by 1.5px solid #2D1D44 borders with 0px corner radius. Focus state presents a 2px solid deep aubergine outline. Font size at least 16px.
+- **Navigation**: Restyle existing items with Cormorant SC uppercase text (0.18em tracking), separated by ruled hairline borders or framed boundary lines. No fake catalog codes or clocks.
+- **Decorative Halftone Fill**: When secondary visual framing is needed, apply Ben-Day dot screen patterns using midtone violet (#7E5C9B) over faded lavender wash (#D9CBE8).
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No blurred gaussian drop shadows or glowing neon gradients. The finish must remain flat matte uncoated print.
+- No rounded pill buttons (corner radius for interactive elements must remain 0px; 16px is reserved strictly for outer card frames; 50% for circular stamp badges).
+- No modern sans-serif tech typefaces in hero display positions; preserve Didone serif contrast and Cormorant SC tracking.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <script>
+    const DESIGN_SLUG = "aubergine-press";
+
+    const DESIGN_PALETTE = [
+      { name: "Canvas Paper", hex: "#FBF7EF", cssVar: "--bg-canvas" },
+      { name: "Divider / Cutline", hex: "#FFFDF9", cssVar: "--divider-light" },
+      { name: "Secondary Surface", hex: "#F3EDE0", cssVar: "--bg-surface-alt" },
+      { name: "Dark Boundary Frame", hex: "#1C1524", cssVar: "--frame-border" },
+      { name: "Ink Primary", hex: "#2D1D44", cssVar: "--ink-primary" },
+      { name: "Halftone Midtone", hex: "#7E5C9B", cssVar: "--halftone-mid" },
+      { name: "Halftone Wash", hex: "#D9CBE8", cssVar: "--halftone-light" },
+      { name: "Muted Plum Ink", hex: "#594373", cssVar: "--ink-secondary" },
+      { name: "Interactive Plum", hex: "#432B66", cssVar: "--accent-primary-hover" },
+      { name: "Archival Green", hex: "#2D5A3C", cssVar: "--status-success" },
+      { name: "Redaction Red", hex: "#852233", cssVar: "--status-danger" },
+      { name: "Archive Gold", hex: "#8F5518", cssVar: "--status-warning" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex;
+        
+        let chipClass = "swatch-chip";
+        let chipStyle = 'background:' + swatch.hex;
+        if (swatch.name.indexOf("Halftone") !== -1) {
+          chipClass += " swatch-halftone";
+        }
+        
+        btn.innerHTML =
+          '<span class="' + chipClass + '" style="' + chipStyle + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + "</span>" +
+            '<span class="swatch-var">' + swatch.cssVar + "</span> " +
+            '<span class="swatch-hex">' + swatch.hex + "</span>" +
+          "</span>";
+        btn.addEventListener("click", function () { copyHex(swatch.hex, swatch.name); });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () { toast.style.display = "none"; }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(function () { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+      });
+    }
+
+    const liveTesterInput = document.getElementById("live-type-tester-input");
+    const textDisplayEl = document.querySelector(".text-display");
+    if (liveTesterInput && textDisplayEl) {
+      liveTesterInput.addEventListener("input", function (e) {
+        if (e.target.value.trim() !== "") {
+          textDisplayEl.textContent = e.target.value;
+        } else {
+          textDisplayEl.textContent = "Aubergine Press";
+        }
+      });
+    }
+  </script>
+</body>
+</html>

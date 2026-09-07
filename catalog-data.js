@@ -2036,6 +2036,31 @@ const STYLE_TILES_DATA = [
     ],
     description: "Electric Midnight Pop: High-energy Playful & Pop aesthetic built over deep midnight navy (#0a1727), featuring fully opaque chromatic color-blocked slabs in neon lime (#daf83b), electric periwinkle (#9a85ee), ice slate, and crisp off-white with 100% flat zero-shadow geometry, 0px borderless edge contrast, 18px rounded radii, uppercase Syne typography, and geometric sticker glyphs.",
     markdownSpec: null
+  },
+  {
+    slug: "aubergine-press",
+    name: "Aubergine Press",
+    vibe: "Warm Cream Paper • Aubergine Ink • Violet Halftone Screen • Didone Serif • Flat 0px Shadows • Archival Cutlines",
+    vibeBadge: "Editorial & Archival",
+    colours: ["Cream White", "Purple"],
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Bodoni Moda",
+      sans: "Cormorant Garamond",
+      mono: "Cormorant SC"
+    },
+    palette: [
+      { name: "Canvas Paper", hex: "#FBF7EF" },
+      { name: "Divider Cutline", hex: "#FFFDF9" },
+      { name: "Ink Primary", hex: "#2D1D44" },
+      { name: "Halftone Mid", hex: "#7E5C9B" },
+      { name: "Halftone Wash", hex: "#D9CBE8" },
+      { name: "Frame Border", hex: "#1C1524" }
+    ],
+    description: "Aubergine Press: Editorial and archival print aesthetic built upon warm uncoated cream newsprint (#FBF7EF) and deep plum ink (#2D1D44), featuring violet Ben-Day halftone screens (#7E5C9B), 6px dark outer boundary framing (#1C1524) with 16px radius, 0px element corners, flat 0px drop shadows, and high-contrast Didone display serif typography with calligraphic accents.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
