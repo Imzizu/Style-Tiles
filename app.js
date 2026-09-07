@@ -1464,13 +1464,27 @@ document.addEventListener("DOMContentLoaded", () => {
     searchInput.addEventListener("input", handleSearchInput);
 
     const syncSearchPlaceholder = () => {
-      const mobile = searchInput.getAttribute("data-placeholder-mobile");
-      const desktop = searchInput.getAttribute("data-placeholder-desktop");
-      if (!mobile || !desktop) return;
-      searchInput.placeholder = window.matchMedia("(max-width: 768px)").matches ? mobile : desktop;
+      const desktop = "Search by vibe, typography, tag, or";
+      const mobile = "Search";
+      const availableWidth = searchInput.clientWidth;
+
+      if (availableWidth === 0) {
+        searchInput.placeholder = window.matchMedia("(max-width: 580px)").matches ? mobile : desktop;
+        return;
+      }
+
+      if (window.matchMedia("(max-width: 580px)").matches || availableWidth < 230) {
+        searchInput.placeholder = mobile;
+      } else {
+        searchInput.placeholder = desktop;
+      }
     };
     syncSearchPlaceholder();
     window.addEventListener("resize", syncSearchPlaceholder);
+    if (typeof ResizeObserver !== "undefined") {
+      const ro = new ResizeObserver(() => syncSearchPlaceholder());
+      ro.observe(searchInput);
+    }
   }
 
   // Responsive handling for compact mode when crossing the mobile/desktop viewport breakpoint

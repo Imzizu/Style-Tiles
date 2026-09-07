@@ -954,10 +954,11 @@ html[data-mode="dark"] .theme-picker-option.is-active {
   background-color: var(--surface-canvas);
   border: var(--border-core);
   box-shadow: var(--shadow-sm);
-  padding: 0 var(--space-3);
+  padding: 0 6px 0 var(--space-3);
   flex: 1;
   min-width: 240px;
-  max-width: 580px;
+  max-width: 640px;
+  min-height: 42px;
   transition: var(--transition-snap);
 }
 
@@ -1012,6 +1013,8 @@ html[data-mode="dark"] .theme-picker-option.is-active {
 }
 
 .search-input {
+  flex: 1 1 auto;
+  min-width: 0;
   width: 100%;
   border: none;
   background: transparent;
@@ -1020,10 +1023,33 @@ html[data-mode="dark"] .theme-picker-option.is-active {
   font-size: 0.875rem;
   color: var(--ink-primary);
   outline: none;
+  text-align: left;
+}
+
+.search-input:placeholder-shown {
+  text-align: justify;
+  text-align-last: justify;
+  -moz-text-align-last: justify;
 }
 
 .search-input::placeholder {
   color: var(--ink-muted);
+  text-align: justify;
+  text-align-last: justify;
+  -moz-text-align-last: justify;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.search-input::-webkit-input-placeholder {
+  text-align: justify;
+  text-align-last: justify;
+}
+
+.search-input::-moz-placeholder {
+  text-align: justify;
+  text-align-last: justify;
 }
 
 .search-input:-webkit-autofill,
@@ -1040,8 +1066,8 @@ html[data-mode="dark"] .theme-picker-option.is-active {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-left: var(--space-3);
-  padding: 4px 8px 4px var(--space-3);
+  margin-left: 10px;
+  padding: 6px 4px 6px 12px;
   border-left: var(--border-hairline);
   flex-shrink: 0;
 }
@@ -1119,6 +1145,13 @@ html[data-mode="dark"] .color-dot-btn.active:hover {
   box-shadow: 0 0 0 2px var(--surface-canvas), 0 0 0 3px rgba(0, 0, 0, 0.28), inset 0 0 0 1px rgba(0, 0, 0, 0.24);
 }
 
+.color-dot-btn[data-color="Cream White"].active,
+.color-dot-btn[data-color="Cream White"].active:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 0 0 2px var(--surface-canvas), 0 0 0 3.5px var(--ink-primary), inset 0 0 0 1px rgba(0, 0, 0, 0.24);
+  z-index: 1;
+}
+
 html[data-mode="dark"] .color-dot-btn[data-color="Cream White"] {
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
 }
@@ -1130,6 +1163,7 @@ html[data-mode="dark"] .color-dot-btn[data-color="Cream White"]:hover {
 html[data-mode="dark"] .color-dot-btn[data-color="Cream White"].active,
 html[data-mode="dark"] .color-dot-btn[data-color="Cream White"].active:hover {
   box-shadow: 0 0 0 2px var(--surface-canvas), 0 0 0 3.5px #FFFFFF, inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+  z-index: 1;
 }
 
 .view-options {
@@ -2448,11 +2482,13 @@ kbd,
     min-width: 0;
     max-width: none;
     width: 100%;
+    padding: 0 4px 0 10px;
+    min-height: 42px;
   }
 
   .search-color-filter {
     gap: 8px;
-    padding: 3px 6px 3px 8px;
+    padding: 5px 3px 5px 8px;
     margin-left: 6px;
   }
 
@@ -2721,9 +2757,14 @@ kbd,
     display: none;
   }
 
+  .search-box {
+    padding: 0 3px 0 8px;
+    min-height: 40px;
+  }
+
   .search-color-filter {
     gap: 6px;
-    padding: 2px 4px 2px 6px;
+    padding: 4px 2px 4px 6px;
     margin-left: 4px;
   }
 
