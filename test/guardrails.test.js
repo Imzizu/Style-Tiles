@@ -79,6 +79,27 @@ test('onBeforeGenerateToken enforces maximum size 5MB, private access, and addRa
   assert.deepEqual(options.allowedContentTypes, ALLOWED_CONTENT_TYPES);
 });
 
+test('onBeforeGenerateToken copies curator fields into tokenPayload and omits passphrase', async () => {
+  const options = await onBeforeGenerateToken(
+    'submissions/2026-09-06/valid.html',
+    JSON.stringify({
+      name: 'Elena',
+      designName: 'Mineral Celadon',
+      note: 'Credit @elena',
+      originalFilename: 'mineral-celadon.html',
+      passphrase: 'not-for-storage',
+    }),
+    false
+  );
+
+  const payload = JSON.parse(options.tokenPayload);
+  assert.equal(payload.name, 'Elena');
+  assert.equal(payload.designName, 'Mineral Celadon');
+  assert.equal(payload.note, 'Credit @elena');
+  assert.equal(payload.originalFilename, 'mineral-celadon.html');
+  assert.equal(Object.hasOwn(payload, 'passphrase'), false);
+});
+
 test('onBeforeGenerateToken enforces passphrase only when UPLOAD_PASSPHRASE is configured', async () => {
   const originalEnv = process.env.UPLOAD_PASSPHRASE;
 

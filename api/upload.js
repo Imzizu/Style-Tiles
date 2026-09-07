@@ -4,6 +4,7 @@ import {
   MAX_UPLOAD_FILE_SIZE,
   ALLOWED_CONTENT_TYPES,
   SUBMISSION_PREFIX,
+  METADATA_SIDECAR_SUFFIX,
 } from './constants.js';
 
 // Load local environment variables if running outside vercel dev/preview
@@ -63,6 +64,87 @@ export function getForcedPathname(clientPathname) {
 }
 
 /**
+ * Pairs a stored HTML blob with its curator metadata sidecar.
+ * submissions/2026-09-07/tile-abc123.html → submissions/2026-09-07/tile-abc123.meta.json
+ */
+export function getSidecarPathname(htmlPathname) {
+  if (!htmlPathname || typeof htmlPathname !== 'string') return null;
+  if (!htmlPathname.startsWith(SUBMISSION_PREFIX)) return null;
+  if (htmlPathname.includes('..') || htmlPathname.includes('\\')) return null;
+
+  const lower = htmlPathname.toLowerCase();
+  if (lower.endsWith(METADATA_SIDECAR_SUFFIX)) return null;
+
+  if (lower.endsWith('.html')) {
+    return `${htmlPathname.slice(0, -'.html'.length)}${METADATA_SIDECAR_SUFFIX}`;
+  }
+  if (lower.endsWith('.htm')) {
+    return `${htmlPathname.slice(0, -'.htm'.length)}${METADATA_SIDECAR_SUFFIX}`;
+  }
+
+  return null;
+}
+
+function parseTokenPayload(tokenPayload) {
+  if (!tokenPayload) return {};
+  if (typeof tokenPayload === 'object') return tokenPayload;
+  if (typeof tokenPayload !== 'string') return {};
+  try {
+    const parsed = JSON.parse(tokenPayload);
+    return parsed && typeof parsed === 'object' ? parsed : {};
+  } catch {
+    return { raw: tokenPayload };
+  }
+}
+
+/**
+ * Curator-facing JSON stored next to the HTML blob. Never includes passphrase.
+ */
+export function buildSidecarBody({ blob, tokenPayload, originalFilename } = {}) {
+  const meta = parseTokenPayload(tokenPayload);
+  const submittedName = typeof originalFilename === 'string' ? originalFilename.trim() : '';
+  const fromPayload = typeof meta.originalFilename === 'string' ? meta.originalFilename.trim() : '';
+
+  return {
+    kind: 'style-tiles.submission-meta',
+    htmlPathname: blob?.pathname || null,
+    originalFilename: submittedName || fromPayload || null,
+    authorName: (meta.name || meta.authorName || '').trim(),
+    designName: (meta.designName || '').trim(),
+    note: (meta.note || meta.curatorNote || '').trim(),
+    submittedAt: meta.submittedAt || new Date().toISOString(),
+  };
+}
+
+export async function putSubmissionSidecar({ blob, tokenPayload, originalFilename, auth = {} }) {
+  const pathname = getSidecarPathname(blob?.pathname);
+  if (!pathname) return null;
+
+  const record = buildSidecarBody({ blob, tokenPayload, originalFilename });
+  return put(pathname, JSON.stringify(record, null, 2), {
+    access: 'private',
+    addRandomSuffix: false,
+    allowOverwrite: true,
+    contentType: 'application/json',
+    ...auth,
+  });
+}
+
+async function persistSidecarAndComplete({ blob, tokenPayload, originalFilename, auth = {} }) {
+  let sidecarPathname = getSidecarPathname(blob?.pathname);
+  try {
+    const sidecar = await putSubmissionSidecar({ blob, tokenPayload, originalFilename, auth });
+    if (sidecar?.pathname) sidecarPathname = sidecar.pathname;
+  } catch (err) {
+    console.error(
+      '[Style Tiles Intake] Failed to store submission metadata sidecar:',
+      sanitizeErrorMessage(err)
+    );
+  }
+  return onUploadCompleted({ blob, tokenPayload, sidecarPathname });
+}
+
+/**
  * Hook called prior to issuing client token/presigned URL.
  * Enforces passphrase (if configured), file extension, size limit, random suffix, prefix, and metadata payload.
  */
@@ -108,15 +190,17 @@ export async function onBeforeGenerateToken(pathname, clientPayload, multipart) 
     }
   }
 
-  // 5. Extract metadata for completion log
+  // 5. Extract metadata for completion log and sidecar (never persist passphrase)
   const authorName = (parsedClientPayload.name || parsedClientPayload.authorName || '').trim();
   const designName = (parsedClientPayload.designName || '').trim();
   const curatorNote = (parsedClientPayload.note || parsedClientPayload.curatorNote || '').trim();
+  const originalFilename = (parsedClientPayload.originalFilename || '').trim();
 
   const tokenPayloadObj = {
     name: authorName || undefined,
     designName: designName || undefined,
     note: curatorNote || undefined,
+    originalFilename: originalFilename || undefined,
     submittedAt: new Date().toISOString(),
   };
 
@@ -197,21 +281,16 @@ export async function getSignedToken(pathname, clientPayload, multipart, auth = 
  * Callback triggered by Vercel Blob webhook when file upload finishes.
  * Logs intake record for the owner without modifying catalog or public files.
  */
-export async function onUploadCompleted({ blob, tokenPayload }) {
+export async function onUploadCompleted({ blob, tokenPayload, sidecarPathname } = {}) {
   try {
-    let meta = null;
-    if (tokenPayload) {
-      try {
-        meta = typeof tokenPayload === 'string' ? JSON.parse(tokenPayload) : tokenPayload;
-      } catch {
-        meta = { raw: tokenPayload };
-      }
-    }
+    const meta = parseTokenPayload(tokenPayload);
+    const metadataPathname = sidecarPathname || getSidecarPathname(blob?.pathname) || null;
 
     const intakeRecord = {
       event: 'upload.completed',
       status: 'received',
       pathname: blob?.pathname || null,
+      metadataPathname,
       url: blob?.url || null,
       downloadUrl: blob?.downloadUrl || null,
       size: typeof blob?.size === 'number' ? blob.size : null,
@@ -221,6 +300,7 @@ export async function onUploadCompleted({ blob, tokenPayload }) {
         authorName: meta?.name || meta?.authorName || 'Anonymous',
         designName: meta?.designName || 'Untitled',
         note: meta?.note || meta?.curatorNote || '(none)',
+        originalFilename: meta?.originalFilename || null,
         submittedAt: meta?.submittedAt || null,
       },
     };
@@ -333,9 +413,11 @@ export async function handleFileUpload(request) {
     name: authorName,
     designName,
     note,
+    originalFilename: originalName,
   });
 
   const tokenOptions = await onBeforeGenerateToken(pathname, clientPayload, false);
+  const auth = blobAuthOptions(request);
   const blob = await put(pathname, file, {
     access: 'private',
     addRandomSuffix: true,
@@ -343,17 +425,20 @@ export async function handleFileUpload(request) {
     contentType: file.type && ALLOWED_CONTENT_TYPES.includes(file.type)
       ? file.type
       : 'text/html',
-    ...blobAuthOptions(request),
+    ...auth,
   });
 
-  await onUploadCompleted({
+  const intake = await persistSidecarAndComplete({
     blob,
     tokenPayload: tokenOptions.tokenPayload,
+    originalFilename: originalName,
+    auth,
   });
 
   return Response.json({
     ok: true,
     pathname: blob.pathname,
+    metadataPathname: intake?.metadataPathname || getSidecarPathname(blob.pathname),
   });
 }
 
@@ -430,7 +515,8 @@ export async function POST(request) {
       webhookPublicKey: process.env.BLOB_WEBHOOK_PUBLIC_KEY,
       getSignedToken: (pathname, clientPayload, multipart) =>
         getSignedToken(pathname, clientPayload, multipart, auth),
-      onUploadCompleted,
+      onUploadCompleted: ({ blob, tokenPayload }) =>
+        persistSidecarAndComplete({ blob, tokenPayload, auth }),
     });
 
     return Response.json({
