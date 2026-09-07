@@ -2847,6 +2847,17 @@ kbd,
   margin: 0;
 }
 
+.upload-intake-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.upload-intake-grid .upload-specs-callout {
+  margin-bottom: 0;
+}
+
 .upload-specs-callout {
   background-color: var(--surface-kraft);
   border: var(--border-hairline);
@@ -3535,6 +3546,11 @@ html[data-mode="dark"] .upload-specs-list code {
   }
 
   .form-grid-2col {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .upload-intake-grid {
     grid-template-columns: 1fr;
     gap: var(--space-4);
   }

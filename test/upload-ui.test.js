@@ -67,3 +67,20 @@ test('upload.js resetFormToRest restores intake intro and unhides form', () => {
   assert.match(js, /form\.hidden = false/);
   assert.match(js, /receiptView\.hidden = true/);
 });
+
+test('upload.html contains "what happens to your design" callout in upload desk intake intro', () => {
+  const html = fs.readFileSync(path.resolve('upload.html'), 'utf8');
+  assert.match(html, /<div class="upload-intake-grid">[\s\S]*WHAT HAPPENS TO YOUR DESIGN[\s\S]*<\/div>/);
+  assert.match(html, /WHAT HAPPENS TO YOUR DESIGN/i);
+  assert.match(html, /The HTML file is reviewed and the design is extracted from the file/i);
+  assert.match(html, /The file is rewritten to match the rules of a style tile showcase/i);
+  assert.match(html, /A style tile is made based on that design/i);
+  assert.match(html, /Your handle is credited if you provide one/i);
+});
+
+test('styles.css contains styling and responsiveness for upload-intake-grid', () => {
+  const css = fs.readFileSync(path.resolve('styles.css'), 'utf8');
+  assert.match(css, /\.upload-intake-grid\s*\{[^}]*grid-template-columns:\s*1fr 1fr/s);
+  assert.match(css, /@media\s*\(max-width:\s*768px\)[\s\S]*?\.upload-intake-grid\s*\{[^}]*grid-template-columns:\s*1fr/);
+});
+
