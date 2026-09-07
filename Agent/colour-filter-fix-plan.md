@@ -7,8 +7,8 @@
 
 ### Progress — mark `[x]` in this file when the step is done
 
-- [ ] Step 1 — Write the colour rules into `agent.md`
-- [ ] Step 2 — Add the Cream White dot
+- [x] Step 1 — Write the colour rules into `agent.md`
+- [x] Step 2 — Add the Cream White dot
 - [ ] Step 3 — Remove the old automatic filter
 - [ ] Step 4 — Tag every existing design
 - [ ] Step 5 — Verify like a visitor

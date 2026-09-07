@@ -28,7 +28,7 @@ Do **not** open, grep, or “check”: `app.js`, `index.html`, `styles.css`, any
 
 1. Invent a kebab-case `slug` from the requested style. Filename = `Designs/<slug>.html`. That string **is** the identity.
 2. Copy `Agent/style-tile-skeleton.html` → `Designs/<slug>.html`. Paths in the skeleton already assume `Designs/`.
-3. In that new HTML file only: replace `YOUR-SLUG`, `Your Design Name`, vibe tag, tokens, type, layout, living demo, and showcase copy. Delete `.skeleton-notice`. Fill `#style-tile-markdown` using §4. Pick `vibeBadge` using §3. If (and only if) the aesthetic strictly demands photographic imagery to convey its design language, link assets from `../Assets/<filename>` (see §1.6).
+3. In that new HTML file only: replace `YOUR-SLUG`, `Your Design Name`, vibe tag, tokens, type, layout, living demo, and showcase copy. Delete `.skeleton-notice`. Fill `#style-tile-markdown` using §4. Pick `vibeBadge` and `colours` using §3. If (and only if) the aesthetic strictly demands photographic imagery to convey its design language, link assets from `../Assets/<filename>` (see §1.6).
 4. **Keep** the skeleton’s header, `#spec-modal`, `#toast-popup`, chrome script, mobile `<link>` / `<script>`, and section ids. Restyle CSS; do not rewrite the chrome from scratch.
 5. Register the tile: open `catalog-data.js` **at the `AGENT_APPEND_TILE_HERE` marker only**. Add a comma after the previous entry. Paste the object below (no `id`). Stop. Do not register the skeleton.
 
@@ -38,6 +38,7 @@ Do **not** open, grep, or “check”: `app.js`, `index.html`, `styles.css`, any
   name: "Your Design Name",
   vibe: "Keyword 1 • Keyword 2 • Keyword 3",
   vibeBadge: "Quiet Luxury",
+  colours: ["Cream White", "Orange"],
   categories: ["luxury"],
   theme: "Dark",
   hasPage: true,
@@ -166,7 +167,7 @@ The spec drawer (`#spec-section` / `#spec-code-display`) and the modal (`#modal-
 When creating or publishing a design page in `Designs/<slug>.html`, append one object to `STYLE_TILES_DATA` at the `AGENT_APPEND_TILE_HERE` marker in **`catalog-data.js`**. That is the only catalog edit. Do not add an entry anywhere else.
 
 ### 1. Mandatory Schema for `STYLE_TILES_DATA` in `catalog-data.js`:
-Every design entry MUST include `theme`, `vibeBadge`, `hasPage: true`, and complete font/palette metadata. **Do not include `id`.** Catalog order is the tile number (`tile.id` is assigned at runtime as `TILE-001`…`TILE-00N`).
+Every design entry MUST include `theme`, `vibeBadge`, `colours` (1–3 official names), `hasPage: true`, and complete font/palette metadata. **Do not include `id`.** Catalog order is the tile number (`tile.id` is assigned at runtime as `TILE-001`…`TILE-00N`).
 
 ```javascript
 {
@@ -174,6 +175,7 @@ Every design entry MUST include `theme`, `vibeBadge`, `hasPage: true`, and compl
   name: "My Design Name",
   vibe: "Keyword 1 • Keyword 2 • Keyword 3",
   vibeBadge: "Editorial & Archival", // <-- MANDATORY: exactly ONE official filter name
+  colours: ["Cream White", "Orange"], // <-- MANDATORY: 1–3 official colour names (see product rules below)
   categories: ["editorial"],         // <-- MANDATORY: only the slug that maps to vibeBadge
   theme: "Dark", // <-- MANDATORY: Must be "Dark", "Light", or "Dark/Light"
   hasPage: true, // <-- CRITICAL: Enables live 16:9 design preview iframe
@@ -237,6 +239,99 @@ Do **not** tag from adjectives in the name, blurb, or industry story ("eco-bruta
 2. **`categories` is a single matching slug.** Do not add extra categories because the copy mentioned them. Extra categories used to dump tiles into the wrong vibe filters.
 3. **Header `.design-vibe-tag` equals `vibeBadge`.** Flavor keywords belong in `vibe`, the hero narrative, and the Markdown spec — not on the filter tag.
 4. If two buckets seem plausible, use the exclusion tests above. When still torn, prefer the construction signals (shadows, radii, borders) over the product story.
+
+#### Approved `colours` Tag Options & Product Rules
+
+Colour tags are a **curated first impression**, the same idea as the existing vibe badge: judge the visual system, not the marketing copy, and not every token in the palette.
+
+Every design entry MUST include a `colours` array with **1 to 3** official colour names. Usually **one or two**. Three is allowed only when a visitor would name three colours without being prompted.
+
+##### The nine official colours (use EXACT spelling and capitalization)
+
+Use these names **exactly**. Same spelling, same capital letters. They are both the catalog dot labels and the tags stored on each design.
+
+| # | Official name | What it means on this site |
+|---|---|---|
+| 1 | `Red` | Crimson, vermilion, true red, brick — when it is a starring colour. |
+| 2 | `Orange` | Terracotta, rust, amber, tangerine, clay — when it is a starring colour. |
+| 3 | `Yellow` | Gold, mustard, lemon, canary, acid chartreuse that reads yellow. |
+| 4 | `Green` | Sage, mint, emerald, olive, pine, lime that reads green. |
+| 5 | `Blue` | Sky, cobalt, navy, teal, cyan, aquatic blue. |
+| 6 | `Purple` | Violet, lilac, lavender, plum, indigo, periwinkle. |
+| 7 | `Pink` | Bubblegum, magenta, rose, hot pink, blush that is clearly pink. |
+| 8 | `Gray` | Charcoal, slate, silver, concrete, stone, greyscale, black void, carbon. (Never British "Grey"). |
+| 9 | `Cream White` | Warm paper, ivory, alabaster, bone, oat, linen, parchment, and true white *when that is the page’s material.* |
+
+##### Hard rules (do not violate)
+
+1. **Mandatory**: Every design gets at least one tag. A design with no colour tag cannot be found by colour.
+2. **At most three tags**: Never four.
+3. **Default to one or two**: Three is allowed only when a visitor would name three colours without being prompted.
+4. **Use only the nine official names above**: No “Navy”, “Teal”, “Gold”, “Black”, “White”, “Cream”, “Blush”, or “Chartreuse” as tag values. Map those ideas onto the nine names.
+5. **Tag what dominates the page**, not what exists in the swatch list.
+6. **If you are unsure, leave it off**: A missed accent is better than a polluted Pink filter.
+7. **Do not copy tags from neighboring designs or inspect `app.js`**: Judge your design independently using these rules.
+
+##### The glance test
+
+Open the design (or its catalog preview) and answer:
+> “If someone asked what colour this design is, which names would I say in one breath?”
+
+Those names — and only those — are the tags.
+
+##### Canvas vs ink vs accent
+
+| Role on the page | Usually tag it? |
+|---|---|
+| The large background / paper / void the design *is made of* | **Yes**, if it is Cream White or Gray (or a chromatic field such as a navy or sage canvas). |
+| Body text colour (black ink on cream, white type on navy) | **No.** Ink is not the colour of the design. |
+| A starring accent used in buttons, slabs, ribbons, or big graphic fields | **Yes**, if a visitor would name it. |
+| One small tape strip, one hover state, one status token (error red, success green, warning gold) | **No.** |
+| A pale tint mixed into a gradient or overlay | **No.** |
+
+##### Cream White vs Gray (the two neutrals)
+
+This pair is where colour filtering is most sensitive. Be strict.
+
+- **Tag Cream White when** the design *is* a light paper, linen, ivory, bone, or white product canvas. Editorial newsprint, ceramic glaze, spa linen, alabaster hospitality, a stark white app shell.
+- **Do not tag Cream White when:**
+  - The design is dark and merely uses white type or a white icon.
+  - A colourful pop design happens to sit on a generic cream card, and the identity is the candy inks — spend the slots on Pink / Green / Purple, not on the leftover paper.
+  - There is a single bleached swatch in an otherwise charcoal system.
+- **Tag Gray when** the design *is* charcoal, slate, concrete, silver, stone, greyscale, carbon, onyx, or a black void.
+- **Do not tag Gray when:**
+  - The page is cream paper with black ink. That is Cream White, not Gray.
+  - Navy, forest, or plum voids that are clearly chromatic. Those are Blue, Green, or Purple.
+- A high-contrast **cream page with a charcoal void as a second equal field** may take both Cream White and Gray. Only do that when both fields are large and structural, not because the type is dark.
+
+##### Pink vs Red vs Orange
+
+Be harsher than you think:
+- **Pink** — bubblegum, magenta, rose, Barbie, hot blush used as a main ink or slab.
+- **Red** — crimson, vermilion, true red used as a main ink or slab.
+- **Orange** — terracotta, rust, tangerine, clay used as a main ink or slab.
+- Dusty salmon tape, peach glow, “warm beige,” or a faded clay overlay on an editorial page is **not Pink**. If the starring warm accent is terracotta, tag **Orange**. If it is only atmosphere, tag nothing chromatic.
+
+##### Yellow vs Green, Blue vs Purple
+
+- Acid **chartreuse** that reads as yellow-lime: **Yellow**. Sage, olive, mint, pine: **Green**. If both are starring (a chartreuse slab *and* a forest field), you may use both.
+- Teal and cyan: **Blue**. Lilac, lavender, periwinkle, indigo: **Purple**. Do not double-tag a single hue.
+
+##### When a third tag is allowed
+
+Use three only if the design is blatantly built from three starring colours — for example a carbon system with both chartreuse actuators *and* vermilion marks, or a pop system of pink + mint + lilac slabs.
+If the third colour is “also kind of there,” stop at two.
+
+##### Worked examples (calibrate to these)
+
+| Design | Tags | Why |
+|---|---|---|
+| Editorial Vintage Chic | `["Cream White", "Orange"]` | Warm alabaster linen is the page. Vivid terracotta is a real accent. Dusty salmon tape is **not** Pink. |
+| The Monolith | `["Gray", "Yellow", "Red"]` | Carbon void + high-ion chartreuse + venetian vermilion are all starring. Three is justified. |
+| CryptoVista | `["Cream White", "Green"]` | White product canvas + neon mint identity. The red “trend negative” token is **not** Red. |
+| Bubblegum Pop | `["Pink", "Green", "Purple"]` | Candy inks are the point. Do not spend a slot on the cream canvas. |
+| Clinical Sage | `["Cream White", "Green"]` | Light clinical paper + sage as the system. |
+| A dark HUD with cyan hairlines and white labels | `["Gray", "Blue"]` | White labels are not Cream White. |
 
 #### Approved `theme` Values:
 - `"Dark"`: Dark background / night aesthetic (e.g. OLED black, obsidian, deep navy, carbon).
@@ -474,7 +569,7 @@ When adding a new design (see §0 — do not open extra files to complete this l
   - [ ] Visual statement has no industry use-cases and no sample headlines.
   - [ ] Component skin has no example labels (`TELEMETRY`, `Book Now`, ISO/FREQ/MODE strings, etc.).
   - [ ] Forbidden list includes: never inject this tile's name, construction tags, or showcase copy into the host interface.
-- [ ] Append one object at `AGENT_APPEND_TILE_HERE` in `catalog-data.js` (schema in §0). Omit `id`. `hasPage: true`. Matching `vibeBadge` / `categories` / `.design-vibe-tag`. Header code stays `TILE`.
+- [ ] Append one object at `AGENT_APPEND_TILE_HERE` in `catalog-data.js` (schema in §0). Omit `id`. `hasPage: true`. Matching `vibeBadge` / `categories` / `.design-vibe-tag` / 1–3 official `colours`. Header code stays `TILE`.
 - [ ] Did **not** open `app.js`, `index.html`, other design HTML, or the mobile JS/CSS sources.
 - [ ] If image assets from `/Assets` are used (`../Assets/<filename>`), verify they are strictly required to convey the design language (not used as generic decorative filler).
 - [ ] Test at phone (~390px), tablet (~768px), and desktop: no horizontal overflow, stacked layouts, readable type, working header actions, contrast, keyboard.

@@ -1970,7 +1970,8 @@ const STYLE_TILES_DATA = [
   // === AGENT_APPEND_TILE_HERE ===
   // Paste the next catalog object ABOVE this comment.
   // Add a comma after the previous entry's closing `}`.
-  // Schema and vibeBadge table: Agent/agent.md §0 and §3.
+  // Schema, vibeBadge table, and colours rules: Agent/agent.md §0 and §3.
+  // Mandatory: vibeBadge, 1–3 official colours ("Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink", "Gray", "Cream White").
   // Do not set `id`. Set hasPage: true. Do not register Agent/style-tile-skeleton.html.
 ];
 if (typeof window !== 'undefined') window.STYLE_TILES_DATA = STYLE_TILES_DATA;
