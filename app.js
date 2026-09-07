@@ -26,129 +26,10 @@ function findCatalogTile(key) {
 
 assignCatalogTileNumbers(STYLE_TILES_DATA);
 
-// Color Classification & Palette Matching
-function parseColorToRgb(colorStr) {
-  if (!colorStr || typeof colorStr !== "string") return null;
-  colorStr = colorStr.trim();
-  if (colorStr.startsWith("rgba") || colorStr.startsWith("rgb")) {
-    const m = colorStr.match(/rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i);
-    if (!m) return null;
-    return [parseInt(m[1], 10), parseInt(m[2], 10), parseInt(m[3], 10)];
-  }
-  const m = colorStr.match(/#?([0-9a-f]{6}|[0-9a-f]{3})/i);
-  if (!m) return null;
-  let h = m[1];
-  if (h.length === 3) h = h.split("").map(ch => ch + ch).join("");
-  const num = parseInt(h, 16);
-  return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
-}
-
-function rgbToHsl(r, g, b) {
-  r /= 255; g /= 255; b /= 255;
-  const max = Math.max(r, g, b), min = Math.min(r, g, b);
-  let h, s, l = (max + min) / 2;
-  if (max === min) {
-    h = s = 0;
-  } else {
-    const d = max - min;
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-    switch (max) {
-      case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
-      case g: h = ((b - r) / d + 2) / 6; break;
-      case b: h = ((r - g) / d + 4) / 6; break;
-    }
-    h *= 360;
-  }
-  return [h, s, l];
-}
-
-function getHexColorFamilies(colorStr) {
-  const rgb = parseColorToRgb(colorStr);
-  if (!rgb) return [];
-  const [h, s, l] = rgbToHsl(...rgb);
-  const families = [];
-
-  const isPaperCanvasWhite = (l > 0.88 && s < 0.35);
-  const isDeepVoidBlack = (l < 0.08 && s < 0.25);
-
-  // Gray: neutral, slate, charcoal, silver, lead
-  if (!isDeepVoidBlack && !isPaperCanvasWhite) {
-    if (s <= 0.14 && l >= 0.08 && l <= 0.92) {
-      families.push("gray");
-    } else if (s <= 0.22 && l >= 0.18 && l <= 0.82) {
-      families.push("gray");
-    }
-  }
-
-  if (isPaperCanvasWhite || isDeepVoidBlack) {
-    return families;
-  }
-
-  // Pink: magenta/rose (315-345) or light/pastel red (345-20, l >= 0.64)
-  if ((h >= 315 && h < 345 && s >= 0.18) || ((h >= 345 || h <= 20) && l >= 0.64 && s >= 0.20)) {
-    families.push("pink");
-  }
-
-  // Red
-  if ((h >= 345 || h <= 20) && l < 0.65 && s >= 0.28) {
-    families.push("red");
-  }
-
-  // Orange: warm terracotta, amber, peach, tangerine, rust
-  if (h >= 18 && h <= 48 && s >= 0.28 && l >= 0.15 && l <= 0.88) {
-    families.push("orange");
-  }
-
-  // Yellow: gold, mustard, canary, lemon, high-ion chartreuse
-  if (h >= 45 && h <= 72 && s >= 0.35 && l >= 0.25 && l <= 0.88) {
-    families.push("yellow");
-  }
-
-  // Green: lime, mint, sage, emerald, pine, olive
-  if (h >= 68 && h < 165 && s >= 0.18 && l >= 0.10 && l <= 0.90) {
-    families.push("green");
-  }
-
-  // Blue: cyan, teal, cobalt, navy, sky, azure
-  if (h >= 165 && h < 248 && s >= 0.18 && l >= 0.10 && l <= 0.90) {
-    families.push("blue");
-  }
-
-  // Purple: indigo, violet, lilac, lavender, plum
-  if (h >= 245 && h < 315 && s >= 0.18 && l >= 0.10 && l <= 0.90) {
-    families.push("purple");
-  }
-
-  return families;
-}
-
-function getTileColorFamilies(tile) {
-  const families = new Set();
-  let hasChroma = false;
-  (tile.palette || []).forEach(p => {
-    getHexColorFamilies(p.hex).forEach(f => families.add(f));
-    const rgb = parseColorToRgb(p.hex);
-    if (rgb) {
-      const [h, s, l] = rgbToHsl(...rgb);
-      if (s > 0.18 && l > 0.08 && l < 0.92) hasChroma = true;
-    }
-  });
-  if (!hasChroma) families.add("gray");
-  return families;
-}
-
-function assignTileColorFamilies(tiles) {
-  tiles.forEach(tile => {
-    tile.colorFamilies = getTileColorFamilies(tile);
-  });
-}
-
-assignTileColorFamilies(STYLE_TILES_DATA);
-
 // App State
 let currentCategory = "all";
 let currentSearchQuery = "";
-let currentColor = null; // 'Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Pink', 'Gray', or null
+let currentColor = null; // 'Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Pink', 'Gray', 'Cream White', or null
 let currentLayoutMode = "grid"; // 'grid' or 'split'
 let userToggledCompact = false;
 const isMobileViewport = () => typeof window !== "undefined" && window.matchMedia && window.matchMedia("(max-width: 768px)").matches;
@@ -520,7 +401,8 @@ function getFilteredTiles() {
 
     let matchesColor = true;
     if (currentColor) {
-      matchesColor = !!(tile.colorFamilies && tile.colorFamilies.has(currentColor.toLowerCase()));
+      const target = currentColor.trim().toLowerCase();
+      matchesColor = Array.isArray(tile.colours) && tile.colours.some(c => typeof c === "string" && c.trim().toLowerCase() === target);
     }
 
     return matchesCat && matchesSearch && matchesColor;
@@ -784,7 +666,8 @@ function updateColorDotsUI() {
     if (isActive) {
       btn.title = `${color} filter active (click to clear)`;
     } else {
-      const count = STYLE_TILES_DATA.filter(t => t.colorFamilies && t.colorFamilies.has(color.toLowerCase())).length;
+      const target = color ? color.trim().toLowerCase() : "";
+      const count = STYLE_TILES_DATA.filter(t => Array.isArray(t.colours) && t.colours.some(c => typeof c === "string" && c.trim().toLowerCase() === target)).length;
       btn.title = `Filter by ${color} (${count} specs)`;
     }
   });
