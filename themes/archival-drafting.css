@@ -66,6 +66,8 @@ html[data-theme="archival-drafting"] {
   --badge-mustard-border: #D9A424;
   --badge-mustard-ink:    #7A5805;
   --badge-success-bg:     #E2EFE7;
+  --badge-success-border: #4D7C5D;
+  --badge-success-ink:    #2D583B;
   --chip-count-well:      rgba(0, 0, 0, 0.10);
   --chip-count-active:    rgba(255, 255, 255, 0.25);
   --show-more-count-bg:   rgba(0, 0, 0, 0.16);

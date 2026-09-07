@@ -15,8 +15,13 @@ function showToast(message, icon = "✓") {
   toast.innerHTML = `<span class="toast-icon">${icon}</span><span class="toast-message">${message}</span>`;
   container.appendChild(toast);
   setTimeout(() => {
-    toast.classList.add("fade-out");
-    setTimeout(() => toast.remove(), 300);
+    toast.classList.add("show");
+  }, 10);
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => {
+      if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 300);
   }, 2500);
 }
 
@@ -387,6 +392,7 @@ function updateFileChosenView(file) {
   const chosenView = document.getElementById("dropzone-chosen-view");
   const nameEl = document.getElementById("chosen-file-name");
   const metaEl = document.getElementById("chosen-file-meta");
+  const dropzone = document.getElementById("upload-dropzone");
 
   if (!restView || !chosenView || !nameEl || !metaEl) return;
 
@@ -394,6 +400,7 @@ function updateFileChosenView(file) {
   metaEl.textContent = `${formatFileSize(file.size)} • Standalone HTML Ready`;
   restView.hidden = true;
   chosenView.hidden = false;
+  if (dropzone) dropzone.classList.add("has-file");
   currentUploadState = UPLOAD_STATES.FILE_CHOSEN;
 }
 
@@ -401,10 +408,12 @@ function resetDropzoneView() {
   const restView = document.getElementById("dropzone-rest-view");
   const chosenView = document.getElementById("dropzone-chosen-view");
   const fileInput = document.getElementById("design-file-input");
+  const dropzone = document.getElementById("upload-dropzone");
 
   if (fileInput) fileInput.value = "";
   currentSelectedFile = null;
 
+  if (dropzone) dropzone.classList.remove("has-file");
   if (restView && chosenView) {
     chosenView.hidden = true;
     restView.hidden = false;
@@ -463,27 +472,45 @@ function setSendingProgress(percent) {
 function renderReceipt(meta) {
   const receiptView = document.getElementById("upload-receipt-view");
   const form = document.getElementById("client-upload-form");
+  const intakeIntro = document.getElementById("upload-intake-intro");
   const progressContainer = document.getElementById("upload-progress-container");
 
   if (!receiptView || !form) return;
 
+  hideProblemAlert();
   if (progressContainer) progressContainer.hidden = true;
   form.hidden = true;
+  if (intakeIntro) intakeIntro.hidden = true;
 
-  const docketId = generateDocketId();
+  const docketId = (meta && meta.docketId) || generateDocketId();
   const docketEl = document.getElementById("receipt-docket-id");
   const fileEl = document.getElementById("receipt-file-name");
   const sizeEl = document.getElementById("receipt-file-size");
   const designEl = document.getElementById("receipt-design-name");
   const authorEl = document.getElementById("receipt-author-name");
   const timeEl = document.getElementById("receipt-timestamp");
+  const noteRow = document.getElementById("receipt-note-row");
+  const noteEl = document.getElementById("receipt-curator-note");
 
-  if (docketEl) docketEl.textContent = `DOCKET #${docketId}`;
+  if (docketEl) {
+    docketEl.textContent = `DOCKET #${docketId}`;
+    docketEl.setAttribute("data-docket-id", docketId);
+  }
   if (fileEl) fileEl.textContent = meta.file ? meta.file.name : "spec.html";
   if (sizeEl) sizeEl.textContent = meta.file ? formatFileSize(meta.file.size) : "0 B";
   if (designEl) designEl.textContent = (meta.designName && meta.designName.trim()) || "Untitled Specification";
   if (authorEl) authorEl.textContent = (meta.authorName && meta.authorName.trim()) || "Anonymous Contributor";
   if (timeEl) timeEl.textContent = getFormattedUtcTimestamp();
+
+  if (noteRow && noteEl) {
+    const note = meta.curatorNote && meta.curatorNote.trim();
+    if (note) {
+      noteEl.textContent = `"${note}"`;
+      noteRow.hidden = false;
+    } else {
+      noteRow.hidden = true;
+    }
+  }
 
   receiptView.hidden = false;
   currentUploadState = UPLOAD_STATES.RECEIVED;
@@ -504,21 +531,30 @@ function resetFormToRest() {
 
   const form = document.getElementById("client-upload-form");
   const receiptView = document.getElementById("upload-receipt-view");
+  const intakeIntro = document.getElementById("upload-intake-intro");
   const progressContainer = document.getElementById("upload-progress-container");
+  const submitBtn = document.getElementById("btn-submit-upload");
   const submitLabel = document.getElementById("btn-submit-label");
 
   if (form) {
     form.reset();
     form.hidden = false;
   }
+  if (intakeIntro) intakeIntro.hidden = false;
   if (receiptView) receiptView.hidden = true;
   if (progressContainer) progressContainer.hidden = true;
+  if (submitBtn) submitBtn.classList.remove("is-sending");
   if (submitLabel) submitLabel.textContent = "Send design";
 
   setFormControlsDisabled(false);
   resetDropzoneView();
   hideProblemAlert();
   currentUploadState = UPLOAD_STATES.REST;
+
+  const desk = document.getElementById("upload-desk");
+  if (desk && typeof desk.scrollIntoView === "function") {
+    desk.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
 
 // -----------------------------------------------------------------------------
@@ -649,7 +685,9 @@ async function executeUploadSubmission(submissionData) {
   currentUploadState = UPLOAD_STATES.SENDING;
   setFormControlsDisabled(true);
 
+  const submitBtn = document.getElementById("btn-submit-upload");
   const submitLabel = document.getElementById("btn-submit-label");
+  if (submitBtn) submitBtn.classList.add("is-sending");
   if (submitLabel) submitLabel.textContent = "Sending design…";
 
   setSendingProgress(0);
@@ -666,6 +704,7 @@ async function executeUploadSubmission(submissionData) {
     );
 
     setSendingProgress(100);
+    if (submitBtn) submitBtn.classList.remove("is-sending");
 
     renderReceipt({
       file,
@@ -677,6 +716,7 @@ async function executeUploadSubmission(submissionData) {
   } catch (err) {
     mapUploadErrorToAlert(err);
     setFormControlsDisabled(false);
+    if (submitBtn) submitBtn.classList.remove("is-sending");
     if (submitLabel) submitLabel.textContent = "Send design";
     const progressContainer = document.getElementById("upload-progress-container");
     if (progressContainer) progressContainer.hidden = true;
@@ -692,8 +732,27 @@ function initClientUploadForm() {
   const btnRemove = document.getElementById("btn-remove-file");
   const btnDismissAlert = document.getElementById("upload-alert-dismiss");
   const btnSendAnother = document.getElementById("btn-send-another");
+  const btnCopyDocket = document.getElementById("btn-copy-docket");
 
   if (!form || !fileInput || !dropzone) return;
+
+  // Copy Docket ID button
+  if (btnCopyDocket) {
+    btnCopyDocket.addEventListener("click", () => {
+      const docketEl = document.getElementById("receipt-docket-id");
+      const rawDocket = (docketEl && (docketEl.getAttribute("data-docket-id") || docketEl.textContent)) || "";
+      const cleanDocket = rawDocket.replace(/^DOCKET\s*#?/, "").trim();
+      if (cleanDocket && navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+        navigator.clipboard.writeText(cleanDocket).then(() => {
+          showToast(`Copied docket #${cleanDocket}`, "✓");
+        }).catch(() => {
+          showToast(`Docket: ${cleanDocket}`, "ℹ");
+        });
+      } else if (cleanDocket) {
+        showToast(`Docket: ${cleanDocket}`, "ℹ");
+      }
+    });
+  }
 
   // File Input Change
   fileInput.addEventListener("change", (e) => {

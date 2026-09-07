@@ -65,6 +65,8 @@ html[data-theme="neo-editorial-poster-brutalism"] {
   --badge-mustard-border: #111111;
   --badge-mustard-ink:    #111111;
   --badge-success-bg:     #D9FF38;
+  --badge-success-border: #111111;
+  --badge-success-ink:    #111111;
   --chip-count-well:      rgba(17, 17, 17, 0.08);
   --chip-count-active:    rgba(255, 255, 255, 0.30);
   --show-more-count-bg:   rgba(17, 17, 17, 0.12);

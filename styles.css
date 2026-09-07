@@ -90,6 +90,8 @@
   --badge-mustard-border: #D9A424;
   --badge-mustard-ink:    #7A5805;
   --badge-success-bg:     #E2EFE7;
+  --badge-success-border: #4D7C5D;
+  --badge-success-ink:    #2D583B;
   --chip-count-well:      rgba(0, 0, 0, 0.10);
   --chip-count-active:    rgba(255, 255, 255, 0.25);
   --show-more-count-bg:   rgba(0, 0, 0, 0.16);
@@ -384,8 +386,8 @@ a {
 
 .badge-success {
   background-color: var(--badge-success-bg);
-  border-color: var(--status-success);
-  color: var(--status-success);
+  border-color: var(--badge-success-border, var(--status-success));
+  color: var(--badge-success-ink, var(--status-success));
 }
 
 .badge-dark {
@@ -2747,6 +2749,11 @@ kbd,
 .upload-desk-card {
   padding: var(--space-8);
   position: relative;
+  scroll-margin-top: calc(var(--space-8) + 70px);
+}
+
+.upload-intake-intro[hidden] {
+  display: none !important;
 }
 
 .upload-desk-header {
@@ -3092,12 +3099,19 @@ html[data-mode="dark"] .upload-specs-list code {
   display: none !important;
 }
 
+.upload-dropzone.has-file {
+  border-style: solid;
+  border-color: var(--border-ink);
+  padding: var(--space-2);
+  background-color: var(--surface-kraft);
+}
+
 .chosen-file-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  background-color: var(--surface-sheet);
+  background-color: var(--surface-canvas);
   border: var(--border-core);
   padding: var(--space-4);
   box-shadow: var(--shadow-sm);
@@ -3150,7 +3164,7 @@ html[data-mode="dark"] .upload-specs-list code {
 }
 
 .chosen-file-remove-btn {
-  background: var(--surface-canvas);
+  background: var(--surface-sheet);
   border: var(--border-hairline);
   color: var(--ink-secondary);
   font-size: 1.25rem;
@@ -3241,13 +3255,17 @@ html[data-mode="dark"] .upload-specs-list code {
   box-shadow: var(--shadow-base) !important;
 }
 
+.btn-submit-upload.is-sending .send-icon {
+  animation: pulse-dot 1s infinite ease-in-out;
+}
+
 .btn-back-catalog {
   background-color: var(--surface-sheet);
 }
 
 /* Receipt View (State 4: Received) */
 .upload-receipt-view {
-  animation: alertFadeIn 0.3s ease-out;
+  animation: alertFadeIn 0.25s ease-out;
 }
 
 .upload-receipt-view[hidden] {
@@ -3258,10 +3276,10 @@ html[data-mode="dark"] .upload-specs-list code {
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
-  background-color: var(--surface-canvas);
-  border: var(--border-core);
-  padding: var(--space-6);
-  box-shadow: var(--shadow-base);
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
 }
 
 .receipt-stamp-header {
@@ -3279,12 +3297,13 @@ html[data-mode="dark"] .upload-specs-list code {
   align-items: center;
   gap: 6px;
   padding: 0.35rem 0.75rem;
-  background-color: var(--status-success);
-  color: #FFFFFF;
+  background-color: var(--badge-success-bg, #E2EFE7);
+  border: 1px solid var(--badge-success-border, var(--status-success));
+  color: var(--badge-success-ink, var(--status-success));
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 800;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   border-radius: var(--radius-tactile);
 }
@@ -3294,12 +3313,56 @@ html[data-mode="dark"] .upload-specs-list code {
   font-weight: 900;
 }
 
+.receipt-docket-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface-canvas);
+  border: var(--border-hairline);
+  padding: 5px 10px;
+  border-radius: var(--radius-tactile);
+  cursor: pointer;
+  transition: var(--transition-snap);
+  font-family: var(--font-mono);
+  color: var(--ink-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.receipt-docket-copy-btn:hover {
+  background-color: var(--surface-hover);
+  color: var(--ink-primary);
+  border-color: var(--accent-burnt-orange);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-base);
+}
+
+.receipt-docket-copy-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
 .receipt-docket-id {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--ink-muted);
   letter-spacing: 0.06em;
   font-weight: 700;
+  color: inherit;
+}
+
+.receipt-copy-pill {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  background: var(--surface-kraft);
+  border-radius: var(--radius-tactile);
+  color: var(--ink-muted);
+}
+
+.receipt-docket-copy-btn:hover .receipt-copy-pill {
+  background: var(--accent-burnt-orange);
+  color: var(--ink-on-hot);
 }
 
 .receipt-body {
@@ -3310,8 +3373,9 @@ html[data-mode="dark"] .upload-specs-list code {
 
 .receipt-title {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.625rem;
   font-weight: 800;
+  line-height: 1.2;
   margin: 0;
   color: var(--ink-primary);
 }
@@ -3325,39 +3389,70 @@ html[data-mode="dark"] .upload-specs-list code {
 }
 
 .receipt-spec-table {
-  background-color: var(--surface-sheet);
+  background-color: var(--surface-canvas);
   border: var(--border-hairline);
-  padding: var(--space-4);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--space-3) var(--space-6);
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4) var(--space-6);
 }
 
 .receipt-spec-row {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 
 .receipt-spec-label {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--ink-muted);
+  font-weight: 600;
 }
 
 .receipt-spec-value {
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 700;
   color: var(--ink-primary);
   overflow-wrap: anywhere;
-  word-break: break-all;
+  word-break: break-word;
+}
+
+.receipt-spec-row-full {
+  grid-column: 1 / -1;
+  border-top: var(--divider-dotted);
+  padding-top: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+.receipt-spec-note {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink-secondary);
+  line-height: 1.5;
 }
 
 .receipt-status-tag {
-  color: var(--status-success);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--badge-success-ink, var(--status-success));
+}
+
+.receipt-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: currentColor;
+  display: inline-block;
+  animation: pulse-dot 2s infinite ease-in-out;
 }
 
 .receipt-action-row {
@@ -3366,7 +3461,8 @@ html[data-mode="dark"] .upload-specs-list code {
   gap: var(--space-3);
   flex-wrap: wrap;
   border-top: var(--divider-dotted);
-  padding-top: var(--space-4);
+  padding-top: var(--space-5);
+  margin-top: var(--space-2);
 }
 
 /* Mobile Responsiveness for Upload Desk */
@@ -3411,6 +3507,19 @@ html[data-mode="dark"] .upload-specs-list code {
 
   .receipt-spec-table {
     grid-template-columns: 1fr;
+    gap: var(--space-3);
+    padding: var(--space-4);
+  }
+
+  .receipt-stamp-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .receipt-docket-copy-btn {
+    width: 100%;
+    justify-content: space-between;
   }
 }
 

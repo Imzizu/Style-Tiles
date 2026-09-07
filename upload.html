@@ -130,28 +130,31 @@
       <!-- Upload Desk Container (Step 2 — Client Upload Form) -->
       <div class="hero-card upload-desk-card" id="upload-desk">
         
-        <!-- Header Info Bar / Archival Spec -->
-        <div class="upload-desk-header">
-          <div class="upload-desk-title-group">
-            <span class="text-meta upload-desk-stamp">SPECIFICATION RECEPTION DESK</span>
-            <span class="badge badge-dark">INTAKE MAILBOX</span>
+        <!-- Intake Intro (Desk Header & Specifications) — Hidden in Receipt State -->
+        <div id="upload-intake-intro" class="upload-intake-intro">
+          <!-- Header Info Bar / Archival Spec -->
+          <div class="upload-desk-header">
+            <div class="upload-desk-title-group">
+              <span class="text-meta upload-desk-stamp">SPECIFICATION RECEPTION DESK</span>
+              <span class="badge badge-dark">INTAKE MAILBOX</span>
+            </div>
+            <p class="text-body-sm upload-desk-desc">
+              Send a finished, self-contained HTML page formatted as a Style Tile. Submissions land directly in the curator's private review cabinet and do not appear in the catalog until curated.
+            </p>
           </div>
-          <p class="text-body-sm upload-desk-desc">
-            Send a finished, self-contained HTML page formatted as a Style Tile. Submissions land directly in the curator's private review cabinet and do not appear in the catalog until curated.
-          </p>
-        </div>
 
-        <!-- Intake Specifications Callout -->
-        <div class="upload-specs-callout">
-          <div class="upload-specs-title">
-            <span>INTAKE SPECIFICATIONS</span>
+          <!-- Intake Specifications Callout -->
+          <div class="upload-specs-callout">
+            <div class="upload-specs-title">
+              <span>INTAKE SPECIFICATIONS</span>
+            </div>
+            <ul class="upload-specs-list">
+              <li><strong>Standalone HTML only:</strong> Send one self-contained <code>.html</code> file.</li>
+              <li><strong>Self-contained assets:</strong> Inline styles and web font / asset links directly in the page.</li>
+              <li><strong>5 MB size ceiling:</strong> Sufficient for complete, styled design templates.</li>
+              <li><strong>Curated intake:</strong> Every submission is reviewed by hand. Not automatically published.</li>
+            </ul>
           </div>
-          <ul class="upload-specs-list">
-            <li><strong>Standalone HTML only:</strong> Send one self-contained <code>.html</code> file.</li>
-            <li><strong>Self-contained assets:</strong> Inline styles and web font / asset links directly in the page.</li>
-            <li><strong>5 MB size ceiling:</strong> Sufficient for complete, styled design templates.</li>
-            <li><strong>Curated intake:</strong> Every submission is reviewed by hand. Not automatically published.</li>
-          </ul>
         </div>
 
         <!-- Problem / Alert Banner (State 5: Problem) -->
@@ -287,13 +290,16 @@
                 <span class="receipt-stamp-mark">✓</span>
                 <span>DESIGN RECEIVED</span>
               </div>
-              <span class="receipt-docket-id" id="receipt-docket-id">DOCKET #ST-SUB-2026-0000</span>
+              <button type="button" class="receipt-docket-copy-btn" id="btn-copy-docket" title="Click to copy docket reference" aria-label="Copy docket number">
+                <span class="receipt-docket-id" id="receipt-docket-id">DOCKET #ST-SUB-2026-0000</span>
+                <span class="receipt-copy-pill" aria-hidden="true">COPY</span>
+              </button>
             </div>
 
             <div class="receipt-body">
-              <h2 class="receipt-title">Design received.</h2>
+              <h2 class="receipt-title">Specification Logged to Cabinet</h2>
               <p class="receipt-lead">
-                Your file is in the curator’s cabinet. This is not a live catalog listing. If it becomes a Style Tile, it will be rebuilt to the same standard as the rest of the registry.
+                Your standalone HTML file is safely logged in the curator’s private intake cabinet. Every submission is reviewed by hand before anything is published to the catalog.
               </p>
 
               <div class="receipt-spec-table">
@@ -323,7 +329,14 @@
                 </div>
                 <div class="receipt-spec-row">
                   <span class="receipt-spec-label">STATUS</span>
-                  <span class="receipt-spec-value receipt-status-tag">Awaiting Manual Curation</span>
+                  <span class="receipt-spec-value receipt-status-tag">
+                    <span class="receipt-status-dot" aria-hidden="true"></span>
+                    <span>Awaiting Manual Curation</span>
+                  </span>
+                </div>
+                <div class="receipt-spec-row receipt-spec-row-full" id="receipt-note-row" hidden>
+                  <span class="receipt-spec-label">CURATOR NOTE</span>
+                  <span class="receipt-spec-value receipt-spec-note" id="receipt-curator-note">—</span>
                 </div>
               </div>
             </div>
@@ -332,8 +345,8 @@
               <a href="index.html" class="btn btn-primary">
                 <span>← Back to Catalog</span>
               </a>
-              <button type="button" class="btn" id="btn-send-another">
-                <span>Send another design</span>
+              <button type="button" class="btn btn-back-catalog" id="btn-send-another">
+                <span>+ Send Another Design</span>
               </button>
             </div>
 
