@@ -2061,6 +2061,56 @@ const STYLE_TILES_DATA = [
     ],
     description: "Aubergine Press: Editorial and archival print aesthetic built upon warm uncoated cream newsprint (#FBF7EF) and deep plum ink (#2D1D44), featuring violet Ben-Day halftone screens (#7E5C9B), 6px dark outer boundary framing (#1C1524) with 16px radius, 0px element corners, flat 0px drop shadows, and high-contrast Didone display serif typography with calligraphic accents.",
     markdownSpec: null
+  },
+  {
+    slug: "archival-lithograph",
+    name: "Archival Lithograph",
+    vibe: "Aged Parchment • Two-Tone Screenprint • Woodblock Charcoal • Lithograph Sunburst • Bebas Neue & Satisfy",
+    vibeBadge: "Editorial & Archival",
+    colours: ["Cream White", "Red"],
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Bebas Neue",
+      sans: "DM Sans",
+      mono: "Satisfy"
+    },
+    palette: [
+      { name: "Canvas Base", hex: "#E7D6BA" },
+      { name: "Sunburst Ray", hex: "#D6BE9A" },
+      { name: "Edge Tone", hex: "#BD9E77" },
+      { name: "Spot Crimson", hex: "#B72E25" },
+      { name: "Carbon Charcoal", hex: "#24211D" },
+      { name: "Highlight Cream", hex: "#F3ECE0" }
+    ],
+    description: "Archival Lithograph: Aged mid-century lithograph poster aesthetic combining warm parchment cream (#E7D6BA), spot crimson ink (#B72E25), and deep woodblock charcoal (#24211D) with flat 0px geometry, pill CTAs, and hard offset shadows.",
+    markdownSpec: null
+  },
+  {
+    slug: "vermilion-colophon",
+    name: "Vermilion Colophon",
+    vibe: "Warm Newsprint • Bodoni Moda & Pinyon Script • Serrated Ticket Scallops • Soot Black & Vermilion • Archival Plates",
+    vibeBadge: "Editorial & Archival",
+    colours: ["Cream White", "Red"],
+    categories: ["editorial"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Bodoni Moda",
+      sans: "EB Garamond",
+      mono: "Plus Jakarta Sans"
+    },
+    palette: [
+      { name: "Newsprint Bone", hex: "#FBF7F0" },
+      { name: "Soot Black", hex: "#141414" },
+      { name: "Editorial Vermilion", hex: "#FF2B00" },
+      { name: "Archival Charcoal", hex: "#6B6760" },
+      { name: "Pitch Surface", hex: "#0D0D0D" },
+      { name: "Reference Ochre", hex: "#D8A332" }
+    ],
+    description: "Vermilion Colophon: Editorial and archival broadsheet system built on warm bone newsprint (#FBF7F0) and soot black (#141414) with high-chroma vermilion (#FF2B00) stamps, serrated scalloped ticket perforations, 0px strict rectilinear geometry, hairline borders, and Bodoni Moda paired with Pinyon Script accents.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
