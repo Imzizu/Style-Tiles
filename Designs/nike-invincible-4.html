@@ -1,0 +1,1980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nike Invincible 4 // TILE</title>
+  <meta name="description" content="High-performance aerodynamic kinetic system with frosted glassmorphic substrate, dual-spectrum volt and violet aura, tight neo-grotesque display typography, and an asymmetric 12-column stage.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Google Fonts: Inter Tight (Display), Inter (Body & Tabular), JetBrains Mono (Technical specs) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400..900;1,400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Spatial Grid & Cadence Tokens */
+      --space-05: 2px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-12: 48px;
+      --space-16: 64px;
+
+      /* Primitive Neutrals */
+      --color-white: #FFFFFF;
+      --color-gray-50: #F6F7F9;
+      --color-gray-100: #EEF0F4;
+      --color-gray-200: #E5E7EB;
+      --color-gray-500: #6E737D;
+      --color-gray-700: #3D4148;
+      --color-gray-900: #0E1012;
+
+      /* Accent Chromas */
+      --color-volt-400: #D8FF35;
+      --color-volt-500: #C9F523;
+      --color-purple-500: #5F3BE7;
+      --color-purple-600: #4F28D9;
+      --color-purple-tint: rgba(95, 59, 231, 0.12);
+
+      /* Semantic Roles */
+      --bg-canvas: var(--color-gray-50);
+      --bg-surface: var(--color-white);
+      --bg-surface-alt: #EFF1F5;
+      --bg-surface-dark: var(--color-gray-900);
+      --bg-overlay-pill: rgba(255, 255, 255, 0.72);
+
+      --ink-primary: var(--color-gray-900);
+      --ink-secondary: var(--color-gray-500);
+      --ink-muted: #8E949F;
+      --ink-inverted: var(--color-white);
+      --ink-brand-accent: var(--color-purple-500);
+
+      --accent-primary: var(--color-volt-400);
+      --accent-primary-hover: var(--color-volt-500);
+      --accent-secondary: var(--color-purple-500);
+      --accent-secondary-hover: var(--color-purple-600);
+      --accent-tertiary: var(--color-gray-100);
+
+      --status-success: #10B981;
+      --status-warning: #F59E0B;
+      --status-danger: #EF4444;
+      --status-info: var(--color-purple-500);
+
+      /* Typography */
+      --font-display: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+      /* Corner Geometry */
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+      --radius-default: 16px;
+      --radius-subtle: 8px;
+
+      /* Elevation & Shadows */
+      --shadow-base: 0 8px 32px -4px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+      --shadow-card: 0 12px 28px -6px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 16px 36px -4px rgba(0, 0, 0, 0.09);
+      --shadow-active: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+
+      /* Borders & Dividers */
+      --border-core: 1px solid rgba(0, 0, 0, 0.07);
+      --border-hairline: 1px solid rgba(0, 0, 0, 0.05);
+      --border-glass: 1px solid rgba(255, 255, 255, 0.75);
+      --header-height: 64px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      line-height: 1.5;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Background Aura Canvas */
+    .ambient-canvas-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 75% 18%, rgba(95, 59, 231, 0.08) 0%, transparent 55%),
+        radial-gradient(circle at 25% 45%, rgba(216, 255, 55, 0.12) 0%, transparent 60%);
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    /* Mandatory Header Bar */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.03);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 7px 14px;
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.9);
+      transition: all 180ms ease;
+    }
+    .nav-back-link:hover {
+      background: var(--color-white);
+      border-color: rgba(0, 0, 0, 0.16);
+      transform: translateX(-2px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-sm);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      overflow-wrap: anywhere;
+    }
+
+    .design-vibe-tag {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid rgba(95, 59, 231, 0.2);
+      border-radius: var(--radius-full);
+      background: var(--color-purple-tint);
+      color: var(--color-purple-500);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--ink-primary);
+      transition: all 180ms ease;
+    }
+    .btn-tile:hover {
+      background: var(--color-white);
+      border-color: rgba(0, 0, 0, 0.16);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+    .btn-copy {
+      background: var(--color-volt-400);
+      color: var(--color-gray-900);
+      border-color: rgba(0, 0, 0, 0.12);
+      font-weight: 700;
+    }
+    .btn-copy:hover {
+      background: var(--color-volt-500);
+      transform: translateY(-1px);
+    }
+
+    /* Main Container Shell */
+    .layout-wrapper {
+      position: relative;
+      z-index: 10;
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 40px 0 100px;
+    }
+
+    .section-block {
+      margin-top: 64px;
+      scroll-margin-top: 80px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-purple-500);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-kicker::after {
+      content: "";
+      flex: 1;
+      max-width: 48px;
+      height: 1px;
+      background: var(--color-purple-500);
+      opacity: 0.3;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.75rem);
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      overflow-wrap: anywhere;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    /* Hero Banner Area */
+    .hero-banner {
+      padding: 48px 40px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(246, 247, 249, 0.7) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::after {
+      content: "";
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(216, 255, 55, 0.35) 0%, rgba(95, 59, 231, 0.15) 50%, transparent 70%);
+      pointer-events: none;
+      filter: blur(30px);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .chip {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.75);
+      color: var(--ink-secondary);
+    }
+
+    .chip-accent {
+      background: var(--color-volt-400);
+      color: var(--color-gray-900);
+      border-color: rgba(0, 0, 0, 0.1);
+      font-weight: 700;
+    }
+
+    .hero-lead {
+      margin: 20px 0 28px;
+      max-width: 68ch;
+      color: var(--ink-secondary);
+      font-size: 1.0625rem;
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: var(--radius-full);
+      border: 1px solid transparent;
+      transition: all 180ms ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--color-volt-400);
+      color: var(--color-gray-900);
+      border-color: rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 14px rgba(216, 255, 55, 0.4);
+    }
+    .btn-primary:hover {
+      background: var(--color-volt-500);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(216, 255, 55, 0.5);
+    }
+
+    .btn-secondary {
+      background: var(--color-white);
+      color: var(--ink-primary);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-surface-alt);
+      border-color: rgba(0, 0, 0, 0.18);
+    }
+
+    .btn-accent {
+      background: var(--color-purple-500);
+      color: var(--color-white);
+      box-shadow: 0 4px 16px rgba(95, 59, 231, 0.3);
+    }
+    .btn-accent:hover {
+      background: var(--color-purple-600);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(95, 59, 231, 0.4);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink-primary);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+    .btn-ghost:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+
+    .btn-danger {
+      background: var(--status-danger);
+      color: #FFFFFF;
+    }
+
+    /* Palette Swatches Matrix */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--bg-surface);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      box-shadow: var(--shadow-base);
+      transition: all 180ms ease;
+    }
+    .swatch-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card);
+      border-color: rgba(95, 59, 231, 0.3);
+    }
+
+    .swatch-chip {
+      height: 80px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    .swatch-meta {
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .swatch-name {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--color-purple-500);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink-secondary);
+    }
+
+    /* Typography Matrix */
+    .type-specimen-card {
+      background: var(--bg-surface);
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      box-shadow: var(--shadow-base);
+    }
+
+    .type-stack {
+      display: grid;
+      gap: 20px;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      align-items: baseline;
+      min-width: 0;
+    }
+
+    .type-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .type-label span {
+      font-size: 0.625rem;
+      color: var(--color-purple-500);
+    }
+
+    .text-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 5vw, 4.25rem);
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+    .text-h1 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .text-h2 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .text-h3 {
+      font-family: var(--font-sans);
+      font-size: 1.25rem;
+      line-height: 1.3;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .text-body {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      line-height: 1.55;
+      color: var(--ink-secondary);
+    }
+    .text-meta {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--color-gray-700);
+    }
+
+    .live-type-box {
+      margin-top: 24px;
+      padding-top: 20px;
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 18px;
+      font-size: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: var(--radius-md);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      outline: none;
+      transition: border-color 160ms ease;
+    }
+    .live-type-input:focus {
+      border-color: var(--color-purple-500);
+      box-shadow: 0 0 0 3px var(--color-purple-tint);
+    }
+
+    /* Component Archetype Gallery */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+    }
+
+    .component-card {
+      padding: 24px;
+      background: var(--bg-surface);
+      border: 1px solid rgba(0, 0, 0, 0.07);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-base);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .btn-row, .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--ink-primary);
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 14px;
+      font-size: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      transition: all 160ms ease;
+    }
+    .text-input:focus {
+      outline: none;
+      border-color: var(--color-purple-500);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px var(--color-purple-tint);
+    }
+
+    .toggle {
+      position: relative;
+      width: 48px;
+      height: 26px;
+      border: 0;
+      border-radius: var(--radius-full);
+      background: var(--color-gray-200);
+      cursor: pointer;
+      transition: background 180ms ease;
+    }
+    .toggle[aria-pressed="true"] {
+      background: var(--color-volt-400);
+    }
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+      transition: transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .toggle[aria-pressed="true"]::after {
+      transform: translateX(22px);
+      background: var(--color-gray-900);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: var(--bg-surface-alt);
+      color: var(--ink-primary);
+    }
+    .badge-volt {
+      background: var(--color-volt-400);
+      color: var(--color-gray-900);
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+    .badge-purple {
+      background: var(--color-purple-tint);
+      color: var(--color-purple-500);
+      border-color: rgba(95, 59, 231, 0.25);
+    }
+
+    /* SLOT 5: Living Micro-Experience / Landing Demo */
+    /* Reverse Engineered 12-Column Asymmetric Stage */
+    .kinetic-stage-container {
+      background: #F4F5F7;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.07);
+    }
+
+    /* Ambient Dual-Spectrum Radial Glows */
+    .kinetic-stage-glow-volt {
+      position: absolute;
+      top: -20%;
+      left: 30%;
+      width: 600px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 45% 20%, rgba(216, 255, 55, 0.40) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(24px);
+    }
+    .kinetic-stage-glow-purple {
+      position: absolute;
+      top: 5%;
+      right: 0%;
+      width: 550px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 85% 15%, rgba(95, 59, 231, 0.30) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(28px);
+    }
+
+    /* Floating Pill Header */
+    .kinetic-nav-pill {
+      position: relative;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.68);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.60);
+      border-radius: var(--radius-full);
+      box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+      margin-bottom: 40px;
+    }
+
+    .pill-logo-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .pill-swoosh {
+      width: 28px;
+      height: 12px;
+      fill: var(--color-gray-900);
+    }
+    .pill-title {
+      font-family: var(--font-display);
+      font-size: 0.8125rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .pill-badge {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      background: var(--color-volt-400);
+      color: var(--color-gray-900);
+    }
+
+    .pill-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .pill-nav-item {
+      font-family: var(--font-display);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-gray-700);
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+    .pill-nav-item.active, .pill-nav-item:hover {
+      color: var(--color-purple-500);
+    }
+
+    .pill-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pill-icon-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--color-gray-900);
+    }
+
+    /* Asymmetric 12-Column Layout Grid */
+    .kinetic-grid-12 {
+      position: relative;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 32px;
+      align-items: center;
+      min-height: 480px;
+    }
+
+    /* Column 1-5 (~42%): Left-aligned editorial hierarchy */
+    .kinetic-editorial {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .kinetic-eyebrow {
+      font-family: var(--font-display);
+      font-size: 13px;
+      line-height: 16px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-purple-500);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .kinetic-eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-volt-400);
+      box-shadow: 0 0 8px var(--color-volt-400);
+    }
+
+    .kinetic-hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.75rem, 5.5vw, 4.75rem);
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--color-gray-900);
+    }
+    .kinetic-hero-headline .accent-limits {
+      color: var(--color-purple-500);
+      position: relative;
+      display: inline-block;
+    }
+
+    .kinetic-description {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 21px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--color-gray-500);
+      max-width: 44ch;
+    }
+
+    /* Primary Action Capsule (CTA Card) */
+    .action-capsule-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 16px 12px 20px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.06);
+      max-width: 380px;
+    }
+
+    .action-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .action-title {
+      font-family: var(--font-display);
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 600;
+      color: var(--color-gray-900);
+    }
+    .action-price {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 500;
+      color: var(--color-gray-500);
+    }
+
+    .action-btn-square {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--color-volt-400);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--color-gray-900);
+      box-shadow: 0 4px 12px rgba(216, 255, 55, 0.4);
+      transition: all 180ms ease;
+      flex-shrink: 0;
+    }
+    .action-btn-square:hover {
+      background: var(--color-volt-500);
+      transform: scale(1.05);
+    }
+
+    /* Technical Metrics Rule */
+    .kinetic-metrics-strip {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 16px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      max-width: 440px;
+    }
+
+    .metric-node {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .metric-value-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .metric-glyph {
+      color: var(--color-purple-500);
+      display: flex;
+      align-items: center;
+    }
+    .metric-val {
+      font-family: var(--font-display);
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--color-gray-900);
+    }
+    .metric-label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 400;
+      color: var(--color-gray-500);
+    }
+
+    .metric-divider {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.12) 50%, rgba(0, 0, 0, 0) 100%);
+    }
+
+    /* Column 6-12 (~58%): Dynamic Visual Stage */
+    .kinetic-stage-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 440px;
+    }
+
+    /* 35° Dynamic Elevation Vector Shoe Silhouette Render */
+    .dynamic-runner-stage {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      transform: rotate(-12deg);
+      filter: drop-shadow(0 32px 32px rgba(14, 16, 18, 0.15));
+      transition: transform 300ms ease;
+    }
+    .dynamic-runner-stage:hover {
+      transform: rotate(-9deg) translateY(-8px) scale(1.02);
+    }
+
+    .runner-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Stride Abstract Node - Parametric Curve Overlay */
+    .stride-curve-overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 10%;
+      right: 10%;
+      height: 60px;
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    /* Feature Node Orb (Bottom Right) */
+    .feature-node-orb {
+      position: absolute;
+      bottom: 12px;
+      right: 16px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: conic-gradient(from 180deg at 50% 50%, #5F3BE7 0deg, #9F82FA 120deg, #D8FF35 240deg, #5F3BE7 360deg);
+      box-shadow: 0 4px 16px rgba(95, 59, 231, 0.35);
+      border: 2px solid #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #FFFFFF;
+      transition: all 200ms ease;
+      z-index: 30;
+    }
+    .feature-node-orb:hover {
+      transform: scale(1.1) rotate(45deg);
+      box-shadow: 0 8px 24px rgba(95, 59, 231, 0.5);
+    }
+
+    /* Step Pagination ("01", "02", "03", "04") */
+    .kinetic-pagination-stepper {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      z-index: 30;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 14px;
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+      cursor: pointer;
+    }
+    .step-indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      background: transparent;
+      transition: all 180ms ease;
+    }
+    .step-item.active .step-indicator {
+      background: var(--color-volt-400);
+      border-color: var(--color-volt-400);
+      box-shadow: 0 0 6px rgba(216, 255, 55, 0.8);
+    }
+    .step-item.active {
+      font-weight: 700;
+      color: var(--color-gray-900);
+    }
+    .step-item:not(.active) {
+      color: var(--color-gray-500);
+    }
+
+    /* Spec Code Drawer */
+    .spec-drawer-card {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 480px;
+      padding: 20px;
+      background: #050607;
+      color: #E2E4E9;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(14, 16, 18, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .modal-overlay.active { display: flex; }
+
+    .modal-content-card {
+      width: min(880px, 100%);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-surface);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .modal-footer {
+      border-bottom: 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      justify-content: flex-end;
+      background: var(--bg-canvas);
+    }
+    .modal-body {
+      padding: 24px;
+      overflow: auto;
+      flex: 1;
+      background: #050607;
+    }
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: var(--bg-surface);
+      cursor: pointer;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 150ms ease;
+    }
+    .modal-close-btn:hover {
+      background: var(--bg-surface-alt);
+    }
+
+    /* Toast Notification */
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 3000;
+      padding: 12px 20px;
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      border-radius: var(--radius-full);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* Responsive Mobile Rules (Mandatory Section 6) */
+    @media (max-width: 768px) {
+      .layout-wrapper {
+        width: calc(100% - 24px);
+        padding: 20px 0 64px;
+      }
+      .hero-banner {
+        padding: 28px 20px;
+      }
+      .kinetic-stage-container {
+        padding: 20px 16px;
+      }
+      .kinetic-grid-12 {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .kinetic-nav-pill {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px 18px;
+      }
+      .pill-nav-links {
+        display: none; /* Collapsed for clean mobile viewport */
+      }
+      .action-capsule-card {
+        max-width: 100%;
+      }
+      .kinetic-metrics-strip {
+        max-width: 100%;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .metric-divider {
+        display: none;
+      }
+      .dynamic-runner-stage {
+        transform: rotate(-6deg);
+        max-width: 360px;
+      }
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .swatches-grid, .components-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-actions, .btn-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn, .btn-tile {
+        white-space: normal;
+      }
+      .toast-popup {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet. Must remain immediately after this page's <style>. -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <div class="ambient-canvas-glow" aria-hidden="true"></div>
+
+  <!-- Mandatory Header Bar Component -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Nike Invincible 4</span>
+      <!-- MUST equal catalog vibeBadge exactly. One of the seven official filter names. -->
+      <span class="design-vibe-tag">Quiet Luxury</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+      <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+      <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-nike-invincible-4.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- Hero Display Banner -->
+    <section class="hero-banner" id="hero-section">
+      <p class="section-kicker">AERO-PERFORMANCE SYSTEM // TOKEN SPEC</p>
+      <div class="hero-meta">
+        <span class="chip chip-accent">Quiet Luxury</span>
+        <span class="chip">Light Theme</span>
+        <span class="chip">4px Baseline Cadence</span>
+        <span class="chip">Glassmorphic Substrate</span>
+      </div>
+      <h1>Nike Invincible 4</h1>
+      <p class="hero-lead">
+        A high-performance aerodynamic design system engineered from an airy off-white canvas (#F6F7F9), dual-spectrum ambient aura diffusing electric volt (#D8FF35) into deep violet (#5F3BE7), frosted glassmorphic floating pill controls, tight 900-weight neo-grotesque display typography, and an asymmetric 12-column kinetic stage.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Prompt for Agent
+        </button>
+        <a class="btn btn-secondary" href="#demo-section">
+          Explore Kinetic Stage
+          <span aria-hidden="true">↓</span>
+        </a>
+        <a class="btn btn-ghost" href="#components-section">Inspect Components</a>
+      </div>
+    </section>
+
+    <!-- Color Swatches & Palette Matrix -->
+    <section class="section-block" id="palette-section">
+      <p class="section-kicker">01 // PRIMITIVE & SEMANTIC CHROMAS</p>
+      <h2>Color roles</h2>
+      <div class="swatches-grid" id="swatch-grid">
+        <!-- Injected via JavaScript from DESIGN_PALETTE -->
+      </div>
+    </section>
+
+    <!-- Typography & Typeface Specimen -->
+    <section class="section-block" id="typography-section">
+      <p class="section-kicker">02 // VERTICAL RHYTHM & SCALE</p>
+      <h2>Typography</h2>
+      <div class="type-specimen-card">
+        <div class="type-stack">
+          <div class="type-row">
+            <div class="type-label">
+              <strong>Display 01</strong>
+              <span>76px / 0.95 / 900</span>
+            </div>
+            <p class="text-display">Run Without Limits</p>
+          </div>
+          <div class="type-row">
+            <div class="type-label">
+              <strong>Heading 1</strong>
+              <span>40px / 1.05 / 800</span>
+            </div>
+            <p class="text-h1">Engineered Dynamic Energy</p>
+          </div>
+          <div class="type-row">
+            <div class="type-label">
+              <strong>Heading 2</strong>
+              <span>28px / 1.20 / 700</span>
+            </div>
+            <p class="text-h2">Maximum Cushioning. Unyielding Cadence.</p>
+          </div>
+          <div class="type-row">
+            <div class="type-label">
+              <strong>Heading 3</strong>
+              <span>20px / 1.30 / 600</span>
+            </div>
+            <p class="text-h3">ZoomX Foam Platform & Parametric Outsole Geometry</p>
+          </div>
+          <div class="type-row">
+            <div class="type-label">
+              <strong>Body / Spec</strong>
+              <span>14px / 1.55 / 400</span>
+            </div>
+            <p class="text-body">
+              Designed with rocker-shaped ZoomX cushioning to absorb vertical heel strike impacts and channel explosive horizontal propulsion. High-legibility geometric sans letterforms provide instant numerical feedback.
+            </p>
+          </div>
+          <div class="type-row">
+            <div class="type-label">
+              <strong>Metadata</strong>
+              <span>11px / Mono / 700</span>
+            </div>
+            <p class="text-meta">OFFSET: 9.0MM // STACK: 40MM HEEL / 31MM FOREFOOT // WEIGHT: 298G (SIZE 10)</p>
+          </div>
+        </div>
+
+        <div class="live-type-box">
+          <label class="field-label" for="live-type-tester-input">Interactive Display Face Test</label>
+          <input class="live-type-input" id="live-type-tester-input" type="text" value="SUPERIOR CUSHIONING. ZERO DECELERATION." />
+        </div>
+      </div>
+    </section>
+
+    <!-- Component Archetype Gallery -->
+    <section class="section-block" id="components-section">
+      <p class="section-kicker">03 // INTERACTION & SURFACES</p>
+      <h2>Components</h2>
+      <div class="components-grid">
+        <article class="component-card">
+          <h3>Action Buttons</h3>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="button">Primary CTA</button>
+            <button class="btn btn-secondary" type="button">Secondary</button>
+            <button class="btn btn-accent" type="button">Accent</button>
+            <button class="btn btn-ghost" type="button">Ghost</button>
+            <button class="btn btn-danger" type="button">Danger</button>
+          </div>
+        </article>
+
+        <article class="component-card">
+          <h3>Input Field & Focus</h3>
+          <label class="field-label" for="demo-input">Stride Distance Input (KM)</label>
+          <input class="text-input" id="demo-input" type="text" placeholder="e.g. 21.1 Semi-Marathon" autocomplete="off" />
+        </article>
+
+        <article class="component-card">
+          <h3>Controls & State</h3>
+          <div class="control-row">
+            <button class="toggle" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle Kinetic Mode"></button>
+            <span class="badge badge-volt">Kinetic High</span>
+            <span class="badge badge-purple">ZoomX Active</span>
+            <span class="badge">40mm Stack</span>
+          </div>
+        </article>
+
+        <article class="component-card">
+          <h3>Glassmorphic Metric Card</h3>
+          <p class="text-body" style="color: var(--ink-primary); font-weight: 600;">
+            Kinetic Pressure Distribution
+          </p>
+          <p class="text-body">
+            Frosted white substrate layered with subtle 8px-32px diffuse elevation, 16px corner geometry, and high-contrast tabular figures.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Living Micro-Experience / Landing Demo -->
+    <section class="section-block" id="demo-section">
+      <p class="section-kicker">04 // REVERSE ENGINEERED HERO STAGE</p>
+      <h2>Living demo</h2>
+
+      <div class="kinetic-stage-container">
+        <!-- Dual Spectrum Ambient Glows -->
+        <div class="kinetic-stage-glow-volt" aria-hidden="true"></div>
+        <div class="kinetic-stage-glow-purple" aria-hidden="true"></div>
+
+        <!-- Glassmorphic Floating Pill (Top Bar) -->
+        <header class="kinetic-nav-pill">
+          <div class="pill-logo-group">
+            <svg class="pill-swoosh" viewBox="0 0 24 10" aria-label="Brand Mark">
+              <path d="M23.5 0.5C18.2 4.2 12.8 7.2 7.1 8.5C4.2 9.2 1.4 8.7 0.2 6.8C-0.3 5.9 0.1 5.1 1.2 4.8C2.5 4.5 4.8 5.4 6.8 5.6C11.5 6.1 16.4 4.2 23.5 0.5Z" />
+            </svg>
+            <span class="pill-title">NIKE INVINCIBLE 4</span>
+            <span class="pill-badge">NEW</span>
+          </div>
+
+          <nav class="pill-nav-links">
+            <a href="#demo-section" class="pill-nav-item active">Overview</a>
+            <a href="#demo-section" class="pill-nav-item">Engineering</a>
+            <a href="#demo-section" class="pill-nav-item">Metrics</a>
+            <a href="#demo-section" class="pill-nav-item">Cadence</a>
+          </nav>
+
+          <div class="pill-actions">
+            <button class="pill-icon-btn" type="button" title="View Specifications" aria-label="Specifications">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </button>
+            <button class="pill-icon-btn" type="button" title="Bag" aria-label="Shopping Bag">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <!-- Asymmetric 12-Column Responsive Layout -->
+        <div class="kinetic-grid-12">
+          <!-- Columns 1–5 (~42%): Left-aligned editorial hierarchy -->
+          <div class="kinetic-editorial">
+            <div class="kinetic-eyebrow">
+              <span class="kinetic-eyebrow-dot"></span>
+              NIKE INVINCIBLE 4
+            </div>
+
+            <div class="kinetic-hero-headline">
+              Run Without<br>
+              <span class="accent-limits">Limits</span>
+            </div>
+
+            <p class="kinetic-description">
+              Engineered with maximum ZoomX foam cushioning and an aerodynamic rocker geometry that turns every footstrike into effortless forward propulsion.
+            </p>
+
+            <!-- Primary Action Capsule (CTA Card) -->
+            <div class="action-capsule-card">
+              <div class="action-info">
+                <span class="action-title">Reserve Edition</span>
+                <span class="action-price">$190.00 USD</span>
+              </div>
+              <button class="action-btn-square" type="button" title="Add to bag" aria-label="Reserve Now">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Technical Metrics Rule -->
+            <div class="kinetic-metrics-strip">
+              <div class="metric-node">
+                <div class="metric-value-row">
+                  <span class="metric-glyph" title="Cushioning">
+                    <!-- Vertical double-headed split vector ↑↓ -->
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 3v18M7 7l5-4 5 4M7 17l5 4 5-4"/>
+                    </svg>
+                  </span>
+                  <span class="metric-val">40mm</span>
+                </div>
+                <span class="metric-label">ZoomX Cushion</span>
+              </div>
+
+              <div class="metric-divider" aria-hidden="true"></div>
+
+              <div class="metric-node">
+                <div class="metric-value-row">
+                  <span class="metric-glyph" title="Lightweight">
+                    <!-- Stylized feather leaf outline -->
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5zM16 8 2 22M17.5 15H9"/>
+                    </svg>
+                  </span>
+                  <span class="metric-val">298g</span>
+                </div>
+                <span class="metric-label">Engineered Flyknit</span>
+              </div>
+
+              <div class="metric-divider" aria-hidden="true"></div>
+
+              <div class="metric-node">
+                <div class="metric-value-row">
+                  <span class="metric-glyph" title="Stability">
+                    <!-- 3x3 dot matrix waffle outsole -->
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <circle cx="4" cy="4" r="2"/><circle cx="12" cy="4" r="2"/><circle cx="20" cy="4" r="2"/>
+                      <circle cx="4" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="20" cy="12" r="2"/>
+                      <circle cx="4" cy="20" r="2"/><circle cx="12" cy="20" r="2"/><circle cx="20" cy="20" r="2"/>
+                    </svg>
+                  </span>
+                  <span class="metric-val">Wide</span>
+                </div>
+                <span class="metric-label">Waffle Outsole</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columns 6–12 (~58%): Dynamic Visual Stage -->
+          <div class="kinetic-stage-visual">
+            <!-- Step Pagination ("01", "02", "03", "04") -->
+            <div class="kinetic-pagination-stepper" role="tablist" aria-label="Product Views">
+              <div class="step-item active" role="tab" aria-selected="true">
+                <span class="step-indicator"></span>
+                <span>01</span>
+              </div>
+              <div class="step-item" role="tab" aria-selected="false">
+                <span class="step-indicator"></span>
+                <span>02</span>
+              </div>
+              <div class="step-item" role="tab" aria-selected="false">
+                <span class="step-indicator"></span>
+                <span>03</span>
+              </div>
+              <div class="step-item" role="tab" aria-selected="false">
+                <span class="step-indicator"></span>
+                <span>04</span>
+              </div>
+            </div>
+
+            <!-- Dynamic 35° Angled Vector Shoe Asset Silhouette -->
+            <div class="dynamic-runner-stage">
+              <svg class="runner-svg" viewBox="0 0 600 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="soleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FFFFFF" />
+                    <stop offset="60%" stop-color="#F6F7F9" />
+                    <stop offset="100%" stop-color="#D8FF35" />
+                  </linearGradient>
+                  <linearGradient id="upperGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#14171A" />
+                    <stop offset="60%" stop-color="#222831" />
+                    <stop offset="100%" stop-color="#5F3BE7" />
+                  </linearGradient>
+                  <linearGradient id="swooshGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#D8FF35" />
+                    <stop offset="100%" stop-color="#C9F523" />
+                  </linearGradient>
+                  <filter id="shadowContact" x="-20%" y="-20%" width="140%" height="160%">
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="16" />
+                    <feOffset dx="0" dy="24" result="offsetblur" />
+                    <feComponentTransfer><feFuncA type="linear" slope="0.2" /></feComponentTransfer>
+                    <feMerge>
+                      <feMergeNode />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Soft Contact Drop Shadow -->
+                <ellipse cx="300" cy="320" rx="240" ry="24" fill="#0E1012" opacity="0.14" filter="blur(20px)" />
+
+                <!-- Group: High Performance Runner Geometry -->
+                <g filter="url(#shadowContact)">
+                  <!-- Massive Sculpted ZoomX Midsole (Cushion Foam Layer) -->
+                  <path d="M 60 270 C 90 285, 170 300, 260 295 C 360 290, 460 270, 540 220 C 530 200, 500 205, 430 215 C 330 230, 210 230, 130 220 C 80 215, 55 240, 60 270 Z" fill="url(#soleGradient)" stroke="#E5E7EB" stroke-width="1.5" />
+
+                  <!-- Midsole Segmented Compression Grooves & Rocker Geometry -->
+                  <path d="M 120 255 Q 160 265 220 265" stroke="rgba(95, 59, 231, 0.4)" stroke-width="3" stroke-linecap="round" />
+                  <path d="M 240 265 Q 320 260 400 240" stroke="rgba(216, 255, 55, 0.8)" stroke-width="4" stroke-linecap="round" />
+                  <path d="M 420 236 Q 470 218 510 195" stroke="rgba(95, 59, 231, 0.5)" stroke-width="3" stroke-linecap="round" />
+
+                  <!-- Aerodynamic Flyknit Upper Shell -->
+                  <path d="M 120 220 C 135 170, 185 130, 260 120 C 310 115, 360 140, 420 170 C 470 195, 520 205, 530 210 C 480 220, 390 230, 300 230 C 200 230, 140 225, 120 220 Z" fill="url(#upperGradient)" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5" />
+
+                  <!-- Heel Counter Reinforcement Lock (Deep Violet) -->
+                  <path d="M 100 235 C 90 200, 110 160, 160 145 C 150 175, 155 205, 175 225 Z" fill="#5F3BE7" opacity="0.9" />
+
+                  <!-- Lacing Ribs & Collar Geometry -->
+                  <path d="M 250 125 C 275 105, 310 95, 340 120 C 325 135, 300 145, 270 140 Z" fill="#1C2128" />
+                  <line x1="280" y1="125" x2="310" y2="145" stroke="#D8FF35" stroke-width="2" stroke-linecap="round" />
+                  <line x1="305" y1="135" x2="335" y2="155" stroke="#D8FF35" stroke-width="2" stroke-linecap="round" />
+                  <line x1="330" y1="145" x2="360" y2="165" stroke="#D8FF35" stroke-width="2" stroke-linecap="round" />
+
+                  <!-- Iconic Aerodynamic High-Speed Swoosh (Volt Accent) -->
+                  <path d="M 480 180 C 410 195, 310 205, 220 180 C 255 195, 345 220, 440 205 C 475 200, 485 185, 480 180 Z" fill="url(#swooshGrad)" filter="drop-shadow(0 2px 6px rgba(216, 255, 55, 0.5))" />
+
+                  <!-- Outsole Waffle Matrix Lugs Indicator (Micro Dots) -->
+                  <g fill="#0E1012" opacity="0.6">
+                    <circle cx="100" cy="275" r="3" />
+                    <circle cx="130" cy="285" r="3" />
+                    <circle cx="165" cy="292" r="3" />
+                    <circle cx="205" cy="295" r="3" />
+                    <circle cx="250" cy="295" r="3" />
+                    <circle cx="300" cy="290" r="3" />
+                    <circle cx="355" cy="280" r="3" />
+                    <circle cx="410" cy="265" r="3" />
+                    <circle cx="465" cy="245" r="3" />
+                    <circle cx="515" cy="220" r="3" />
+                  </g>
+                </g>
+              </svg>
+
+              <!-- Parametric Stride Cadence Path Overlay -->
+              <svg class="stride-curve-overlay" viewBox="0 0 400 60" fill="none">
+                <path d="M 10 50 Q 120 10, 220 35 T 390 15" stroke="url(#upperGradient)" stroke-width="2" stroke-dasharray="4 4" opacity="0.4" />
+                <circle cx="220" cy="35" r="4" fill="#5F3BE7" />
+                <circle cx="390" cy="15" r="5" fill="#D8FF35" />
+              </svg>
+            </div>
+
+            <!-- Peripheral Feature Node Orb (Bottom Right) -->
+            <button class="feature-node-orb" type="button" title="Interactive Mesh Node" aria-label="Toggle Node Menu">
+              <!-- Minimal uniform plus glyph (+) -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Style Tile Prompt Code Drawer -->
+    <section class="section-block spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-head">
+        <div>
+          <p class="section-kicker" style="color: var(--color-volt-400);">SYSTEM SPECIFICATION</p>
+          <h2 style="margin:0;color:inherit;">Style Tile specification</h2>
+        </div>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Markdown Spec
+        </button>
+      </div>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+    </section>
+
+  </main>
+
+  <!-- Modal Preview -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title" style="font-family: var(--font-display); font-size: 1.125rem;">Nike Invincible 4 — Markdown Style Tile</strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">Copied</div>
+
+  <!--
+    SOURCE OF TRUTH for Copy / Download / Preview.
+    Section 0 is verbatim as mandated by agent.md §4.
+  -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Kinetic Aero-Performance
+  Construction: frosted glassmorphic substrate • dual-spectrum volt & violet aura • tight neo-grotesque type • pill geometry
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+High-precision kinetic aerodynamic surfaces constructed from an airy off-white canvas and frosted glassmorphic panels. Energy radiates through a dual-spectrum ambient aura diffusing electric volt into deep saturated violet. Typography commands high visual authority with tight 900-weight neo-grotesque display letterforms paired with tabular technical metrics and full-radius capsule controls.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #F6F7F9; /* Clean light baseline canvas */
+  --bg-surface:             #FFFFFF; /* Elevated white cards and containers */
+  --bg-surface-alt:         #F0F2F5; /* Subtle inset wells and secondary fills */
+  --bg-surface-dark:        #0E1012; /* High-contrast inverted modules */
+  --bg-overlay-pill:        rgba(255, 255, 255, 0.72); /* Frosted backdrop blur substrate */
+
+  /* Inks & Typography */
+  --ink-primary:            #0E1012; /* High-contrast primary reading text */
+  --ink-secondary:          #6E737D; /* Balanced descriptive body text */
+  --ink-muted:              #8E949F; /* Subtle captions and tabular metadata */
+  --ink-inverted:           #FFFFFF; /* Inverted contrast text */
+  --ink-brand-accent:       #5F3BE7; /* Display accent and brand emphasis */
+
+  /* Signature Accents */
+  --accent-primary:         #D8FF35; /* Electric volt / hyper-lime call to action */
+  --accent-primary-hover:   #C9F523; /* Interactive hover activation state */
+  --accent-secondary:       #5F3BE7; /* Deep vivid purple secondary accent */
+  --accent-secondary-hover: #4F28D9; /* Deep violet aura core hover state */
+  --accent-tertiary:        #EEF0F4; /* Light neutral chip and pill backing */
+
+  /* Status Tokens */
+  --status-success:         #10B981;
+  --status-warning:         #F59E0B;
+  --status-danger:          #EF4444;
+  --status-info:            #5F3BE7;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+--font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+--font-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+/* Type Scale */
+--text-display: 4.75rem  / 0.95  var(--font-display); /* Letter-spacing: -0.04em | Weight: 900 */
+--text-h1:      2.5rem   / 1.05  var(--font-display); /* Letter-spacing: -0.03em | Weight: 800 */
+--text-h2:      1.75rem  / 1.20  var(--font-display); /* Letter-spacing: -0.02em | Weight: 700 */
+--text-h3:      1.25rem  / 1.30  var(--font-sans);    /* Letter-spacing: -0.01em | Weight: 600 */
+--text-body:    0.875rem / 1.55  var(--font-sans);    /* Letter-spacing: -0.01em | Weight: 400 */
+--text-body-sm: 0.8125rem / 1.40 var(--font-sans);    /* Letter-spacing: 0       | Weight: 400 */
+--text-meta:    0.6875rem / 1.20 var(--font-sans);    /* Letter-spacing: +0.08em | UPPERCASE | Weight: 700 */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-subtle:  6px;
+--radius-action:  10px;
+--radius-default: 16px;
+--radius-shell:   28px;
+--radius-pill:    9999px;
+
+/* Elevation & Shadows */
+--shadow-base:    0 8px 32px -4px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+--shadow-card:    0 12px 28px -6px rgba(0, 0, 0, 0.06);
+--shadow-hover:   0 16px 36px -4px rgba(0, 0, 0, 0.09);
+--shadow-active:  0 4px 12px -2px rgba(0, 0, 0, 0.05);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid rgba(0, 0, 0, 0.07);
+--border-hairline:    1px solid rgba(0, 0, 0, 0.05);
+--border-glass:       1px solid rgba(255, 255, 255, 0.70);
+--divider-style:      linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.12) 50%, rgba(0, 0, 0, 0) 100%);
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Pill or 10px rounded action containers. Primary buttons use solid electric volt fill (#D8FF35) with #0E1012 text and 700 weight; hover deepens to #C9F523 with micro-elevation. Secondary buttons use white fill with hairline border. Ghost buttons use transparent fill with subtle 1px border or frosted backing. Use the host's existing labels.
+- **Cards**: Pure white or frosted translucent substrate (backdrop-filter: blur(12px)), 16px corner radius, hairline translucent border, and subtle 8px-32px soft diffuse drop-shadows. Do not add index codes or fake meta.
+- **Inputs**: Crisp white or light gray surface, 8px-10px radius, 1px subtle gray border (#E5E7EB), with a 2px violet outline on focus. Font-size at least 16px.
+- **Navigation**: Floating pill navigation bar with frosted translucent backing (rgba(255, 255, 255, 0.68), blur: 20px), pill buttons, and compact uppercase tracking. Restyle existing items without adding catalog codes or status readouts.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No muddy heavy black drop-shadows; keep elevation soft, diffused, and luminous.
+- No harsh brutalist thick solid black borders (2px-3px) or zero-radius stark boxes.
+- No muddy dark theme canvas; maintain the clean, airy off-white (#F6F7F9) foundation.
+- No serif or decorative script typefaces; maintain pure, tight neo-grotesque typography.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <script>
+    const DESIGN_SLUG = "nike-invincible-4";
+
+    const DESIGN_PALETTE = [
+      { name: "Canvas Base", hex: "#F6F7F9", cssVar: "--bg-canvas" },
+      { name: "Surface White", hex: "#FFFFFF", cssVar: "--bg-surface" },
+      { name: "Volt Hyper-Lime", hex: "#D8FF35", cssVar: "--color-volt-400" },
+      { name: "Volt Interactive", hex: "#C9F523", cssVar: "--color-volt-500" },
+      { name: "Deep Violet", hex: "#5F3BE7", cssVar: "--color-purple-500" },
+      { name: "Violet Aura Core", hex: "#4F28D9", cssVar: "--color-purple-600" },
+      { name: "Ink High-Contrast", hex: "#0E1012", cssVar: "--ink-primary" },
+      { name: "Muted Charcoal", hex: "#3D4148", cssVar: "--color-gray-700" },
+      { name: "Secondary Text", hex: "#6E737D", cssVar: "--color-gray-500" },
+      { name: "Hairline Divider", hex: "#E5E7EB", cssVar: "--color-gray-200" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex;
+        btn.innerHTML =
+          '<span class="swatch-chip" style="background:' + swatch.hex + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + "</span>" +
+            '<span class="swatch-var">' + swatch.cssVar + "</span> " +
+            '<span class="swatch-hex">' + swatch.hex + "</span>" +
+          "</span>";
+        btn.addEventListener("click", function () { copyHex(swatch.hex, swatch.name); });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () { toast.style.display = "none"; }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(function () { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+      });
+    }
+
+    // Step Stepper Interaction in Living Demo
+    const stepItems = document.querySelectorAll(".step-item");
+    stepItems.forEach(function (step) {
+      step.addEventListener("click", function () {
+        stepItems.forEach(function (s) {
+          s.classList.remove("active");
+          s.setAttribute("aria-selected", "false");
+        });
+        step.classList.add("active");
+        step.setAttribute("aria-selected", "true");
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -2111,6 +2111,35 @@ const STYLE_TILES_DATA = [
     ],
     description: "Vermilion Colophon: Editorial and archival broadsheet system built on warm bone newsprint (#FBF7F0) and soot black (#141414) with high-chroma vermilion (#FF2B00) stamps, serrated scalloped ticket perforations, 0px strict rectilinear geometry, hairline borders, and Bodoni Moda paired with Pinyon Script accents.",
     markdownSpec: null
+  },
+  {
+    slug: "nike-invincible-4",
+    name: "Nike Invincible 4",
+    vibe: "Quiet Luxury • Aerodynamic Kinetic Staging • Dual-Spectrum Volt & Violet Aura • Frosted Glassmorphism • Tight Neo-Grotesque",
+    vibeBadge: "Quiet Luxury",
+    colours: ["Cream White", "Yellow", "Purple"],
+    categories: ["luxury"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Inter Tight",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas Base", hex: "#F6F7F9" },
+      { name: "Surface White", hex: "#FFFFFF" },
+      { name: "Volt Hyper-Lime", hex: "#D8FF35" },
+      { name: "Volt Interactive", hex: "#C9F523" },
+      { name: "Deep Violet", hex: "#5F3BE7" },
+      { name: "Violet Aura Core", hex: "#4F28D9" },
+      { name: "Ink High-Contrast", hex: "#0E1012" },
+      { name: "Muted Charcoal", hex: "#3D4148" },
+      { name: "Secondary Text", hex: "#6E737D" },
+      { name: "Hairline Divider", hex: "#E5E7EB" }
+    ],
+    description: "Nike Invincible 4: High-performance aerodynamic kinetic system engineered with an airy off-white canvas (#F6F7F9), dual-spectrum ambient aura diffusing electric volt (#D8FF35) into deep violet (#5F3BE7), frosted glassmorphic floating pill controls, tight 900-weight neo-grotesque display typography, and an asymmetric 12-column kinetic stage.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
