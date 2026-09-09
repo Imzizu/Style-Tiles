@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimalist Focus // TILE</title>
+  <meta name="description" content="Ultra-restrained pitch-dark canvas with 0px flat elevation, floating pill input bar, circular white control trigger, and solitary glowing indigo status node.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Typography: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================================
+     * MINIMALIST FOCUS — DESIGN TOKENS & VISUAL SPECIFICATION
+     * ====================================================================== */
+    :root {
+      /* Palette Specification Tokens */
+      --canvas-base:            #090A0D;
+      --surface-elevated:       #13151B;
+      --border-hairline:        #1E212B;
+      --text-primary:           #F4F5F7;
+      --text-muted:             #6B707D;
+      --accent-indigo:          #6366F1;
+      --accent-glow:            rgba(99, 102, 241, 0.45);
+      --control-surface:        #FFFFFF;
+      --control-icon:           #0C0D11;
+
+      /* Semantic System Role Aliases */
+      --bg-canvas:              var(--canvas-base);
+      --bg-surface:             var(--surface-elevated);
+      --bg-surface-alt:         #181B23;
+      --bg-surface-dark:        #060709;
+
+      --ink-primary:            var(--text-primary);
+      --ink-secondary:          #A1A6B3;
+      --ink-muted:              var(--text-muted);
+      --ink-inverted:           var(--control-icon);
+
+      --accent-primary:         var(--control-surface);
+      --accent-primary-hover:   #EDEDED;
+      --accent-secondary:       var(--accent-indigo);
+      --accent-tertiary:        var(--accent-glow);
+
+      --status-success:         #10B981;
+      --status-warning:         #F59E0B;
+      --status-danger:          #EF4444;
+      --status-info:            var(--accent-indigo);
+
+      /* Typography Stacks */
+      --font-display:           "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-sans:              "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono:              "JetBrains Mono", ui-monospace, monospace;
+
+      /* Geometry & Optical Sizing */
+      --radius-default:         16px;
+      --radius-subtle:          8px;
+      --radius-pill:            9999px;
+
+      /* Elevation & Shadows */
+      --shadow-base:            none;
+      --shadow-hover:           none;
+      --shadow-active:          none;
+      --shadow-control:         0 1px 2px rgba(0, 0, 0, 0.4);
+      --shadow-glow:            0 0 10px 1px var(--accent-glow);
+
+      /* Structural Hairlines */
+      --border-core:            1px solid var(--border-hairline);
+      --border-hairline-val:    1px solid var(--border-hairline);
+      --header-height:          64px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    /* -------------------------------------------------------------------------
+     * MANDATORY HEADER BAR
+     * ---------------------------------------------------------------------- */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 12px 24px;
+      background: rgba(9, 10, 13, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 8px 14px;
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-pill);
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .nav-back-link:hover {
+      background: var(--bg-surface-alt);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      background: var(--bg-surface);
+      color: var(--ink-muted);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-pill);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+    }
+
+    .design-vibe-tag {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: transparent;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-pill);
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .btn-tile:hover {
+      background: var(--bg-surface-alt);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-tile.btn-copy {
+      background: var(--control-surface);
+      color: var(--control-icon);
+      border-color: var(--control-surface);
+      box-shadow: var(--shadow-control);
+    }
+
+    .btn-tile.btn-copy:hover {
+      background: #ededed;
+    }
+
+    /* -------------------------------------------------------------------------
+     * MAIN LAYOUT ARCHITECTURE
+     * ---------------------------------------------------------------------- */
+    .layout-wrapper {
+      width: min(1080px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 48px 0 100px;
+    }
+
+    .section-block {
+      margin-top: 72px;
+    }
+
+    .section-header {
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-kicker .kicker-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent-indigo);
+      display: inline-block;
+      box-shadow: var(--shadow-glow);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: var(--ink-primary);
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+    }
+
+    h3 {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      color: var(--ink-muted);
+      font-size: 0.875rem;
+      max-width: 60ch;
+      margin-top: 6px;
+      line-height: 1.6;
+    }
+
+    /* -------------------------------------------------------------------------
+     * HERO BANNER
+     * ---------------------------------------------------------------------- */
+    .hero-banner {
+      padding: 48px 0 32px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-pill);
+      color: var(--ink-muted);
+      background: var(--bg-surface);
+    }
+
+    .chip.chip-status {
+      color: var(--ink-primary);
+      border-color: rgba(99, 102, 241, 0.35);
+    }
+
+    .chip.chip-status::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-indigo);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .hero-lead {
+      margin: 20px 0 32px;
+      max-width: 64ch;
+      color: var(--ink-secondary);
+      font-size: 1.0625rem;
+      font-weight: 400;
+      line-height: 1.65;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    /* -------------------------------------------------------------------------
+     * BUTTONS & CONTROLS SPECIFICATION
+     * ---------------------------------------------------------------------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 8px 18px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      text-decoration: none;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+      user-select: none;
+    }
+
+    .btn:hover {
+      background: var(--bg-surface-alt);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--control-surface);
+      color: var(--control-icon);
+      border-color: var(--control-surface);
+      box-shadow: var(--shadow-control);
+    }
+
+    .btn-primary:hover {
+      background: #EDEDED;
+      border-color: #EDEDED;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--border-hairline);
+      color: var(--ink-secondary);
+    }
+
+    .btn-ghost:hover {
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.1);
+      color: #F87171;
+      border-color: rgba(239, 68, 68, 0.25);
+    }
+
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.2);
+    }
+
+    .btn-accent {
+      background: rgba(99, 102, 241, 0.12);
+      color: #818CF8;
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-accent:hover {
+      background: rgba(99, 102, 241, 0.22);
+      border-color: var(--accent-indigo);
+    }
+
+    /* Circular 32x32 Action Trigger */
+    .action-trigger-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--control-surface);
+      color: var(--control-icon);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-control);
+      flex-shrink: 0;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .action-trigger-circle:hover {
+      background: #EDEDED;
+      transform: scale(1.04);
+    }
+
+    .action-trigger-circle:active {
+      transform: scale(0.96);
+    }
+
+    .action-trigger-circle svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 1.75;
+      stroke: currentColor;
+      fill: none;
+    }
+
+    /* Circular Secondary Button */
+    .action-trigger-secondary {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      color: var(--ink-muted);
+      border: 1px solid var(--border-hairline);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+
+    .action-trigger-secondary:hover {
+      background: var(--bg-surface-alt);
+      color: var(--ink-primary);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .action-trigger-secondary svg {
+      width: 16px;
+      height: 16px;
+      stroke-width: 1.75;
+      stroke: currentColor;
+      fill: none;
+    }
+
+    /* -------------------------------------------------------------------------
+     * PALETTE SWATCHES
+     * ---------------------------------------------------------------------- */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-subtle);
+      overflow: hidden;
+      background: var(--bg-surface);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .swatch-item:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      background: var(--bg-surface-alt);
+    }
+
+    .swatch-chip {
+      height: 64px;
+      border-bottom: 1px solid var(--border-hairline);
+      position: relative;
+    }
+
+    .swatch-chip.has-corona::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #6366F1;
+      box-shadow: 0 0 16px 4px rgba(99, 102, 241, 0.85);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .swatch-meta {
+      padding: 10px 12px;
+    }
+
+    .swatch-name {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--ink-primary);
+      margin-bottom: 2px;
+    }
+
+    .swatch-var, .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--ink-muted);
+      display: block;
+    }
+
+    /* -------------------------------------------------------------------------
+     * TYPOGRAPHY SPECIMEN
+     * ---------------------------------------------------------------------- */
+    .type-stack {
+      display: grid;
+      gap: 16px;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-default);
+      background: var(--bg-surface);
+      padding: 24px;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-hairline);
+      align-items: baseline;
+      min-width: 0;
+    }
+
+    .type-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .type-label {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .text-display-spec {
+      font-family: var(--font-display);
+      font-size: 0.9375rem; /* 15px Identity */
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    .text-h1-spec {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+
+    .text-h2-spec {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+    }
+
+    .text-h3-spec {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    .text-functional-spec {
+      font-family: var(--font-sans);
+      font-size: 0.875rem; /* 14px */
+      font-weight: 400;
+      letter-spacing: 0;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .text-body-spec {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+
+    .text-mono-spec {
+      font-family: var(--font-mono);
+      font-size: 0.75rem; /* 12px */
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--ink-muted);
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 16px;
+      font-size: 16px;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-pill);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .live-type-input:focus {
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2);
+    }
+
+    /* -------------------------------------------------------------------------
+     * COMPONENT ARCHETYPE GALLERY
+     * ---------------------------------------------------------------------- */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .component-card {
+      padding: 24px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-default);
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .component-card-head {
+      margin-bottom: 20px;
+    }
+
+    .btn-row, .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    /* Optical Input Bar Specimen */
+    .input-bar-specimen {
+      width: 100%;
+      height: 48px;
+      border-radius: var(--radius-pill);
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: center;
+      padding: 0 8px 0 18px;
+      gap: 12px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .input-bar-specimen:focus-within {
+      border-color: rgba(99, 102, 241, 0.5);
+      box-shadow: 0 0 12px 1px rgba(99, 102, 241, 0.25);
+    }
+
+    .input-status-node {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-indigo);
+      box-shadow: var(--shadow-glow);
+      flex-shrink: 0;
+      animation: pulse-node 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-node {
+      0%, 100% {
+        opacity: 0.9;
+        box-shadow: 0 0 8px 1px var(--accent-glow);
+      }
+      50% {
+        opacity: 1;
+        box-shadow: 0 0 14px 2px rgba(99, 102, 241, 0.65);
+      }
+    }
+
+    .input-field-inner {
+      flex: 1;
+      min-width: 0;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .input-field-inner::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* Minimalist Pill Toggle */
+    .toggle-pill {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-pill);
+      background: var(--bg-canvas);
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .toggle-pill[aria-pressed="true"] {
+      background: var(--accent-indigo);
+      border-color: var(--accent-indigo);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .toggle-pill::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toggle-pill[aria-pressed="true"]::after {
+      transform: translateX(20px);
+    }
+
+    /* Micro Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      letter-spacing: 0.04em;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-pill);
+      color: var(--ink-muted);
+      background: var(--bg-canvas);
+    }
+
+    .badge-focal {
+      color: var(--ink-primary);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .badge-focal-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-indigo);
+      box-shadow: var(--shadow-glow);
+    }
+
+    /* Radio / Checkbox Styling */
+    .radio-label, .checkbox-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8125rem;
+      color: var(--ink-secondary);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .radio-label input, .checkbox-label input {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-canvas);
+      outline: none;
+      cursor: pointer;
+      display: grid;
+      place-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .radio-label input {
+      border-radius: 50%;
+    }
+
+    .checkbox-label input {
+      border-radius: 4px;
+    }
+
+    .radio-label input:checked {
+      border-color: var(--accent-indigo);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .radio-label input:checked::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-indigo);
+    }
+
+    .checkbox-label input:checked {
+      background: var(--accent-indigo);
+      border-color: var(--accent-indigo);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .checkbox-label input:checked::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: #FFFFFF;
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    }
+
+    /* -------------------------------------------------------------------------
+     * LIVING DEMO: THE CENTERED FOCUS CONSOLE
+     * ---------------------------------------------------------------------- */
+    .focal-console-stage {
+      background: var(--canvas-base);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-default);
+      padding: 56px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .focal-console-stage::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 320px;
+      height: 120px;
+      background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.08) 0%, rgba(9, 10, 13, 0) 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .focal-stage-header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+
+    .focal-stage-title {
+      font-size: 0.9375rem; /* 15px */
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .focal-stage-sub {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .focal-mode-pills {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-pill);
+      padding: 3px;
+      gap: 4px;
+      margin-bottom: 28px;
+    }
+
+    .focal-mode-pill {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .focal-mode-pill.active {
+      background: #1E212B;
+      color: var(--text-primary);
+    }
+
+    .focal-mode-pill:hover:not(.active) {
+      color: var(--text-primary);
+    }
+
+    /* Centered Optical Focus Bar */
+    .focal-input-wrapper {
+      position: relative;
+      z-index: 1;
+      width: min(560px, 100%);
+    }
+
+    .focal-input-bar {
+      height: 48px;
+      border-radius: var(--radius-pill);
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: center;
+      padding: 0 8px 0 18px;
+      gap: 12px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .focal-input-bar:focus-within {
+      border-color: rgba(99, 102, 241, 0.6);
+      box-shadow: 0 0 14px 2px rgba(99, 102, 241, 0.28);
+    }
+
+    .focal-node {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-indigo);
+      box-shadow: var(--shadow-glow);
+      flex-shrink: 0;
+      animation: pulse-node 2.5s ease-in-out infinite;
+    }
+
+    .focal-input {
+      flex: 1;
+      min-width: 0;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .focal-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    .focal-shortcut {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      padding: 3px 7px;
+      border: 1px solid var(--border-hairline);
+      border-radius: 6px;
+      background: var(--bg-canvas);
+      margin-right: 4px;
+    }
+
+    /* Live Output Drawer */
+    .focal-results-panel {
+      position: relative;
+      z-index: 1;
+      width: min(560px, 100%);
+      margin-top: 14px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 12px;
+      overflow: hidden;
+      display: none;
+    }
+
+    .focal-results-panel.active {
+      display: block;
+      animation: slide-fade 0.2s ease-out;
+    }
+
+    @keyframes slide-fade {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .focal-result-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border-hairline);
+      font-size: 0.8125rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all 0.15s ease;
+    }
+
+    .focal-result-item:last-child {
+      border-bottom: none;
+    }
+
+    .focal-result-item:hover {
+      background: #181B23;
+      color: var(--text-primary);
+    }
+
+    .focal-result-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .focal-result-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--text-muted);
+    }
+
+    .focal-result-item:hover .focal-result-dot {
+      background: var(--accent-indigo);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .focal-result-tag {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--ink-muted);
+    }
+
+    /* Telemetry Minimalist Readout */
+    .focal-telemetry-row {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .focal-stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--ink-muted);
+    }
+
+    .focal-stat-val {
+      color: var(--text-primary);
+    }
+
+    /* -------------------------------------------------------------------------
+     * SPEC DRAWER
+     * ---------------------------------------------------------------------- */
+    .spec-drawer-card {
+      background: var(--surface-elevated);
+      color: var(--ink-primary);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-default);
+      padding: 24px;
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 520px;
+      padding: 20px;
+      background: var(--canvas-base);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border-radius: var(--radius-subtle);
+      border: 1px solid var(--border-hairline);
+    }
+
+    /* -------------------------------------------------------------------------
+     * MODAL OVERLAY
+     * ---------------------------------------------------------------------- */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(9, 10, 13, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content-card {
+      width: min(880px, 100%);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-default);
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-hairline);
+      background: var(--surface-elevated);
+    }
+
+    .modal-footer {
+      border-bottom: 0;
+      border-top: 1px solid var(--border-hairline);
+      justify-content: flex-end;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow: auto;
+      flex: 1;
+      background: var(--canvas-base);
+    }
+
+    .modal-close-btn {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      cursor: pointer;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--bg-surface-alt);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* -------------------------------------------------------------------------
+     * TOAST POPUP
+     * ---------------------------------------------------------------------- */
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3000;
+      padding: 10px 18px;
+      background: var(--control-surface);
+      color: var(--control-icon);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      animation: toast-in 0.2s ease-out;
+    }
+
+    @keyframes toast-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* -------------------------------------------------------------------------
+     * MOBILE SAFETY OVERRIDES
+     * ---------------------------------------------------------------------- */
+    @media (max-width: 768px) {
+      .layout-wrapper {
+        width: calc(100% - 32px);
+        padding: 24px 0 64px;
+      }
+
+      .style-tile-header {
+        padding: 10px 16px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .header-title-block {
+        order: 1;
+        width: 100%;
+      }
+
+      .nav-back-link {
+        order: 0;
+      }
+
+      .header-actions {
+        order: 2;
+        margin-left: auto;
+      }
+
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .swatches-grid, .components-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn, .btn-tile {
+        white-space: normal;
+      }
+
+      .live-type-input, .input-field-inner, .focal-input {
+        font-size: 16px !important;
+      }
+
+      .toast-popup {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        text-align: center;
+      }
+
+      .focal-console-stage {
+        padding: 36px 16px;
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet. Must remain immediately after this page's <style>. -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- Mandatory Top Navigation Header -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Minimalist Focus</span>
+      <span class="design-vibe-tag">Minimalist & Monastic</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+      <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+      <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-minimalist-focus.md">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- SLOT 1: Hero Display Banner -->
+    <section class="hero-banner" id="hero-section">
+      <div class="hero-meta">
+        <span class="chip chip-status">Focal Node Active</span>
+        <span class="chip">Pitch-Dark Canvas</span>
+        <span class="chip">Pill Geometry</span>
+        <span class="chip">Dark</span>
+      </div>
+      <h1>Minimalist Focus</h1>
+      <p class="hero-lead">
+        An ultra-restrained visual study in spatial economy and pitch-dark monastic poise. Enclosed in a cold pitch-dark void (<span style="color:var(--text-primary); font-family:var(--font-mono); font-size:0.875rem;">#090A0D</span>) with micro-elevated floating surfaces (<span style="color:var(--text-primary); font-family:var(--font-mono); font-size:0.875rem;">#13151B</span>) and razor hairline boundaries (<span style="color:var(--text-primary); font-family:var(--font-mono); font-size:0.875rem;">#1E212B</span>), visual hierarchy is governed entirely by structural empty space and an indigo status beacon.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Prompt for Agent
+        </button>
+        <a class="btn btn-ghost" href="#demo-section">
+          Inspect Living Demo
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- SLOT 2: Color Swatches & Palette Matrix -->
+    <section class="section-block" id="palette-section">
+      <div class="section-header">
+        <p class="section-kicker"><span class="kicker-dot"></span>01 // COLOR ROLES</p>
+        <h2>Chromatic Hierarchy</h2>
+        <p class="section-desc">
+          Flat 0px elevation achieved through absolute luminance steps. The cold void canvas isolates floating stadium surfaces, while the electric indigo micro-corona guides optical tension.
+        </p>
+      </div>
+      <div class="swatches-grid" id="swatch-grid">
+        <!-- Injected via JavaScript from DESIGN_PALETTE -->
+      </div>
+    </section>
+
+    <!-- SLOT 3: Typography Specimen -->
+    <section class="section-block" id="typography-section">
+      <div class="section-header">
+        <p class="section-kicker"><span class="kicker-dot"></span>02 // TYPOGRAPHY</p>
+        <h2>Monastic Scale & System</h2>
+        <p class="section-desc">
+          Set strictly in Inter and JetBrains Mono. Optical rhythm prioritizes subtle weight shifts (500 Medium vs 400 Regular) with zero excess ornamentation.
+        </p>
+      </div>
+      <div class="type-stack">
+        <div class="type-row">
+          <span class="type-label">Display / Identity</span>
+          <div>
+            <p class="text-display-spec">Minimalist Focus // Optical Console</p>
+            <span class="text-mono-spec">Inter Medium (500) • 15px • Tracking -0.01em</span>
+          </div>
+        </div>
+        <div class="type-row">
+          <span class="type-label">H1 Headline</span>
+          <div>
+            <p class="text-h1-spec">Void-driven focal hierarchy</p>
+            <span class="text-mono-spec">Inter Medium (500) • Clamp(28px–36px) • Line-height 1.15</span>
+          </div>
+        </div>
+        <div class="type-row">
+          <span class="type-label">H2 Subhead</span>
+          <div>
+            <p class="text-h2-spec">Spatial restraint without structural clutter</p>
+            <span class="text-mono-spec">Inter Medium (500) • 22px • Tracking -0.015em</span>
+          </div>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Functional / Input</span>
+          <div>
+            <p class="text-functional-spec">Search documentation, commands, or press ⌘K to trigger focal palette...</p>
+            <span class="text-mono-spec">Inter Regular (400) • 14px • Tracking 0 • #6B707D</span>
+          </div>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Body Text</span>
+          <div>
+            <p class="text-body-spec">
+              A pitch-dark canvas eliminates visual fatigue while channeling conscious perception toward the task at hand. Every edge is constrained by a razor 1px hairline, ensuring absolute boundary integrity across all viewports.
+            </p>
+            <span class="text-mono-spec">Inter Regular (400) • 14px • Line-height 1.6</span>
+          </div>
+        </div>
+        <div class="type-row">
+          <span class="type-label">System / Mono</span>
+          <div>
+            <p class="text-mono-spec">OPTICAL_RADIUS: 9999PX // ELEVATION: 0PX // STATUS_GLOW: #6366F1</p>
+            <span class="text-mono-spec">JetBrains Mono Regular (400) • 12px • Tracking 0.04em</span>
+          </div>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Live Specimen</span>
+          <div style="width: 100%;">
+            <input class="live-type-input" id="live-type-tester-input" type="text" value="Type here to test typography contrast against the void" placeholder="Interactive font rendering test..." />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 4: Component Archetype Gallery -->
+    <section class="section-block" id="components-section">
+      <div class="section-header">
+        <p class="section-kicker"><span class="kicker-dot"></span>03 // COMPONENTS</p>
+        <h2>Functional Archetypes</h2>
+        <p class="section-desc">
+          Precision circular triggers, stadium-pill inputs with optical status nodes, and flat micro-elevated containers.
+        </p>
+      </div>
+      <div class="components-grid">
+
+        <!-- Card 1: Action Triggers -->
+        <article class="component-card">
+          <div class="component-card-head">
+            <h3>Action Triggers</h3>
+            <p class="text-mono-spec">Pill & Circle Triggers</p>
+          </div>
+          <div class="btn-row" style="margin-bottom: 16px;">
+            <button class="btn btn-primary" type="button">Primary Action</button>
+            <button class="btn" type="button">Secondary</button>
+            <button class="btn btn-ghost" type="button">Ghost</button>
+          </div>
+          <div class="btn-row">
+            <!-- 32x32 circular action button -->
+            <button class="action-trigger-circle" type="button" title="Primary Circular Trigger">
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <button class="action-trigger-secondary" type="button" title="Secondary Circular Trigger">
+              <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+            </button>
+            <button class="btn btn-accent" type="button">Accent Node</button>
+            <button class="btn btn-danger" type="button">Restrained Alert</button>
+          </div>
+        </article>
+
+        <!-- Card 2: Optical Input Bar -->
+        <article class="component-card">
+          <div class="component-card-head">
+            <h3>Stadium Input Bar</h3>
+            <p class="text-mono-spec">Height 48px • Radius 9999px • Hairline</p>
+          </div>
+          <div class="input-bar-specimen">
+            <span class="input-status-node" title="Focal Status Node"></span>
+            <input class="input-field-inner" type="text" placeholder="Type a command or filter..." value="Active focus query" />
+            <button class="action-trigger-circle" type="button" title="Execute Query">
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <p class="text-mono-spec" style="margin-top: 14px;">Padding: 14px 8px 14px 18px • 6px Indigo Node</p>
+        </article>
+
+        <!-- Card 3: Selectors & Indicators -->
+        <article class="component-card">
+          <div class="component-card-head">
+            <h3>Selectors & Status Nodes</h3>
+            <p class="text-mono-spec">Hairline Boundary Radios & Toggles</p>
+          </div>
+          <div class="control-row" style="margin-bottom: 16px;">
+            <label class="radio-label">
+              <input type="radio" name="demo-radio-group" checked />
+              <span>Void</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="demo-radio-group" />
+              <span>Surface</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" checked />
+              <span>Corona</span>
+            </label>
+            <button class="toggle-pill" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle Status Glow"></button>
+          </div>
+          <div class="control-row">
+            <span class="badge badge-focal">
+              <span class="badge-focal-dot"></span>
+              Focal Online
+            </span>
+            <span class="badge">9999px Stadium</span>
+            <span class="badge">Flat 0px</span>
+          </div>
+        </article>
+
+        <!-- Card 4: Surface Tone Contrast -->
+        <article class="component-card" style="background: var(--bg-surface);">
+          <div class="component-card-head">
+            <h3>Surface Contrast</h3>
+            <p class="text-mono-spec">Flat Depth via Value Shift</p>
+          </div>
+          <p class="text-body-spec" style="font-size: 0.8125rem; color: var(--ink-secondary); margin-bottom: 16px;">
+            No drop shadows or blur filters are applied to container cards. Depth is purely relational: #13151B resting on #090A0D, separated by a crisp 1px #1E212B outline.
+          </p>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span class="text-mono-spec" style="background:var(--bg-canvas); padding:4px 8px; border-radius:4px; border:1px solid var(--border-hairline);">CANVAS #090A0D</span>
+            <span style="color:var(--ink-muted);">→</span>
+            <span class="text-mono-spec" style="background:var(--bg-surface-alt); padding:4px 8px; border-radius:4px; border:1px solid var(--border-hairline);">SURFACE #13151B</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SLOT 5: Living Micro-Experience: The Centered Focus Console -->
+    <section class="section-block" id="demo-section">
+      <div class="section-header">
+        <p class="section-kicker"><span class="kicker-dot"></span>04 // LIVING MICRO-EXPERIENCE</p>
+        <h2>The Centered Focus Console</h2>
+        <p class="section-desc">
+          Test the void-driven hierarchy, optical 48px stadium input bar, solitary indigo status node, and high-contrast circular trigger in a live interactive command environment.
+        </p>
+      </div>
+
+      <div class="focal-console-stage">
+        <div class="focal-stage-header">
+          <div class="focal-stage-title">Deep Focus Console</div>
+          <div class="focal-stage-sub">Pitch-black field with centered optical gravity. Type to filter or trigger actions.</div>
+        </div>
+
+        <!-- Mode Pills -->
+        <div class="focal-mode-pills" role="tablist" aria-label="Console Modes">
+          <button class="focal-mode-pill active" type="button" onclick="setConsoleMode('commands', this)">Commands</button>
+          <button class="focal-mode-pill" type="button" onclick="setConsoleMode('search', this)">Search</button>
+          <button class="focal-mode-pill" type="button" onclick="setConsoleMode('telemetry', this)">Status</button>
+        </div>
+
+        <!-- Centered Optical Focus Bar -->
+        <div class="focal-input-wrapper">
+          <div class="focal-input-bar">
+            <span class="focal-node" id="focal-status-node" title="Status: Active"></span>
+            <input class="focal-input" id="focal-main-input" type="text" placeholder="Type a command or query..." autocomplete="off" />
+            <span class="focal-shortcut">⌘K</span>
+            <button class="action-trigger-circle" id="focal-exec-btn" type="button" title="Execute command">
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
+          <!-- Dynamic Results Drawer -->
+          <div class="focal-results-panel active" id="focal-results">
+            <div class="focal-result-item" onclick="selectResult('Focus Mode: Zen Monastic Activated')">
+              <div class="focal-result-label">
+                <span class="focal-result-dot"></span>
+                <span>Activate Zen Monastic Canvas</span>
+              </div>
+              <span class="focal-result-tag">#090A0D</span>
+            </div>
+            <div class="focal-result-item" onclick="selectResult('Focal Node Corona Pulsing')">
+              <div class="focal-result-label">
+                <span class="focal-result-dot"></span>
+                <span>Calibrate Indigo Status Corona</span>
+              </div>
+              <span class="focal-result-tag">#6366F1</span>
+            </div>
+            <div class="focal-result-item" onclick="selectResult('Structural Hairlines Verified')">
+              <div class="focal-result-label">
+                <span class="focal-result-dot"></span>
+                <span>Inspect Structural Hairline Grid</span>
+              </div>
+              <span class="focal-result-tag">1PX #1E212B</span>
+            </div>
+            <div class="focal-result-item" onclick="selectResult('Circular Action Triggers Primed')">
+              <div class="focal-result-label">
+                <span class="focal-result-dot"></span>
+                <span>Cycle Circular Control Surface</span>
+              </div>
+              <span class="focal-result-tag">32PX CIRCLE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Telemetry Minimalist Readout -->
+        <div class="focal-telemetry-row">
+          <div class="focal-stat">
+            <span>CANVAS:</span>
+            <span class="focal-stat-val">VOID BLACK</span>
+          </div>
+          <div class="focal-stat">
+            <span>NODE:</span>
+            <span class="focal-stat-val" style="color:var(--accent-indigo);">ONLINE (#6366F1)</span>
+          </div>
+          <div class="focal-stat">
+            <span>GEOMETRY:</span>
+            <span class="focal-stat-val">STADIUM PILL</span>
+          </div>
+          <div class="focal-stat">
+            <span>LATENCY:</span>
+            <span class="focal-stat-val" id="focal-latency-val">0.4ms</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 6: Style Tile Prompt Code Drawer -->
+    <section class="section-block spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-head">
+        <div>
+          <h2 style="margin:0; font-size:1.15rem; color:inherit;">Style Tile Specification</h2>
+          <p class="text-mono-spec" style="margin-top:4px;">Machine-readable visual language prompt for AI coding agents</p>
+        </div>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Markdown Spec
+        </button>
+      </div>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+    </section>
+  </main>
+
+  <!-- Modal Overlay for Full Spec Inspection -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title" style="font-size:0.9375rem; font-weight:500;">Minimalist Focus — Style Tile Specification</strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notification -->
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">Copied</div>
+
+  <!-- =========================================================================
+   * SOURCE OF TRUTH: STYLE TILE MARKDOWN (AI AGENT PROMPT)
+   * ====================================================================== -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Minimalist Focus
+  Construction: pitch-black void • stadium pill geometry • structural hairlines • indigo focal node
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Ultra-restrained, pitch-dark interface defined by an expansive cold-void canvas and a singular centered focal point. Elevated surfaces use subtle tonal contrast without elevation shadows, structured by hairline borders and 9999px pill geometry. Optical focus is anchored by a solitary glowing indigo status node and high-contrast circular control triggers.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #090A0D; /* Cold void black primary canvas */
+  --bg-surface:             #13151B; /* Micro-elevated floating field fill */
+  --bg-surface-alt:         #181B23; /* Subtle secondary well / active fill */
+  --bg-surface-dark:        #060709; /* Deep recessed ground */
+
+  /* Inks & Typography */
+  --ink-primary:            #F4F5F7; /* Crisp off-white display and heading text */
+  --ink-secondary:          #A1A6B3; /* Balanced secondary reading text */
+  --ink-muted:              #6B707D; /* Low-contrast slate functional text and placeholder */
+  --ink-inverted:           #0C0D11; /* Pitch black glyph for light control surfaces */
+
+  /* Signature Accents */
+  --accent-primary:         #FFFFFF; /* High-contrast white primary control surface */
+  --accent-primary-hover:   #EDEDED; /* Hover state for primary control surface */
+  --accent-secondary:       #6366F1; /* Focal status indicator indigo */
+  --accent-tertiary:        rgba(99, 102, 241, 0.45); /* Soft ambient micro-corona glow */
+
+  /* Status Tokens */
+  --status-success:         #10B981; /* Restrained emerald */
+  --status-warning:         #F59E0B; /* Restrained amber */
+  --status-danger:          #EF4444; /* Restrained vermilion */
+  --status-info:            #6366F1; /* Signature indigo */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+--font-sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+--font-mono:    "JetBrains Mono", ui-monospace, Consolas, monospace;
+
+/* Type Scale */
+--text-display: 0.9375rem / 1.40  var(--font-display); /* Size: 15px | Weight: 500 (Medium) | Tracking: -0.01em */
+--text-h1:      2.25rem   / 1.15  var(--font-display); /* Letter-spacing: -0.025em | Weight: 500 */
+--text-h2:      1.5rem    / 1.25  var(--font-display); /* Letter-spacing: -0.015em | Weight: 500 */
+--text-h3:      1.05rem   / 1.35  var(--font-display); /* Letter-spacing: -0.01em  | Weight: 500 */
+--text-body:    0.875rem  / 1.60  var(--font-sans);    /* Size: 14px | Weight: 400 | Tracking: 0 | Color: var(--ink-primary) */
+--text-body-sm: 0.8125rem / 1.50  var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
+--text-meta:    0.75rem   / 1.40  var(--font-mono);    /* Size: 12px | Weight: 400 | Tracking: 0.04em */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 16px;
+--radius-subtle:  8px;
+--radius-pill:    9999px; /* Stadium geometry for inputs and buttons */
+--radius-circle:  50%;   /* 32px circular action triggers and 6px status node */
+
+/* Elevation & Shadows */
+--shadow-base:    none; /* Flat 0px; depth achieved purely through surface tone contrast */
+--shadow-hover:   none;
+--shadow-active:  none;
+--shadow-control: 0 1px 2px rgba(0, 0, 0, 0.4); /* Control buttons */
+--shadow-glow:    0 0 10px 1px rgba(99, 102, 241, 0.45); /* Indicator node glow */
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid #1E212B; /* Structural hairline boundary */
+--border-hairline:    1px solid #1E212B; /* Subtle component divider (or rgba(255,255,255,0.07)) */
+--divider-style:      1px solid #1E212B;
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Circular (32px × 32px, 50% radius) or full stadium pill (height 36px–40px, radius 9999px). Primary control surface is solid #FFFFFF with #0C0D11 stroke-based icon glyphs (16px, 1.75px stroke) and subtle 0 1px 2px rgba(0,0,0,0.4) shadow. Secondary and ghost buttons use 1px solid #1E212B on #13151B with #F4F5F7 or #6B707D text. Use host's existing labels.
+- **Cards**: Flat 0px elevation containers with solid #13151B micro-elevated fill and uniform 1px solid #1E212B border. No drop shadows, blur, or textured grain. Depth is produced strictly by contrast against the #090A0D void canvas.
+- **Inputs**: Stadium pill geometry (height 48px, radius 9999px, horizontal padding 14px 8px 14px 18px), filled with #13151B and bounded by 1px solid #1E212B. Contains a 6px × 6px solitary status node (#6366F1 with 0 0 10px 1px glow) and a 32px circular #FFFFFF action button. Minimum font size 16px to prevent viewport zoom.
+- **Navigation**: Restrained hairline bar or floating pill row anchored to the top of the viewport. Use subtle 1px solid #1E212B borders on #13151B backgrounds. Keep existing items. Do not add catalog codes, fake clocks, or status readouts.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No heavy drop shadows or fuzzy blur filters on cards (maintain flat 0px depth).
+- No saturated neon backgrounds, colorful gradients, or noisy textured grain (maintain solid matte #090A0D).
+- No sharp 0px brutalist corners or inconsistent mixed radiuses (maintain stadium pills and circles).
+- No faux industrial telemetry codes, ISO/FREQ strings, or unsolicited metadata badges.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- Runtime JavaScript Logic -->
+  <script>
+    const DESIGN_SLUG = "minimalist-focus";
+
+    const DESIGN_PALETTE = [
+      { name: "Canvas Base", hex: "#090A0D", cssVar: "--canvas-base" },
+      { name: "Surface Elevated", hex: "#13151B", cssVar: "--surface-elevated" },
+      { name: "Surface Alt", hex: "#181B23", cssVar: "--bg-surface-alt" },
+      { name: "Border Hairline", hex: "#1E212B", cssVar: "--border-hairline" },
+      { name: "Text Primary", hex: "#F4F5F7", cssVar: "--text-primary" },
+      { name: "Text Muted", hex: "#6B707D", cssVar: "--text-muted" },
+      { name: "Accent Indigo", hex: "#6366F1", cssVar: "--accent-indigo", isCorona: true },
+      { name: "Control Surface", hex: "#FFFFFF", cssVar: "--control-surface" },
+      { name: "Control Icon", hex: "#0C0D11", cssVar: "--control-icon" },
+      { name: "Status Success", hex: "#10B981", cssVar: "--status-success" },
+      { name: "Status Warning", hex: "#F59E0B", cssVar: "--status-warning" },
+      { name: "Status Danger", hex: "#EF4444", cssVar: "--status-danger" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex;
+        const coronaClass = swatch.isCorona ? " swatch-chip has-corona" : " swatch-chip";
+        btn.innerHTML =
+          '<span class="' + coronaClass + '" style="background:' + swatch.hex + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + "</span>" +
+            '<span class="swatch-var">' + swatch.cssVar + "</span> " +
+            '<span class="swatch-hex">' + swatch.hex + "</span>" +
+          "</span>";
+        btn.addEventListener("click", function () { copyHex(swatch.hex, swatch.name); });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () { toast.style.display = "none"; }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied Style Tile to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.innerHTML = "✓ Copied!";
+          setTimeout(function () { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard access denied");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        const mainInput = document.getElementById("focal-main-input");
+        if (mainInput) mainInput.focus();
+      }
+    });
+
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+      });
+    }
+
+    // Living Demo Console Interactions
+    const focalInput = document.getElementById("focal-main-input");
+    const focalResults = document.getElementById("focal-results");
+    const focalExecBtn = document.getElementById("focal-exec-btn");
+    const focalNode = document.getElementById("focal-status-node");
+    const latencyVal = document.getElementById("focal-latency-val");
+
+    if (focalInput && focalResults) {
+      focalInput.addEventListener("input", function () {
+        focalResults.classList.add("active");
+        if (latencyVal) {
+          const ms = (0.2 + Math.random() * 0.4).toFixed(1);
+          latencyVal.textContent = ms + "ms";
+        }
+      });
+
+      focalInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          executeFocalAction();
+        }
+      });
+    }
+
+    if (focalExecBtn) {
+      focalExecBtn.addEventListener("click", executeFocalAction);
+    }
+
+    function executeFocalAction() {
+      const val = focalInput ? focalInput.value.trim() : "";
+      if (!val) {
+        triggerToast("Focal prompt empty. Type a command.");
+        return;
+      }
+      triggerToast("Executing: " + val);
+      if (focalNode) {
+        focalNode.style.boxShadow = "0 0 20px 4px rgba(99, 102, 241, 1)";
+        setTimeout(function () {
+          focalNode.style.boxShadow = "";
+        }, 1200);
+      }
+      if (focalInput) focalInput.value = "";
+    }
+
+    function selectResult(msg) {
+      triggerToast(msg);
+      if (focalInput) {
+        focalInput.value = msg;
+        focalInput.focus();
+      }
+    }
+
+    function setConsoleMode(mode, btn) {
+      document.querySelectorAll(".focal-mode-pill").forEach(function (p) {
+        p.classList.remove("active");
+      });
+      if (btn) btn.classList.add("active");
+      if (focalInput) {
+        if (mode === "commands") {
+          focalInput.placeholder = "Type a command or action (e.g. Zen mode, corona)...";
+        } else if (mode === "search") {
+          focalInput.placeholder = "Search documents, components, tokens...";
+        } else {
+          focalInput.placeholder = "System status: all nodes active at #090A0D...";
+        }
+        focalInput.focus();
+      }
+      triggerToast("Console Mode: " + mode.toUpperCase());
+    }
+  </script>
+</body>
+</html>

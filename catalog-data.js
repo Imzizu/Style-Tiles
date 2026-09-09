@@ -2140,6 +2140,33 @@ const STYLE_TILES_DATA = [
     ],
     description: "Nike Invincible 4: High-performance aerodynamic kinetic system engineered with an airy off-white canvas (#F6F7F9), dual-spectrum ambient aura diffusing electric volt (#D8FF35) into deep violet (#5F3BE7), frosted glassmorphic floating pill controls, tight 900-weight neo-grotesque display typography, and an asymmetric 12-column kinetic stage.",
     markdownSpec: null
+  },
+  {
+    slug: "minimalist-focus",
+    name: "Minimalist Focus",
+    vibe: "Pitch-Dark Void • Pill Geometry • Indigo Focal Corona",
+    vibeBadge: "Minimalist & Monastic",
+    colours: ["Gray", "Purple"],
+    categories: ["minimalist"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Inter",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas Base", hex: "#090A0D" },
+      { name: "Surface Elevated", hex: "#13151B" },
+      { name: "Border Hairline", hex: "#1E212B" },
+      { name: "Text Primary", hex: "#F4F5F7" },
+      { name: "Text Muted", hex: "#6B707D" },
+      { name: "Accent Indigo", hex: "#6366F1" },
+      { name: "Control Surface", hex: "#FFFFFF" },
+      { name: "Control Icon", hex: "#0C0D11" }
+    ],
+    description: "Ultra-restrained pitch-dark canvas with 0px flat elevation, floating pill input bar, circular white control trigger, and solitary glowing indigo status node.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
