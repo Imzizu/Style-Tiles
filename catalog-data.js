@@ -2194,6 +2194,31 @@ const STYLE_TILES_DATA = [
     ],
     description: "Disciplined pitch-dark obsidian architectural system featuring warm radiant amber gold accents (#DFA842), hairline grid divisions, minimal 0-4px corner geometry, and condensed high-impact grotesque typography.",
     markdownSpec: null
+  },
+  {
+    slug: "neon-pill-grotesk",
+    name: "Neon Pill Grotesk",
+    vibe: "Electric Lime • Modular Bento • Pill Geometry • High-Contrast Light",
+    vibeBadge: "Playful & Pop",
+    colours: ["Cream White", "Green"],
+    categories: ["playful"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas White", hex: "#FFFFFF" },
+      { name: "Surface Well", hex: "#F7F8FA" },
+      { name: "Concrete Slab", hex: "#EAEBEE" },
+      { name: "Obsidian Ink", hex: "#0E0F12" },
+      { name: "Electric Lime", hex: "#CEF557" },
+      { name: "Graphite Slate", hex: "#555962" }
+    ],
+    description: "High-energy light bento system built on stark white surfaces, soft concrete slabs, electric lime accents (#CEF557), generous 28px squircle containers, and ubiquitous 9999px pill controls.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
