@@ -2167,6 +2167,33 @@ const STYLE_TILES_DATA = [
     ],
     description: "Ultra-restrained pitch-dark canvas with 0px flat elevation, floating pill input bar, circular white control trigger, and solitary glowing indigo status node.",
     markdownSpec: null
+  },
+  {
+    slug: "neuronest",
+    name: "NeuroNest",
+    vibe: "Obsidian Void • Amber Gold • Hairline Grid",
+    vibeBadge: "Minimalist & Monastic",
+    colours: ["Gray", "Yellow"],
+    categories: ["minimalist"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Barlow Condensed",
+      sans: "Inter",
+      mono: "Space Mono"
+    },
+    palette: [
+      { name: "Canvas Base", hex: "#0A0B0D" },
+      { name: "Surface Raised", hex: "#121316" },
+      { name: "Surface Alt", hex: "#18191E" },
+      { name: "Stark White", hex: "#FFFFFF" },
+      { name: "Amber Gold", hex: "#DFA842" },
+      { name: "Amber Hover", hex: "#EBB752" },
+      { name: "Graphite Secondary", hex: "#A0A3AB" },
+      { name: "Hairline Border", hex: "#23252B" }
+    ],
+    description: "Disciplined pitch-dark obsidian architectural system featuring warm radiant amber gold accents (#DFA842), hairline grid divisions, minimal 0-4px corner geometry, and condensed high-impact grotesque typography.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
