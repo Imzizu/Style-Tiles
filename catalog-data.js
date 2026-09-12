@@ -2219,6 +2219,60 @@ const STYLE_TILES_DATA = [
     ],
     description: "High-energy light bento system built on stark white surfaces, soft concrete slabs, electric lime accents (#CEF557), generous 28px squircle containers, and ubiquitous 9999px pill controls.",
     markdownSpec: null
+  },
+  {
+    slug: "alabaster-squircle",
+    name: "Alabaster Squircle",
+    vibe: "Alabaster Surfaces • Onyx Chassis • Soft Squircles • Mint & Coral Inks",
+    vibeBadge: "Quiet Luxury",
+    colours: ["Cream White", "Green"],
+    categories: ["luxury"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Plus Jakarta Sans",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Canvas Alabaster", hex: "#F4F5F7" },
+      { name: "Surface Card", hex: "#FFFFFF" },
+      { name: "Surface Well", hex: "#ECEEF2" },
+      { name: "Onyx Chassis", hex: "#26282B" },
+      { name: "Ink Primary", hex: "#1F2226" },
+      { name: "Mint Primary", hex: "#45B194" },
+      { name: "Coral Accent", hex: "#FF6565" },
+      { name: "Ochre Accent", hex: "#C4A87A" },
+      { name: "Lavender Accent", hex: "#8687B8" }
+    ],
+    description: "Calm ergonomic interface system built on pale alabaster canvases, pure white cards, and deep charcoal onyx chassis framing, paired with generous 24px squircle containers, capsule pill primitives, and energetic seafoam mint and coral accents.",
+    markdownSpec: null
+  },
+  {
+    slug: "ion-horizon",
+    name: "Ion Horizon",
+    vibe: "Atmospheric Cobalt • Hairline Reticles • Neo-Grotesque • Suborbital Glow",
+    vibeBadge: "Cyber & Blueprint",
+    colours: ["Gray", "Blue"],
+    categories: ["cyber"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Space Grotesk",
+      sans: "Inter",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Cosmic Obsidian", hex: "#07080D" },
+      { name: "Surface Obsidian", hex: "#0E111A" },
+      { name: "Polar Mist", hex: "#F3F5FC" },
+      { name: "Ion Cobalt", hex: "#2C3EE8" },
+      { name: "Highlight Tint", hex: "#6B7EF5" },
+      { name: "Ink Primary", hex: "#FFFFFF" },
+      { name: "Ink Secondary", hex: "#9AA6C9" }
+    ],
+    description: "Atmospheric aerospace system built on cosmic obsidian void bleeding through electric cobalt ion glow into celestial mist white, accented with hairline orbital reticles, calibrated tick rulers, and high-impact tight-tracking neo-grotesque typography.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
