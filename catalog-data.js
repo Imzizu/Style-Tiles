@@ -2322,6 +2322,56 @@ const STYLE_TILES_DATA = [
     ],
     description: "High-contrast dark bento system built on deep obsidian voids (#090A0D), smoky charcoal containers, high-vis electric citron pop modules (#D8FF3E), ultraviolet satin accents (#9D7CF4), generous 32px squircle geometry, and tactile pill controls.",
     markdownSpec: null
+  },
+  {
+    slug: "porcelain-aura",
+    name: "Porcelain Aura",
+    vibe: "Porcelain Alabaster • Couture Serif • Hairline Contours • Orbital Arches",
+    vibeBadge: "Quiet Luxury",
+    colours: ["Cream White"],
+    categories: ["luxury"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Cormorant Garamond",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Porcelain Canvas", hex: "#FAF6F0" },
+      { name: "Porcelain Surface", hex: "#FFFFFF" },
+      { name: "Onyx Ink", hex: "#1A1816" },
+      { name: "Taupe Ink", hex: "#68625B" },
+      { name: "Blush Aura", hex: "#E8D6C7" },
+      { name: "Vermilion Spot", hex: "#D93829" }
+    ],
+    description: "Luminous quiet luxury visual system crafted on warm porcelain alabaster fields (#FAF6F0) and soft blush aura gradients, pairing dramatic high-contrast couture serifs with hairline architectural dividers, orbital capsule frames, and disciplined vermilion punctuation.",
+    markdownSpec: null
+  },
+  {
+    slug: "canary-sketchnote",
+    name: "Canary Sketchnote",
+    vibe: "Quad Graph Paper • Canary Yellow Marker • Charcoal Ink Linework • Fluid Script",
+    vibeBadge: "Playful & Pop",
+    colours: ["Cream White", "Yellow"],
+    categories: ["playful"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Caveat",
+      sans: "Comic Neue",
+      mono: "Space Mono"
+    },
+    palette: [
+      { name: "Quad Canvas", hex: "#FBFBFA" },
+      { name: "Paper Surface", hex: "#FFFFFF" },
+      { name: "Canary Marker", hex: "#FFCF33" },
+      { name: "Pastel Wash", hex: "#FEF3C7" },
+      { name: "Charcoal Ink", hex: "#18181B" },
+      { name: "Graphite Body", hex: "#374151" }
+    ],
+    description: "Tactile skeuo-minimal ideas notebook visual system pairing faint quad graph paper fields (#FBFBFA) and clean paper surfaces with vibrant canary yellow highlighter washes (#FFCF33), expressive fluid brush script typography, and hand-drawn charcoal ink etching with crisp offset shadows.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===

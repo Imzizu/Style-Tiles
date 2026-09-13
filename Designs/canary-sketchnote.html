@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canary Sketchnote // TILE</title>
+  <meta name="description" content="Playful skeuo-minimal visual language built on quad graph paper, canary yellow highlighter strokes, charcoal ink linework, and fluid script typography.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Google Fonts: Caveat (Display script), Comic Neue (Friendly sans), Space Mono (Technical meta) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Comic+Neue:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Surfaces & Backgrounds */
+      --bg-canvas:              #fbfbfa;
+      --bg-surface:             #ffffff;
+      --bg-surface-alt:         #f4f4f2;
+      --bg-surface-dark:        #18181b;
+
+      /* Inks & Typography */
+      --ink-primary:            #18181b;
+      --ink-secondary:          #374151;
+      --ink-muted:              #6b7280;
+      --ink-inverted:           #ffffff;
+
+      /* Signature Accents */
+      --accent-primary:         #ffcf33;
+      --accent-primary-hover:   #f5be18;
+      --accent-secondary:       #fef3c7;
+      --accent-tertiary:        #18181b;
+
+      /* Status Tokens */
+      --status-success:         #16a34a;
+      --status-warning:         #d97706;
+      --status-danger:          #dc2626;
+      --status-info:            #2563eb;
+
+      /* Typography */
+      --font-display:           "Caveat", cursive, sans-serif;
+      --font-sans:              "Comic Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono:              "Space Mono", monospace;
+
+      /* Radii & Shadows */
+      --radius-default:         10px;
+      --radius-subtle:          6px;
+      --radius-pill:            9999px;
+
+      --shadow-base:            3px 3px 0px #18181b;
+      --shadow-hover:           5px 5px 0px #18181b;
+      --shadow-active:          1px 1px 0px #18181b;
+
+      --border-core:            2px solid #18181b;
+      --border-hairline:        1px solid #e5e7eb;
+      --divider-style:          1.5px dashed #cbd5e1;
+      --header-height:          68px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-canvas);
+      background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+      background-size: 24px 24px;
+      color: var(--ink-primary);
+      line-height: 1.55;
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    /* =========================================================================
+     * Mandatory Header Bar Component
+     * ========================================================================= */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 12px 24px;
+      background: #ffffff;
+      border-bottom: var(--border-core);
+      box-shadow: 0 2px 0 rgba(24, 24, 27, 0.06);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 8px 14px;
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: #ffffff;
+      box-shadow: 2px 2px 0px #18181b;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .nav-back-link:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px #18181b;
+      background: var(--accent-secondary);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-subtle);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--ink-primary);
+      overflow-wrap: anywhere;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--accent-primary);
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      color: var(--ink-primary);
+      box-shadow: 1.5px 1.5px 0px #18181b;
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: #ffffff;
+      color: var(--ink-primary);
+      box-shadow: 2px 2px 0px #18181b;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn-tile:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px #18181b;
+      background: var(--bg-surface-alt);
+    }
+
+    .btn-tile:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px #18181b;
+    }
+
+    .btn-copy {
+      background: var(--accent-primary);
+      border-color: var(--ink-primary);
+      color: var(--ink-primary);
+    }
+
+    .btn-copy:hover {
+      background: var(--accent-primary-hover);
+    }
+
+    /* =========================================================================
+     * Page Layout & Core Typography
+     * ========================================================================= */
+    .layout-wrapper {
+      width: min(1140px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 40px 0 96px;
+    }
+
+    .section-block {
+      margin-top: 64px;
+      position: relative;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      background: var(--accent-secondary);
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(24, 24, 27, 0.15);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7.5vw, 5rem);
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      overflow-wrap: anywhere;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.6rem);
+      line-height: 1.15;
+      color: var(--ink-primary);
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-family: var(--font-sans);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--ink-primary);
+    }
+
+    /* Highlighter effect matching the screenshot */
+    .highlighter-wrap {
+      position: relative;
+      display: inline-block;
+      z-index: 1;
+    }
+
+    .highlighter-pill {
+      position: relative;
+      display: inline-block;
+      z-index: 1;
+    }
+
+    .highlighter-pill::after {
+      content: "";
+      position: absolute;
+      left: -12px;
+      right: -12px;
+      bottom: 2px;
+      height: 48%;
+      background: var(--accent-primary);
+      border-radius: 9999px;
+      z-index: -1;
+      transform: rotate(-1deg);
+      opacity: 0.95;
+    }
+
+    .hero-banner {
+      position: relative;
+      background: #ffffff;
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      padding: 44px 40px;
+      box-shadow: 5px 5px 0px #18181b;
+      overflow: hidden;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .chip {
+      font-family: var(--font-mono);
+      font-size: 0.725rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      background: var(--bg-canvas);
+      border: 1.5px solid #18181b;
+      border-radius: var(--radius-pill);
+      color: var(--ink-secondary);
+      box-shadow: 1.5px 1.5px 0px #18181b;
+    }
+
+    .chip-accent {
+      background: var(--accent-primary);
+      color: var(--ink-primary);
+    }
+
+    .hero-lead {
+      margin: 22px 0 28px;
+      max-width: 66ch;
+      color: var(--ink-secondary);
+      font-size: 1.15rem;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    /* Floating Hand-Drawn Doodle Arrow & Graphics */
+    .hero-doodle-arrow {
+      position: absolute;
+      bottom: 24px;
+      right: 32px;
+      width: 100px;
+      height: 70px;
+      pointer-events: none;
+    }
+
+    .hero-sketch-trophy {
+      position: absolute;
+      top: 28px;
+      right: 48px;
+      width: 90px;
+      height: 110px;
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    /* =========================================================================
+     * Buttons & Archetypes
+     * ========================================================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 20px;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: var(--radius-subtle);
+      border: var(--border-core);
+      background: #ffffff;
+      color: var(--ink-primary);
+      box-shadow: var(--shadow-base);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+    }
+
+    .btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: var(--shadow-hover);
+      background: var(--bg-surface-alt);
+    }
+
+    .btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: var(--shadow-active);
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      border-color: var(--ink-primary);
+      color: var(--ink-primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-primary-hover);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      box-shadow: none;
+      border-color: transparent;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+
+    .btn-ghost:hover {
+      background: var(--accent-secondary);
+      border-color: var(--ink-primary);
+      box-shadow: 2px 2px 0px #18181b;
+      text-decoration: none;
+    }
+
+    .btn-danger {
+      background: #fee2e2;
+      color: var(--status-danger);
+      border-color: var(--status-danger);
+      box-shadow: 3px 3px 0px var(--status-danger);
+    }
+
+    .btn-danger:hover {
+      background: var(--status-danger);
+      color: #ffffff;
+    }
+
+    .btn-accent {
+      background: var(--accent-secondary);
+      border-color: var(--ink-primary);
+    }
+
+    /* =========================================================================
+     * Color Swatches Section
+     * ========================================================================= */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 14px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      overflow: hidden;
+      background: #ffffff;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      box-shadow: 3px 3px 0px #18181b;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .swatch-item:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0px #18181b;
+    }
+
+    .swatch-item:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px #18181b;
+    }
+
+    .swatch-chip {
+      height: 72px;
+      border-bottom: 1.5px solid #18181b;
+      position: relative;
+    }
+
+    .swatch-meta {
+      padding: 12px 14px;
+      background: #ffffff;
+    }
+
+    .swatch-name {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 2px;
+    }
+
+    .swatch-var, .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      display: block;
+    }
+
+    .swatch-hex {
+      font-weight: 700;
+      color: var(--ink-secondary);
+      margin-top: 2px;
+    }
+
+    /* =========================================================================
+     * Typography Section
+     * ========================================================================= */
+    .type-specimen-card {
+      background: #ffffff;
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      padding: 28px;
+      box-shadow: 4px 4px 0px #18181b;
+    }
+
+    .type-stack { display: grid; gap: 16px; }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px dashed #e2e5e9;
+      min-width: 0;
+    }
+
+    .type-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .text-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      line-height: 1.05;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .text-h1 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      line-height: 1.15;
+      font-weight: 700;
+    }
+
+    .text-h2 {
+      font-family: var(--font-sans);
+      font-size: 1.75rem;
+      line-height: 1.25;
+      font-weight: 700;
+    }
+
+    .text-h3 {
+      font-family: var(--font-sans);
+      font-size: 1.25rem;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .text-body {
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+    }
+
+    .text-meta {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      font-weight: 700;
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 16px;
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      box-shadow: inset 2px 2px 0px rgba(0, 0, 0, 0.06);
+    }
+
+    .live-type-input:focus {
+      outline: none;
+      background: #ffffff;
+      border-color: #18181b;
+      box-shadow: 0 0 0 3px var(--accent-primary);
+    }
+
+    /* =========================================================================
+     * Components Gallery Section
+     * ========================================================================= */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+    }
+
+    .component-card {
+      padding: 24px;
+      background: #ffffff;
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      box-shadow: 4px 4px 0px #18181b;
+      min-width: 0;
+      position: relative;
+    }
+
+    .btn-row, .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .field-label {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--ink-primary);
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 14px;
+      font-size: 16px;
+      font-family: var(--font-sans);
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      box-shadow: 2px 2px 0px rgba(24, 24, 27, 0.1);
+    }
+
+    .text-input:focus {
+      outline: none;
+      background: #ffffff;
+      border-color: var(--ink-primary);
+      box-shadow: 0 0 0 3px var(--accent-primary);
+    }
+
+    /* Custom sketched checkboxes & radios */
+    .custom-check-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .custom-check-label input {
+      accent-color: #18181b;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .toggle {
+      position: relative;
+      width: 50px;
+      height: 28px;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      background: #e5e7eb;
+      cursor: pointer;
+      box-shadow: 2px 2px 0px #18181b;
+      transition: background-color 0.15s ease;
+    }
+
+    .toggle[aria-pressed="true"] {
+      background: var(--accent-primary);
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1.5px solid #18181b;
+      background: #ffffff;
+      box-shadow: 1px 1px 0px #18181b;
+      transition: transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .toggle[aria-pressed="true"]::after {
+      transform: translateX(20px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      font-family: var(--font-mono);
+      font-size: 0.725rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      background: var(--accent-secondary);
+      color: var(--ink-primary);
+      box-shadow: 1.5px 1.5px 0px #18181b;
+    }
+
+    .badge-canary {
+      background: var(--accent-primary);
+    }
+
+    /* =========================================================================
+     * Living Demo Section: Study Desk & Concept Notebook
+     * ========================================================================= */
+    .demo-workbench {
+      background: #ffffff;
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      box-shadow: 6px 6px 0px #18181b;
+      overflow: hidden;
+    }
+
+    .demo-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      background: var(--bg-surface-alt);
+      border-bottom: var(--border-core);
+    }
+
+    .demo-tab-pills {
+      display: flex;
+      gap: 8px;
+    }
+
+    .demo-tab {
+      padding: 6px 14px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      border: var(--border-core);
+      border-radius: 6px 6px 0 0;
+      background: var(--bg-canvas);
+      cursor: pointer;
+    }
+
+    .demo-tab.active {
+      background: #ffffff;
+      border-bottom-color: #ffffff;
+      box-shadow: 0 -2px 0 var(--accent-primary);
+    }
+
+    .demo-grid-body {
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      background-color: var(--bg-canvas);
+      background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.045) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .demo-main-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .demo-side-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .notebook-card {
+      background: #ffffff;
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      padding: 24px;
+      box-shadow: 4px 4px 0px #18181b;
+      position: relative;
+    }
+
+    .notebook-card-tape {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%) rotate(1deg);
+      width: 80px;
+      height: 20px;
+      background: rgba(255, 207, 51, 0.8);
+      border: 1px dashed rgba(24, 24, 27, 0.3);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .study-task-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-subtle);
+      border: 1.5px solid transparent;
+      transition: background-color 0.12s ease;
+      cursor: pointer;
+    }
+
+    .study-task-item:hover {
+      background: var(--accent-secondary);
+      border-color: #18181b;
+    }
+
+    .study-task-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: #18181b;
+      cursor: pointer;
+    }
+
+    .study-task-item.completed span {
+      text-decoration: line-through;
+      color: var(--ink-muted);
+    }
+
+    .sketch-figure-frame {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: #ffffff;
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      box-shadow: 4px 4px 0px #18181b;
+      text-align: center;
+    }
+
+    /* =========================================================================
+     * Spec Drawer & Modal
+     * ========================================================================= */
+    .spec-drawer-card {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      padding: 24px;
+      box-shadow: 6px 6px 0px var(--accent-primary);
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 480px;
+      padding: 18px;
+      background: #0d0e12;
+      color: #e4e4e7;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid #27272a;
+      border-radius: var(--radius-subtle);
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(24, 24, 27, 0.65);
+      backdrop-filter: blur(2px);
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal-content-card {
+      width: min(880px, 100%);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      box-shadow: 8px 8px 0px #18181b;
+      overflow: hidden;
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 20px;
+      background: var(--bg-surface-alt);
+      border-bottom: var(--border-core);
+    }
+
+    .modal-footer {
+      border-bottom: 0;
+      border-top: var(--border-core);
+      justify-content: flex-end;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow: auto;
+      flex: 1;
+      background: #fbfbfa;
+    }
+
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      border: var(--border-core);
+      background: #ffffff;
+      cursor: pointer;
+      border-radius: var(--radius-subtle);
+      box-shadow: 2px 2px 0px #18181b;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--accent-primary);
+    }
+
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3000;
+      padding: 12px 20px;
+      background: #18181b;
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 2px solid var(--accent-primary);
+      border-radius: var(--radius-subtle);
+      box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .layout-wrapper { width: calc(100% - 24px); padding: 24px 0 64px; }
+      .hero-banner { padding: 28px 20px; }
+      .hero-sketch-trophy, .hero-doodle-arrow { display: none; }
+      .type-row { grid-template-columns: 1fr; gap: 6px; }
+      .swatches-grid, .components-grid, .demo-grid-body { grid-template-columns: 1fr; }
+      .hero-actions, .btn-row { flex-direction: column; align-items: stretch; }
+      .btn, .btn-tile { white-space: normal; }
+      .toast-popup { left: 16px; right: 16px; bottom: 16px; }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet. Must remain immediately after this page's <style>. -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- =======================================================================
+   * Header Bar
+   * ======================================================================= -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Canary Sketchnote</span>
+      <span class="design-vibe-tag">Playful &amp; Pop</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+      <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+      <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-canary-sketchnote.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- SLOT 1: Hero Banner -->
+    <section class="hero-banner" id="hero-section">
+      <!-- Decorative etched trophy SVG matching screenshot -->
+      <svg class="hero-sketch-trophy" viewBox="0 0 100 130" fill="none" stroke="#18181b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <!-- Cup Body -->
+        <path d="M 28 20 L 72 20 C 72 50 64 68 50 72 C 36 68 28 50 28 20 Z" fill="#ffffff"/>
+        <!-- Inner Etching Lines -->
+        <path d="M 36 28 C 36 44 42 58 48 64" stroke-width="1.2" stroke-dasharray="1 2"/>
+        <path d="M 64 28 C 64 44 58 58 52 64" stroke-width="1.2" stroke-dasharray="1 2"/>
+        <!-- Left Handle -->
+        <path d="M 28 26 C 14 26 12 42 22 52 C 28 58 32 58 34 54" stroke-width="1.8"/>
+        <!-- Right Handle -->
+        <path d="M 72 26 C 86 26 88 42 78 52 C 72 58 68 58 66 54" stroke-width="1.8"/>
+        <!-- Stem -->
+        <path d="M 46 72 L 46 90 L 54 90 L 54 72" stroke-width="1.8"/>
+        <path d="M 44 90 L 56 90" stroke-width="1.8"/>
+        <!-- Pedestal Base -->
+        <path d="M 34 94 L 66 94 L 70 114 L 30 114 Z" fill="#ffffff" stroke-width="1.8"/>
+        <!-- Plaque on Base -->
+        <rect x="36" y="98" width="28" height="12" stroke-width="1.2"/>
+        <!-- Base Bottom Plate -->
+        <path d="M 26 114 L 74 114 L 74 118 L 26 118 Z" stroke-width="1.8" fill="#18181b"/>
+      </svg>
+
+      <!-- Decorative Hand-drawn Doodle Arrow SVG matching screenshot -->
+      <svg class="hero-doodle-arrow" viewBox="0 0 120 80" fill="none" aria-hidden="true">
+        <path d="M 12 68 C 10 38 45 18 88 28" stroke="#ffcf33" stroke-width="9" stroke-linecap="round"/>
+        <path d="M 68 15 L 94 28 L 74 48" stroke="#ffcf33" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      <p class="section-kicker">Visual Language Showcase</p>
+      <div class="hero-meta">
+        <span class="chip chip-accent">Canary Yellow Marker</span>
+        <span class="chip">Quad Graph Canvas</span>
+        <span class="chip">Charcoal Ink Linework</span>
+        <span class="chip">Fluid Brush Script</span>
+      </div>
+
+      <h1>
+        <span class="highlighter-pill">Canary Sketchnote</span>
+      </h1>
+
+      <p class="hero-lead">
+        A tactile, energetic visual language born on the pages of an idea journal. Crisp quad graph paper forms the field, brought to life with bold sunshine canary highlighter washes, detailed hand-drawn charcoal ink etching, and expressive cursive script display typography.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy Prompt for Agent
+        </button>
+        <a class="btn btn-ghost" href="#demo-section">Explore Living Demo ↓</a>
+      </div>
+    </section>
+
+    <!-- SLOT 2: Palette Matrix -->
+    <section class="section-block" id="palette-section">
+      <p class="section-kicker">01 // Material Palette</p>
+      <h2>Color Roles &amp; Inks</h2>
+      <div class="swatches-grid" id="swatch-grid">
+        <!-- JS fills swatches from DESIGN_PALETTE -->
+      </div>
+    </section>
+
+    <!-- SLOT 3: Typography Specimen -->
+    <section class="section-block" id="typography-section">
+      <p class="section-kicker">02 // Type System</p>
+      <h2>Typography &amp; Pairings</h2>
+      <div class="type-specimen-card">
+        <div class="type-stack">
+          <div class="type-row">
+            <span class="type-label">Display Face</span>
+            <div>
+              <p class="text-display">Caveat Script (700)</p>
+              <p style="font-size:0.9rem; color:var(--ink-muted); margin-top:4px;">Expressive brush script with fluid ascenders, organic rhythm, and handwritten warmth.</p>
+            </div>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Heading H1</span>
+            <p class="text-h1">Fresh Thinking on Quad Paper</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Heading H2</span>
+            <p class="text-h2">Curiosity, Tools, and Achievement</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Heading H3</span>
+            <p class="text-h3">Handmade Sketches, Measured Coordinates</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Body Text</span>
+            <p class="text-body">
+              Educational symbols remind us that learning is a lifelong journey, powered by curiosity, tools, and achievement. Every sketch begins with a pencil line and an open quad page.
+            </p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Mono Meta</span>
+            <p class="text-meta">GRID-SIZE: 24PX // INK-CHARCOAL: #18181B // MARKER: #FFCF33</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Live Tester</span>
+            <div>
+              <input class="live-type-input" id="live-type-tester-input" type="text" value="Type here to test handwritten display script" />
+              <p style="font-size:0.8rem; color:var(--ink-muted); margin-top:6px;">Rendered dynamically in <code>Caveat</code>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 4: Component Archetype Gallery -->
+    <section class="section-block" id="components-section">
+      <p class="section-kicker">03 // Archetypes</p>
+      <h2>Component Library</h2>
+      <div class="components-grid">
+        <!-- Buttons Card -->
+        <article class="component-card">
+          <h3>Tactile Buttons</h3>
+          <p style="font-size:0.85rem; color:var(--ink-secondary); margin-bottom:14px;">Hard 3px ink drop shadows with responsive tap press states.</p>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="button">Primary Marker</button>
+            <button class="btn" type="button">Paper White</button>
+            <button class="btn btn-accent" type="button">Pastel Wash</button>
+            <button class="btn btn-ghost" type="button">Ghost Underline</button>
+            <button class="btn btn-danger" type="button">Correction Red</button>
+          </div>
+        </article>
+
+        <!-- Input Wells Card -->
+        <article class="component-card">
+          <h3>Input Fields &amp; Wells</h3>
+          <label class="field-label" for="demo-input">Field Label</label>
+          <input class="text-input" id="demo-input" type="text" placeholder="Enter notes or sketch tags..." autocomplete="off" />
+          <div style="margin-top:14px;">
+            <label class="field-label" for="demo-input-focused">Active Focus State</label>
+            <input class="text-input" id="demo-input-focused" type="text" value="Canary highlighter halo on focus" style="box-shadow: 0 0 0 3px var(--accent-primary); border-color:#18181b;" />
+          </div>
+        </article>
+
+        <!-- Selectors & Switches Card -->
+        <article class="component-card">
+          <h3>Interactive Controls</h3>
+          <div style="display:flex; flex-direction:column; gap:12px; margin-top:10px;">
+            <label class="custom-check-label">
+              <input type="checkbox" checked />
+              <span>Ruled margins enabled</span>
+            </label>
+            <label class="custom-check-label">
+              <input type="checkbox" />
+              <span>Graph paper visible</span>
+            </label>
+            <div style="display:flex; gap:14px; margin-top:4px;">
+              <label class="custom-check-label"><input type="radio" name="sketch-mode" checked /> Pencil 2B</label>
+              <label class="custom-check-label"><input type="radio" name="sketch-mode" /> Ink Pen 0.5</label>
+            </div>
+            <div class="control-row" style="margin-top:8px;">
+              <button class="toggle" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle marker highlight"></button>
+              <span class="badge badge-canary">Highlighter Active</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Material Card -->
+        <article class="component-card">
+          <h3>Framed Card Archetype</h3>
+          <p class="text-body" style="font-size:0.95rem; margin-bottom:14px;">
+            Constructed with a 2px charcoal perimeter and 4px hard black offset shadow. Elevated above the math grid without blurry diffusion.
+          </p>
+          <div style="display:flex; gap:8px;">
+            <span class="badge">#QUAD-24</span>
+            <span class="badge badge-canary">★ VERIFIED</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SLOT 5: Living Micro-Experience Demo -->
+    <section class="section-block" id="demo-section">
+      <p class="section-kicker">04 // Living Micro-Experience</p>
+      <h2>Study Desk &amp; Ideation Workbench</h2>
+      
+      <div class="demo-workbench">
+        <div class="demo-top-bar">
+          <div class="demo-tab-pills">
+            <span class="demo-tab active">Lesson 04 // Conclusion</span>
+            <span class="demo-tab">Study Log</span>
+            <span class="demo-tab">Reference Etchings</span>
+          </div>
+          <span class="badge badge-canary">Semester Notes</span>
+        </div>
+
+        <div class="demo-grid-body">
+          <!-- Main Column: Lesson Summary with Hand-Drawn Elements -->
+          <div class="demo-main-col">
+            <div class="notebook-card">
+              <div class="notebook-card-tape"></div>
+              
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+                <span class="section-kicker" style="margin:0;">Core Reflection</span>
+                <span style="font-family:var(--font-mono); font-size:0.75rem; color:var(--ink-muted);">ENTRY #108</span>
+              </div>
+
+              <!-- Main Conclusion Heading with Canary Highlight -->
+              <h2 style="font-family:var(--font-display); font-size:3.2rem; line-height:1; margin-bottom:12px;">
+                <span class="highlighter-pill">Conclusion</span>
+              </h2>
+
+              <p style="font-size:1.15rem; color:var(--ink-secondary); line-height:1.6; margin-bottom:20px;">
+                Educational symbols remind us that learning is a lifelong journey, powered by curiosity, tools, and achievement.
+              </p>
+
+              <!-- Interactive Checklist -->
+              <div style="border-top:1.5px dashed #cbd5e1; padding-top:16px;">
+                <p style="font-family:var(--font-mono); font-size:0.75rem; font-weight:700; text-transform:uppercase; color:var(--ink-muted); margin-bottom:10px;">
+                  Learning Milestone Checklist
+                </p>
+                <div id="study-checklist" style="display:flex; flex-direction:column; gap:8px;">
+                  <label class="study-task-item completed">
+                    <input type="checkbox" checked onchange="toggleTask(this)" />
+                    <span>Cross-hatch ink study on classical symbols</span>
+                  </label>
+                  <label class="study-task-item completed">
+                    <input type="checkbox" checked onchange="toggleTask(this)" />
+                    <span>Calibrate canary yellow highlighter opacity</span>
+                  </label>
+                  <label class="study-task-item">
+                    <input type="checkbox" onchange="toggleTask(this)" />
+                    <span>Publish transferable visual system to style catalog</span>
+                  </label>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:12px; margin-top:20px; align-items:center;">
+                <button class="btn btn-primary" type="button" onclick="triggerToast('✓ Concept card saved to journal')">
+                  Pin to Journal
+                </button>
+                <button class="btn btn-ghost" type="button" onclick="triggerToast('✓ Ink notes exported')">
+                  Export Notes
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Side Column: Sketch Art & Tool Notes -->
+          <div class="demo-side-col">
+            <!-- Sketch Illustration Box: Open Notebook & Stack of Books matching screenshot -->
+            <div class="sketch-figure-frame">
+              <svg width="220" height="150" viewBox="0 0 240 160" fill="none" stroke="#18181b" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Stacked Books on Left -->
+                <!-- Top Book -->
+                <path d="M 30 70 L 85 45 L 125 65 L 70 90 Z" fill="#ffffff" stroke-width="1.8"/>
+                <path d="M 30 70 L 30 78 L 70 98 L 70 90 Z" fill="#ffffff" stroke-width="1.8"/>
+                <path d="M 70 98 L 125 73 L 125 65" stroke-width="1.8"/>
+                <!-- Page edges shading lines -->
+                <path d="M 72 92 L 122 69" stroke-width="1" stroke-dasharray="2 2"/>
+                <path d="M 72 95 L 122 72" stroke-width="1" stroke-dasharray="2 2"/>
+                
+                <!-- Bottom Book -->
+                <path d="M 28 85 L 83 60 L 123 80 L 68 105 Z" fill="#ffffff" stroke-width="1.8"/>
+                <path d="M 28 85 L 28 95 L 68 115 L 68 105 Z" fill="#ffffff" stroke-width="1.8"/>
+                <path d="M 68 115 L 123 90 L 123 80" stroke-width="1.8"/>
+                <path d="M 70 108 L 120 85" stroke-width="1" stroke-dasharray="2 2"/>
+                <path d="M 70 112 L 120 88" stroke-width="1" stroke-dasharray="2 2"/>
+
+                <!-- Open Book Spread on Right -->
+                <path d="M 120 135 C 135 125 160 125 175 130 C 190 125 215 125 230 135 L 225 90 C 210 80 188 80 175 88 C 162 80 140 80 125 90 Z" fill="#ffffff" stroke-width="1.8"/>
+                <!-- Spine Crease -->
+                <path d="M 175 88 L 175 130" stroke-width="1.8"/>
+                <!-- Ruled text lines on left page -->
+                <path d="M 134 98 C 145 92 158 92 166 96" stroke-width="1.2"/>
+                <path d="M 134 105 C 145 99 158 99 166 103" stroke-width="1.2"/>
+                <path d="M 134 112 C 145 106 158 106 166 110" stroke-width="1.2"/>
+                <path d="M 134 119 C 145 113 158 113 166 117" stroke-width="1.2"/>
+                <!-- Ruled text lines on right page -->
+                <path d="M 184 96 C 192 92 205 92 216 98" stroke-width="1.2"/>
+                <path d="M 184 103 C 192 99 205 99 216 105" stroke-width="1.2"/>
+                <path d="M 184 110 C 192 106 205 106 216 112" stroke-width="1.2"/>
+                <path d="M 184 117 C 192 113 205 113 216 119" stroke-width="1.2"/>
+
+                <!-- Canary Highlighter Underline / Swirl -->
+                <path d="M 20 145 C 50 140 90 148 115 142" stroke="#ffcf33" stroke-width="6" stroke-linecap="round"/>
+              </svg>
+              <p style="font-family:var(--font-mono); font-size:0.75rem; font-weight:700; color:var(--ink-secondary); margin-top:8px;">
+                Hand-Drawn Vector Plates
+              </p>
+              <p style="font-size:0.8rem; color:var(--ink-muted);">Monoline ink etching with cross-hatch shading</p>
+            </div>
+
+            <!-- Sticky Note Card -->
+            <div class="notebook-card" style="background:var(--accent-secondary); border-color:#18181b;">
+              <h3 style="font-family:var(--font-display); font-size:1.6rem; margin-bottom:6px;">
+                💡 Scholar’s Rule
+              </h3>
+              <p style="font-size:0.95rem; color:var(--ink-secondary); line-height:1.5;">
+                Keep the graph hairline subtle so the high-vis canary highlighter pops forward with natural immediacy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 6: Spec Drawer -->
+    <section class="section-block spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-head">
+        <h2 style="margin:0; color:inherit; font-family:var(--font-display); font-size:2.2rem;">
+          Style Tile Specification
+        </h2>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">
+          Copy Markdown Spec
+        </button>
+      </div>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+    </section>
+  </main>
+
+  <!-- Spec Modal Overlay -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title" style="font-family:var(--font-mono); font-size:0.9rem;">
+          Style Tile Specification // Canary Sketchnote
+        </strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">Copied</div>
+
+  <!--
+    SOURCE OF TRUTH for Copy / Download / Preview.
+    Section 0 is verbatim per Agent/agent.md §4.
+  -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Canary Sketchnote
+  Construction: graph paper canvas • canary highlighter accents • charcoal ink linework • fluid script display
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A warm, tactile skeuo-minimal visual language evoking an architect's or scholar's ideas notebook. Clean ivory paper fields are patterned with a subtle geometric quad grid, punctured by vibrant canary yellow highlighter markers, organic fluid script headlines, and confident charcoal ink contours with crisp offset drop shadows. Surfaces feel grounded, immediate, and human-crafted rather than synthetic.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #fbfbfa; /* Graph paper quad canvas */
+  --bg-surface:             #ffffff; /* Clean paper card surface */
+  --bg-surface-alt:         #f4f4f2; /* Secondary inset panel or draft well */
+  --bg-surface-dark:        #18181b; /* Charcoal ink inverted block */
+
+  /* Inks & Typography */
+  --ink-primary:            #18181b; /* Deep charcoal sketch ink */
+  --ink-secondary:          #374151; /* Soft graphite body ink */
+  --ink-muted:              #6b7280; /* Faint margin notes and grid captions */
+  --ink-inverted:           #ffffff; /* Inverted contrast text */
+
+  /* Signature Accents */
+  --accent-primary:         #ffcf33; /* Canary yellow highlighter accent */
+  --accent-primary-hover:   #f5be18; /* Saturated marker hover tone */
+  --accent-secondary:       #fef3c7; /* Soft pastel highlighter tint wash */
+  --accent-tertiary:        #18181b; /* Crisp charcoal sketch contrast */
+
+  /* Status Tokens */
+  --status-success:         #16a34a;
+  --status-warning:         #d97706;
+  --status-danger:          #dc2626;
+  --status-info:            #2563eb;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Caveat", cursive, sans-serif;
+--font-sans:    "Comic Neue", -apple-system, BlinkMacSystemFont, sans-serif;
+--font-mono:    "Space Mono", monospace;
+
+/* Type Scale */
+--text-display: clamp(2.5rem, 6vw, 3.75rem) / 1.05 var(--font-display); /* Letter-spacing: -0.01em | Weight: 700 */
+--text-h1:      2.5rem   / 1.15  var(--font-display); /* Letter-spacing: 0 | Weight: 700 */
+--text-h2:      1.75rem  / 1.25  var(--font-sans);    /* Letter-spacing: -0.01em | Weight: 700 */
+--text-h3:      1.25rem  / 1.35  var(--font-sans);    /* Letter-spacing: 0 | Weight: 700 */
+--text-body:    1.0rem   / 1.60  var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
+--text-body-sm: 0.875rem / 1.50  var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
+--text-meta:    0.75rem  / 1.40  var(--font-mono);    /* Letter-spacing: 0.08em | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 10px;
+--radius-subtle:  6px;
+--radius-pill:    9999px;
+
+/* Elevation & Shadows */
+--shadow-base:    3px 3px 0px #18181b;
+--shadow-hover:   5px 5px 0px #18181b;
+--shadow-active:  1px 1px 0px #18181b;
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        2px solid #18181b;
+--border-hairline:    1px solid #e5e7eb;
+--divider-style:      1.5px dashed #cbd5e1;
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Thick 2px charcoal borders with solid fills (canary yellow primary, paper white secondary, charcoal dark, or ghost). Hard offset drop shadows (3px 3px 0px #18181b) that compress to 1px on active tap. Generous 6px to 9999px rounded geometry. Use host's existing labels.
+- **Cards**: Clean paper white surfaces floating over the faint quad grid. Framed by 2px solid charcoal borders with 3px to 4px hard black drop shadow offsets. Padded with 20px to 28px breathing room.
+- **Inputs**: Crisp white wells with 2px charcoal borders and 6px rounded corners. Focused states feature a bright canary yellow outline or subtle yellow highlighter glow. Minimum 16px font size.
+- **Navigation**: Persistent bars with 2px bottom border or floating capsule pills. Interactive items feature canary marker highlights or pill backgrounds on hover. Use host's existing items.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No blurry diffuse gaussian drop shadows; shadows must remain hard, crisp ink offsets.
+- No glossy neon gradients, glassmorphism, or hyper-futuristic cyber cyan/magenta glow.
+- No sterile corporate gray-on-gray lifeless card templates without the graph paper or marker contrast.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <script>
+    const DESIGN_SLUG = "canary-sketchnote";
+
+    const DESIGN_PALETTE = [
+      { name: "Quad Canvas", hex: "#fbfbfa", cssVar: "--bg-canvas" },
+      { name: "Paper Surface", hex: "#ffffff", cssVar: "--bg-surface" },
+      { name: "Paper Inset", hex: "#f4f4f2", cssVar: "--bg-surface-alt" },
+      { name: "Charcoal Dark", hex: "#18181b", cssVar: "--bg-surface-dark" },
+      { name: "Charcoal Ink", hex: "#18181b", cssVar: "--ink-primary" },
+      { name: "Graphite Body", hex: "#374151", cssVar: "--ink-secondary" },
+      { name: "Muted Margin", hex: "#6b7280", cssVar: "--ink-muted" },
+      { name: "Canary Marker", hex: "#ffcf33", cssVar: "--accent-primary" },
+      { name: "Canary Hover", hex: "#f5be18", cssVar: "--accent-primary-hover" },
+      { name: "Pastel Wash", hex: "#fef3c7", cssVar: "--accent-secondary" },
+      { name: "Success Green", hex: "#16a34a", cssVar: "--status-success" },
+      { name: "Warning Amber", hex: "#d97706", cssVar: "--status-warning" },
+      { name: "Danger Red", hex: "#dc2626", cssVar: "--status-danger" },
+      { name: "Info Blue", hex: "#2563eb", cssVar: "--status-info" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex;
+        btn.innerHTML =
+          '<span class="swatch-chip" style="background:' + swatch.hex + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + "</span>" +
+            '<span class="swatch-var">' + swatch.cssVar + "</span> " +
+            '<span class="swatch-hex">' + swatch.hex + "</span>" +
+          "</span>";
+        btn.addEventListener("click", function () { copyHex(swatch.hex, swatch.name); });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () { toast.style.display = "none"; }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(function () { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+      });
+    }
+
+    function toggleTask(checkbox) {
+      const item = checkbox.closest(".study-task-item");
+      if (item) {
+        if (checkbox.checked) {
+          item.classList.add("completed");
+        } else {
+          item.classList.remove("completed");
+        }
+      }
+    }
+  </script>
+</body>
+</html>
