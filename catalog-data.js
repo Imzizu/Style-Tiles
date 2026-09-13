@@ -2273,6 +2273,55 @@ const STYLE_TILES_DATA = [
     ],
     description: "High-energy light bento system built on stark white surfaces, soft concrete slabs, electric lime accents (#CEF557), generous 28px squircle containers, and ubiquitous 9999px pill controls.",
     markdownSpec: null
+  },
+  {
+    slug: "matcha-bento-grotesk",
+    name: "Matcha Bento Grotesk",
+    vibe: "Matcha Cream Canvas • Deep Evergreen Outlines • Saffron Squircle Bento • Wide Bold Grotesk",
+    vibeBadge: "Playful & Pop",
+    colours: ["Green", "Yellow"],
+    categories: ["playful"],
+    theme: "Light",
+    hasPage: true,
+    fonts: {
+      display: "Outfit",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Matcha Canvas", hex: "#EAF0E4" },
+      { name: "Evergreen Ink", hex: "#0D3324" },
+      { name: "Buttercup Pop", hex: "#FDE068" },
+      { name: "Celery Well", hex: "#DCE5D3" },
+      { name: "Blossom Pink", hex: "#F3A8BA" },
+      { name: "Pine Slate", hex: "#2A4A3B" }
+    ],
+    description: "High-contrast playful light bento system pairing pale matcha cream fields (#EAF0E4) and bold 2px evergreen linework (#0D3324) with buttercup yellow squircle pop modules (#FDE068), notched bento geometry, and punchy wide grotesque typography.",
+  },
+  {
+    slug: "obsidian-citron-bento",
+    name: "Obsidian Citron Bento",
+    vibe: "Smoky Obsidian Slabs • Electric Citron Pop • Ultraviolet Satin • Squircle Bento",
+    vibeBadge: "Playful & Pop",
+    colours: ["Gray", "Yellow", "Purple"],
+    categories: ["playful"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Unbounded",
+      sans: "Plus Jakarta Sans",
+      mono: "JetBrains Mono"
+    },
+    palette: [
+      { name: "Obsidian Canvas", hex: "#090A0D" },
+      { name: "Smoky Charcoal", hex: "#14161A" },
+      { name: "Electric Citron", hex: "#D8FF3E" },
+      { name: "Ultraviolet Satin", hex: "#9D7CF4" },
+      { name: "Brushed Platinum", hex: "#E2E5EB" },
+      { name: "Obsidian Ink", hex: "#0C0D10" }
+    ],
+    description: "High-contrast dark bento system built on deep obsidian voids (#090A0D), smoky charcoal containers, high-vis electric citron pop modules (#D8FF3E), ultraviolet satin accents (#9D7CF4), generous 32px squircle geometry, and tactile pill controls.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===

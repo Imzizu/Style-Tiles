@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Obsidian Citron Bento // TILE</title>
+  <meta name="description" content="High-contrast dark bento system pairing deep obsidian voids and smoky charcoal containers with electric citron pop modules, ultraviolet satin accents, 32px squircle geometry, and ubiquitous pill controls.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Google Fonts: Unbounded (Display), Plus Jakarta Sans (Body), JetBrains Mono (Meta) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Unbounded:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------------------------------------------------------
+     * Obsidian Citron Bento — Design Tokens & Visual Architecture
+     * ---------------------------------------------------------------------- */
+    :root {
+      /* Surfaces & Backgrounds */
+      --bg-canvas:              #090a0d; /* Primary deep obsidian canvas void */
+      --bg-surface:             #14161a; /* Smoky charcoal bento surface with specular sheen */
+      --bg-surface-alt:         #1b1d24; /* Secondary elevated well / card container */
+      --bg-surface-silver:      #e2e5eb; /* Brushed metallic platinum modular surface */
+      --bg-surface-dark:        #0d0e12; /* Deepest recessed well */
+
+      /* Inks & Typography */
+      --ink-primary:            #ffffff; /* Stark white reading text on dark */
+      --ink-secondary:          #9da2af; /* Smoky cool grey secondary copy */
+      --ink-muted:              #636875; /* Muted captions, inactive borders */
+      --ink-inverted:           #0c0d10; /* Pitch carbon ink on citron and silver surfaces */
+      --ink-purple-dark:        #1d0e3a; /* Deep purple ink for ultraviolet satin cards */
+
+      /* Signature Accents */
+      --accent-primary:         #d8ff3e; /* Electric Citron / Acid Lime primary CTA & pop slab */
+      --accent-primary-hover:   #c6f028; /* Interactive hover citron */
+      --accent-secondary:       #9d7cf4; /* Ultraviolet Satin / Lilac modular slab */
+      --accent-secondary-hover: #8a64f2; /* Interactive ultraviolet hover */
+      --accent-silver:          #e5e8ee; /* Pearlescent Platinum accent tone */
+      --accent-tertiary:        #262832; /* Charcoal pill tabs & border rings */
+
+      /* Status Tokens */
+      --status-success:         #d8ff3e;
+      --status-warning:         #fbbf24;
+      --status-danger:          #ff5c5c;
+      --status-info:            #9d7cf4;
+
+      /* Typography */
+      --font-display:           'Unbounded', 'Syne', -apple-system, sans-serif;
+      --font-sans:              'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono:              'JetBrains Mono', ui-monospace, monospace;
+
+      /* Geometry & Radii */
+      --radius-card:            32px;
+      --radius-sub:             20px;
+      --radius-default:         16px;
+      --radius-subtle:          8px;
+      --radius-pill:            9999px;
+
+      /* Elevation & Shadows */
+      --shadow-base:            0 16px 36px rgba(0, 0, 0, 0.45);
+      --shadow-hover:           0 20px 48px rgba(0, 0, 0, 0.65);
+      --shadow-citron:          0 8px 24px rgba(216, 255, 62, 0.28);
+      --shadow-purple:          0 8px 24px rgba(157, 124, 244, 0.28);
+      --shadow-inset-light:     inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+      /* Borders & Dividers */
+      --border-core:            1px solid rgba(255, 255, 255, 0.08);
+      --border-hairline:        1px solid rgba(255, 255, 255, 0.05);
+      --border-pill:            1px solid rgba(255, 255, 255, 0.12);
+      --header-height:          68px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% -10%, #1a1c24 0%, var(--bg-canvas) 60%);
+      color: var(--ink-primary);
+      line-height: 1.55;
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    /* -------------------------------------------------------------------------
+     * Mandatory Header Bar Component
+     * ---------------------------------------------------------------------- */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 12px 24px;
+      background: rgba(13, 14, 18, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: var(--border-core);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 8px 16px;
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      background: rgba(255, 255, 255, 0.04);
+      border: var(--border-pill);
+      border-radius: var(--radius-pill);
+      transition: all 0.2s ease;
+    }
+
+    .nav-back-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateX(-2px);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      background: var(--bg-surface-alt);
+      color: var(--accent-primary);
+      border: 1px solid rgba(216, 255, 62, 0.25);
+      border-radius: var(--radius-pill);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      overflow-wrap: anywhere;
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      background: rgba(157, 124, 244, 0.12);
+      border: 1px solid rgba(157, 124, 244, 0.3);
+      border-radius: var(--radius-pill);
+      color: var(--accent-secondary);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border-radius: var(--radius-pill);
+      border: var(--border-pill);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--ink-primary);
+      transition: all 0.2s ease;
+    }
+
+    .btn-tile:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .btn-tile svg { flex-shrink: 0; }
+
+    .btn-copy {
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      border-color: var(--accent-primary);
+      box-shadow: var(--shadow-citron);
+    }
+
+    .btn-copy:hover {
+      background: var(--accent-primary-hover);
+      border-color: var(--accent-primary-hover);
+      transform: translateY(-1px);
+    }
+
+    /* -------------------------------------------------------------------------
+     * Layout Architecture
+     * ---------------------------------------------------------------------- */
+    .layout-wrapper {
+      width: min(1200px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 40px 0 100px;
+    }
+
+    .section-block {
+      margin-top: 72px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      margin-bottom: 12px;
+    }
+
+    .section-kicker::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      box-shadow: 0 0 10px var(--accent-primary);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      overflow-wrap: anywhere;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 1: Hero Showcase
+     * ---------------------------------------------------------------------- */
+    .hero-banner {
+      position: relative;
+      padding: 48px 40px;
+      background: linear-gradient(135deg, #1b1d24 0%, #121418 60%, #0c0d10 100%);
+      border: var(--border-core);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-base), var(--shadow-inset-light);
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      top: -120px;
+      right: -100px;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(216, 255, 62, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-banner::after {
+      content: "";
+      position: absolute;
+      bottom: -150px;
+      left: 10%;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(157, 124, 244, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: var(--border-pill);
+      border-radius: var(--radius-pill);
+      color: var(--ink-secondary);
+    }
+
+    .chip-accent {
+      background: rgba(216, 255, 62, 0.1);
+      border-color: rgba(216, 255, 62, 0.35);
+      color: var(--accent-primary);
+    }
+
+    .hero-lead {
+      max-width: 68ch;
+      color: var(--ink-secondary);
+      font-size: 1.15rem;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    /* -------------------------------------------------------------------------
+     * Interactive Buttons & Badges
+     * ---------------------------------------------------------------------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 10px 24px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: var(--radius-pill);
+      border: var(--border-pill);
+      background: var(--bg-surface-alt);
+      color: var(--ink-primary);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      border-color: var(--accent-primary);
+      box-shadow: var(--shadow-citron);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-primary-hover);
+      border-color: var(--accent-primary-hover);
+      box-shadow: 0 12px 30px rgba(216, 255, 62, 0.38);
+    }
+
+    .btn-purple {
+      background: var(--accent-secondary);
+      color: var(--ink-purple-dark);
+      border-color: var(--accent-secondary);
+      box-shadow: var(--shadow-purple);
+    }
+
+    .btn-purple:hover {
+      background: var(--accent-secondary-hover);
+      box-shadow: 0 12px 30px rgba(157, 124, 244, 0.38);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: var(--border-pill);
+      color: var(--ink-primary);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-danger {
+      background: rgba(255, 92, 92, 0.15);
+      border-color: rgba(255, 92, 92, 0.35);
+      color: #ff7575;
+    }
+
+    .btn-danger:hover {
+      background: var(--status-danger);
+      color: #fff;
+    }
+
+    .btn-accent {
+      background: var(--bg-surface-silver);
+      color: var(--ink-inverted);
+      border-color: var(--bg-surface-silver);
+    }
+
+    .btn-accent:hover {
+      background: #ffffff;
+    }
+
+    .btn-circle {
+      width: 44px;
+      height: 44px;
+      min-height: 44px;
+      padding: 0;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 2: Color Palette Matrix
+     * ---------------------------------------------------------------------- */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      border: var(--border-core);
+      border-radius: var(--radius-sub);
+      overflow: hidden;
+      background: var(--bg-surface);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      box-shadow: var(--shadow-inset-light);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .swatch-item:hover {
+      border-color: rgba(255, 255, 255, 0.22);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .swatch-chip {
+      height: 86px;
+      width: 100%;
+      position: relative;
+    }
+
+    .swatch-meta {
+      padding: 14px 16px;
+      background: var(--bg-surface);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .swatch-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-secondary);
+    }
+
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 3: Typography System
+     * ---------------------------------------------------------------------- */
+    .type-specimen-card {
+      background: var(--bg-surface);
+      border: var(--border-core);
+      border-radius: var(--radius-card);
+      padding: 36px;
+      box-shadow: var(--shadow-inset-light);
+    }
+
+    .type-stack { display: grid; gap: 24px; }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      align-items: baseline;
+      padding: 16px 0;
+      border-bottom: var(--border-hairline);
+      min-width: 0;
+    }
+
+    .type-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .text-display {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.25rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .text-h1 {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .text-h2 {
+      font-family: var(--font-sans);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .text-h3 {
+      font-family: var(--font-sans);
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .text-body {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+    }
+
+    .text-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+    }
+
+    .live-type-box {
+      margin-top: 16px;
+      padding: 20px;
+      background: var(--bg-surface-alt);
+      border-radius: var(--radius-sub);
+      border: var(--border-core);
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 18px;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      border: var(--border-pill);
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface-dark);
+      color: var(--ink-primary);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .live-type-input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 16px rgba(216, 255, 62, 0.25);
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 4: Component Archetypes
+     * ---------------------------------------------------------------------- */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .component-card {
+      padding: 28px;
+      background: var(--bg-surface);
+      border: var(--border-core);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-inset-light);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .btn-row, .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      margin-bottom: 8px;
+    }
+
+    .text-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 18px;
+      font-size: 16px;
+      border: var(--border-pill);
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface-dark);
+      color: var(--ink-primary);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .text-input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 16px rgba(216, 255, 62, 0.2);
+    }
+
+    .toggle {
+      position: relative;
+      width: 52px;
+      height: 28px;
+      border: 0;
+      border-radius: var(--radius-pill);
+      background: var(--accent-tertiary);
+      cursor: pointer;
+      transition: background 0.25s ease;
+    }
+
+    .toggle[aria-pressed="true"] {
+      background: var(--accent-primary);
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #0c0d10;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toggle[aria-pressed="true"]::after {
+      transform: translateX(24px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: var(--border-pill);
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface-alt);
+      color: var(--ink-primary);
+    }
+
+    .badge-citron {
+      background: rgba(216, 255, 62, 0.15);
+      border-color: rgba(216, 255, 62, 0.4);
+      color: var(--accent-primary);
+    }
+
+    .badge-purple {
+      background: rgba(157, 124, 244, 0.15);
+      border-color: rgba(157, 124, 244, 0.4);
+      color: var(--accent-secondary);
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 5: Living Micro-Experience — Faithful Bento System
+     * ---------------------------------------------------------------------- */
+    .bento-showcase {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .bento-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 14px 10px 20px;
+      background: #14161a;
+      border: var(--border-pill);
+      border-radius: var(--radius-pill);
+      box-shadow: var(--shadow-inset-light);
+    }
+
+    .bento-nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bento-tab {
+      padding: 8px 18px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      color: var(--ink-secondary);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .bento-tab:hover {
+      color: var(--ink-primary);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .bento-tab.active {
+      background: var(--bg-surface-silver);
+      color: var(--ink-inverted);
+      border-color: var(--bg-surface-silver);
+    }
+
+    .bento-grid-main {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 20px;
+    }
+
+    .bento-card-hero {
+      position: relative;
+      background: linear-gradient(135deg, #1f2128 0%, #15161b 50%, #0f1013 100%);
+      border: var(--border-core);
+      border-radius: var(--radius-card);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 400px;
+      box-shadow: var(--shadow-base), var(--shadow-inset-light);
+      overflow: hidden;
+    }
+
+    .bento-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: #ffffff;
+      max-width: 14ch;
+    }
+
+    .inline-coin-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      vertical-align: middle;
+      margin: 0 4px;
+    }
+
+    .coin-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+
+    .coin-citron {
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      box-shadow: 0 0 14px rgba(216, 255, 62, 0.4);
+    }
+
+    .coin-purple {
+      background: var(--accent-secondary);
+      color: var(--ink-purple-dark);
+      box-shadow: 0 0 14px rgba(157, 124, 244, 0.4);
+    }
+
+    .doodle-arrow-svg {
+      position: absolute;
+      top: 60px;
+      right: 60px;
+      width: 120px;
+      height: 120px;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .bento-hero-footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .avatar-stack-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar-stack {
+      display: flex;
+      align-items: center;
+    }
+
+    .avatar-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 3px solid #15161b;
+      margin-left: -12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #ffffff;
+      background: #2a2c36;
+      overflow: hidden;
+    }
+
+    .avatar-circle:first-child { margin-left: 0; }
+
+    .avatar-label-box strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 900;
+      line-height: 1;
+      color: #ffffff;
+    }
+
+    .avatar-label-box span {
+      font-size: 0.8rem;
+      color: var(--ink-secondary);
+    }
+
+    /* Prism Right Card */
+    .bento-card-prism {
+      background: linear-gradient(145deg, #f2f4f8 0%, #d8dce4 50%, #c4c8d2 100%);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+      box-shadow: var(--shadow-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .prism-svg-wrap {
+      width: 100%;
+      max-width: 220px;
+      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.25));
+      transition: transform 0.4s ease;
+    }
+
+    .bento-card-prism:hover .prism-svg-wrap {
+      transform: scale(1.04) rotate(1deg);
+    }
+
+    /* Bottom Row Cards */
+    .bento-grid-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr 1fr;
+      gap: 20px;
+    }
+
+    /* Bottom Card 1: Platinum Silver */
+    .bento-card-silver {
+      background: linear-gradient(145deg, #eaedf2 0%, #d5d9e2 100%);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      color: var(--ink-inverted);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 320px;
+      position: relative;
+      box-shadow: var(--shadow-base);
+    }
+
+    .silver-header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .silver-big-stat {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .silver-stat-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #4b5260;
+      margin-top: 4px;
+    }
+
+    .qr-badge-svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    .floating-frosted-pill {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-sub);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+      margin-top: 24px;
+    }
+
+    .frosted-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #d0d5e0;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #1f222a;
+    }
+
+    .frosted-text {
+      font-size: 0.82rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: #14161a;
+    }
+
+    /* Bottom Card 2: Electric Citron Slab */
+    .bento-card-citron {
+      background: var(--accent-primary);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      color: var(--ink-inverted);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 320px;
+      box-shadow: var(--shadow-citron);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .citron-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      max-width: 14ch;
+    }
+
+    .citron-chart-svg {
+      width: 100%;
+      height: 60px;
+      margin: 16px 0;
+      opacity: 0.85;
+    }
+
+    .citron-stats-row {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 16px;
+    }
+
+    .citron-metric-val {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .citron-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pill-mini-btn {
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      border-radius: var(--radius-pill);
+      border: 0;
+      background: rgba(0, 0, 0, 0.08);
+      color: #0c0d10;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .pill-mini-btn:hover {
+      background: rgba(0, 0, 0, 0.16);
+      transform: translateY(-1px);
+    }
+
+    .circle-dark-arrow {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #0c0d10;
+      color: var(--accent-primary);
+      border: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      cursor: pointer;
+      margin-left: auto;
+      transition: all 0.2s ease;
+    }
+
+    .circle-dark-arrow:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Bottom Card 3: Ultraviolet Satin */
+    .bento-card-purple {
+      background: linear-gradient(135deg, #a788fb 0%, #8e65f7 50%, #7647eb 100%);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      color: var(--ink-purple-dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 320px;
+      box-shadow: var(--shadow-purple);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bento-card-purple::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      right: -30%;
+      width: 160%;
+      height: 160%;
+      background: radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.25) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .purple-lead-text {
+      font-size: 0.92rem;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #210e42;
+    }
+
+    .purple-footer-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .purple-stat-num {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .purple-stat-sub {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #381a6d;
+      margin-top: 4px;
+      max-width: 22ch;
+    }
+
+    .asterisk-svg {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      fill: #1d0e3a;
+    }
+
+    /* -------------------------------------------------------------------------
+     * SLOT 6: Spec Drawer Card
+     * ---------------------------------------------------------------------- */
+    .spec-drawer-card {
+      background: #111317;
+      color: var(--ink-primary);
+      border: var(--border-core);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      box-shadow: var(--shadow-base), var(--shadow-inset-light);
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 480px;
+      padding: 24px;
+      background: #08090b;
+      color: #d1d5db;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border-radius: var(--radius-default);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* -------------------------------------------------------------------------
+     * Modal & Toast Overlays
+     * ---------------------------------------------------------------------- */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(9, 10, 13, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal-content-card {
+      width: min(920px, 100%);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: #13151a;
+      border: var(--border-core);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 24px;
+      border-bottom: var(--border-hairline);
+    }
+
+    .modal-footer {
+      border-bottom: 0;
+      border-top: var(--border-hairline);
+      justify-content: flex-end;
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow: auto;
+      flex: 1;
+    }
+
+    .modal-close-btn {
+      width: 40px;
+      height: 40px;
+      border: var(--border-pill);
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      cursor: pointer;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: rotate(90deg);
+    }
+
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 3000;
+      padding: 14px 22px;
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), var(--shadow-citron);
+    }
+
+    /* -------------------------------------------------------------------------
+     * Mobile Responsiveness (§6)
+     * ---------------------------------------------------------------------- */
+    @media (max-width: 900px) {
+      .bento-grid-main { grid-template-columns: 1fr; }
+      .bento-grid-bottom { grid-template-columns: 1fr; }
+      .doodle-arrow-svg { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .layout-wrapper {
+        width: calc(100% - 32px);
+        padding: 24px 0 64px;
+      }
+      .style-tile-header {
+        padding: 12px 16px;
+      }
+      .header-title-block {
+        gap: 8px;
+      }
+      .hero-banner {
+        padding: 32px 24px;
+      }
+      .type-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .swatches-grid, .components-grid {
+        grid-template-columns: 1fr;
+      }
+      .bento-header-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .bento-nav-tabs {
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+      .bento-hero-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero-actions, .btn-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn, .btn-tile {
+        white-space: normal;
+        justify-content: center;
+      }
+      .toast-popup {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet. Must remain immediately after this page's <style>. -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- Mandatory Header Bar -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Obsidian Citron Bento</span>
+      <span class="design-vibe-tag">Playful & Pop</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+      <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+      <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-obsidian-citron-bento.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- SLOT 1: Hero Showcase Banner -->
+    <section class="hero-banner" id="hero-section">
+      <p class="section-kicker">Visual System 01</p>
+      <div class="hero-meta">
+        <span class="chip chip-accent">Smoky Charcoal</span>
+        <span class="chip chip-accent">Electric Citron Pop</span>
+        <span class="chip">Ultraviolet Satin</span>
+        <span class="chip">32px Squircle Bento</span>
+        <span class="chip">Dark</span>
+      </div>
+      <h1>Obsidian Citron Bento</h1>
+      <p class="hero-lead">
+        A high-voltage dark design architecture balancing smoky obsidian containers and brushed titanium slabs with hyper-saturated electric citron and ultraviolet satin pop modules. Generous 32px squircle geometry, tactile pill controls, and wide extended grotesque typography deliver kinetic modernist swagger.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Prompt for Agent</button>
+        <a class="btn btn-ghost" href="#demo-section">Explore Living Bento</a>
+        <a class="btn btn-ghost" href="#components-section">Inspect Components</a>
+      </div>
+    </section>
+
+    <!-- SLOT 2: Palette Section -->
+    <section class="section-block" id="palette-section">
+      <p class="section-kicker">02 / Token Architecture</p>
+      <h2>Color Roles & Materials</h2>
+      <div class="swatches-grid" id="swatch-grid">
+        <!-- JS fills swatches from DESIGN_PALETTE -->
+      </div>
+    </section>
+
+    <!-- SLOT 3: Typography Section -->
+    <section class="section-block" id="typography-section">
+      <p class="section-kicker">03 / Typeface Hierarchy</p>
+      <h2>Typography Specimen</h2>
+      <div class="type-specimen-card">
+        <div class="type-stack">
+          <div class="type-row">
+            <span class="type-label">Display</span>
+            <p class="text-display">Obsidian Citron</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Heading 1</span>
+            <p class="text-h1">The Power of Pure Contrast</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Heading 2</span>
+            <p class="text-h2">High-Energy Squircle Bento Modules</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Heading 3</span>
+            <p class="text-h3">Tactile Pills and Faceted Metallic Surfaces</p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Body</span>
+            <p class="text-body">
+              Deep charcoal containers establish atmospheric calm, allowing electric citron actuators and lustrous ultraviolet satin cards to command effortless hierarchy without sensory fatigue.
+            </p>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Monospace</span>
+            <p class="text-meta">HEX: #D8FF3E // RADIUS: 32PX // DISPLAY: UNBOUNDED 900</p>
+          </div>
+        </div>
+
+        <div class="live-type-box">
+          <label class="field-label" for="live-type-tester-input">Live Type Tester (Display Font)</label>
+          <input class="live-type-input" id="live-type-tester-input" type="text" value="UNLOCK THE POWER OF CONTRAST" />
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 4: Component Archetypes -->
+    <section class="section-block" id="components-section">
+      <p class="section-kicker">04 / Interface System</p>
+      <h2>Component Archetypes</h2>
+      <div class="components-grid">
+        <!-- Buttons -->
+        <article class="component-card">
+          <h3>Pill Button Controls</h3>
+          <p class="text-body">High-impact pill actions with smooth spring hover transitions and glowing citron accents.</p>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="button">Primary CTA</button>
+            <button class="btn btn-purple" type="button">Ultraviolet</button>
+            <button class="btn btn-accent" type="button">Silver Slab</button>
+            <button class="btn btn-ghost" type="button">Ghost Pill</button>
+            <button class="btn btn-danger" type="button">Alert</button>
+            <button class="btn btn-primary btn-circle" type="button" aria-label="Action">→</button>
+          </div>
+        </article>
+
+        <!-- Inputs & Selectors -->
+        <article class="component-card">
+          <h3>Input Field & Toggles</h3>
+          <label class="field-label" for="demo-input">Capsule Search / Action Field</label>
+          <input class="text-input" id="demo-input" type="text" placeholder="Enter query or recipient…" autocomplete="off" />
+          <div class="control-row" style="margin-top: 12px;">
+            <button class="toggle" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle setting"></button>
+            <span class="badge badge-citron">Active State</span>
+            <span class="badge badge-purple">Verified</span>
+            <span class="badge">Standard Pill</span>
+          </div>
+        </article>
+
+        <!-- Bento Material Card -->
+        <article class="component-card">
+          <h3>Material Elevation</h3>
+          <p class="text-body">
+            32px squircle geometry combined with smoky specular gradients and hairline 1px ambient container rings.
+          </p>
+          <div class="control-row" style="margin-top: 8px;">
+            <span class="chip chip-accent">Citron Glow</span>
+            <span class="chip">Satin Sheen</span>
+            <span class="chip">Hairline Ring</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SLOT 5: Living Bento Micro-Experience -->
+    <section class="section-block" id="demo-section">
+      <p class="section-kicker">05 / Living Micro-Experience</p>
+      <h2>Bento Experience Showcase</h2>
+
+      <div class="bento-showcase">
+        <!-- Bento Header Capsule -->
+        <div class="bento-header-bar">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" style="flex-shrink:0;">
+              <circle cx="16" cy="16" r="14" stroke="#ffffff" stroke-width="2"/>
+              <path d="M16 6C10.477 6 6 10.477 6 16C11 16 16 11 16 6Z" fill="#d8ff3e"/>
+              <path d="M16 26C21.523 26 26 21.523 26 16C21 16 16 21 16 26Z" fill="#9d7cf4"/>
+            </svg>
+            <nav class="bento-nav-tabs">
+              <button class="bento-tab active" type="button">Home</button>
+              <button class="bento-tab" type="button">Exchange</button>
+              <button class="bento-tab" type="button">Portfolio</button>
+              <button class="bento-tab" type="button">Features</button>
+            </nav>
+          </div>
+          <button class="btn btn-primary" type="button" style="min-height:40px;padding:8px 20px;font-size:0.8rem;">
+            Get Started
+          </button>
+        </div>
+
+        <!-- Top Row Bento: Hero Card + Faceted Prism Card -->
+        <div class="bento-grid-main">
+          <!-- Left Hero Card -->
+          <div class="bento-card-hero">
+            <!-- Organic Doodle Arrow Vector -->
+            <svg class="doodle-arrow-svg" viewBox="0 0 100 100" fill="none" stroke="#6b7280" stroke-width="2.5" stroke-linecap="round">
+              <path d="M70 20 C 95 35, 50 65, 80 85" />
+              <path d="M70 80 L 80 85 L 85 75" />
+            </svg>
+
+            <div>
+              <h2 class="bento-hero-title">
+                Unlock
+                <span class="inline-coin-pill">
+                  <span class="coin-circle coin-citron">◆</span>
+                  <span class="coin-circle coin-purple">✦</span>
+                </span>
+                The Power Of Contrast
+              </h2>
+              <p class="hero-lead" style="margin-top:16px;font-size:0.95rem;max-width:44ch;">
+                Hyper-modular interface systems that elevate clarity, tactile feedback, and sensory energy through precision bento squircle architecture.
+              </p>
+            </div>
+
+            <div class="bento-hero-footer">
+              <button class="btn btn-primary" type="button">
+                Get Started
+              </button>
+
+              <div class="avatar-stack-block">
+                <div class="avatar-label-box">
+                  <strong>396+</strong>
+                  <span>Active Nodes</span>
+                </div>
+                <div class="avatar-stack">
+                  <div class="avatar-circle" style="background:#4b5563;">JD</div>
+                  <div class="avatar-circle" style="background:#9d7cf4;color:#1b0d3a;">AS</div>
+                  <div class="avatar-circle" style="background:#d8ff3e;color:#0c0d10;">MK</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Faceted Prism Card -->
+          <div class="bento-card-prism">
+            <div class="prism-svg-wrap">
+              <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Top Cap -->
+                <polygon points="100,10 180,95 100,120" fill="url(#prismGrad1)" />
+                <polygon points="100,10 20,95 100,120" fill="url(#prismGrad2)" />
+                <polygon points="100,10 60,95 100,120" fill="url(#prismGrad3)" opacity="0.65" />
+                <polygon points="100,10 140,95 100,120" fill="url(#prismGrad4)" opacity="0.65" />
+                <!-- Bottom Facets -->
+                <polygon points="100,135 180,110 100,230" fill="url(#prismGrad5)" />
+                <polygon points="100,135 20,110 100,230" fill="url(#prismGrad6)" />
+                <polygon points="100,135 70,110 100,230" fill="url(#prismGrad7)" opacity="0.7" />
+
+                <defs>
+                  <linearGradient id="prismGrad1" x1="100" y1="10" x2="180" y2="120" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#4a505b" />
+                    <stop offset="1" stop-color="#1f232b" />
+                  </linearGradient>
+                  <linearGradient id="prismGrad2" x1="100" y1="10" x2="20" y2="120" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#9aa2b0" />
+                    <stop offset="1" stop-color="#3d434f" />
+                  </linearGradient>
+                  <linearGradient id="prismGrad3" x1="60" y1="10" x2="100" y2="120" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#c5cbd6" />
+                    <stop offset="1" stop-color="#555c6b" />
+                  </linearGradient>
+                  <linearGradient id="prismGrad4" x1="140" y1="10" x2="100" y2="120" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#2c3038" />
+                    <stop offset="1" stop-color="#14171d" />
+                  </linearGradient>
+                  <linearGradient id="prismGrad5" x1="180" y1="110" x2="100" y2="230" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#1d2027" />
+                    <stop offset="1" stop-color="#0e1014" />
+                  </linearGradient>
+                  <linearGradient id="prismGrad6" x1="20" y1="110" x2="100" y2="230" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#646b79" />
+                    <stop offset="1" stop-color="#242831" />
+                  </linearGradient>
+                  <linearGradient id="prismGrad7" x1="70" y1="110" x2="100" y2="230" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#7e8695" />
+                    <stop offset="1" stop-color="#333842" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Row Bento: Silver Card + Citron Card + Purple Card -->
+        <div class="bento-grid-bottom">
+          <!-- Card 1: Brushed Titanium / Silver -->
+          <div class="bento-card-silver">
+            <div class="silver-header-row">
+              <div>
+                <div class="silver-big-stat">100%</div>
+                <div class="silver-stat-label">Modular Architecture</div>
+              </div>
+              <!-- QR Code Minimal Glyph -->
+              <svg class="qr-badge-svg" viewBox="0 0 24 24" fill="none" stroke="#1f232b" stroke-width="2">
+                <rect x="3" y="3" width="6" height="6" rx="1"/>
+                <rect x="15" y="3" width="6" height="6" rx="1"/>
+                <rect x="3" y="15" width="6" height="6" rx="1"/>
+                <path d="M15 15h2v2h-2zM19 15h2v2h-2zM15 19h2v2h-2zM19 19h2v2h-2z"/>
+              </svg>
+            </div>
+
+            <!-- Floating Frosted White Pill -->
+            <div class="floating-frosted-pill">
+              <div class="frosted-avatar">🛡️</div>
+              <div class="frosted-text">Zero-loss security and instant telemetry synchronization</div>
+            </div>
+          </div>
+
+          <!-- Card 2: Electric Citron Slab -->
+          <div class="bento-card-citron">
+            <div class="citron-heading">
+              All Statistics In One Space
+            </div>
+
+            <!-- Sparkline SVG -->
+            <svg class="citron-chart-svg" viewBox="0 0 300 80" fill="none">
+              <path d="M0 60 Q 40 20, 80 50 T 160 30 T 240 60 T 300 15" stroke="#0c0d10" stroke-width="4" stroke-linecap="round" fill="none"/>
+            </svg>
+
+            <div>
+              <div class="citron-stats-row">
+                <div>
+                  <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;color:#3b4510;">Total Yield</div>
+                  <div class="citron-metric-val">$ 453,586</div>
+                </div>
+                <div>
+                  <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;color:#3b4510;">Daily Delta</div>
+                  <div class="citron-metric-val">$ 3,586</div>
+                </div>
+              </div>
+
+              <div class="citron-actions-row">
+                <button class="pill-mini-btn" type="button">↗ Deposit</button>
+                <button class="pill-mini-btn" type="button">↙ Withdraw</button>
+                <button class="circle-dark-arrow" type="button" aria-label="Open detailed analytics">→</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Ultraviolet Satin Card -->
+          <div class="bento-card-purple">
+            <p class="purple-lead-text">
+              Lustrous fluid gradients deliver dimensional tactile richness without sacrificing clean information hierarchy.
+            </p>
+
+            <div class="purple-footer-row">
+              <div>
+                <div class="purple-stat-num">1 MILLION +</div>
+                <div class="purple-stat-sub">Concurrent nodes verified across distributed clusters</div>
+              </div>
+
+              <!-- 8-point geometric starburst asterisk -->
+              <svg class="asterisk-svg" viewBox="0 0 24 24">
+                <path d="M12 2 L12 22 M2 12 L22 12 M4.93 4.93 L19.07 19.07 M4.93 19.07 L19.07 4.93" stroke="#1d0e3a" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 6: Spec Drawer Card -->
+    <section class="section-block spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-head">
+        <h2 style="margin:0;color:inherit;">Style Tile Specification</h2>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Markdown Spec</button>
+      </div>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+    </section>
+
+  </main>
+
+  <!-- Modal Preview -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title" style="font-family:var(--font-display);font-size:1.1rem;">Obsidian Citron Bento Spec</strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">Copied</div>
+
+  <!--
+    SOURCE OF TRUTH for Copy / Download / Preview.
+    Machine-readable Style Tile Markdown.
+  -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Obsidian Citron Bento
+  Construction: obsidian void • electric citron pop • ultraviolet satin • squircle bento
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+Deep obsidian and smoky charcoal canvases house multi-material squircle bento modules with generous 28px–32px corner radii. High-energy electric citron slabs and lustrous ultraviolet satin surfaces inject deliberate color tension against brushed platinum and dark graphite containers. Typography pairs a wide, heavyweight geometric display sans for massive punchy headlines with a clean, highly legible grotesque body face. Controls are defined by ubiquitous 9999px pill geometries, hairline ambient container borders, and crisp tactile active states.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #090a0d; /* Primary deep obsidian canvas void */
+  --bg-surface:             #14161a; /* Smoky charcoal bento surface with specular sheen */
+  --bg-surface-alt:         #1b1d24; /* Secondary elevated well / card container */
+  --bg-surface-silver:      #e2e5eb; /* Brushed metallic platinum modular surface */
+  --bg-surface-dark:        #0d0e12; /* Deepest recessed well */
+
+  /* Inks & Typography */
+  --ink-primary:            #ffffff; /* High-contrast white reading text on dark */
+  --ink-secondary:          #9da2af; /* Smoky cool grey secondary copy */
+  --ink-muted:              #636875; /* Muted captions, inactive borders */
+  --ink-inverted:           #0c0d10; /* Pitch carbon ink on citron and silver surfaces */
+  --ink-purple-dark:        #1d0e3a; /* Deep purple ink for ultraviolet satin cards */
+
+  /* Signature Accents */
+  --accent-primary:         #d8ff3e; /* Electric Citron / Acid Lime primary CTA & pop slab */
+  --accent-primary-hover:   #c6f028; /* Interactive hover citron */
+  --accent-secondary:       #9d7cf4; /* Ultraviolet Satin / Lilac modular slab */
+  --accent-secondary-hover: #8a64f2; /* Interactive ultraviolet hover */
+  --accent-silver:          #e5e8ee; /* Pearlescent Platinum accent tone */
+  --accent-tertiary:        #262832; /* Charcoal pill tabs & border rings */
+
+  /* Status Tokens */
+  --status-success:         #d8ff3e; /* High-vis citron status */
+  --status-warning:         #fbbf24; /* Warm amber warning */
+  --status-danger:          #ff5c5c; /* Coral red alert */
+  --status-info:            #9d7cf4; /* Ultraviolet info */
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Unbounded", "Syne", -apple-system, sans-serif;
+--font-sans:    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+--font-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+/* Type Scale */
+--text-display: 3.25rem  / 1.08  var(--font-display); /* Letter-spacing: -0.02em | Weight: 800 */
+--text-h1:      2.25rem  / 1.15  var(--font-display); /* Letter-spacing: -0.02em | Weight: 800 */
+--text-h2:      1.5rem   / 1.25  var(--font-sans);    /* Letter-spacing: -0.01em | Weight: 700 */
+--text-h3:      1.15rem  / 1.35  var(--font-sans);    /* Letter-spacing: 0       | Weight: 600 */
+--text-body:    0.95rem  / 1.60  var(--font-sans);    /* Letter-spacing: 0       | Weight: 400 */
+--text-body-sm: 0.85rem  / 1.50  var(--font-sans);    /* Letter-spacing: 0       | Weight: 400 */
+--text-meta:    0.72rem  / 1.40  var(--font-mono);    /* Letter-spacing: 0.08em  | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-card:    32px;
+--radius-sub:     20px;
+--radius-default: 16px;
+--radius-subtle:  8px;
+--radius-pill:    9999px;
+
+/* Elevation & Shadows */
+--shadow-base:    0 16px 36px rgba(0, 0, 0, 0.45);
+--shadow-hover:   0 20px 48px rgba(0, 0, 0, 0.65);
+--shadow-citron:  0 8px 24px rgba(216, 255, 62, 0.28);
+--shadow-active:  0 4px 12px rgba(0, 0, 0, 0.35);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid rgba(255, 255, 255, 0.08);
+--border-hairline:    1px solid rgba(255, 255, 255, 0.05);
+--border-pill:        1px solid rgba(255, 255, 255, 0.12);
+--divider-style:      1px solid rgba(255, 255, 255, 0.08);
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Pill-shaped (`border-radius: 9999px`). Primary CTA uses solid electric citron (`#d8ff3e`) with bold dark ink (`#0c0d10`), hovering to `#c6f028` with subtle glow. Secondary buttons use dark pill surfaces with subtle white hairlines (`1px solid rgba(255,255,255,0.12)`). Quick-action trigger circles (`40px`–`44px`, 50% radius) carry directional glyphs. Use the host's existing labels.
+- **Cards**: Generous squircle modules (`border-radius: 28px–32px`) structured as bento units. Surfaces alternate between deep smoky charcoal with specular gradients, brushed metallic platinum, and vibrant accent slabs (electric citron or ultraviolet satin). Inner floating chips or sub-cards use translucent frosted glass (`rgba(255,255,255,0.85)` on light, `rgba(255,255,255,0.06)` on dark). Do not add index codes or fake meta.
+- **Inputs**: Dark pill or rounded squircle wells (`background: #14161a`, `border: 1px solid rgba(255,255,255,0.1)`), minimum 48px height and 16px font-size. Active focus rings glow in electric citron (`outline: 2px solid #d8ff3e; outline-offset: 2px`).
+- **Navigation**: Horizontal pill capsule bar housing individual pill tabs (`9999px` radius). Active navigation tab rendered in solid light silver/white with dark text; inactive tabs use transparent dark styling with subtle hairline borders. Restyle existing items. Do not add catalog codes, fake clocks, or status readouts.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No hard 0px sharp brutalist corners or zero-blur harsh drop shadows.
+- No tiny 4px generic enterprise radii on primary bento cards; cards must commit to generous 28px–32px squircle geometry.
+- No low-contrast mud or washed-out neon; keep citron pure and punchy (`#d8ff3e`) and charcoal rich.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <script>
+    const DESIGN_SLUG = "obsidian-citron-bento";
+
+    const DESIGN_PALETTE = [
+      { name: "Obsidian Canvas", hex: "#090A0D", cssVar: "--bg-canvas" },
+      { name: "Smoky Charcoal", hex: "#14161A", cssVar: "--bg-surface" },
+      { name: "Charcoal Well", hex: "#1B1D24", cssVar: "--bg-surface-alt" },
+      { name: "Electric Citron", hex: "#D8FF3E", cssVar: "--accent-primary" },
+      { name: "Ultraviolet Satin", hex: "#9D7CF4", cssVar: "--accent-secondary" },
+      { name: "Brushed Platinum", hex: "#E2E5EB", cssVar: "--bg-surface-silver" },
+      { name: "Obsidian Ink", hex: "#0C0D10", cssVar: "--ink-inverted" },
+      { name: "Stark White", hex: "#FFFFFF", cssVar: "--ink-primary" },
+      { name: "Cool Grey", hex: "#9DA2AF", cssVar: "--ink-secondary" },
+      { name: "Deep Purple Ink", hex: "#1D0E3A", cssVar: "--ink-purple-dark" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex;
+        btn.innerHTML =
+          '<span class="swatch-chip" style="background:' + swatch.hex + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + "</span>" +
+            '<span class="swatch-var">' + swatch.cssVar + "</span> " +
+            '<span class="swatch-hex">' + swatch.hex + "</span>" +
+          "</span>";
+        btn.addEventListener("click", function () { copyHex(swatch.hex, swatch.name); });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () { toast.style.display = "none"; }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(function () { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+      });
+    }
+  </script>
+</body>
+</html>

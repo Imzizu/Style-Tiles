@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matcha Bento Grotesk // TILE</title>
+  <meta name="description" content="High-contrast playful light bento system pairing pale matcha cream fields and bold 2px evergreen linework with buttercup yellow squircle pop modules, notched bento geometry, and punchy wide grotesque typography.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Google Fonts: Outfit (Display Grotesk), Plus Jakarta Sans (Body), JetBrains Mono (Meta) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------------------------------------------------------
+     * MATCHA BENTO GROTESK — DESIGN SYSTEM TOKENS
+     * ---------------------------------------------------------------------- */
+    :root {
+      /* Surfaces & Canvas */
+      --bg-canvas:              #EAF0E4; /* Primary pale matcha cream canvas */
+      --bg-surface:             #F5F8F2; /* Elevated cards and clean containers */
+      --bg-surface-alt:         #DCE5D3; /* Celery well and ticker banner */
+      --bg-surface-dark:        #0D3324; /* Deep evergreen container and inverted notch */
+
+      /* Inks & Reading */
+      --ink-primary:            #0D3324; /* High-contrast evergreen reading text */
+      --ink-secondary:          #2A4A3B; /* Supporting pine copy */
+      --ink-muted:              #5E7B6E; /* Captions, secondary tokens, borders */
+      --ink-inverted:           #EAF0E4; /* Inverted contrast text on dark evergreen */
+
+      /* Signature Accents */
+      --accent-primary:         #0D3324; /* Deep evergreen primary actuator */
+      --accent-primary-hover:   #174A36; /* Interactive hover tone */
+      --accent-secondary:       #FDE068; /* Starring buttercup yellow pop */
+      --accent-secondary-hover: #F2D24E; /* Buttercup yellow hover */
+      --accent-tertiary:        #F3A8BA; /* Blossom pink spot accent */
+
+      /* Status Tokens */
+      --status-success:         #236842;
+      --status-warning:         #D9822B;
+      --status-danger:          #D9483B;
+      --status-info:            #2C6DB2;
+
+      /* Typography */
+      --font-display:           'Outfit', -apple-system, sans-serif;
+      --font-sans:              'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono:              'JetBrains Mono', ui-monospace, monospace;
+
+      /* Type Scale */
+      --text-display:           clamp(2.4rem, 6vw, 4rem) / 1.05 var(--font-display);
+      --text-h1:                clamp(2.0rem, 4.5vw, 2.75rem) / 1.12 var(--font-display);
+      --text-h2:                clamp(1.5rem, 3vw, 1.85rem) / 1.25 var(--font-display);
+      --text-h3:                1.25rem / 1.35 var(--font-sans);
+      --text-body:              1.0rem / 1.6 var(--font-sans);
+      --text-body-sm:           0.875rem / 1.5 var(--font-sans);
+      --text-meta:              0.75rem / 1.4 var(--font-mono);
+
+      /* Corner Geometry & Squircles */
+      --radius-large:           26px;
+      --radius-default:         20px;
+      --radius-subtle:          12px;
+      --radius-pill:            9999px;
+
+      /* Elevation & Shadows */
+      --shadow-base:            3px 3px 0px var(--ink-primary);
+      --shadow-hover:           5px 5px 0px var(--ink-primary);
+      --shadow-active:          1px 1px 0px var(--ink-primary);
+      --shadow-soft:            0 8px 24px rgba(13, 51, 36, 0.08);
+
+      /* Borders & Dividers */
+      --border-core:            2px solid var(--ink-primary);
+      --border-hairline:        1.5px solid var(--ink-primary);
+      --divider-style:          2px solid var(--ink-primary);
+      --header-height:          64px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    /* Mandatory Header */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 12px 24px;
+      background: var(--bg-canvas);
+      border-bottom: var(--border-core);
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 8px 14px;
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 700;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface);
+      box-shadow: 2px 2px 0px var(--ink-primary);
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .nav-back-link:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--ink-primary);
+      background: var(--accent-secondary);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-pill);
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      overflow-wrap: anywhere;
+    }
+
+    .design-vibe-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      background: var(--accent-secondary);
+      color: var(--ink-primary);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      box-shadow: 2px 2px 0px var(--ink-primary);
+      transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+    }
+    .btn-tile:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--ink-primary);
+      background: var(--bg-surface-alt);
+    }
+    .btn-copy {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-color: var(--bg-surface-dark);
+    }
+    .btn-copy:hover {
+      background: var(--accent-primary-hover);
+      color: #fff;
+    }
+
+    .layout-wrapper {
+      width: min(1140px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 40px 0 96px;
+    }
+
+    .section-block { margin-top: 64px; }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-kicker::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--accent-secondary);
+      border: 1.5px solid var(--ink-primary);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 6.5vw, 4.2rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    /* Hero Banner Layout */
+    .hero-banner {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 32px;
+      align-items: center;
+      padding-bottom: 24px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .chip {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      box-shadow: 2px 2px 0px var(--ink-primary);
+    }
+    .chip.chip-accent {
+      background: var(--accent-secondary);
+    }
+
+    .hero-lead {
+      margin: 20px 0 28px;
+      max-width: 58ch;
+      color: var(--ink-secondary);
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+    /* Hero Showcase Art / Bento Cards */
+    .hero-visual-board {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+
+    .hero-stat-card {
+      background: var(--accent-secondary);
+      border: var(--border-core);
+      border-radius: var(--radius-large);
+      padding: 24px;
+      box-shadow: var(--shadow-base);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .avatar-cluster {
+      display: flex;
+      align-items: center;
+    }
+    .avatar-item {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: var(--border-core);
+      background: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: -10px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      overflow: hidden;
+    }
+    .avatar-item:first-child { margin-left: 0; }
+    .avatar-1 { background: #FFD166; }
+    .avatar-2 { background: #06D6A0; }
+    .avatar-3 { background: #118AB2; color: #FFF; }
+    .avatar-4 { background: #EF476F; color: #FFF; }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ink-secondary);
+    }
+
+    .hero-notched-frame {
+      background: var(--bg-surface);
+      border: var(--border-core);
+      border-radius: var(--radius-large);
+      overflow: hidden;
+      box-shadow: var(--shadow-base);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .notched-header {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: var(--border-core);
+    }
+    .notched-tag-list {
+      display: flex;
+      gap: 8px;
+    }
+    .notched-tag {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #EAF0E4;
+    }
+
+    .notched-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Inline Badges in Headings */
+    .inline-badges-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      vertical-align: middle;
+      margin: 0 4px;
+    }
+    .inline-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 38px;
+      border-radius: 12px;
+      border: var(--border-core);
+      background: var(--bg-surface-alt);
+      font-size: 1.25rem;
+      box-shadow: 1.5px 1.5px 0px var(--ink-primary);
+    }
+    .inline-badge.badge-pop-1 { background: #FDE068; }
+    .inline-badge.badge-pop-2 { background: #F3A8BA; }
+    .inline-badge.badge-pop-3 { background: #84D4B8; }
+
+    /* Swatches Grid */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      overflow: hidden;
+      background: var(--bg-surface);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      box-shadow: var(--shadow-base);
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .swatch-item:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .swatch-chip {
+      height: 84px;
+      border-bottom: var(--border-core);
+      position: relative;
+    }
+    .swatch-meta {
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .swatch-name {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--ink-primary);
+    }
+    .swatch-var {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+    }
+    .swatch-hex {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    /* Type Specimen */
+    .type-specimen-card {
+      background: var(--bg-surface);
+      border: var(--border-core);
+      border-radius: var(--radius-large);
+      padding: 28px;
+      box-shadow: var(--shadow-base);
+    }
+
+    .type-stack { display: grid; gap: 20px; }
+    .type-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: var(--border-core);
+      align-items: baseline;
+      min-width: 0;
+    }
+    .type-row:last-child { border-bottom: 0; }
+    .type-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    .text-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+    .text-h1 {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    .text-h2 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .text-h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    .text-body {
+      font-size: 1rem;
+      line-height: 1.6;
+      font-weight: 500;
+      color: var(--ink-secondary);
+    }
+    .text-meta {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--ink-muted);
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 18px;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      box-shadow: 2px 2px 0px var(--ink-primary);
+    }
+    .live-type-input:focus {
+      outline: 2px solid var(--ink-primary);
+      outline-offset: 2px;
+    }
+
+    /* Components Gallery */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .component-card {
+      padding: 24px;
+      background: var(--bg-surface);
+      border: var(--border-core);
+      border-radius: var(--radius-default);
+      box-shadow: var(--shadow-base);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .btn-row, .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 10px 20px;
+      font-size: 0.875rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border-radius: var(--radius-pill);
+      border: var(--border-core);
+      background: var(--bg-surface);
+      color: var(--ink-primary);
+      box-shadow: 2px 2px 0px var(--ink-primary);
+      transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+      text-decoration: none;
+    }
+    .btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--ink-primary);
+      background: var(--bg-surface-alt);
+    }
+    .btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px var(--ink-primary);
+    }
+    .btn-primary {
+      background: var(--accent-primary);
+      color: var(--ink-inverted);
+      border-color: var(--accent-primary);
+    }
+    .btn-primary:hover {
+      background: var(--accent-primary-hover);
+      color: #FFF;
+    }
+    .btn-secondary {
+      background: var(--accent-secondary);
+      color: var(--ink-primary);
+    }
+    .btn-secondary:hover {
+      background: var(--accent-secondary-hover);
+    }
+    .btn-ghost {
+      background: transparent;
+      box-shadow: none;
+    }
+    .btn-ghost:hover {
+      background: var(--bg-surface-alt);
+      box-shadow: 2px 2px 0px var(--ink-primary);
+    }
+    .btn-danger {
+      background: var(--status-danger);
+      color: #fff;
+      border-color: var(--ink-primary);
+    }
+    .btn-accent {
+      background: var(--accent-tertiary);
+      color: var(--ink-primary);
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .text-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 10px 14px;
+      font-size: 16px;
+      font-weight: 600;
+      border: var(--border-core);
+      border-radius: var(--radius-subtle);
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      box-shadow: 2px 2px 0px var(--ink-primary);
+    }
+    .text-input:focus {
+      outline: 2px solid var(--ink-primary);
+      outline-offset: 2px;
+      background: #FFF;
+    }
+
+    .toggle {
+      position: relative;
+      width: 52px;
+      height: 28px;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface-alt);
+      cursor: pointer;
+      box-shadow: 2px 2px 0px var(--ink-primary);
+      transition: background 150ms ease;
+    }
+    .toggle[aria-pressed="true"] { background: var(--accent-secondary); }
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: var(--border-core);
+      background: var(--bg-surface-dark);
+      transition: transform 160ms ease;
+    }
+    .toggle[aria-pressed="true"]::after {
+      transform: translateX(24px);
+      background: var(--ink-primary);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: var(--border-core);
+      border-radius: var(--radius-pill);
+      background: var(--bg-surface);
+      box-shadow: 1.5px 1.5px 0px var(--ink-primary);
+    }
+    .badge-pop {
+      background: var(--accent-secondary);
+    }
+
+    /* Living Demo Showcase */
+    .demo-container {
+      background: var(--bg-surface);
+      border: var(--border-core);
+      border-radius: var(--radius-large);
+      overflow: hidden;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .demo-navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-bottom: var(--border-core);
+      background: var(--bg-canvas);
+    }
+    .demo-brand {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+    .demo-nav-links {
+      display: flex;
+      gap: 16px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .demo-nav-link {
+      text-decoration: none;
+      color: var(--ink-primary);
+      padding: 4px 8px;
+    }
+    .demo-nav-link:hover {
+      text-decoration: underline;
+    }
+
+    .demo-body {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .demo-hero-text {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      line-height: 1.08;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+    }
+
+    /* Compound Bento Card with Stepped Inset Category Notch */
+    .demo-bento-card {
+      border: var(--border-core);
+      border-radius: var(--radius-large);
+      background: var(--bg-canvas);
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      overflow: hidden;
+      box-shadow: var(--shadow-base);
+    }
+
+    .bento-main-panel {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      border-right: var(--border-core);
+      background: #F2F7EC;
+    }
+
+    .bento-culinary-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .bento-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    .bento-desc {
+      color: var(--ink-secondary);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .bento-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .bento-category-column {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .category-item {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(234, 240, 228, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 120ms ease, padding-left 120ms ease;
+    }
+    .category-item:hover {
+      background: #174A36;
+      padding-left: 24px;
+    }
+    .category-item:last-child {
+      border-bottom: 0;
+    }
+    .category-glyph {
+      font-size: 1.2rem;
+    }
+
+    /* Marquee Banner */
+    .demo-marquee-strip {
+      background: var(--bg-surface-alt);
+      border-top: var(--border-core);
+      padding: 16px 0;
+      overflow: hidden;
+      display: flex;
+      white-space: nowrap;
+    }
+    .marquee-inner {
+      display: inline-flex;
+      gap: 32px;
+      animation: marquee 22s linear infinite;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Spec Drawer Card */
+    .spec-drawer-card {
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      border-radius: var(--radius-large);
+      border: var(--border-core);
+      padding: 24px;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 480px;
+      padding: 20px;
+      background: #071C13;
+      color: #E2ECE5;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border-radius: var(--radius-subtle);
+      border: 1.5px solid rgba(234, 240, 228, 0.2);
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(13, 51, 36, 0.65);
+      backdrop-filter: blur(4px);
+    }
+    .modal-overlay.active { display: flex; }
+
+    .modal-content-card {
+      width: min(880px, 100%);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-surface);
+      border: var(--border-core);
+      border-radius: var(--radius-large);
+      box-shadow: 6px 6px 0px var(--ink-primary);
+      overflow: hidden;
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 20px;
+      border-bottom: var(--border-core);
+      background: var(--bg-canvas);
+    }
+    .modal-footer { border-bottom: 0; border-top: var(--border-core); justify-content: flex-end; }
+    .modal-body { padding: 20px; overflow: auto; flex: 1; }
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      border: var(--border-core);
+      background: var(--bg-surface);
+      cursor: pointer;
+      border-radius: 50%;
+      font-weight: 800;
+      box-shadow: 1.5px 1.5px 0px var(--ink-primary);
+    }
+
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3000;
+      padding: 12px 20px;
+      background: var(--bg-surface-dark);
+      color: var(--ink-inverted);
+      font-size: 0.875rem;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+      border: var(--border-core);
+      box-shadow: 3px 3px 0px var(--ink-primary);
+    }
+
+    /* Responsive Mobile Rules */
+    @media (max-width: 768px) {
+      .layout-wrapper { width: calc(100% - 28px); padding: 20px 0 64px; }
+      .hero-banner { grid-template-columns: 1fr; gap: 24px; }
+      .type-row { grid-template-columns: 1fr; gap: 8px; }
+      .swatches-grid, .components-grid { grid-template-columns: 1fr; }
+      .hero-actions, .btn-row { flex-direction: column; align-items: stretch; }
+      .btn, .btn-tile { white-space: normal; }
+      .demo-bento-card { grid-template-columns: 1fr; }
+      .bento-main-panel { border-right: 0; border-bottom: var(--border-core); }
+      .toast-popup { left: 16px; right: 16px; bottom: 16px; text-align: center; }
+      .style-tile-header { padding: 10px 16px; }
+      .inline-badges-row { margin: 4px 0; }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- Mandatory Top Header Component -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Matcha Bento Grotesk</span>
+      <span class="design-vibe-tag">Playful & Pop</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+      <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+      <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-matcha-bento-grotesk.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- SLOT 1: Hero Banner -->
+    <section class="hero-banner" id="hero-section">
+      <div class="hero-text-block">
+        <p class="section-kicker">Design System // Archetype</p>
+        <div class="hero-meta">
+          <span class="chip chip-accent">Playful & Pop</span>
+          <span class="chip">Light System</span>
+          <span class="chip">2px Evergreen Outlines</span>
+          <span class="chip">Matcha & Buttercup</span>
+        </div>
+        <h1>
+          Matcha Bento
+          <span class="inline-badges-row">
+            <span class="inline-badge badge-pop-1">🥗</span>
+            <span class="inline-badge badge-pop-2">🍰</span>
+            <span class="inline-badge badge-pop-3">🧁</span>
+          </span>
+          Grotesk
+        </h1>
+        <p class="hero-lead">
+          A tactile, high-contrast light bento architecture celebrating cheerful organic gastronomy and spirited lifestyle interfaces. Built on pale matcha cream fields (#EAF0E4), crisp 2px evergreen contours (#0D3324), buttercup yellow squircle pop modules (#FDE068), and punchy wide grotesque typography.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">
+            Copy Prompt for Agent
+          </button>
+          <a class="btn btn-secondary" href="#demo-section">
+            Explore Living Demo
+          </a>
+          <a class="btn btn-ghost" href="#components-section">
+            Inspect Components
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual-board">
+        <!-- Floating Buttercup Squircle Metric Card -->
+        <div class="hero-stat-card">
+          <div class="avatar-cluster">
+            <div class="avatar-item avatar-1">🌿</div>
+            <div class="avatar-item avatar-2">🍋</div>
+            <div class="avatar-item avatar-3">🥑</div>
+            <div class="avatar-item avatar-4">✨</div>
+          </div>
+          <div class="stat-number">265k+ Happy</div>
+          <div class="stat-label">Organic interfaces styled with crisp bento geometry & zero-blur depth.</div>
+        </div>
+
+        <!-- Inverted Evergreen Notched Preview -->
+        <div class="hero-notched-frame">
+          <div class="notched-header">
+            <strong>Bento Matrix Modules</strong>
+            <div class="notched-tag-list">
+              <span class="notched-tag">24px Radius</span>
+              <span class="notched-tag">2px Solid</span>
+            </div>
+          </div>
+          <div class="notched-content">
+            <p style="font-weight: 700; font-size: 0.95rem;">High-energy organic light UI</p>
+            <p style="font-size: 0.85rem; color: var(--ink-secondary);">Combines friendly neo-grotesque type with bold pop badges and structured bento partitions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 2: Color Palette Matrix -->
+    <section class="section-block" id="palette-section">
+      <p class="section-kicker">01 // Color Tokens</p>
+      <h2>Chromatic Palette & Surface Matrix</h2>
+      <div class="swatches-grid" id="swatch-grid">
+        <!-- Injected via JavaScript from DESIGN_PALETTE -->
+      </div>
+    </section>
+
+    <!-- SLOT 3: Typography Specimen -->
+    <section class="section-block" id="typography-section">
+      <p class="section-kicker">02 // Typeface Hierarchy</p>
+      <h2>Typography & Weight Ladder</h2>
+      <div class="type-specimen-card">
+        <div class="type-stack">
+          <div class="type-row">
+            <span class="type-label">Display Face</span>
+            <div>
+              <p class="text-display">Matcha Grotesk</p>
+              <p style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 4px;">Outfit 900 • Uppercase • Letter-spacing: -0.02em</p>
+            </div>
+          </div>
+          <div class="type-row">
+            <span class="type-label">H1 Headline</span>
+            <div>
+              <p class="text-h1">Delicious Food & Taste Fables</p>
+              <p style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 4px;">Outfit 800 • Letter-spacing: -0.01em</p>
+            </div>
+          </div>
+          <div class="type-row">
+            <span class="type-label">H2 Subheading</span>
+            <div>
+              <p class="text-h2">Fresh Gastronomic Bento Modules</p>
+              <p style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 4px;">Outfit 700 • Letter-spacing: -0.01em</p>
+            </div>
+          </div>
+          <div class="type-row">
+            <span class="type-label">H3 Section Title</span>
+            <div>
+              <p class="text-h3">Tactile Component Architecture & Inks</p>
+              <p style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 4px;">Plus Jakarta Sans 700 • 1.25rem</p>
+            </div>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Body Text</span>
+            <div>
+              <p class="text-body">
+                The visual identity pairs generous squircle radius geometry with strict two-pixel evergreen outlines. High-ion buttercup yellow accents generate instant focal warmth against calm matcha canvas fields.
+              </p>
+              <p style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 4px;">Plus Jakarta Sans 500 • 1.0rem • Line-height: 1.6</p>
+            </div>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Technical Meta</span>
+            <div>
+              <p class="text-meta">SYSTEM_ID: BENTO_MATCHA // STATUS: 200_OK // CHROMA_KEY: 0D3324</p>
+              <p style="font-size: 0.8rem; color: var(--ink-muted); margin-top: 4px;">JetBrains Mono 600 • 0.75rem • Letter-spacing: 0.08em</p>
+            </div>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Interactive Tester</span>
+            <input class="live-type-input" id="live-type-tester-input" type="text" value="TASTE PARADISE & ORGANIC FABLES" aria-label="Interactive type specimen tester" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 4: Component Archetype Gallery -->
+    <section class="section-block" id="components-section">
+      <p class="section-kicker">03 // Interface Archetypes</p>
+      <h2>Component Design Archetypes</h2>
+      <div class="components-grid">
+        <!-- Button Suite -->
+        <article class="component-card">
+          <h3>Button Actions</h3>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="button">Order Now →</button>
+            <button class="btn btn-secondary" type="button">Buttercup Pop</button>
+            <button class="btn" type="button">Secondary</button>
+            <button class="btn btn-ghost" type="button">Ghost Action</button>
+            <button class="btn btn-accent" type="button">Blossom Pink</button>
+            <button class="btn btn-danger" type="button">Destructive</button>
+          </div>
+        </article>
+
+        <!-- Form Inputs -->
+        <article class="component-card">
+          <h3>Input Field & Search</h3>
+          <label class="field-label" for="demo-input">Search Culinary Delights</label>
+          <input class="text-input" id="demo-input" type="text" placeholder="e.g. Pistachio Matcha Tart..." autocomplete="off" />
+          <div style="display: flex; gap: 8px; margin-top: 4px;">
+            <span class="badge badge-pop">Trending</span>
+            <span class="badge">Artisan Pastry</span>
+            <span class="badge">Matcha Latte</span>
+          </div>
+        </article>
+
+        <!-- Selectors & Switches -->
+        <article class="component-card">
+          <h3>Controls & Switches</h3>
+          <div class="control-row">
+            <label style="display:inline-flex; align-items:center; gap:6px; font-weight:700; font-size:0.85rem; cursor:pointer;">
+              <input type="checkbox" checked style="accent-color: var(--ink-primary); width:18px; height:18px;" /> Eco Packaging
+            </label>
+            <label style="display:inline-flex; align-items:center; gap:6px; font-weight:700; font-size:0.85rem; cursor:pointer;">
+              <input type="radio" name="demo-radio" checked style="accent-color: var(--ink-primary); width:18px; height:18px;" /> Express
+            </label>
+            <label style="display:inline-flex; align-items:center; gap:6px; font-weight:700; font-size:0.85rem; cursor:pointer;">
+              <input type="radio" name="demo-radio" style="accent-color: var(--ink-primary); width:18px; height:18px;" /> Standard
+            </label>
+            <button class="toggle" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle system mode"></button>
+          </div>
+        </article>
+
+        <!-- Bento Card Specimen -->
+        <article class="component-card" style="background: var(--bg-canvas);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="badge badge-pop">Signature Recipe</span>
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700;">$24.50</span>
+          </div>
+          <h3 style="margin-top: 4px;">Crispy Wild Herb Cedar Salmon</h3>
+          <p class="text-body" style="font-size: 0.88rem;">
+            Flame-roasted Pacific salmon crusted with garden dill, chili threads, and cold-pressed citrus oil.
+          </p>
+          <button class="btn btn-primary" type="button" style="align-self: flex-start;">
+            Add to Platter +
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- SLOT 5: Living Micro-Experience / Landing Demo -->
+    <section class="section-block" id="demo-section">
+      <p class="section-kicker">04 // Living Micro-Experience</p>
+      <h2>Living Micro-Experience Showcase</h2>
+
+      <div class="demo-container">
+        <!-- Mini Navigation -->
+        <div class="demo-navbar">
+          <div class="demo-brand">FABLAND</div>
+          <nav class="demo-nav-links">
+            <a href="#demo-section" class="demo-nav-link">Home</a>
+            <a href="#demo-section" class="demo-nav-link">Shop</a>
+            <a href="#demo-section" class="demo-nav-link">Delivery</a>
+            <a href="#demo-section" class="demo-nav-link">About</a>
+          </nav>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <button class="btn btn-primary" style="min-height: 36px; padding: 6px 16px; font-size: 0.8rem;" type="button">
+              Order Now →
+            </button>
+            <div style="border: var(--border-core); border-radius: var(--radius-pill); padding: 4px 10px; font-size: 0.85rem; font-weight: 800; background: var(--bg-surface);">
+              🛒 0
+            </div>
+          </div>
+        </div>
+
+        <!-- Mini Living Demo Body -->
+        <div class="demo-body">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;">
+            <div>
+              <p style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 6px;">
+                🥣 Freshest and highest-quality culinary creations
+              </p>
+              <div class="demo-hero-text">
+                DELICIOUS FOOD
+                <span class="inline-badges-row">
+                  <span class="inline-badge badge-pop-1">🍲</span>
+                  <span class="inline-badge badge-pop-2">🍰</span>
+                  <span class="inline-badge badge-pop-3">🍨</span>
+                </span>
+                FABLES
+                <br>& TASTE PARADISE
+              </div>
+            </div>
+            <!-- Buttercup Pill Tag -->
+            <div style="background: var(--accent-secondary); border: var(--border-core); border-radius: 20px; padding: 14px 20px; box-shadow: 2px 2px 0px var(--ink-primary); max-width: 220px;">
+              <div style="font-size: 1.5rem; font-weight: 900; font-family: var(--font-display);">265k+</div>
+              <div style="font-weight: 700; font-size: 0.85rem;">Happy clients dining with us</div>
+            </div>
+          </div>
+
+          <!-- Compound Bento Card with Category Sidebar -->
+          <div class="demo-bento-card">
+            <div class="bento-main-panel">
+              <div class="bento-culinary-preview">
+                <div class="bento-tags">
+                  <span class="badge badge-pop">Chef's Table</span>
+                  <span class="badge">Wild Herb Glaze</span>
+                  <span class="badge">Organic Citrus</span>
+                </div>
+                <h3 class="bento-title">Wood-Fired Herb Salmon & Roasted Honey Shoulder</h3>
+                <p class="bento-desc">
+                  Served on handcrafted cedar boards with crisp broccolini, garden mint, and sea salt. Crafted to illustrate how the Matcha Bento Grotesk design language organizes rich lifestyle imagery, clean borders, and high-impact typography.
+                </p>
+              </div>
+
+              <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+                <button class="btn btn-primary" type="button">Select Table Experience</button>
+                <button class="btn btn-secondary" type="button">View Wine Pairings</button>
+                <span style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; margin-left: auto;">
+                  PRICE: $68.00 // COURSE 03
+                </span>
+              </div>
+            </div>
+
+            <!-- Inverted Category Menu Column -->
+            <div class="bento-category-column">
+              <div class="category-item" onclick="triggerToast('Viewing Beverage selection')">
+                <span>Beverage</span>
+                <span class="category-glyph">🍔</span>
+              </div>
+              <div class="category-item" onclick="triggerToast('Viewing Craft Drinks')">
+                <span>Drinks</span>
+                <span class="category-glyph">🥤</span>
+              </div>
+              <div class="category-item" onclick="triggerToast('Viewing Feast Platters')">
+                <span>Platter</span>
+                <span class="category-glyph">🍱</span>
+              </div>
+              <div class="category-item" onclick="triggerToast('Viewing Artisan Ice Cream')">
+                <span>Ice Cream</span>
+                <span class="category-glyph">🍨</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marquee Brand Strip -->
+        <div class="demo-marquee-strip">
+          <div class="marquee-inner">
+            <span class="marquee-item">🌿 UPZANE</span>
+            <span class="marquee-item">🍬 CANDY JAM</span>
+            <span class="marquee-item">🍴 MEAT FABLE</span>
+            <span class="marquee-item">🍄 VEGIE BOOM</span>
+            <span class="marquee-item">🔥 COOKIN</span>
+            <span class="marquee-item">🍋 CITRUS LAB</span>
+            <span class="marquee-item">🌿 UPZANE</span>
+            <span class="marquee-item">🍬 CANDY JAM</span>
+            <span class="marquee-item">🍴 MEAT FABLE</span>
+            <span class="marquee-item">🍄 VEGIE BOOM</span>
+            <span class="marquee-item">🔥 COOKIN</span>
+            <span class="marquee-item">🍋 CITRUS LAB</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 6: Style Tile Prompt Code Drawer -->
+    <section class="section-block spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-head">
+        <div>
+          <p class="section-kicker" style="color: #92B5A3; margin-bottom: 4px;">Transferable Machine Specification</p>
+          <h2 style="margin:0; color: #EAF0E4;">Style Tile Specification (Markdown)</h2>
+        </div>
+        <button class="btn btn-secondary" type="button" onclick="copyTilePromptDirect()">
+          Copy Markdown Spec
+        </button>
+      </div>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+    </section>
+
+  </main>
+
+  <!-- Spec Preview Modal -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title" style="font-family: var(--font-display); font-size: 1.15rem; font-weight: 800;">
+          Style Tile // Matcha Bento Grotesk
+        </strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Popup -->
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">✓ Copied to Clipboard!</div>
+
+  <!--
+    SOURCE OF TRUTH for Copy / Download / Preview.
+    Adheres strictly to Agent/agent.md Section 4 schema.
+  -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Matcha Bento Grotesk
+  Construction: matcha cream canvas • 2px evergreen outlines • buttercup yellow squircles • wide grotesque typography • compound bento notches • flat offset depth
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+A high-contrast light bento visual system built on pale matcha cream canvas fields (#EAF0E4) and bold two-pixel deep evergreen contours (#0D3324). High-ion buttercup yellow (#FDE068) provides tactile pop accents across generous 24px squircle containers and 9999px capsule pills. Layouts employ partitioned bento geometry with crisp hairlines, zero-blur flat offset shadows, and punchy, wide-aperture grotesque display typography.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #EAF0E4; /* Primary pale matcha cream canvas */
+  --bg-surface:             #F5F8F2; /* Elevated cards and clean containers */
+  --bg-surface-alt:         #DCE5D3; /* Celery well, section strips, subtle wells */
+  --bg-surface-dark:        #0D3324; /* Deep evergreen inverted containers and notches */
+
+  /* Inks & Typography */
+  --ink-primary:            #0D3324; /* High-contrast deep evergreen reading text */
+  --ink-secondary:          #2A4A3B; /* Subtitles and secondary body copy */
+  --ink-muted:              #5E7B6E; /* Captions, muted tokens, disabled states */
+  --ink-inverted:           #EAF0E4; /* Inverted contrast text for dark containers */
+
+  /* Signature Accents */
+  --accent-primary:         #0D3324; /* Primary call-to-action actuator */
+  --accent-primary-hover:   #174A36; /* Interactive hover tone */
+  --accent-secondary:       #FDE068; /* Starring buttercup yellow pop accent */
+  --accent-tertiary:        #F3A8BA; /* Blossom pink spot accent */
+
+  /* Status Tokens */
+  --status-success:         #236842;
+  --status-warning:         #D9822B;
+  --status-danger:          #D9483B;
+  --status-info:            #2C6DB2;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: 'Outfit', -apple-system, sans-serif;
+--font-sans:    'Plus Jakarta Sans', -apple-system, sans-serif;
+--font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+/* Type Scale */
+--text-display: clamp(2.4rem, 6vw, 4rem)     / 1.05  var(--font-display); /* Letter-spacing: -0.02em | Weight: 900 */
+--text-h1:      clamp(2.0rem, 4.5vw, 2.75rem) / 1.12 var(--font-display); /* Letter-spacing: -0.01em | Weight: 800 */
+--text-h2:      clamp(1.5rem, 3vw, 1.85rem)  / 1.25  var(--font-display); /* Letter-spacing: -0.01em | Weight: 700 */
+--text-h3:      1.25rem                      / 1.35  var(--font-sans);    /* Letter-spacing: 0       | Weight: 700 */
+--text-body:     1.0rem                       / 1.60  var(--font-sans);    /* Letter-spacing: 0       | Weight: 500 */
+--text-body-sm:  0.875rem                     / 1.50  var(--font-sans);    /* Letter-spacing: 0       | Weight: 500 */
+--text-meta:     0.75rem                      / 1.40  var(--font-mono);    /* Letter-spacing: 0.08em  | UPPERCASE 700 */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 20px;
+--radius-large:   26px;
+--radius-subtle:  12px;
+--radius-pill:    9999px;
+
+/* Elevation & Shadows */
+--shadow-base:    3px 3px 0px var(--ink-primary);
+--shadow-hover:   5px 5px 0px var(--ink-primary);
+--shadow-active:  1px 1px 0px var(--ink-primary);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        2px solid var(--ink-primary);
+--border-hairline:    1.5px solid var(--ink-primary);
+--divider-style:      2px solid var(--ink-primary);
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**:
+  - Primary: Deep evergreen background (--accent-primary), inverted text (--ink-inverted), 2px solid border, 9999px pill radius, flat 2px 2px 0px shadow. On hover, translate(-1px, -1px) with 3px 3px 0px shadow.
+  - Secondary: Buttercup yellow background (--accent-secondary), dark text (--ink-primary), 2px solid border, 9999px pill radius.
+  - Ghost: Transparent background, 2px solid border, text (--ink-primary).
+  - Destructive: Terracotta coral background (--status-danger), white text, 2px solid border.
+  - Use the host's existing labels.
+- **Cards & Bento Modules**:
+  - Light matcha surface (--bg-surface or --bg-canvas), 20px to 26px squircle radius, 2px solid evergreen border (--border-core), flat 3px 3px 0px shadow (--shadow-base).
+  - Sub-panels or sidebar notches may invert to solid deep evergreen (--bg-surface-dark) with inverted light text (--ink-inverted).
+  - Do not add index codes or fake metadata.
+- **Inputs & Form Controls**:
+  - Light canvas well (--bg-canvas), 12px rounded corner radius, 2px solid evergreen border, minimum font size 16px to prevent iOS auto-zoom, box-shadow 2px 2px 0px var(--ink-primary). Focus state rings with 2px solid evergreen outline.
+  - Checkboxes and radio switches use evergreen accent color with 2px borders.
+- **Navigation**:
+  - Restyle existing links with clean bold typography (700 weight), pill container buttons, and 2px solid border dividers. Do not add catalog codes, fake clocks, or status readouts.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No muddy gaussian drop-shadows (use crisp zero-blur flat offset shadows or none).
+- No neon purples, harsh cyans, or dark sci-fi gradients.
+- No thin 0.5px washed-out borders; linework must remain distinct and crisp (2px solid evergreen).
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <script>
+    const DESIGN_SLUG = "matcha-bento-grotesk";
+
+    const DESIGN_PALETTE = [
+      { name: "Matcha Canvas", hex: "#EAF0E4", cssVar: "--bg-canvas" },
+      { name: "Surface Clean", hex: "#F5F8F2", cssVar: "--bg-surface" },
+      { name: "Celery Well", hex: "#DCE5D3", cssVar: "--bg-surface-alt" },
+      { name: "Evergreen Dark", hex: "#0D3324", cssVar: "--bg-surface-dark" },
+      { name: "Ink Primary", hex: "#0D3324", cssVar: "--ink-primary" },
+      { name: "Ink Secondary", hex: "#2A4A3B", cssVar: "--ink-secondary" },
+      { name: "Buttercup Pop", hex: "#FDE068", cssVar: "--accent-secondary" },
+      { name: "Blossom Pink", hex: "#F3A8BA", cssVar: "--accent-tertiary" },
+      { name: "Success Green", hex: "#236842", cssVar: "--status-success" },
+      { name: "Warning Orange", hex: "#D9822B", cssVar: "--status-warning" },
+      { name: "Danger Coral", hex: "#D9483B", cssVar: "--status-danger" },
+      { name: "Info Teal", hex: "#2C6DB2", cssVar: "--status-info" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex;
+        btn.innerHTML =
+          '<span class="swatch-chip" style="background:' + swatch.hex + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + "</span>" +
+            '<span class="swatch-var">' + swatch.cssVar + "</span> " +
+            '<span class="swatch-hex">' + swatch.hex + "</span>" +
+          "</span>";
+        btn.addEventListener("click", function () { copyHex(swatch.hex, swatch.name); });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () { toast.style.display = "none"; }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(function () { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+      });
+    }
+
+    const typeInput = document.getElementById("live-type-tester-input");
+    if (typeInput) {
+      typeInput.addEventListener("input", function (e) {
+        const displayRow = document.querySelector(".type-row .text-display");
+        if (displayRow) {
+          displayRow.textContent = e.target.value || "Matcha Grotesk";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
