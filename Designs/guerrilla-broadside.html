@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guerrilla Broadside // TILE</title>
+  <meta name="description" content="Underground guerrilla broadside system built on jet carbon voids (#0A0A0A), towering condensed poster typography in bone ivory (#ECE7DE), high-vis safety orange punch marks (#FF4614), hard 0px geometry, and tactile wheatpaste framing.">
+
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+
+  <!-- Google Fonts: Bebas Neue (Condensed Poster Display), Space Grotesk (Editorial Sans), Space Mono (Monospace) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* -------------------------------------------------------------------------
+     * GUERRILLA BROADSIDE DESIGN SYSTEM
+     * Hard 0px brutalist geometry, high-contrast newsprint bone on pitch carbon,
+     * vivid safety orange punch accents, and towering condensed poster headers.
+     * ---------------------------------------------------------------------- */
+    :root {
+      --bg-canvas:              #0a0a0a;
+      --bg-surface:             #141414;
+      --bg-surface-alt:         #1a1a1a;
+      --bg-surface-dark:        #050505;
+
+      --ink-primary:            #ece7de;
+      --ink-secondary:          #a1a1a6;
+      --ink-muted:              #636366;
+      --ink-inverted:           #0a0a0a;
+
+      --accent-primary:         #ff4614;
+      --accent-primary-hover:   #e03a0c;
+      --accent-secondary:       #ece7de;
+      --accent-tertiary:        #ff6b42;
+
+      --status-success:         #34c759;
+      --status-warning:         #ff9500;
+      --status-danger:          #ff3b30;
+      --status-info:            #0a84ff;
+
+      --font-display:           "Bebas Neue", "Impact", -apple-system, sans-serif;
+      --font-sans:              "Space Grotesk", system-ui, sans-serif;
+      --font-mono:              "Space Mono", monospace;
+
+      --radius-default:         0px;
+      --radius-subtle:          0px;
+      --radius-pill:            9999px;
+
+      --shadow-base:            none;
+      --shadow-hover:           3px 3px 0px var(--accent-primary);
+      --shadow-active:          1px 1px 0px var(--accent-primary);
+
+      --border-core:            1px solid #282828;
+      --border-heavy:           2px solid #ece7de;
+      --border-accent:          2px solid #ff4614;
+      --border-hairline:        1px solid #1f1f1f;
+      --header-height:          64px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    /* Mandatory Header Bar */
+    .style-tile-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--header-height);
+      padding: 12px 24px;
+      background: #0d0d0d;
+      border-bottom: 2px solid #222222;
+    }
+
+    .nav-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      padding: 7px 14px;
+      color: var(--ink-primary);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: 1px solid #333333;
+      border-radius: 0;
+      background: #141414;
+      transition: background 150ms ease, border-color 150ms ease;
+    }
+    .nav-back-link:hover {
+      background: #202020;
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
+    .header-title-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .design-code {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      background: var(--accent-primary);
+      color: #000000;
+      border-radius: 0;
+    }
+
+    .design-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: var(--ink-primary);
+    }
+
+    .design-vibe-tag {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border: 1px solid #333333;
+      border-radius: 0;
+      color: var(--accent-primary);
+      background: rgba(255, 70, 20, 0.08);
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-tile {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1px solid #333333;
+      border-radius: 0;
+      background: #141414;
+      color: var(--ink-primary);
+      transition: all 150ms ease;
+    }
+    .btn-tile:hover {
+      background: #222222;
+      border-color: #555555;
+    }
+    .btn-copy {
+      background: var(--accent-primary);
+      color: #000000;
+      border-color: var(--accent-primary);
+    }
+    .btn-copy:hover {
+      background: var(--accent-primary-hover);
+      border-color: var(--accent-primary-hover);
+      color: #000000;
+    }
+
+    .layout-wrapper {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 40px 0 96px;
+    }
+
+    .section-block {
+      margin-top: 72px;
+      padding-top: 32px;
+      border-top: 2px solid #222222;
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-kicker::after {
+      content: "";
+      display: block;
+      height: 1px;
+      flex: 1;
+      background: #222222;
+      max-width: 80px;
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3.2rem, 9vw, 6.4rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      margin: 12px 0 16px;
+      position: relative;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: var(--ink-primary);
+      line-height: 1;
+    }
+
+    h3 {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: var(--accent-primary);
+    }
+
+    /* Hero Banner Spec */
+    .hero-banner {
+      position: relative;
+      padding: 32px 0 20px;
+    }
+
+    .hero-title-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    /* Tactile orange sticker smiley */
+    .hero-sticker {
+      position: absolute;
+      top: 14%;
+      left: 54%;
+      width: clamp(52px, 8vw, 84px);
+      height: clamp(52px, 8vw, 84px);
+      background: var(--accent-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translate(-50%, -50%) rotate(-6deg);
+      box-shadow: 0 4px 16px rgba(255, 70, 20, 0.45);
+      z-index: 2;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .hero-sticker:hover {
+      transform: translate(-50%, -50%) rotate(12deg) scale(1.12);
+    }
+    .hero-sticker svg {
+      width: 70%;
+      height: 70%;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .chip {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid #333333;
+      border-radius: 0;
+      color: var(--ink-secondary);
+      background: #101010;
+    }
+    .chip.chip-accent {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+      background: rgba(255, 70, 20, 0.06);
+    }
+
+    .hero-lead {
+      max-width: 64ch;
+      color: var(--ink-secondary);
+      font-size: 1.15rem;
+      line-height: 1.6;
+      margin: 16px 0 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 20px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 0;
+      border: 1px solid #333333;
+      background: #141414;
+      color: var(--ink-primary);
+      text-decoration: none;
+      transition: all 140ms ease;
+    }
+    .btn:hover {
+      background: #242424;
+      border-color: #666666;
+    }
+    .btn-primary {
+      background: var(--accent-primary);
+      color: #000000;
+      border: 1px solid var(--accent-primary);
+    }
+    .btn-primary:hover {
+      background: var(--accent-primary-hover);
+      border-color: var(--accent-primary-hover);
+      color: #000000;
+      box-shadow: 3px 3px 0px #ffffff;
+    }
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--ink-primary);
+      color: var(--ink-primary);
+    }
+    .btn-ghost:hover {
+      background: var(--ink-primary);
+      color: #000000;
+    }
+    .btn-danger {
+      background: var(--status-danger);
+      color: #ffffff;
+      border-color: var(--status-danger);
+    }
+    .btn-danger:hover {
+      background: #d32f2f;
+    }
+    .btn-accent {
+      background: #1a1a1a;
+      border: 1px solid var(--accent-primary);
+      color: var(--accent-primary);
+    }
+    .btn-accent:hover {
+      background: var(--accent-primary);
+      color: #000000;
+    }
+
+    /* Palette Swatches */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #282828;
+      border-radius: 0;
+      overflow: hidden;
+      background: var(--bg-surface);
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      transition: border-color 150ms ease, transform 150ms ease;
+    }
+    .swatch-item:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+
+    .swatch-chip {
+      height: 72px;
+      border-bottom: 1px solid #222222;
+    }
+    .swatch-meta {
+      padding: 10px 12px;
+    }
+    .swatch-name {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+      margin-bottom: 4px;
+    }
+    .swatch-var, .swatch-hex {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+    }
+
+    /* Typography Section */
+    .type-stack { display: grid; gap: 20px; }
+    .type-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-bottom: 1px solid #1f1f1f;
+      align-items: baseline;
+      min-width: 0;
+    }
+    .type-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+    }
+    .text-display {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 4.4rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+    .text-h1 {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      line-height: 1.02;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+    .text-h2 {
+      font-family: var(--font-sans);
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--ink-primary);
+    }
+    .text-h3 {
+      font-family: var(--font-sans);
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--ink-primary);
+    }
+    .text-body {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+    }
+    .text-meta {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .live-type-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 16px;
+      font-size: 16px;
+      font-family: var(--font-sans);
+      border: 1px solid #333333;
+      border-radius: 0;
+      background: #141414;
+      color: var(--ink-primary);
+      transition: border-color 150ms ease;
+    }
+    .live-type-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 1px var(--accent-primary);
+    }
+
+    /* Components Archetypes */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .component-card {
+      padding: 24px;
+      background: var(--bg-surface);
+      border: 1px solid #282828;
+      border-radius: 0;
+      min-width: 0;
+    }
+
+    .btn-row, .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .field-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      margin-bottom: 8px;
+    }
+    .text-input {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 14px;
+      font-size: 16px;
+      border: 1px solid #333333;
+      border-radius: 0;
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+    }
+    .text-input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 2px 2px 0px var(--accent-primary);
+    }
+
+    /* Brutalist Square Checkbox and Radio */
+    .control-row label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      user-select: none;
+      color: var(--ink-secondary);
+    }
+    .control-row input[type="checkbox"],
+    .control-row input[type="radio"] {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #555555;
+      border-radius: 0;
+      background: #0a0a0a;
+      cursor: pointer;
+      display: grid;
+      place-content: center;
+      margin: 0;
+      transition: all 120ms ease;
+    }
+    .control-row input[type="checkbox"]:checked,
+    .control-row input[type="radio"]:checked {
+      border-color: var(--accent-primary);
+      background: var(--accent-primary);
+    }
+    .control-row input[type="checkbox"]:checked::before {
+      content: "";
+      width: 8px;
+      height: 4px;
+      border-left: 2px solid #000000;
+      border-bottom: 2px solid #000000;
+      transform: rotate(-45deg) translate(1px, -1px);
+    }
+    .control-row input[type="radio"]:checked::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: #000000;
+    }
+
+    /* Sharp toggle switch */
+    .toggle {
+      position: relative;
+      width: 46px;
+      height: 24px;
+      border: 2px solid #555555;
+      border-radius: 0;
+      background: #141414;
+      cursor: pointer;
+      padding: 0;
+    }
+    .toggle[aria-pressed="true"] {
+      background: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      border-radius: 0;
+      background: #ffffff;
+      transition: transform 140ms ease;
+    }
+    .toggle[aria-pressed="true"]::after {
+      background: #000000;
+      transform: translateX(22px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid #333333;
+      border-radius: 0;
+      color: var(--ink-secondary);
+      background: #101010;
+    }
+    .badge-accent {
+      border-color: var(--accent-primary);
+      color: #000000;
+      background: var(--accent-primary);
+    }
+
+    /* Feature card archetype */
+    .feature-archetype {
+      border-left: 4px solid var(--accent-primary);
+      padding: 16px;
+      background: #101010;
+    }
+    .feature-archetype p {
+      font-size: 0.9rem;
+      color: var(--ink-secondary);
+      margin-top: 6px;
+    }
+
+    /* Living Demo Section: Street Poster & Wheatpaste Broadside */
+    .living-broadside-stage {
+      background: #0d0d0d;
+      border: 2px solid #222222;
+      padding: 36px 32px;
+      position: relative;
+    }
+
+    .broadside-hero-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      border-bottom: 2px solid #222222;
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+
+    .broadside-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6.2rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .broadside-headline .sticker-insert {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(48px, 6vw, 68px);
+      height: clamp(48px, 6vw, 68px);
+      background: var(--accent-primary);
+      border-radius: 50%;
+      margin: 0 -4px;
+      vertical-align: middle;
+      transform: rotate(-8deg);
+      box-shadow: 0 4px 14px rgba(255, 70, 20, 0.4);
+      cursor: pointer;
+      user-select: none;
+      transition: transform 180ms ease;
+    }
+    .broadside-headline .sticker-insert:hover {
+      transform: rotate(15deg) scale(1.1);
+    }
+    .broadside-headline .sticker-insert svg {
+      width: 68%;
+      height: 68%;
+    }
+
+    .broadside-triptych {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .broadside-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .broadside-copy-block {
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      line-height: 1.45;
+      font-weight: 500;
+      color: var(--ink-primary);
+    }
+    .broadside-copy-block p {
+      margin-bottom: 16px;
+    }
+    .broadside-copy-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .wheatpaste-plate-card {
+      border: 1px solid #333333;
+      background: #141414;
+      padding: 12px;
+      position: relative;
+    }
+
+    .wheatpaste-image-wrap {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #222222;
+      background: #000000;
+      aspect-ratio: 4 / 5;
+    }
+
+    .wheatpaste-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(145%) brightness(85%);
+      transition: filter 300ms ease;
+    }
+    .wheatpaste-image-wrap:hover img {
+      filter: grayscale(80%) contrast(150%) brightness(95%);
+    }
+
+    .wheatpaste-caption {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .broadside-footer-bar {
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 2px solid #222222;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .stamp-bracket-mark {
+      color: var(--accent-primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .stamp-bracket-mark svg {
+      width: 52px;
+      height: 26px;
+    }
+
+    .broadside-edition-label {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 0.05em;
+      color: var(--accent-primary);
+      line-height: 1;
+    }
+
+    /* Spec Drawer Card */
+    .spec-drawer-card {
+      background: #0d0d0d;
+      color: var(--ink-primary);
+      border: 2px solid #222222;
+      border-radius: 0;
+      padding: 24px;
+    }
+
+    .spec-drawer-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .spec-code-pre {
+      overflow: auto;
+      max-height: 480px;
+      padding: 20px;
+      background: #050505;
+      color: #d1d1d6;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-word;
+      border: 1px solid #222222;
+      border-radius: 0;
+    }
+
+    /* Modal Component */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(4px);
+    }
+    .modal-overlay.active { display: flex; }
+
+    .modal-content-card {
+      width: min(880px, 100%);
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      background: #0d0d0d;
+      border: 2px solid #333333;
+      border-radius: 0;
+      overflow: hidden;
+    }
+
+    .modal-header, .modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 20px;
+      border-bottom: 1px solid #222222;
+    }
+    .modal-footer {
+      border-bottom: 0;
+      border-top: 1px solid #222222;
+      justify-content: flex-end;
+    }
+    .modal-body { padding: 20px; overflow: auto; flex: 1; }
+    .modal-close-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid #333333;
+      background: #141414;
+      color: var(--ink-primary);
+      cursor: pointer;
+      border-radius: 0;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      transition: all 120ms ease;
+    }
+    .modal-close-btn:hover {
+      background: var(--accent-primary);
+      color: #000000;
+      border-color: var(--accent-primary);
+    }
+
+    /* Toast Notification */
+    .toast-popup {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3000;
+      padding: 12px 20px;
+      background: var(--accent-primary);
+      color: #000000;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border-radius: 0;
+      box-shadow: 4px 4px 0px #ffffff;
+    }
+
+    /* Mobile Reflow */
+    @media (max-width: 768px) {
+      .layout-wrapper { width: calc(100% - 24px); padding: 20px 0 64px; }
+      .type-row { grid-template-columns: 1fr; gap: 6px; }
+      .swatches-grid, .components-grid { grid-template-columns: 1fr; }
+      .hero-actions, .btn-row { flex-direction: column; align-items: stretch; }
+      .btn, .btn-tile { white-space: normal; }
+      .toast-popup { left: 16px; right: 16px; bottom: 16px; }
+
+      .broadside-triptych {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .broadside-hero-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .hero-sticker {
+        display: none;
+      }
+    }
+  </style>
+
+  <!-- Shared mobile safety sheet. Must remain immediately after this page's <style>. -->
+  <link rel="stylesheet" href="design-page-mobile.css">
+  <script src="design-page-mobile.js"></script>
+</head>
+<body>
+
+  <!-- Mandatory Top Header Bar -->
+  <header class="style-tile-header">
+    <a href="../index.html" class="nav-back-link" title="Return to Style Tiles Catalog">
+      <span class="icon">←</span> Catalog
+    </a>
+
+    <div class="header-title-block">
+      <span class="design-code" data-live-tile-code>TILE</span>
+      <span class="design-title">Guerrilla Broadside</span>
+      <span class="design-vibe-tag">Neo-Brutalism</span>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-preview-tile" class="btn-tile btn-preview" type="button" title="View formatted Markdown Style Tile">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Preview Style Tile
+      </button>
+      <button id="btn-copy-tile" class="btn-tile btn-copy" type="button" title="Copy raw Markdown to clipboard for AI Prompt">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy Style Tile
+      </button>
+      <button id="btn-download-tile" class="btn-tile btn-download" type="button" title="Download style-tile-guerrilla-broadside.md">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Style Tile
+      </button>
+    </div>
+  </header>
+
+  <main class="layout-wrapper">
+
+    <!-- SLOT 1: Hero Banner -->
+    <section class="hero-banner" id="hero-section">
+      <p class="section-kicker">Visual System // 00</p>
+      <div class="hero-meta">
+        <span class="chip chip-accent">Neo-Brutalism</span>
+        <span class="chip">Street Broadside</span>
+        <span class="chip">Wheatpaste Collage</span>
+        <span class="chip">0px Geometry</span>
+        <span class="chip">Dark</span>
+      </div>
+
+      <div class="hero-title-wrap">
+        <h1>Guerrilla Broadside</h1>
+        <!-- Tactile Safety Orange Sticker Doodle Overlap -->
+        <div class="hero-sticker" title="Tactile Guerrilla Sticker" onclick="nudgeSticker(this)">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M34 38C34 41 32 43 30 43C28 43 26 41 26 38C26 35 28 33 30 33C32 33 34 35 34 38Z" fill="#0A0A0A"/>
+            <path d="M74 38C74 41 72 43 70 43C68 43 66 41 66 38C66 35 68 33 70 33C72 33 74 35 74 38Z" fill="#0A0A0A"/>
+            <path d="M28 58C36 74 64 74 72 58" stroke="#0A0A0A" stroke-width="7" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <p class="hero-lead">
+        A high-impact underground poster language forged from dense pitch carbon voids (#0A0A0A), towering condensed poster headlines in newsprint bone (#ECE7DE), and high-visibility safety orange punch markers (#FF4614). Built with uncompromising 0px geometry, tactile wheatpaste framing, and symmetrical typographic columns.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Prompt for Agent</button>
+        <a class="btn btn-ghost" href="#components-section">Test Interactive Elements</a>
+      </div>
+    </section>
+
+    <!-- SLOT 2: Palette Swatches Matrix -->
+    <section class="section-block" id="palette-section">
+      <p class="section-kicker">01 // Color Tokens</p>
+      <h2>Color roles & ink matrix</h2>
+      <div class="swatches-grid" id="swatch-grid">
+        <!-- Filled dynamically by JavaScript from DESIGN_PALETTE -->
+      </div>
+    </section>
+
+    <!-- SLOT 3: Typography Specimen -->
+    <section class="section-block" id="typography-section">
+      <p class="section-kicker">02 // Typeface System</p>
+      <h2>Typography & hierarchy scale</h2>
+      <div class="type-stack">
+        <div class="type-row">
+          <span class="type-label">Display</span>
+          <p class="text-display">Guerrilla Broadside</p>
+        </div>
+        <div class="type-row">
+          <span class="type-label">H1 Header</span>
+          <p class="text-h1">Tactical Strategy</p>
+        </div>
+        <div class="type-row">
+          <span class="type-label">H2 Subtitle</span>
+          <p class="text-h2">Underground print culture and high-velocity communication</p>
+        </div>
+        <div class="type-row">
+          <span class="type-label">H3 Section</span>
+          <p class="text-h3">Wheatpaste collage and zero-blur offset geometry</p>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Body Text</span>
+          <p class="text-body">Presentations and broadsides are direct communication tools used as demonstrations, manifestos, public notices, and lectures. Delivered with towering scale and high contrast, they make powerful instruments for conviction and teaching.</p>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Meta Label</span>
+          <p class="text-meta">BROADSIDE ARCHIVE // FOLIO: 2028 // SYSTEM: 0PX RAW</p>
+        </div>
+        <div class="type-row">
+          <span class="type-label">Live Test</span>
+          <input class="live-type-input" id="live-type-tester-input" type="text" value="TEST CONDENSED DISPLAY POSTER TYPEFACE" oninput="updateLiveDisplay(this.value)" />
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 4: Component Archetypes -->
+    <section class="section-block" id="components-section">
+      <p class="section-kicker">03 // Components</p>
+      <h2>Component archetypes</h2>
+      <div class="components-grid">
+        <article class="component-card">
+          <h3>Action buttons</h3>
+          <div class="btn-row">
+            <button class="btn btn-primary" type="button">Primary</button>
+            <button class="btn" type="button">Secondary</button>
+            <button class="btn btn-ghost" type="button">Ghost</button>
+            <button class="btn btn-danger" type="button">Danger</button>
+            <button class="btn btn-accent" type="button">Accent</button>
+          </div>
+        </article>
+
+        <article class="component-card">
+          <h3>Input Field</h3>
+          <label class="field-label" for="demo-input">Field entry</label>
+          <input class="text-input" id="demo-input" type="text" placeholder="Enter manifesto headline..." autocomplete="off" />
+        </article>
+
+        <article class="component-card">
+          <h3>Selectors & Switches</h3>
+          <div class="control-row">
+            <label><input type="checkbox" checked /> Active</label>
+            <label><input type="radio" name="demo-radio" checked /> Option A</label>
+            <label><input type="radio" name="demo-radio" /> Option B</label>
+            <button class="toggle" id="demo-toggle" type="button" role="switch" aria-checked="true" aria-pressed="true" aria-label="Toggle Mode"></button>
+            <span class="badge badge-accent">Live</span>
+          </div>
+        </article>
+
+        <article class="component-card">
+          <h3>Card & Boundary</h3>
+          <div class="feature-archetype">
+            <span class="badge">Brutalist Block</span>
+            <p>Hard 0px corners, high-contrast dark borders (#282828), and stark newsprint bone typography on jet black void.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SLOT 5: Living Micro-Experience Demo -->
+    <section class="section-block" id="demo-section">
+      <p class="section-kicker">04 // Living Experience</p>
+      <h2>Living demo: Guerrilla broadside board</h2>
+
+      <div class="living-broadside-stage">
+        <!-- Broadside Header Banner -->
+        <div class="broadside-hero-banner">
+          <div class="broadside-headline">
+            MARKETING
+            <span class="sticker-insert" title="Interactive Sticker" onclick="nudgeSticker(this)">
+              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M34 38C34 41 32 43 30 43C28 43 26 41 26 38C26 35 28 33 30 33C32 33 34 35 34 38Z" fill="#0A0A0A"/>
+                <path d="M74 38C74 41 72 43 70 43C68 43 66 41 66 38C66 35 68 33 70 33C72 33 74 35 74 38Z" fill="#0A0A0A"/>
+                <path d="M28 58C36 74 64 74 72 58" stroke="#0A0A0A" stroke-width="7" stroke-linecap="round"/>
+              </svg>
+            </span>
+            STRATEGY
+          </div>
+        </div>
+
+        <!-- Broadside Triptych Layout -->
+        <div class="broadside-triptych">
+          <!-- Left Column -->
+          <div class="broadside-column">
+            <div class="broadside-copy-block">
+              <p>Presentations are communication tools that can be used as demonstrations, lectures, speeches, reports, and more. Most of the time, they’re presented before an audience. It serves a variety of purposes, making them powerful tools for convincing and teaching.</p>
+              <p>Presentations are communication tools that can be used as demonstrations, lectures, speeches, reports, and more.</p>
+            </div>
+            <div class="hero-actions" style="margin-top: 8px;">
+              <button class="btn btn-primary" type="button" onclick="triggerToast('Broadside order dispatched')">Deploy Notice</button>
+            </div>
+          </div>
+
+          <!-- Center Wheatpaste Plate Card -->
+          <div class="wheatpaste-plate-card">
+            <div class="wheatpaste-image-wrap">
+              <img src="../Assets/city.jpg" alt="Urban Wheatpaste Poster Collage Plate" />
+            </div>
+            <div class="wheatpaste-caption">
+              <span>Wheatpaste Collage Plate</span>
+              <span>Ref // 800_RAW</span>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="broadside-column">
+            <div class="broadside-copy-block">
+              <p>Presentations are communication tools that can be used as demonstrations, lectures, speeches, reports, and more. Most of the time, they’re presented before an audience. It serves a variety of purposes, making them powerful tools for convincing and teaching.</p>
+              <p>Presentations are communication tools that can be used as demonstrations, lectures, speeches, reports, and more.</p>
+            </div>
+            <div class="hero-actions" style="margin-top: 8px;">
+              <button class="btn btn-ghost" type="button" onclick="triggerToast('Archive synchronized')">Inspect Plate</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Broadside Bottom Bar -->
+        <div class="broadside-footer-bar">
+          <div class="stamp-bracket-mark">
+            <svg viewBox="0 0 80 40" fill="currentColor">
+              <path d="M0 40H80V12H64V24H48V0H32V24H16V12H0V40Z"/>
+            </svg>
+            <span class="badge">Press Mark</span>
+          </div>
+
+          <div class="broadside-edition-label">
+            BORCELLE 2028
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLOT 6: Spec Drawer Card -->
+    <section class="section-block spec-drawer-card" id="spec-section">
+      <div class="spec-drawer-head">
+        <h2 style="margin:0;color:inherit;">Style Tile specification</h2>
+        <button class="btn btn-accent" type="button" onclick="copyTilePromptDirect()">Copy Markdown Spec</button>
+      </div>
+      <pre class="spec-code-pre"><code id="spec-code-display">Loading specification…</code></pre>
+    </section>
+  </main>
+
+  <!-- Inspection Modal -->
+  <div id="spec-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div class="modal-content-card">
+      <div class="modal-header">
+        <strong id="spec-modal-title">Style Tile Specification — Guerrilla Broadside</strong>
+        <button class="modal-close-btn" type="button" onclick="closeSpecModal()" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <pre class="spec-code-pre"><code id="modal-spec-display">Loading specification…</code></pre>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" type="button" onclick="closeSpecModal()">Close</button>
+        <button class="btn btn-primary" type="button" onclick="copyTilePromptDirect()">Copy Style Tile</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-popup" class="toast-popup" role="status" aria-live="polite">Copied</div>
+
+  <!--
+    SOURCE OF TRUTH for Copy / Download / Preview.
+    Adheres strictly to §4 of agent.md.
+  -->
+  <script id="style-tile-markdown" type="text/markdown">
+================================================================================
+  Visual language: Guerrilla Broadside
+  Construction: jet carbon voids • newsprint bone • safety orange • 0px geometry • condensed grotesque
+================================================================================
+
+/* -----------------------------------------------------------------------------
+ * 0. APPLICATION CONTRACT — READ THIS FIRST
+ * -------------------------------------------------------------------------- */
+This document is a VISUAL LANGUAGE for restyling an existing interface.
+It is not a content brief, brand story, product concept, or sample layout to reproduce.
+
+HARD RULES:
+1. Keep the host product's copy, labels, navigation, data, images, information architecture, and meaning exactly as they are. Restyle. Do not restory.
+2. Do not print this tile's title, catalog name, construction tags, or vibe keywords anywhere in the host UI.
+3. Do not invent thematic chrome: telemetry strings, ISO/FREQ/MODE codes, issue numbers, fake metadata, industrial jargon, decorative status lines, sample headlines, or dummy nav items taken from this file or from the Style Tiles catalog.
+4. Map existing components onto the visual rules below (color, type, radius, border, shadow, motion). Keep the host's component types; change only their visual treatment.
+5. If a decorative motif here would require new copy to make sense, omit the motif. Never add copy to justify a graphic.
+6. Do not rename the product, rewrite marketing voice, swap the industry, or add mascots, watermarks, or "system codes" that the host site does not already have.
+
+/* -----------------------------------------------------------------------------
+ * 1. VISUAL STATEMENT
+ * -------------------------------------------------------------------------- */
+High-impact underground poster and broadside visual system executed in deep jet carbon voids (#0A0A0A) and dense newsprint bone typography (#ECE7DE). Towering condensed grotesque headlines provide immediate scale, punctuated by high-visibility safety orange (#FF4614) punch marks, tactile circular sticker badges, and stepped brutalist stamps. Geometry is strictly 0px with hard zero-blur offset interactions, disciplined hairline dividers, and high-contrast photographic plates.
+
+/* -----------------------------------------------------------------------------
+ * 2. COLOR ROLES & PALETTE
+ * -------------------------------------------------------------------------- */
+:root {
+  /* Surfaces & Backgrounds */
+  --bg-canvas:              #0a0a0a; /* Primary deep jet carbon void */
+  --bg-surface:             #141414; /* Elevated container and module surface */
+  --bg-surface-alt:         #1a1a1a; /* Secondary wells, sidebars, and frames */
+  --bg-surface-dark:        #050505; /* Inverted high-contrast backdrops */
+
+  /* Inks & Typography */
+  --ink-primary:            #ece7de; /* Primary reading text in warm newsprint bone */
+  --ink-secondary:          #a1a1a6; /* Subtitles, secondary copy, and column body */
+  --ink-muted:              #636366; /* Captions, dividers, and disabled text */
+  --ink-inverted:           #0a0a0a; /* Inverted contrast text on bone or orange */
+
+  /* Signature Accents */
+  --accent-primary:         #ff4614; /* High-vis safety orange punch */
+  --accent-primary-hover:   #e03a0c; /* Deepened safety orange hover */
+  --accent-secondary:       #ece7de; /* Crisp newsprint bone highlight */
+  --accent-tertiary:        #ff6b42; /* Energetic bright orange accent */
+
+  /* Status Tokens */
+  --status-success:         #34c759;
+  --status-warning:         #ff9500;
+  --status-danger:          #ff3b30;
+  --status-info:            #0a84ff;
+}
+
+/* -----------------------------------------------------------------------------
+ * 3. TYPOGRAPHY SYSTEM
+ * -------------------------------------------------------------------------- */
+/* Font Stacks */
+--font-display: "Bebas Neue", "Impact", -apple-system, sans-serif;
+--font-sans:    "Space Grotesk", system-ui, -apple-system, sans-serif;
+--font-mono:    "Space Mono", monospace;
+
+/* Type Scale */
+--text-display: clamp(3.2rem, 8vw, 6.0rem) / 0.92  var(--font-display); /* Letter-spacing: 0.02em | Weight: 400 | UPPERCASE */
+--text-h1:      2.8rem   / 1.02  var(--font-display); /* Letter-spacing: 0.02em | Weight: 400 | UPPERCASE */
+--text-h2:      1.75rem  / 1.25  var(--font-sans);    /* Letter-spacing: -0.01em | Weight: 700 */
+--text-h3:      1.25rem  / 1.35  var(--font-sans);    /* Letter-spacing: 0 | Weight: 600 */
+--text-body:    1.0rem   / 1.60  var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
+--text-body-sm: 0.875rem / 1.50  var(--font-sans);    /* Letter-spacing: 0 | Weight: 400 */
+--text-meta:    0.75rem  / 1.40  var(--font-mono);    /* Letter-spacing: 0.1em | UPPERCASE */
+
+/* -----------------------------------------------------------------------------
+ * 4. CORNER GEOMETRY & ELEVATION
+ * -------------------------------------------------------------------------- */
+--radius-default: 0px;
+--radius-subtle:  0px;
+--radius-pill:    9999px; /* Reserved strictly for circular sticker motifs */
+
+/* Elevation & Shadows */
+--shadow-base:    none;
+--shadow-hover:   3px 3px 0px var(--accent-primary);
+--shadow-active:  1px 1px 0px var(--accent-primary);
+
+/* -----------------------------------------------------------------------------
+ * 5. BORDERS & DIVIDERS
+ * -------------------------------------------------------------------------- */
+--border-core:        1px solid #282828;
+--border-heavy:       2px solid #ece7de;
+--border-accent:      2px solid #ff4614;
+--border-hairline:    1px solid #1f1f1f;
+--divider-style:      1px solid #222222;
+
+/* -----------------------------------------------------------------------------
+ * 6. COMPONENT SKIN — APPLY TO EXISTING COMPONENTS
+ * -------------------------------------------------------------------------- */
+- **Buttons**: Strict 0px rectangular geometry. Primary button filled in safety orange (#FF4614) with pitch black text (#000000), font-family var(--font-mono), bold uppercase. Hover triggers 3px 3px 0px offset box shadow in pure white or darkened safety orange. Ghost button utilizes a 1px solid bone border with bone text. Use the host's existing labels.
+- **Cards**: Flat containers on #141414 with 1px solid #282828 borders. 0px corner radii. Zero blur shadows. Accent card variants feature a thick 4px solid safety orange left border.
+- **Inputs**: Flat jet black #0A0A0A wells with 1px solid #333333 border, 0px radius, bone text. Focused state displays a 1px safety orange border with 2px 2px 0px zero-blur offset shadow. Font-size at least 16px.
+- **Navigation**: Persistent matte bar (#0D0D0D) with 2px solid bottom divider. Navigation links set in uppercase monospace or tight grotesque, highlighted by safety orange active dots or underlines.
+
+/* -----------------------------------------------------------------------------
+ * 7. FORBIDDEN CLICHÉS & ANTI-PATTERNS
+ * -------------------------------------------------------------------------- */
+- No rounded pill buttons, cards, or squircle frames (0px geometry is mandatory).
+- No soft, blurry gaussian box-shadows (elevation is achieved strictly through high contrast or hard zero-blur offset).
+- No pastel candy hues, purple neon, or low-contrast gray-on-gray text.
+- Never inject this tile's name, construction tags, or showcase copy into the host interface.
+  </script>
+
+  <!-- Runtime Logic & Chrome Interactivity -->
+  <script>
+    const DESIGN_SLUG = "guerrilla-broadside";
+
+    const DESIGN_PALETTE = [
+      { name: "Void Canvas", hex: "#0a0a0a", cssVar: "--bg-canvas" },
+      { name: "Matte Surface", hex: "#141414", cssVar: "--bg-surface" },
+      { name: "Surface Alt", hex: "#1a1a1a", cssVar: "--bg-surface-alt" },
+      { name: "Surface Dark", hex: "#050505", cssVar: "--bg-surface-dark" },
+      { name: "Bone Ink", hex: "#ece7de", cssVar: "--ink-primary" },
+      { name: "Secondary Ink", hex: "#a1a1a6", cssVar: "--ink-secondary" },
+      { name: "Muted Ink", hex: "#636366", cssVar: "--ink-muted" },
+      { name: "Inverted Void", hex: "#0a0a0a", cssVar: "--ink-inverted" },
+      { name: "Safety Orange", hex: "#ff4614", cssVar: "--accent-primary" },
+      { name: "Accent Hover", hex: "#e03a0c", cssVar: "--accent-primary-hover" },
+      { name: "Bone Accent", hex: "#ece7de", cssVar: "--accent-secondary" },
+      { name: "Bright Orange", hex: "#ff6b42", cssVar: "--accent-tertiary" },
+      { name: "Success", hex: "#34c759", cssVar: "--status-success" },
+      { name: "Warning", hex: "#ff9500", cssVar: "--status-warning" },
+      { name: "Danger", hex: "#ff3b30", cssVar: "--status-danger" },
+      { name: "Info", hex: "#0a84ff", cssVar: "--status-info" }
+    ];
+
+    const markdownEl = document.getElementById("style-tile-markdown");
+    const markdownContent = markdownEl ? markdownEl.textContent.trim() : "";
+
+    const specCodeDisplay = document.getElementById("spec-code-display");
+    if (specCodeDisplay) specCodeDisplay.textContent = markdownContent;
+    const modalSpecDisplay = document.getElementById("modal-spec-display");
+    if (modalSpecDisplay) modalSpecDisplay.textContent = markdownContent;
+
+    const swatchGrid = document.getElementById("swatch-grid");
+    if (swatchGrid) {
+      DESIGN_PALETTE.forEach(function (swatch) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "swatch-item";
+        btn.title = "Copy " + swatch.hex;
+        btn.innerHTML =
+          '<span class="swatch-chip" style="background:' + swatch.hex + '"></span>' +
+          '<span class="swatch-meta">' +
+            '<span class="swatch-name">' + swatch.name + "</span>" +
+            '<span class="swatch-var">' + swatch.cssVar + "</span> " +
+            '<span class="swatch-hex">' + swatch.hex + "</span>" +
+          "</span>";
+        btn.addEventListener("click", function () { copyHex(swatch.hex, swatch.name); });
+        swatchGrid.appendChild(btn);
+      });
+    }
+
+    function triggerToast(message) {
+      const toast = document.getElementById("toast-popup");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.style.display = "block";
+      clearTimeout(triggerToast._t);
+      triggerToast._t = setTimeout(function () { toast.style.display = "none"; }, 2000);
+    }
+
+    function copyTilePromptDirect() {
+      navigator.clipboard.writeText(markdownContent).then(function () {
+        triggerToast("✓ Copied to Clipboard!");
+        const copyBtn = document.getElementById("btn-copy-tile");
+        if (copyBtn) {
+          const original = copyBtn.innerHTML;
+          copyBtn.textContent = "✓ Copied to Clipboard!";
+          setTimeout(function () { copyBtn.innerHTML = original; }, 2000);
+        }
+      }).catch(function () {
+        triggerToast("Clipboard unavailable");
+      });
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex).then(function () {
+        triggerToast("✓ Copied " + name + ": " + hex);
+      });
+    }
+
+    function closeSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.remove("active");
+    }
+
+    function openSpecModal() {
+      const modal = document.getElementById("spec-modal");
+      if (modal) modal.classList.add("active");
+    }
+
+    function nudgeSticker(el) {
+      const deg = (Math.random() * 30 - 15).toFixed(1);
+      el.style.transform = "rotate(" + deg + "deg) scale(1.15)";
+      setTimeout(function() {
+        el.style.transform = "rotate(" + deg + "deg)";
+      }, 250);
+      triggerToast("Sticker nudged: " + deg + "°");
+    }
+
+    function updateLiveDisplay(val) {
+      const textDisplay = document.querySelector(".type-row .text-display");
+      if (textDisplay && val.trim().length > 0) {
+        textDisplay.textContent = val;
+      }
+    }
+
+    document.getElementById("btn-copy-tile").addEventListener("click", copyTilePromptDirect);
+    document.getElementById("btn-preview-tile").addEventListener("click", openSpecModal);
+    document.getElementById("btn-download-tile").addEventListener("click", function () {
+      const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "style-tile-" + DESIGN_SLUG + ".md";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      triggerToast("✓ Downloading style-tile-" + DESIGN_SLUG + ".md");
+    });
+
+    document.getElementById("spec-modal").addEventListener("click", function (e) {
+      if (e.target.id === "spec-modal") closeSpecModal();
+    });
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeSpecModal();
+    });
+
+    const demoToggle = document.getElementById("demo-toggle");
+    if (demoToggle) {
+      demoToggle.addEventListener("click", function () {
+        const on = demoToggle.getAttribute("aria-pressed") !== "true";
+        demoToggle.setAttribute("aria-pressed", on ? "true" : "false");
+        demoToggle.setAttribute("aria-checked", on ? "true" : "false");
+      });
+    }
+  </script>
+</body>
+</html>

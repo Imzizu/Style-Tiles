@@ -2372,6 +2372,31 @@ const STYLE_TILES_DATA = [
     ],
     description: "Tactile skeuo-minimal ideas notebook visual system pairing faint quad graph paper fields (#FBFBFA) and clean paper surfaces with vibrant canary yellow highlighter washes (#FFCF33), expressive fluid brush script typography, and hand-drawn charcoal ink etching with crisp offset shadows.",
     markdownSpec: null
+  },
+  {
+    slug: "guerrilla-broadside",
+    name: "Guerrilla Broadside",
+    vibe: "Jet Carbon • Newsprint Bone • Safety Orange • Towering Grotesque • Wheatpaste Plate",
+    vibeBadge: "Neo-Brutalism",
+    colours: ["Gray", "Orange"],
+    categories: ["brutalist"],
+    theme: "Dark",
+    hasPage: true,
+    fonts: {
+      display: "Bebas Neue",
+      sans: "Space Grotesk",
+      mono: "Space Mono"
+    },
+    palette: [
+      { name: "Void Canvas", hex: "#0A0A0A" },
+      { name: "Matte Surface", hex: "#141414" },
+      { name: "Bone Ink", hex: "#ECE7DE" },
+      { name: "Safety Orange", hex: "#FF4614" },
+      { name: "Muted Paste", hex: "#8A8A8E" },
+      { name: "Subtle Hairline", hex: "#282828" }
+    ],
+    description: "High-impact underground broadside system built on deep jet carbon voids (#0A0A0A), towering condensed poster typography in newsprint bone (#ECE7DE), vivid safety orange punch marks (#FF4614), hard 0px geometry, and tactile wheatpaste framing.",
+    markdownSpec: null
   }
 
   // === AGENT_APPEND_TILE_HERE ===
